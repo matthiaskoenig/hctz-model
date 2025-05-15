@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Weir1998</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <!--<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+</head>
+
+<body>
+<div id="app">
+    <!-- Vue app-->
+    <v-app>
+        <v-content>
+
+            <a href="../index.html">Experiments</a>
+            <h1>Weir1998</h1>
+
+            <h2>Models</h2>
+            <p>
+            <ul>
+                <li><strong>model</strong>: <a href="../../../../models/results/models/hctz_body_flat.xml">../../../../models/results/models/hctz_body_flat.xml</a></li>
+            </ul>
+            </p>
+
+            <h2>Datasets</h2>
+            <p>
+            <ul>
+                <li><strong>Fig2_hctz25</strong>: <a href="Weir1998_Fig2_hctz25.tsv">Weir1998_Fig2_hctz25.tsv</a></li>
+                <li><strong>Fig3_amount_cumulative_hctz25</strong>: <a href="Weir1998_Fig3_amount_cumulative_hctz25.tsv">Weir1998_Fig3_amount_cumulative_hctz25.tsv</a></li>
+                <li><strong>Tab4_excretion_hctz25</strong>: <a href="Weir1998_Tab4_excretion_hctz25.tsv">Weir1998_Tab4_excretion_hctz25.tsv</a></li>
+            </ul>
+            </p>
+
+            <h2>Figures</h2>
+            <p>
+            <ul>
+                <li><strong>Fig2_Fig3_Tab4</strong>: <a href="Weir1998_Fig2_Fig3_Tab4.svg">Weir1998_Fig2_Fig3_Tab4.svg</a></li>
+            </ul>
+            </p>
+
+            <h3>Fig2_Fig3_Tab4</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="Weir1998_Fig2_Fig3_Tab4.svg" max-width="600" width="600"></v-img>-->
+                        <img src="Weir1998_Fig2_Fig3_Tab4.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+
+            <h2>Code</h2>
+            <p>
+                <a href="../../../../experiments/studies/weir1998.py">../../../../experiments/studies/weir1998.py</a>
+            <pre>
+<code class="python">from typing import Dict
+
+import pandas as pd
+from sbmlsim.data import DataSet, load_pkdb_dataframe
+from sbmlsim.fit import FitMapping, FitData
+
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Timecourse, TimecourseSim
+
+from pkdb_models.models.hydrochlorothiazide.experiments.base_experiment import (
+    HCTZSimulationExperiment,
+)
+from pkdb_models.models.hydrochlorothiazide.experiments.metadata import (
+    Health, Tissue, ApplicationForm,
+    Dosing, Route, Fasting, Coadministration,
+    HCTZMappingMetaData,
+)
+from pkdb_models.models.hydrochlorothiazide.helpers import run_experiments
+
+
+class Weir1998(HCTZSimulationExperiment):
+    """Simulation experiment of Weir1998.
+
+    Multiple dosing of hydrochlorothiazide 25 mg twice daily.
+    """
+
+    def datasets(self) -> Dict[str, DataSet]:
+        dsets = {}
+        for fig_id in ["Fig2", "Fig3", "Tab4"]:
+            df: pd.DataFrame = load_pkdb_dataframe(
+                f"{self.sid}_{fig_id}", data_path=self.data_path
+            )
+            for label, df_label in df.groupby("label"):
+                dset = DataSet.from_df(df_label, self.ureg)
+                if label.startswith("hctz"):
+                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                elif label.startswith("amount_") or label.startswith("excretion_"):
+                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                dsets[f"{fig_id}_{label}"] = dset
+        # print(dsets.keys())
+        # print(dsets)
+        return dsets
+
+    def simulations(self) -> Dict[str, TimecourseSim]:
+        Q_ = self.Q_
+        tcsims = {}
+
+        # 11 doses, every 12 hours
+
+        tc0 = Timecourse(
+            start=0,
+            end=12 * 60,  # [min]
+            steps=500,
+            changes={
+                **self.default_changes(),
+                "PODOSE_hctz": Q_(25, "mg"),
+            },
+        )
+        tc1 = Timecourse(
+            start=0,
+            end=12 * 60,  # [min]
+            steps=500,
+            changes={
+                "PODOSE_hctz": Q_(25, "mg"),
+                "Aurine_hctz": Q_(0, "mmole"),  # reset urine collection
+            },
+        )
+        tc2 = Timecourse(
+            start=0,
+            end=60 * 60,  # [min]
+            steps=500,
+            changes={
+                "PODOSE_hctz": Q_(25, "mg"),
+                "Aurine_hctz": Q_(0, "mmole"),  # reset urine collection
+            },
+        )
+        tcsims["hctz25"] = TimecourseSim(
+            [tc0] + [tc1 for _ in range(9)] + [tc2],
+            time_offset=-10*12*60
+        )
+
+        return tcsims
+
+    def fit_mappings(self) -> Dict[str, FitMapping]:
+        mappings = {}
+
+        infos = [
+            ("Fig2_hctz25", "[Cve_hctz]", Tissue.PLASMA),
+            ("Fig3_amount_cumulative_hctz25", "Aurine_hctz", Tissue.URINE),
+            ("Tab4_excretion_hctz25", "KI__HCTZEX", Tissue.URINE),
+        ]
+
+        for info in infos:
+            (dset_id, yid, tissue) = info
+            mappings[f"fm_{dset_id}"] = FitMapping(
+                self,
+                reference=FitData(
+                    self,
+                    dataset=dset_id,
+                    xid="time",
+                    yid="mean",
+                    yid_sd="mean_sd",
+                    count="count",
+                ),
+                observable=FitData(self, task=f"task_hctz25", xid="time", yid=yid),
+                metadata=HCTZMappingMetaData(
+                    tissue=tissue,
+                    application_form=ApplicationForm.TABLET,
+                    route=Route.PO,
+                    dosing=Dosing.MULTI,
+                    health=Health.HEALTHY,
+                    fasting=Fasting.NR,
+                    coadministration=Coadministration.DILTIAZEM if "dil60" in dset_id else Coadministration.NONE,
+                ),
+            )
+
+        return mappings
+
+    def figures(self) -> Dict[str, Figure]:
+        return {
+            **self.figure_Fig2_Fig3_Tab4(),
+        }
+
+    def figure_Fig2_Fig3_Tab4(self) -> Dict[str, Figure]:
+        name = "Fig2_Fig3_Tab4"
+        fig = Figure(
+            experiment=self,
+            sid=name,
+            num_rows=3,
+            num_cols=1,
+            name=f"{self.__class__.__name__} {name}",
+        )
+
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit="hr"), legend=True
+        )
+        plots[0].set_yaxis(self.label_hctz, unit=self.unit_hctz)
+        plots[1].set_yaxis(label=self.label_hctz_excretion_urine, unit=self.unit_hctz_excretion_urine)
+        plots[2].set_yaxis(label=self.label_hctz_urine, unit=self.unit_hctz_urine)
+
+        # simulation
+        for k, yid in enumerate(["[Cve_hctz]", "KI__HCTZEX", "Aurine_hctz"]):
+            plots[k].add_data(
+                task=f"task_hctz25",
+                xid="time",
+                yid=yid,
+                label=f"Sim",
+                color=self.color_hctz,
+            )
+
+
+        # data
+        for k, dset_id in enumerate(["Fig2_hctz25", "Tab4_excretion_hctz25", "Fig3_amount_cumulative_hctz25"]):
+            plots[k].add_data(
+                dataset=dset_id,
+                xid="time",
+                yid="mean",
+                yid_sd="mean_sd",
+                count="count",
+                label=f"25 mg",
+                color=self.color_hctz,
+            )
+
+        return {
+            fig.sid: fig,
+        }
+
+
+if __name__ == "__main__":
+    run_experiments(Weir1998, output_dir=Weir1998.__name__)
+</code>
+        </pre>
+            </p>
+
+        </v-content>
+    </v-app>
+</div>
+
+
+<!-- loading dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.6/dist/vuetify.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        delimiters: ['${', '}'],
+        data() {
+            return {}
+        }
+    })
+</script>
+
+
+</body>
+</html>

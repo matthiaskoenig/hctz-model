@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Niemeyer1983</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <!--<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+</head>
+
+<body>
+<div id="app">
+    <!-- Vue app-->
+    <v-app>
+        <v-content>
+
+            <a href="../index.html">Experiments</a>
+            <h1>Niemeyer1983</h1>
+
+            <h2>Models</h2>
+            <p>
+            <ul>
+                <li><strong>model</strong>: <a href="../../../../models/results/models/hctz_body_flat.xml">../../../../models/results/models/hctz_body_flat.xml</a></li>
+            </ul>
+            </p>
+
+            <h2>Datasets</h2>
+            <p>
+            <ul>
+                <li><strong>Fig1_hctz50_C</strong>: <a href="Niemeyer1983_Fig1_hctz50_C.tsv">Niemeyer1983_Fig1_hctz50_C.tsv</a></li>
+                <li><strong>Fig1_hctz50_S</strong>: <a href="Niemeyer1983_Fig1_hctz50_S.tsv">Niemeyer1983_Fig1_hctz50_S.tsv</a></li>
+                <li><strong>Fig1_hctz50_W</strong>: <a href="Niemeyer1983_Fig1_hctz50_W.tsv">Niemeyer1983_Fig1_hctz50_W.tsv</a></li>
+            </ul>
+            </p>
+
+            <h2>Figures</h2>
+            <p>
+            <ul>
+                <li><strong>Fig1</strong>: <a href="Niemeyer1983_Fig1.svg">Niemeyer1983_Fig1.svg</a></li>
+            </ul>
+            </p>
+
+            <h3>Fig1</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="Niemeyer1983_Fig1.svg" max-width="600" width="600"></v-img>-->
+                        <img src="Niemeyer1983_Fig1.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+
+            <h2>Code</h2>
+            <p>
+                <a href="../../../../experiments/studies/niemeyer1983.py">../../../../experiments/studies/niemeyer1983.py</a>
+            <pre>
+<code class="python">from typing import Dict
+
+import pandas as pd
+from sbmlsim.data import DataSet, load_pkdb_dataframe
+from sbmlsim.fit import FitMapping, FitData
+
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Timecourse, TimecourseSim
+from sbmlutils.console import console
+
+from pkdb_models.models.hydrochlorothiazide.experiments.base_experiment import (
+    HCTZSimulationExperiment,
+)
+from pkdb_models.models.hydrochlorothiazide.experiments.metadata import (
+    Health, Tissue, ApplicationForm,
+    Dosing, Route, Fasting, Coadministration,
+    HCTZMappingMetaData,
+)
+from pkdb_models.models.hydrochlorothiazide.helpers import run_experiments
+
+
+class Niemeyer1983(HCTZSimulationExperiment):
+    """Simulation experiment of Niemeyer1983.
+
+    single oral dosing of 50mg HCTZ.
+    """
+    labels = ["NRF", "MRI", "SRI"]
+    patients = ["C", "S", "W"]
+    crcl = [106, 30, 10]   #  [ml/min]
+    colors = ["black", "tab:orange", "tab:red"]
+
+    def datasets(self) -> Dict[str, DataSet]:
+        dsets = {}
+        for fig_id in ["Fig1"]:
+            df: pd.DataFrame = load_pkdb_dataframe(
+                f"{self.sid}_{fig_id}", data_path=self.data_path
+            )
+            for label, df_label in df.groupby("label"):
+                dset = DataSet.from_df(df_label, self.ureg)
+                if label.startswith("hctz"):
+                    dset.unit_conversion("value", 1 / self.Mr.hctz)
+                dsets[f"{fig_id}_{label}"] = dset
+
+        # print(dsets.keys())
+        # print(dsets)
+        return dsets
+
+    def simulations(self) -> Dict[str, TimecourseSim]:
+        Q_ = self.Q_
+        tcsims = {}
+
+        for kp, patient in enumerate(self.patients):
+            tcsims[f"hctz50_{patient}"] = TimecourseSim(
+                Timecourse(
+                    start=0,
+                    end=60 * 60,  # [min]
+                    steps=500,
+                    changes={
+                        **self.default_changes(),
+                        "PODOSE_hctz": Q_(50, "mg"),
+                        "KI__f_renal_function": Q_(
+                            self.crcl[kp] / 100, "dimensionless"
+                        ),  # relative kidney function
+                    },
+                )
+            )
+
+        return tcsims
+
+    def fit_mappings(self) -> Dict[str, FitMapping]:
+        mappings = {}
+        for kp, patient in enumerate(self.patients):
+            mappings[f"fm_Fig1_hctz50_{patient}"] = FitMapping(
+                self,
+                reference=FitData(
+                    self,
+                    dataset=f"Fig1_hctz50_{patient}",
+                    xid="time",
+                    yid="value",
+                    count="count",
+                ),
+                observable=FitData(
+                    self, task=f"task_hctz50_{patient}", xid="time", yid="[Cve_hctz]"
+                ),
+                metadata=HCTZMappingMetaData(
+                    tissue=Tissue.PLASMA,
+                    application_form=ApplicationForm.TABLET,
+                    route=Route.PO,
+                    dosing=Dosing.SINGLE,
+                    health=Health.HEALTHY if self.labels[kp] == "NRF" else Health.RENAL_IMPAIRMENT,
+                    fasting=Fasting.FASTED,
+                    coadministration=Coadministration.NONE,
+                ),
+            )
+
+        # console.print(mappings)
+        return mappings
+
+    def figures(self) -> Dict[str, Figure]:
+        return {
+            **self.figure_Fig1(),
+            #    **self.figure_Fig2(),
+        }
+
+    def figure_Fig1(self) -> Dict[str, Figure]:
+        name = "Fig1"
+        fig = Figure(
+            experiment=self,
+            sid=name,
+            num_rows=1,
+            num_cols=1,
+            name=f"{self.__class__.__name__} {name}",
+        )
+
+        plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)
+        plots[0].set_yaxis(self.label_hctz, unit=self.unit_hctz)
+
+        # simulation
+        for kp, patient in enumerate(self.patients):
+            plots[0].add_data(
+                task=f"task_hctz50_{patient}",
+                xid="time",
+                yid="[Cve_hctz]",
+                label=f"Sim {self.labels[kp]}",
+                color=self.colors[kp],
+            )
+
+            # data
+            plots[0].add_data(
+                dataset=f"Fig1_hctz50_{patient}",
+                xid="time",
+                yid="value",
+                count="count",
+                label=f"50 mg {self.labels[kp]}",
+                color=self.colors[kp],
+            )
+
+        return {
+            fig.sid: fig,
+        }
+
+
+if __name__ == "__main__":
+    run_experiments(Niemeyer1983, output_dir=Niemeyer1983.__name__)
+</code>
+        </pre>
+            </p>
+
+        </v-content>
+    </v-app>
+</div>
+
+
+<!-- loading dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.6/dist/vuetify.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        delimiters: ['${', '}'],
+        data() {
+            return {}
+        }
+    })
+</script>
+
+
+</body>
+</html>
