@@ -11,8 +11,8 @@ length: [m]
 
 ## Parameters `p`
 ```
-ALDSEC_k = 0.1  # [mmol/min] rate aldosterone secretion  
-ANGGEN2ANG1_k = 0.1  # [l/min] rate angen to ang1 conversion  
+ALDSEC_k = 1.0105027952686e-06  # [mmol/min] rate aldosterone secretion  
+ANGGEN2ANG1_k = 0.100300143544081  # [l/min] rate angen to ang1 conversion  
 RENSEC_k = 0.1  # [mmol/min] rate renin secretion  
 Vplasma = 5.0  # [l] plasma  
 ald_ref = 2.5e-07  # [mmol/l] reference concentration of aldosterone  
@@ -24,18 +24,18 @@ ren_ref = 1e-09  # [mmol/l] reference concentration of renin
 
 ## Initial conditions `x0`
 ```
-ald = 2.5e-07  # [mmol/l] aldosterone in Vplasma  
-ang1 = 1e-08  # [mmol/l] angiotensin I in Vplasma  
-ang2 = 8e-09  # [mmol/l] angiotensin II in Vplasma  
-anggen = 1e-08  # [mmol/l] angiotensinogen in Vplasma  
-ren = 1e-09  # [mmol/l] renin in Vplasma  
+ald = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x77bac8f4af70> >  # [mmol/l] aldosterone in Vplasma  
+ang1 = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x77bac8f4a610> >  # [mmol/l] angiotensin I in Vplasma  
+ang2 = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x77bac8f4af10> >  # [mmol/l] angiotensin II in Vplasma  
+anggen = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x77bac8f05620> >  # [mmol/l] angiotensinogen in Vplasma  
+ren = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x77bac8f4abb0> >  # [mmol/l] renin in Vplasma  
 ```
 
 ## ODE system
 ```
 # y
 ALDDEG_k = ALDSEC_k / ald_ref  # [l/min] rate aldosterone degradation  
-ALDSEC = ALDSEC_k * ang2 / ang2_ref  # [mmol/min] aldosterone secretion (ALDSEC)  
+ALDSEC = ALDSEC_k  # [mmol/min] aldosterone secretion (ALDSEC)  
 ANG1ANG2_k = ANGGEN2ANG1_k * anggen_ref / ang1_ref  # [l/min] rate ang1 to ang2 conversion  
 ANG2DEG_k = ANGGEN2ANG1_k * anggen_ref / ang2_ref  # [l/min] rate aldosterone degradation  
 ANGGEN2ANG1 = ANGGEN2ANG1_k * anggen * ren / ren_ref  # [mmol/min] angiotensinogen to angiotensin I (renin)  

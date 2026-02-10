@@ -1,0 +1,28 @@
+name: Run Docker
+
+on: [push]
+
+jobs:
+  docker-build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and cache Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          tags: cicd:latest
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Load image in local docker daemon
+        run: docker buildx build --load -t cicd:latest .
+
+      - name: Run command in container
+        run: docker run --rm cicd:latest run_hctz -a all -r /results

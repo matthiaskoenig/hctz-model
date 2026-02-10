@@ -12,17 +12,20 @@ length: [m]
 ## Parameters `p`
 ```
 BW = 75.0  # [kg] body weight [kg]  
+E50_hctz_cl = 0.0001  # [mmol/l]   
+E50_hctz_h2o = 0.0001  # [mmol/l]   
+E50_hctz_na = 0.0001  # [mmol/l]   
 Mr_cl = 35.45  # [g/mol] Molecular weight chloride  
 Mr_na = 22.99  # [g/mol] Molecular weight sodium  
 Mr_nacl = 58.44  # [g/mol] Molecular weight sodium chloride  
 Pdia_ref = 80.0  # [133.32239 N/m^2] Reference diastolic blood pressure  
 Psys_ref = 120.0  # [133.32239 N/m^2] Reference systolic blood pressure  
 Vki = nan  # [l] kidney  
+cl_ref = 102.0  # [mmol/l]   
 f_ECF = 0.33  # [-] ECF fraction of TBW  
 f_TBW = 0.55  # [l/kg] Total body water (TBW) fraction of bodyweight (male)  
-k_cl = 0.000233  # [l/min]   
 k_h2o = 0.000117334965819814  # [1/min]   
-k_na = 0.000169757142857143  # [l/min]   
+na_ref = 140.0  # [mmol/l]   
 vin_h2o = 0.00159722222222222  # [l/min] H2O uptake via food  
 vin_nacl = 0.023766  # [mmol/min] NaCl uptake via food  
 ```
@@ -31,22 +34,25 @@ vin_nacl = 0.023766  # [mmol/min] NaCl uptake via food
 ```
 ECF = 13.6125  # [l] extracellular fluid (ECF)  
 Vurine = 1e-12  # [l] urine  
-cl = 102.0  # [mmol/l] Chloride (Cl-) (ECF) in ECF  
+cl = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x77bac8f5dcb0> >  # [mmol/l] Chloride (Cl-) (ECF) in ECF  
 cl_urine = 0.0  # [mmol] Chloride (Cl-) (urine) in Vurine  
-na = 140.0  # [mmol/l] Sodium (Na+) (ECF) in ECF  
+hctz = 0.0  # [mmol/l] hydrochlorothiazide in ECF  
+na = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x77bac8f5dda0> >  # [mmol/l] Sodium (Na+) (ECF) in ECF  
 na_urine = 0.0  # [mmol] Sodium (Na+) (urine) in Vurine  
 ```
 
 ## ODE system
 ```
 # y
-CL_EXCRETION = k_cl * cl  # [mmol/min] Cl excretion urine  
 ECF_ref = f_ECF * f_TBW * BW  # [l] Reference extracellular fluid volume (ECF)  
 NACL_UPTAKE = vin_nacl  # [mmol/min] Na/Cl uptake via food  
-NA_EXCRETION = k_na * na  # [mmol/min] Na excretion urine  
-diuresis = k_h2o * ECF  # [l/min]   
-Pdia = Pdia_ref * ECF / ECF_ref  # [133.32239 N/m^2] Diastolic blood pressure  
-Psys = Psys_ref * ECF / ECF_ref  # [133.32239 N/m^2] Systolic blood pressure  
+diuresis = k_h2o * ECF * (1 + hctz / E50_hctz_h2o)  # [l/min]   
+k_cl = vin_nacl / cl_ref  # [l/min]   
+k_na = vin_nacl / na_ref  # [l/min]   
+CL_EXCRETION = k_cl * cl * (1 + hctz / E50_hctz_cl)  # [mmol/min] Cl excretion urine  
+NA_EXCRETION = k_na * na * (1 + hctz / E50_hctz_na)  # [mmol/min] Na excretion urine  
+bp_diastolic = Pdia_ref * ECF / ECF_ref  # [133.32239 N/m^2] Diastolic blood pressure  
+bp_systolic = Psys_ref * ECF / ECF_ref  # [133.32239 N/m^2] Systolic blood pressure  
 vin_cl = NACL_UPTAKE * Mr_nacl  # [mg/min]   
 vin_na = NACL_UPTAKE * Mr_nacl  # [mg/min]   
 vout_cl = CL_EXCRETION * Mr_cl  # [mg/min]   
@@ -57,6 +63,7 @@ d ECF/dt = vin_h2o - diuresis  # [l/min] extracellular fluid (ECF)
 d Vurine/dt = diuresis  # [l/min] urine  
 d cl/dt = NACL_UPTAKE / ECF - CL_EXCRETION / ECF  # [mmol/l/min] Chloride (Cl-) (ECF)  
 d cl_urine/dt = CL_EXCRETION  # [mmol/min] Chloride (Cl-) (urine)  
+d hctz/dt = 0  # [mmol/l/min] hydrochlorothiazide  
 d na/dt = NACL_UPTAKE / ECF - NA_EXCRETION / ECF  # [mmol/l/min] Sodium (Na+) (ECF)  
 d na_urine/dt = NA_EXCRETION  # [mmol/min] Sodium (Na+) (urine)  
 ```

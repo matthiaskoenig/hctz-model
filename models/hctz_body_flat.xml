@@ -11,33 +11,45 @@
     <notes>
       <body xmlns="http://www.w3.org/1999/xhtml">
         <h1>Hydrochlorothiazide (HCTZ) body model</h1>
+        <p>The content of this model has been carefully created in a manual research effort.</p>
         <h2>Terms of use</h2>
-        <p>The content of this model has been carefully created in a manual research effort.
-This file has been created by <a href="https://livermetabolism.com">Matthias König</a>
-using <a href="https://github.com/matthiaskoenig/sbmlutils">sbmlutils</a>.
-For questions contact <a href="mailto:koenigmx@hu-berlin.de">koenigmx@hu-berlin.de</a>. Copyright © 2025 Matthias König.</p>
+        <p>Copyright © 2026 <a href="https://livermetabolism.com" title="Matthias König" target="_blank">Matthias König</a>.</p>
         <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
           <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
         </a>
         <br/>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-<p>Redistribution and use of any part of this model, with or without modification,
-are permitted provided that the following conditions are met:</p>
-        <ol>
-          <li>Redistributions of this SBML file must retain the above copyright notice, this
-list of conditions and the following disclaimer.</li>
-          <li>Redistributions in a different form must reproduce the above copyright notice,
-this list of conditions and the following disclaimer in the documentation and/or
-other materials provided with the distribution.</li>
-        </ol>
-        <p>This model is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.</p></body>
+<p>Redistribution and use of any part of this model, with or without modification, are permitted provided
+that the following conditions are met:</p>
+        <ul>
+          <li>Redistributions of this SBML file must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+          <li>Redistributions in a different form must reproduce the above copyright notice, this list of conditions
+and the following disclaimer in the documentation and/or other materials provided
+with the distribution.</li>
+        </ul>
+        <p>This model is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></body>
       </notes>
     <annotation>
       <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
         <rdf:Description rdf:about="#meta_hctz_body">
           <dcterms:creator>
             <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Schwaiger</vCard4:family-name>
+                  <vCard4:given-name>Amanda</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>amanda.lim@charite.de</vCard4:hasEmail>
+                <vCard4:organization-name>Charité - Universitätsmedizin Berlin, Charitéplatz 1, 10117 Berlin, Germany</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>König</vCard4:family-name>
+                  <vCard4:given-name>Matthias</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>koenigmx@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin, Faculty of Life Sciences, Department of Biology, Institute of Theoretical Biology, Systems Medicine of the Liver; University of Stuttgart, Institute of Structural Mechanics and Dynamics in Aerospace Engineering</vCard4:organization-name>
+              </rdf:li>
               <rdf:li rdf:parseType="Resource">
                 <vCard4:hasName rdf:parseType="Resource">
                   <vCard4:family-name>Tensil</vCard4:family-name>
@@ -48,40 +60,61 @@ FOR A PARTICULAR PURPOSE.</p></body>
               </rdf:li>
               <rdf:li rdf:parseType="Resource">
                 <vCard4:hasName rdf:parseType="Resource">
-                  <vCard4:family-name>König</vCard4:family-name>
-                  <vCard4:given-name>Matthias</vCard4:given-name>
+                  <vCard4:family-name>Myshkina</vCard4:family-name>
+                  <vCard4:given-name>Mariia</vCard4:given-name>
                 </vCard4:hasName>
-                <vCard4:hasEmail>koenigmx@hu-berlin.de</vCard4:hasEmail>
-                <vCard4:organization-name>Humboldt-University Berlin, Institute for Theoretical Biology</vCard4:organization-name>
-              </rdf:li>
-              <rdf:li rdf:parseType="Resource">
-                <vCard4:hasName rdf:parseType="Resource">
-                  <vCard4:family-name>König</vCard4:family-name>
-                  <vCard4:given-name>Matthias</vCard4:given-name>
-                </vCard4:hasName>
-                <vCard4:hasEmail>koenigmx@hu-berlin.de</vCard4:hasEmail>
-                <vCard4:organization-name>Humboldt-University Berlin, Institute for Theoretical Biology</vCard4:organization-name>
+                <vCard4:hasEmail>mariia.myshkina@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin, Faculty of Life Sciences, Department of Biology, Institute of Theoretical Biology, Systems Medicine of the Liver</vCard4:organization-name>
               </rdf:li>
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>1900-01-01T00:00:00Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-02-10T18:24:05Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>1900-01-01T00:00:00Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-02-10T18:24:05Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
-              <rdf:li rdf:resource="http://identifiers.org/taxonomy/9606"/>
-              <rdf:li rdf:resource="http://identifiers.org/VTO:0011993"/>
-              <rdf:li rdf:resource="http://identifiers.org/snomed/337915000"/>
+              <rdf:li rdf:resource="https://identifiers.org/taxonomy/9606"/>
+              <rdf:li rdf:resource="https://identifiers.org/snomedct/337915000"/>
             </rdf:Bag>
           </bqbiol:hasTaxon>
+          <bqbiol:hasProperty>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/mamo/MAMO_0000046"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C49184"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C15299"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C3117"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C66869"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C29165"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C66930"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C2985"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C99532"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C15720"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C91434"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C79369"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C79372"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C79370"/>
+            </rdf:Bag>
+          </bqbiol:hasProperty>
+          <bqbiol:is>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+            </rdf:Bag>
+          </bqbiol:is>
           <bqbiol:isDescribedBy>
             <rdf:Bag>
-              <rdf:li rdf:resource="https://doi.org/10.5281/zenodo.15427418"/>
+              <rdf:li rdf:resource="https://identifiers.org/doi/10.5281/zenodo.15427418"/>
+              <rdf:li rdf:resource="https://identifiers.org/doi/10.5281/zenodo.14761114"/>
             </rdf:Bag>
           </bqbiol:isDescribedBy>
+          <bqbiol:occursIn>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/BTO:0001489"/>
+              <rdf:li rdf:resource="https://identifiers.org/FMA:256135"/>
+            </rdf:Bag>
+          </bqbiol:occursIn>
         </rdf:Description>
       </rdf:RDF>
     </annotation>
@@ -520,9 +553,9 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_ECF">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -535,9 +568,9 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vplasma">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -550,17 +583,17 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vre">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isVersionOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:62955"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:62955"/>
                 </rdf:Bag>
               </bqbiol:isVersionOf>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C14250"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C14250"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -573,12 +606,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vgu">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:45615"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000545"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12736"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7199"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000648"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45615"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000545"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12736"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7199"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000648"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -591,10 +624,10 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vki">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7203"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000671"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12415"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7203"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000671"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12415"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -607,10 +640,10 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vli">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7197"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000759"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12392"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7197"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000759"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12392"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -623,10 +656,10 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vlu">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7195"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000763"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12468"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7195"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000763"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12468"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -639,14 +672,14 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vve">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:50723"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:50723"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -659,14 +692,14 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Var">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:50720"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:50720"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -679,10 +712,10 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vurine">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:12274"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13283"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0001419"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:12274"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13283"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001419"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -695,10 +728,10 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vfeces">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:64183"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13234"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000440"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:64183"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13234"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000440"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -711,11 +744,11 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vstomach">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7148"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12391"/>
-                  <rdf:li rdf:resource="http://identifiers.org/UBERON:0000945"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0001307"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7148"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12391"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0000945"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001307"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -728,14 +761,14 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vpo">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:66645"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:66645"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -748,14 +781,14 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vhv">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:14337"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:14337"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -768,17 +801,17 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vki_tissue">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:45732"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C74601"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0001539"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7203"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000671"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12415"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7203"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000671"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12415"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -791,16 +824,16 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vki_plasma">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7203"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000671"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12415"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7203"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000671"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12415"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -813,17 +846,17 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vli_tissue">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:45732"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C74601"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0001539"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7197"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000759"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12392"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7197"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000759"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12392"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -836,16 +869,16 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vli_plasma">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7197"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000759"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12392"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7197"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000759"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12392"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -858,17 +891,17 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vlu_tissue">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:45732"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C74601"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0001539"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7195"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000763"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12468"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7195"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000763"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12468"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -881,16 +914,16 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vlu_plasma">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7195"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000763"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12468"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7195"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000763"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12468"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -903,19 +936,19 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vgu_tissue">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:45732"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C74601"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0001539"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:45615"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000545"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12736"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7199"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000648"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45615"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000545"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12736"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7199"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000648"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -928,18 +961,18 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vgu_plasma">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:45615"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000545"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C12736"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:7199"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000648"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45615"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000545"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12736"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7199"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000648"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -952,16 +985,16 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vre_tissue">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:45732"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C74601"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0001539"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:62955"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C14250"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:62955"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C14250"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -974,15 +1007,15 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Vre_plasma">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C13356"/>
-                  <rdf:li rdf:resource="http://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
                 </rdf:Bag>
               </bqbiol:is>
               <bqbiol:isPartOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:62955"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C14250"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:62955"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C14250"/>
                 </rdf:Bag>
               </bqbiol:isPartOf>
             </rdf:Description>
@@ -995,9 +1028,9 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#GU__meta_Vlumen">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:14586"/>
-                  <rdf:li rdf:resource="http://identifiers.org/UBERON:0018543"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:14586"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0018543"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1010,7 +1043,7 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#GU__meta_Ventero">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1023,9 +1056,9 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#GU__meta_Vapical">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:84666"/>
-                  <rdf:li rdf:resource="http://identifiers.org/GO:0016324"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:84666"/>
+                  <rdf:li rdf:resource="https://identifiers.org/GO:0016324"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1038,9 +1071,9 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#GU__meta_Vbaso">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="http://identifiers.org/FMA:84669"/>
-                  <rdf:li rdf:resource="http://identifiers.org/GO:0016323"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:84669"/>
+                  <rdf:li rdf:resource="https://identifiers.org/GO:0016323"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1049,6 +1082,29 @@ FOR A PARTICULAR PURPOSE.</p></body>
       </compartment>
     </listOfCompartments>
     <listOfSpecies>
+      <species metaid="meta_hctz" sboTerm="SBO:0000247" id="hctz" name="hydrochlorothiazide" compartment="ECF" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>This should be the concentration in the kidney, but no kidney compartment in the fluid model.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
       <species metaid="meta_na" sboTerm="SBO:0000247" id="na" name="Sodium (Na+) (ECF)" compartment="ECF" initialConcentration="140" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
@@ -1060,7 +1116,7 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_na">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1078,7 +1134,7 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_na_urine">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1096,7 +1152,7 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_cl">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1114,7 +1170,7 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_cl_urine">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1127,9 +1183,9 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_ald">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:27584"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C219"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:27584"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C219"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1142,9 +1198,9 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_ren">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P00797"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C113591"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P00797"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C113591"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1157,10 +1213,10 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_anggen">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:2720"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C136723"/>
-                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q3UTR7"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:2720"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C136723"/>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/Q3UTR7"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1173,9 +1229,9 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_ang1">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:147350"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C248"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:147350"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C248"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1188,9 +1244,9 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_ang2">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:58506"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C107562"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:58506"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C107562"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1203,7 +1259,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Cki_plasma_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1216,7 +1277,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Cli_plasma_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1229,7 +1295,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Clu_plasma_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1242,7 +1313,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Cgu_plasma_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1255,7 +1331,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Cre_plasma_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1268,7 +1349,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Car_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1281,7 +1367,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Cve_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1294,7 +1385,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Cpo_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1307,7 +1403,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Chv_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1320,7 +1421,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Cli_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1333,7 +1439,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Clu_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1346,7 +1457,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Cre_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1359,7 +1475,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Aurine_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1372,7 +1493,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Afeces_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1385,7 +1511,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#meta_Cgu_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1398,7 +1529,12 @@ FOR A PARTICULAR PURPOSE.</p></body>
             <rdf:Description rdf:about="#GU__meta_hctz_stomach">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/387525002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1419,7 +1555,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_f_TBW">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1437,7 +1573,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_f_ECF">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1455,7 +1591,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ECF_ref">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1465,7 +1601,7 @@ female: 0.5 l/kg</p>
       <parameter metaid="meta_Psys_ref" sboTerm="SBO:0000002" id="Psys_ref" name="Reference systolic blood pressure" value="120" units="mmHg" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Psys value is deendent on sex and age.</p>
+            <p>Psys value is dependent on sex and age.</p>
             <pre>
               <code>    Young Adult Men (18-39 years): Average=120/80 mmHg
     Middle-aged Men (40-59 years): Average=125−130/80−85 mmHg
@@ -1483,7 +1619,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_Psys_ref">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1511,33 +1647,33 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_Pdia_ref">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Psys" sboTerm="SBO:0000002" id="Psys" name="Systolic blood pressure" value="120" units="mmHg" constant="false">
+      <parameter metaid="meta_bp_systolic" sboTerm="SBO:0000002" id="bp_systolic" name="Systolic blood pressure" value="120" units="mmHg" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_Psys">
+            <rdf:Description rdf:about="#meta_bp_systolic">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Pdia" sboTerm="SBO:0000002" id="Pdia" name="Diastolic blood pressure" value="80" units="mmHg" constant="false">
+      <parameter metaid="meta_bp_diastolic" sboTerm="SBO:0000002" id="bp_diastolic" name="Diastolic blood pressure" value="80" units="mmHg" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_Pdia">
+            <rdf:Description rdf:about="#meta_bp_diastolic">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1550,7 +1686,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_Mr_nacl">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1563,7 +1699,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_Mr_na">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1576,7 +1712,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_Mr_cl">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1589,7 +1725,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_vin_nacl">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1602,14 +1738,14 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_vin_h2o">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_k_na" sboTerm="SBO:0000002" id="k_na" value="0.000169757142857143" units="l_per_min" constant="true">
+      <parameter metaid="meta_k_na" sboTerm="SBO:0000002" id="k_na" value="NaN" units="l_per_min" constant="false">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate sodium urine.</p>
@@ -1620,14 +1756,14 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_k_na">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_k_cl" sboTerm="SBO:0000002" id="k_cl" value="0.000233" units="l_per_min" constant="true">
+      <parameter metaid="meta_k_cl" sboTerm="SBO:0000002" id="k_cl" value="NaN" units="l_per_min" constant="false">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate chloride urine.</p>
@@ -1638,7 +1774,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_k_cl">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1659,6 +1795,41 @@ female: 0.5 l/kg</p>
           </body>
         </notes>
       </parameter>
+      <parameter id="E50_hctz_na" value="0.0001" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>E50 for HCTZ effect on sodium excretion rate.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="E50_hctz_cl" value="0.0001" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>E50 for HCTZ effect on chloride excretion rate.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="E50_hctz_h2o" value="0.0001" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>E50 for HCTZ effect on diuresis.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="na_ref" value="140" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>reference sodium concentration.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="cl_ref" value="102" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>reference chloride concentration.</p>
+          </body>
+        </notes>
+      </parameter>
       <parameter metaid="meta_ald_change" id="ald_change" name="aldosterone change" value="NaN" units="mM" constant="false">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
@@ -1670,8 +1841,8 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ald_change">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:27584"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C219"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:27584"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C219"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1689,8 +1860,8 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ald_ratio">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:27584"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C219"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:27584"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C219"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1708,8 +1879,8 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ren_change">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P00797"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C113591"/>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P00797"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C113591"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1727,8 +1898,8 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ren_ratio">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P00797"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C113591"/>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P00797"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C113591"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1746,8 +1917,8 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ang1_change">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:147350"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C248"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:147350"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C248"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1765,8 +1936,8 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ang1_ratio">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:147350"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C248"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:147350"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C248"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1784,8 +1955,8 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ang2_change">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:58506"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C107562"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:58506"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C107562"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1803,8 +1974,8 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ang2_ratio">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/CHEBI:58506"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C107562"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:58506"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C107562"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1817,7 +1988,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_anggen_ref">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1830,7 +2001,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ang1_ref">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1843,7 +2014,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ang2_ref">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1856,7 +2027,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ren_ref">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1869,7 +2040,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_ald_ref">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1882,7 +2053,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_BW">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1895,7 +2066,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_HEIGHT">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1908,7 +2079,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_HR">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1921,7 +2092,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_HRrest">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1934,33 +2105,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_map">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_bp_systolic" sboTerm="SBO:0000002" id="bp_systolic" name="blood pressure systolic [mmHg]" value="120" units="mmHg" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_bp_systolic">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_bp_diastolic" sboTerm="SBO:0000002" id="bp_diastolic" name="blood pressure systolic [mmHg]" value="80" units="mmHg" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_bp_diastolic">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1973,7 +2118,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_BSA">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1991,7 +2136,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_f_cardiac_function">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2004,7 +2149,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_COBW">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2017,7 +2162,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_CO">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2030,7 +2175,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_QC">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2043,7 +2188,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_COHRI">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2056,7 +2201,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_Fblood">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2069,7 +2214,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_HCT">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2082,7 +2227,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_FVgu">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2095,7 +2240,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_FVki">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2108,7 +2253,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_FVli">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2121,7 +2266,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_FVlu">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2134,7 +2279,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_FVre">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2147,7 +2292,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_FVve">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2160,7 +2305,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_FVar">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2173,7 +2318,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_FVpo">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2186,7 +2331,7 @@ female: 0.5 l/kg</p>
             <rdf:Description rdf:about="#meta_FVhv">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2205,7 +2350,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_FQgu">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2218,7 +2363,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_FQki">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2231,7 +2376,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_FQh">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2244,7 +2389,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_FQlu">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2257,7 +2402,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_FQre">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2270,7 +2415,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_conversion_min_per_day">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2283,9 +2428,9 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_f_cirrhosis">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C2951"/>
-                  <rdf:li rdf:resource="http://identifiers.org/efo/0001422"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C2951"/>
+                  <rdf:li rdf:resource="https://identifiers.org/efo/0001422"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2298,8 +2443,8 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_f_shunts">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
-                  <rdf:li rdf:resource="http://identifiers.org/HP:0002629"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/HP:0002629"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2312,7 +2457,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_f_tissue_loss">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2325,20 +2470,20 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_PODOSE_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Ka_dis_hctz" sboTerm="SBO:0000002" id="Ka_dis_hctz" name="Ka_dis [1/hr] dissolution tal" value="2.22961850524109" units="per_hr" constant="true">
+      <parameter metaid="meta_Ka_dis_hctz" sboTerm="SBO:0000002" id="Ka_dis_hctz" name="Ka_dis [1/hr] dissolution hydrochlorothiazide" value="2.22961850524109" units="per_hr" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Ka_dis_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2352,7 +2497,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_Mr_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000647"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000647"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2365,7 +2510,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_ftissue_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2378,7 +2523,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_Kp_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2391,7 +2536,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_IVDOSE_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2404,7 +2549,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_ti_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2417,7 +2562,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_Ki_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2430,7 +2575,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_Ri_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2443,7 +2588,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_cum_dose_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2456,7 +2601,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_RENSEC_k">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2469,20 +2614,20 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_RENDEG_k">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_ALDSEC_k" sboTerm="SBO:0000009" id="ALDSEC_k" name="rate aldosterone secretion" value="0.1" units="mmole_per_min" constant="true">
+      <parameter metaid="meta_ALDSEC_k" sboTerm="SBO:0000009" id="ALDSEC_k" name="rate aldosterone secretion" value="1.0105027952686e-06" units="mmole_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_ALDSEC_k">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2495,20 +2640,20 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_ALDDEG_k">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_ANGGEN2ANG1_k" sboTerm="SBO:0000009" id="ANGGEN2ANG1_k" name="rate angen to ang1 conversion" value="0.1" units="l_per_min" constant="true">
+      <parameter metaid="meta_ANGGEN2ANG1_k" sboTerm="SBO:0000009" id="ANGGEN2ANG1_k" name="rate angen to ang1 conversion" value="0.100300143544081" units="l_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_ANGGEN2ANG1_k">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2521,7 +2666,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_ANG1ANG2_k">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2534,7 +2679,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#meta_ANG2DEG_k">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2568,7 +2713,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#KI__meta_f_renal_function">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2581,20 +2726,33 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
             <rdf:Description rdf:about="#KI__meta_urine_volume">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="KI__meta_HCTZEX_k" sboTerm="SBO:0000009" id="KI__HCTZEX_k" name="rate urinary excretion of hydrochlorothiazide" value="0.909632129040197" units="KI__per_min" constant="true">
+      <parameter metaid="KI__meta_HCTZEX_Vmax" sboTerm="SBO:0000009" id="KI__HCTZEX_Vmax" name="rate urinary excretion of hydrochlorothiazide" value="0.909632129040197" units="KI__mmole_per_min_l" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#KI__meta_HCTZEX_k">
+            <rdf:Description rdf:about="#KI__meta_HCTZEX_Vmax">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="KI__meta_HCTZEX_Km" sboTerm="SBO:0000027" id="KI__HCTZEX_Km" name="Michaelis constant excretion of hydrochlorothiazide" value="0.001" units="KI__mM" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#KI__meta_HCTZEX_Km">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000027"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2619,7 +2777,7 @@ around 60-70 percent urinary recovery of oral dose
             <rdf:Description rdf:about="#GU__meta_F_hctz_abs">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2632,7 +2790,7 @@ around 60-70 percent urinary recovery of oral dose
             <rdf:Description rdf:about="#GU__meta_HCTZABS_k">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000009"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2645,7 +2803,7 @@ around 60-70 percent urinary recovery of oral dose
             <rdf:Description rdf:about="#GU__meta_POSTOMACH_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2663,7 +2821,7 @@ around 60-70 percent urinary recovery of oral dose
             <rdf:Description rdf:about="#GU__meta_Ka_application_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000002"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2676,7 +2834,7 @@ around 60-70 percent urinary recovery of oral dose
             <rdf:Description rdf:about="#GU__meta_Mr_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000647"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000647"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -2685,6 +2843,43 @@ around 60-70 percent urinary recovery of oral dose
       </parameter>
       <parameter id="GU__absorption" name="absorption hydrochlorothiazide" value="NaN" units="GU__mmole_per_min" constant="false"/>
     </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="na">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> na_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="cl">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> cl_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ald">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> ald_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ren">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> ren_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="anggen">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> anggen_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ang1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> ang1_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ang2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> ang2_ref </ci>
+        </math>
+      </initialAssignment>
+    </listOfInitialAssignments>
     <listOfRules>
       <assignmentRule variable="RENDEG_k">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2740,7 +2935,7 @@ around 60-70 percent urinary recovery of oral dose
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="Psys">
+      <assignmentRule variable="bp_systolic">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Simplified calculation of blood pressure based on change relative to reference ECF volume.</p>
@@ -2760,7 +2955,7 @@ Increased venous return → Increased cardiac output → Increased blood pressur
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="Pdia">
+      <assignmentRule variable="bp_diastolic">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Simplified calculation of blood pressure based on change relative to reference ECF volume.</p>
@@ -2780,17 +2975,21 @@ Increased venous return → Increased cardiac output → Increased blood pressur
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="diuresis">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Excretion rate water urine.</p>
-          </body>
-        </notes>
+      <assignmentRule variable="k_na">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <times/>
-            <ci> k_h2o </ci>
-            <ci> ECF </ci>
+            <divide/>
+            <ci> vin_nacl </ci>
+            <ci> na_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="k_cl">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> vin_nacl </ci>
+            <ci> cl_ref </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -2847,6 +3046,29 @@ Increased venous return → Increased cardiac output → Increased blood pressur
             <times/>
             <ci> CL_EXCRETION </ci>
             <ci> Mr_cl </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="diuresis">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate water urine.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> k_h2o </ci>
+            <ci> ECF </ci>
+            <apply>
+              <plus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <apply>
+                <divide/>
+                <ci> hctz </ci>
+                <ci> E50_hctz_h2o </ci>
+              </apply>
+            </apply>
           </apply>
         </math>
       </assignmentRule>
@@ -3463,6 +3685,11 @@ injection rate.</p>
           </apply>
         </math>
       </assignmentRule>
+      <assignmentRule variable="hctz">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> Cki_plasma_hctz </ci>
+        </math>
+      </assignmentRule>
       <rateRule variable="ECF">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
@@ -3511,11 +3738,19 @@ injection rate.</p>
       <assignmentRule variable="v_HCTZEX">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <times/>
-            <ci> KI__f_renal_function </ci>
-            <ci> Vki_tissue </ci>
-            <ci> KI__HCTZEX_k </ci>
-            <ci> Cki_plasma_hctz </ci>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> KI__f_renal_function </ci>
+              <ci> Vki_tissue </ci>
+              <ci> KI__HCTZEX_Vmax </ci>
+              <ci> Cki_plasma_hctz </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <ci> Cki_plasma_hctz </ci>
+              <ci> KI__HCTZEX_Km </ci>
+            </apply>
           </apply>
         </math>
       </assignmentRule>
@@ -3562,7 +3797,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_NACL_UPTAKE">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3584,7 +3819,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_NA_EXCRETION">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3596,12 +3831,24 @@ injection rate.</p>
         <listOfProducts>
           <speciesReference species="na_urine" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="hctz"/>
+        </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
             <apply>
               <times/>
               <ci> k_na </ci>
               <ci> na </ci>
+              <apply>
+                <plus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> hctz </ci>
+                  <ci> E50_hctz_na </ci>
+                </apply>
+              </apply>
             </apply>
           </math>
         </kineticLaw>
@@ -3612,7 +3859,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_CL_EXCRETION">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3624,12 +3871,24 @@ injection rate.</p>
         <listOfProducts>
           <speciesReference species="cl_urine" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="hctz"/>
+        </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
             <apply>
               <times/>
               <ci> k_cl </ci>
               <ci> cl </ci>
+              <apply>
+                <plus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> hctz </ci>
+                  <ci> E50_hctz_cl </ci>
+                </apply>
+              </apply>
             </apply>
           </math>
         </kineticLaw>
@@ -3640,7 +3899,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_RENSEC">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3649,9 +3908,6 @@ injection rate.</p>
         <listOfProducts>
           <speciesReference species="ren" stoichiometry="1" constant="true"/>
         </listOfProducts>
-        <listOfModifiers>
-          <modifierSpeciesReference species="ang2"/>
-        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> RENSEC_k </ci>
@@ -3664,7 +3920,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_RENDEG">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000176"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3684,19 +3940,12 @@ injection rate.</p>
         </kineticLaw>
       </reaction>
       <reaction metaid="meta_ALDSEC" sboTerm="SBO:0000655" id="ALDSEC" name="aldosterone secretion (ALDSEC)" reversible="false" compartment="Vplasma">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <ul>
-              <li>angiotensin II activates aldosterone secretion by binding to AT1 receptors</li>
-            </ul>
-          </body>
-        </notes>
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_ALDSEC">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3705,20 +3954,9 @@ injection rate.</p>
         <listOfProducts>
           <speciesReference species="ald" stoichiometry="1" constant="true"/>
         </listOfProducts>
-        <listOfModifiers>
-          <modifierSpeciesReference species="ang2"/>
-        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <ci> ALDSEC_k </ci>
-                <ci> ang2 </ci>
-              </apply>
-              <ci> ang2_ref </ci>
-            </apply>
+            <ci> ALDSEC_k </ci>
           </math>
         </kineticLaw>
       </reaction>
@@ -3728,7 +3966,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_ALDDEG">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000176"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3753,7 +3991,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_ANGGEN2ANG1">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000176"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3789,7 +4027,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_ANG1ANG2">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000176"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3817,7 +4055,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_ANG2DEG">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000176"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3842,7 +4080,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_transport_li_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3878,7 +4116,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_transport_lu_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3914,7 +4152,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_transport_re_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3950,8 +4188,8 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_iv_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
-                  <rdf:li rdf:resource="http://identifiers.org/ncit/C38276"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C38276"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3980,7 +4218,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_ar_ki_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4008,7 +4246,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_ki_ve_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4036,7 +4274,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_arli_li_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4069,7 +4307,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_arli_hv_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4098,7 +4336,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_po_li_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4131,7 +4369,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_po_hv_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4160,7 +4398,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_li_hv_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4197,7 +4435,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_hv_ve_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4225,7 +4463,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_ve_lu_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4253,7 +4491,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_lu_ar_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4281,7 +4519,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_ar_gu_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4309,7 +4547,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_gu_po_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4337,7 +4575,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_ar_re_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4365,7 +4603,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#meta_Flow_re_ve_hctz">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4393,7 +4631,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#KI__meta_HCTZEX">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4417,7 +4655,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#GU__meta_HCTZABS">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -4445,7 +4683,7 @@ injection rate.</p>
             <rdf:Description rdf:about="#GU__meta_HCTZEXC">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/SBO:0000655"/>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>

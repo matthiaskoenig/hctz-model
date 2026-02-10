@@ -1,0 +1,33 @@
+name: Run Python
+
+on: [push]
+
+jobs:
+  python-run:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.14"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Python dev files (Ubuntu only)
+      run: sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python${{ matrix.python-version }}-dev
+
+    - name: Install uv and set the python version
+      uses: astral-sh/setup-uv@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        enable-cache: true
+
+    - name: Create virtual environment
+      run: uv venv .venv
+
+    - name: Install dependencies
+      run: uv sync
+
+    - name: Run workflow
+      run: uv run run_hctz -a all -r results

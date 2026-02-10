@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hctz-model"
+version = "0.6.0"
+description = "Python utilities for computational models in SBML."
+readme = "README.md"
+requires-python = ">=3.14"
+authors = [
+    {name="Ennie Tensil", email="enniejoana@gmail.com"},
+    {name="Mariia Myshkina", email="mariia.myshkina@hu-berlin.de"},
+    {name="Michelle Elias", email="eliasmic@hu-berlin.de"},
+	{name="Matthias König", email="konigmatt@googlemail.com"},
+]
+maintainers = [
+	{name="Matthias König", email="konigmatt@googlemail.com"}
+]
+classifiers = [
+	"Development Status :: 5 - Production/Stable",
+	"Intended Audience :: Science/Research",
+	"License :: OSI Approved :: MIT License",
+	"Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.14",
+	"Programming Language :: Python :: Implementation :: CPython",
+	"Topic :: Scientific/Engineering",
+	"Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+keywords = [
+    "SBML",
+    "physiologically based pharmacokinetic/pharmacodynamic model",
+    "arterial hypertension",
+    "PBPK/PD",
+    "hctz",
+    "computational modeling",
+]
+dependencies = [
+    "sbmlutils>=0.9.6",
+    "sbmlsim @ git+https://github.com/matthiaskoenig/sbmlsim.git@679a64728d69d820269b9b37ceca93bac9d03439"
+]
+
+[project.scripts]
+create_nodes = "pkdb_data.management.commands:create_info_nodes_command"
+run_hctz = "pkdb_models.models.hctz.run_hctz:main"
+fit_hctz = "pkdb_models.models.hctz.fitting.fitting:main"
+
+[project_urls]
+Homepage = "https://github.com/matthiaskoenig/hctz-model"
+Repository = "https://github.com/matthiaskoenig/hctz-model"
+Documentation = "https://github.com/matthiaskoenig/hctz-model"
+Issues = "https://github.com/matthiaskoenig/hctz-model/issues"
+# Download = "https://pypi.org/project/pkdb_models"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pkdb_models"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
