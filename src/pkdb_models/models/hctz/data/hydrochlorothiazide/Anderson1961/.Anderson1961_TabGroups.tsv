@@ -1,0 +1,12 @@
+study	name	group_count	parent	measurement_type	count	substance	choice	mean	median	sd	se	min	max	unit	comments
+Anderson1961	all	15.0	NA	species	15.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA
+Anderson1961	all	15.0	NA	sex	15.0	NA	MF	NA	NA	NA	NA	NA	NA	NA	NA
+Anderson1961	all	15.0	NA	age	15.0	NA	NA	NA	NA	NA	NA	21.0	70.0	yr	NA
+Anderson1961	all	15.0	NA	healthy	15.0	NA	NR	NA	NA	NA	NA	NA	NA	NA	NA
+Anderson1961	control	5.0	all	healthy	5.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	congestive heart failure
+Anderson1961	cardiac impairment	3.0	all	healthy	3.0	NA	N	NA	NA	NA	NA	NA	NA	NA	congestive heart failure
+Anderson1961	cardiac impairment	3.0	all	disease	3.0	NA	congestive heart failure	NA	NA	NA	NA	NA	NA	NA	NA
+Anderson1961	renal impairment	3.0	all	healthy	3.0	NA	N	NA	NA	NA	NA	NA	NA	NA	congestive heart failure
+Anderson1961	renal impairment	3.0	all	disease	3.0	NA	renal disease	NA	NA	NA	NA	NA	NA	NA	NA
+Anderson1961	hepatic impairment	4.0	all	healthy	4.0	NA	N	NA	NA	NA	NA	NA	NA	NA	congestive heart failure
+Anderson1961	hepatic impairment	4.0	all	disease	4.0	NA	liver disease	NA	NA	NA	NA	NA	NA	NA	NA
