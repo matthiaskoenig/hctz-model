@@ -24,7 +24,7 @@ jobs:
         enable-cache: true
 
     - name: Create virtual environment
-      run: uv venv .venv
+      run: uv venv .venv --clear
 
     - name: Install dependencies
       run: uv sync
