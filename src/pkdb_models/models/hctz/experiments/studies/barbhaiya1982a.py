@@ -120,8 +120,8 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid=name,
-            num_rows=2,
-            num_cols=1,
+            num_rows=1,
+            num_cols=2,
             name=f"{self.__class__.__name__} {name}",
         )
 

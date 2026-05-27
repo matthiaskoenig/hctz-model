@@ -58,7 +58,7 @@ class Niemeyer1983(HCTZSimulationExperiment):
                     changes={
                         **self.default_changes(),
                         "PODOSE_hctz": Q_(50, "mg"),
-                        "KI__f_renal_function": Q_(
+                        "f_renal_function": Q_(
                             self.crcl[kp] / 100, "dimensionless"
                         ),  # relative kidney function
                     },

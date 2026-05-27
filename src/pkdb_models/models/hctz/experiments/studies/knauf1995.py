@@ -24,14 +24,20 @@ class Knauf1995(HCTZSimulationExperiment):
 
     single oral dosing of 50mg HCTZ.
     """
+    # FIXME: plots of GFR dependency missing;
     # labels = ["NRF", "MRI", "SRI"]
     # patients = ["C", "S", "W"]
-    crcl = [4,5,1,17,20,22,25,31,36,38,42,52,52,60,60,65,73,73,75,100,107,107,122,130,153]   #  [ml/min]
+    # crcl = [4,5,1,17,20,22,25,31,36,38,42,52,52,60,60,65,73,73,75,100,107,107,122,130,153]   #  [ml/min]
     # colors = ["black", "tab:orange", "tab:red"]
+
+    info = {
+        "na_urine": "Fig1_na_urine_healthy",
+        "NA_EXCRETION": "Fig2_exc_na_healthy",
+    }
 
     def datasets(self) -> Dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig1","Fig2"]:
+        for fig_id in ["Fig1", "Fig2"]:
             df: pd.DataFrame = load_pkdb_dataframe(
                 f"{self.sid}_{fig_id}", data_path=self.data_path
             )
@@ -49,52 +55,61 @@ class Knauf1995(HCTZSimulationExperiment):
         Q_ = self.Q_
         tcsims = {}
 
-        for patient, crcl in enumerate(self.crcl):
-            tcsims[f"hctz25_{patient}"] = TimecourseSim(
+
+        tcsims[f"hctz25"] = TimecourseSim(
+            [
+                Timecourse(
+                    start=0,
+                    end=24 * 60,  # [min]
+                    steps=500,
+                    changes={
+                        **self.default_changes(),
+                        "PODOSE_hctz": Q_(0, "mg"),
+                    },
+                ),
                 Timecourse(
                     start=0,
                     end=30 * 60,  # [min]
                     steps=500,
                     changes={
-                        **self.default_changes(),
                         "PODOSE_hctz": Q_(25, "mg"),
-                        "KI__f_renal_function": Q_(
-                            crcl / 100, "dimensionless"
-                        ),  # relative kidney function
                     },
                 )
-            )
+            ]
+            , time_offset=-24 * 60,
+        )
 
         return tcsims
 
-    # def fit_mappings(self) -> Dict[str, FitMapping]:
-    #     mappings = {}
-    #     for kp, patient in enumerate(self.patients):
-    #         mappings[f"fm_Fig1_hctz50_{patient}"] = FitMapping(
-    #             self,
-    #             reference=FitData(
-    #                 self,
-    #                 dataset=f"Fig1_hctz50_{patient}",
-    #                 xid="time",
-    #                 yid="value",
-    #                 count="count",
-    #             ),
-    #             observable=FitData(
-    #                 self, task=f"task_hctz50_{patient}", xid="time", yid="[Cve_hctz]"
-    #             ),
-    #             metadata=HCTZMappingMetaData(
-    #                 tissue=Tissue.PLASMA,
-    #                 application_form=ApplicationForm.TABLET,
-    #                 route=Route.PO,
-    #                 dosing=Dosing.SINGLE,
-    #                 health=Health.HEALTHY if self.labels[kp] == "NRF" else Health.RENAL_IMPAIRMENT,
-    #                 fasting=Fasting.FASTED,
-    #                 coadministration=Coadministration.NONE,
-    #             ),
-    #         )
-    #
-    #     # console.print(mappings)
-    #     return mappings
+    def fit_mappings(self) -> Dict[str, FitMapping]:
+        mappings = {}
+        for ksid, sid in enumerate(self.info):
+            dataset = self.info[sid]
+            mappings[f"fm_hctz25_{dataset}"] = FitMapping(
+                self,
+                reference=FitData(
+                    self,
+                    dataset=dataset,
+                    xid="time",
+                    yid="value",
+                    count="count",
+                ),
+                observable=FitData(
+                    self, task=f"task_hctz25", xid="time", yid=sid
+                ),
+                metadata=HCTZMappingMetaData(
+                    tissue=Tissue.URINE,
+                    application_form=ApplicationForm.TABLET,
+                    route=Route.PO,
+                    dosing=Dosing.SINGLE,
+                    health=Health.HEALTHY,
+                    fasting=Fasting.FASTED,
+                    coadministration=Coadministration.NONE,
+                ),
+            )
+
+        # console.print(mappings)
+        return mappings
 
     def figures(self) -> Dict[str, Figure]:
         return {
@@ -107,8 +122,8 @@ class Knauf1995(HCTZSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid=name,
-            num_rows=2,
-            num_cols=1,
+            num_rows=1,
+            num_cols=2,
             name=f"{self.__class__.__name__} {name}",
         )
 
@@ -116,42 +131,28 @@ class Knauf1995(HCTZSimulationExperiment):
         plots[0].set_yaxis(self.label_na_urine, unit=self.unit_na_urine)
         plots[1].set_yaxis(label="Sodium excretion\n", unit="mmole/hr")
 
-        # simulation
+        color = "black"
 
-        plots[0].add_data(
-            task=f"task_hctz25_20",
-            xid="time",
-            yid="na_urine",
-            label=f"Sim normal gfr",
-            color="black",
-        )
+        for ksid, sid in enumerate(self.info):
+            dataset = self.info[sid]
 
-        plots[1].add_data(
-            task=f"task_hctz25_20",
-            xid="time",
-            yid="NA_EXCRETION",
-            label=f"Sim normal gfr",
-            color="black",
-)
-
-        # data
-        plots[0].add_data(
-            dataset=f"Fig1_na_urine_healthy",
-            xid="time",
-            yid="value",
-            count="count",
-            label=f"25 mg hctz",
-            color="green",
-        )
-
-        plots[1].add_data(
-            dataset=f"Fig2_exc_na_healthy",
-            xid="time",
-            yid="value",
-            count="count",
-            label=f"25 mg hctz",
-            color="green",
-        )
+            # simulation
+            plots[ksid].add_data(
+                task=f"task_hctz25",
+                xid="time",
+                yid=sid,
+                label=f"Sim",
+                color=color,
+            )
+            # data
+            plots[ksid].add_data(
+                dataset=dataset,
+                xid="time",
+                yid="value",
+                count="count",
+                label="25 mg hctz",
+                color=color,
+            )
 
         return {
             fig.sid: fig,

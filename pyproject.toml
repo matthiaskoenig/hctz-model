@@ -4,14 +4,12 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hctz-model"
-version = "0.6.0"
-description = "Python utilities for computational models in SBML."
+version = "0.7.0"
+description = "Python code for hydrochlorothiazide model."
 readme = "README.md"
 requires-python = ">=3.14"
 authors = [
-    {name="Ennie Tensil", email="enniejoana@gmail.com"},
-    {name="Mariia Myshkina", email="mariia.myshkina@hu-berlin.de"},
-    {name="Michelle Elias", email="eliasmic@hu-berlin.de"},
+    {name="Amanda Schwaiger"},
 	{name="Matthias König", email="konigmatt@googlemail.com"},
 ]
 maintainers = [
@@ -30,14 +28,14 @@ classifiers = [
 keywords = [
     "SBML",
     "physiologically based pharmacokinetic/pharmacodynamic model",
-    "arterial hypertension",
+    "hypertension",
     "PBPK/PD",
     "hctz",
     "computational modeling",
 ]
 dependencies = [
     "sbmlutils>=0.9.6",
-    "sbmlsim @ git+https://github.com/matthiaskoenig/sbmlsim.git@ea4a05dac0dccfe772ddca39ab398a7b2b334085"
+    "sbmlsim @ git+https://github.com/matthiaskoenig/sbmlsim.git@67d7a76f0534c025a143876df2845df08b407bcc"
 ]
 
 [project.scripts]

@@ -1,0 +1,511 @@
+--------------------------------------------------------------------------------
+OptimizationProblem: all
+--------------------------------------------------------------------------------
+Experiments
+	*** FitExperiment ***
+experiment: Anderson1961
+mappings: ['fm_amount_HCTZpo_cardiac', 'fm_amount_HCTZpo_6', 'fm_cmax_HCTZpo_6', 'fm_amount_HCTZpo_7', 'fm_cmax_HCTZpo_7', 'fm_amount_HCTZpo_8', 'fm_cmax_HCTZpo_8', 'fm_amount_HCTZpo_control', 'fm_amount_HCTZpo_1', 'fm_cmax_HCTZpo_1', 'fm_amount_HCTZpo_3', 'fm_cmax_HCTZpo_3', 'fm_amount_HCTZpo_4', 'fm_cmax_HCTZpo_4', 'fm_amount_HCTZpo_5', 'fm_cmax_HCTZpo_5', 'fm_amount_HCTZpo_hepatic', 'fm_amount_HCTZpo_12', 'fm_cmax_HCTZpo_12', 'fm_amount_HCTZpo_renal', 'fm_amount_HCTZpo_9', 'fm_cmax_HCTZpo_9', 'fm_amount_HCTZiv_cardiac', 'fm_amount_HCTZiv_8A', 'fm_cmax_HCTZiv_8A', 'fm_amount_HCTZiv_8B', 'fm_cmax_HCTZiv_8B', 'fm_amount_HCTZiv_control', 'fm_amount_HCTZiv_2', 'fm_cmax_HCTZiv_2', 'fm_amount_HCTZiv_hepatic', 'fm_amount_HCTZiv_12', 'fm_cmax_HCTZiv_12', 'fm_amount_HCTZiv_13A', 'fm_cmax_HCTZiv_13A', 'fm_amount_HCTZiv_13B', 'fm_cmax_HCTZiv_13B', 'fm_amount_HCTZiv_14', 'fm_cmax_HCTZiv_14', 'fm_amount_HCTZiv_15', 'fm_cmax_HCTZiv_15', 'fm_amount_HCTZiv_renal', 'fm_amount_HCTZiv_10', 'fm_cmax_HCTZiv_10', 'fm_amount_HCTZiv_11', 'fm_cmax_HCTZiv_11']
+weights: [3, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Azumaya1990
+mappings: ['fm_hctz12.5', 'fm_hctz25']
+weights: [20, 20]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Barbhaiya1982
+mappings: ['fm_hctz50_fast250', 'fm_excretion_hctz50_fast250', 'fm_amount_cumulative_hctz50_fast250', 'fm_hctz50_fast20', 'fm_excretion_hctz50_fast20', 'fm_amount_cumulative_hctz50_fast20']
+weights: [8, 8, 8, 8, 8, 8]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Barbhaiya1982a
+mappings: ['fm_hctz50_msd', 'fm_amount_msd', 'fm_hctz50_stanlab', 'fm_amount_stanlab']
+weights: [20, 20, 20, 20]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Beermann1976
+mappings: ['fm_hctz_iv1_5_feces', 'fm_hctz_iv35_4_feces', 'fm_hctz_po5_1_feces', 'fm_hctz_po5_2_feces', 'fm_hctz_po5_3_feces', 'fm_hctz_po5_4_feces', 'fm_hctz_iv1_5_urine', 'fm_hctz_iv35_4_urine', 'fm_hctz_po50_I_urine', 'fm_hctz_po50_II_urine', 'fm_hctz_po50_III_urine', 'fm_hctz_po5_1_urine', 'fm_hctz_po5_2_urine', 'fm_hctz_po5_3_urine', 'fm_hctz_po5_4_urine', 'fm_hctz75po_6']
+weights: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Beermann1977a
+mappings: ['fm_Fig1_2_hctz25_HD', 'fm_Fig1_2_hctz25_MLL', 'fm_Fig1_2_excretion_hctz25_HD', 'fm_Fig1_2_excretion_hctz25_MLL', 'fm_Tab4_amount_HCTZ12.5_mean', 'fm_Tab4_amount_HCTZ12.5_IJ', 'fm_Tab4_amount_HCTZ12.5_YO', 'fm_Tab4_amount_HCTZ12.5_MLL', 'fm_Tab4_amount_HCTZ12.5_ACL', 'fm_Tab4_amount_HCTZ12.5_KCL', 'fm_Tab4_amount_HCTZ12.5_LE', 'fm_Tab4_amount_HCTZ25_mean', 'fm_Tab4_amount_HCTZ25_IJ', 'fm_Tab4_amount_HCTZ25_YO', 'fm_Tab4_amount_HCTZ25_MLL', 'fm_Tab4_amount_HCTZ25_ACL', 'fm_Tab4_amount_HCTZ25_HD', 'fm_Tab4_amount_HCTZ25_KCL', 'fm_Tab4_amount_HCTZ25_AH', 'fm_Tab4_amount_HCTZ25_LE', 'fm_Tab4_amount_HCTZ50_mean', 'fm_Tab4_amount_HCTZ50_IJ', 'fm_Tab4_amount_HCTZ50_YO', 'fm_Tab4_amount_HCTZ50_MLL', 'fm_Tab4_amount_HCTZ50_ACL', 'fm_Tab4_amount_HCTZ50_HD', 'fm_Tab4_amount_HCTZ50_KCL', 'fm_Tab4_amount_HCTZ50_AH', 'fm_Tab4_amount_HCTZ50_LE', 'fm_Tab4_amount_HCTZ75_mean', 'fm_Tab4_amount_HCTZ75_IJ', 'fm_Tab4_amount_HCTZ75_YO', 'fm_Tab4_amount_HCTZ75_MLL', 'fm_Tab4_amount_HCTZ75_ACL', 'fm_Tab4_amount_HCTZ75_HD', 'fm_Tab4_amount_HCTZ75_KCL', 'fm_Tab4_amount_HCTZ75_AH', 'fm_Tab4_amount_HCTZ75_LE']
+weights: [1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Beermann1979
+mappings: ['fm_Fig1_hctz50_SP', 'fm_Fig1_hctz50_NL', 'fm_Tab3_amount_NL', 'fm_Tab3_amount_SP', 'fm_Tab3_amount_JG', 'fm_Tab3_amount_SH', 'fm_Tab3_amount_NK', 'fm_Tab3_amount_GN']
+weights: [1, 1, 1, 1, 1, 1, 1, 1]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Devineni2014
+mappings: ['fm_Fig3_hydrochlorothiazide_HCTZ25']
+weights: [30]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Giudicelli1987
+mappings: ['fm_Fig3_hctz25_acute']
+weights: [10]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Heise2015
+mappings: ['fm_Fig3_hctz25', 'fm_Tab3A_hctz25_aurine']
+weights: [11, 11]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Howes1991
+mappings: ['fm_Fig1_HCTZ25_hydrochlorothiazide', 'fm_Fig1_HCTZ25_combi_hydrochlorothiazide', 'fm_Tab2_HCTZ25_cumulative amount_hydrochlorothiazide', 'fm_Tab2_ENA10, HCTZ25multi_cumulative amount_hydrochlorothiazide', 'fm_Tab2_ENA10, HCTZ25combi_cumulative amount_hydrochlorothiazide']
+weights: [12, 12, 12, 12, 12]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Hsiao2015
+mappings: ['fm_Fig1_hctz25']
+weights: [27]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Hunninghake1986
+mappings: ['fm_Fig1_amount_cumulative_hctz75', 'fm_Fig2_amount_cumulative_hctz75_def', 'fm_Fig3_hctz75']
+weights: [4, 6, 6]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Jeon2012
+mappings: ['fm_Fig3_hctz25', 'fm_Tab2_amount_cumulative_hctz25']
+weights: [13, 13]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Jordo1979
+mappings: ['fm_Fig1_12.5_hctz', 'fm_Fig2_25_hctz', 'fm_Tab2_0_12.5_amount_cumulative', 'fm_Tab2_0_25_amount_cumulative', 'fm_Tab2_1_12.5_amount_cumulative', 'fm_Tab2_1_25_amount_cumulative', 'fm_Tab2_2_12.5_amount_cumulative', 'fm_Tab2_2_25_amount_cumulative', 'fm_Tab2_3_12.5_amount_cumulative', 'fm_Tab2_3_25_amount_cumulative', 'fm_Tab2_4_12.5_amount_cumulative', 'fm_Tab2_4_25_amount_cumulative', 'fm_Tab2_5_12.5_amount_cumulative', 'fm_Tab2_5_25_amount_cumulative', 'fm_Tab2_6_12.5_amount_cumulative', 'fm_Tab2_6_25_amount_cumulative']
+weights: [6, 6, 6, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Niemeyer1983
+mappings: ['fm_Fig1_hctz50_C', 'fm_Fig1_hctz50_S', 'fm_Fig1_hctz50_W']
+weights: [1, 1, 1]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Patel1984
+mappings: ['fm_25_tab', 'fm_25_sus', 'fm_50_tab', 'fm_50_sus', 'fm_100_tab', 'fm_100_sus', 'fm_25_tab_urine', 'fm_25_sus_urine', 'fm_50_tab_urine', 'fm_50_sus_urine', 'fm_100_tab_urine', 'fm_100_sus_urine', 'fm_200_tab_urine', 'fm_200_sus_urine']
+weights: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Ripley2000
+mappings: ['fm_Tab3_hctz_aurine_black', 'fm_Tab3_hctz_aurine_white']
+weights: [9, 9]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Vaidyanathan2006
+mappings: ['fm_Fig3_hctz_HCTZ25']
+weights: [22]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Weir1998
+mappings: ['fm_Fig2_hctz25', 'fm_Fig3_amount_cumulative_hctz25', 'fm_Tab4_excretion_hctz25']
+weights: [20, 20, 20]
+use_mapping_weights: True
+fit_parameters: {}
+	*** FitExperiment ***
+experiment: Williams1982
+mappings: ['fm_Fig2_excretion_hctz50', 'fm_Fig2_excretion_hctz100']
+weights: [10, 10]
+use_mapping_weights: True
+fit_parameters: {}
+Parameters
+	FitParameter<ftissue_hctz = 0.1 [0.01 - 10]>
+	FitParameter<Kp_hctz = 0.85 [0.25 - 1.0]>
+	FitParameter<KI__HCTZEX_k = 1e-06 [1e-10 - 1]>
+	FitParameter<Ka_dis_hctz = 1.0 [0.0001 - 10]>
+	FitParameter<GU__F_hctz_abs = 0.75 [0.6 - 0.8]>
+	FitParameter<GU__HCTZABS_k = 0.02 [0.0001 - 10]>
+Settings
+	residual_type: ResidualType.NORMALIZED
+	weighting_curves: [<WeightingCurvesType.MAPPING: 1>, <WeightingCurvesType.POINTS: 2>]
+	weighting_points: WeightingPointsType.ERROR_WEIGHTING
+Data
+	experiment_keys: ['Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Azumaya1990', 'Azumaya1990', 'Barbhaiya1982', 'Barbhaiya1982', 'Barbhaiya1982', 'Barbhaiya1982', 'Barbhaiya1982', 'Barbhaiya1982', 'Barbhaiya1982a', 'Barbhaiya1982a', 'Barbhaiya1982a', 'Barbhaiya1982a', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1979', 'Beermann1979', 'Beermann1979', 'Beermann1979', 'Beermann1979', 'Beermann1979', 'Beermann1979', 'Beermann1979', 'Devineni2014', 'Giudicelli1987', 'Heise2015', 'Heise2015', 'Howes1991', 'Howes1991', 'Howes1991', 'Howes1991', 'Howes1991', 'Hsiao2015', 'Hunninghake1986', 'Hunninghake1986', 'Hunninghake1986', 'Jeon2012', 'Jeon2012', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Niemeyer1983', 'Niemeyer1983', 'Niemeyer1983', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Ripley2000', 'Ripley2000', 'Vaidyanathan2006', 'Weir1998', 'Weir1998', 'Weir1998', 'Williams1982', 'Williams1982']
+	mapping_keys: ['fm_amount_HCTZpo_cardiac', 'fm_amount_HCTZpo_6', 'fm_cmax_HCTZpo_6', 'fm_amount_HCTZpo_7', 'fm_cmax_HCTZpo_7', 'fm_amount_HCTZpo_8', 'fm_cmax_HCTZpo_8', 'fm_amount_HCTZpo_control', 'fm_amount_HCTZpo_1', 'fm_cmax_HCTZpo_1', 'fm_amount_HCTZpo_3', 'fm_cmax_HCTZpo_3', 'fm_amount_HCTZpo_4', 'fm_cmax_HCTZpo_4', 'fm_amount_HCTZpo_5', 'fm_cmax_HCTZpo_5', 'fm_amount_HCTZpo_hepatic', 'fm_amount_HCTZpo_12', 'fm_cmax_HCTZpo_12', 'fm_amount_HCTZpo_renal', 'fm_amount_HCTZpo_9', 'fm_cmax_HCTZpo_9', 'fm_amount_HCTZiv_cardiac', 'fm_amount_HCTZiv_8A', 'fm_cmax_HCTZiv_8A', 'fm_amount_HCTZiv_8B', 'fm_cmax_HCTZiv_8B', 'fm_amount_HCTZiv_control', 'fm_amount_HCTZiv_2', 'fm_cmax_HCTZiv_2', 'fm_amount_HCTZiv_hepatic', 'fm_amount_HCTZiv_12', 'fm_cmax_HCTZiv_12', 'fm_amount_HCTZiv_13A', 'fm_cmax_HCTZiv_13A', 'fm_amount_HCTZiv_13B', 'fm_cmax_HCTZiv_13B', 'fm_amount_HCTZiv_14', 'fm_cmax_HCTZiv_14', 'fm_amount_HCTZiv_15', 'fm_cmax_HCTZiv_15', 'fm_amount_HCTZiv_renal', 'fm_amount_HCTZiv_10', 'fm_cmax_HCTZiv_10', 'fm_amount_HCTZiv_11', 'fm_cmax_HCTZiv_11', 'fm_hctz12.5', 'fm_hctz25', 'fm_hctz50_fast250', 'fm_excretion_hctz50_fast250', 'fm_amount_cumulative_hctz50_fast250', 'fm_hctz50_fast20', 'fm_excretion_hctz50_fast20', 'fm_amount_cumulative_hctz50_fast20', 'fm_hctz50_msd', 'fm_amount_msd', 'fm_hctz50_stanlab', 'fm_amount_stanlab', 'fm_hctz_iv1_5_feces', 'fm_hctz_iv35_4_feces', 'fm_hctz_po5_1_feces', 'fm_hctz_po5_2_feces', 'fm_hctz_po5_3_feces', 'fm_hctz_po5_4_feces', 'fm_hctz_iv1_5_urine', 'fm_hctz_iv35_4_urine', 'fm_hctz_po50_I_urine', 'fm_hctz_po50_II_urine', 'fm_hctz_po50_III_urine', 'fm_hctz_po5_1_urine', 'fm_hctz_po5_2_urine', 'fm_hctz_po5_3_urine', 'fm_hctz_po5_4_urine', 'fm_hctz75po_6', 'fm_Fig1_2_hctz25_HD', 'fm_Fig1_2_hctz25_MLL', 'fm_Fig1_2_excretion_hctz25_HD', 'fm_Fig1_2_excretion_hctz25_MLL', 'fm_Tab4_amount_HCTZ12.5_mean', 'fm_Tab4_amount_HCTZ12.5_IJ', 'fm_Tab4_amount_HCTZ12.5_YO', 'fm_Tab4_amount_HCTZ12.5_MLL', 'fm_Tab4_amount_HCTZ12.5_ACL', 'fm_Tab4_amount_HCTZ12.5_KCL', 'fm_Tab4_amount_HCTZ12.5_LE', 'fm_Tab4_amount_HCTZ25_mean', 'fm_Tab4_amount_HCTZ25_IJ', 'fm_Tab4_amount_HCTZ25_YO', 'fm_Tab4_amount_HCTZ25_MLL', 'fm_Tab4_amount_HCTZ25_ACL', 'fm_Tab4_amount_HCTZ25_HD', 'fm_Tab4_amount_HCTZ25_KCL', 'fm_Tab4_amount_HCTZ25_AH', 'fm_Tab4_amount_HCTZ25_LE', 'fm_Tab4_amount_HCTZ50_mean', 'fm_Tab4_amount_HCTZ50_IJ', 'fm_Tab4_amount_HCTZ50_YO', 'fm_Tab4_amount_HCTZ50_MLL', 'fm_Tab4_amount_HCTZ50_ACL', 'fm_Tab4_amount_HCTZ50_HD', 'fm_Tab4_amount_HCTZ50_KCL', 'fm_Tab4_amount_HCTZ50_AH', 'fm_Tab4_amount_HCTZ50_LE', 'fm_Tab4_amount_HCTZ75_mean', 'fm_Tab4_amount_HCTZ75_IJ', 'fm_Tab4_amount_HCTZ75_YO', 'fm_Tab4_amount_HCTZ75_MLL', 'fm_Tab4_amount_HCTZ75_ACL', 'fm_Tab4_amount_HCTZ75_HD', 'fm_Tab4_amount_HCTZ75_KCL', 'fm_Tab4_amount_HCTZ75_AH', 'fm_Tab4_amount_HCTZ75_LE', 'fm_Fig1_hctz50_SP', 'fm_Fig1_hctz50_NL', 'fm_Tab3_amount_NL', 'fm_Tab3_amount_SP', 'fm_Tab3_amount_JG', 'fm_Tab3_amount_SH', 'fm_Tab3_amount_NK', 'fm_Tab3_amount_GN', 'fm_Fig3_hydrochlorothiazide_HCTZ25', 'fm_Fig3_hctz25_acute', 'fm_Fig3_hctz25', 'fm_Tab3A_hctz25_aurine', 'fm_Fig1_HCTZ25_hydrochlorothiazide', 'fm_Fig1_HCTZ25_combi_hydrochlorothiazide', 'fm_Tab2_HCTZ25_cumulative amount_hydrochlorothiazide', 'fm_Tab2_ENA10, HCTZ25multi_cumulative amount_hydrochlorothiazide', 'fm_Tab2_ENA10, HCTZ25combi_cumulative amount_hydrochlorothiazide', 'fm_Fig1_hctz25', 'fm_Fig1_amount_cumulative_hctz75', 'fm_Fig2_amount_cumulative_hctz75_def', 'fm_Fig3_hctz75', 'fm_Fig3_hctz25', 'fm_Tab2_amount_cumulative_hctz25', 'fm_Fig1_12.5_hctz', 'fm_Fig2_25_hctz', 'fm_Tab2_0_12.5_amount_cumulative', 'fm_Tab2_0_25_amount_cumulative', 'fm_Tab2_1_12.5_amount_cumulative', 'fm_Tab2_1_25_amount_cumulative', 'fm_Tab2_2_12.5_amount_cumulative', 'fm_Tab2_2_25_amount_cumulative', 'fm_Tab2_3_12.5_amount_cumulative', 'fm_Tab2_3_25_amount_cumulative', 'fm_Tab2_4_12.5_amount_cumulative', 'fm_Tab2_4_25_amount_cumulative', 'fm_Tab2_5_12.5_amount_cumulative', 'fm_Tab2_5_25_amount_cumulative', 'fm_Tab2_6_12.5_amount_cumulative', 'fm_Tab2_6_25_amount_cumulative', 'fm_Fig1_hctz50_C', 'fm_Fig1_hctz50_S', 'fm_Fig1_hctz50_W', 'fm_25_tab', 'fm_25_sus', 'fm_50_tab', 'fm_50_sus', 'fm_100_tab', 'fm_100_sus', 'fm_25_tab_urine', 'fm_25_sus_urine', 'fm_50_tab_urine', 'fm_50_sus_urine', 'fm_100_tab_urine', 'fm_100_sus_urine', 'fm_200_tab_urine', 'fm_200_sus_urine', 'fm_Tab3_hctz_aurine_black', 'fm_Tab3_hctz_aurine_white', 'fm_Fig3_hctz_HCTZ25', 'fm_Fig2_hctz25', 'fm_Fig3_amount_cumulative_hctz25', 'fm_Tab4_excretion_hctz25', 'fm_Fig2_excretion_hctz50', 'fm_Fig2_excretion_hctz100']
+	xid_observable: ['time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time']
+	yid_observable: ['Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', 'KI__HCTZEX', 'Aurine_hctz', '[Cve_hctz]', 'KI__HCTZEX', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Afeces_hctz', 'Afeces_hctz', 'Afeces_hctz', 'Afeces_hctz', 'Afeces_hctz', 'Afeces_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', 'KI__HCTZEX', 'KI__HCTZEX', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', 'KI__HCTZEX', 'KI__HCTZEX', 'KI__HCTZEX']
+	x_references: [array([ 240.,  480., 1440.]), array([ 240.,  480., 1440.]), array([240.,   0.]), array([ 240.,  480., 1440.]), array([270.,   0.]), array([ 240.,  480., 1440.]), array([240.,   0.]), array([ 240.,  480., 1440.]), array([ 240.,  480., 1440.]), array([120.,   0.]), array([ 240.,  480., 1440.]), array([240.,   0.]), array([ 240.,  480., 1440.]), array([360.,   0.]), array([ 240.,  480., 1440.]), array([240.,   0.]), array([ 240.,  480., 1440.]), array([ 240.,  480., 1440.]), array([240.,   0.]), array([ 240.,  480., 1440.]), array([ 240.,  480., 1440.]), array([360.,   0.]), array([ 240.,  480., 1440.]), array([ 240.,  480., 1440.]), array([60.,  0.]), array([ 240.,  480., 1440.]), array([60.,  0.]), array([ 240.,  480., 1440.]), array([ 240.,  480., 1440.]), array([90.,  0.]), array([ 240.,  480., 1440.]), array([ 240.,  480., 1440.]), array([60.,  0.]), array([ 240.,  480., 1440.]), array([78.,  0.]), array([ 240.,  480., 1440.]), array([48.,  0.]), array([ 240.,  480., 1440.]), array([360.,   0.]), array([ 240.,  480., 1440.]), array([120.,   0.]), array([ 240.,  480., 1440.]), array([ 240.,  480., 1440.]), array([48.,  0.]), array([ 240.,  480., 1440.]), array([120.,   0.]), array([   0.,   60.,  120.,  180.,  240.,  360.,  480.,  720., 1440.,
+       2880.]), array([   0.,   60.,  120.,  180.,  240.,  360.,  480.,  720., 1440.,
+       2880.]), array([  30.,   60.,   90.,  120.,  240.,  360.,  480.,  720., 1440.]), array([  30.,   90.,  180.,  300.,  420.,  600., 1080., 2160.]), array([   0.,   60.,  360.,  480.,  720., 1440., 2880.]), array([  30.,   60.,   90.,  120.,  240.,  360.,  480.,  720., 1440.]), array([  30.,   90.,  180.,  300.,  420.,  600., 1080., 2160.]), array([   0.,   60.,  360.,  480.,  720., 1440., 2880.]), array([  30.,   60.,   90.,  120.,  240.,  360.,  480.,  720., 1440.]), array([  60.,  120.,  180.,  240.,  360.,  480.,  720., 1440., 2880.]), array([  30.,   60.,   90.,  120.,  240.,  360.,  480.,  720., 1440.]), array([  60.,  120.,  180.,  240.,  360.,  480.,  720., 1440., 2880.]), array([    0., 10080.]), array([    0., 10080.]), array([   0., 5760.]), array([    0., 10080.]), array([    0., 10080.]), array([    0., 10080.]), array([   0.,  720., 5760.]), array([    0.,   720.,  5760., 10080.]), array([   0.,  720., 5760.]), array([   0.,  720., 5760.]), array([   0.,  720., 5760.]), array([   0.,  720., 5760.]), array([    0.,   720.,  5760., 10080.]), array([    0.,   720.,  5760., 10080.]), array([    0.,   720.,  5760., 10080.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  300.,  360.,  420.,
+        480.,  540.,  720.,  900., 1080., 1260., 1380., 2160.]), array([  0.,  30.,  60.,  90., 120., 180., 240., 300., 360., 420.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  300.,  360.,
+        420.,  480.,  540.,  720., 1440., 1920.]), array([   0.,   60.,  120.,  180.,  240.,  300.,  360.,  420.,  480.,
+        540.,  600.,  720., 1440., 1920.]), array([   0.,   60.,  120.,  180.,  240.,  300.,  360.,  420.,  480.,
+        540.,  600.,  720., 1440., 1920.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([2880.,    0.]), array([ 60.,  90., 120., 180., 240., 300., 360., 480., 600.]), array([  30.,   60.,   90.,  180.,  240.,  300.,  360.,  480.,  600.,
+       1440., 1560., 1800., 2880., 3180., 4320.]), array([   0., 1440.]), array([    0.,  1440., 10080.]), array([    0.,  1440., 10080.]), array([    0.,  1440., 10080.]), array([    0.,  1440., 10080.]), array([    0.,  1440., 10080.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  300.,  360.,
+        480.,  600.,  720.,  960., 1440.]), array([  30.,   60.,   90.,  120.,  180.,  360.,  540.,  720., 1440.]), array([   0.,   30.,   60.,   90.,  120.,  150.,  180.,  240.,  360.,
+        480.,  720.,  960., 1440.]), array([   0., 1440.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,
+        720., 1440.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,
+        720., 1440.]), array([   0., 5760.]), array([   0., 5760.]), array([   0., 5760.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,
+        720., 1440.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440.]), array([  30.,   45.,   60.,   90.,  120.,  180.,  240.,  300.,  360.,
+        480.,  720., 1080., 1440.]), array([   0.,   30.,   60.,   90.,  120.,  150.,  180.,  240.,  360.,
+        480.,  720., 1440.]), array([   0., 1440.]), array([  21.6730038 ,   46.76806084,   60.        ,   90.        ,
+        120.        ,  180.        ,  240.        ,  300.        ,
+        360.        ,  480.        , 1440.        , 1500.        ]), array([  22.02643172,   41.85022026,   60.        ,   90.        ,
+        120.        ,  180.        ,  240.        ,  300.        ,
+        360.        ,  480.        , 1440.        , 1500.        ]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([   0., 2880.]), array([ 114.89361702,  240.        ,  480.        ,  720.        ,
+       1440.        , 1970.86743044]), array([  30.       ,   90.       ,  117.8396072,  150.       ,
+        180.       ,  300.       ,  480.       ,  720.       ,
+       1080.       , 1440.       , 2880.       ]), array([  61.86579378,  114.89361702,  173.81342062,  297.54500818,
+        474.30441899,  715.87561375, 1075.28641571, 1437.64320786,
+       2872.34042553]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440., 1800., 2160.,
+       2880.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440., 1800., 2160.,
+       2880.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440., 1800., 2160.,
+       2880.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440., 1800., 2160.,
+       2880.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440., 1800., 2160.,
+       2880.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440., 1800., 2160.,
+       2880.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440., 1800., 2160.,
+       2880.]), array([   0.,  120.,  240.,  360.,  480.,  720., 1440., 1800., 2160.,
+       2880.]), array([   0., 2160.]), array([   0., 2160.]), array([   0.,   15.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,
+        480.,  720.,  960., 1440.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,
+        600.,  720., 1080., 1440.]), array([   0.,  240.,  480.,  720., 1440., 2160., 2880.]), array([ 240.,  480.,  720., 1440., 2160., 2880.]), array([  60.,  180.,  300.,  420.,  600., 1080.]), array([  60.,  180.,  300.,  420.,  600., 1080.])]
+	y_references: [array([0.01483596, 0.03974919, 0.07110066]), array([0.03527041, 0.06550218, 0.09405442]), array([0.00167954, 0.        ]), array([0.0058784 , 0.0235136 , 0.04198858]), array([0.00235136, 0.        ]), array([0.00335909, 0.03023178, 0.07725899]), array([0.00067182, 0.        ]), array([0.03527041, 0.06634195, 0.10623111]), array([0.04702721, 0.07893853, 0.11084985]), array([0.00167954, 0.        ]), array([0.06382264, 0.08733624, 0.10413168]), array([0.00100773, 0.        ]), array([0.00503863, 0.03359086, 0.10749076]), array([0.00134363, 0.        ]), array([0.02519315, 0.06550218, 0.10245213]), array([0.00671817, 0.        ]), array([0.00839772, 0.04534767, 0.0738999 ]), array([0.00839772, 0.04534767, 0.0738999 ]), array([0.00134363, 0.        ]), array([0.00167954, 0.00671817, 0.01511589]), array([0.00167954, 0.00671817, 0.01511589]), array([0.00436681, 0.        ]), array([0.07054081, 0.10161236, 0.13856231]), array([0.05710447, 0.07557944, 0.10917031]), array([0.0040309, 0.       ]), array([0.08397716, 0.12764528, 0.16795432]), array([0.0040309, 0.       ]), array([0.12596574, 0.14108163, 0.16795432]), array([0.12596574, 0.14108163, 0.16795432]), array([0.0040309, 0.       ]), array([0.03375882, 0.04870675, 0.09405442]), array([0.03527041, 0.05374538, 0.09909305]), array([0.00503863, 0.        ]), array([0.0117568 , 0.02519315, 0.07725899]), array([0.00503863, 0.        ]), array([0.02267383, 0.03694995, 0.11084985]), array([0.00638226, 0.        ]), array([0.02855223, 0.03694995, 0.07557944]), array([0.00470272, 0.        ]), array([0.07054081, 0.09069533, 0.10749076]), array([0.00335909, 0.        ]), array([0.03862949, 0.06886127, 0.09405442]), array([0.06550218, 0.11924756, 0.14612026]), array([0.00335909, 0.        ]), array([0.0117568 , 0.01847497, 0.04198858]), array([0.00470272, 0.        ]), array([0.00000000e+00, 5.47572407e-05, 2.38545357e-04, 2.87688788e-04,
+       2.58293100e-04, 1.39184895e-04, 9.58179416e-05, 5.95757911e-05,
+       2.09695507e-05, 2.69665313e-06]), array([7.01274406e-06, 4.96552887e-04, 6.06005916e-04, 4.04100339e-04,
+       3.28420540e-04, 2.05104690e-04, 1.29475498e-04, 9.04282502e-05,
+       5.46271073e-05, 2.69665313e-06]), array([8.30340060e-05, 3.53678960e-04, 7.19559873e-04, 9.25805322e-04,
+       7.40465362e-04, 4.52453966e-04, 2.91093234e-04, 1.85146155e-04,
+       7.48996644e-05]), array([4.42669770e-05, 2.42597229e-04, 2.55431171e-04, 2.22624216e-04,
+       1.00415616e-04, 4.96399241e-05, 2.22624216e-05, 5.59847721e-06]), array([0.0001991 , 0.00208528, 0.07525448, 0.08756885, 0.09885702,
+       0.11527618, 0.12594863]), array([8.92357305e-05, 3.74427353e-04, 6.66788214e-04, 8.47629918e-04,
+       7.95996195e-04, 4.54710322e-04, 3.01352475e-04, 1.71165879e-04,
+       6.86111759e-05]), array([3.04588795e-05, 2.46165586e-04, 2.64456564e-04, 1.77386125e-04,
+       1.06939290e-04, 5.54435553e-05, 2.26527638e-05, 7.77535956e-06]), array([0.0001991 , 0.00208528, 0.0680711 , 0.08120643, 0.09495747,
+       0.11076091, 0.12328052]), array([1.78031575e-04, 6.61740007e-04, 8.76721532e-04, 9.64057776e-04,
+       7.42358079e-04, 4.13167618e-04, 2.82163252e-04, 1.71313403e-04,
+       7.38998992e-05]), array([0.00537454, 0.02267383, 0.04047699, 0.05676856, 0.07306013,
+       0.08448102, 0.09657373, 0.11336916, 0.12495801]), array([1.57877057e-04, 6.38226402e-04, 9.17030568e-04, 9.90930467e-04,
+       7.99462546e-04, 4.56835741e-04, 3.05676856e-04, 1.81390662e-04,
+       7.72589856e-05]), array([0.00487068, 0.0231777 , 0.04131676, 0.05777628, 0.07608331,
+       0.08817602, 0.10094054, 0.1187437 , 0.12898892]), array([0.        , 0.00014444]), array([0.        , 0.00117568]), array([0.        , 0.00411488]), array([0.        , 0.00342627]), array([0.        , 0.00283843]), array([0.        , 0.00191468]), array([0.        , 0.00248908, 0.00302654]), array([0.        , 0.08500168, 0.10980853, 0.10980853]), array([0.        , 0.09187101, 0.12445415]), array([0.        , 0.03207927, 0.06902922]), array([0.        , 0.03157541, 0.09875714]), array([0.        , 0.00851528, 0.01229426]), array([0.        , 0.00658381, 0.00962378, 0.00965737]), array([0.        , 0.00822976, 0.01108498, 0.01113537]), array([0.        , 0.01011085, 0.01387303, 0.01388982]), array([2.52963638e-04, 7.79474391e-04, 8.85696893e-04, 1.03535739e-03,
+       1.23935629e-03, 1.39512581e-03, 1.02134498e-03, 7.95103421e-04,
+       6.21913305e-04, 4.66184107e-04, 3.82292403e-04, 1.72852487e-04,
+       1.57342908e-04, 1.61961964e-04, 1.30996760e-04, 1.16988744e-04,
+       5.07924674e-05]), array([0.00000000e+00, 2.00171904e-05, 3.31134665e-05, 1.00512558e-04,
+       2.51568974e-04, 3.41507133e-04, 2.37667529e-04, 1.07286251e-04,
+       3.27723080e-05, 2.31315213e-05]), array([0.00000000e+00, 5.17834630e-05, 2.86201755e-04, 6.21067007e-04,
+       8.12231469e-04, 6.65600511e-04, 5.84551352e-04, 4.66743532e-04,
+       4.13472595e-04, 3.77548757e-04, 2.62469176e-04, 1.80894004e-04,
+       1.60247991e-04, 7.01083970e-05, 5.99930394e-05]), array([0.00000000e+00, 1.58532740e-04, 1.85900276e-04, 1.51212324e-04,
+       8.77486928e-05, 9.41271337e-05, 6.55865923e-05, 6.87220294e-05,
+       3.08140594e-05, 1.57553737e-05, 2.22872616e-05, 1.16637271e-05,
+       3.07216862e-06, 0.00000000e+00]), array([0.00000000e+00, 1.65194174e-05, 6.48604100e-05, 9.16971060e-05,
+       8.48244481e-05, 8.70561062e-05, 5.50238682e-05, 9.78478118e-05,
+       7.22723490e-05, 7.38534294e-05, 3.14825510e-05, 2.62495913e-05,
+       1.23610362e-05, 3.64736889e-06]), array([0.02855223, 0.        ]), array([0.02989587, 0.        ]), array([0.03930131, 0.        ]), array([0.02821633, 0.        ]), array([0.02015452, 0.        ]), array([0.0231777, 0.       ]), array([0.02989587, 0.        ]), array([0.06012765, 0.        ]), array([0.04131676, 0.        ]), array([0.04098085, 0.        ]), array([0.05979174, 0.        ]), array([0.05710447, 0.        ]), array([0.06785354, 0.        ]), array([0.07994625, 0.        ]), array([0.07289217, 0.        ]), array([0.06348673, 0.        ]), array([0.1088344, 0.       ]), array([0.10245213, 0.        ]), array([0.04232449, 0.        ]), array([0.11823984, 0.        ]), array([0.10278804, 0.        ]), array([0.12663755, 0.        ]), array([0.12294256, 0.        ]), array([0.1246221, 0.       ]), array([0.13033255, 0.        ]), array([0.16425932, 0.        ]), array([0.12798119, 0.        ]), array([0.14612026, 0.        ]), array([0.14847162, 0.        ]), array([0.15351025, 0.        ]), array([0.17769567, 0.        ]), array([0.18743702, 0.        ]), array([0.16560296, 0.        ]), array([0.20691972, 0.        ]), array([0.00111703, 0.00219938, 0.00209742, 0.00166943, 0.00091835,
+       0.00069148, 0.00039657, 0.00027157, 0.00020437]), array([2.44532461e-05, 3.78086437e-05, 6.90692345e-05, 2.71440889e-04,
+       8.35616027e-04, 1.28098187e-03, 1.55102519e-03, 1.68886006e-03,
+       1.39696632e-03, 8.65557098e-04, 6.73489546e-04, 6.18509792e-04,
+       4.80331080e-04, 2.97956730e-04, 2.76329258e-04]), array([0.        , 0.01578771]), array([0.        , 0.11387303, 0.12025529]), array([0.        , 0.05911992, 0.07826671]), array([0.        , 0.03056769, 0.0349345 ]), array([0.        , 0.03090359, 0.06147128]), array([0.        , 0.03627813, 0.0466913 ]), array([4.65196653e-05, 2.38107311e-04, 4.43374854e-04, 4.49971543e-04,
+       4.22907229e-04, 3.76443101e-04, 3.18212990e-04, 2.75032425e-04,
+       2.01750005e-04, 1.51786133e-04, 1.29734337e-04, 9.23574081e-05,
+       6.65883047e-05, 4.65202179e-05]), array([6.50288766e-05, 2.23302758e-04, 3.09909398e-04, 3.75332389e-04,
+       4.38452274e-04, 3.07520080e-04, 1.80553661e-04, 1.47214046e-04,
+       6.02379234e-05]), array([3.30467661e-05, 1.34604024e-04, 4.02008605e-04, 6.83489432e-04,
+       6.77931329e-04, 5.39380106e-04, 4.32663484e-04, 3.19848685e-04,
+       1.97571688e-04, 1.40213084e-04, 8.73202122e-05, 5.71107179e-05,
+       3.52774968e-05]), array([0.        , 0.06046355]), array([0.00000000e+00, 1.12798948e-04, 3.47686170e-04, 4.93661280e-04,
+       4.93661280e-04, 4.49868747e-04, 3.63610728e-04, 2.21616757e-04,
+       1.45975110e-04, 7.96227870e-05, 3.05220684e-05]), array([0.00000000e+00, 1.91094689e-04, 3.86170517e-04, 5.13566976e-04,
+       4.72428536e-04, 4.11384400e-04, 3.55648449e-04, 1.93748782e-04,
+       1.23415320e-04, 7.03334619e-05, 2.38868361e-05]), array([0.        , 0.06348673]), array([0.        , 0.05307356]), array([0.        , 0.05777628]), array([3.40051036e-05, 2.02089505e-04, 5.14422215e-04, 6.14132577e-04,
+       5.69600729e-04, 5.03306022e-04, 4.30505018e-04, 2.58493667e-04,
+       1.85418264e-04, 1.20580918e-04, 5.83107239e-05]), array([0.        , 0.01479306, 0.04781181, 0.0751095 , 0.09848416,
+       0.11188781, 0.12185883]), array([0.        , 0.01231665, 0.04086888, 0.06531557, 0.0774456 ,
+       0.08733624, 0.09965289]), array([7.91462060e-05, 2.09023941e-04, 4.96384333e-04, 9.02925871e-04,
+       1.08623577e-03, 1.34127275e-03, 1.14988708e-03, 8.19364473e-04,
+       6.23407612e-04, 3.66008847e-04, 2.10491801e-04, 9.67960878e-05,
+       1.82731603e-05]), array([4.47070898e-05, 1.96550863e-04, 5.06736295e-04, 5.05574664e-04,
+       5.67632630e-04, 5.82607400e-04, 5.55757822e-04, 5.25196156e-04,
+       2.73100921e-04, 1.88538793e-04, 1.07523779e-04, 5.17812300e-05]), array([0.        , 0.04467585]), array([5.69857196e-05, 1.47220114e-04, 2.16681703e-04, 2.06335883e-04,
+       1.80803388e-04, 1.73863565e-04, 1.24051200e-04, 9.80873642e-05,
+       7.64277222e-05, 5.24379036e-05, 1.09043859e-05, 1.00341479e-05]), array([8.34827784e-05, 3.45457645e-04, 5.66842627e-04, 4.85855883e-04,
+       4.30283817e-04, 3.22077733e-04, 2.72219256e-04, 2.00926727e-04,
+       1.69822743e-04, 1.15237490e-04, 5.04047332e-05, 4.12312858e-05]), array([0.        , 0.02506718]), array([0.        , 0.06113537]), array([0.        , 0.03585825]), array([0.        , 0.07877057]), array([0.        , 0.02175008]), array([0.        , 0.05567686]), array([0.        , 0.01805509]), array([0.        , 0.08078603]), array([0.        , 0.02615888]), array([0.        , 0.03988915]), array([0.        , 0.03098757]), array([0.        , 0.07843467]), array([0.        , 0.01746725]), array([0.      , 0.033087]), array([6.09322636e-04, 2.96849489e-04, 9.37419441e-05, 6.24946294e-05,
+       2.34354860e-05, 0.00000000e+00]), array([0.00045309, 0.00071088, 0.00146081, 0.00165611, 0.00143738,
+       0.00085149, 0.00046871, 0.00058589, 0.00039059, 0.00030466,
+       0.        ]), array([0.00123427, 0.00182797, 0.00254666, 0.00306224, 0.00335909,
+       0.00299974, 0.00149987, 0.00114053, 0.00057808]), array([7.65871683e-05, 2.40510581e-04, 3.28854552e-04, 3.59422237e-04,
+       3.86294928e-04, 3.11051394e-04, 1.82062479e-04, 1.32012093e-04,
+       7.82667115e-05, 3.02317770e-05, 1.54517971e-05]), array([1.40073900e-04, 3.45985892e-04, 4.09808532e-04, 4.13167618e-04,
+       3.96372187e-04, 3.24151831e-04, 1.72657037e-04, 1.25965737e-04,
+       6.81894525e-05, 3.56063151e-05, 2.48572388e-05]), array([1.66274773e-04, 6.18071884e-04, 7.79308028e-04, 8.43130668e-04,
+       7.12126302e-04, 5.97917366e-04, 3.79576755e-04, 2.71078267e-04,
+       1.48807524e-04, 6.61740007e-05, 2.92240511e-05]), array([3.52704064e-04, 7.15485388e-04, 8.63285186e-04, 7.62512597e-04,
+       6.98689956e-04, 5.81121935e-04, 3.45985892e-04, 2.25058784e-04,
+       1.41417534e-04, 5.71044676e-05, 2.72085993e-05]), array([3.86294928e-04, 9.53980517e-04, 1.18911656e-03, 1.23614377e-03,
+       1.34699362e-03, 1.18575747e-03, 6.91971784e-04, 4.76990259e-04,
+       2.83170977e-04, 1.08162580e-04, 4.19885791e-05]), array([4.19885791e-04, 1.14544844e-03, 1.51494793e-03, 1.54517971e-03,
+       1.34699362e-03, 1.15552570e-03, 6.61740007e-04, 4.66913000e-04,
+       2.30097414e-04, 9.53980517e-05, 4.03090359e-05]), array([0.        , 0.00788394, 0.0180981 , 0.02577073, 0.02835534,
+       0.03352623, 0.04055996, 0.04323075, 0.04674927, 0.05124645]), array([0.        , 0.01127485, 0.01894582, 0.02577073, 0.02920307,
+       0.0343723 , 0.04310148, 0.04492621, 0.05014018, 0.05209252]), array([0.        , 0.01636287, 0.03335718, 0.04696224, 0.05548094,
+       0.06234728, 0.0753151 , 0.07968135, 0.08489532, 0.0910863 ]), array([0.        , 0.01721059, 0.04013899, 0.05289633, 0.05887351,
+       0.06658591, 0.078706  , 0.08222618, 0.08574305, 0.09193402]), array([0.        , 0.02823104, 0.07574352, 0.10291221, 0.11821272,
+       0.1327086 , 0.15161051, 0.15851994, 0.16373391, 0.16992489]), array([0.        , 0.03925149, 0.08591458, 0.10799691, 0.12245136,
+       0.13694558, 0.15839067, 0.16699555, 0.17221118, 0.17924988]), array([0.        , 0.07400663, 0.17322878, 0.22498321, 0.24960872,
+       0.28360232, 0.32963148, 0.34332272, 0.35362306, 0.36490039]), array([0.        , 0.08926571, 0.17916453, 0.23600366, 0.26825871,
+       0.30818639, 0.34658601, 0.36366816, 0.37227305, 0.38524583]), array([0.        , 0.04114881]), array([0.        , 0.04618744]), array([4.64225731e-05, 8.12227074e-05, 2.66879409e-04, 6.86563655e-04,
+       7.81289889e-04, 6.78736984e-04, 5.56802150e-04, 4.31004367e-04,
+       2.56768559e-04, 1.88915015e-04, 1.13134028e-04, 8.18945247e-05,
+       4.44743030e-05]), array([1.77260940e-04, 2.80068890e-04, 5.60201451e-04, 6.41233811e-04,
+       6.34930351e-04, 5.56285665e-04, 4.01394580e-04, 2.89969779e-04,
+       2.24006297e-04, 1.86259819e-04, 1.86992040e-04, 1.08591427e-04,
+       7.84536717e-05]), array([0.        , 0.03008752, 0.04368873, 0.05399268, 0.06615133,
+       0.07150938, 0.07501273]), array([1.25965737e-04, 5.73843914e-05, 4.19885791e-05, 1.63288919e-05,
+       7.46463629e-06, 4.66539768e-06]), array([1.17219387e-04, 2.48846620e-04, 1.63466793e-04, 1.18108760e-04,
+       4.87376511e-05, 2.38352016e-05]), array([2.76417189e-04, 3.78695107e-04, 2.55072233e-04, 1.66134913e-04,
+       7.63082202e-05, 3.98439192e-05])]
+	y_errors: [array([0.01774152, 0.02255429, 0.02657361]), None, None, None, None, None, None, array([0.02561877, 0.02361337, 0.00372414]), None, None, None, None, None, None, None, None, None, None, None, None, None, None, array([0.01900186, 0.03681611, 0.04156657]), None, None, None, None, None, None, None, array([0.02230064, 0.02558204, 0.01666899]), None, None, None, None, None, None, None, None, None, None, array([0.03800372, 0.07125698, 0.07363221]), None, None, None, None, None, None, array([2.27846362e-05, 1.87624320e-04, 3.45031394e-04, 4.57531616e-04,
+       2.74866178e-04, 1.51182858e-04, 1.01656173e-04, 6.87276120e-05,
+       3.16807452e-05]), array([3.28896791e-05, 1.01457181e-04, 5.67010273e-05, 8.24379316e-05,
+       3.17761006e-05, 1.10191512e-05, 7.38251408e-06, 9.36349776e-07]), array([0.01375105, 0.01375105, 0.00944102, 0.01087769, 0.01128817,
+       0.01354581, 0.01375105]), array([3.27019063e-04, 2.27730878e-04, 3.27019063e-04, 3.07899990e-04,
+       2.37442617e-04, 1.18801689e-04, 6.42935011e-05, 3.72853429e-05,
+       1.46381831e-05]), array([2.33478705e-05, 1.51702920e-04, 4.86661107e-05, 4.02465295e-05,
+       3.77423373e-05, 1.13828759e-05, 7.99594569e-06, 3.82491438e-06]), array([0.01621392, 0.01621392, 0.01005674, 0.00903054, 0.01087769,
+       0.01251961, 0.01621392]), array([1.74672489e-04, 3.62781323e-04, 4.13167618e-04, 3.49344978e-04,
+       2.25058784e-04, 1.31004367e-04, 6.71817266e-05, 4.36681223e-05,
+       2.01545180e-05]), array([0.0058784 , 0.00890158, 0.01024521, 0.01444407, 0.01394021,
+       0.01427612, 0.01696339, 0.01629157, 0.01713134]), array([1.64595230e-04, 4.73631172e-04, 3.99731273e-04, 3.62781323e-04,
+       2.51931475e-04, 1.37722539e-04, 8.06180719e-05, 4.36681223e-05,
+       2.01545180e-05]), array([0.00503863, 0.01108498, 0.01242862, 0.01192476, 0.01242862,
+       0.01326839, 0.01494793, 0.01612361, 0.01595566]), None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, array([0.00671817, 0.00671817]), None, None, None, None, None, None, array([0.01410816, 0.01410816]), None, None, None, None, None, None, None, None, array([0.02888814, 0.02888814]), None, None, None, None, None, None, None, None, array([0.02552906, 0.02552906]), None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, array([1.36840424e-05, 1.25880480e-04, 1.61455398e-04, 1.19312526e-04,
+       9.85154344e-05, 8.34642311e-05, 8.01801162e-05, 9.19460993e-05,
+       6.26665866e-05, 3.74904907e-05, 3.50281644e-05, 2.38081062e-05,
+       1.80613886e-05, 1.36829371e-05]), array([9.73281762e-05, 1.69847209e-04, 1.44181236e-04, 1.67938814e-04,
+       1.64472544e-04, 1.83322819e-04, 1.33470852e-04, 1.30238264e-04,
+       8.74746233e-05]), array([1.83124431e-05, 9.90373008e-05, 2.58318508e-04, 2.47278703e-04,
+       1.47287980e-04, 8.86871817e-05, 8.09286082e-05, 4.37179288e-05,
+       4.47415789e-05, 2.62265020e-05, 2.15375653e-05, 1.76612647e-05,
+       1.28340737e-05]), array([0.01239503, 0.01239503]), None, None, array([0.00806181, 0.00806181]), array([0.00940544, 0.00940544]), array([0.01209271, 0.01209271]), array([8.40598378e-05, 1.33456478e-04, 2.12668538e-04, 2.13460659e-04,
+       1.33614902e-04, 1.41250945e-04, 1.30636529e-04, 7.11324297e-05,
+       5.58286597e-05, 3.27937927e-05, 1.96445908e-05]), array([0.02615347, 0.00980755, 0.01013447, 0.01274982, 0.01994202,
+       0.02255737, 0.02615347]), array([0.01279919, 0.00868516, 0.00914228, 0.00868516, 0.00777093,
+       0.0100565 , 0.01279919]), array([1.90997455e-04, 2.47169518e-04, 3.37019936e-04, 3.37019936e-04,
+       1.79750601e-04, 2.09721476e-04, 1.90997455e-04, 7.11637208e-05,
+       5.99168670e-05, 5.24396999e-05, 4.49376503e-05, 3.74480419e-05,
+       3.37156789e-05]), array([2.09913934e-05, 1.52353988e-04, 3.84338793e-04, 2.53344424e-04,
+       1.91330491e-04, 1.55191808e-04, 1.21948062e-04, 1.07722760e-04,
+       6.15012222e-05, 6.05919025e-05, 3.12387796e-05, 1.86078302e-05]), array([0.00884582, 0.00884582]), array([5.99165293e-05, 1.23031901e-04, 1.88080401e-04, 1.53517817e-04,
+       6.96980644e-05, 5.63327143e-05, 2.28787654e-05, 4.84190823e-05,
+       3.69940671e-05, 2.58850382e-05, 8.38403122e-06, 7.71493321e-06]), array([4.54965239e-05, 1.69116093e-04, 2.77493382e-04, 2.31191423e-04,
+       2.89827011e-04, 1.03172480e-04, 6.53065646e-05, 9.28701213e-05,
+       7.61888895e-05, 5.48350245e-05, 4.85631454e-05, 4.03838163e-05]), array([0.00730239, 0.00730239]), array([0.02118722, 0.02118722]), None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, array([7.35639906e-05, 1.08834397e-04, 1.31340275e-04, 1.20927108e-04,
+       9.74135035e-05, 7.08767215e-05, 3.89654014e-05, 3.19113201e-05,
+       3.99731273e-05, 2.11622439e-05, 1.74672489e-05]), array([9.87571381e-05, 1.74672489e-04, 1.51158885e-04, 1.47799798e-04,
+       1.17568021e-04, 9.03594222e-05, 5.17299295e-05, 3.15754115e-05,
+       2.45213302e-05, 1.84749748e-05, 2.01545180e-05]), array([1.29660732e-04, 4.19885791e-04, 3.09035942e-04, 3.42626806e-04,
+       1.91467921e-04, 9.40544172e-05, 5.37453813e-05, 4.53476654e-05,
+       3.52704064e-05, 2.58649647e-05, 1.54517971e-05]), array([1.71313403e-04, 2.65367820e-04, 2.82163252e-04, 2.25058784e-04,
+       1.67954316e-04, 1.14208935e-04, 7.05408129e-05, 6.18071884e-05,
+       3.69499496e-05, 2.55290561e-05, 2.38495129e-05]), array([3.79576755e-04, 5.03862949e-04, 4.97144777e-04, 4.63553913e-04,
+       3.02317770e-04, 3.32549547e-04, 2.01545180e-04, 1.17568021e-04,
+       5.44171985e-05, 3.49344978e-05, 1.81390662e-05]), array([4.03090359e-05, 5.07222036e-04, 4.16526705e-04, 3.93013100e-04,
+       3.79576755e-04, 3.15754115e-04, 1.91467921e-04, 1.07490763e-04,
+       7.69230769e-05, 3.49344978e-05, 3.02317770e-05]), None, None, None, None, None, None, None, None, array([0.05374538, 0.05374538]), array([0.03023178, 0.03023178]), array([0.00034473, 0.00034473, 0.00010887, 0.00033575, 0.00034473,
+       0.00028124, 0.00010887, 0.00011785, 0.00034473, 0.00034473,
+       0.00034473, 0.00034473, 0.00034473]), array([6.73324153e-05, 1.36352121e-04, 2.55534210e-04, 2.06634640e-04,
+       1.81643649e-04, 1.68707760e-04, 1.17441740e-04, 8.09156292e-05,
+       7.72014691e-05, 7.12057537e-05, 7.50578682e-05, 4.77322623e-05,
+       3.78950442e-05]), array([0.02060789, 0.01277689, 0.01421945, 0.01669239, 0.01916534,
+       0.01937142, 0.02060789]), array([5.16459523e-05, 1.83630053e-05, 1.25965737e-05, 4.57208972e-06,
+       2.01545180e-06, 1.25965737e-06]), None, None]
+	y_errors_type: ['SD', None, None, None, None, None, None, 'SD', None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'SD', None, None, None, None, None, None, None, 'SD', None, None, None, None, None, None, None, None, None, None, 'SD', None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'SD', None, None, None, None, None, None, 'SD', None, None, None, None, None, None, None, None, 'SD', None, None, None, None, None, None, None, None, 'SD', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None]
+	weights: [array([0.83622848, 1.76237811, 2.67561194]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([ 1.83565452,  3.74601156, 38.03328902]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([2.47487373, 1.83999829, 2.2223356 ]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([2.52300814, 3.17323879, 9.40413081]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.677644  , 0.64425285, 0.85156946]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([4., 4., 4., 4., 4., 4., 4., 4., 4., 4.]), array([4., 4., 4., 4., 4., 4., 4., 4., 4., 4.]), array([3.23937607, 1.67558927, 1.85376979, 1.79864743, 2.39458866,
+       2.66023084, 2.54534017, 2.39458866, 2.10151242]), array([1.34592304, 2.3911292 , 4.50487731, 2.70050705, 3.16009877,
+       4.50487731, 3.01556101, 5.97904475]), array([ 0.01654767,  0.17330838,  9.10973085,  9.20035939, 10.00865801,
+        9.72582973, 10.46766169]), array([0.24255665, 1.46148083, 1.81243451, 2.44705697, 2.97988702,
+       3.4021987 , 4.16634438, 4.08062354, 4.16634438]), array([1.30456777, 1.62268193, 5.43410108, 4.40748872, 2.83340402,
+       4.87078623, 2.83303123, 2.03281924]), array([ 0.0140341 ,  0.14698306,  7.73566569, 10.27705628,  9.97663971,
+       10.1108509 ,  8.68957203]), array([2.26495726, 4.05349794, 4.71544715, 6.13247863, 7.33001658,
+       7.00854701, 9.33333333, 8.71794872, 8.14814815]), array([ 2.03174603,  5.66037736,  8.77959927,  8.73385013, 11.64658635,
+       13.1503268 , 12.65126513, 15.46391753, 16.20915033]), array([2.13151927, 2.99448385, 5.09803922, 6.06995885, 7.05185185,
+       7.37127371, 8.42592593, 9.23076923, 8.51851852]), array([ 2.14814815,  4.64646465,  7.38738739, 10.76682316, 13.6036036 ,
+       14.76793249, 15.0062422 , 16.36574074, 17.96491228]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([0.5, 0.5, 0.5, 0.5]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([0.5, 0.5, 0.5, 0.5]), array([0.5, 0.5, 0.5, 0.5]), array([0.5, 0.5, 0.5, 0.5]), array([0.11764706, 0.11764706, 0.11764706, 0.11764706, 0.11764706,
+       0.11764706, 0.11764706, 0.11764706, 0.11764706, 0.11764706,
+       0.11764706, 0.11764706, 0.11764706, 0.11764706, 0.11764706,
+       0.11764706, 0.11764706]), array([0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]), array([0.13333333, 0.13333333, 0.13333333, 0.13333333, 0.13333333,
+       0.13333333, 0.13333333, 0.13333333, 0.13333333, 0.13333333,
+       0.13333333, 0.13333333, 0.13333333, 0.13333333, 0.13333333]), array([0.14285714, 0.14285714, 0.14285714, 0.14285714, 0.14285714,
+       0.14285714, 0.14285714, 0.14285714, 0.14285714, 0.14285714,
+       0.14285714, 0.14285714, 0.14285714, 0.14285714]), array([0.14285714, 0.14285714, 0.14285714, 0.14285714, 0.14285714,
+       0.14285714, 0.14285714, 0.14285714, 0.14285714, 0.14285714,
+       0.14285714, 0.14285714, 0.14285714, 0.14285714]), array([17.,  0.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([17.04761905,  0.        ]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([15.06976744,  0.        ]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([25.73684211,  0.        ]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([0.22222222, 0.22222222, 0.22222222, 0.22222222, 0.22222222,
+       0.22222222, 0.22222222, 0.22222222, 0.22222222]), array([0.13333333, 0.13333333, 0.13333333, 0.13333333, 0.13333333,
+       0.13333333, 0.13333333, 0.13333333, 0.13333333, 0.13333333,
+       0.13333333, 0.13333333, 0.13333333, 0.13333333, 0.13333333]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([7.28476239, 4.0532889 , 5.88452901, 8.08150465, 9.19886089,
+       9.66478427, 8.50441495, 6.40979008, 6.89875519, 8.67569333,
+       7.9365321 , 8.31266167, 7.90023555, 7.28543735]), array([0.74237811, 1.46080808, 2.38827039, 2.48326148, 2.96200923,
+       1.86386495, 1.5030636 , 1.25593783, 0.76514792]), array([1.5269753 , 1.15002844, 1.31682832, 2.3388072 , 3.8946437 ,
+       5.1461614 , 4.52373863, 6.19062254, 3.73648066, 4.52373863,
+       3.43057966, 2.73618308, 2.32585461]), array([ 0.        , 26.82926829]), array([2.18181818, 2.18181818, 2.18181818, 2.18181818, 2.18181818,
+       2.18181818, 2.18181818, 2.18181818, 2.18181818, 2.18181818,
+       2.18181818]), array([2.18181818, 2.18181818, 2.18181818, 2.18181818, 2.18181818,
+       2.18181818, 2.18181818, 2.18181818, 2.18181818, 2.18181818,
+       2.18181818]), array([ 0.  , 47.25]), array([ 0.        , 33.85714286]), array([ 0.        , 28.66666667]), array([ 0.99294829,  3.71685124,  5.93728024,  7.06179928, 10.46373463,
+        8.74604774,  8.08881056,  8.91976357,  8.15204163,  9.0252246 ,
+        7.28578791]), array([0.        , 0.86190476, 2.69585253, 3.36630037, 2.82201405,
+       2.83436853, 2.6625    ]), array([0.        , 1.21553626, 3.83170181, 6.44602564, 8.54233818,
+       7.44390389, 6.67360981]), array([0.19125395, 0.39030941, 0.67978311, 1.23652928, 2.78908433,
+       2.95176714, 2.77866066, 5.3140591 , 4.80209672, 3.22136016,
+       2.16188567, 1.19298941, 0.25014375]), array([2.30726373, 1.3976011 , 1.4283344 , 2.16190227, 3.21399557,
+       4.06695446, 4.93710981, 5.28172974, 4.81062523, 3.37091841,
+       3.72882986, 3.01466274]), array([ 0.        , 32.82828283]), array([0.47554256, 0.59830057, 0.57603478, 0.67202585, 1.29704741,
+       1.5431847 , 2.71105537, 1.01289987, 1.03297269, 1.01289987,
+       0.65030685, 0.65030685]), array([0.91746326, 1.02136243, 1.02136243, 1.05076537, 0.74231145,
+       1.56087036, 2.08416457, 1.08176195, 1.11448496, 1.05076537,
+       0.51896075, 0.51049269]), array([ 0.        , 10.29820688]), array([0.        , 8.65644919]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([0.33333333, 0.33333333, 0.33333333, 0.33333333, 0.33333333,
+       0.33333333]), array([0.18181818, 0.18181818, 0.18181818, 0.18181818, 0.18181818,
+       0.18181818, 0.18181818, 0.18181818, 0.18181818, 0.18181818,
+       0.18181818]), array([0.22222222, 0.22222222, 0.22222222, 0.22222222, 0.22222222,
+       0.22222222, 0.22222222, 0.22222222, 0.22222222]), array([1.13574097, 2.41077441, 2.7314578 , 3.24242424, 4.32601881,
+       4.78759156, 5.09717868, 4.51291866, 2.13598167, 1.55844156,
+       0.96503497]), array([1.54730983, 2.16083916, 2.95757576, 3.04958678, 3.67792208,
+       3.91348429, 3.64108619, 4.35203095, 3.03362391, 2.10247934,
+       1.34545455]), array([1.39896373, 1.60581818, 2.75098814, 2.68449198, 4.05741627,
+       6.93506494, 7.70454545, 6.52121212, 4.6025974 , 2.79102715,
+       2.06324111]), array([2.2459893 , 2.94131185, 3.33766234, 3.69606513, 4.53818182,
+       5.55080214, 5.35064935, 3.97233202, 4.17520661, 2.44019139,
+       1.24455826]), array([1.11021722, 2.06545455, 2.60933661, 2.90909091, 4.86060606,
+       3.88980716, 3.74545455, 4.42597403, 5.67676768, 3.37762238,
+       2.52525253]), array([11.36363636,  2.46357616,  3.96774194,  4.28904429,  3.87127916,
+        3.99226306,  3.77033493,  4.73863636,  3.26319968,  2.97902098,
+        1.45454545]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([0.       , 3.4453125]), array([0.   , 6.875]), array([0.22789181, 0.39872821, 4.14843073, 3.46054246, 3.83540923,
+       4.0842293 , 8.65505195, 6.18909138, 1.26049564, 0.92739763,
+       0.55538322, 0.40202621, 0.21832761]), array([4.05019094, 3.16001844, 3.37273192, 4.77419253, 5.37764975,
+       5.07282   , 5.25818268, 5.51324086, 4.46397039, 4.02430357,
+       3.83277687, 3.5000171 , 3.18505913]), array([ 0.        ,  6.7281106 ,  8.77846791,  9.24162257,  9.86175115,
+       10.54711246, 10.4       ]), array([ 8.1300813 , 10.41666667, 11.11111111, 11.9047619 , 12.34567901,
+       12.34567901]), array([3.33333333, 3.33333333, 3.33333333, 3.33333333, 3.33333333,
+       3.33333333]), array([3.33333333, 3.33333333, 3.33333333, 3.33333333, 3.33333333,
+       3.33333333])]
+	weights_points: [array([0.83622848, 1.76237811, 2.67561194]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([ 1.37674089,  2.80950867, 28.52496676]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([3.7123106 , 2.75999744, 3.3335034 ]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([1.51380488, 1.90394328, 5.64247848]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([1.016466  , 0.96637927, 1.27735419]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([3.64429808, 1.88503793, 2.08549102, 2.02347836, 2.69391224,
+       2.9927597 , 2.86350769, 2.69391224, 2.36420147]), array([1.34592304, 2.3911292 , 4.50487731, 2.70050705, 3.16009877,
+       4.50487731, 3.01556101, 5.97904475]), array([0.01447921, 0.15164483, 7.97101449, 8.05031447, 8.75757576,
+       8.51010101, 9.15920398]), array([0.27287623, 1.64416594, 2.03898882, 2.75293909, 3.3523729 ,
+       3.82747354, 4.68713743, 4.59070149, 4.68713743]), array([1.30456777, 1.62268193, 5.43410108, 4.40748872, 2.83340402,
+       4.87078623, 2.83303123, 2.03281924]), array([0.01227983, 0.12861018, 6.76870748, 8.99242424, 8.72955975,
+       8.84699454, 7.60337553]), array([1.01923077, 1.82407407, 2.12195122, 2.75961538, 3.29850746,
+       3.15384615, 4.2       , 3.92307692, 3.66666667]), array([0.91428571, 2.54716981, 3.95081967, 3.93023256, 5.24096386,
+       5.91764706, 5.69306931, 6.95876289, 7.29411765]), array([0.95918367, 1.34751773, 2.29411765, 2.73148148, 3.17333333,
+       3.31707317, 3.79166667, 4.15384615, 3.83333333]), array([0.96666667, 2.09090909, 3.32432432, 4.84507042, 6.12162162,
+       6.64556962, 6.75280899, 7.36458333, 8.08421053]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2., 2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2., 2., 2.]), array([2., 2., 2., 2.]), array([2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([4.25, 0.  ]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([4.26190476, 0.        ]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([3.76744186, 0.        ]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([6.43421053, 0.        ]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([3.39955578, 1.89153482, 2.74611354, 3.77136884, 4.29280175,
+       4.51023266, 3.96872698, 2.99123537, 3.21941909, 4.04865689,
+       3.70371498, 3.87924211, 3.68677659, 3.39987076]), array([0.6681403 , 1.31472727, 2.14944335, 2.23493534, 2.6658083 ,
+       1.67747846, 1.35275724, 1.13034405, 0.68863313]), array([1.80460717, 1.35912453, 1.55625165, 2.76404487, 4.60276073,
+       6.08182711, 5.34623657, 7.31619027, 4.41584078, 5.34623657,
+       4.05432141, 3.23367092, 2.74873727]), array([0.        , 4.87804878]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([0.   , 7.875]), array([0.        , 5.64285714]), array([0.        , 4.77777778]), array([0.40453449, 1.51427273, 2.41889195, 2.87702934, 4.263003  ,
+       3.56320463, 3.29544134, 3.63397775, 3.32120214, 3.67694336,
+       2.96828396]), array([0.        , 1.50833333, 4.71774194, 5.89102564, 4.93852459,
+       4.96014493, 4.659375  ]), array([0.        , 1.41812564, 4.47031878, 7.52036325, 9.96606121,
+       8.68455454, 7.78587811]), array([ 0.41438356,  0.84567038,  1.47286341,  2.67914676,  6.04301604,
+        6.39549547,  6.02043143, 11.51379472, 10.40454288,  6.97961368,
+        4.68408562,  2.58481039,  0.54197812]), array([2.1297819 , 1.29009332, 1.31846252, 1.9956021 , 2.96676514,
+       3.75411181, 4.55733214, 4.87544284, 4.44057713, 3.11161699,
+       3.4419968 , 2.78276561]), array([0.        , 5.05050505]), array([0.95108512, 1.19660114, 1.15206955, 1.3440517 , 2.59409482,
+       3.08636939, 5.42211073, 2.02579974, 2.06594539, 2.02579974,
+       1.30061371, 1.30061371]), array([1.83492652, 2.04272485, 2.04272485, 2.10153074, 1.4846229 ,
+       3.12174072, 4.16832914, 2.1635239 , 2.22896992, 2.10153074,
+       1.03792151, 1.02098537]), array([0.        , 3.43273563]), array([0.        , 2.88548306]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([1.04109589, 2.20987654, 2.50383632, 2.97222222, 3.96551724,
+       4.38862559, 4.67241379, 4.13684211, 1.95798319, 1.42857143,
+       0.88461538]), array([1.41836735, 1.98076923, 2.71111111, 2.79545455, 3.37142857,
+       3.58736059, 3.33766234, 3.9893617 , 2.78082192, 1.92727273,
+       1.23333333]), array([1.28238342, 1.472     , 2.52173913, 2.46078431, 3.71929825,
+       6.35714286, 7.0625    , 5.97777778, 4.21904762, 2.55844156,
+       1.89130435]), array([2.05882353, 2.69620253, 3.05952381, 3.3880597 , 4.16      ,
+       5.08823529, 4.9047619 , 3.64130435, 3.82727273, 2.23684211,
+       1.14084507]), array([1.01769912, 1.89333333, 2.39189189, 2.66666667, 4.45555556,
+       3.56565657, 3.43333333, 4.05714286, 5.2037037 , 3.09615385,
+       2.31481481]), array([10.41666667,  2.25827815,  3.63709677,  3.93162393,  3.54867257,
+        3.65957447,  3.45614035,  4.34375   ,  2.99126638,  2.73076923,
+        1.33333333]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([0.      , 0.765625]), array([0.        , 1.52777778]), array([0.13466334, 0.23561213, 2.45134543, 2.044866  , 2.26637818,
+       2.41340822, 5.11434888, 3.65719036, 0.74483833, 0.54800769,
+       0.32818099, 0.23756094, 0.12901177]), array([2.63262411, 2.05401199, 2.19227575, 3.10322514, 3.49547234,
+       3.297333  , 3.41781874, 3.58360656, 2.90158076, 2.61579732,
+       2.49130496, 2.27501112, 2.07028843]), array([0.        , 2.35483871, 3.07246377, 3.2345679 , 3.4516129 ,
+       3.69148936, 3.64      ]), array([2.43902439, 3.125     , 3.33333333, 3.57142857, 3.7037037 ,
+       3.7037037 ]), array([2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2.])]
+	weights_curves: [1.0, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 1.3333333333333333, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 0.3333333333333333, 0.3333333333333333, 0.5, 0.3333333333333333, 0.3333333333333333, 0.5, 0.6666666666666666, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 0.3333333333333333, 0.3333333333333333, 0.5, 1.6666666666666667, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 0.6666666666666666, 0.3333333333333333, 0.5, 0.3333333333333333, 0.5, 2.0, 2.0, 0.8888888888888888, 1.0, 1.1428571428571428, 0.8888888888888888, 1.0, 1.1428571428571428, 2.2222222222222223, 2.2222222222222223, 2.2222222222222223, 2.2222222222222223, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.3333333333333333, 0.25, 0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 0.25, 0.25, 0.25, 0.058823529411764705, 0.1, 0.06666666666666667, 0.07142857142857142, 0.07142857142857142, 4.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 4.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 4.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 4.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.1111111111111111, 0.06666666666666667, 0.5, 0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 2.142857142857143, 1.1111111111111112, 0.8461538461538461, 5.5, 1.0909090909090908, 1.0909090909090908, 6.0, 6.0, 6.0, 2.4545454545454546, 0.5714285714285714, 0.8571428571428571, 0.46153846153846156, 1.0833333333333333, 6.5, 0.5, 0.5, 3.0, 3.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.16666666666666666, 0.09090909090909091, 0.1111111111111111, 1.0909090909090908, 1.0909090909090908, 1.0909090909090908, 1.0909090909090908, 1.0909090909090908, 1.0909090909090908, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 4.5, 4.5, 1.6923076923076923, 1.5384615384615385, 2.857142857142857, 3.3333333333333335, 1.6666666666666667, 1.6666666666666667]
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Optimization results: 20260421_191243__251fc
+--------------------------------------------------------------------------------
+    run  success    duration           cost  ftissue_hctz   Kp_hctz  KI__HCTZEX_k  Ka_dis_hctz  GU__F_hctz_abs  GU__HCTZABS_k                                     message                                                  x                                                 x0
+0    27     True   80.141779     206.537908      0.246144  0.999728  3.710890e-03     0.351813        0.612131       0.020414  `xtol` termination condition is satisfied.  [0.24614387687774153, 0.9997280036700814, 0.00...  [0.012665935593439166, 0.610463511397116, 0.01...
+1    35     True  132.951939     206.539285      0.245681  0.999988  3.706946e-03     0.346635        0.612370       0.020892  `xtol` termination condition is satisfied.  [0.24568077883352182, 0.9999882767061471, 0.00...  [0.8672924415668369, 0.31545935625023547, 0.00...
+2    29     True  113.665994     206.571484      0.238802  0.999543  3.708558e-03     1.228406        0.612273       0.005708  `xtol` termination condition is satisfied.  [0.2388022653230129, 0.9995432984734898, 0.003...  [4.375057730442484, 0.6347154323963949, 0.0002...
+3    17     True   82.458052     206.600801      0.261360  0.999738  3.741569e-03     0.370580        0.609688       0.019783  `xtol` termination condition is satisfied.  [0.2613602710287559, 0.9997382814414628, 0.003...  [4.249024896586508, 0.9708072025317985, 0.0116...
+4    16     True  167.937576     206.632562      0.238155  0.999986  3.708910e-03     0.335946        0.612354       0.021543  `xtol` termination condition is satisfied.  [0.2381554003142383, 0.9999860470233705, 0.003...  [0.014657145172628151, 0.4730659274449538, 2.3...
+5    19     True  123.143146     206.636906      0.231230  0.999981  3.725247e-03     1.258954        0.612369       0.005567  `xtol` termination condition is satisfied.  [0.2312296162296257, 0.9999810825695531, 0.003...  [3.1531622979241063, 0.35582624164261406, 0.05...
+6     5     True  128.371282     206.664791      0.227969  0.999670  3.664262e-03     1.296501        0.614535       0.005445  `xtol` termination condition is satisfied.  [0.22796945740432292, 0.9996702964106637, 0.00...  [1.0385239057876274, 0.9933112130885886, 0.476...
+7    15     True  145.678568     206.689653      0.261983  0.997916  3.707126e-03     0.364832        0.610442       0.020261  `xtol` termination condition is satisfied.  [0.26198263913921116, 0.9979157436271645, 0.00...  [0.06018158851806112, 0.6059202109907108, 2.53...
+8    21     True  120.854797     206.711406      0.228297  0.999220  3.704374e-03     1.280198        0.614144       0.005451  `xtol` termination condition is satisfied.  [0.22829738296646776, 0.9992199376415738, 0.00...  [0.08612616626507491, 0.6444237858578503, 0.00...
+9    26     True  240.828838     206.737644      0.222481  0.999998  3.681585e-03     1.309844        0.615984       0.005302  `xtol` termination condition is satisfied.  [0.2224807807248342, 0.9999975313051325, 0.003...  [3.9102604407453327, 0.26833790629286, 1.20887...
+10    7     True  181.989524     206.737948      0.224195  0.999988  3.699617e-03     1.315700        0.615727       0.005325  `xtol` termination condition is satisfied.  [0.22419545598756907, 0.999987952011066, 0.003...  [0.26616980140189195, 0.5661286450499596, 5.10...
+11   33     True   94.371139     206.829344      0.250201  0.997354  3.734651e-03     0.351547        0.612239       0.020786  `xtol` termination condition is satisfied.  [0.2502010021375581, 0.9973541730792347, 0.003...  [6.772993773211064, 0.313132416375804, 0.01190...
+12   38     True  136.471075     206.882986      0.256695  0.995872  3.737877e-03     0.361953        0.610984       0.020015  `xtol` termination condition is satisfied.  [0.25669502264840155, 0.9958717711616161, 0.00...  [0.02182803415913034, 0.8366977755608103, 1.95...
+13   36     True  125.817189     206.896747      0.237225  0.995900  3.695198e-03     0.336493        0.612388       0.020913  `xtol` termination condition is satisfied.  [0.23722457419438828, 0.9958998760887013, 0.00...  [0.08026679933143592, 0.5314451769985152, 8.33...
+14   31     True   93.426012     206.948393      0.221873  0.999152  3.667927e-03     0.311324        0.616541       0.022414  `xtol` termination condition is satisfied.  [0.2218728709798533, 0.9991517959345945, 0.003...  [0.036068055202168735, 0.42091148902679565, 0....
+15   34     True  148.042049     207.014360      0.212443  0.999694  3.670774e-03     1.370678        0.617691       0.005046  `xtol` termination condition is satisfied.  [0.2124426554731306, 0.9996935126051377, 0.003...  [0.01240403720293213, 0.6887070537369978, 1.43...
+16   37     True  148.636404     207.291756      0.242948  0.991287  3.734776e-03     0.350841        0.609152       0.020073  `xtol` termination condition is satisfied.  [0.242948012674918, 0.991286580675739, 0.00373...  [0.57317678410013, 0.2701076287097838, 1.53314...
+17   13     True  152.335680     207.399533      0.309800  0.997058  3.776781e-03     0.814458        0.602703       0.008685  `xtol` termination condition is satisfied.  [0.30979970447310917, 0.9970578245615335, 0.00...  [0.6678421132518663, 0.7209785399156949, 0.000...
+18   30     True  135.371707     207.415673      0.230619  0.994997  3.654311e-03     0.309055        0.618619       0.023423  `xtol` termination condition is satisfied.  [0.23061860934437195, 0.9949971126095394, 0.00...  [0.8176219203600497, 0.7865459778417712, 1.081...
+19   39     True  153.259704     218.102156      1.643458  0.999920  3.907645e-03     1.011393        0.600038       0.019683  `xtol` termination condition is satisfied.  [1.643458125531621, 0.9999204539432002, 0.0039...  [1.4597807741948532, 0.3983236360803598, 0.039...
+20    4     True  147.157525     244.642924      0.143148  0.999928  3.304637e-03     0.172880        0.638692       1.061906  `xtol` termination condition is satisfied.  [0.14314794862745592, 0.999928432314285, 0.003...  [0.10822753763934988, 0.41892413816753415, 3.1...
+21   11     True  119.719910     244.644228      0.139452  0.999619  3.305195e-03     0.169541        0.641825       0.902277  `xtol` termination condition is satisfied.  [0.13945224784594332, 0.9996193859886005, 0.00...  [0.033155255970151926, 0.5012087221882704, 6.1...
+22   14     True  141.519971     244.948077      0.147884  0.994331  3.254674e-03     0.173557        0.640673       0.980976  `xtol` termination condition is satisfied.  [0.1478841358737462, 0.9943305813148663, 0.003...  [1.7636071521241738, 0.34197522961567134, 1.55...
+23   28     True  168.386713     245.124769      0.150300  0.999824  3.314163e-03     0.174658        0.639610       1.440618  `xtol` termination condition is satisfied.  [0.15029989104892544, 0.9998239753599327, 0.00...  [0.21172137055761228, 0.33694642942265457, 1.4...
+24    8     True  135.258257     245.230788      0.147586  0.996877  3.271276e-03     0.172057        0.643042       1.431267  `xtol` termination condition is satisfied.  [0.14758638444390745, 0.99687653827941, 0.0032...  [0.03560408262134978, 0.43418770549306734, 6.1...
+25    1     True  122.162353     245.297831      0.152220  0.999994  3.279560e-03     0.175470        0.640413       2.516745  `xtol` termination condition is satisfied.  [0.15222001859316067, 0.9999942265756822, 0.00...  [0.021709813596030473, 0.2610542475782311, 1.3...
+26    2     True   68.515373     245.355935      0.130016  0.987321  3.320730e-03     0.161789        0.646649       0.712317  `xtol` termination condition is satisfied.  [0.13001609015607177, 0.9873211034955351, 0.00...  [2.201935295145485, 0.6863962003374986, 0.0007...
+27   23     True  111.678136     245.537897      0.136959  0.996940  3.290204e-03     0.165308        0.648183       1.478150  `xtol` termination condition is satisfied.  [0.13695874277594347, 0.996940487320957, 0.003...  [0.09500477092641678, 0.25079419735846087, 6.5...
+28   20     True  145.302926     245.617993      0.142366  0.994606  3.273707e-03     0.169631        0.643090       2.163385  `xtol` termination condition is satisfied.  [0.14236595644531344, 0.9946064265709368, 0.00...  [4.274681917195871, 0.4921983649201712, 2.2936...
+29   25     True  129.764815     245.664927      0.150875  0.998266  3.314375e-03     0.174541        0.641246       6.924738  `xtol` termination condition is satisfied.  [0.1508750977794487, 0.9982659373181961, 0.003...  [0.014735646741298182, 0.701095196272524, 1.32...
+30   22     True  139.266157     245.726870      0.147250  0.999667  3.265386e-03     0.170623        0.641155       7.394358  `xtol` termination condition is satisfied.  [0.14725037127830937, 0.9996671640155778, 0.00...  [5.672556250144056, 0.85779579864835, 3.463963...
+31    9     True  100.413442     245.732944      0.149535  0.987179  3.298972e-03     0.167754        0.652484       0.788650  `xtol` termination condition is satisfied.  [0.14953536460987812, 0.987179227269576, 0.003...  [4.325969172599007, 0.5541946546829252, 0.5927...
+32   12     True  135.543652     245.873956      0.145904  0.985515  3.302536e-03     0.167065        0.649936       0.941642  `xtol` termination condition is satisfied.  [0.14590440118882758, 0.9855146952660889, 0.00...  [0.016345276517278583, 0.27302318139720705, 3....
+33   18     True  110.249201     246.159667      0.151516  0.974728  3.304341e-03     0.173595        0.639089       1.121041  `xtol` termination condition is satisfied.  [0.1515164385384356, 0.9747279963479307, 0.003...  [0.06399927829039084, 0.9730879311964143, 3.61...
+34   10     True   99.515012     246.339464      0.124932  0.980590  3.318961e-03     0.159514        0.645629       0.999985  `xtol` termination condition is satisfied.  [0.12493153689163615, 0.9805897460282637, 0.00...  [2.205762362023908, 0.26508489959118625, 1.453...
+35    3     True  110.629457    2116.766545      1.530596  0.974152  3.655088e-05     0.000113        0.602850       0.000104  `xtol` termination condition is satisfied.  [1.530596006874162, 0.9741516636649961, 3.6550...  [0.25278703339024966, 0.2890218342199125, 5.17...
+36   32     True  169.213486    5814.782074      4.849721  0.999526  3.752288e-03     8.376117        0.600063       9.952741  `xtol` termination condition is satisfied.  [4.849721103061814, 0.9995259567205332, 0.0037...  [0.015058803570807838, 0.5910889288034553, 8.4...
+37   24     True   73.531022   12311.980494      9.316218  0.923466  5.286402e-10     9.497250        0.609169       0.244498  `xtol` termination condition is satisfied.  [9.316217563230596, 0.9234657409498929, 5.2864...  [8.151599937797354, 0.3529118512827772, 4.8575...
+38    6     True   66.764256   16217.369636      0.987410  0.483394  1.042043e-06     0.000275        0.634320       1.097989  `xtol` termination condition is satisfied.  [0.9874098797766846, 0.48339397179562216, 1.04...  [0.4046771470077611, 0.2650536207251268, 3.695...
+39    0     True   51.618286  189723.960698      5.898749  0.652305  1.095093e-08     0.001355        0.732558       0.798273  `xtol` termination condition is satisfied.  [5.898749485646163, 0.652305165481929, 1.09509...  [4.816923827302969, 0.5553463866434958, 6.6129...
+--------------------------------------------------------------------------------
+Optimal parameters:
+	>>> !Optimal parameter 'Kp_hctz' within 5% of upper bound! <<<
+	>>> !Optimal parameter 'GU__F_hctz_abs' within 5% of lower bound! <<<
+	'ftissue_hctz': Q_(0.24614387687774153, 'l/min'),  # [0.01 - 10]
+	'Kp_hctz': Q_(0.9997280036700814, 'dimensionless'),  # [0.25 - 1.0]
+	'KI__HCTZEX_k': Q_(0.0037108904792554284, '1/ml'),  # [1e-10 - 1]
+	'Ka_dis_hctz': Q_(0.35181331155360623, '1/hr'),  # [0.0001 - 10]
+	'GU__F_hctz_abs': Q_(0.6121311521798801, 'dimensionless'),  # [0.6 - 0.8]
+	'GU__HCTZABS_k': Q_(0.02041376871688115, '1/min'),  # [0.0001 - 10]
+--------------------------------------------------------------------------------

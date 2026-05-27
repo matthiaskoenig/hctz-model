@@ -53,10 +53,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-02-10T18:24:05Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-05-27T11:20:53Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-02-10T18:24:05Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-05-27T11:20:53Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -384,7 +384,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       </species>
     </listOfSpecies>
     <listOfParameters>
-      <parameter metaid="meta_F_hctz_abs" sboTerm="SBO:0000002" id="F_hctz_abs" name="fraction absorbed hydrochlorothiazide" value="0.75" units="dimensionless" constant="true">
+      <parameter metaid="meta_F_hctz_abs" sboTerm="SBO:0000002" id="F_hctz_abs" name="fraction absorbed hydrochlorothiazide" value="0.61213115217988" units="dimensionless" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Fraction absorbed, i.e., only a fraction of the hydrochlorothiazide in the intestinal lumen
@@ -409,7 +409,7 @@ around 60-70 percent urinary recovery of oral dose
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_HCTZABS_k" sboTerm="SBO:0000009" id="HCTZABS_k" name="rate of hydrochlorothiazide absorption" value="0.00243458783202386" units="per_min" constant="true">
+      <parameter metaid="meta_HCTZABS_k" sboTerm="SBO:0000009" id="HCTZABS_k" name="rate of hydrochlorothiazide absorption" value="0.0204137687168812" units="per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_HCTZABS_k">

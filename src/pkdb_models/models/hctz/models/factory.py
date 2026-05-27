@@ -12,16 +12,12 @@ from pkdb_models.models.hctz.models.model_intestine import (
 )
 from pkdb_models.models.hctz.models.model_body import model_body
 from pkdb_models.models.hctz.models.model_fluid import model_fluid
-from pkdb_models.models.hctz.models.model_raas import model_raas
-
 
 from sbmlutils.comp import flatten_sbml
 from sbmlutils.console import console
 from sbmlutils.cytoscape import visualize_sbml
 from sbmlutils.factory import create_model, AssignmentRule
 from pymetadata.omex import *
-
-
 
 
 def create_hctz_models(
@@ -66,14 +62,15 @@ def create_hctz_models(
         for model in [
             model_kidney,
             model_intestine,
-            model_raas,
             model_fluid,
-            [model_fluid, model_raas, model_body],
+            [
+                model_fluid,
+                model_body
+            ],
         ]:
             if isinstance(model, list):
-                # FIXME: bugfix before proper model coupling
                 model_fluid.compartments = [c for c in model_fluid.compartments if c.sid not in {"Vki", "Vurine"}]
-                model_fluid.parameters = [p for p in model_fluid.parameters if p.sid not in {"BW"}]
+                model_fluid.parameters = [p for p in model_fluid.parameters if p.sid not in {"BW", "f_renal_function", "GFR_base"}]
 
             mid = model[-1].sid if isinstance(model, list) else model.sid
             factory_results = create_model(

@@ -1,5 +1,4 @@
-from copy import deepcopy
-from typing import Dict
+from typing import Dict, Tuple
 
 from sbmlsim.plot import Axis, Figure, Plot
 from sbmlsim.simulation import Timecourse, TimecourseSim
@@ -11,116 +10,153 @@ from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class DoseDependencyExperiment(HCTZSimulationExperiment):
-    """Tests iv injection of HCTZ."""
+    """Tests po application of HCTZ."""
 
-    doses = [0, 50, 100, 200]  # [mg]
+    doses = [100, 50, 25, 12.5, 0] # [0, 12.5, 25, 50, 100]  # [mg]
     colors = {
         0: "black",
-        50: "tab:blue",
-        100: "tab:orange",
-        200: "tab:green"
+        12.5: "tab:blue",
+        25: "tab:orange",
+        50: "tab:red",
+        100: "tab:green",
     }
-    routes = ["iv", "po"]
+    routes = [
+        "iv",
+        "po"
+    ]
+    applications = ["single", "multi"]
 
     def simulations(self) -> Dict[str, TimecourseSim]:
         Q_ = self.Q_
         tcsims = {}
+        changes = {
+            # 'KI__HCTZEX_k': Q_(1E-4, '1/ml')
+        }
 
-        for route in self.routes:
-            for dose in self.doses:
-                tcsims[f"hctz_{route}_{dose}"] = TimecourseSim(
-                    Timecourse(
-                        start=0,
-                        end=6 * 60 if route == "iv" else 5 * 24 * 60,  # [min]
-                        steps=300,
-                        changes={
-                            **self.default_changes(),
-                            f"{route.upper()}DOSE_hctz": Q_(dose, "mg"),
-                        },
-                    )
-                )
+        for application in self.applications:
+            for route in self.routes:
+
+                if route == "iv" and application == "multi":
+                    continue
+
+                for dose in self.doses:
+
+                    if application == "single":
+                        tcsims[f"hctz_{application}_{route}_{dose}"] = TimecourseSim(
+                            Timecourse(
+                                start=0,
+                                end=5 * 24 * 60, # [min]
+                                steps=1000,
+                                changes={
+                                    **self.default_changes(),
+                                    **changes,
+                                    f"{route.upper()}DOSE_hctz": Q_(dose, "mg"),
+                                },
+                            )
+                        )
+                    elif application == "multi":
+                        tc0 = Timecourse(
+                            start=0,
+                            end=24 * 60,  # [min]
+                            steps=300,
+                            changes={
+                                **self.default_changes(),
+                                **changes,
+                                f"{route.upper()}DOSE_hctz": Q_(dose, "mg"),
+                            },
+                        )
+                        tc1 = Timecourse(
+                            start=0,
+                            end=24 * 60,  # [min]
+                            steps=300,
+                            changes={
+                                f"{route.upper()}DOSE_hctz": Q_(dose, "mg"),
+                            },
+                        )
+                        tc2 = Timecourse(
+                            start=0,
+                            end=5 * 24 * 60,  # [min]
+                            steps=1000,
+                            changes={
+                                f"{route.upper()}DOSE_hctz": Q_(dose, "mg"),
+                            },
+                        )
+                        tcsims[f"hctz_{application}_{route}_{dose}"] = TimecourseSim(
+                            [tc0] + [tc1 for _ in range(7)] + [tc2]
+                        )
 
         return tcsims
 
     def figures(self) -> Dict[str, Figure]:
 
+        # pharmacokinetics/pharmacodynamics
+        sids: list[Tuple[str | None, str | None, int]] = [
+            # HR, Vurine
+            ("time", "[Cve_hctz]", 0),
+            ("time", "ECF", 1),
+            ("time", "[na]", 2),  # sodium ECF
+            ("time", "[cl]", 3),  # chloride ECF
+
+            ("time", "Aurine_hctz", 4),
+            ("time", "diuresis", 5),
+            ("time", "NA_EXCRETION", 6),
+            ("time", "CL_EXCRETION", 7),
+
+            ("time", "Afeces_hctz", 8),
+            ("time", 'H2O_UPTAKE', 9),
+            ("time", 'NA_UPTAKE', 10),
+            ("time", 'CL_UPTAKE', 11),
+
+            # ("Aurine_hctz", "diuresis", 12),
+            # ("Aurine_hctz", "NA_EXCRETION", 13),
+            # ("Aurine_hctz", "CL_EXCRETION", 14),
+            # (None, None, 15),
+
+            ("time", "bp_systolic", 12),
+            ("time", "bp_diastolic", 13),
+            ("[Cve_hctz]", "bp_systolic", 14),
+            ("[Cve_hctz]", "bp_diastolic", 15),
+
+
+        ]
+
         figures: Dict[str, Figure] = {}
 
-        for route in self.routes:
+        for application in self.applications:
+            for route in self.routes:
+                if route == "iv" and application == "multi":
+                    continue
 
-            # pharmacokinetics
-            pk_sids = [
-                "[Cve_hctz]",
-                "Aurine_hctz",
-                "Afeces_hctz",
-            ]
-            fig = Figure(
-                experiment=self,
-                sid=f"Fig_application_pk_{route}",
-                num_rows=3,
-                num_cols=1,
-                name=f"HCTZ {route.upper()}: pharmacokinetics",
-            )
-            plots = fig.create_plots(xaxis=Axis("time", unit="hr"), legend=True)
-            for ksid, sid in enumerate(pk_sids):
-                plots[ksid].set_yaxis(label=self.labels[sid], unit=self.units[sid])
-                for kdose, dose in enumerate(self.doses):
-                    # simulations
-                    plots[ksid].add_data(
-                        task=f"task_hctz_{route}_{dose}",
-                        xid="time",
-                        yid=sid,
-                        label=f"HCTZ {dose} mg ({route})",
-                        color=self.colors[dose],
-                    )
+                fig = Figure(
+                    experiment=self,
+                    sid=f"Fig_hztc_{application}_{route}",
+                    num_rows=4,
+                    num_cols=4,
+                    # name=f"HCTZ {application} {route.upper()}",
+                )
+                plots = fig.create_plots(legend=True)
+                for (xid, yid, ksid) in sids:
+                    if not xid:
+                        plots[ksid].xaxis = None
+                    if not yid:
+                        plots[ksid].yaxis = None
+                        continue
 
-            figures[fig.sid] = fig
+                    plots[ksid].set_xaxis(label=self.labels[xid], unit=self.units[xid])
+                    plots[ksid].set_yaxis(label=self.labels[yid], unit=self.units[yid])
+                    for kdose, dose in enumerate(self.doses):
+                        label = f"HCTZ {dose} mg" if dose > 0 else "Placebo"
 
-            # pharmacodynamics
-            pd_sids = [
-                # RAAS
-                # "[anggen]",
-                ("[ren]", 0),
-                ("[ang1]", 1),
-                ("[ang2]", 2),
-                ("[ald]", 3),
+                        # simulations
+                        plots[ksid].add_data(
+                            task=f"task_hctz_{application}_{route}_{dose}",
+                            xid=xid,
+                            yid=yid,
+                            label=label if ksid == 0 else "",
+                            color=self.colors[dose],
+                        )
 
-                ("NA_EXCRETION", 4),
-                ("CL_EXCRETION", 5),
-                ("diuresis", 6),
-
-                # blood pressure
-                # "HR",
-                ("Vurine", 8),
-                ("ECF", 9),
-                ("bp_systolic", 10),
-                ("bp_diastolic", 11),
-
-
-                # "na_urine",  # sodium urine
-                # "cl_urine",  # chloride urine
-            ]
-            fig = Figure(
-                experiment=self,
-                sid=f"Fig_application_pd_{route}",
-                num_rows=3,
-                num_cols=4,
-                name=f"HCTZ {route.upper()}: pharmacodynamics",
-            )
-            plots = fig.create_plots(xaxis=Axis("time", unit="hr"), legend=True)
-            for sid, ksid in pd_sids:
-                plots[ksid].set_yaxis(label=self.labels[sid], unit=self.units[sid])
-                for kdose, dose in enumerate(self.doses):
-                    # simulations
-                    plots[ksid].add_data(
-                        task=f"task_hctz_{route}_{dose}",
-                        xid="time",
-                        yid=sid,
-                        label=f"HCTZ {dose} mg ({route})",
-                        color=self.colors[dose],
-                    )
-
-            figures[fig.sid] = fig
+                figures[fig.sid] = fig
 
         return figures
 

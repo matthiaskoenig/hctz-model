@@ -458,7 +458,7 @@ wheels = [
 
 [[package]]
 name = "hctz-model"
-version = "0.6.0"
+version = "0.7.0"
 source = { editable = "." }
 dependencies = [
     { name = "sbmlsim" },
@@ -467,7 +467,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "sbmlsim", git = "https://github.com/matthiaskoenig/sbmlsim.git?rev=ea4a05dac0dccfe772ddca39ab398a7b2b334085" },
+    { name = "sbmlsim", git = "https://github.com/matthiaskoenig/sbmlsim.git?rev=67d7a76f0534c025a143876df2845df08b407bcc" },
     { name = "sbmlutils", specifier = ">=0.9.6" },
 ]
 
@@ -641,16 +641,16 @@ wheels = [
 
 [[package]]
 name = "libroadrunner"
-version = "2.9.0"
+version = "2.9.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c2/4b/9218327ccc9545441df866735b5d2bde212da33969522fbaf09b8d42ec82/libroadrunner-2.9.0-cp314-cp314-macosx_14_0_arm64.whl", hash = "sha256:f793e4b876a0e4885e709ccd344072127706614419b7ef4d135e3d453809c0a8", size = 34193092, upload-time = "2026-01-10T00:41:33.79Z" },
-    { url = "https://files.pythonhosted.org/packages/04/c6/11410d8b6700a6030d56ab2f2a30903823772b11e51aea197859a47462eb/libroadrunner-2.9.0-cp314-cp314-macosx_15_0_x86_64.whl", hash = "sha256:a98423cf135d78d452e2abf94e2f7c055b8851643100627a2af6f2de3c6246f8", size = 36630217, upload-time = "2026-01-10T00:41:53.076Z" },
-    { url = "https://files.pythonhosted.org/packages/ac/07/7d305a31385e0c2a91f2dde21bd0a8682d168d178e2a7fc937dce59f6c65/libroadrunner-2.9.0-cp314-cp314-manylinux_2_28_x86_64.whl", hash = "sha256:515fbb86b2ad7006a84a03476cd52b3ef009ba0e4931efa891aa01ac8a6642fb", size = 51186047, upload-time = "2026-01-10T00:42:16.106Z" },
-    { url = "https://files.pythonhosted.org/packages/20/ef/95e452e9a22f73e0e8fd4ec54a0a998960368704316a005975002dd10b68/libroadrunner-2.9.0-cp314-cp314-win_amd64.whl", hash = "sha256:d3d83818b7f15f2faccda0bf5b7f6fe0fe7c7488e85a8c8974b450ea1e30bc61", size = 25029603, upload-time = "2026-01-10T00:42:36.338Z" },
+    { url = "https://files.pythonhosted.org/packages/9f/ba/59d0b729cf2f72777ee808803426db6665c5ecb5650fe5a39137b1904960/libroadrunner-2.9.2-cp314-cp314-macosx_14_0_arm64.whl", hash = "sha256:8a14b5fb9f191b703ad0e304e8c39190d6f26a3cada47329224514b1dbe86010", size = 34210481, upload-time = "2026-03-26T14:56:50.393Z" },
+    { url = "https://files.pythonhosted.org/packages/4d/86/7e09eb72c5fc5b1a828748add1229d0f9749e0c63b86b54d18f98f9b6368/libroadrunner-2.9.2-cp314-cp314-macosx_15_0_x86_64.whl", hash = "sha256:fa1876e0962f45b6344e1697d2b4f0ffbc79188f46a4fccec758cc95c2850fb1", size = 36640027, upload-time = "2026-03-26T14:56:53.341Z" },
+    { url = "https://files.pythonhosted.org/packages/68/e1/c64e6ce6fc5d8f8160eae7be4c99733bf63b0ee167a48f8e0df5db0d8238/libroadrunner-2.9.2-cp314-cp314-manylinux_2_28_x86_64.whl", hash = "sha256:01d5a5f1b3df72ca9d3c330096e75004ddccb8d6073911f9a068bff5bd1bfbe3", size = 51197021, upload-time = "2026-03-26T14:56:57.841Z" },
+    { url = "https://files.pythonhosted.org/packages/8f/de/5de28b8e5818c7e0c9b8db7ff9f6c1014488fc276936316a75bd7a61766b/libroadrunner-2.9.2-cp314-cp314-win_amd64.whl", hash = "sha256:52862d3520bb04565a31e420e4c37fa334c74a5071c121c962e7c0d356d245d4", size = 25032660, upload-time = "2026-03-26T14:57:00.454Z" },
 ]
 
 [[package]]
@@ -1509,7 +1509,7 @@ wheels = [
 [[package]]
 name = "sbmlsim"
 version = "0.4.0"
-source = { git = "https://github.com/matthiaskoenig/sbmlsim.git?rev=ea4a05dac0dccfe772ddca39ab398a7b2b334085#ea4a05dac0dccfe772ddca39ab398a7b2b334085" }
+source = { git = "https://github.com/matthiaskoenig/sbmlsim.git?rev=67d7a76f0534c025a143876df2845df08b407bcc#67d7a76f0534c025a143876df2845df08b407bcc" }
 dependencies = [
     { name = "altair" },
     { name = "bottleneck" },

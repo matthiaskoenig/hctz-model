@@ -11,6 +11,18 @@
     <notes>
       <body xmlns="http://www.w3.org/1999/xhtml">
         <h1>Model for hydrochlorothiazide renal excretion</h1>
+        <ul>
+          <li>
+            <p>&quot;Renal dysfunction in patients with heart failure (HF) has traditionally been attributed to declining cardiac
+output and renal hypoperfusion. However, other central haemodynamic aberrations may contribute to impaired
+kidney function.&quot;[Bobbio2022]</p>
+          </li>
+          <li>
+            <p>&quot;Diuresis (urine output) is closely linked to sodium (Na+) and chloride (Cl-) excretion, as these ions drive
+osmotic water reabsorption in the nephron; higher electrolyte excretion reduces reabsorption,
+increasing urine volume.&quot;</p>
+          </li>
+        </ul>
         <p>The content of this model has been carefully created in a manual research effort.</p>
         <h2>Terms of use</h2>
         <p>Copyright © 2026 <a href="https://livermetabolism.com" title="Matthias König" target="_blank">Matthias König</a>.</p>
@@ -53,10 +65,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-02-10T18:24:05Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-05-27T11:20:53Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-02-10T18:24:05Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-05-27T11:20:53Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -146,9 +158,22 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
+      <unitDefinition id="ml_per_min" name="ml/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
       <unitDefinition id="mmole" name="mmole">
         <listOfUnits>
           <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_l_ml" name="mmole/l/ml">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="mmole_per_min" name="mmole/min">
@@ -178,6 +203,11 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
         <listOfUnits>
           <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
           <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_ml" name="1/ml">
+        <listOfUnits>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
     </listOfUnitDefinitions>
@@ -291,6 +321,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
+      <parameter id="GFR_base" name="glomerular filtration rate (base)" value="100" units="ml_per_min" constant="true"/>
       <parameter metaid="meta_urine_volume" sboTerm="SBO:0000009" id="urine_volume" name="urine volume" value="1" units="ml" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
@@ -304,10 +335,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_HCTZEX_Vmax" sboTerm="SBO:0000009" id="HCTZEX_Vmax" name="rate urinary excretion of hydrochlorothiazide" value="0.909632129040197" units="mmole_per_min_l" constant="true">
+      <parameter metaid="meta_HCTZEX_k" sboTerm="SBO:0000009" id="HCTZEX_k" name="rate urinary excretion of hydrochlorothiazide" value="0.00371089047925543" units="per_ml" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_HCTZEX_Vmax">
+            <rdf:Description rdf:about="#meta_HCTZEX_k">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
@@ -317,38 +348,27 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_HCTZEX_Km" sboTerm="SBO:0000027" id="HCTZEX_Km" name="Michaelis constant excretion of hydrochlorothiazide" value="0.001" units="mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_HCTZEX_Km">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000027"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
       <parameter id="v_HCTZEX" name="rate of HCTZ excretion" value="NaN" units="mmole_per_min" constant="false"/>
+      <parameter id="GFR" name="glomerular filtration rate" value="NaN" units="ml_per_min" constant="false"/>
     </listOfParameters>
     <listOfRules>
+      <assignmentRule name="glomerular filtration rate" variable="GFR">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> f_renal_function </ci>
+            <ci> GFR_base </ci>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="v_HCTZEX">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci> f_renal_function </ci>
-              <ci> Vki </ci>
-              <ci> HCTZEX_Vmax </ci>
-              <ci> hctz_ext </ci>
-            </apply>
-            <apply>
-              <plus/>
-              <ci> hctz_ext </ci>
-              <ci> HCTZEX_Km </ci>
-            </apply>
+            <times/>
+            <ci> GFR </ci>
+            <ci> Vki </ci>
+            <ci> HCTZEX_k </ci>
+            <ci> hctz_ext </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -380,6 +400,8 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       </reaction>
     </listOfReactions>
     <comp:listOfPorts>
+      <comp:port metaid="f_renal_function_port" sboTerm="SBO:0000599" comp:idRef="f_renal_function" comp:id="f_renal_function_port" comp:name="Port of f_renal_function"/>
+      <comp:port metaid="GFR_base_port" sboTerm="SBO:0000599" comp:idRef="GFR_base" comp:id="GFR_base_port" comp:name="Port of GFR_base"/>
       <comp:port metaid="v_HCTZEX_port" sboTerm="SBO:0000599" comp:idRef="v_HCTZEX" comp:id="v_HCTZEX_port" comp:name="Port of v_HCTZEX"/>
       <comp:port metaid="Vext_port" sboTerm="SBO:0000599" comp:idRef="Vext" comp:id="Vext_port" comp:name="Port of Vext"/>
       <comp:port metaid="Vki_port" sboTerm="SBO:0000599" comp:idRef="Vki" comp:id="Vki_port" comp:name="Port of Vki"/>

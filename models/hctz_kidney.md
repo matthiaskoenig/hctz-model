@@ -11,8 +11,8 @@ length: [m]
 
 ## Parameters `p`
 ```
-HCTZEX_Km = 0.001  # [mmol/l] Michaelis constant excretion of hydrochlorothiazide  
-HCTZEX_Vmax = 0.909632129040197  # [mmol/min/l] rate urinary excretion of hydrochlorothiazide  
+GFR_base = 100.0  # [ml/min] glomerular filtration rate (base)  
+HCTZEX_k = 0.00371089047925543  # [1/ml] rate urinary excretion of hydrochlorothiazide  
 Vext = 1.0  # [l] plasma  
 Vki = 0.3  # [l] kidney  
 Vurine = 1.0  # [l] urine  
@@ -29,7 +29,8 @@ hctz_urine = 0.0  # [mmol] hydrochlorothiazide (urine) in Vurine
 ## ODE system
 ```
 # y
-v_HCTZEX = f_renal_function * Vki * HCTZEX_Vmax * hctz_ext / (hctz_ext + HCTZEX_Km)  # [mmol/min] rate of HCTZ excretion  
+GFR = f_renal_function * GFR_base  # [ml/min] glomerular filtration rate  
+v_HCTZEX = GFR * Vki * HCTZEX_k * hctz_ext  # [mmol/min] rate of HCTZ excretion  
 HCTZEX = v_HCTZEX  # [mmol/min] hydrochlorothiazide renal excretion  
 
 # odes

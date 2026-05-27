@@ -83,7 +83,7 @@ def process_substance_pk(experiment, xres, scandim, dose_index, dose_value, subs
     return pk_dict
 
 
-def calculate_hydrochlorothiazide_pk(experiment, xres):
+def calculate_hctz_pk(experiment, xres):
     """Calculate PK parameters for hydrochlorothiazide, and metabolites."""
     # Get scanned dimension and dose vector
     scandim = xres._redop_dims()[0]
@@ -109,7 +109,7 @@ def calculate_hydrochlorothiazide_pk(experiment, xres):
 
     return pd.DataFrame(pk_dicts)
 
-def calculate_hydrochlorothiazide_pd(experiment, xres) -> pd.DataFrame:
+def calculate_hctz_pd(experiment, xres) -> pd.DataFrame:
     scandim = xres._redop_dims()[0]
     dose_vec = experiment.Q_(xres["PODOSE_hctz"].values[0], xres.uinfo["PODOSE_hctz"])
 

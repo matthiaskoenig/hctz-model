@@ -55,10 +55,10 @@ class Ripley2000(HCTZSimulationExperiment):
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                elif fig_id == "Fig3" and label.startswith("renin"):
-                    dset.unit_conversion("mean", 1 / self.Mr.ren)
-                elif fig_id == "Fig3" and label.startswith("aldo"):
-                    dset.unit_conversion("mean", 1 / self.Mr.ald)
+                # elif fig_id == "Fig3" and label.startswith("renin"):
+                #     dset.unit_conversion("mean", 1 / self.Mr.ren)
+                # elif fig_id == "Fig3" and label.startswith("aldo"):
+                #     dset.unit_conversion("mean", 1 / self.Mr.ald)
                 dsets[f"{fig_id}_{label}"] = dset
 
         # print(dsets.keys())
@@ -79,13 +79,14 @@ class Ripley2000(HCTZSimulationExperiment):
                     changes={
                         **self.default_changes(),
                         "PODOSE_hctz": Q_(dose, "mg"),
-                        # mean value of acute renin at baseline
-                        "ren_ref": Q_((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
-                        "[ren]": Q_((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
 
-                        # mean value of acute aldosterone at baseline
-                        "ald_ref": Q_((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
-                        "[ald]": Q_((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
+                        # # mean value of acute renin at baseline
+                        # "ren_ref": Q_((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
+                        # "[ren]": Q_((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
+                        #
+                        # # mean value of acute aldosterone at baseline
+                        # "ald_ref": Q_((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
+                        # "[ald]": Q_((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
                     },
                 )
             )
@@ -98,18 +99,18 @@ class Ripley2000(HCTZSimulationExperiment):
             ("Tab3_hctz_aurine_white", "Aurine_hctz"),
             ("Fig1_2_sodium_baseline_black", "na_urine"),
             ("Fig1_2_sodium_baseline_white", "na_urine"),
-            ("Fig1_2_sodium_diet_black", "na_urine"),
-            ("Fig1_2_sodium_diet_white", "na_urine"),
+            # ("Fig1_2_sodium_diet_black", "na_urine"),
+            # ("Fig1_2_sodium_diet_white", "na_urine"),
             ("Fig1_2_sodium_hctz_black", "na_urine"),
             ("Fig1_2_sodium_hctz_white", "na_urine"),
-            ("Fig3_renin_plasma_hctz_black_supine", "[ren]"),
-            ("Fig3_renin_plasma_hctz_white_supine", "[ren]"),
-            ("Fig3_renin_plasma_hctz_black_upright", "[ren]"),
-            ("Fig3_renin_plasma_hctz_white_upright", "[ren]"),
-            ("Fig3_aldo_plasma_hctz_black_supine", "[ald]"),
-            ("Fig3_aldo_plasma_hctz_white_supine", "[ald]"),
-            ("Fig3_aldo_plasma_hctz_black_upright", "[ald]"),
-            ("Fig3_aldo_plasma_hctz_white_upright", "[ald]")
+            # ("Fig3_renin_plasma_hctz_black_supine", "[ren]"),
+            # ("Fig3_renin_plasma_hctz_white_supine", "[ren]"),
+            # ("Fig3_renin_plasma_hctz_black_upright", "[ren]"),
+            # ("Fig3_renin_plasma_hctz_white_upright", "[ren]"),
+            # ("Fig3_aldo_plasma_hctz_black_supine", "[ald]"),
+            # ("Fig3_aldo_plasma_hctz_white_supine", "[ald]"),
+            # ("Fig3_aldo_plasma_hctz_black_upright", "[ald]"),
+            # ("Fig3_aldo_plasma_hctz_white_upright", "[ald]")
             ]
 
         # FIXME: use the correct simulations, i.e. diet, baseline or hctz!!
@@ -143,7 +144,7 @@ class Ripley2000(HCTZSimulationExperiment):
         return {
             **self.figure_Tab3(),
             **self.figure_Fig1_2(),
-            **self.figure_Fig3(),
+            # **self.figure_Fig3(),
         }
 
     def figure_Tab3(self) -> Dict[str, Figure]:
@@ -181,6 +182,7 @@ class Ripley2000(HCTZSimulationExperiment):
                 label=f"{group}",
                 color=self.colors["hctz"],
                 marker=self.markers[group],
+                linestyle="",
             )
         return {
             fig.sid: fig,
@@ -235,50 +237,50 @@ class Ripley2000(HCTZSimulationExperiment):
             fig.sid: fig,
         }
 
-    def figure_Fig3(self) -> Dict[str, Figure]:
-        name = "Fig 3"
-        fig = Figure(
-            experiment=self,
-            sid=name,
-            num_rows=2,
-            num_cols=1,
-            name=f"{self.__class__.__name__} {name}",
-        )
-        plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)
-        plots[0].set_yaxis(self.labels["[ren]"], self.units["[ren]"])
-        plots[1].set_yaxis(self.labels["[ald]"], self.units["[ald]"])
-
-        # simulation
-        for k, intervention in enumerate(self.interventions):
-            dose = self.doses[intervention]
-            for k, sid in enumerate(["[ren]", "[ald]"]):
-                plots[k].add_data(
-                    task=f"task_hctz{dose}_{intervention}",
-                    xid="time",
-                    yid=sid,
-                    label=f"Sim",
-                    color=self.colors[intervention],
-                )
-
-        # data
-        for group in self.groups:
-            for position in self.positions:
-                for k, name in enumerate(["renin", "aldo"]):
-
-                    plots[k].add_data(
-                        dataset=f"Fig3_{name}_plasma_hctz_{group}_{position}",
-                        xid="time",
-                        yid="mean",
-                        yid_sd="mean_sd",
-                        count="count",
-                        label=f"{group} ({position})",
-                        marker=self.markers[group],
-                        color=self.colors["hctz"],
-                    )
-
-        return {
-            fig.sid: fig,
-        }
+    # def figure_Fig3(self) -> Dict[str, Figure]:
+    #     name = "Fig 3"
+    #     fig = Figure(
+    #         experiment=self,
+    #         sid=name,
+    #         num_rows=2,
+    #         num_cols=1,
+    #         name=f"{self.__class__.__name__} {name}",
+    #     )
+    #     plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)
+    #     plots[0].set_yaxis(self.labels["[ren]"], self.units["[ren]"])
+    #     plots[1].set_yaxis(self.labels["[ald]"], self.units["[ald]"])
+    #
+    #     # simulation
+    #     for k, intervention in enumerate(self.interventions):
+    #         dose = self.doses[intervention]
+    #         for k, sid in enumerate(["[ren]", "[ald]"]):
+    #             plots[k].add_data(
+    #                 task=f"task_hctz{dose}_{intervention}",
+    #                 xid="time",
+    #                 yid=sid,
+    #                 label=f"Sim",
+    #                 color=self.colors[intervention],
+    #             )
+    #
+    #     # data
+    #     for group in self.groups:
+    #         for position in self.positions:
+    #             for k, name in enumerate(["renin", "aldo"]):
+    #
+    #                 plots[k].add_data(
+    #                     dataset=f"Fig3_{name}_plasma_hctz_{group}_{position}",
+    #                     xid="time",
+    #                     yid="mean",
+    #                     yid_sd="mean_sd",
+    #                     count="count",
+    #                     label=f"{group} ({position})",
+    #                     marker=self.markers[group],
+    #                     color=self.colors["hctz"],
+    #                 )
+    #
+    #     return {
+    #         fig.sid: fig,
+    #     }
 
 if __name__ == "__main__":
     run_experiments(Ripley2000, output_dir=Ripley2000.__name__)

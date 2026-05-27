@@ -26,10 +26,17 @@ class Williams1982(HCTZSimulationExperiment):
     """
 
     suffixes = [
-        "hctz50", "hctz50_ind25",
-        "hctz100", "hctz100_ind25",
+        "hctz50",
+        # "hctz50_ind25",
+        "hctz100",
+        # "hctz100_ind25",
     ]
-    names = ["50 mg HCTZ", "50 mg HCTZ + IND", "100 mg HCTZ", "100 mg HCTZ + IND"]
+    names = [
+        "50 mg HCTZ",
+        # "50 mg HCTZ + IND",
+        "100 mg HCTZ",
+        # "100 mg HCTZ + IND"
+    ]
     doses = [50, 100]
     colors = {
         50: "tab:blue",
@@ -88,7 +95,7 @@ class Williams1982(HCTZSimulationExperiment):
             tc1 = Timecourse(
                 start=0,
                 end=100 * 60,  # [min]
-                steps=500,
+                steps=4000,
                 changes={
                     "PODOSE_hctz": Q_(dose, "mg"),
                 },
@@ -184,8 +191,8 @@ class Williams1982(HCTZSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid=name,
-            num_rows=2,
-            num_cols=2,
+            num_rows=1,
+            num_cols=4,
             name=f"{self.__class__.__name__} {name}",
         )
 
@@ -357,8 +364,8 @@ class Williams1982(HCTZSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid=name,
-            num_rows=3,
-            num_cols=1,
+            num_rows=1,
+            num_cols=3,
             name=f"{self.__class__.__name__} {name}",
         )
 

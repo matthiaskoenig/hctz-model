@@ -52,6 +52,12 @@ species = {
         (BQB.IS, "uniprot/P00797"),
         (BQB.IS, "ncit/C113591"),
     ],
+    "na": [
+        (BQB.IS, "CHEBI:29101"),
+    ],
+    "cl": [
+        (BQB.IS, "CHEBI:17996"),
+    ],
 }
 
 compartments = {
@@ -130,6 +136,12 @@ compartments = {
         (BQB.IS, "fma/FMA:7203"),
         (BQB.IS, "bto/BTO:0000671"),
         (BQB.IS, "NCIT:C12415"),
+    ],
+    "loop": [
+        (BQB.IS, "fma/FMA:17698"),
+        (BQB.IS, "BTO:0004608"),
+        (BQB.IS, "NCIT:C33006"),
+        (BQB.IS, "UBERON:0001288"),
     ],
     #lung
     "lu": [

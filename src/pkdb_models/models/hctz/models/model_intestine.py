@@ -174,7 +174,7 @@ _m.species = [
 _m.parameters = [
     Parameter(
         f"F_hctz_abs",
-        0.75,
+        0.6121311521798801,
         U.dimensionless,
         constant=True,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
@@ -194,7 +194,7 @@ _m.parameters = [
     ),
     Parameter(
         "HCTZABS_k",
-        0.002434587832023862,
+        0.02041376871688115,
         unit=U.per_min,
         name="rate of hydrochlorothiazide absorption",
         sboTerm=SBO.KINETIC_CONSTANT,

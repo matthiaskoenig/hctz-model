@@ -59,8 +59,8 @@ class Giudicelli1987(HCTZSimulationExperiment):
                 "PODOSE_hctz": Q_(25, "mg"),
 
                 # mean value of acute renin at baseline
-                "ren_ref": Q_((6.25+4.15)/2, "pg/ml") / self.Mr.ren,  # placebo
-                "[ren]": Q_((6.25+4.15)/2, "pg/ml") / self.Mr.ren,  # placebo
+                # "ren_ref": Q_((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
+                # "[ren]": Q_((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
             },
         )
 
@@ -71,8 +71,8 @@ class Giudicelli1987(HCTZSimulationExperiment):
             changes={
                 "PODOSE_hctz": Q_(25, "mg"),
                 # mean value of chronic renin at baseline
-                "ren_ref": Q_((19.15 + 15.28) / 2, "pg/ml") / self.Mr.ren,  # placebo
-                "[ren]": Q_((19.15 + 15.28) / 2, "pg/ml") / self.Mr.ren,  # placebo
+                # "ren_ref": Q_((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
+                # "[ren]": Q_((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
             },
         )
         tc2 = Timecourse(
@@ -82,8 +82,8 @@ class Giudicelli1987(HCTZSimulationExperiment):
             changes={
                 "PODOSE_hctz": Q_(25, "mg"),
                 # mean value of chronic renin at baseline
-                "ren_ref": Q_((19.15 + 15.28) / 2, "pg/ml") / self.Mr.ren,  # placebo
-                "[ren]": Q_((19.15 + 15.28) / 2, "pg/ml") / self.Mr.ren,  # placebo
+                # "ren_ref": Q_((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
+                # "[ren]": Q_((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
             },
         )
 
@@ -122,37 +122,37 @@ class Giudicelli1987(HCTZSimulationExperiment):
                         coadministration=Coadministration.CAPTOPRIL if "combi" in infix else Coadministration.NONE,
                     ),
                 )
-            for kd, infix in enumerate(["hctz25", "combi"]):
-                mappings[f"fm_Fig5_pra_{infix}_{suffix}"] = FitMapping(
-                    self,
-                    reference=FitData(
-                        self,
-                        dataset=f"Fig5_renin_{infix}_{suffix}",
-                        xid="time",
-                        yid="mean",
-                        yid_sd="mean_sd",
-                        count="count",
-                    ),
-                    observable=FitData(
-                        self, task=f"task_hctz25_{suffix}", xid="time", yid="[ren]"
-                    ),
-                    metadata=HCTZMappingMetaData(
-                        tissue=Tissue.PLASMA,
-                        application_form=ApplicationForm.TABLET,
-                        route=Route.PO,
-                        dosing=Dosing.SINGLE if suffix == "acute" else Dosing.MULTI,
-                        health=Health.HEALTHY,
-                        fasting=Fasting.FASTED,
-                        coadministration=Coadministration.CAPTOPRIL if "combi" in infix else Coadministration.NONE,
-                    ),
-                )
+            # for kd, infix in enumerate(["hctz25", "combi"]):
+            #     mappings[f"fm_Fig5_pra_{infix}_{suffix}"] = FitMapping(
+            #         self,
+            #         reference=FitData(
+            #             self,
+            #             dataset=f"Fig5_renin_{infix}_{suffix}",
+            #             xid="time",
+            #             yid="mean",
+            #             yid_sd="mean_sd",
+            #             count="count",
+            #         ),
+            #         observable=FitData(
+            #             self, task=f"task_hctz25_{suffix}", xid="time", yid="[ren]"
+            #         ),
+            #         metadata=HCTZMappingMetaData(
+            #             tissue=Tissue.PLASMA,
+            #             application_form=ApplicationForm.TABLET,
+            #             route=Route.PO,
+            #             dosing=Dosing.SINGLE if suffix == "acute" else Dosing.MULTI,
+            #             health=Health.HEALTHY,
+            #             fasting=Fasting.FASTED,
+            #             coadministration=Coadministration.CAPTOPRIL if "combi" in infix else Coadministration.NONE,
+            #         ),
+            #     )
             # console.print(mappings)
             return mappings
 
     def figures(self) -> Dict[str, Figure]:
         return {
             **self.figure_Fig3(),
-            **self.figure_Fig5(),
+            # **self.figure_Fig5(),
         }
 
     def figure_Fig3(self) -> Dict[str, Figure]:
@@ -160,8 +160,8 @@ class Giudicelli1987(HCTZSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid=name,
-            num_rows=2,
-            num_cols=1,
+            num_rows=1,
+            num_cols=2,
             name=f"{self.__class__.__name__} {name}",
         )
 
@@ -199,48 +199,48 @@ class Giudicelli1987(HCTZSimulationExperiment):
             fig.sid: fig,
         }
 
-    def figure_Fig5(self) -> Dict[str, Figure]:
-        name = "Fig5"
-        fig = Figure(
-            experiment=self,
-            sid=name,
-            num_rows=2,
-            num_cols=1,
-            name=f"{self.__class__.__name__} {name}",
-        )
-
-        plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit="hr"),
-            yaxis=Axis(self.labels["[ren]"], unit=self.units["[ren]"]),
-            legend=True,
-        )
-        plots[1].xaxis.min = -25  # [hr]
-        plots[1].xaxis.max = 25  # [hr]
-
-        # simulation
-        for k, suffix in enumerate(["acute", "chronic"]):
-            plots[k].add_data(
-                task=f"task_hctz25_{suffix}",
-                xid="time",
-                yid="[ren]",
-                label=f"Sim {suffix}",
-                color=self.color_hctz,
-            )
-            # data
-            for kd, infix in enumerate(["hctz25", "combi"]):
-                plots[k].add_data(
-                    dataset=f"Fig5_renin_{infix}_{suffix}",
-                    xid="time",
-                    yid="mean",
-                    yid_sd="mean_sd",
-                    count="count",
-                    label="25 mg HCTZ" if infix == "hctz25" else "25 mg HCTZ + CAP50",
-                    color=self.colors[kd],
-                )
-
-        return {
-            fig.sid: fig,
-        }
+    # def figure_Fig5(self) -> Dict[str, Figure]:
+    #     name = "Fig5"
+    #     fig = Figure(
+    #         experiment=self,
+    #         sid=name,
+    #         num_rows=2,
+    #         num_cols=1,
+    #         name=f"{self.__class__.__name__} {name}",
+    #     )
+    #
+    #     plots = fig.create_plots(
+    #         xaxis=Axis(self.label_time, unit="hr"),
+    #         yaxis=Axis(self.labels["[ren]"], unit=self.units["[ren]"]),
+    #         legend=True,
+    #     )
+    #     plots[1].xaxis.min = -25  # [hr]
+    #     plots[1].xaxis.max = 25  # [hr]
+    #
+    #     # simulation
+    #     for k, suffix in enumerate(["acute", "chronic"]):
+    #         plots[k].add_data(
+    #             task=f"task_hctz25_{suffix}",
+    #             xid="time",
+    #             yid="[ren]",
+    #             label=f"Sim {suffix}",
+    #             color=self.color_hctz,
+    #         )
+    #         # data
+    #         for kd, infix in enumerate(["hctz25", "combi"]):
+    #             plots[k].add_data(
+    #                 dataset=f"Fig5_renin_{infix}_{suffix}",
+    #                 xid="time",
+    #                 yid="mean",
+    #                 yid_sd="mean_sd",
+    #                 count="count",
+    #                 label="25 mg HCTZ" if infix == "hctz25" else "25 mg HCTZ + CAP50",
+    #                 color=self.colors[kd],
+    #             )
+    #
+    #     return {
+    #         fig.sid: fig,
+    #     }
 
 
 if __name__ == "__main__":

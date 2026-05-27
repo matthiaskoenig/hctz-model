@@ -53,10 +53,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-02-10T19:10:01Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-05-27T11:28:50Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-02-10T19:10:01Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-05-27T11:28:50Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -70,8 +70,6 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <rdf:li rdf:resource="https://identifiers.org/ncit/C49184"/>
               <rdf:li rdf:resource="https://identifiers.org/ncit/C15299"/>
               <rdf:li rdf:resource="https://identifiers.org/ncit/C3117"/>
-              <rdf:li rdf:resource="https://identifiers.org/ncit/C15720"/>
-              <rdf:li rdf:resource="https://identifiers.org/ncit/C91434"/>
               <rdf:li rdf:resource="https://identifiers.org/ncit/C79369"/>
               <rdf:li rdf:resource="https://identifiers.org/ncit/C79372"/>
               <rdf:li rdf:resource="https://identifiers.org/ncit/C79370"/>
@@ -236,6 +234,12 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
         </listOfUnits>
       </unitDefinition>
+      <unitDefinition id="ml_per_min" name="ml/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
       <unitDefinition id="ml_per_s" name="ml/s">
         <listOfUnits>
           <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
@@ -277,6 +281,13 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
         <listOfUnits>
           <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
           <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_l_ml" name="mmole/l/ml">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="mmole_per_min" name="mmole/min">
@@ -391,9 +402,22 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
+      <unitDefinition id="KI__ml_per_min" name="ml/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
       <unitDefinition id="KI__mmole" name="mmole">
         <listOfUnits>
           <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="KI__mmole_per_l_ml" name="mmole/l/ml">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="KI__mmole_per_min" name="mmole/min">
@@ -423,6 +447,11 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
         <listOfUnits>
           <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
           <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="KI__per_ml" name="1/ml">
+        <listOfUnits>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="GU__g_per_mole" name="g/mole">
@@ -513,7 +542,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       </unitDefinition>
     </listOfUnitDefinitions>
     <listOfCompartments>
-      <compartment metaid="meta_ECF" sboTerm="SBO:0000290" id="ECF" name="extracellular fluid (ECF)" spatialDimensions="3" size="13.6125" units="litre" constant="false">
+      <compartment metaid="meta_ECF" sboTerm="SBO:0000290" id="ECF" name="extracellular fluid (ECF)" spatialDimensions="3" size="NaN" units="litre" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_ECF">
@@ -528,15 +557,17 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </compartment>
-      <compartment metaid="meta_Vplasma" sboTerm="SBO:0000290" id="Vplasma" name="plasma" spatialDimensions="3" size="5" units="litre" constant="true">
+      <compartment metaid="meta_Vloop" sboTerm="SBO:0000290" id="Vloop" name="loop of Henle" spatialDimensions="3" size="0.5" units="litre" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_Vplasma">
+            <rdf:Description rdf:about="#meta_Vloop">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
-                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:17698"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0004608"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C33006"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0001288"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1083,6 +1114,26 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_na_loop" sboTerm="SBO:0000247" id="na_loop" name="Sodium (Na+) (Loop of Henle)" compartment="Vloop" initialConcentration="140" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_na_loop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1101,6 +1152,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1119,6 +1171,26 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_cl_loop" sboTerm="SBO:0000247" id="cl_loop" name="Chloride (Cl-) (Loop of Henle)" compartment="Vloop" initialConcentration="102" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_cl_loop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1137,82 +1209,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species metaid="meta_ald" sboTerm="SBO:0000247" id="ald" name="aldosterone" compartment="Vplasma" initialConcentration="2.5e-07" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ald">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:27584"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C219"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species metaid="meta_ren" sboTerm="SBO:0000247" id="ren" name="renin" compartment="Vplasma" initialConcentration="1e-09" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ren">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P00797"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C113591"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species metaid="meta_anggen" sboTerm="SBO:0000247" id="anggen" name="angiotensinogen" compartment="Vplasma" initialConcentration="1e-08" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_anggen">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:2720"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C136723"/>
-                  <rdf:li rdf:resource="https://identifiers.org/uniprot/Q3UTR7"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species metaid="meta_ang1" sboTerm="SBO:0000247" id="ang1" name="angiotensin I" compartment="Vplasma" initialConcentration="1e-08" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ang1">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:147350"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C248"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species metaid="meta_ang2" sboTerm="SBO:0000247" id="ang2" name="angiotensin II" compartment="Vplasma" initialConcentration="8e-09" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ang2">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:58506"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C107562"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -1685,10 +1682,23 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_vin_nacl" sboTerm="SBO:0000002" id="vin_nacl" name="NaCl uptake via food" value="0.023766" units="mmole_per_min" constant="true">
+      <parameter metaid="meta_vin_na" sboTerm="SBO:0000002" id="vin_na" name="Na uptake via food" value="NaN" units="mmole_per_min" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_vin_nacl">
+            <rdf:Description rdf:about="#meta_vin_na">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_vin_cl" sboTerm="SBO:0000002" id="vin_cl" name="Cl uptake via food" value="NaN" units="mmole_per_min" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_vin_cl">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
@@ -1711,7 +1721,7 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_k_na" sboTerm="SBO:0000002" id="k_na" value="NaN" units="l_per_min" constant="false">
+      <parameter metaid="meta_k_na" sboTerm="SBO:0000002" id="k_na" value="0.000645996839924086" units="l_per_min" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate sodium urine.</p>
@@ -1729,7 +1739,7 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_k_cl" sboTerm="SBO:0000002" id="k_cl" value="NaN" units="l_per_min" constant="false">
+      <parameter metaid="meta_k_cl" sboTerm="SBO:0000002" id="k_cl" value="0.00300247623405499" units="l_per_min" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate chloride urine.</p>
@@ -1747,12 +1757,25 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter id="k_h2o" value="0.000117334965819814" units="per_min" constant="true">
+      <parameter id="k_h2o" value="NaN" units="l_per_ml" constant="false">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate water urine.</p>
           </body>
         </notes>
+      </parameter>
+      <parameter metaid="meta_h2o_reabsorption" sboTerm="SBO:0000002" id="h2o_reabsorption" name="H2O reabsorption from loop of Henle" value="NaN" units="l_per_min" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_h2o_reabsorption">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
       </parameter>
       <parameter id="diuresis" value="NaN" units="l_per_min" constant="false">
         <notes>
@@ -1761,24 +1784,38 @@ female: 0.5 l/kg</p>
           </body>
         </notes>
       </parameter>
-      <parameter id="E50_hctz_na" value="0.0001" units="mM" constant="true">
+      <parameter id="counter_gamma" value="5" units="dimensionless" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>E50 for HCTZ effect on sodium excretion rate.</p>
+            <p>Counter-regulation feedback.</p>
           </body>
         </notes>
       </parameter>
-      <parameter id="E50_hctz_cl" value="0.0001" units="mM" constant="true">
+      <parameter id="E50_hctz_nacl" value="0.000157686102092078" units="mM" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>E50 for HCTZ effect on chloride excretion rate.</p>
+            <p>E50 for HCTZ effect on sodium and chloride excretion.</p>
           </body>
         </notes>
       </parameter>
-      <parameter id="E50_hctz_h2o" value="0.0001" units="mM" constant="true">
+      <parameter id="gamma_hctz_nacl" value="3.13952015458646" units="dimensionless" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>E50 for HCTZ effect on diuresis.</p>
+            <p>gamma for HCTZ effect on sodium and chloride excretion.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="Emax_hctz_na" value="1.85461290255277" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Emax for HCTZ effect on sodium excretion.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="Emax_hctz_cl" value="1.00729843318831" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Emax for HCTZ effect on chloride excretion.</p>
           </body>
         </notes>
       </parameter>
@@ -1795,223 +1832,6 @@ female: 0.5 l/kg</p>
             <p>reference chloride concentration.</p>
           </body>
         </notes>
-      </parameter>
-      <parameter metaid="meta_ald_change" id="ald_change" name="aldosterone change" value="NaN" units="mM" constant="false">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Absolute change to baseline aldosterone</p>
-          </body>
-        </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ald_change">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:27584"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C219"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ald_ratio" id="ald_ratio" name="aldosterone ratio" value="NaN" units="dimensionless" constant="false">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Ratio relative to baseline aldosterone</p>
-          </body>
-        </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ald_ratio">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:27584"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C219"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ren_change" id="ren_change" name="renin change" value="NaN" units="mM" constant="false">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Absolute change to baseline renin</p>
-          </body>
-        </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ren_change">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P00797"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C113591"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ren_ratio" id="ren_ratio" name="renin ratio" value="NaN" units="dimensionless" constant="false">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Ratio relative to baseline renin</p>
-          </body>
-        </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ren_ratio">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P00797"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C113591"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ang1_change" id="ang1_change" name="angiotensin I change" value="NaN" units="mM" constant="false">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Absolute change to baseline angiotensin I</p>
-          </body>
-        </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ang1_change">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:147350"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C248"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ang1_ratio" id="ang1_ratio" name="angiotensin I ratio" value="NaN" units="dimensionless" constant="false">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Ratio relative to baseline angiotensin I</p>
-          </body>
-        </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ang1_ratio">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:147350"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C248"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ang2_change" id="ang2_change" name="angiotensin II change" value="NaN" units="mM" constant="false">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Absolute change to baseline angiotensin II</p>
-          </body>
-        </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ang2_change">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:58506"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C107562"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ang2_ratio" id="ang2_ratio" name="angiotensin II ratio" value="NaN" units="dimensionless" constant="false">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Ratio relative to baseline angiotensin II</p>
-          </body>
-        </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ang2_ratio">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:58506"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C107562"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_anggen_ref" sboTerm="SBO:0000009" id="anggen_ref" name="reference concentration of angiotensinogen" value="1e-08" units="mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_anggen_ref">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ang1_ref" sboTerm="SBO:0000009" id="ang1_ref" name="reference concentration of angiotensin I" value="1e-08" units="mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ang1_ref">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ang2_ref" sboTerm="SBO:0000009" id="ang2_ref" name="reference concentration of angiotensin II" value="8e-09" units="mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ang2_ref">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ren_ref" sboTerm="SBO:0000009" id="ren_ref" name="reference concentration of renin" value="1e-09" units="mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ren_ref">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ald_ref" sboTerm="SBO:0000009" id="ald_ref" name="reference concentration of aldosterone" value="2.5e-07" units="mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ald_ref">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
       </parameter>
       <parameter metaid="meta_BW" sboTerm="SBO:0000002" id="BW" name="body weight [kg]" value="75" units="kg" constant="true">
         <annotation>
@@ -2052,19 +1872,6 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_HRrest" sboTerm="SBO:0000002" id="HRrest" name="heart rate [1/min]" value="70" units="per_min" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_HRrest">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
       <parameter metaid="meta_map" sboTerm="SBO:0000002" id="map" name="mean arterial pressure [mmHg]" value="100" units="mmHg" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
@@ -2078,6 +1885,36 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
+      <parameter metaid="meta_f_renal_function" sboTerm="SBO:0000009" id="f_renal_function" name="renal function" value="1" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <blockquote>
+              <p>1.0: increased kidney function
+1.0: normal kidney function (healthy control)
+&lt;1.0: decreased kidney function</p>
+            </blockquote>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_f_renal_function">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="f_GFR_Qki" name="relationship GFR and Qki" value="151" units="ml_per_l" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>[Cody1988]</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="GFR_base" name="glomerular filtration rate (base)" value="NaN" units="ml_per_min" constant="false"/>
       <parameter metaid="meta_BSA" sboTerm="SBO:0000002" id="BSA" name="body surface area [m^2]" value="0" units="m2" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
@@ -2139,19 +1976,6 @@ female: 0.5 l/kg</p>
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_QC">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_COHRI" sboTerm="SBO:0000002" id="COHRI" name="increase of cardiac output per heartbeat [ml/min*min]" value="150" units="ml" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_COHRI">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
@@ -2443,7 +2267,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Ka_dis_hctz" sboTerm="SBO:0000002" id="Ka_dis_hctz" name="Ka_dis [1/hr] dissolution hydrochlorothiazide" value="2.22961850524109" units="per_hr" constant="true">
+      <parameter metaid="meta_Ka_dis_hctz" sboTerm="SBO:0000002" id="Ka_dis_hctz" name="Ka_dis [1/hr] dissolution hydrochlorothiazide" value="0.351813311553606" units="per_hr" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Ka_dis_hctz">
@@ -2470,7 +2294,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_ftissue_hctz" sboTerm="SBO:0000002" id="ftissue_hctz" name="tissue distribution hctz" value="0.0549646423137996" units="l_per_min" constant="true">
+      <parameter metaid="meta_ftissue_hctz" sboTerm="SBO:0000002" id="ftissue_hctz" name="tissue distribution hctz" value="0.246143876877742" units="l_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_ftissue_hctz">
@@ -2483,7 +2307,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Kp_hctz" sboTerm="SBO:0000002" id="Kp_hctz" name="tissue/plasma partition coefficient hctz" value="0.931396399623795" units="dimensionless" constant="true">
+      <parameter metaid="meta_Kp_hctz" sboTerm="SBO:0000002" id="Kp_hctz" name="tissue/plasma partition coefficient hctz" value="0.999728003670081" units="dimensionless" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Kp_hctz">
@@ -2561,101 +2385,10 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_RENSEC_k" sboTerm="SBO:0000009" id="RENSEC_k" name="rate renin secretion" value="0.1" units="mmole_per_min" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_RENSEC_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_RENDEG_k" sboTerm="SBO:0000009" id="RENDEG_k" name="rate renin degradation" units="l_per_min" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_RENDEG_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ALDSEC_k" sboTerm="SBO:0000009" id="ALDSEC_k" name="rate aldosterone secretion" value="1.0105027952686e-06" units="mmole_per_min" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ALDSEC_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ALDDEG_k" sboTerm="SBO:0000009" id="ALDDEG_k" name="rate aldosterone degradation" units="l_per_min" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ALDDEG_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ANGGEN2ANG1_k" sboTerm="SBO:0000009" id="ANGGEN2ANG1_k" name="rate angen to ang1 conversion" value="0.100300143544081" units="l_per_min" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ANGGEN2ANG1_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ANG1ANG2_k" sboTerm="SBO:0000009" id="ANG1ANG2_k" name="rate ang1 to ang2 conversion" units="l_per_min" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ANG1ANG2_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_ANG2DEG_k" sboTerm="SBO:0000009" id="ANG2DEG_k" name="rate aldosterone degradation" units="l_per_min" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ANG2DEG_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter id="vin_na" value="NaN" units="mg_per_min" constant="false"/>
-      <parameter id="vin_cl" value="NaN" units="mg_per_min" constant="false"/>
+      <parameter id="GFR" name="glomerular filtration rate" value="NaN" units="ml_per_min" constant="false"/>
       <parameter id="vout_na" value="NaN" units="mg_per_min" constant="false"/>
       <parameter id="vout_cl" value="NaN" units="mg_per_min" constant="false"/>
+      <parameter id="H2O_UPTAKE" value="NaN" units="l_per_min" constant="false"/>
       <parameter id="Qgu" name="gut blood flow" value="NaN" units="l_per_min" constant="false"/>
       <parameter id="Qki" name="kidney blood flow" value="NaN" units="l_per_min" constant="false"/>
       <parameter id="Qh" name="hepatic (venous side) blood flow" value="NaN" units="l_per_min" constant="false"/>
@@ -2664,28 +2397,6 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
       <parameter id="Qre" name="rest of body blood flow" value="NaN" units="l_per_min" constant="false"/>
       <parameter id="Qpo" name="portal blood flow" value="NaN" units="l_per_min" constant="false"/>
       <parameter id="hctz_urine_excretion" name="HCTZ concentration in excreted urine" value="NaN" units="mM" constant="false"/>
-      <parameter metaid="KI__meta_f_renal_function" sboTerm="SBO:0000009" id="KI__f_renal_function" name="renal function" value="1" units="dimensionless" constant="true">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <blockquote>
-              <p>1.0: increased kidney function
-1.0: normal kidney function (healthy control)
-&lt;1.0: decreased kidney function</p>
-            </blockquote>
-          </body>
-        </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#KI__meta_f_renal_function">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
       <parameter metaid="KI__meta_urine_volume" sboTerm="SBO:0000009" id="KI__urine_volume" name="urine volume" value="1" units="KI__ml" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
@@ -2699,10 +2410,10 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="KI__meta_HCTZEX_Vmax" sboTerm="SBO:0000009" id="KI__HCTZEX_Vmax" name="rate urinary excretion of hydrochlorothiazide" value="0.909632129040197" units="KI__mmole_per_min_l" constant="true">
+      <parameter metaid="KI__meta_HCTZEX_k" sboTerm="SBO:0000009" id="KI__HCTZEX_k" name="rate urinary excretion of hydrochlorothiazide" value="0.00371089047925543" units="KI__per_ml" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#KI__meta_HCTZEX_Vmax">
+            <rdf:Description rdf:about="#KI__meta_HCTZEX_k">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
@@ -2712,20 +2423,8 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="KI__meta_HCTZEX_Km" sboTerm="SBO:0000027" id="KI__HCTZEX_Km" name="Michaelis constant excretion of hydrochlorothiazide" value="0.001" units="KI__mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#KI__meta_HCTZEX_Km">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000027"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="GU__meta_F_hctz_abs" sboTerm="SBO:0000002" id="GU__F_hctz_abs" name="fraction absorbed hydrochlorothiazide" value="0.75" units="dimensionless" constant="true">
+      <parameter id="KI__GFR" name="glomerular filtration rate" value="NaN" units="KI__ml_per_min" constant="false"/>
+      <parameter metaid="GU__meta_F_hctz_abs" sboTerm="SBO:0000002" id="GU__F_hctz_abs" name="fraction absorbed hydrochlorothiazide" value="0.61213115217988" units="dimensionless" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Fraction absorbed, i.e., only a fraction of the hydrochlorothiazide in the intestinal lumen
@@ -2750,7 +2449,7 @@ around 60-70 percent urinary recovery of oral dose
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="GU__meta_HCTZABS_k" sboTerm="SBO:0000009" id="GU__HCTZABS_k" name="rate of hydrochlorothiazide absorption" value="0.00243458783202386" units="GU__per_min" constant="true">
+      <parameter metaid="GU__meta_HCTZABS_k" sboTerm="SBO:0000009" id="GU__HCTZABS_k" name="rate of hydrochlorothiazide absorption" value="0.0204137687168812" units="GU__per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#GU__meta_HCTZABS_k">
@@ -2794,22 +2493,23 @@ around 60-70 percent urinary recovery of oral dose
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="GU__meta_Mr_hctz" sboTerm="SBO:0000647" id="GU__Mr_hctz" name="Molecular weight hydrochlorothiazide [g/mole]" value="297.7" units="GU__g_per_mole" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#GU__meta_Mr_hctz">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000647"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
       <parameter id="GU__absorption" name="absorption hydrochlorothiazide" value="NaN" units="GU__mmole_per_min" constant="false"/>
     </listOfParameters>
     <listOfInitialAssignments>
+      <initialAssignment symbol="ECF">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> ECF_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="Vloop">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <cn sbml:units="dimensionless"> 0.05 </cn>
+            <ci> ECF_ref </ci>
+          </apply>
+        </math>
+      </initialAssignment>
       <initialAssignment symbol="na">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <ci> na_ref </ci>
@@ -2820,77 +2520,17 @@ around 60-70 percent urinary recovery of oral dose
           <ci> cl_ref </ci>
         </math>
       </initialAssignment>
-      <initialAssignment symbol="ald">
+      <initialAssignment symbol="k_h2o">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <ci> ald_ref </ci>
-        </math>
-      </initialAssignment>
-      <initialAssignment symbol="ren">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <ci> ren_ref </ci>
-        </math>
-      </initialAssignment>
-      <initialAssignment symbol="anggen">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <ci> anggen_ref </ci>
-        </math>
-      </initialAssignment>
-      <initialAssignment symbol="ang1">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <ci> ang1_ref </ci>
-        </math>
-      </initialAssignment>
-      <initialAssignment symbol="ang2">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <ci> ang2_ref </ci>
+          <apply>
+            <divide/>
+            <ci> vin_h2o </ci>
+            <ci> GFR_base </ci>
+          </apply>
         </math>
       </initialAssignment>
     </listOfInitialAssignments>
     <listOfRules>
-      <assignmentRule variable="RENDEG_k">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <ci> RENSEC_k </ci>
-            <ci> ren_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ALDDEG_k">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <ci> ALDSEC_k </ci>
-            <ci> ald_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ANG1ANG2_k">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci> ANGGEN2ANG1_k </ci>
-              <ci> anggen_ref </ci>
-            </apply>
-            <ci> ang1_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ANG2DEG_k">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci> ANGGEN2ANG1_k </ci>
-              <ci> anggen_ref </ci>
-            </apply>
-            <ci> ang2_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
       <assignmentRule variable="ECF_ref">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
@@ -2941,49 +2581,30 @@ Increased venous return → Increased cardiac output → Increased blood pressur
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="k_na">
+      <assignmentRule variable="vin_na">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <ci> vin_nacl </ci>
+            <times/>
+            <ci> k_na </ci>
             <ci> na_ref </ci>
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="k_cl">
+      <assignmentRule variable="vin_cl">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <ci> vin_nacl </ci>
+            <times/>
+            <ci> k_cl </ci>
             <ci> cl_ref </ci>
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="vin_na">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Uptake sodium.</p>
-          </body>
-        </notes>
+      <assignmentRule name="glomerular filtration rate" variable="GFR">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
-            <ci> NACL_UPTAKE </ci>
-            <ci> Mr_nacl </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="vin_cl">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Uptake chloride.</p>
-          </body>
-        </notes>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <times/>
-            <ci> NACL_UPTAKE </ci>
-            <ci> Mr_nacl </ci>
+            <ci> f_renal_function </ci>
+            <ci> GFR_base </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -3015,98 +2636,82 @@ Increased venous return → Increased cardiac output → Increased blood pressur
           </apply>
         </math>
       </assignmentRule>
+      <assignmentRule variable="H2O_UPTAKE">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Water uptake.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> vin_h2o </ci>
+              <apply>
+                <power/>
+                <ci> ECF_ref </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+            <apply>
+              <power/>
+              <ci> ECF </ci>
+              <ci> counter_gamma </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="diuresis">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate water urine.</p>
           </body>
         </notes>
-        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <times/>
-            <ci> k_h2o </ci>
-            <ci> ECF </ci>
+            <divide/>
             <apply>
-              <plus/>
-              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <times/>
               <apply>
                 <divide/>
-                <ci> hctz </ci>
-                <ci> E50_hctz_h2o </ci>
+                <apply>
+                  <times/>
+                  <ci> k_h2o </ci>
+                  <ci> GFR </ci>
+                  <apply>
+                    <power/>
+                    <ci> ECF </ci>
+                    <ci> counter_gamma </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ECF_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
               </apply>
+              <ci> NA_EXCRETION </ci>
             </apply>
+            <ci> vin_na </ci>
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="ald_change">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <assignmentRule variable="h2o_reabsorption">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Reabsoption rate water Loop of Henle.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
           <apply>
             <minus/>
-            <ci> ald </ci>
-            <ci> ald_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ald_ratio">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <ci> ald </ci>
-            <ci> ald_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ren_change">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <minus/>
-            <ci> ren </ci>
-            <ci> ren_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ren_ratio">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <ci> ren </ci>
-            <ci> ren_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ang1_change">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <minus/>
-            <ci> ang1 </ci>
-            <ci> ang1_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ang1_ratio">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <ci> ang1 </ci>
-            <ci> ang1_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ang2_change">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <minus/>
-            <ci> ang2 </ci>
-            <ci> ang2_ref </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="ang2_ratio">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <divide/>
-            <ci> ang2 </ci>
-            <ci> ang2_ref </ci>
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+            </apply>
+            <ci> diuresis </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -3177,28 +2782,12 @@ Increased venous return → Increased cardiac output → Increased blood pressur
         </math>
       </assignmentRule>
       <assignmentRule variable="CO">
-        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <plus/>
-            <apply>
-              <times/>
-              <ci> BW </ci>
-              <ci> f_cardiac_function </ci>
-              <ci> COBW </ci>
-            </apply>
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <apply>
-                  <minus/>
-                  <ci> HR </ci>
-                  <ci> HRrest </ci>
-                </apply>
-                <ci> COHRI </ci>
-              </apply>
-              <cn sbml:units="s_per_min" type="integer"> 60 </cn>
-            </apply>
+            <times/>
+            <ci> BW </ci>
+            <ci> f_cardiac_function </ci>
+            <ci> COBW </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -3483,6 +3072,15 @@ Increased venous return → Increased cardiac output → Increased blood pressur
           <ci> Qgu </ci>
         </math>
       </assignmentRule>
+      <assignmentRule name="glomerular filtration rate (base)" variable="GFR_base">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> f_GFR_Qki </ci>
+            <ci> Qki </ci>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule name="plasma volume of kidney" variable="Vki_plasma">
         <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
           <apply>
@@ -3662,11 +3260,41 @@ injection rate.</p>
             <p>Rate rule for calculation of water change ECF.</p>
           </body>
         </notes>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <plus/>
+            <apply>
+              <minus/>
+              <ci> H2O_UPTAKE </ci>
+              <apply>
+                <times/>
+                <ci> GFR </ci>
+                <cn sbml:units="l_per_ml"> 0.001 </cn>
+              </apply>
+            </apply>
+            <ci> h2o_reabsorption </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="Vloop">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Rate rule for calculation of water change urine.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
           <apply>
             <minus/>
-            <ci> vin_h2o </ci>
-            <ci> diuresis </ci>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> GFR </ci>
+                <cn sbml:units="l_per_ml"> 0.001 </cn>
+              </apply>
+              <ci> diuresis </ci>
+            </apply>
+            <ci> h2o_reabsorption </ci>
           </apply>
         </math>
       </rateRule>
@@ -3701,22 +3329,23 @@ injection rate.</p>
           <ci> Ri_hctz </ci>
         </math>
       </rateRule>
+      <assignmentRule name="glomerular filtration rate" variable="KI__GFR">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> f_renal_function </ci>
+            <ci> GFR_base </ci>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="v_HCTZEX">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci> KI__f_renal_function </ci>
-              <ci> Vki_tissue </ci>
-              <ci> KI__HCTZEX_Vmax </ci>
-              <ci> Cki_plasma_hctz </ci>
-            </apply>
-            <apply>
-              <plus/>
-              <ci> Cki_plasma_hctz </ci>
-              <ci> KI__HCTZEX_Km </ci>
-            </apply>
+            <times/>
+            <ci> KI__GFR </ci>
+            <ci> Vki_tissue </ci>
+            <ci> KI__HCTZEX_k </ci>
+            <ci> Cki_plasma_hctz </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -3738,7 +3367,7 @@ injection rate.</p>
               <minus/>
               <ci> GU__application_hctz </ci>
             </apply>
-            <ci> GU__Mr_hctz </ci>
+            <ci> Mr_hctz </ci>
           </apply>
         </math>
       </rateRule>
@@ -3751,16 +3380,21 @@ injection rate.</p>
               <ci> GU__application_hctz </ci>
               <ci> GU__dissolution_hctz </ci>
             </apply>
-            <ci> GU__Mr_hctz </ci>
+            <ci> Mr_hctz </ci>
           </apply>
         </math>
       </rateRule>
     </listOfRules>
     <listOfReactions>
-      <reaction metaid="meta_NACL_UPTAKE" sboTerm="SBO:0000655" id="NACL_UPTAKE" name="Na/Cl uptake via food" reversible="false" compartment="ECF">
+      <reaction metaid="meta_NA_UPTAKE" sboTerm="SBO:0000655" id="NA_UPTAKE" name="Na uptake via food" reversible="false" compartment="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Na uptake increased when concentrations too low.</p>
+          </body>
+        </notes>
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_NACL_UPTAKE">
+            <rdf:Description rdf:about="#meta_NA_UPTAKE">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
@@ -3771,11 +3405,97 @@ injection rate.</p>
         </annotation>
         <listOfProducts>
           <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> vin_na </ci>
+                <apply>
+                  <power/>
+                  <ci> na_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
+              </apply>
+              <apply>
+                <power/>
+                <ci> na </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_CL_UPTAKE" sboTerm="SBO:0000655" id="CL_UPTAKE" name="Cl uptake via food" reversible="false" compartment="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Cl uptake increased when concentrations too low.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_CL_UPTAKE">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
           <speciesReference species="cl" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> vin_nacl </ci>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> vin_cl </ci>
+                <apply>
+                  <power/>
+                  <ci> cl_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
+              </apply>
+              <apply>
+                <power/>
+                <ci> cl </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_NA_FILTRATION" sboTerm="SBO:0000655" id="NA_FILTRATION" name="Na filtration kidney" reversible="false" compartment="Vki">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_NA_FILTRATION">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> na </ci>
+            </apply>
           </math>
         </kineticLaw>
       </reaction>
@@ -3792,7 +3512,7 @@ injection rate.</p>
           </rdf:RDF>
         </annotation>
         <listOfReactants>
-          <speciesReference species="na" stoichiometry="1" constant="true"/>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="na_urine" stoichiometry="1" constant="true"/>
@@ -3805,16 +3525,93 @@ injection rate.</p>
             <apply>
               <times/>
               <ci> k_na </ci>
-              <ci> na </ci>
+              <ci> na_loop </ci>
               <apply>
                 <plus/>
                 <cn sbml:units="dimensionless" type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> hctz </ci>
-                  <ci> E50_hctz_na </ci>
+                  <apply>
+                    <times/>
+                    <ci> Emax_hctz_na </ci>
+                    <apply>
+                      <power/>
+                      <ci> hctz </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <power/>
+                      <ci> hctz </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                    <apply>
+                      <power/>
+                      <ci> E50_hctz_nacl </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                  </apply>
                 </apply>
               </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_NA_REABSORPTION" sboTerm="SBO:0000655" id="NA_REABSORPTION" name="Na reabsorption kidney" reversible="false" compartment="Vki">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_NA_REABSORPTION">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> h2o_reabsorption </ci>
+              <ci> na_loop </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_CL_FILTRATION" sboTerm="SBO:0000655" id="CL_FILTRATION" name="Cl filtration kidney" reversible="false" compartment="Vki">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_CL_FILTRATION">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> cl </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -3832,7 +3629,7 @@ injection rate.</p>
           </rdf:RDF>
         </annotation>
         <listOfReactants>
-          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="cl_urine" stoichiometry="1" constant="true"/>
@@ -3845,24 +3642,44 @@ injection rate.</p>
             <apply>
               <times/>
               <ci> k_cl </ci>
-              <ci> cl </ci>
+              <ci> cl_loop </ci>
               <apply>
                 <plus/>
                 <cn sbml:units="dimensionless" type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> hctz </ci>
-                  <ci> E50_hctz_cl </ci>
+                  <apply>
+                    <times/>
+                    <ci> Emax_hctz_cl </ci>
+                    <apply>
+                      <power/>
+                      <ci> hctz </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <power/>
+                      <ci> hctz </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                    <apply>
+                      <power/>
+                      <ci> E50_hctz_nacl </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                  </apply>
                 </apply>
               </apply>
             </apply>
           </math>
         </kineticLaw>
       </reaction>
-      <reaction metaid="meta_RENSEC" sboTerm="SBO:0000655" id="RENSEC" name="renin secretion (RENSEC)" reversible="false" compartment="Vplasma">
+      <reaction metaid="meta_CL_REABSORPTION" sboTerm="SBO:0000655" id="CL_REABSORPTION" name="Cl reabsorption kidney" reversible="false" compartment="Vki">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_RENSEC">
+            <rdf:Description rdf:about="#meta_CL_REABSORPTION">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
@@ -3871,171 +3688,18 @@ injection rate.</p>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
-        <listOfProducts>
-          <speciesReference species="ren" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> RENSEC_k </ci>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction metaid="meta_RENDEG" sboTerm="SBO:0000176" id="RENDEG" name="renin degradation (RENDEG)" reversible="false" compartment="Vplasma">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_RENDEG">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
         <listOfReactants>
-          <speciesReference species="ren" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <times/>
-              <ci> RENDEG_k </ci>
-              <ci> ren </ci>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction metaid="meta_ALDSEC" sboTerm="SBO:0000655" id="ALDSEC" name="aldosterone secretion (ALDSEC)" reversible="false" compartment="Vplasma">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ALDSEC">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-        <listOfProducts>
-          <speciesReference species="ald" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> ALDSEC_k </ci>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction metaid="meta_ALDDEG" sboTerm="SBO:0000176" id="ALDDEG" name="aldosterone degradation (ALDDEG)" reversible="false" compartment="Vplasma">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ALDDEG">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-        <listOfReactants>
-          <speciesReference species="ald" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <times/>
-              <ci> ALDDEG_k </ci>
-              <ci> ald </ci>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction metaid="meta_ANGGEN2ANG1" sboTerm="SBO:0000176" id="ANGGEN2ANG1" name="angiotensinogen to angiotensin I (renin)" reversible="false" compartment="Vplasma">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ANGGEN2ANG1">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-        <listOfReactants>
-          <speciesReference species="anggen" stoichiometry="1" constant="true"/>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="ang1" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <listOfModifiers>
-          <modifierSpeciesReference species="ren"/>
-        </listOfModifiers>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <ci> ANGGEN2ANG1_k </ci>
-                <ci> anggen </ci>
-                <ci> ren </ci>
-              </apply>
-              <ci> ren_ref </ci>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction metaid="meta_ANG1ANG2" sboTerm="SBO:0000176" id="ANG1ANG2" name="angiotensin I to angiotensin II (ACE)" reversible="false" compartment="Vplasma">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ANG1ANG2">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-        <listOfReactants>
-          <speciesReference species="ang1" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="ang2" stoichiometry="1" constant="true"/>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
-              <ci> ANG1ANG2_k </ci>
-              <ci> ang1 </ci>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction metaid="meta_ANG2DEG" sboTerm="SBO:0000176" id="ANG2DEG" name="angiotensin II degradation (ANG2DEG)" reversible="false" compartment="Vplasma">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_ANG2DEG">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-        <listOfReactants>
-          <speciesReference species="ang2" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <times/>
-              <ci> ANG2DEG_k </ci>
-              <ci> ang2 </ci>
+              <ci> h2o_reabsorption </ci>
+              <ci> cl_loop </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -4692,7 +4356,7 @@ injection rate.</p>
                 </apply>
                 <ci> PODOSE_hctz </ci>
               </apply>
-              <ci> GU__Mr_hctz </ci>
+              <ci> Mr_hctz </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -4717,31 +4381,11 @@ injection rate.</p>
                 </apply>
                 <ci> GU__POSTOMACH_hctz </ci>
               </apply>
-              <ci> GU__Mr_hctz </ci>
+              <ci> Mr_hctz </ci>
             </apply>
           </math>
         </kineticLaw>
       </reaction>
     </listOfReactions>
-    <listOfEvents>
-      <event id="event_time_0" useValuesFromTriggerTime="true">
-        <trigger initialValue="false" persistent="true">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <geq/>
-              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
-              <cn type="integer"> 0 </cn>
-            </apply>
-          </math>
-        </trigger>
-        <listOfEventAssignments>
-          <eventAssignment variable="ECF">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-              <ci> ECF_ref </ci>
-            </math>
-          </eventAssignment>
-        </listOfEventAssignments>
-      </event>
-    </listOfEvents>
   </model>
 </sbml>

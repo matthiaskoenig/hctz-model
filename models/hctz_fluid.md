@@ -11,10 +11,11 @@ length: [m]
 
 ## Parameters `p`
 ```
-BW = 75.0  # [kg] body weight [kg]  
-E50_hctz_cl = 0.0001  # [mmol/l]   
-E50_hctz_h2o = 0.0001  # [mmol/l]   
-E50_hctz_na = 0.0001  # [mmol/l]   
+BW = 75.0  # [kg] body weight  
+E50_hctz_nacl = 0.000157686102092078  # [mmol/l]   
+Emax_hctz_cl = 1.00729843318831  # [-]   
+Emax_hctz_na = 1.85461290255277  # [-]   
+GFR_base = 100.0  # [ml/min] glomerular filtration rate (base)  
 Mr_cl = 35.45  # [g/mol] Molecular weight chloride  
 Mr_na = 22.99  # [g/mol] Molecular weight sodium  
 Mr_nacl = 58.44  # [g/mol] Molecular weight sodium chloride  
@@ -22,48 +23,64 @@ Pdia_ref = 80.0  # [133.32239 N/m^2] Reference diastolic blood pressure
 Psys_ref = 120.0  # [133.32239 N/m^2] Reference systolic blood pressure  
 Vki = nan  # [l] kidney  
 cl_ref = 102.0  # [mmol/l]   
+counter_gamma = 5.0  # [-]   
 f_ECF = 0.33  # [-] ECF fraction of TBW  
 f_TBW = 0.55  # [l/kg] Total body water (TBW) fraction of bodyweight (male)  
-k_h2o = 0.000117334965819814  # [1/min]   
+f_renal_function = 1.0  # [-] renal function  
+gamma_hctz_nacl = 3.13952015458646  # [-]   
+k_cl = 0.00300247623405499  # [l/min]   
+k_h2o = nan  # [l/ml]   
+k_na = 0.000645996839924086  # [l/min]   
 na_ref = 140.0  # [mmol/l]   
 vin_h2o = 0.00159722222222222  # [l/min] H2O uptake via food  
-vin_nacl = 0.023766  # [mmol/min] NaCl uptake via food  
 ```
 
 ## Initial conditions `x0`
 ```
-ECF = 13.6125  # [l] extracellular fluid (ECF)  
+ECF = nan  # [l] extracellular fluid (ECF)  
+Vloop = 0.5  # [l] loop of Henle  
 Vurine = 1e-12  # [l] urine  
-cl = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x77bac8f5dcb0> >  # [mmol/l] Chloride (Cl-) (ECF) in ECF  
+cl = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x7582f3559e60> >  # [mmol/l] Chloride (Cl-) (ECF) in ECF  
+cl_loop = 102.0  # [mmol/l] Chloride (Cl-) (Loop of Henle) in Vloop  
 cl_urine = 0.0  # [mmol] Chloride (Cl-) (urine) in Vurine  
 hctz = 0.0  # [mmol/l] hydrochlorothiazide in ECF  
-na = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x77bac8f5dda0> >  # [mmol/l] Sodium (Na+) (ECF) in ECF  
+na = <libsbml.ASTNode; proxy of <Swig Object of type 'ASTNode *' at 0x7582f3559ec0> >  # [mmol/l] Sodium (Na+) (ECF) in ECF  
+na_loop = 140.0  # [mmol/l] Sodium (Na+) (Loop of Henle) in Vloop  
 na_urine = 0.0  # [mmol] Sodium (Na+) (urine) in Vurine  
 ```
 
 ## ODE system
 ```
 # y
+CL_EXCRETION = k_cl * cl_loop * (1 + Emax_hctz_cl * hctz**gamma_hctz_nacl / (hctz**gamma_hctz_nacl + E50_hctz_nacl**gamma_hctz_nacl))  # [mmol/min] Cl excretion urine  
 ECF_ref = f_ECF * f_TBW * BW  # [l] Reference extracellular fluid volume (ECF)  
-NACL_UPTAKE = vin_nacl  # [mmol/min] Na/Cl uptake via food  
-diuresis = k_h2o * ECF * (1 + hctz / E50_hctz_h2o)  # [l/min]   
-k_cl = vin_nacl / cl_ref  # [l/min]   
-k_na = vin_nacl / na_ref  # [l/min]   
-CL_EXCRETION = k_cl * cl * (1 + hctz / E50_hctz_cl)  # [mmol/min] Cl excretion urine  
-NA_EXCRETION = k_na * na * (1 + hctz / E50_hctz_na)  # [mmol/min] Na excretion urine  
+GFR = f_renal_function * GFR_base  # [ml/min] glomerular filtration rate  
+NA_EXCRETION = k_na * na_loop * (1 + Emax_hctz_na * hctz**gamma_hctz_nacl / (hctz**gamma_hctz_nacl + E50_hctz_nacl**gamma_hctz_nacl))  # [mmol/min] Na excretion urine  
+vin_cl = k_cl * cl_ref  # [mmol/min] Cl uptake via food  
+vin_na = k_na * na_ref  # [mmol/min] Na uptake via food  
+CL_FILTRATION = GFR * 0.001 * cl  # [mmol/min] Cl filtration kidney  
+CL_UPTAKE = vin_cl * cl_ref**counter_gamma / cl**counter_gamma  # [mmol/min] Cl uptake via food  
+H2O_UPTAKE = vin_h2o * ECF_ref**counter_gamma / ECF**counter_gamma  # [l/min]   
+NA_FILTRATION = GFR * 0.001 * na  # [mmol/min] Na filtration kidney  
+NA_UPTAKE = vin_na * na_ref**counter_gamma / na**counter_gamma  # [mmol/min] Na uptake via food  
 bp_diastolic = Pdia_ref * ECF / ECF_ref  # [133.32239 N/m^2] Diastolic blood pressure  
 bp_systolic = Psys_ref * ECF / ECF_ref  # [133.32239 N/m^2] Systolic blood pressure  
-vin_cl = NACL_UPTAKE * Mr_nacl  # [mg/min]   
-vin_na = NACL_UPTAKE * Mr_nacl  # [mg/min]   
+diuresis = (k_h2o * GFR * ECF**counter_gamma / ECF_ref**counter_gamma) * NA_EXCRETION / vin_na  # [l/min]   
 vout_cl = CL_EXCRETION * Mr_cl  # [mg/min]   
 vout_na = NA_EXCRETION * Mr_na  # [mg/min]   
+h2o_reabsorption = GFR * 0.001 - diuresis  # [l/min] H2O reabsorption from loop of Henle  
+CL_REABSORPTION = h2o_reabsorption * cl_loop  # [mmol/min] Cl reabsorption kidney  
+NA_REABSORPTION = h2o_reabsorption * na_loop  # [mmol/min] Na reabsorption kidney  
 
 # odes
-d ECF/dt = vin_h2o - diuresis  # [l/min] extracellular fluid (ECF)  
+d ECF/dt = (H2O_UPTAKE - GFR * 0.001) + h2o_reabsorption  # [l/min] extracellular fluid (ECF)  
+d Vloop/dt = GFR * 0.001 - diuresis - h2o_reabsorption  # [l/min] loop of Henle  
 d Vurine/dt = diuresis  # [l/min] urine  
-d cl/dt = NACL_UPTAKE / ECF - CL_EXCRETION / ECF  # [mmol/l/min] Chloride (Cl-) (ECF)  
+d cl/dt = (CL_UPTAKE / ECF - CL_FILTRATION / ECF) + CL_REABSORPTION / ECF  # [mmol/l/min] Chloride (Cl-) (ECF)  
+d cl_loop/dt = CL_FILTRATION / Vloop - CL_EXCRETION / Vloop - CL_REABSORPTION / Vloop  # [mmol/l/min] Chloride (Cl-) (Loop of Henle)  
 d cl_urine/dt = CL_EXCRETION  # [mmol/min] Chloride (Cl-) (urine)  
 d hctz/dt = 0  # [mmol/l/min] hydrochlorothiazide  
-d na/dt = NACL_UPTAKE / ECF - NA_EXCRETION / ECF  # [mmol/l/min] Sodium (Na+) (ECF)  
+d na/dt = (NA_UPTAKE / ECF - NA_FILTRATION / ECF) + NA_REABSORPTION / ECF  # [mmol/l/min] Sodium (Na+) (ECF)  
+d na_loop/dt = NA_FILTRATION / Vloop - NA_EXCRETION / Vloop - NA_REABSORPTION / Vloop  # [mmol/l/min] Sodium (Na+) (Loop of Henle)  
 d na_urine/dt = NA_EXCRETION  # [mmol/min] Sodium (Na+) (urine)  
 ```

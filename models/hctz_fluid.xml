@@ -53,10 +53,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-02-10T18:24:05Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-05-27T11:20:53Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-02-10T18:24:05Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-05-27T11:20:53Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -116,6 +116,12 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
+      <unitDefinition id="l_per_ml" name="l/ml">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
       <unitDefinition id="m2" name="meter^2">
         <listOfUnits>
           <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
@@ -148,6 +154,12 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
+      <unitDefinition id="ml_per_min" name="ml/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
       <unitDefinition id="mmHg" name="133.32239 N/m^2">
         <listOfUnits>
           <unit kind="newton" exponent="1" scale="0" multiplier="133.32239"/>
@@ -157,6 +169,13 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       <unitDefinition id="mmole" name="mmole">
         <listOfUnits>
           <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_l_ml" name="mmole/l/ml">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="mmole_per_min" name="mmole/min">
@@ -190,7 +209,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       </unitDefinition>
     </listOfUnitDefinitions>
     <listOfCompartments>
-      <compartment metaid="meta_ECF" sboTerm="SBO:0000290" id="ECF" name="extracellular fluid (ECF)" spatialDimensions="3" size="13.6125" units="litre" constant="false">
+      <compartment metaid="meta_ECF" sboTerm="SBO:0000290" id="ECF" name="extracellular fluid (ECF)" spatialDimensions="3" size="NaN" units="litre" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_ECF">
@@ -199,6 +218,23 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
                   <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
                   <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vloop" sboTerm="SBO:0000290" id="Vloop" name="loop of Henle" spatialDimensions="3" size="0.5" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vloop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:17698"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0004608"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C33006"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0001288"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -274,6 +310,26 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_na_loop" sboTerm="SBO:0000247" id="na_loop" name="Sodium (Na+) (Loop of Henle)" compartment="Vloop" initialConcentration="140" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_na_loop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -292,6 +348,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -310,6 +367,26 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_cl_loop" sboTerm="SBO:0000247" id="cl_loop" name="Chloride (Cl-) (Loop of Henle)" compartment="Vloop" initialConcentration="102" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_cl_loop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -328,6 +405,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -336,7 +414,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       </species>
     </listOfSpecies>
     <listOfParameters>
-      <parameter metaid="meta_BW" sboTerm="SBO:0000002" id="BW" name="body weight [kg]" value="75" units="kg" constant="true">
+      <parameter metaid="meta_BW" sboTerm="SBO:0000002" id="BW" name="body weight" value="75" units="kg" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_BW">
@@ -349,6 +427,29 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
+      <parameter metaid="meta_f_renal_function" sboTerm="SBO:0000009" id="f_renal_function" name="renal function" value="1" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <blockquote>
+              <p>1.0: increased kidney function
+1.0: normal kidney function (healthy control)
+&lt;1.0: decreased kidney function</p>
+            </blockquote>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_f_renal_function">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter id="GFR_base" name="glomerular filtration rate (base)" value="100" units="ml_per_min" constant="true"/>
       <parameter metaid="meta_f_TBW" sboTerm="SBO:0000002" id="f_TBW" name="Total body water (TBW) fraction of bodyweight (male)" value="0.55" units="l_per_kg" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
@@ -525,10 +626,23 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_vin_nacl" sboTerm="SBO:0000002" id="vin_nacl" name="NaCl uptake via food" value="0.023766" units="mmole_per_min" constant="true">
+      <parameter metaid="meta_vin_na" sboTerm="SBO:0000002" id="vin_na" name="Na uptake via food" value="NaN" units="mmole_per_min" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_vin_nacl">
+            <rdf:Description rdf:about="#meta_vin_na">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_vin_cl" sboTerm="SBO:0000002" id="vin_cl" name="Cl uptake via food" value="NaN" units="mmole_per_min" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_vin_cl">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
@@ -551,7 +665,7 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_k_na" sboTerm="SBO:0000002" id="k_na" value="NaN" units="l_per_min" constant="false">
+      <parameter metaid="meta_k_na" sboTerm="SBO:0000002" id="k_na" value="0.000645996839924086" units="l_per_min" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate sodium urine.</p>
@@ -569,7 +683,7 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_k_cl" sboTerm="SBO:0000002" id="k_cl" value="NaN" units="l_per_min" constant="false">
+      <parameter metaid="meta_k_cl" sboTerm="SBO:0000002" id="k_cl" value="0.00300247623405499" units="l_per_min" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate chloride urine.</p>
@@ -587,12 +701,25 @@ female: 0.5 l/kg</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter id="k_h2o" value="0.000117334965819814" units="per_min" constant="true">
+      <parameter id="k_h2o" value="NaN" units="l_per_ml" constant="false">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate water urine.</p>
           </body>
         </notes>
+      </parameter>
+      <parameter metaid="meta_h2o_reabsorption" sboTerm="SBO:0000002" id="h2o_reabsorption" name="H2O reabsorption from loop of Henle" value="NaN" units="l_per_min" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_h2o_reabsorption">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
       </parameter>
       <parameter id="diuresis" value="NaN" units="l_per_min" constant="false">
         <notes>
@@ -601,24 +728,38 @@ female: 0.5 l/kg</p>
           </body>
         </notes>
       </parameter>
-      <parameter id="E50_hctz_na" value="0.0001" units="mM" constant="true">
+      <parameter id="counter_gamma" value="5" units="dimensionless" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>E50 for HCTZ effect on sodium excretion rate.</p>
+            <p>Counter-regulation feedback.</p>
           </body>
         </notes>
       </parameter>
-      <parameter id="E50_hctz_cl" value="0.0001" units="mM" constant="true">
+      <parameter id="E50_hctz_nacl" value="0.000157686102092078" units="mM" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>E50 for HCTZ effect on chloride excretion rate.</p>
+            <p>E50 for HCTZ effect on sodium and chloride excretion.</p>
           </body>
         </notes>
       </parameter>
-      <parameter id="E50_hctz_h2o" value="0.0001" units="mM" constant="true">
+      <parameter id="gamma_hctz_nacl" value="3.13952015458646" units="dimensionless" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>E50 for HCTZ effect on diuresis.</p>
+            <p>gamma for HCTZ effect on sodium and chloride excretion.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="Emax_hctz_na" value="1.85461290255277" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Emax for HCTZ effect on sodium excretion.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="Emax_hctz_cl" value="1.00729843318831" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Emax for HCTZ effect on chloride excretion.</p>
           </body>
         </notes>
       </parameter>
@@ -636,12 +777,26 @@ female: 0.5 l/kg</p>
           </body>
         </notes>
       </parameter>
-      <parameter id="vin_na" value="NaN" units="mg_per_min" constant="false"/>
-      <parameter id="vin_cl" value="NaN" units="mg_per_min" constant="false"/>
+      <parameter id="GFR" name="glomerular filtration rate" value="NaN" units="ml_per_min" constant="false"/>
       <parameter id="vout_na" value="NaN" units="mg_per_min" constant="false"/>
       <parameter id="vout_cl" value="NaN" units="mg_per_min" constant="false"/>
+      <parameter id="H2O_UPTAKE" value="NaN" units="l_per_min" constant="false"/>
     </listOfParameters>
     <listOfInitialAssignments>
+      <initialAssignment symbol="ECF">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> ECF_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="Vloop">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <cn sbml:units="dimensionless"> 0.05 </cn>
+            <ci> ECF_ref </ci>
+          </apply>
+        </math>
+      </initialAssignment>
       <initialAssignment symbol="na">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <ci> na_ref </ci>
@@ -650,6 +805,15 @@ female: 0.5 l/kg</p>
       <initialAssignment symbol="cl">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <ci> cl_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="k_h2o">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> vin_h2o </ci>
+            <ci> GFR_base </ci>
+          </apply>
         </math>
       </initialAssignment>
     </listOfInitialAssignments>
@@ -704,49 +868,30 @@ Increased venous return → Increased cardiac output → Increased blood pressur
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="k_na">
+      <assignmentRule variable="vin_na">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <ci> vin_nacl </ci>
+            <times/>
+            <ci> k_na </ci>
             <ci> na_ref </ci>
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="k_cl">
+      <assignmentRule variable="vin_cl">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <ci> vin_nacl </ci>
+            <times/>
+            <ci> k_cl </ci>
             <ci> cl_ref </ci>
           </apply>
         </math>
       </assignmentRule>
-      <assignmentRule variable="vin_na">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Uptake sodium.</p>
-          </body>
-        </notes>
+      <assignmentRule name="glomerular filtration rate" variable="GFR">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
-            <ci> NACL_UPTAKE </ci>
-            <ci> Mr_nacl </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="vin_cl">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>Uptake chloride.</p>
-          </body>
-        </notes>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <times/>
-            <ci> NACL_UPTAKE </ci>
-            <ci> Mr_nacl </ci>
+            <ci> f_renal_function </ci>
+            <ci> GFR_base </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -778,26 +923,82 @@ Increased venous return → Increased cardiac output → Increased blood pressur
           </apply>
         </math>
       </assignmentRule>
+      <assignmentRule variable="H2O_UPTAKE">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Water uptake.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> vin_h2o </ci>
+              <apply>
+                <power/>
+                <ci> ECF_ref </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+            <apply>
+              <power/>
+              <ci> ECF </ci>
+              <ci> counter_gamma </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
       <assignmentRule variable="diuresis">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Excretion rate water urine.</p>
           </body>
         </notes>
-        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <times/>
-            <ci> k_h2o </ci>
-            <ci> ECF </ci>
+            <divide/>
             <apply>
-              <plus/>
-              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <times/>
               <apply>
                 <divide/>
-                <ci> hctz </ci>
-                <ci> E50_hctz_h2o </ci>
+                <apply>
+                  <times/>
+                  <ci> k_h2o </ci>
+                  <ci> GFR </ci>
+                  <apply>
+                    <power/>
+                    <ci> ECF </ci>
+                    <ci> counter_gamma </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ECF_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
               </apply>
+              <ci> NA_EXCRETION </ci>
             </apply>
+            <ci> vin_na </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="h2o_reabsorption">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Reabsoption rate water Loop of Henle.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+            </apply>
+            <ci> diuresis </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -807,11 +1008,41 @@ Increased venous return → Increased cardiac output → Increased blood pressur
             <p>Rate rule for calculation of water change ECF.</p>
           </body>
         </notes>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <plus/>
+            <apply>
+              <minus/>
+              <ci> H2O_UPTAKE </ci>
+              <apply>
+                <times/>
+                <ci> GFR </ci>
+                <cn sbml:units="l_per_ml"> 0.001 </cn>
+              </apply>
+            </apply>
+            <ci> h2o_reabsorption </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="Vloop">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Rate rule for calculation of water change urine.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
           <apply>
             <minus/>
-            <ci> vin_h2o </ci>
-            <ci> diuresis </ci>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> GFR </ci>
+                <cn sbml:units="l_per_ml"> 0.001 </cn>
+              </apply>
+              <ci> diuresis </ci>
+            </apply>
+            <ci> h2o_reabsorption </ci>
           </apply>
         </math>
       </rateRule>
@@ -827,10 +1058,15 @@ Increased venous return → Increased cardiac output → Increased blood pressur
       </rateRule>
     </listOfRules>
     <listOfReactions>
-      <reaction metaid="meta_NACL_UPTAKE" sboTerm="SBO:0000655" id="NACL_UPTAKE" name="Na/Cl uptake via food" reversible="false" compartment="ECF">
+      <reaction metaid="meta_NA_UPTAKE" sboTerm="SBO:0000655" id="NA_UPTAKE" name="Na uptake via food" reversible="false" compartment="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Na uptake increased when concentrations too low.</p>
+          </body>
+        </notes>
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_NACL_UPTAKE">
+            <rdf:Description rdf:about="#meta_NA_UPTAKE">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
@@ -841,11 +1077,97 @@ Increased venous return → Increased cardiac output → Increased blood pressur
         </annotation>
         <listOfProducts>
           <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> vin_na </ci>
+                <apply>
+                  <power/>
+                  <ci> na_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
+              </apply>
+              <apply>
+                <power/>
+                <ci> na </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_CL_UPTAKE" sboTerm="SBO:0000655" id="CL_UPTAKE" name="Cl uptake via food" reversible="false" compartment="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Cl uptake increased when concentrations too low.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_CL_UPTAKE">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
           <speciesReference species="cl" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> vin_nacl </ci>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> vin_cl </ci>
+                <apply>
+                  <power/>
+                  <ci> cl_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
+              </apply>
+              <apply>
+                <power/>
+                <ci> cl </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_NA_FILTRATION" sboTerm="SBO:0000655" id="NA_FILTRATION" name="Na filtration kidney" reversible="false" compartment="Vki">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_NA_FILTRATION">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> na </ci>
+            </apply>
           </math>
         </kineticLaw>
       </reaction>
@@ -862,7 +1184,7 @@ Increased venous return → Increased cardiac output → Increased blood pressur
           </rdf:RDF>
         </annotation>
         <listOfReactants>
-          <speciesReference species="na" stoichiometry="1" constant="true"/>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="na_urine" stoichiometry="1" constant="true"/>
@@ -875,16 +1197,93 @@ Increased venous return → Increased cardiac output → Increased blood pressur
             <apply>
               <times/>
               <ci> k_na </ci>
-              <ci> na </ci>
+              <ci> na_loop </ci>
               <apply>
                 <plus/>
                 <cn sbml:units="dimensionless" type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> hctz </ci>
-                  <ci> E50_hctz_na </ci>
+                  <apply>
+                    <times/>
+                    <ci> Emax_hctz_na </ci>
+                    <apply>
+                      <power/>
+                      <ci> hctz </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <power/>
+                      <ci> hctz </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                    <apply>
+                      <power/>
+                      <ci> E50_hctz_nacl </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                  </apply>
                 </apply>
               </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_NA_REABSORPTION" sboTerm="SBO:0000655" id="NA_REABSORPTION" name="Na reabsorption kidney" reversible="false" compartment="Vki">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_NA_REABSORPTION">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> h2o_reabsorption </ci>
+              <ci> na_loop </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_CL_FILTRATION" sboTerm="SBO:0000655" id="CL_FILTRATION" name="Cl filtration kidney" reversible="false" compartment="Vki">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_CL_FILTRATION">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> cl </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -902,7 +1301,7 @@ Increased venous return → Increased cardiac output → Increased blood pressur
           </rdf:RDF>
         </annotation>
         <listOfReactants>
-          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="cl_urine" stoichiometry="1" constant="true"/>
@@ -915,42 +1314,73 @@ Increased venous return → Increased cardiac output → Increased blood pressur
             <apply>
               <times/>
               <ci> k_cl </ci>
-              <ci> cl </ci>
+              <ci> cl_loop </ci>
               <apply>
                 <plus/>
                 <cn sbml:units="dimensionless" type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> hctz </ci>
-                  <ci> E50_hctz_cl </ci>
+                  <apply>
+                    <times/>
+                    <ci> Emax_hctz_cl </ci>
+                    <apply>
+                      <power/>
+                      <ci> hctz </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <power/>
+                      <ci> hctz </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                    <apply>
+                      <power/>
+                      <ci> E50_hctz_nacl </ci>
+                      <ci> gamma_hctz_nacl </ci>
+                    </apply>
+                  </apply>
                 </apply>
               </apply>
             </apply>
           </math>
         </kineticLaw>
       </reaction>
-    </listOfReactions>
-    <listOfEvents>
-      <event id="event_time_0" useValuesFromTriggerTime="true">
-        <trigger initialValue="false" persistent="true">
+      <reaction metaid="meta_CL_REABSORPTION" sboTerm="SBO:0000655" id="CL_REABSORPTION" name="Cl reabsorption kidney" reversible="false" compartment="Vki">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_CL_REABSORPTION">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
-              <geq/>
-              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
-              <cn type="integer"> 0 </cn>
+              <times/>
+              <ci> h2o_reabsorption </ci>
+              <ci> cl_loop </ci>
             </apply>
           </math>
-        </trigger>
-        <listOfEventAssignments>
-          <eventAssignment variable="ECF">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-              <ci> ECF_ref </ci>
-            </math>
-          </eventAssignment>
-        </listOfEventAssignments>
-      </event>
-    </listOfEvents>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
     <comp:listOfPorts>
+      <comp:port metaid="BW_port" sboTerm="SBO:0000599" comp:idRef="BW" comp:id="BW_port" comp:name="Port of BW"/>
+      <comp:port metaid="f_renal_function_port" sboTerm="SBO:0000599" comp:idRef="f_renal_function" comp:id="f_renal_function_port" comp:name="Port of f_renal_function"/>
+      <comp:port metaid="GFR_base_port" sboTerm="SBO:0000599" comp:idRef="GFR_base" comp:id="GFR_base_port" comp:name="Port of GFR_base"/>
       <comp:port metaid="hctz_port" sboTerm="SBO:0000599" comp:idRef="hctz" comp:id="hctz_port" comp:name="Port of hctz"/>
     </comp:listOfPorts>
   </model>

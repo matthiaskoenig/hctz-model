@@ -92,7 +92,7 @@ class Beermann1979(HCTZSimulationExperiment):
                     changes={
                         **self.default_changes(),
                         "PODOSE_hctz": Q_(50, "mg"),
-                        "KI__f_renal_function": Q_(
+                        "f_renal_function": Q_(
                             self.crcl[individual] / 101, "dimensionless"
                         ),
                         # f_cardiac_function => severe

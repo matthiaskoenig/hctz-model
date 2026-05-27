@@ -17,9 +17,11 @@ from sbmlsim.fit.sampling import SamplingType
 from pkdb_models.models.hctz.fitting.fit_experiments import (
     f_fitexp_pk,
     f_fitexp_pd,
+    f_fitexp_pkiv,
 )
 from pkdb_models.models.hctz.fitting.parameters import (
     parameters_pk,
+    parameters_pk_iv,
     parameters_pd,
 )
 
@@ -110,8 +112,10 @@ class FitMethod(str, Enum):
 class FitExperimentSubset(str, Enum):
     """Subset of fit experiments for fitting."""
 
+    PKIV = "PKIV",
     PK = "PK",
     PD = "PD",
+
 
 
 def fit_hctz(
@@ -172,8 +176,9 @@ def get_fit_experiments(fit_subset: FitExperimentSubset, study_ids: List[str] = 
     """Creates a subset of fit experiments from given information."""
     if not isinstance(fit_subset, FitExperimentSubset):
         raise ValueError
-
-    if fit_subset == FitExperimentSubset.PK:
+    if fit_subset == FitExperimentSubset.PKIV:
+        fitexp_dict = f_fitexp_pkiv()
+    elif fit_subset == FitExperimentSubset.PK:
         fitexp_dict = f_fitexp_pk()
     elif fit_subset == FitExperimentSubset.PD:
         fitexp_dict = f_fitexp_pd()
@@ -192,8 +197,9 @@ def get_fit_parameters(fit_subset: FitExperimentSubset) -> List[FitParameter]:
     """Creates a subset of fit experiments from given information."""
     if not isinstance(fit_subset, FitExperimentSubset):
         raise ValueError
-
-    if fit_subset == FitExperimentSubset.PK:
+    if fit_subset == FitExperimentSubset.PKIV:
+        parameters = parameters_pk_iv
+    elif fit_subset == FitExperimentSubset.PK:
         parameters = parameters_pk
     elif fit_subset == FitExperimentSubset.PD:
         parameters = parameters_pd
@@ -325,9 +331,12 @@ def main() -> None:
     console.print(f"{'strategy':<20}: {optimization_strategy}")
     console.rule(style="white")
 
+    console.rule("Parameters", align="left", style="white")
+    parameters = get_fit_parameters(fit_subset=fit_subset)
+    console.print(FitParameter.parameters_to_df(parameters))
+
     # Run optimization
     fit_experiments = get_fit_experiments(fit_subset=fit_subset)
-    parameters = get_fit_parameters(fit_subset=fit_subset)
 
     # FIXME: this must store the results
     results: Dict[str, Tuple[OptimizationResult, OptimizationProblem]] = fit_hctz(
@@ -382,6 +391,7 @@ if __name__ == "__main__":
         
     # run parameter fitting via terminal, e.g. default output directory (10 optimizations on 10 cores)
     fit_hctz
+    fit_hctz --cores=10 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=PKIV --name=PKIV_LSQ_ALL
     fit_hctz --cores=10 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=PK --name=PK_LSQ_ALL
     fit_hctz --cores=10 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=PD --name=PD_LSQ_ALL
     """

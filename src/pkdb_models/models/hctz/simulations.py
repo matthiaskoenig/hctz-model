@@ -5,7 +5,9 @@ from pathlib import Path
 from pkdb_models.models.hctz.helpers import run_experiments
 from pkdb_models.models.hctz.experiments.studies import *
 from pkdb_models.models.hctz.experiments.misc import *
+from pkdb_models.models.hctz.experiments.scans.scan_parameters import HCTZParameterScan
 import pkdb_models.models.hctz as hctz
+from sbmlsim.plot import Figure
 
 from sbmlutils import log
 from sbmlutils.console import console
@@ -20,18 +22,20 @@ EXPERIMENTS = {
         Azumaya1990,
         Barbhaiya1982,
         Barbhaiya1982a,
-        Beerman1976,
+        Beermann1976,
         Beermann1977a,
         Beermann1979,
         Devineni2014,
+        # Dussol2005, # removed from analysis (outliers, not usable)
         Giudicelli1987,
         Heise2015,
         Howes1991,
         Hsiao2015,
         Hunninghake1986,
-        # Januszewicz1959, # removed from analysis
+        # Januszewicz1959, # removed from analysis (outliers, not usable)
         Jeon2012,
         Jordo1979,
+        Knauf1995,
         Koytchev2004,
         Niemeyer1983,
         Nilsen1989,
@@ -42,6 +46,11 @@ EXPERIMENTS = {
         Weir1998,
         Williams1982,
     ],
+    "iv": [
+        Anderson1961,
+        Beermann1976,
+    ],
+
     "renal_impairment": [
         Anderson1961,
         Niemeyer1983,
@@ -57,20 +66,26 @@ EXPERIMENTS = {
     ],
     "pharmacodynamics": [
         Beermann1977a,
-        Giudicelli1987,
-        # Januszewicz1959, # removed from analysis
         Jeon2012,
+        Knauf1995,
         Nilsen1989,
+        Patel1984,
         Ripley2000,
         Williams1982,
     ],
-    "raas": [
-        Giudicelli1987,
-        Jeon2012,
+    # "raas": [
+    #     # Giudicelli1987,
+    #     # Jeon2012,
+    #     # Ripley2000,
+    # ],
+    "misc": [
+        DoseDependencyExperiment,
     ],
-    "misc": [DoseDependencyExperiment],
+    "scans": [
+        HCTZParameterScan,
+    ]
 }
-EXPERIMENTS["all"] = EXPERIMENTS["studies"] + EXPERIMENTS["misc"]
+EXPERIMENTS["all"] = EXPERIMENTS["studies"] + EXPERIMENTS["misc"] + EXPERIMENTS["scans"]
 
 
 def run_simulation_experiments(
@@ -80,8 +95,8 @@ def run_simulation_experiments(
 ) -> None:
     """Run hctz simulation experiments."""
 
-    # Figure.fig_dpi = 600
-    # Figure.legend_fontsize = 10
+    Figure.fig_dpi = 300
+    Figure.legend_fontsize = 10
 
     # Determine which experiments to run
     if experiment_classes is not None:
@@ -135,6 +150,10 @@ if __name__ == "__main__":
     """
 
     run_simulation_experiments(selected="all")
+    # run_simulation_experiments(selected="studies")
+    # run_simulation_experiments(selected="pharmacodynamics")
+    # run_simulation_experiments(selected="iv")
+
 
     # typst
     # from pkdb_models.models.hydrochlorothiazide.thesis.supplementary_figures import create_supplement_typ

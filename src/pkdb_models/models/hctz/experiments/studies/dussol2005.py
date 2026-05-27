@@ -56,7 +56,7 @@ class Dussol2005(HCTZSimulationExperiment):
             changes={
                 **self.default_changes(),
                 "PODOSE_hctz": Q_(25, "mg"),
-                "KI__f_renal_function": Q_(
+                "f_renal_function": Q_(
                     19.5 / 100, "dimensionless")
             },
         )
@@ -66,8 +66,6 @@ class Dussol2005(HCTZSimulationExperiment):
             steps=500,
             changes={
                 "PODOSE_hctz": Q_(25, "mg"),
-                "KI__f_renal_function": Q_(
-                    19.5 / 100, "dimensionless"),
                 "na_urine": Q_(0, "mmole"), # reset urinary amount
                 "Vurine": Q_(1E-15, "l"),  # reset urinary volume
             },

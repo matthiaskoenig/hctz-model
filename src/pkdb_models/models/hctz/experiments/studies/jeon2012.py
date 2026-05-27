@@ -36,10 +36,10 @@ class Jeon2012(HCTZSimulationExperiment):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
                 elif fig_id == "Tab2" and label.startswith("amount_"):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                elif fig_id == "Fig5" and label.startswith("pra_"):
-                    dset.unit_conversion("mean", 1 / self.Mr.ren)
-                elif fig_id == "Fig5" and label.startswith("aldosterone_"):
-                    dset.unit_conversion("mean", 1 / self.Mr.ald)
+                # elif fig_id == "Fig5" and label.startswith("pra_"):
+                #     dset.unit_conversion("mean", 1 / self.Mr.ren)
+                # elif fig_id == "Fig5" and label.startswith("aldosterone_"):
+                #     dset.unit_conversion("mean", 1 / self.Mr.ald)
                 dsets[f"{fig_id}_{label}"] = dset
 
         # print(dsets.keys())
@@ -57,12 +57,13 @@ class Jeon2012(HCTZSimulationExperiment):
             changes={
                 **self.default_changes(),
                 "PODOSE_hctz": Q_(25, "mg"),
-                # mean value of acute renin at baseline
-                "ren_ref": Q_(7.58, "ng/ml") / self.Mr.ren,  # HCTZ25 mono
-                "[ren]": Q_(7.58, "ng/ml") / self.Mr.ren,  # HCTZ25 mono
-                # mean value of acute aldosterone at baseline
-                "ald_ref": Q_(209.58, "pg/ml") / self.Mr.ald,  # HCTZ25 mono
-                "[ald]": Q_(209.58, "pg/ml") / self.Mr.ald,  # HCTZ25 mono
+
+                # # mean value of acute renin at baseline
+                # "ren_ref": Q_(7.58, "ng/ml") / self.Mr.ren,  # HCTZ25 mono
+                # "[ren]": Q_(7.58, "ng/ml") / self.Mr.ren,  # HCTZ25 mono
+                # # mean value of acute aldosterone at baseline
+                # "ald_ref": Q_(209.58, "pg/ml") / self.Mr.ald,  # HCTZ25 mono
+                # "[ald]": Q_(209.58, "pg/ml") / self.Mr.ald,  # HCTZ25 mono
 
                 # blood pressure
                 # blood pressures were within predetermined criteria
@@ -106,8 +107,8 @@ class Jeon2012(HCTZSimulationExperiment):
             ("Fig3_hctz25", "[Cve_hctz]", Tissue.PLASMA),
             ("Tab2_amount_cumulative_hctz25", "Aurine_hctz", Tissue.URINE),
             ("Fig4_urine_vol_hctz25", "Vurine", Tissue.URINE),
-            ("Fig5_pra_hctz25", "[ren]", Tissue.PLASMA),  # renin activity
-            ("Fig5_aldosterone_hctz25", "[ald]", Tissue.PLASMA),
+            # ("Fig5_pra_hctz25", "[ren]", Tissue.PLASMA),  # renin activity
+            # ("Fig5_aldosterone_hctz25", "[ald]", Tissue.PLASMA),
             ("Fig6_bpsys_hctz25", "bp_systolic", Tissue.PLASMA),
             ("Fig6_bpdia_hctz25", "bp_diastolic", Tissue.PLASMA),
         ]
@@ -142,7 +143,7 @@ class Jeon2012(HCTZSimulationExperiment):
         return {
             **self.figure_Fig3_Tab2(),
             **self.figure_Fig4(),
-            **self.figure_Fig5(),
+            # **self.figure_Fig5(),
             **self.figure_Fig6(),
         }
 
@@ -151,8 +152,8 @@ class Jeon2012(HCTZSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid=name,
-            num_rows=2,
-            num_cols=1,
+            num_rows=1,
+            num_cols=2,
             name=f"{self.__class__.__name__} {name}",
         )
 
@@ -231,65 +232,65 @@ class Jeon2012(HCTZSimulationExperiment):
             fig.sid: fig,
         }
 
-    def figure_Fig5(self) -> Dict[str, Figure]:
-        name = "Fig 5"
-        fig = Figure(
-            experiment=self,
-            sid=name,
-            num_rows=2,
-            num_cols=1,
-            name=f"{self.__class__.__name__} {name}",
-        )
-        plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr", min=-25, max=25), legend=True)
-        plots[0].set_yaxis(self.labels["[ren]"], self.units["[ren]"])
-        plots[1].set_yaxis(self.labels["[ald]"], self.units["[ald]"])
-
-        # simulation
-        plots[0].add_data(
-            task=f"task_hctz25",
-            xid="time",
-            yid="[ren]",
-            label=f"Sim",
-            color=self.color_hctz,
-        )
-        plots[1].add_data(
-            task=f"task_hctz25",
-            xid="time",
-            yid="[ald]",
-            label=f"Sim",
-            color=self.color_hctz,
-        )
-        # data
-        plots[0].add_data(
-            dataset=f"Fig5_pra_hctz25",
-            xid="time",
-            yid="mean",
-            yid_sd="mean_sd",
-            count="count",
-            label=f"25 mg HCTZ",
-            color=self.color_hctz,
-        )
-        plots[1].add_data(
-            dataset=f"Fig5_aldosterone_hctz25",
-            xid="time",
-            yid="mean",
-            yid_sd="mean_sd",
-            count="count",
-            label=f"25 mg HCTZ",
-            color=self.color_hctz,
-        )
-
-        return {
-            fig.sid: fig,
-        }
+    # def figure_Fig5(self) -> Dict[str, Figure]:
+    #     name = "Fig 5"
+    #     fig = Figure(
+    #         experiment=self,
+    #         sid=name,
+    #         num_rows=2,
+    #         num_cols=1,
+    #         name=f"{self.__class__.__name__} {name}",
+    #     )
+    #     plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr", min=-25, max=25), legend=True)
+    #     plots[0].set_yaxis(self.labels["[ren]"], self.units["[ren]"])
+    #     plots[1].set_yaxis(self.labels["[ald]"], self.units["[ald]"])
+    #
+    #     # simulation
+    #     plots[0].add_data(
+    #         task=f"task_hctz25",
+    #         xid="time",
+    #         yid="[ren]",
+    #         label=f"Sim",
+    #         color=self.color_hctz,
+    #     )
+    #     plots[1].add_data(
+    #         task=f"task_hctz25",
+    #         xid="time",
+    #         yid="[ald]",
+    #         label=f"Sim",
+    #         color=self.color_hctz,
+    #     )
+    #     # data
+    #     plots[0].add_data(
+    #         dataset=f"Fig5_pra_hctz25",
+    #         xid="time",
+    #         yid="mean",
+    #         yid_sd="mean_sd",
+    #         count="count",
+    #         label=f"25 mg HCTZ",
+    #         color=self.color_hctz,
+    #     )
+    #     plots[1].add_data(
+    #         dataset=f"Fig5_aldosterone_hctz25",
+    #         xid="time",
+    #         yid="mean",
+    #         yid_sd="mean_sd",
+    #         count="count",
+    #         label=f"25 mg HCTZ",
+    #         color=self.color_hctz,
+    #     )
+    #
+    #     return {
+    #         fig.sid: fig,
+    #     }
 
     def figure_Fig6(self) -> Dict[str, Figure]:
         name = "Fig 6"
         fig = Figure(
             experiment=self,
             sid=name,
-            num_rows=2,
-            num_cols=1,
+            num_rows=1,
+            num_cols=2,
             name=f"{self.__class__.__name__} {name}",
         )
         plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr",

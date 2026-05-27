@@ -22,20 +22,20 @@ class BloodPressureExperiment(BPSimulationExperiment):
         info = {
             "Reference": {},
             "Increase H2O uptake": {
-                "vin_h2o": Q_(2.3/1440 * 2, "l/min"),
+                "vin_h2o": Q_(2.3/1440 * 1.5, "l/min"),
             },
-            "Increase diuresis": {
-                "k_h2o": Q_(0.0001173 * 2, "1/min"),
+            "Increase diuresis via GFR": {
+                "GFR_base": Q_(200, "ml/min"),
             },
             "Increase salt uptake": {
-                "vin_nacl": Q_(0.023766 * 2, "mmole/min"),
+                "vin_nacl": Q_(0.092 * 2, "mmole/min"),
             },
-            "Increase Na excretion": {
-                "k_na": Q_(0.00016975* 2, "l/min"),
-            },
-            "Increase Cl excretion": {
-                "k_cl": Q_(0.000233 * 2, "l/min"),
-            },
+            # "Increase Na excretion": {
+            #     "k_na": Q_(0.00016975* 2, "l/min"),
+            # },
+            # "Increase Cl excretion": {
+            #     "k_cl": Q_(0.000233 * 2, "l/min"),
+            # },
             "Increase ECF": {
                 "ECF": Q_(13.6125 * 2, "l"),
             },
@@ -112,7 +112,12 @@ class BloodPressureExperiment(BPSimulationExperiment):
             plots = fig.create_plots(xaxis=Axis("time", unit="day"), legend=True)
             task_id = f"task_bp_{sim_key}"
             for sid, ksid in info:
-                plots[ksid].set_yaxis(label=self.labels[sid], unit=self.units[sid])
+                if sid in {"bp_systolic", "bp_diastolic"}:
+                    plots[ksid].set_yaxis(label="Blood pressure", unit=self.units[sid])
+                elif sid in {"ECF", "ECF_ref"}:
+                    plots[ksid].set_yaxis(label="Extracellular fluid", unit=self.units[sid])
+                else:
+                    plots[ksid].set_yaxis(label=self.labels[sid], unit=self.units[sid])
                 plots[ksid].add_data(
                     task=task_id,
                     xid="time",

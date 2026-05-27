@@ -2,10 +2,11 @@ from .anderson1961 import Anderson1961
 from .azumaya1990 import Azumaya1990
 from .barbhaiya1982 import Barbhaiya1982
 from .barbhaiya1982a import Barbhaiya1982a
-from .beerman1976 import Beerman1976
+from .beermann1976 import Beermann1976
 from .beermann1977a import Beermann1977a
 from .beermann1979 import Beermann1979
 from .devineni2014 import Devineni2014
+from .dussol2005 import Dussol2005
 from .giudicelli1987 import Giudicelli1987
 from .heise2015 import Heise2015
 from .howes1991 import Howes1991
@@ -14,6 +15,7 @@ from .hunninghake1986 import Hunninghake1986
 from .januszewicz1959 import Januszewicz1959
 from .jeon2012 import Jeon2012
 from .jordo1979 import Jordo1979
+from .knauf1995 import Knauf1995
 from .koytchev2004 import Koytchev2004
 from .niemeyer1983 import Niemeyer1983
 from .nilsen1989 import Nilsen1989

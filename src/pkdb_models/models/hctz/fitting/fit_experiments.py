@@ -22,18 +22,20 @@ f_fitexp_kwargs = dict(
         Azumaya1990,
         Barbhaiya1982,
         Barbhaiya1982a,
-        Beerman1976,
+        Beermann1976,
         Beermann1977a,
         Beermann1979,
         Devineni2014,
+        # Dussol2005, # removed from analysis
         Giudicelli1987,
         Heise2015,
         Howes1991,
         Hsiao2015,
         Hunninghake1986,
-        # Januszewicz1959, excluded
+        # Januszewicz1959, # removed from analysis
         Jeon2012,
         Jordo1979,
+        Knauf1995,
         Koytchev2004,
         Niemeyer1983,
         Nilsen1989,
@@ -81,7 +83,12 @@ def filter_control(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
 
     return True
 
-def filter_hctz(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
+def filter_iv(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
+    """Only IV application data."""
+    metadata: HCTZMappingMetaData = fit_mapping.metadata
+    return metadata.route == Route.IV
+
+def filter_pk(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
     """Only HCTZ PK data."""
     yid = "__".join(fit_mapping.observable.y.sid.split("__")[1:])
     if yid not in {"Afeces_hctz", "Aurine_hctz", "Cve_hctz", "KI__HCTZEX"}:
@@ -89,7 +96,7 @@ def filter_hctz(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
     return True
 
 def filter_pd(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
-    """Only dap data."""
+    """Only HCTZ PD data."""
     yid = "__".join(fit_mapping.observable.y.sid.split("__")[1:])
     if yid in {"Afeces_hctz", "Aurine_hctz", "Cve_hctz", "KI__HCTZEX"}:
         return False
@@ -107,7 +114,11 @@ def f_fitexp_control() -> Dict[str, List[FitExperiment]]:
 
 def f_fitexp_pk() -> Dict[str, List[FitExperiment]]:
     """HCTZ pharmacokinetics data."""
-    return f_fitexp(metadata_filters=[filter_control, filter_hctz], **f_fitexp_kwargs)
+    return f_fitexp(metadata_filters=[filter_control, filter_pk], **f_fitexp_kwargs)
+
+def f_fitexp_pkiv() -> Dict[str, List[FitExperiment]]:
+    """HCTZ iv pharmacokinetics data."""
+    return f_fitexp(metadata_filters=[filter_control, filter_pk, filter_iv], **f_fitexp_kwargs)
 
 def f_fitexp_pd() -> Dict[str, List[FitExperiment]]:
     """HCTZ pharmacodynamics data."""
@@ -120,7 +131,8 @@ if __name__ == "__main__":
     for f in [
         f_fitexp_all,
         # f_fitexp_control,
-        f_fitexp_pk,
+        # f_fitexp_pkiv,
+        # f_fitexp_pk,
         f_fitexp_pd,
     ]:
         console.rule(style="white")

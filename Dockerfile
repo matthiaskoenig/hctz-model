@@ -2,14 +2,14 @@
 # Dockerfile
 # -----------------------
 # Build and push image
-#   docker build -f Dockerfile -t matthiaskoenig/hctz:0.6.0 -t matthiaskoenig/hctz:latest .
+#   docker build -f Dockerfile -t matthiaskoenig/hctz:0.7.0 -t matthiaskoenig/hctz:latest .
 #   docker login
 #   docker push --all-tags matthiaskoenig/hctz
 
 FROM python:3.14-slim
 
 # install uv
-COPY --from=ghcr.io/astral-sh/uv:0.9.26 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.11.16 /uv /bin/uv
 ENV UV_SYSTEM_PYTHON=1
 
 # install git

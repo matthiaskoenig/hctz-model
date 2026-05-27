@@ -22,15 +22,15 @@ class HCTZParameterScan(HCTZSimulationExperiment):
     font = {"weight": "bold", "size": 20}
     tick_font_size = 17
 
-    tend = 48 * 60
+    tend = 96 * 60
     steps = 2000
-    dose_hctz = 25  # [mg]
+    doses_hctz = [0, 25]  # [mg]
 
     num_points = 10
     scan_map = {
 
         "renal_scan": {
-            "parameter": "KI__f_renal_function",
+            "parameter": "f_renal_function",
             # "range": np.linspace(0.1, 1.9, num=num_points),
             "default": 1.0,
             "range": np.sort(
@@ -85,38 +85,40 @@ class HCTZParameterScan(HCTZSimulationExperiment):
         Q_ = self.Q_
         tcscans = {}
 
-        for scan_key, scan_data in self.scan_map.items():
-            tcscans[f"scan_po_{scan_key}"] = ScanSim(
-                simulation=TimecourseSim(
-                    Timecourse(
-                        start=0,
-                        end=self.tend,
-                        steps=self.steps,
-                        changes={
-                            **self.default_changes(),
-                            "PODOSE_hctz": Q_(self.dose_hctz, "mg"),
-                        },
-                    )
-                ),
-                dimensions=[
-                    Dimension(
-                        "dim_scan",
-                        changes={
-                            scan_data["parameter"]: Q_(
-                                scan_data["range"], scan_data["units"]
-                            )
-                        },
+        for dose_hctz in self.doses_hctz:
+            for scan_key, scan_data in self.scan_map.items():
+                tcscans[f"scan_po{dose_hctz}_{scan_key}"] = ScanSim(
+                    simulation=TimecourseSim(
+                        Timecourse(
+                            start=0,
+                            end=self.tend,
+                            steps=self.steps,
+                            changes={
+                                **self.default_changes(),
+                                "PODOSE_hctz": Q_(dose_hctz, "mg"),
+                            },
+                        )
                     ),
-                ],
-            )
+                    dimensions=[
+                        Dimension(
+                            "dim_scan",
+                            changes={
+                                scan_data["parameter"]: Q_(
+                                    scan_data["range"], scan_data["units"]
+                                )
+                            },
+                        ),
+                    ],
+                )
 
         return tcscans
 
     def figures_mpl(self) -> Dict[str, FigureMPL]:
         """Matplotlib figures."""
         # calculate pharmacokinetic parameters
-        self.pk_dfs = self.calculate_hydrochlorothiazide_pk()
-        self.pd_dfs = self.calculate_hydrochlorothiazide_pd()
+        self.pk_dfs = self.calculate_hctz_pk()
+        self.pd_dfs = self.calculate_hctz_pd()
+
         # console.print(self.pd_dfs)
 
         return {
@@ -170,7 +172,7 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                 # get data
                 Q_ = self.Q_
                 xres = self.results[
-                    f"task_scan_po_{scan_key}"
+                    f"task_scan_po25_{scan_key}"
                 ]
 
                 # scanned dimension
@@ -263,7 +265,6 @@ class HCTZParameterScan(HCTZSimulationExperiment):
             if scan_data["default"] not in ticks:
                 ticks.append(scan_data["default"])
                 ticks = sorted(ticks)
-            console.print(ticks)
             cbar.set_ticks(ticks)
             cbar.set_ticklabels(
                 ticks, **{"size": 15, "weight": "medium"}
@@ -314,7 +315,7 @@ class HCTZParameterScan(HCTZSimulationExperiment):
 
                     ymax = 0.0
 
-                    sim_key = f"scan_po_{scan_key}"
+                    sim_key = f"scan_po25_{scan_key}"
                     xres = self.results[f"task_{sim_key}"]
                     df = self.pk_dfs[sim_key]
                     df = df[df.substance == substance]  # get PK for substance
@@ -367,7 +368,7 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                     )
 
                     # set axis
-                    # ax.set_ylim(bottom=0.0, top=1.05 * ymax)
+                    ax.set_ylim(bottom=0.0, top=1.05 * ax.get_ylim()[1])
                     # ax.set_ylim(bottom=0.0)
                     ax.set_xscale("log")
                     ax.legend(fontsize=HCTZSimulationExperiment.legend_font_size)
@@ -403,40 +404,46 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                 ax = axes[k]
                 ax.axvline(x=scan_data["default"], color="grey", linestyle="--")
 
-                ymax = 0.0
+                # ymax = 0.0
+                for dose_hctz in self.doses_hctz:
 
-                sim_key = f"scan_po_{scan_key}"
-                xres = self.results[f"task_{sim_key}"]
-                dfs = self.pd_dfs[sim_key]
-                df = dfs[sid]  # get PD for sid
+                    if np.isclose(dose_hctz, 0) and scan_key == "dose_scan":
+                        # not plotting placebo in the dose scan
+                        continue
 
-                # This was scanned
-                parameter_id = scan_data["parameter"]
-                x_vec = Q_(
-                    xres[parameter_id].values[0], xres.uinfo[parameter_id]
-                )
-                pd_vec = df[f"{pd_key}"]
-                pd_vec = pd_vec.to_numpy()
+                    sim_key = f"scan_po{dose_hctz}_{scan_key}"
+                    xres = self.results[f"task_{sim_key}"]
+                    dfs = self.pd_dfs[sim_key]
+                    df = dfs[sid]  # get PD for sid
 
-                x = x_vec
-                y = Q_(pd_vec, df[f"unit"].values[0])
+                    # This was scanned
+                    parameter_id = scan_data["parameter"]
+                    x_vec = Q_(
+                        xres[parameter_id].values[0], xres.uinfo[parameter_id]
+                    )
+                    pd_vec = df[f"{pd_key}"]
+                    pd_vec = pd_vec.to_numpy()
 
-                y = y.to(self.units[sid])
-                ax.plot(
-                    x,
-                    y,
-                    marker="o",
-                    linestyle="-",
-                    linewidth=2.0,
-                    color="black",
-                    markeredgecolor="black",
-                    markeredgewidth=2.0,
-                    markerfacecolor="white",
-                    markersize=9,
-                )
-                ymax_value = np.nanmax(y.magnitude)
-                if ymax_value > ymax:
-                    ymax = ymax_value
+                    x = x_vec
+                    y = Q_(pd_vec, df[f"unit"].values[0])
+
+                    y = y.to(self.units[sid])
+                    ax.plot(
+                        x,
+                        y,
+                        marker="o",
+                        linestyle="-" if dose_hctz == self.doses_hctz[1] else "--",
+                        linewidth=2.0,
+                        color="black" if dose_hctz == self.doses_hctz[1] else "darkgray",
+                        markeredgecolor="black",
+                        markeredgewidth=2.0,
+                        markerfacecolor="white",
+                        markersize=9,
+                        label="hctz" if dose_hctz == self.doses_hctz[1] else "placebo",
+                    )
+                    # ymax_value = np.nanmax(y.magnitude)
+                    # if ymax_value > ymax:
+                    #     ymax = ymax_value
 
 
                 # ax.set_xlabel(scan_data["label"], fontdict=EnalaprilSimulationExperiment.scan_font)
@@ -460,7 +467,7 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                 # ax.set_ylim(bottom=0.0, top=1.05 * ymax)
                 # ax.set_ylim(bottom=0.0)
                 ax.set_xscale("log")
-                # ax.legend(fontsize=RivaroxabanSimulationExperiment.legend_font_size)
+                ax.legend(fontsize=HCTZSimulationExperiment.legend_font_size)
 
             figures[f"pd_{scan_key}"] = f
         return figures

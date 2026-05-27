@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>DoseDependencyExperiment</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <!--<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+</head>
+
+<body>
+<div id="app">
+    <!-- Vue app-->
+    <v-app>
+        <v-content>
+
+            <a href="../index.html">Experiments</a>
+            <h1>DoseDependencyExperiment</h1>
+
+            <h2>Models</h2>
+            <p>
+            <ul>
+                <li><strong>model</strong>: <a href="../../../../models/results/models/hctz_body_flat.xml">../../../../models/results/models/hctz_body_flat.xml</a></li>
+            </ul>
+            </p>
+
+            <h2>Datasets</h2>
+            <p>
+            <ul>
+            </ul>
+            </p>
+
+            <h2>Figures</h2>
+            <p>
+            <ul>
+                <li><strong>Fig_hztc_single_iv</strong>: <a href="DoseDependencyExperiment_Fig_hztc_single_iv.svg">DoseDependencyExperiment_Fig_hztc_single_iv.svg</a></li>
+                <li><strong>Fig_hztc_single_po</strong>: <a href="DoseDependencyExperiment_Fig_hztc_single_po.svg">DoseDependencyExperiment_Fig_hztc_single_po.svg</a></li>
+                <li><strong>Fig_hztc_multi_po</strong>: <a href="DoseDependencyExperiment_Fig_hztc_multi_po.svg">DoseDependencyExperiment_Fig_hztc_multi_po.svg</a></li>
+            </ul>
+            </p>
+
+            <h3>Fig_hztc_single_iv</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="DoseDependencyExperiment_Fig_hztc_single_iv.svg" max-width="600" width="600"></v-img>-->
+                        <img src="DoseDependencyExperiment_Fig_hztc_single_iv.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+            <h3>Fig_hztc_single_po</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="DoseDependencyExperiment_Fig_hztc_single_po.svg" max-width="600" width="600"></v-img>-->
+                        <img src="DoseDependencyExperiment_Fig_hztc_single_po.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+            <h3>Fig_hztc_multi_po</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="DoseDependencyExperiment_Fig_hztc_multi_po.svg" max-width="600" width="600"></v-img>-->
+                        <img src="DoseDependencyExperiment_Fig_hztc_multi_po.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+
+            <h2>Code</h2>
+            <p>
+                <a href="../../../../experiments/misc/dose_dependency.py">../../../../experiments/misc/dose_dependency.py</a>
+            <pre>
+<code class="python">from typing import Dict, Tuple
+
+from sbmlsim.plot import Axis, Figure, Plot
+from sbmlsim.simulation import Timecourse, TimecourseSim
+
+from pkdb_models.models.hctz.experiments.base_experiment import (
+    HCTZSimulationExperiment,
+)
+from pkdb_models.models.hctz.helpers import run_experiments
+
+
+class DoseDependencyExperiment(HCTZSimulationExperiment):
+    """Tests po application of HCTZ."""
+
+    doses = [100, 50, 25, 12.5, 0] # [0, 12.5, 25, 50, 100]  # [mg]
+    colors = {
+        0: "black",
+        12.5: "tab:blue",
+        25: "tab:orange",
+        50: "tab:red",
+        100: "tab:green",
+    }
+    routes = [
+        "iv",
+        "po"
+    ]
+    applications = ["single", "multi"]
+
+    def simulations(self) -> Dict[str, TimecourseSim]:
+        Q_ = self.Q_
+        tcsims = {}
+        changes = {
+            # 'KI__HCTZEX_k': Q_(1E-4, '1/ml')
+        }
+
+        for application in self.applications:
+            for route in self.routes:
+
+                if route == "iv" and application == "multi":
+                    continue
+
+                for dose in self.doses:
+
+                    if application == "single":
+                        tcsims[f"hctz_{application}_{route}_{dose}"] = TimecourseSim(
+                            Timecourse(
+                                start=0,
+                                end=5 * 24 * 60, # [min]
+                                steps=1000,
+                                changes={
+                                    **self.default_changes(),
+                                    **changes,
+                                    f"{route.upper()}DOSE_hctz": Q_(dose, "mg"),
+                                },
+                            )
+                        )
+                    elif application == "multi":
+                        tc0 = Timecourse(
+                            start=0,
+                            end=24 * 60,  # [min]
+                            steps=300,
+                            changes={
+                                **self.default_changes(),
+                                **changes,
+                                f"{route.upper()}DOSE_hctz": Q_(dose, "mg"),
+                            },
+                        )
+                        tc1 = Timecourse(
+                            start=0,
+                            end=24 * 60,  # [min]
+                            steps=300,
+                            changes={
+                                f"{route.upper()}DOSE_hctz": Q_(dose, "mg"),
+                            },
+                        )
+                        tc2 = Timecourse(
+                            start=0,
+                            end=5 * 24 * 60,  # [min]
+                            steps=1000,
+                            changes={
+                                f"{route.upper()}DOSE_hctz": Q_(dose, "mg"),
+                            },
+                        )
+                        tcsims[f"hctz_{application}_{route}_{dose}"] = TimecourseSim(
+                            [tc0] + [tc1 for _ in range(7)] + [tc2]
+                        )
+
+        return tcsims
+
+    def figures(self) -> Dict[str, Figure]:
+
+        # pharmacokinetics/pharmacodynamics
+        sids: list[Tuple[str | None, str | None, int]] = [
+            # HR, Vurine
+            ("time", "[Cve_hctz]", 0),
+            ("time", "ECF", 1),
+            ("time", "[na]", 2),  # sodium ECF
+            ("time", "[cl]", 3),  # chloride ECF
+
+            ("time", "Aurine_hctz", 4),
+            ("time", "diuresis", 5),
+            ("time", "NA_EXCRETION", 6),
+            ("time", "CL_EXCRETION", 7),
+
+            ("time", "Afeces_hctz", 8),
+            ("time", 'H2O_UPTAKE', 9),
+            ("time", 'NA_UPTAKE', 10),
+            ("time", 'CL_UPTAKE', 11),
+
+            # ("Aurine_hctz", "diuresis", 12),
+            # ("Aurine_hctz", "NA_EXCRETION", 13),
+            # ("Aurine_hctz", "CL_EXCRETION", 14),
+            # (None, None, 15),
+
+            ("time", "bp_systolic", 12),
+            ("time", "bp_diastolic", 13),
+            ("[Cve_hctz]", "bp_systolic", 14),
+            ("[Cve_hctz]", "bp_diastolic", 15),
+
+
+        ]
+
+        figures: Dict[str, Figure] = {}
+
+        for application in self.applications:
+            for route in self.routes:
+                if route == "iv" and application == "multi":
+                    continue
+
+                fig = Figure(
+                    experiment=self,
+                    sid=f"Fig_hztc_{application}_{route}",
+                    num_rows=4,
+                    num_cols=4,
+                    # name=f"HCTZ {application} {route.upper()}",
+                )
+                plots = fig.create_plots(legend=True)
+                for (xid, yid, ksid) in sids:
+                    if not xid:
+                        plots[ksid].xaxis = None
+                    if not yid:
+                        plots[ksid].yaxis = None
+                        continue
+
+                    plots[ksid].set_xaxis(label=self.labels[xid], unit=self.units[xid])
+                    plots[ksid].set_yaxis(label=self.labels[yid], unit=self.units[yid])
+                    for kdose, dose in enumerate(self.doses):
+                        label = f"HCTZ {dose} mg" if dose > 0 else "Placebo"
+
+                        # simulations
+                        plots[ksid].add_data(
+                            task=f"task_hctz_{application}_{route}_{dose}",
+                            xid=xid,
+                            yid=yid,
+                            label=label if ksid == 0 else "",
+                            color=self.colors[dose],
+                        )
+
+                figures[fig.sid] = fig
+
+        return figures
+
+
+if __name__ == "__main__":
+    run_experiments(
+        DoseDependencyExperiment, output_dir=DoseDependencyExperiment.__name__
+    )
+</code>
+        </pre>
+            </p>
+
+        </v-content>
+    </v-app>
+</div>
+
+
+<!-- loading dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.6/dist/vuetify.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        delimiters: ['${', '}'],
+        data() {
+            return {}
+        }
+    })
+</script>
+
+
+</body>
+</html>

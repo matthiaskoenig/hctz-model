@@ -1,5 +1,6 @@
 """Hydrochlorothiazide body model."""
 import numpy as np
+from sbmlutils.converters import odefac
 from sbmlutils.cytoscape import visualize_sbml
 from sbmlutils.factory import *
 from sbmlutils.metadata import *
@@ -54,6 +55,9 @@ class U(templates.U):
     s_per_min = UnitDefinition("s_per_min", "s/min")
     mmHg = UnitDefinition("mmHg", "133.32239 N/m^2")
 
+    l_per_min = UnitDefinition("l_per_min", "l/min")
+    ml_per_min = UnitDefinition("ml_per_min", "ml/min")
+
 
 _m = Model(
     "hctz_body",
@@ -93,12 +97,12 @@ SUBSTANCES_BODY = {
         "IVDOSE": 0,  # venous plasma
         # oral absorption
         "PODOSE": 0,  # dose
-        "Ka_dis": 2.229618505241087,  # [1/hr] rate of dissolution & stomach passage
-        'ftissue': 0.05496464231379963,  # [litre_per_min] distribution in tissues
-        # logP = -0.07; Hansch et al 1995;  P = 10^-0.07 = 1.17  (drug bank)
+        "Ka_dis": 0.35181331155360623,  # [1/hr] rate of dissolution & stomach passage
+        'ftissue': 0.24614387687774153,  # [litre_per_min] distribution in tissues
+        # logP = -0.07; Hansch et al 1995;  P = 10^-0.07 = 0.85  (drug bank)
         # predicted: -0.16 ALOGPS (drug bank); Kp = 0.69
         # predicted: -0.58 Chemaxon (drug bank); Kp = 0.26
-        "Kp": 0.9313963996237945,  # [-] tissue/plasma partition coefficient
+        "Kp": 0.9997280036700814,  # [-] tissue/plasma partition coefficient
     },
 }
 
@@ -538,6 +542,7 @@ _m.parameters.extend(
             constant=True,
             name="body weight [kg]",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            port=True,
         ),
         Parameter(
             "HEIGHT",
@@ -549,14 +554,6 @@ _m.parameters.extend(
         ),
         Parameter(
             "HR",
-            70,
-            U.per_min,
-            constant=True,
-            name="heart rate [1/min]",
-            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        ),
-        Parameter(
-            "HRrest",
             70,
             U.per_min,
             constant=True,
@@ -587,6 +584,33 @@ _m.parameters.extend(
         #     name="blood pressure systolic [mmHg]",
         #     sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         # ),
+        Parameter(
+            "f_renal_function",
+            1.0,
+            U.dimensionless,
+            name="renal function",
+            sboTerm=SBO.KINETIC_CONSTANT,
+            notes="""
+               >1.0: increased kidney function
+               1.0: normal kidney function (healthy control)
+               <1.0: decreased kidney function
+            """,
+            port=True,
+        ),
+        Parameter(
+            "f_GFR_Qki",
+            0.151 * 1000,
+            U.ml_per_l,
+            name=f"relationship GFR and Qki",
+            notes="""[Cody1988]"""
+        ),
+        Parameter(
+            "GFR_base",
+            NaN,
+            U.ml_per_min,
+            name=f"glomerular filtration rate (base)",
+            port=True,
+        ),
         Parameter(
             "BSA",
             0,
@@ -628,14 +652,6 @@ _m.parameters.extend(
             U.l_per_min,
             constant=False,
             name="cardiac output [L/hr]",
-            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        ),
-        Parameter(
-            "COHRI",
-            150,
-            U.ml,
-            constant=True,
-            name="increase of cardiac output per heartbeat [ml/min*min]",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         ),
         # fractional tissue volumes
@@ -879,9 +895,9 @@ _m.parameters.append(
 )
 
 replaced_parameters = {
-    "gu": [],
+    "gu": ["Mr_hctz"],
     # "li": [],
-    "ki": ["v_HCTZEX"],
+    "ki": ["v_HCTZEX", "f_renal_function", "GFR_base"],
 }
 
 for ckey, pids in replaced_parameters.items():
@@ -1001,7 +1017,7 @@ _m.rules = _m.rules + [
     # cardiac output (depending on heart rate and bodyweight)
     AssignmentRule(
         "CO",
-        "BW*f_cardiac_function*COBW + (HR-HRrest)*COHRI / 60 s_per_min",
+        "BW*f_cardiac_function * COBW",
         U.ml_per_s,
     ),
     # cardiac output (depending on bodyweight)
@@ -1045,6 +1061,7 @@ _m.rules = _m.rules + [
     AssignmentRule("Qlu", "QC*FQlu", U.l_per_min, name="lung blood flow"),
     AssignmentRule("Qre", "QC*FQre", U.l_per_min, name="rest of body blood flow"),
     AssignmentRule("Qpo", "Qgu", U.l_per_min, name="portal blood flow"),
+    AssignmentRule("GFR_base", "f_GFR_Qki * Qki", U.ml_per_min, name="glomerular filtration rate (base)"),
 ]
 
 # Volumes for explicit tissue models
@@ -1351,23 +1368,22 @@ model_body.rules.extend([
 
 if __name__ == "__main__":
     from pkdb_models.models.hctz import MODEL_BASE_PATH
-    from pkdb_models.models.hctz.models.model_raas import model_raas
     from pkdb_models.models.hctz.models.model_fluid import model_fluid
-
-
-    # FIXME: bugfix before proper model coupling
     model_fluid.compartments = [c for c in model_fluid.compartments if c.sid not in {"Vki", "Vurine"}]
-    model_fluid.parameters = [p for p in model_fluid.parameters if p.sid not in {"BW"}]
+    model_fluid.parameters = [p for p in model_fluid.parameters if p.sid not in {"BW", "f_renal_function", "GFR_base"}]
 
-
-    result = create_model(
+    results = create_model(
         filepath=MODEL_BASE_PATH / f"{model_body.sid}.xml",
         model=[
             model_fluid,
-            model_raas,
             model_body,
         ],
         sbml_level=3,
         sbml_version=2,
     )
-    visualize_sbml(result.sbml_path, delete_session=False)
+    # create differential equations
+    md_path = MODEL_BASE_PATH / f"{model_body.sid}.md"
+    ode_factory = odefac.SBML2ODE.from_file(sbml_file=results.sbml_path)
+    ode_factory.to_markdown(md_file=md_path)
+
+    visualize_sbml(results.sbml_path, delete_session=False)

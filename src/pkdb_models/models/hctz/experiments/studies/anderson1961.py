@@ -113,7 +113,7 @@ class Anderson1961(HCTZSimulationExperiment):
                         }
                     elif intervention == "renal":
                         changes = {
-                            "KI__f_renal_function": Q_(self.renal_map[f"{severity.title()} renal impairment"])
+                            "f_renal_function": Q_(self.renal_map[f"{severity.title()} renal impairment"])
                         }
                     elif intervention == "hepatic":
                         changes = {

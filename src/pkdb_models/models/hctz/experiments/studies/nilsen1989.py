@@ -25,8 +25,14 @@ class Nilsen1989(HCTZSimulationExperiment):
     single oral dosing of 25 mg HCTZ with or without 5 mg cilazapril
     """
 
-    suffixes = ["hctz25", "hctz25_cil5"]
-    names = ["25 mg HCTZ", "25 mg HCTZ + CIL"]
+    suffixes = [
+        "hctz25",
+        # "hctz25_cil5"
+    ]
+    names = [
+        "25 mg HCTZ",
+        # "25 mg HCTZ + CIL"
+    ]
     colors = {
         "hctz25" : "black",
         "hctz25_cil5" : "tab:blue",
@@ -137,7 +143,8 @@ class Nilsen1989(HCTZSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid=name,
-            num_rows=3,
+            num_rows=1,
+            num_cols=3,
             name=f"{self.__class__.__name__} {name}",
         )
 

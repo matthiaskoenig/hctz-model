@@ -2,7 +2,7 @@
 [![GitHub Action](https://github.com/matthiaskoenig/hctz-model/actions/workflows/python.yml/badge.svg)](https://github.com/matthiaskoenig/hctz-model/actions/workflows/python.yml)
 [![GitHub Action](https://github.com/matthiaskoenig/hctz-model/actions/workflows/docker.yml/badge.svg)](https://github.com/matthiaskoenig/hctz-model/actions/workflows/docker.yml)
 
-# hctz model
+# hydrochlorothiazide (hctz) model
 This repository provides the hctz physiologically based pharmacokinetics/ pharmacodynamics (PBPK/PD) model.
 
 The model is distributed as [SBML](http://sbml.org) format available from [`hctz_body_flat.xml`](./models/hctz_body_flat.xml) with 
@@ -16,7 +16,6 @@ The COMBINE archive is available from [`hctz_model.omex`](./hctz_model.omex).
 * **kidney** submodel [`hctz_kidney.xml`](./models/hctz_kidney.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/hctz-model/main/models/hctz_kidney.xml) and [equations](./models/hctz_kidney.md).
 * **intestine** submodel [`hctz_intestine.xml`](./models/hctz_intestine.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/hctz-model/main/models/hctz_intestine.xml) and [equations](./models/hctz_intestine.md).
 * **whole-body** submodel [`hctz_body.xml`](./models/hctz_body.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/hctz-model/main/models/hctz_body.xml) and [equations](./models/hctz_body.md).
-* **raas** submodel [`hctz_raas.xml`](./models/hctz_raas.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/hctz-model/main/models/hctz_raas.xml) and [equations](./models/hctz_raas.md).
 * **fluid** submodel [`hctz_fluid.xml`](./models/hctz_fluid.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/hctz-model/main/models/hctz_fluid.xml) and [equations](./models/hctz_fluid.md).
 
 ## How to cite

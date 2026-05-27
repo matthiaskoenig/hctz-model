@@ -275,17 +275,15 @@ class Patel1984(HCTZSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid=name,
-            num_rows=1,
             num_cols=2,
             name=f"{self.__class__.__name__} {name}",
         )
 
         plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit="hr", max=24), legend=True
+            xaxis=Axis(self.label_time, unit="hr", min=-1, max=13), legend=True
         )
         plots[0].set_yaxis(label="Sodium urine", unit="mmole")
         plots[1].set_yaxis(label="Chloride urine", unit="mmole")
-
 
         # simulation
         for kd, dose in enumerate(self.doses[:-1]):

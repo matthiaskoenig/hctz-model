@@ -18,6 +18,9 @@ class U(templates.U):
     mg_per_min = UnitDefinition("mg_per_min", "mg/min")
     l_per_kg = UnitDefinition("l_per_kg", "l/kg")
     mmHg = UnitDefinition("mmHg", "133.32239 N/m^2")
+    ml_per_min = UnitDefinition("ml_per_min", "ml/min")
+    mmole_per_l_ml = UnitDefinition("mmole_per_l_ml", "mmole/l/ml")
+    l_per_ml = UnitDefinition("l_per_ml", "l/ml")
 
 
 _m = Model(
@@ -41,16 +44,30 @@ _m.parameters.extend([
         "BW",
         75,
         U.kg,
-        name="body weight [kg]",
+        name="body weight",
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+        port=True,
     ),
-    # Parameter(
-    #     "sex",
-    #     0,
-    #     U.dimensionless,
-    #     name="sex (0=male, 1=female)",
-    #     sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-    # ),
+    Parameter(
+        "f_renal_function",
+        1.0,
+        U.dimensionless,
+        name="renal function",
+        sboTerm=SBO.KINETIC_CONSTANT,
+        notes="""
+       >1.0: increased kidney function
+       1.0: normal kidney function (healthy control)
+       <1.0: decreased kidney function
+    """,
+        port=True,
+    ),
+    Parameter(
+        "GFR_base",
+        100,
+        U.ml_per_min,
+        name=f"glomerular filtration rate (base)",
+        port=True,
+    ),
     Parameter(
         "f_TBW",
         0.55,
@@ -72,7 +89,7 @@ _m.parameters.extend([
     ),
     Parameter(
         "ECF_ref",
-        np.nan,
+        NaN,
         U.liter,
         constant=False,
         name="Reference extracellular fluid volume (ECF)",
@@ -131,7 +148,6 @@ _m.parameters.extend([
     ),
 ])
 
-ECF_ref = 0.55 * 0.33 * 75  # [l] ~14 l
 _m.rules.extend([
     AssignmentRule("ECF_ref", "f_ECF * f_TBW * BW", U.liter),
     AssignmentRule(
@@ -158,12 +174,21 @@ _m.rules.extend([
 _m.compartments.extend([
     Compartment(
         "ECF",
-        ECF_ref,
+        NaN,
         name="extracellular fluid (ECF)",
         sboTerm=SBO.PHYSICAL_COMPARTMENT,
         unit=U.liter,
         constant=False,
         annotations=annotations.compartments["plasma"],
+    ),
+    Compartment(
+        "Vloop",
+        0.5,
+        name="loop of Henle",
+        sboTerm=SBO.PHYSICAL_COMPARTMENT,
+        unit=U.liter,
+        constant=False,
+        annotations=annotations.compartments["loop"],
     ),
     Compartment(
         "Vurine",
@@ -176,7 +201,7 @@ _m.compartments.extend([
     ),
     Compartment(
         "Vki",
-        value=np.nan,
+        value=NaN,
         unit=U.liter,
         name="kidney",
         sboTerm=SBO.PHYSICAL_COMPARTMENT,
@@ -185,7 +210,7 @@ _m.compartments.extend([
 ])
 
 # 2 g/day ; 1440 min/day; 1000 mmole/mole; 2/1440/58.44*1000
-vin_nacl = 0.023766  # [mmole/min] Sodium chloride uptake
+# vin_nacl = 0.09218491502645276  # [mmole/min] Sodium chloride uptake
 # 2.3 l/day = 2.3/1440 l/min
 vin_h2o = 2.3/1440  # [l/min]
 na_init = 140.0  # [mM] = [mEq/l]
@@ -214,7 +239,18 @@ _m.species.extend([
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,
         sboTerm=SBO.SIMPLE_CHEMICAL,
-        # annotations=annotations.species["na"],
+        annotations=annotations.species["na"],
+        notes="""Concentration in mM corresponding to mEq/l."""
+    ),
+    Species(
+        "na_loop",
+        initialConcentration=na_init,
+        name="Sodium (Na+) (Loop of Henle)",
+        compartment="Vloop",
+        substanceUnit=U.mmole,
+        hasOnlySubstanceUnits=False,
+        sboTerm=SBO.SIMPLE_CHEMICAL,
+        annotations=annotations.species["na"],
         notes="""Concentration in mM corresponding to mEq/l."""
     ),
     Species(
@@ -225,7 +261,7 @@ _m.species.extend([
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=True,
         sboTerm=SBO.SIMPLE_CHEMICAL,
-        # annotations=annotations.species["na"],
+        annotations=annotations.species["na"],
         notes="""Concentration in mM corresponding to mEq/l."""
     ),
     Species(
@@ -236,7 +272,18 @@ _m.species.extend([
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,
         sboTerm=SBO.SIMPLE_CHEMICAL,
-        # annotations=annotations.species["cl"],
+        annotations=annotations.species["cl"],
+        notes="""Concentration in mM corresponding to mEq/l."""
+    ),
+    Species(
+        "cl_loop",
+        initialConcentration=cl_init,
+        name="Chloride (Cl-) (Loop of Henle)",
+        compartment="Vloop",
+        substanceUnit=U.mmole,
+        hasOnlySubstanceUnits=False,
+        sboTerm=SBO.SIMPLE_CHEMICAL,
+        annotations=annotations.species["cl"],
         notes="""Concentration in mM corresponding to mEq/l."""
     ),
     Species(
@@ -247,7 +294,7 @@ _m.species.extend([
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=True,
         sboTerm=SBO.SIMPLE_CHEMICAL,
-        # annotations=annotations.species["cl"],
+        annotations=annotations.species["cl"],
         notes="""Concentration in mM corresponding to mEq/l."""
     ),
 ])
@@ -274,14 +321,31 @@ _m.parameters.extend([
         name="Molecular weight chloride",
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
+    # Parameter(
+    #     "vin_nacl_ref",
+    #     vin_nacl,
+    #     U.mmole_per_min,
+    #     constant=True,
+    #     name="reference NaCl uptake via food",
+    #     sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+    # ),
     Parameter(
-        "vin_nacl",
-        vin_nacl,
+        "vin_na",
+        NaN,
         U.mmole_per_min,
         constant=True,
-        name="NaCl uptake via food",
+        name="Na uptake via food",
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
+    Parameter(
+        "vin_cl",
+        NaN,
+        U.mmole_per_min,
+        constant=True,
+        name="Cl uptake via food",
+        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+    ),
+
     Parameter(
         "vin_h2o",
         vin_h2o,
@@ -290,24 +354,30 @@ _m.parameters.extend([
         name="H2O uptake via food",
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
-
-    # FIXME: how are these rates connected? ions take water?
     Parameter(
-        "k_na", np.nan, U.l_per_min,
+        "k_na", 0.0006459968399240859, U.l_per_min,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        constant=False,
+        constant=True,
         notes="""Excretion rate sodium urine."""
     ),
     Parameter(
-        "k_cl", np.nan, U.l_per_min,
+        "k_cl", 0.003002476234054992, U.l_per_min,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        constant=False,
+        constant=True,
         notes="""Excretion rate chloride urine."""
     ),
     Parameter(
-        "k_h2o", vin_h2o / ECF_ref, U.per_min,
-        constant=True,
+        "k_h2o", NaN, U.l_per_ml,
+        constant=False,
         notes="""Excretion rate water urine."""
+    ),
+    Parameter(
+        "h2o_reabsorption",
+        NaN,
+        U.l_per_min,
+        constant=False,
+        name="H2O reabsorption from loop of Henle",
+        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         "diuresis", NaN, U.l_per_min,
@@ -315,17 +385,27 @@ _m.parameters.extend([
         notes="""Excretion rate water urine."""
     ),
     Parameter(
-        "E50_hctz_na", 0.1E-3, U.mM,
-        notes="""E50 for HCTZ effect on sodium excretion rate."""
+        "counter_gamma", 5, U.dimensionless,
+        constant=True,
+        notes="""Counter-regulation feedback."""
     ),
     Parameter(
-        "E50_hctz_cl", 0.1E-3, U.mM,
-        notes="""E50 for HCTZ effect on chloride excretion rate."""
+        "E50_hctz_nacl", 0.00015768610209207848, U.mM,
+        notes="""E50 for HCTZ effect on sodium and chloride excretion."""
     ),
     Parameter(
-        "E50_hctz_h2o", 0.1E-3, U.mM,
-        notes="""E50 for HCTZ effect on diuresis."""
+        "gamma_hctz_nacl", 3.139520154586461, U.dimensionless,
+        notes="""gamma for HCTZ effect on sodium and chloride excretion."""
     ),
+    Parameter(
+        "Emax_hctz_na", 1.8546129025527704, U.dimensionless,
+        notes="""Emax for HCTZ effect on sodium excretion."""
+    ),
+    Parameter(
+        "Emax_hctz_cl", 1.0072984331883104, U.dimensionless,
+        notes="""Emax for HCTZ effect on chloride excretion."""
+    ),
+
     Parameter(
         "na_ref", na_init, U.mM,
         constant=True,
@@ -339,68 +419,142 @@ _m.parameters.extend([
 ])
 
 _m.assignments.extend([
+    # InitialAssignment("vin_nacl", "vin_nacl_ref", U.mmole_per_min),
+    InitialAssignment("ECF", "ECF_ref", U.liter),
+    InitialAssignment("Vloop", "0.05 dimensionless * ECF_ref", U.liter),
     InitialAssignment("na", "na_ref", unit=U.mM),
     InitialAssignment("cl", "cl_ref", unit=U.mM),
+    InitialAssignment("k_h2o", "vin_h2o / GFR_base", unit=U.l_per_ml),
+
 ])
 
 _m.rules.extend([
-    AssignmentRule("k_na", "vin_nacl/na_ref", unit=U.l_per_min),
-    AssignmentRule("k_cl", "vin_nacl/cl_ref", unit=U.l_per_min),
+    AssignmentRule("vin_na", "k_na * na_ref", unit=U.l_per_min),
+    AssignmentRule("vin_cl", "k_cl * cl_ref", unit=U.l_per_min),
+    AssignmentRule(
+        variable="GFR",
+        value="f_renal_function * GFR_base",
+        unit=U.ml_per_min,
+        name="glomerular filtration rate",
+    ),
+    # AssignmentRule("k_na", "vin_nacl/na_ref", unit=U.l_per_min),
+    # AssignmentRule("k_cl", "vin_nacl/cl_ref", unit=U.l_per_min),
+    # AssignmentRule("k_h2o", "vin_h2o / GFR_base", unit=U.l_per_ml),
 
-    AssignmentRule("vin_na", "NACL_UPTAKE * Mr_nacl", unit=U.mg_per_min,
-                   notes="""Uptake sodium."""),
-    AssignmentRule("vin_cl", "NACL_UPTAKE * Mr_nacl", unit=U.mg_per_min,
-                   notes="""Uptake chloride."""),
+    # AssignmentRule("vin_na", "NA_UPTAKE * Mr_nacl", unit=U.mg_per_min,
+    #                notes="""Uptake sodium."""),
+    # AssignmentRule("vin_cl", "CL_UPTAKE * Mr_nacl", unit=U.mg_per_min,
+    #                notes="""Uptake chloride."""),
 
     # calculated observables
     AssignmentRule("vout_na", "NA_EXCRETION * Mr_na ", unit=U.mg_per_min,
                    notes="""Excretion sodium."""),
     AssignmentRule("vout_cl", "CL_EXCRETION * Mr_cl", unit=U.mg_per_min,
                    notes="""Excretion chloride."""),
-
-    AssignmentRule("diuresis", "k_h2o * ECF * (1 dimensionless + hctz/E50_hctz_h2o)", unit=U.l_per_min,
-                   notes="""Excretion rate water urine."""),
 ])
 
 _m.reactions.extend([
+
     Reaction(
-        sid="NACL_UPTAKE",
-        name=f"Na/Cl uptake via food",
+        sid="NA_UPTAKE",
+        name=f"Na uptake via food",
         compartment="ECF",
-        equation=f" -> na + cl",
+        equation=f" -> na",
         sboTerm=SBO.TRANSPORT_REACTION,
-        formula=("vin_nacl", U.mmole_per_min),
+        formula=("vin_na * power(na_ref, counter_gamma)/power(na, counter_gamma)", U.mmole_per_min),
+        notes="""Na uptake increased when concentrations too low."""
+    ),
+    Reaction(
+        sid="CL_UPTAKE",
+        name=f"Cl uptake via food",
+        compartment="ECF",
+        equation=f" -> cl",
+        sboTerm=SBO.TRANSPORT_REACTION,
+        formula=(
+            "vin_cl * power(cl_ref, counter_gamma)/power(cl, counter_gamma)", U.mmole_per_min),
+        notes="""Cl uptake increased when concentrations too low."""
+    ),
+
+    Reaction(
+        sid="NA_FILTRATION",
+        name=f"Na filtration kidney",
+        compartment="Vki",
+        equation=f"na -> na_loop",
+        sboTerm=SBO.TRANSPORT_REACTION,
+        formula=("GFR * 0.001 l_per_ml * na", U.mmole_per_min),
     ),
     Reaction(
         sid="NA_EXCRETION",
         name=f"Na excretion urine",
         compartment="Vki",
-        equation=f"na -> na_urine [hctz]",
+        equation=f"na_loop -> na_urine [hctz]",
         sboTerm=SBO.TRANSPORT_REACTION,
-        formula=("k_na * na * (1 dimensionless + hctz/E50_hctz_na)", U.mmole_per_min),
+        formula=("k_na * na_loop * (1 dimensionless + Emax_hctz_na * power(hctz, gamma_hctz_nacl)/(power(hctz, gamma_hctz_nacl) + power(E50_hctz_nacl, gamma_hctz_nacl)))", U.mmole_per_min),
+    ),
+    Reaction(
+        sid="NA_REABSORPTION",
+        name=f"Na reabsorption kidney",
+        compartment="Vki",
+        equation=f"na_loop -> na",
+        sboTerm=SBO.TRANSPORT_REACTION,
+        formula=("h2o_reabsorption * na_loop", U.mmole_per_min),
+    ),
+    Reaction(
+        sid="CL_FILTRATION",
+        name=f"Cl filtration kidney",
+        compartment="Vki",
+        equation=f"cl -> cl_loop",
+        sboTerm=SBO.TRANSPORT_REACTION,
+        formula=("GFR * 0.001 l_per_ml * cl", U.mmole_per_min),
     ),
     Reaction(
         sid="CL_EXCRETION",
         name=f"Cl excretion urine",
         compartment="Vki",
-        equation=f"cl -> cl_urine [hctz]",
+        equation=f"cl_loop -> cl_urine [hctz]",
         sboTerm=SBO.TRANSPORT_REACTION,
-        formula=("k_cl * cl * (1 dimensionless + hctz/E50_hctz_cl)", U.mmole_per_min),
+        formula=("k_cl * cl_loop * (1 dimensionless + Emax_hctz_cl * power(hctz, gamma_hctz_nacl)/(power(hctz, gamma_hctz_nacl) + power(E50_hctz_nacl, gamma_hctz_nacl)))", U.mmole_per_min),
+    ),
+    Reaction(
+        sid="CL_REABSORPTION",
+        name=f"Cl reabsorption kidney",
+        compartment="Vki",
+        equation=f"cl_loop -> cl",
+        sboTerm=SBO.TRANSPORT_REACTION,
+        formula=("h2o_reabsorption * cl_loop", U.mmole_per_min),
+    ),
+])
+
+# water balance
+_m.rules.extend([
+    AssignmentRule(
+        "H2O_UPTAKE", "vin_h2o * power(ECF_ref, counter_gamma)/power(ECF, counter_gamma)",
+        unit=U.l_per_min,
+        notes="""Water uptake."""
+    ),
+    AssignmentRule(
+        "diuresis",
+        "k_h2o * GFR * power(ECF, counter_gamma)/power(ECF_ref, counter_gamma) * NA_EXCRETION/vin_na", unit=U.l_per_min,
+        # FIXME: diuresis depends on Cl- and Na excretion
+        # "* (NA_EXCRETION + CL_EXCRETION)/(vin_na + vin_cl)", unit=U.l_per_min,
+        # "* (NA_EXCRETION/(k_na * na) + CL_EXCRETION/(k_cl * cl))/2 dimensionless", unit=U.l_per_min,
+        notes="""Excretion rate water urine."""
+    ),
+    AssignmentRule(
+        "h2o_reabsorption",
+        "GFR * 0.001 l_per_ml - diuresis", unit=U.l_per_min,
+        notes="""Reabsoption rate water Loop of Henle."""
     ),
 ])
 
 _m.rate_rules.extend([
-    RateRule("ECF", "vin_h2o - diuresis",
+    RateRule("ECF", "H2O_UPTAKE - GFR * 0.001 l_per_ml + h2o_reabsorption",
              notes="""Rate rule for calculation of water change ECF."""),
+    RateRule("Vloop", "GFR * 0.001 l_per_ml - diuresis - h2o_reabsorption",
+             notes="""Rate rule for calculation of water change urine."""),
     RateRule("Vurine", "diuresis",
             notes="""Rate rule for calculation of water change urine."""),
 ])
-
-_m.events.append(
-    Event("event_time_0", trigger="time>=0", assignments={
-        "ECF": "ECF_ref",
-    }
-))
 
 
 model_fluid = _m

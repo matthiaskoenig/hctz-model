@@ -1,0 +1,14 @@
+study	name	group_count	parent	measurement_type	count	substance	choice	mean	median	sd	se	min	max	unit	comments
+Beermann1976	all	9.0	NA	species	9.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA
+Beermann1976	all	9.0	NA	overnight fast	9.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Beermann1976	all	9.0	NA	healthy	6.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Beermann1976	all	9.0	NA	healthy	3.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Beermann1976	all	9.0	NA	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Beermann1976	all	9.0	NA	sex	3.0	NA	NR	NA	NA	NA	NA	NA	NA	NA	NA
+Beermann1976	subjects	6.0	all	healthy	6.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Beermann1976	subjects	6.0	subjects	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	information for subset of intubated reported (n=5)
+Beermann1976	subjects	6.0	subjects	age	6.0	NA	NA	NA	NA	NA	NA	40.0	60.0	yr	information for subset of intubated reported (n=5)
+Beermann1976	patients	3.0	all	healthy	3.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Beermann1976	patients	3.0	all	disease	3.0	NA	hypertension	NA	NA	NA	NA	NA	NA	NA	NA
+Beermann1976	patients	3.0	all	medication	3.0	hydrochlorothiazide	Y	NA	NA	NA	NA	NA	NA	NA	25-50mg qd for at least 3 months
+Beermann1976	patients	3.0	all	sex	3.0	NA	NR	NA	NA	NA	NA	NA	NA	NA	NA

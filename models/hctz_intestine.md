@@ -11,8 +11,8 @@ length: [m]
 
 ## Parameters `p`
 ```
-F_hctz_abs = 0.75  # [-] fraction absorbed hydrochlorothiazide  
-HCTZABS_k = 0.00243458783202386  # [1/min] rate of hydrochlorothiazide absorption  
+F_hctz_abs = 0.61213115217988  # [-] fraction absorbed hydrochlorothiazide  
+HCTZABS_k = 0.0204137687168812  # [1/min] rate of hydrochlorothiazide absorption  
 Ka_application_hctz = 1000.0  # [1/hr] Ka [1/hr] application hydrochlorothiazide  
 Ka_dis_hctz = 2.0  # [1/hr] Ka_dis [1/hr] dissolution hydrochlorothiazide  
 Mr_hctz = 297.7  # [g/mol] Molecular weight hydrochlorothiazide [g/mole]  

@@ -10,8 +10,8 @@ from sbmlsim.task import Task
 
 from pkdb_models.models.hctz import MODEL_PATH
 from pkdb_models.models.hctz.hctz_pk import (
-    calculate_hydrochlorothiazide_pk,
-    calculate_hydrochlorothiazide_pd,
+    calculate_hctz_pk,
+    calculate_hctz_pd,
 )
 
 MolecularWeights = namedtuple("MolecularWeights", "hctz ren ang1 ald")
@@ -33,6 +33,8 @@ class HCTZSimulationExperiment(SimulationExperiment):
     unit_hctz_excretion_urine = "nmol/min"
 
     unit_urine_volume = "ml"
+    unit_na = "mM"
+    unit_cl = "mM"
     unit_na_urine = "mmole"
     unit_cl_urine = "mmole"
 
@@ -52,36 +54,25 @@ class HCTZSimulationExperiment(SimulationExperiment):
         "Vurine": unit_urine_volume,
         "NA_EXCRETION": "mmole/hr",
         "CL_EXCRETION":  "mmole/hr",
-        "diuresis":  "ml/hr",
+        "vin_na": "mmole/hr",
+        "vin_cl": "mmole/hr",
+        "NA_UPTAKE": "mmole/hr",
+        "CL_UPTAKE": "mmole/hr",
+        "NA_FILTRATION": "mmole/hr",
+        "CL_FILTRATION": "mmole/hr",
+        "NA_REABSORPTION": "mmole/hr",
+        "CL_REABSORPTION": "mmole/hr",
+        "diuresis": "ml/hr",
+        "vin_h2o": "ml/hr",
+        "H2O_UPTAKE": "ml/hr",
+        "h2o_reabsorption": "ml/hr",
+
         "ECF": "l",
 
+        "[na]": unit_na,
+        "[cl]": unit_cl,
         "na_urine": unit_na_urine,
         "cl_urine": unit_cl_urine,
-
-        # RAAS system
-        "[anggen]": "pM",  # angiotensinogen in Vplasma
-        "[ang1]": "pM",  # angiotensin I in Vplasma
-        "ang1_change": "pM",
-        "ang1_ratio": "dimensionless",
-        "[ang2]": "pM",  # angiotensin II in Vplasma
-        "ang2_change": "pM",
-        "ang2_ratio": "dimensionless",
-
-        "[ren]": "pM",  # renin in Vplasma
-        "ren_change": "pM",
-        "ren_ratio": "dimensionless",
-        "[ald]": "nM",  # aldosterone in Vplasma
-        "ald_change": "nM",
-        "ald_ratio": "dimensionless",
-
-        "ANGGEN2ANG1": "pmol/min",  # angiotensinogen to angiotensin I (renin)
-        "ANG1ANG2": "pmol/min",  # angiotensin I to angiotensin II (ACE)
-        "ANG2DEG": "pmol/min",  # angiotensin II degradation (ANG2DEG)
-
-        "RENSEC": "pmol/min",  # renin secretion (RENSEC)
-        "RENDEG": "pmol/min",  # renin degradation (RENDEG)
-        "ALDSEC": "pmol/min",  # aldosterone secretion (ALDSEC)
-        "ALDDEG": "pmol/min",  # aldosterone degradation (ALDDEG)
     }
 
     label_time = "time"
@@ -91,10 +82,13 @@ class HCTZSimulationExperiment(SimulationExperiment):
     label_hctz_excretion_urine = "HCTZ excretion\nurine"
 
     label_urine_volume = "Urine volume"
+    label_na = "Sodium ECF"
+    label_cl = "Chloride ECF"
     label_na_urine = "Sodium urine"
     label_cl_urine = "Chloride urine"
 
     labels: Dict[str, str] = {
+        "time": label_time,
         "[Cve_hctz]": label_hctz,
         "Aurine_hctz": label_hctz_urine,
         "Afeces_hctz": label_hctz_feces,
@@ -108,40 +102,32 @@ class HCTZSimulationExperiment(SimulationExperiment):
         "Vurine": label_urine_volume,
         "NA_EXCRETION": "Sodium excretion\n",
         "CL_EXCRETION": "Chloride excretion\n",
+        "vin_na": "Na uptake baseline",
+        "vin_cl": "Cl uptake baseline",
+        "NA_UPTAKE": "Na uptake",
+        "CL_UPTAKE": "Cl uptake",
+        "NA_FILTRATION": "Na filtration",
+        "CL_FILTRATION": "Cl filtration",
+        "NA_REABSORPTION": "Na reabsorption",
+        "CL_REABSORPTION": "Cl reabsorption",
+        "vin_h2o": "H2O uptake baseline",
+        "H2O_UPTAKE": "H2O uptake",
+        "h2o_reabsorption": "H2O reabsorption",
         "diuresis": "diuresis",
-        "na_urine": label_na_urine,
-        "cl_urine": label_cl_urine,
+
         "ECF": "Extracellular fluid",
 
-        # RAAS system
-        "[anggen]": "angiotensinogen",  # angiotensinogen in Vplasma
-        "[ang1]": "angiotensin I",  # angiotensin I in Vplasma
-        "ang1_change": "angiotensin I change\n",
-        "ang1_ratio": "angiotensin I ratio\n",
-        "[ang2]": "angiotensin II",  # angiotensin II in Vplasma
-        "ang2_change": "angiotensin II change\n",
-        "ang2_ratio": "angiotensin II ratio\n",
-        "[ren]": "renin",  # renin in Vplasma
-        "ren_change": "renin change\n",
-        "ren_ratio": "renin ratio\n",
-        "[ald]": "aldosterone",  # aldosterone in Vplasma
-        "ald_change": "aldosterone change\n",
-        "ald_ratio": "aldosterone ratio\n",
-
-        "ANGGEN2ANG1": "ANGGEN2ANG1",  # angiotensinogen to angiotensin I (renin)
-        "ANG1ANG2": "ANG1ANG2",  # angiotensin I to angiotensin II (ANG1ANG2)
-        "ANG2DEG": "ANG2DEG",  # angiotensin II degradation (ANG2DEG)
-        "RENSEC": "renin secretion\n(RENSEC)",  # renin secretion (RENSEC)
-        "RENDEG": "renin degradation\n(RENDEG)",  # renin degradation (RENDEG)
-        "ALDSEC": "aldosterone secretion\n(ALDSEC)",  # aldosterone secretion (ALDSEC)
-        "ALDDEG": "aldosterone degradation\n(ALDDEG)",  # aldosterone degradation (ALDDEG)
+        "[na]": label_na,
+        "[cl]": label_cl,
+        "na_urine": label_na_urine,
+        "cl_urine": label_cl_urine,
     }
 
     color_hctz = "black"
     color_hctz_urine = "black"
 
     def models(self) -> Dict[str, AbstractModel]:
-        Q_ = self.Q_  # FIXME:
+        Q_ = self.Q_
         return {
             "model": AbstractModel(
                 source=MODEL_PATH,
@@ -155,22 +141,25 @@ class HCTZSimulationExperiment(SimulationExperiment):
         """Default changes to simulations."""
 
         changes = {
+            # pharmacokinetics
+            # 20260421_191243__251fc
+            # 	>>> !Optimal parameter 'Kp_hctz' within 5% of upper bound! <<<
+            # 	>>> !Optimal parameter 'GU__F_hctz_abs' within 5% of lower bound! <<<
+        	# 'ftissue_hctz': Q_(0.24614387687774153, 'l/min'),  # [0.01 - 10]
+        	# 'Kp_hctz': Q_(0.9997280036700814, 'dimensionless'),  # [0.25 - 1.0]
+        	# 'KI__HCTZEX_k': Q_(0.0037108904792554284, '1/ml'),  # [1e-10 - 1]
+        	# 'Ka_dis_hctz': Q_(0.35181331155360623, '1/hr'),  # [0.0001 - 10]
+        	# 'GU__F_hctz_abs': Q_(0.6121311521798801, 'dimensionless'),  # [0.6 - 0.8]
+        	# 'GU__HCTZABS_k': Q_(0.02041376871688115, '1/min'),  # [0.0001 - 10]
 
-            # switch to Km urine model
-            # >>> !Optimal parameter 'Kp_hctz' within 5% of upper bound! <<<
-            'ftissue_hctz': Q_(0.1268945619898461, 'l/min'),  # [0.01 - 10]
-            'Kp_hctz': Q_(0.9863278014342243, 'dimensionless'),  # [0.25 - 1.0]
-            'Ka_dis_hctz': Q_(3.3911589867541108, '1/hr'),  # [0.0001 - 10]
-            'GU__HCTZABS_k': Q_(0.00240363011285685, '1/min'),  # [0.0001 - 10]
-            'KI__HCTZEX_Vmax': Q_(0.002521976126922892, 'mmole/min/l'),  # [0.0001 - 10]
-            'KI__HCTZEX_Km': Q_(0.0028843086768038048, 'mM'),  # [1e-06 - 0.01]
-
-            # PD
-            # 20251216_190427__9ea46
-            'vin_nacl': Q_(0.09218491502645276, 'mmole/min'),  # [0.01 - 0.2]
-            'E50_hctz_na': Q_(0.0006884061501025768, 'mM'),  # [1e-06 - 0.01]
-            'E50_hctz_cl': Q_(0.0005363664092606548, 'mM'),  # [1e-06 - 0.01]
-            'E50_hctz_h2o': Q_(0.0006236904646602116, 'mM'),  # [1e-06 - 0.01]
+            # pharmacodynamics
+            # 20260428_215542__acc84
+            # 'gamma_hctz_nacl': Q_(3.139520154586461, 'dimensionless'),  # [1 - 10]
+            # 'E50_hctz_nacl': Q_(0.00015768610209207848, 'mM'),  # [1e-06 - 0.01]
+            # 'Emax_hctz_na': Q_(1.8546129025527704, 'dimensionless'),  # [1 - 20]
+            # 'Emax_hctz_cl': Q_(1.0072984331883104, 'dimensionless'),  # [1 - 20]
+            # 'k_na': Q_(0.0006459968399240859, 'l/min'),  # [1e-10 - 1000.0]
+            # 'k_cl': Q_(0.003002476234054992, 'l/min'),  # [1e-10 - 1000.0]
         }
 
         return changes
@@ -208,42 +197,33 @@ class HCTZSimulationExperiment(SimulationExperiment):
                 # Urine volume & ion balance
                 "NA_EXCRETION",  # mmole/hr [mmole/min]
                 "CL_EXCRETION",  # mmole/hr [mmole/min]
+                "NA_FILTRATION",  # mmole/hr [mmole/min]
+                "CL_FILTRATION",  # mmole/hr [mmole/min]
+                "NA_REABSORPTION",  # mmole/hr [mmole/min]
+                "CL_REABSORPTION",  # mmole/hr [mmole/min]
+
                 "diuresis",  # ml/hr [l/min]
                 "Vurine",  # urine volume
                 "na_urine", # sodium urine
                 "cl_urine", # chloride urine
+                "[na]", # sodium ECF
+                "[cl]",  # chloride ECF
                 "ECF",
+                "vin_na",
+                "vin_cl",
+                "NA_UPTAKE",
+                "CL_UPTAKE",
+
+                "vin_h2o",
+                "H2O_UPTAKE",
+                "h2o_reabsorption",
 
                 "bp_systolic",  # blood pressure systolic
                 "bp_diastolic",  # blood pressure diastolic
 
-
-                # RAAS system
-                "[anggen]",
-                "[ang1]",
-                "ang1_change",
-                "ang1_ratio",
-                "[ang2]",
-                "ang2_change",
-                "ang2_ratio",
-                "[ren]",
-                "ren_change",
-                "ren_ratio",
-                "[ald]",
-                "ald_change",
-                "ald_ratio",
-
-                "ANGGEN2ANG1",
-                "ANG1ANG2",
-                "ANG2DEG",
-                "RENSEC",
-                "RENDEG",
-                "ALDSEC",
-                "ALDDEG",
-
                 # parameter scans
                 "PODOSE_hctz",
-                "KI__f_renal_function",
+                "f_renal_function",
                 "f_cirrhosis",
                 "f_cardiac_function",
             ]
@@ -332,33 +312,41 @@ class HCTZSimulationExperiment(SimulationExperiment):
         "vd": "l",
     }
 
-    def calculate_hydrochlorothiazide_pk(self, scans: list = []) -> Dict[str, pd.DataFrame]:
+    def calculate_hctz_pk(self, scans: list = []) -> Dict[str, pd.DataFrame]:
        """Calculate pk parameters for simulations (scans)"""
        pk_dfs = {}
        if scans:
            for sim_key in scans:
+               # manual fix to not calculate PK on placebo
+               if "po0" in sim_key:
+                   continue
+
                xres = self.results[f"task_{sim_key}"]
-               df = calculate_hydrochlorothiazide_pk(experiment=self, xres=xres)
+               df = calculate_hctz_pk(experiment=self, xres=xres)
                pk_dfs[sim_key] = df
        else:
            for sim_key in self._simulations.keys():
+               # manual fix to not calculate PK on placebo
+               if "po0" in sim_key:
+                   continue
+
                xres = self.results[f"task_{sim_key}"]
-               df = calculate_hydrochlorothiazide_pk(experiment=self, xres=xres)
+               df = calculate_hctz_pk(experiment=self, xres=xres)
                pk_dfs[sim_key] = df
        return pk_dfs
 
-    def calculate_hydrochlorothiazide_pd(self, scans: list = []) -> Dict[str, pd.DataFrame]:
+    def calculate_hctz_pd(self, scans: list = []) -> Dict[str, pd.DataFrame]:
        """Calculate pd parameters for simulations (scans)"""
        pd_dfs = {}
        if scans:
            for sim_key in scans:
                xres = self.results[f"task_{sim_key}"]
-               df = calculate_hydrochlorothiazide_pd(experiment=self, xres=xres)
+               df = calculate_hctz_pd(experiment=self, xres=xres)
                pd_dfs[sim_key] = df
        else:
            for sim_key in self._simulations.keys():
                xres = self.results[f"task_{sim_key}"]
-               df = calculate_hydrochlorothiazide_pd(experiment=self, xres=xres)
+               df = calculate_hctz_pd(experiment=self, xres=xres)
                pd_dfs[sim_key] = df
        return pd_dfs
 
