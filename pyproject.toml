@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hctz-model"
-version = "0.7.0"
+version = "0.7.1"
 description = "Python code for hydrochlorothiazide model."
 readme = "README.md"
 requires-python = ">=3.14"
@@ -43,7 +43,7 @@ create_nodes = "pkdb_data.management.commands:create_info_nodes_command"
 run_hctz = "pkdb_models.models.hctz.run_hctz:main"
 fit_hctz = "pkdb_models.models.hctz.fitting.fitting:main"
 
-[project_urls]
+[project.urls]
 Homepage = "https://github.com/matthiaskoenig/hctz-model"
 Repository = "https://github.com/matthiaskoenig/hctz-model"
 Documentation = "https://github.com/matthiaskoenig/hctz-model"

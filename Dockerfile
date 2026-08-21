@@ -2,7 +2,7 @@
 # Dockerfile
 # -----------------------
 # Build and push image
-#   docker build -f Dockerfile -t matthiaskoenig/hctz:0.7.0 -t matthiaskoenig/hctz:latest .
+#   docker build -f Dockerfile -t matthiaskoenig/hctz:0.7.1 -t matthiaskoenig/hctz:latest .
 #   docker login
 #   docker push --all-tags matthiaskoenig/hctz
 
