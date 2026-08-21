@@ -152,11 +152,11 @@ def main() -> None:
         _list_available_experiments()
 
     elif action == Action.SIMULATE:
-        if not options.EXPERIMENTS:
+        if not options.experiments:
             _parser_message("For '--action simulate', the '--experiments' argument is required.")
 
         # Parse experiment names
-        exp_list = [e.strip() for e in options.EXPERIMENTS.split(",")]
+        exp_list = [e.strip() for e in options.experiments.split(",")]
 
         # Resolve names to experiment classes
         experiment_classes, not_found = _resolve_experiment_names(exp_list)
