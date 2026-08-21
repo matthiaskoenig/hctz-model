@@ -96,7 +96,8 @@ class Niopas2011(HCTZSimulationExperiment):
             sid=name,
             num_rows=1,
             num_cols=1,
-            name=f"{self.__class__.__name__} {name}",
+            # name=f"{self.__class__.__name__} {name}",
+            name=f"Niopas2004 {name}",
         )
 
         plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)

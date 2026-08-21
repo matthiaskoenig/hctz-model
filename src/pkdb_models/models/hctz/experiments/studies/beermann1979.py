@@ -46,12 +46,12 @@ class Beermann1979(HCTZSimulationExperiment):
         "GN": False,
     }
     colors = {
-        "NL": "tab:red",
+        "NL": "tab:green",
         "SP": "black",
-        "JG": "tab:red",
-        "SH": "tab:red",
-        "NK": "tab:red",
-        "GN": "tab:red",
+        "JG": "tab:green",
+        "SH": "tab:green",
+        "NK": "tab:green",
+        "GN": "tab:green",
     }
     markers = {
         "NL": ">",
@@ -211,7 +211,7 @@ class Beermann1979(HCTZSimulationExperiment):
             name=f"{self.__class__.__name__} {name}",
         )
 
-        plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)
+        plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr", min=-5, max=300), legend=True)
         plots[0].set_yaxis(self.label_hctz_urine, unit=self.unit_hctz_urine)
 
         # mean data from controls from Beermann1977a

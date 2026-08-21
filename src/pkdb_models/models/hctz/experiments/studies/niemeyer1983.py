@@ -27,7 +27,7 @@ class Niemeyer1983(HCTZSimulationExperiment):
     labels = ["NRF", "MRI", "SRI"]
     patients = ["C", "S", "W"]
     crcl = [106, 30, 10]   #  [ml/min]
-    colors = ["black", "tab:orange", "tab:red"]
+    colors = ["black", HCTZSimulationExperiment.renal_colors["Moderate renal impairment"], HCTZSimulationExperiment.renal_colors["Severe renal impairment"]]
 
     def datasets(self) -> Dict[str, DataSet]:
         dsets = {}
