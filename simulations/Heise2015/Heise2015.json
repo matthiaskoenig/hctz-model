@@ -1,12 +1,12 @@
 {
   "experiment_id": "Heise2015",
-  "base_path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz",
+  "base_path": "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz",
   "data_path": [
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/lisinopril",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/enalapril",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/aliskiren",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/canagliflozin"
+    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
+    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/lisinopril",
+    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/enalapril",
+    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/aliskiren",
+    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/canagliflozin"
   ],
   "models": {
     "model": {
@@ -15,8 +15,8 @@
       "language": "SBML",
       "language_type": "SBML",
       "source": {
-        "source": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
-        "path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "source": "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "path": "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
         "content": null
       },
       "base_path": null,

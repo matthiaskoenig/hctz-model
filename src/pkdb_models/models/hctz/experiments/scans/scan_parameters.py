@@ -120,9 +120,19 @@ class HCTZParameterScan(HCTZSimulationExperiment):
             "units": "dimensionless",
             "label": "renal function [-]",
         },
-        # no scan of cirrhosis: HCTZ has no hepatic clearance and cirrhosis
-        # changes only the shunts and the liver tissue (the AUC by 0.03 % at
-        # f_cirrhosis 0.9), the scan predicted no change by construction
+        # HCTZ has no hepatic clearance, cirrhosis changes only the shunts and
+        # the liver tissue: the AUC and the renal clearance stay the same
+        # (0.03 % at f_cirrhosis 0.9), the shunts bypass the distribution
+        # into the liver and raise Cmax (6 % at 0.9)
+        "hepatic_scan": {
+            "parameter": "f_cirrhosis",
+            "default": 0.0,
+            "range": np.linspace(0, 0.9, num=num_points),
+            "scale": "linear",
+            "colormap": "Blues",
+            "units": "dimensionless",
+            "label": "cirrhosis degree [-]",
+        },
         "cardiac_scan": {
             "parameter": "f_cardiac_function",
             # "range": np.linspace(0.1, 1.9, num=num_points),
@@ -476,6 +486,12 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                 cax=cb_ax,
                 orientation="horizontal",
             )
+            # the gradient as vector cells: matplotlib rasterizes it into an
+            # embedded image, which some SVG viewers do not show; the edges of
+            # the cells in their color close the seams between them
+            if cbar.solids is not None:
+                cbar.solids.set_rasterized(False)
+                cbar.solids.set_edgecolor("face")
 
             # label
             cbar.ax.set_xlabel(scan_data["label"], fontsize=15, fontweight="bold")

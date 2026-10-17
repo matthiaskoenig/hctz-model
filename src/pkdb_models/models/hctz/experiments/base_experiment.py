@@ -85,7 +85,7 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
     unit_na_urine = "mmole"
     unit_cl_urine = "mmole"
 
-    units: ClassVar[dict[str, str]] = {
+    units: ClassVar[Mapping[str, str]] = {
         "time": "hr",
         "[Cve_hctz]": unit_hctz,
         "Aurine_hctz": unit_hctz_urine,
@@ -128,7 +128,7 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
     label_na_urine = "Sodium urine"
     label_cl_urine = "Chloride urine"
 
-    labels: ClassVar[dict[str, str]] = {
+    labels: ClassVar[Mapping[str, str]] = {
         "time": label_time,
         "[Cve_hctz]": label_hctz,
         "Aurine_hctz": label_hctz_urine,
@@ -168,7 +168,7 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
         ren=Q(45057, "g/mole"),
     )
 
-    renal_colors: ClassVar[dict[str, str]] = {
+    renal_colors: ClassVar[Mapping[str, str]] = {
         "Control": "black",
         "Normal renal function": "black",
         "Mild renal impairment": "#66c2a4",
@@ -297,7 +297,7 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
             )
         return Q(value, "dimensionless")
 
-    cardiac_colors: ClassVar[dict[str, str]] = {
+    cardiac_colors: ClassVar[Mapping[str, str]] = {
         "Normal cardiac function": "black",
         "Mild cardiac impairment": "#FFB233",
         "Moderate cardiac impairment": "#FF8333",
@@ -308,7 +308,7 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
     # --- Pharmacokinetic parameters ---
     # keys are the parameters of the non-compartmental analysis of pkpdutils,
     # see `hctz_pk.pk_parameters`
-    pk_labels: ClassVar[dict[str, str]] = {
+    pk_labels: ClassVar[Mapping[str, str]] = {
         "auc_last": "AUCend",
         "auc_inf_obs": "AUC",
         "cl_f": "Apparent clearance",
@@ -323,7 +323,7 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
         "vz_f": "Apparent volume",
     }
 
-    pk_units: ClassVar[dict[str, str]] = {
+    pk_units: ClassVar[Mapping[str, str]] = {
         "auc_last": "µmole/l*hr",
         "auc_inf_obs": "µmole/l*hr",
         "cl_f": "ml/min",

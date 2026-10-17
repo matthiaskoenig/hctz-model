@@ -202,7 +202,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <div class="badges">
 <span class="badge">models <b>1</b></span>
 <span class="badge">datasets <b>0</b></span>
-<span class="badge">figures <b>9</b></span>
+<span class="badge">figures <b>12</b></span>
     </div>
   </div>
   <nav class="sections">
@@ -238,7 +238,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
 </section>
 
 <section id="figures">
-  <h2>Figures (9)</h2>
+  <h2>Figures (12)</h2>
   <div class="card mapping" data-filter="card">
     <header>
       <span class="name mono">timecourse__pk__renal_scan</span>
@@ -247,6 +247,16 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     </header>
     <figure>
       <img loading="lazy" src="HCTZParameterScan_timecourse__pk__renal_scan.svg" alt="timecourse__pk__renal_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">timecourse__pk__hepatic_scan</span>
+      <span class="exp">
+<a href="HCTZParameterScan_timecourse__pk__hepatic_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="HCTZParameterScan_timecourse__pk__hepatic_scan.svg" alt="timecourse__pk__hepatic_scan">
     </figure>
   </div>
   <div class="card mapping" data-filter="card">
@@ -281,6 +291,16 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
   </div>
   <div class="card mapping" data-filter="card">
     <header>
+      <span class="name mono">pk_hepatic_scan</span>
+      <span class="exp">
+<a href="HCTZParameterScan_pk_hepatic_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="HCTZParameterScan_pk_hepatic_scan.svg" alt="pk_hepatic_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
       <span class="name mono">pk_cardiac_scan</span>
       <span class="exp">
 <a href="HCTZParameterScan_pk_cardiac_scan.svg">svg</a>      </span>
@@ -307,6 +327,16 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     </header>
     <figure>
       <img loading="lazy" src="HCTZParameterScan_pd_renal_scan.svg" alt="pd_renal_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">pd_hepatic_scan</span>
+      <span class="exp">
+<a href="HCTZParameterScan_pd_hepatic_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="HCTZParameterScan_pd_hepatic_scan.svg" alt="pd_hepatic_scan">
     </figure>
   </div>
   <div class="card mapping" data-filter="card">
@@ -458,9 +488,19 @@ class HCTZParameterScan(HCTZSimulationExperiment):
             &#34;units&#34;: &#34;dimensionless&#34;,
             &#34;label&#34;: &#34;renal function [-]&#34;,
         },
-        # no scan of cirrhosis: HCTZ has no hepatic clearance and cirrhosis
-        # changes only the shunts and the liver tissue (the AUC by 0.03 % at
-        # f_cirrhosis 0.9), the scan predicted no change by construction
+        # HCTZ has no hepatic clearance, cirrhosis changes only the shunts and
+        # the liver tissue: the AUC and the renal clearance stay the same
+        # (0.03 % at f_cirrhosis 0.9), the shunts bypass the distribution
+        # into the liver and raise Cmax (6 % at 0.9)
+        &#34;hepatic_scan&#34;: {
+            &#34;parameter&#34;: &#34;f_cirrhosis&#34;,
+            &#34;default&#34;: 0.0,
+            &#34;range&#34;: np.linspace(0, 0.9, num=num_points),
+            &#34;scale&#34;: &#34;linear&#34;,
+            &#34;colormap&#34;: &#34;Blues&#34;,
+            &#34;units&#34;: &#34;dimensionless&#34;,
+            &#34;label&#34;: &#34;cirrhosis degree [-]&#34;,
+        },
         &#34;cardiac_scan&#34;: {
             &#34;parameter&#34;: &#34;f_cardiac_function&#34;,
             # &#34;range&#34;: np.linspace(0.1, 1.9, num=num_points),
@@ -814,6 +854,12 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                 cax=cb_ax,
                 orientation=&#34;horizontal&#34;,
             )
+            # the gradient as vector cells: matplotlib rasterizes it into an
+            # embedded image, which some SVG viewers do not show; the edges of
+            # the cells in their color close the seams between them
+            if cbar.solids is not None:
+                cbar.solids.set_rasterized(False)
+                cbar.solids.set_edgecolor(&#34;face&#34;)
 
             # label
             cbar.ax.set_xlabel(scan_data[&#34;label&#34;], fontsize=15, fontweight=&#34;bold&#34;)

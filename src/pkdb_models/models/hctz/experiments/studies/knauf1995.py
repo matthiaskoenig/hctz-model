@@ -2,8 +2,10 @@
 
 from typing import ClassVar, override
 
+import matplotlib
 import numpy as np
 import pandas as pd
+from matplotlib.colors import LogNorm, to_hex
 from pkpdsim.metadata import (
     ApplicationForm,
     Coadministration,
@@ -24,6 +26,9 @@ from sbmlsim.simulation.observables import Formula, Observable
 from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
+)
+from pkdb_models.models.hctz.experiments.scans.scan_parameters import (
+    HCTZParameterScan,
 )
 
 
@@ -398,6 +403,13 @@ class Knauf1995(HCTZSimulationExperiment):
             legend=True,
         )
         plots[0].set_yaxis("Net sodium\nurine 0-12 hr", unit="mmole")
+        renal_scan = HCTZParameterScan.scan_map["renal_scan"]
+        cmap = matplotlib.colormaps[renal_scan["colormap"]]
+        norm = LogNorm(vmin=renal_scan["range"][0], vmax=renal_scan["range"][-1])
+        renal_functions = {
+            label: df["x_value"] / self.gfr_healthy
+            for label, df in self._fig3().items()
+        }
         plots[1].set_yaxis("Net chloride\nurine 0-12 hr", unit="mmole")
 
         for k, (key, (label, label_tab2)) in enumerate(self.net.items()):
@@ -408,15 +420,17 @@ class Knauf1995(HCTZSimulationExperiment):
                 label="Sim 25 mg",
                 color="black",
             )
-            plots[k].add_data(
-                dataset=f"Fig3_{label}",
-                xid="x",
-                yid="y",
-                count="count",
-                label="Fig3 subjects",
-                color="tab:blue",
-                linestyle="",
-            )
+            # every subject in the color of its renal function, the colormap
+            # of the renal scan; a subject is a single person, without a count
+            for kp, renal_function in enumerate(renal_functions[label]):
+                plots[k].add_data(
+                    dataset=f"Fig3_{label}_s{kp + 1:02d}",
+                    xid="x",
+                    yid="y",
+                    label="Fig3 subjects" if kp == 0 else None,
+                    color=to_hex(cmap(norm(renal_function))),
+                    linestyle="",
+                )
             plots[k].add_data(
                 dataset=f"Tab2_{label_tab2}",
                 xid="renal_function",
@@ -424,7 +438,7 @@ class Knauf1995(HCTZSimulationExperiment):
                 yid_sd="mean_sd",
                 count="count",
                 label="Tab2 controls",
-                color="tab:red",
+                color="black",
                 linestyle="",
             )
 

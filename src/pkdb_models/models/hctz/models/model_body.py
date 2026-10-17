@@ -900,7 +900,8 @@ _m.parameters.extend(
             notes="""
             Cirrhosis is not supported for HCTZ: it changes only the shunts
             and the liver tissue, HCTZ has no hepatic clearance (the AUC
-            changes by 0.03 % at 0.9); ascites, the expansion of the
+            changes by 0.03 % at 0.9, Cmax rises by 6 % as the shunts bypass
+            the distribution into the liver); ascites, the expansion of the
             extracellular fluid and aldosterone are not in the model.
             """,
             annotations=[

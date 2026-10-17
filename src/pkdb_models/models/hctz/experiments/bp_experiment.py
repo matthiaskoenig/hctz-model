@@ -1,5 +1,6 @@
 """Base class of the simulation experiments of the fluid and blood pressure model."""
 
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Any, ClassVar, override
 
@@ -19,7 +20,7 @@ class BPSimulationExperiment(PKPDSimulationExperiment):
 
     pkpd_model = MODEL
 
-    units: ClassVar[dict[str, str]] = {
+    units: ClassVar[Mapping[str, str]] = {
         "time": "hr",
         "vin_h2o": "l/day",
         "ECF": "l",
@@ -41,7 +42,7 @@ class BPSimulationExperiment(PKPDSimulationExperiment):
         "vout_na": "g/day",
         "vout_cl": "g/day",
     }
-    labels: ClassVar[dict[str, str]] = {
+    labels: ClassVar[Mapping[str, str]] = {
         "time": "Time",
         "vin_h2o": "H2O uptake",
         "ECF": "Extracellular fluid",

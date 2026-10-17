@@ -1034,8 +1034,8 @@ model *hctz_body()
   model isDescribedBy "https://identifiers.org/doi:10.5281/zenodo.15427418"
   model occursIn "https://identifiers.org/BTO:0001489",
                  "https://identifiers.org/FMA:256135"
-  model created "2026-10-17T06:01:40Z"
-  model modified "2026-10-17T06:01:40Z"
+  model created "2026-10-17T22:59:30Z"
+  model modified "2026-10-17T22:59:30Z"
   model creator1.givenName "Amanda"
   model creator1.familyName "Schwaiger"
   model creator1.organization "Charité - Universitätsmedizin Berlin, Charitéplatz 1, 10117 Berlin, Germany"
@@ -1208,8 +1208,9 @@ a hepatic clearance of HCTZ the difference does notchange the pharmacokinetics.
 ```
   f_cirrhosis notes ```
 Cirrhosis is not supported for HCTZ: it changes only the shuntsand the liver tissue,
-HCTZ has no hepatic clearance (the AUCchanges by 0.03 % at 0.9); ascites, the expansion
-of theextracellular fluid and aldosterone are not in the model.
+HCTZ has no hepatic clearance (the AUCchanges by 0.03 % at 0.9, Cmax rises by 6 %
+as the shunts bypassthe distribution into the liver); ascites, the expansion of theextracellular
+fluid and aldosterone are not in the model.
 ```
   GU__application_hctz notes "The rate at which the oral dose `PODOSE_hctz` enters the stomach(`POSTOMACH_hctz`)."
   GU__application_solution_hctz notes "The oral dose given as a solution enters the lumen of the intestinewithout dissolution."

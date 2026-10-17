@@ -53,10 +53,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-10-17T06:01:40Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-10-17T22:59:30Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-10-17T06:01:40Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-10-17T22:59:30Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -1816,7 +1816,8 @@ change the pharmacokinetics.</p>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Cirrhosis is not supported for HCTZ: it changes only the shunts
 and the liver tissue, HCTZ has no hepatic clearance (the AUC
-changes by 0.03 % at 0.9); ascites, the expansion of the
+changes by 0.03 % at 0.9, Cmax rises by 6 % as the shunts bypass
+the distribution into the liver); ascites, the expansion of the
 extracellular fluid and aldosterone are not in the model.</p>
           </body>
         </notes>
