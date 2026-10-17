@@ -1,7 +1,13 @@
 {
   "experiment_id": "HCTZParameterScan",
-  "base_path": "/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz",
-  "data_path": "[PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/hydrochlorothiazide'), PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/lisinopril'), PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/enalapril'), PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/aliskiren'), PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/canagliflozin')]",
+  "base_path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz",
+  "data_path": [
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/lisinopril",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/enalapril",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/aliskiren",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/canagliflozin"
+  ],
   "models": {
     "model": {
       "sid": null,
@@ -9,2521 +15,1286 @@
       "language": "SBML",
       "language_type": "SBML",
       "source": {
-        "source": "/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/models/results/models/hctz_body_flat.xml",
-        "path": "/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/models/results/models/hctz_body_flat.xml",
-        "content": "None"
+        "source": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "content": null
       },
-      "changes": {}
+      "base_path": null,
+      "changes": {},
+      "selections": [
+        "Afeces_hctz",
+        "Aurine_hctz",
+        "CL_EXCRETION",
+        "ECF",
+        "NA_EXCRETION",
+        "PODOSE_hctz",
+        "[Cve_hctz]",
+        "bp_diastolic",
+        "bp_systolic",
+        "diuresis",
+        "f_cardiac_function",
+        "f_cirrhosis",
+        "f_renal_function",
+        "time"
+      ],
+      "parameters": {}
     }
   },
   "tasks": {
-    "task_scan_po0_renal_scan": {
+    "task_scan_placebo_renal_scan": {
+      "sid": "model__scan_placebo_renal_scan",
+      "name": null,
       "model": "model",
-      "simulation": "scan_po0_renal_scan"
+      "simulation": "scan_placebo_renal_scan",
+      "observables": []
     },
-    "task_scan_po0_hepatic_scan": {
+    "task_scan_placebo_cardiac_scan": {
+      "sid": "model__scan_placebo_cardiac_scan",
+      "name": null,
       "model": "model",
-      "simulation": "scan_po0_hepatic_scan"
+      "simulation": "scan_placebo_cardiac_scan",
+      "observables": []
     },
-    "task_scan_po0_cardiac_scan": {
+    "task_scan_hctz_dose_scan": {
+      "sid": "model__scan_hctz_dose_scan",
+      "name": null,
       "model": "model",
-      "simulation": "scan_po0_cardiac_scan"
+      "simulation": "scan_hctz_dose_scan",
+      "observables": []
     },
-    "task_scan_po0_dose_scan": {
+    "task_scan_hctz25_renal_scan": {
+      "sid": "model__scan_hctz25_renal_scan",
+      "name": null,
       "model": "model",
-      "simulation": "scan_po0_dose_scan"
+      "simulation": "scan_hctz25_renal_scan",
+      "observables": []
     },
-    "task_scan_po25_renal_scan": {
+    "task_scan_hctz25_cardiac_scan": {
+      "sid": "model__scan_hctz25_cardiac_scan",
+      "name": null,
       "model": "model",
-      "simulation": "scan_po25_renal_scan"
-    },
-    "task_scan_po25_hepatic_scan": {
-      "model": "model",
-      "simulation": "scan_po25_hepatic_scan"
-    },
-    "task_scan_po25_cardiac_scan": {
-      "model": "model",
-      "simulation": "scan_po25_cardiac_scan"
-    },
-    "task_scan_po25_dose_scan": {
-      "model": "model",
-      "simulation": "scan_po25_dose_scan"
+      "simulation": "scan_hctz25_cardiac_scan",
+      "observables": []
     }
   },
+  "observables": {},
   "simulations": {
-    "scan_po0_renal_scan": {
-      "type": "ScanSim"
+    "scan_placebo_renal_scan": {
+      "type": "Scan",
+      "simulation": {
+        "type": "Simulation",
+        "time_unit": "hr",
+        "start": 0.0,
+        "end": 720,
+        "preinit_changes": {
+          "PODOSE_hctz": {
+            "value": 0,
+            "unit": "milligram"
+          }
+        },
+        "changes": [],
+        "presimulation": null,
+        "times": null,
+        "steps": 15000,
+        "time_shift": 0.0
+      },
+      "dimensions": [
+        {
+          "id": "dim_scan",
+          "kind": "values",
+          "labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "values": {
+            "f_renal_function": {
+              "value": [
+                0.1,
+                0.13949507939624212,
+                0.19458877175763892,
+                0.2714417616594907,
+                0.3786479009414648,
+                0.5281951900505005,
+                0.7368062997280774,
+                1.0,
+                1.0278085328021955,
+                1.4337423288737734,
+                2.0
+              ],
+              "unit": "dimensionless"
+            }
+          },
+          "simulations": {},
+          "models": {},
+          "at": null,
+          "design": null,
+          "coordinates": {}
+        }
+      ]
     },
-    "scan_po0_hepatic_scan": {
-      "type": "ScanSim"
+    "scan_placebo_cardiac_scan": {
+      "type": "Scan",
+      "simulation": {
+        "type": "Simulation",
+        "time_unit": "hr",
+        "start": 0.0,
+        "end": 720,
+        "preinit_changes": {
+          "PODOSE_hctz": {
+            "value": 0,
+            "unit": "milligram"
+          }
+        },
+        "changes": [],
+        "presimulation": null,
+        "times": null,
+        "steps": 15000,
+        "time_shift": 0.0
+      },
+      "dimensions": [
+        {
+          "id": "dim_scan",
+          "kind": "values",
+          "labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "values": {
+            "f_cardiac_function": {
+              "value": [
+                0.5,
+                0.6111111111111112,
+                0.7222222222222222,
+                0.8333333333333333,
+                0.9444444444444444,
+                1.0,
+                1.0555555555555556,
+                1.1666666666666665,
+                1.2777777777777777,
+                1.3888888888888888,
+                1.5
+              ],
+              "unit": "dimensionless"
+            }
+          },
+          "simulations": {},
+          "models": {},
+          "at": null,
+          "design": null,
+          "coordinates": {}
+        }
+      ]
     },
-    "scan_po0_cardiac_scan": {
-      "type": "ScanSim"
+    "scan_hctz_dose_scan": {
+      "type": "Scan",
+      "simulation": {
+        "type": "Simulation",
+        "time_unit": "hr",
+        "start": 0.0,
+        "end": 720,
+        "preinit_changes": {},
+        "changes": [],
+        "presimulation": null,
+        "times": null,
+        "steps": 15000,
+        "time_shift": 0.0
+      },
+      "dimensions": [
+        {
+          "id": "dim_scan",
+          "kind": "values",
+          "labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "values": {
+            "PODOSE_hctz": {
+              "value": [
+                1.0,
+                2.5,
+                5.0,
+                12.5,
+                25.0,
+                30.0,
+                40.0,
+                50.0,
+                75.0,
+                100.0,
+                200.0
+              ],
+              "unit": "milligram"
+            }
+          },
+          "simulations": {},
+          "models": {},
+          "at": null,
+          "design": null,
+          "coordinates": {}
+        }
+      ]
     },
-    "scan_po0_dose_scan": {
-      "type": "ScanSim"
+    "scan_hctz25_renal_scan": {
+      "type": "Scan",
+      "simulation": {
+        "type": "Simulation",
+        "time_unit": "hr",
+        "start": 0.0,
+        "end": 720,
+        "preinit_changes": {
+          "PODOSE_hctz": {
+            "value": 25,
+            "unit": "milligram"
+          }
+        },
+        "changes": [],
+        "presimulation": null,
+        "times": null,
+        "steps": 15000,
+        "time_shift": 0.0
+      },
+      "dimensions": [
+        {
+          "id": "dim_scan",
+          "kind": "values",
+          "labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "values": {
+            "f_renal_function": {
+              "value": [
+                0.1,
+                0.13949507939624212,
+                0.19458877175763892,
+                0.2714417616594907,
+                0.3786479009414648,
+                0.5281951900505005,
+                0.7368062997280774,
+                1.0,
+                1.0278085328021955,
+                1.4337423288737734,
+                2.0
+              ],
+              "unit": "dimensionless"
+            }
+          },
+          "simulations": {},
+          "models": {},
+          "at": null,
+          "design": null,
+          "coordinates": {}
+        }
+      ]
     },
-    "scan_po25_renal_scan": {
-      "type": "ScanSim"
-    },
-    "scan_po25_hepatic_scan": {
-      "type": "ScanSim"
-    },
-    "scan_po25_cardiac_scan": {
-      "type": "ScanSim"
-    },
-    "scan_po25_dose_scan": {
-      "type": "ScanSim"
+    "scan_hctz25_cardiac_scan": {
+      "type": "Scan",
+      "simulation": {
+        "type": "Simulation",
+        "time_unit": "hr",
+        "start": 0.0,
+        "end": 720,
+        "preinit_changes": {
+          "PODOSE_hctz": {
+            "value": 25,
+            "unit": "milligram"
+          }
+        },
+        "changes": [],
+        "presimulation": null,
+        "times": null,
+        "steps": 15000,
+        "time_shift": 0.0
+      },
+      "dimensions": [
+        {
+          "id": "dim_scan",
+          "kind": "values",
+          "labels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "values": {
+            "f_cardiac_function": {
+              "value": [
+                0.5,
+                0.6111111111111112,
+                0.7222222222222222,
+                0.8333333333333333,
+                0.9444444444444444,
+                1.0,
+                1.0555555555555556,
+                1.1666666666666665,
+                1.2777777777777777,
+                1.3888888888888888,
+                1.5
+              ],
+              "unit": "dimensionless"
+            }
+          },
+          "simulations": {},
+          "models": {},
+          "at": null,
+          "design": null,
+          "coordinates": {}
+        }
+      ]
     }
   },
   "data": {
-    "task_scan_po0_renal_scan__time": {
+    "task_scan_placebo_renal_scan__time": {
       "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__time",
       "index": "time",
+      "selection": "time",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__IVDOSE_hctz": {
+    "task_scan_placebo_renal_scan__conc__Cve_hctz": {
       "type": "TASK",
-      "index": "IVDOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__PODOSE_hctz": {
-      "type": "TASK",
-      "index": "PODOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__Cve_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__conc__Cve_hctz",
       "index": "Cve_hctz",
+      "selection": "[Cve_hctz]",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__Afeces_hctz": {
+    "task_scan_placebo_renal_scan__Aurine_hctz": {
       "type": "TASK",
-      "index": "Afeces_hctz",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__KI__HCTZEX": {
-      "type": "TASK",
-      "index": "KI__HCTZEX",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__Aurine_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__Aurine_hctz",
       "index": "Aurine_hctz",
+      "selection": "Aurine_hctz",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__hctz_urine_excretion": {
+    "task_scan_placebo_renal_scan__Afeces_hctz": {
       "type": "TASK",
-      "index": "hctz_urine_excretion",
+      "sid": "task_scan_placebo_renal_scan__Afeces_hctz",
+      "index": "Afeces_hctz",
+      "selection": "Afeces_hctz",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__HR": {
+    "task_scan_placebo_renal_scan__NA_EXCRETION": {
       "type": "TASK",
-      "index": "HR",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__NA_EXCRETION": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__NA_EXCRETION",
       "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__CL_EXCRETION": {
+    "task_scan_placebo_renal_scan__CL_EXCRETION": {
       "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__CL_EXCRETION",
       "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__NA_FILTRATION": {
+    "task_scan_placebo_renal_scan__diuresis": {
       "type": "TASK",
-      "index": "NA_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__CL_FILTRATION": {
-      "type": "TASK",
-      "index": "CL_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__NA_REABSORPTION": {
-      "type": "TASK",
-      "index": "NA_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__CL_REABSORPTION": {
-      "type": "TASK",
-      "index": "CL_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__diuresis": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__diuresis",
       "index": "diuresis",
+      "selection": "diuresis",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__Vurine": {
+    "task_scan_placebo_renal_scan__ECF": {
       "type": "TASK",
-      "index": "Vurine",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__na_urine": {
-      "type": "TASK",
-      "index": "na_urine",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__cl_urine": {
-      "type": "TASK",
-      "index": "cl_urine",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__na": {
-      "type": "TASK",
-      "index": "na",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__cl": {
-      "type": "TASK",
-      "index": "cl",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__ECF": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__ECF",
       "index": "ECF",
+      "selection": "ECF",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__vin_na": {
+    "task_scan_placebo_renal_scan__bp_systolic": {
       "type": "TASK",
-      "index": "vin_na",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__vin_cl": {
-      "type": "TASK",
-      "index": "vin_cl",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__NA_UPTAKE": {
-      "type": "TASK",
-      "index": "NA_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__CL_UPTAKE": {
-      "type": "TASK",
-      "index": "CL_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__vin_h2o": {
-      "type": "TASK",
-      "index": "vin_h2o",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__H2O_UPTAKE": {
-      "type": "TASK",
-      "index": "H2O_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__h2o_reabsorption": {
-      "type": "TASK",
-      "index": "h2o_reabsorption",
-      "unit": null,
-      "task": "task_scan_po0_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_renal_scan__bp_systolic": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__bp_systolic",
       "index": "bp_systolic",
+      "selection": "bp_systolic",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__bp_diastolic": {
+    "task_scan_placebo_renal_scan__bp_diastolic": {
       "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__bp_diastolic",
       "index": "bp_diastolic",
+      "selection": "bp_diastolic",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__f_renal_function": {
+    "task_scan_placebo_renal_scan__PODOSE_hctz": {
       "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__PODOSE_hctz",
+      "index": "PODOSE_hctz",
+      "selection": "PODOSE_hctz",
+      "unit": null,
+      "task": "task_scan_placebo_renal_scan",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_scan_placebo_renal_scan__f_renal_function": {
+      "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__f_renal_function",
       "index": "f_renal_function",
+      "selection": "f_renal_function",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__f_cirrhosis": {
+    "task_scan_placebo_renal_scan__f_cirrhosis": {
       "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__f_cirrhosis",
       "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_renal_scan__f_cardiac_function": {
+    "task_scan_placebo_renal_scan__f_cardiac_function": {
       "type": "TASK",
+      "sid": "task_scan_placebo_renal_scan__f_cardiac_function",
       "index": "f_cardiac_function",
+      "selection": "f_cardiac_function",
       "unit": null,
-      "task": "task_scan_po0_renal_scan",
+      "task": "task_scan_placebo_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__time": {
+    "task_scan_placebo_cardiac_scan__time": {
       "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__time",
       "index": "time",
+      "selection": "time",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__IVDOSE_hctz": {
+    "task_scan_placebo_cardiac_scan__conc__Cve_hctz": {
       "type": "TASK",
-      "index": "IVDOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__PODOSE_hctz": {
-      "type": "TASK",
-      "index": "PODOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__Cve_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__conc__Cve_hctz",
       "index": "Cve_hctz",
+      "selection": "[Cve_hctz]",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__Afeces_hctz": {
+    "task_scan_placebo_cardiac_scan__Aurine_hctz": {
       "type": "TASK",
-      "index": "Afeces_hctz",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__KI__HCTZEX": {
-      "type": "TASK",
-      "index": "KI__HCTZEX",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__Aurine_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__Aurine_hctz",
       "index": "Aurine_hctz",
+      "selection": "Aurine_hctz",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__hctz_urine_excretion": {
+    "task_scan_placebo_cardiac_scan__Afeces_hctz": {
       "type": "TASK",
-      "index": "hctz_urine_excretion",
+      "sid": "task_scan_placebo_cardiac_scan__Afeces_hctz",
+      "index": "Afeces_hctz",
+      "selection": "Afeces_hctz",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__HR": {
+    "task_scan_placebo_cardiac_scan__NA_EXCRETION": {
       "type": "TASK",
-      "index": "HR",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__NA_EXCRETION": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__NA_EXCRETION",
       "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__CL_EXCRETION": {
+    "task_scan_placebo_cardiac_scan__CL_EXCRETION": {
       "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__CL_EXCRETION",
       "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__NA_FILTRATION": {
+    "task_scan_placebo_cardiac_scan__diuresis": {
       "type": "TASK",
-      "index": "NA_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__CL_FILTRATION": {
-      "type": "TASK",
-      "index": "CL_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__NA_REABSORPTION": {
-      "type": "TASK",
-      "index": "NA_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__CL_REABSORPTION": {
-      "type": "TASK",
-      "index": "CL_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__diuresis": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__diuresis",
       "index": "diuresis",
+      "selection": "diuresis",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__Vurine": {
+    "task_scan_placebo_cardiac_scan__ECF": {
       "type": "TASK",
-      "index": "Vurine",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__na_urine": {
-      "type": "TASK",
-      "index": "na_urine",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__cl_urine": {
-      "type": "TASK",
-      "index": "cl_urine",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__na": {
-      "type": "TASK",
-      "index": "na",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__cl": {
-      "type": "TASK",
-      "index": "cl",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__ECF": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__ECF",
       "index": "ECF",
+      "selection": "ECF",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__vin_na": {
+    "task_scan_placebo_cardiac_scan__bp_systolic": {
       "type": "TASK",
-      "index": "vin_na",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__vin_cl": {
-      "type": "TASK",
-      "index": "vin_cl",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__NA_UPTAKE": {
-      "type": "TASK",
-      "index": "NA_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__CL_UPTAKE": {
-      "type": "TASK",
-      "index": "CL_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__vin_h2o": {
-      "type": "TASK",
-      "index": "vin_h2o",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__H2O_UPTAKE": {
-      "type": "TASK",
-      "index": "H2O_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__h2o_reabsorption": {
-      "type": "TASK",
-      "index": "h2o_reabsorption",
-      "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_hepatic_scan__bp_systolic": {
-      "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__bp_systolic",
       "index": "bp_systolic",
+      "selection": "bp_systolic",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__bp_diastolic": {
+    "task_scan_placebo_cardiac_scan__bp_diastolic": {
       "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__bp_diastolic",
       "index": "bp_diastolic",
+      "selection": "bp_diastolic",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__f_renal_function": {
+    "task_scan_placebo_cardiac_scan__PODOSE_hctz": {
       "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__PODOSE_hctz",
+      "index": "PODOSE_hctz",
+      "selection": "PODOSE_hctz",
+      "unit": null,
+      "task": "task_scan_placebo_cardiac_scan",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_scan_placebo_cardiac_scan__f_renal_function": {
+      "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__f_renal_function",
       "index": "f_renal_function",
+      "selection": "f_renal_function",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__f_cirrhosis": {
+    "task_scan_placebo_cardiac_scan__f_cirrhosis": {
       "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__f_cirrhosis",
       "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_hepatic_scan__f_cardiac_function": {
+    "task_scan_placebo_cardiac_scan__f_cardiac_function": {
       "type": "TASK",
+      "sid": "task_scan_placebo_cardiac_scan__f_cardiac_function",
       "index": "f_cardiac_function",
+      "selection": "f_cardiac_function",
       "unit": null,
-      "task": "task_scan_po0_hepatic_scan",
+      "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__time": {
+    "task_scan_hctz_dose_scan__time": {
       "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__time",
       "index": "time",
+      "selection": "time",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__IVDOSE_hctz": {
+    "task_scan_hctz_dose_scan__conc__Cve_hctz": {
       "type": "TASK",
-      "index": "IVDOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__PODOSE_hctz": {
-      "type": "TASK",
-      "index": "PODOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__Cve_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__conc__Cve_hctz",
       "index": "Cve_hctz",
+      "selection": "[Cve_hctz]",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__Afeces_hctz": {
+    "task_scan_hctz_dose_scan__Aurine_hctz": {
       "type": "TASK",
-      "index": "Afeces_hctz",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__KI__HCTZEX": {
-      "type": "TASK",
-      "index": "KI__HCTZEX",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__Aurine_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__Aurine_hctz",
       "index": "Aurine_hctz",
+      "selection": "Aurine_hctz",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__hctz_urine_excretion": {
+    "task_scan_hctz_dose_scan__Afeces_hctz": {
       "type": "TASK",
-      "index": "hctz_urine_excretion",
+      "sid": "task_scan_hctz_dose_scan__Afeces_hctz",
+      "index": "Afeces_hctz",
+      "selection": "Afeces_hctz",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__HR": {
+    "task_scan_hctz_dose_scan__NA_EXCRETION": {
       "type": "TASK",
-      "index": "HR",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__NA_EXCRETION": {
-      "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__NA_EXCRETION",
       "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__CL_EXCRETION": {
+    "task_scan_hctz_dose_scan__CL_EXCRETION": {
       "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__CL_EXCRETION",
       "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__NA_FILTRATION": {
+    "task_scan_hctz_dose_scan__diuresis": {
       "type": "TASK",
-      "index": "NA_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__CL_FILTRATION": {
-      "type": "TASK",
-      "index": "CL_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__NA_REABSORPTION": {
-      "type": "TASK",
-      "index": "NA_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__CL_REABSORPTION": {
-      "type": "TASK",
-      "index": "CL_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__diuresis": {
-      "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__diuresis",
       "index": "diuresis",
+      "selection": "diuresis",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__Vurine": {
+    "task_scan_hctz_dose_scan__ECF": {
       "type": "TASK",
-      "index": "Vurine",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__na_urine": {
-      "type": "TASK",
-      "index": "na_urine",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__cl_urine": {
-      "type": "TASK",
-      "index": "cl_urine",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__na": {
-      "type": "TASK",
-      "index": "na",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__cl": {
-      "type": "TASK",
-      "index": "cl",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__ECF": {
-      "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__ECF",
       "index": "ECF",
+      "selection": "ECF",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__vin_na": {
+    "task_scan_hctz_dose_scan__bp_systolic": {
       "type": "TASK",
-      "index": "vin_na",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__vin_cl": {
-      "type": "TASK",
-      "index": "vin_cl",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__NA_UPTAKE": {
-      "type": "TASK",
-      "index": "NA_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__CL_UPTAKE": {
-      "type": "TASK",
-      "index": "CL_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__vin_h2o": {
-      "type": "TASK",
-      "index": "vin_h2o",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__H2O_UPTAKE": {
-      "type": "TASK",
-      "index": "H2O_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__h2o_reabsorption": {
-      "type": "TASK",
-      "index": "h2o_reabsorption",
-      "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_cardiac_scan__bp_systolic": {
-      "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__bp_systolic",
       "index": "bp_systolic",
+      "selection": "bp_systolic",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__bp_diastolic": {
+    "task_scan_hctz_dose_scan__bp_diastolic": {
       "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__bp_diastolic",
       "index": "bp_diastolic",
+      "selection": "bp_diastolic",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__f_renal_function": {
+    "task_scan_hctz_dose_scan__PODOSE_hctz": {
       "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__PODOSE_hctz",
+      "index": "PODOSE_hctz",
+      "selection": "PODOSE_hctz",
+      "unit": null,
+      "task": "task_scan_hctz_dose_scan",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_scan_hctz_dose_scan__f_renal_function": {
+      "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__f_renal_function",
       "index": "f_renal_function",
+      "selection": "f_renal_function",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__f_cirrhosis": {
+    "task_scan_hctz_dose_scan__f_cirrhosis": {
       "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__f_cirrhosis",
       "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_cardiac_scan__f_cardiac_function": {
+    "task_scan_hctz_dose_scan__f_cardiac_function": {
       "type": "TASK",
+      "sid": "task_scan_hctz_dose_scan__f_cardiac_function",
       "index": "f_cardiac_function",
+      "selection": "f_cardiac_function",
       "unit": null,
-      "task": "task_scan_po0_cardiac_scan",
+      "task": "task_scan_hctz_dose_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__time": {
+    "task_scan_hctz25_renal_scan__time": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__time",
       "index": "time",
+      "selection": "time",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__IVDOSE_hctz": {
+    "task_scan_hctz25_renal_scan__conc__Cve_hctz": {
       "type": "TASK",
-      "index": "IVDOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__PODOSE_hctz": {
-      "type": "TASK",
-      "index": "PODOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__Cve_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__conc__Cve_hctz",
       "index": "Cve_hctz",
+      "selection": "[Cve_hctz]",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__Afeces_hctz": {
+    "task_scan_hctz25_renal_scan__Aurine_hctz": {
       "type": "TASK",
-      "index": "Afeces_hctz",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__KI__HCTZEX": {
-      "type": "TASK",
-      "index": "KI__HCTZEX",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__Aurine_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__Aurine_hctz",
       "index": "Aurine_hctz",
+      "selection": "Aurine_hctz",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__hctz_urine_excretion": {
+    "task_scan_hctz25_renal_scan__Afeces_hctz": {
       "type": "TASK",
-      "index": "hctz_urine_excretion",
+      "sid": "task_scan_hctz25_renal_scan__Afeces_hctz",
+      "index": "Afeces_hctz",
+      "selection": "Afeces_hctz",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__HR": {
+    "task_scan_hctz25_renal_scan__NA_EXCRETION": {
       "type": "TASK",
-      "index": "HR",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__NA_EXCRETION": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__NA_EXCRETION",
       "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__CL_EXCRETION": {
+    "task_scan_hctz25_renal_scan__CL_EXCRETION": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__CL_EXCRETION",
       "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__NA_FILTRATION": {
+    "task_scan_hctz25_renal_scan__diuresis": {
       "type": "TASK",
-      "index": "NA_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__CL_FILTRATION": {
-      "type": "TASK",
-      "index": "CL_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__NA_REABSORPTION": {
-      "type": "TASK",
-      "index": "NA_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__CL_REABSORPTION": {
-      "type": "TASK",
-      "index": "CL_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__diuresis": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__diuresis",
       "index": "diuresis",
+      "selection": "diuresis",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__Vurine": {
+    "task_scan_hctz25_renal_scan__ECF": {
       "type": "TASK",
-      "index": "Vurine",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__na_urine": {
-      "type": "TASK",
-      "index": "na_urine",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__cl_urine": {
-      "type": "TASK",
-      "index": "cl_urine",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__na": {
-      "type": "TASK",
-      "index": "na",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__cl": {
-      "type": "TASK",
-      "index": "cl",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__ECF": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__ECF",
       "index": "ECF",
+      "selection": "ECF",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__vin_na": {
+    "task_scan_hctz25_renal_scan__bp_systolic": {
       "type": "TASK",
-      "index": "vin_na",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__vin_cl": {
-      "type": "TASK",
-      "index": "vin_cl",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__NA_UPTAKE": {
-      "type": "TASK",
-      "index": "NA_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__CL_UPTAKE": {
-      "type": "TASK",
-      "index": "CL_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__vin_h2o": {
-      "type": "TASK",
-      "index": "vin_h2o",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__H2O_UPTAKE": {
-      "type": "TASK",
-      "index": "H2O_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__h2o_reabsorption": {
-      "type": "TASK",
-      "index": "h2o_reabsorption",
-      "unit": null,
-      "task": "task_scan_po0_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po0_dose_scan__bp_systolic": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__bp_systolic",
       "index": "bp_systolic",
+      "selection": "bp_systolic",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__bp_diastolic": {
+    "task_scan_hctz25_renal_scan__bp_diastolic": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__bp_diastolic",
       "index": "bp_diastolic",
+      "selection": "bp_diastolic",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__f_renal_function": {
+    "task_scan_hctz25_renal_scan__PODOSE_hctz": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__PODOSE_hctz",
+      "index": "PODOSE_hctz",
+      "selection": "PODOSE_hctz",
+      "unit": null,
+      "task": "task_scan_hctz25_renal_scan",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_scan_hctz25_renal_scan__f_renal_function": {
+      "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__f_renal_function",
       "index": "f_renal_function",
+      "selection": "f_renal_function",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__f_cirrhosis": {
+    "task_scan_hctz25_renal_scan__f_cirrhosis": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__f_cirrhosis",
       "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po0_dose_scan__f_cardiac_function": {
+    "task_scan_hctz25_renal_scan__f_cardiac_function": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_renal_scan__f_cardiac_function",
       "index": "f_cardiac_function",
+      "selection": "f_cardiac_function",
       "unit": null,
-      "task": "task_scan_po0_dose_scan",
+      "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__time": {
+    "task_scan_hctz25_cardiac_scan__time": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__time",
       "index": "time",
+      "selection": "time",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__IVDOSE_hctz": {
+    "task_scan_hctz25_cardiac_scan__conc__Cve_hctz": {
       "type": "TASK",
-      "index": "IVDOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__PODOSE_hctz": {
-      "type": "TASK",
-      "index": "PODOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__Cve_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__conc__Cve_hctz",
       "index": "Cve_hctz",
+      "selection": "[Cve_hctz]",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__Afeces_hctz": {
+    "task_scan_hctz25_cardiac_scan__Aurine_hctz": {
       "type": "TASK",
-      "index": "Afeces_hctz",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__KI__HCTZEX": {
-      "type": "TASK",
-      "index": "KI__HCTZEX",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__Aurine_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__Aurine_hctz",
       "index": "Aurine_hctz",
+      "selection": "Aurine_hctz",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__hctz_urine_excretion": {
+    "task_scan_hctz25_cardiac_scan__Afeces_hctz": {
       "type": "TASK",
-      "index": "hctz_urine_excretion",
+      "sid": "task_scan_hctz25_cardiac_scan__Afeces_hctz",
+      "index": "Afeces_hctz",
+      "selection": "Afeces_hctz",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__HR": {
+    "task_scan_hctz25_cardiac_scan__NA_EXCRETION": {
       "type": "TASK",
-      "index": "HR",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__NA_EXCRETION": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__NA_EXCRETION",
       "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__CL_EXCRETION": {
+    "task_scan_hctz25_cardiac_scan__CL_EXCRETION": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__CL_EXCRETION",
       "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__NA_FILTRATION": {
+    "task_scan_hctz25_cardiac_scan__diuresis": {
       "type": "TASK",
-      "index": "NA_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__CL_FILTRATION": {
-      "type": "TASK",
-      "index": "CL_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__NA_REABSORPTION": {
-      "type": "TASK",
-      "index": "NA_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__CL_REABSORPTION": {
-      "type": "TASK",
-      "index": "CL_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__diuresis": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__diuresis",
       "index": "diuresis",
+      "selection": "diuresis",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__Vurine": {
+    "task_scan_hctz25_cardiac_scan__ECF": {
       "type": "TASK",
-      "index": "Vurine",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__na_urine": {
-      "type": "TASK",
-      "index": "na_urine",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__cl_urine": {
-      "type": "TASK",
-      "index": "cl_urine",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__na": {
-      "type": "TASK",
-      "index": "na",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__cl": {
-      "type": "TASK",
-      "index": "cl",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__ECF": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__ECF",
       "index": "ECF",
+      "selection": "ECF",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__vin_na": {
+    "task_scan_hctz25_cardiac_scan__bp_systolic": {
       "type": "TASK",
-      "index": "vin_na",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__vin_cl": {
-      "type": "TASK",
-      "index": "vin_cl",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__NA_UPTAKE": {
-      "type": "TASK",
-      "index": "NA_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__CL_UPTAKE": {
-      "type": "TASK",
-      "index": "CL_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__vin_h2o": {
-      "type": "TASK",
-      "index": "vin_h2o",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__H2O_UPTAKE": {
-      "type": "TASK",
-      "index": "H2O_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__h2o_reabsorption": {
-      "type": "TASK",
-      "index": "h2o_reabsorption",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__bp_systolic": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__bp_systolic",
       "index": "bp_systolic",
+      "selection": "bp_systolic",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__bp_diastolic": {
+    "task_scan_hctz25_cardiac_scan__bp_diastolic": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__bp_diastolic",
       "index": "bp_diastolic",
+      "selection": "bp_diastolic",
       "unit": null,
-      "task": "task_scan_po25_renal_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_renal_scan__f_renal_function": {
+    "task_scan_hctz25_cardiac_scan__PODOSE_hctz": {
       "type": "TASK",
-      "index": "f_renal_function",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__f_cirrhosis": {
-      "type": "TASK",
-      "index": "f_cirrhosis",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_renal_scan__f_cardiac_function": {
-      "type": "TASK",
-      "index": "f_cardiac_function",
-      "unit": null,
-      "task": "task_scan_po25_renal_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__time": {
-      "type": "TASK",
-      "index": "time",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__IVDOSE_hctz": {
-      "type": "TASK",
-      "index": "IVDOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__PODOSE_hctz": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__PODOSE_hctz",
       "index": "PODOSE_hctz",
+      "selection": "PODOSE_hctz",
       "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_hepatic_scan__Cve_hctz": {
+    "task_scan_hctz25_cardiac_scan__f_renal_function": {
       "type": "TASK",
-      "index": "Cve_hctz",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__Afeces_hctz": {
-      "type": "TASK",
-      "index": "Afeces_hctz",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__KI__HCTZEX": {
-      "type": "TASK",
-      "index": "KI__HCTZEX",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__Aurine_hctz": {
-      "type": "TASK",
-      "index": "Aurine_hctz",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__hctz_urine_excretion": {
-      "type": "TASK",
-      "index": "hctz_urine_excretion",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__HR": {
-      "type": "TASK",
-      "index": "HR",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__NA_EXCRETION": {
-      "type": "TASK",
-      "index": "NA_EXCRETION",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__CL_EXCRETION": {
-      "type": "TASK",
-      "index": "CL_EXCRETION",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__NA_FILTRATION": {
-      "type": "TASK",
-      "index": "NA_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__CL_FILTRATION": {
-      "type": "TASK",
-      "index": "CL_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__NA_REABSORPTION": {
-      "type": "TASK",
-      "index": "NA_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__CL_REABSORPTION": {
-      "type": "TASK",
-      "index": "CL_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__diuresis": {
-      "type": "TASK",
-      "index": "diuresis",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__Vurine": {
-      "type": "TASK",
-      "index": "Vurine",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__na_urine": {
-      "type": "TASK",
-      "index": "na_urine",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__cl_urine": {
-      "type": "TASK",
-      "index": "cl_urine",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__na": {
-      "type": "TASK",
-      "index": "na",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__cl": {
-      "type": "TASK",
-      "index": "cl",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__ECF": {
-      "type": "TASK",
-      "index": "ECF",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__vin_na": {
-      "type": "TASK",
-      "index": "vin_na",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__vin_cl": {
-      "type": "TASK",
-      "index": "vin_cl",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__NA_UPTAKE": {
-      "type": "TASK",
-      "index": "NA_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__CL_UPTAKE": {
-      "type": "TASK",
-      "index": "CL_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__vin_h2o": {
-      "type": "TASK",
-      "index": "vin_h2o",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__H2O_UPTAKE": {
-      "type": "TASK",
-      "index": "H2O_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__h2o_reabsorption": {
-      "type": "TASK",
-      "index": "h2o_reabsorption",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__bp_systolic": {
-      "type": "TASK",
-      "index": "bp_systolic",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__bp_diastolic": {
-      "type": "TASK",
-      "index": "bp_diastolic",
-      "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_hepatic_scan__f_renal_function": {
-      "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__f_renal_function",
       "index": "f_renal_function",
+      "selection": "f_renal_function",
       "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_hepatic_scan__f_cirrhosis": {
+    "task_scan_hctz25_cardiac_scan__f_cirrhosis": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__f_cirrhosis",
       "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
       "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_scan_po25_hepatic_scan__f_cardiac_function": {
+    "task_scan_hctz25_cardiac_scan__f_cardiac_function": {
       "type": "TASK",
+      "sid": "task_scan_hctz25_cardiac_scan__f_cardiac_function",
       "index": "f_cardiac_function",
+      "selection": "f_cardiac_function",
       "unit": null,
-      "task": "task_scan_po25_hepatic_scan",
+      "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
       "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__time": {
-      "type": "TASK",
-      "index": "time",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__IVDOSE_hctz": {
-      "type": "TASK",
-      "index": "IVDOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__PODOSE_hctz": {
-      "type": "TASK",
-      "index": "PODOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__Cve_hctz": {
-      "type": "TASK",
-      "index": "Cve_hctz",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__Afeces_hctz": {
-      "type": "TASK",
-      "index": "Afeces_hctz",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__KI__HCTZEX": {
-      "type": "TASK",
-      "index": "KI__HCTZEX",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__Aurine_hctz": {
-      "type": "TASK",
-      "index": "Aurine_hctz",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__hctz_urine_excretion": {
-      "type": "TASK",
-      "index": "hctz_urine_excretion",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__HR": {
-      "type": "TASK",
-      "index": "HR",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__NA_EXCRETION": {
-      "type": "TASK",
-      "index": "NA_EXCRETION",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__CL_EXCRETION": {
-      "type": "TASK",
-      "index": "CL_EXCRETION",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__NA_FILTRATION": {
-      "type": "TASK",
-      "index": "NA_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__CL_FILTRATION": {
-      "type": "TASK",
-      "index": "CL_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__NA_REABSORPTION": {
-      "type": "TASK",
-      "index": "NA_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__CL_REABSORPTION": {
-      "type": "TASK",
-      "index": "CL_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__diuresis": {
-      "type": "TASK",
-      "index": "diuresis",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__Vurine": {
-      "type": "TASK",
-      "index": "Vurine",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__na_urine": {
-      "type": "TASK",
-      "index": "na_urine",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__cl_urine": {
-      "type": "TASK",
-      "index": "cl_urine",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__na": {
-      "type": "TASK",
-      "index": "na",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__cl": {
-      "type": "TASK",
-      "index": "cl",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__ECF": {
-      "type": "TASK",
-      "index": "ECF",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__vin_na": {
-      "type": "TASK",
-      "index": "vin_na",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__vin_cl": {
-      "type": "TASK",
-      "index": "vin_cl",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__NA_UPTAKE": {
-      "type": "TASK",
-      "index": "NA_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__CL_UPTAKE": {
-      "type": "TASK",
-      "index": "CL_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__vin_h2o": {
-      "type": "TASK",
-      "index": "vin_h2o",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__H2O_UPTAKE": {
-      "type": "TASK",
-      "index": "H2O_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__h2o_reabsorption": {
-      "type": "TASK",
-      "index": "h2o_reabsorption",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__bp_systolic": {
-      "type": "TASK",
-      "index": "bp_systolic",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__bp_diastolic": {
-      "type": "TASK",
-      "index": "bp_diastolic",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__f_renal_function": {
-      "type": "TASK",
-      "index": "f_renal_function",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__f_cirrhosis": {
-      "type": "TASK",
-      "index": "f_cirrhosis",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_cardiac_scan__f_cardiac_function": {
-      "type": "TASK",
-      "index": "f_cardiac_function",
-      "unit": null,
-      "task": "task_scan_po25_cardiac_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__time": {
-      "type": "TASK",
-      "index": "time",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__IVDOSE_hctz": {
-      "type": "TASK",
-      "index": "IVDOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__PODOSE_hctz": {
-      "type": "TASK",
-      "index": "PODOSE_hctz",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__Cve_hctz": {
-      "type": "TASK",
-      "index": "Cve_hctz",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__Afeces_hctz": {
-      "type": "TASK",
-      "index": "Afeces_hctz",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__KI__HCTZEX": {
-      "type": "TASK",
-      "index": "KI__HCTZEX",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__Aurine_hctz": {
-      "type": "TASK",
-      "index": "Aurine_hctz",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__hctz_urine_excretion": {
-      "type": "TASK",
-      "index": "hctz_urine_excretion",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__HR": {
-      "type": "TASK",
-      "index": "HR",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__NA_EXCRETION": {
-      "type": "TASK",
-      "index": "NA_EXCRETION",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__CL_EXCRETION": {
-      "type": "TASK",
-      "index": "CL_EXCRETION",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__NA_FILTRATION": {
-      "type": "TASK",
-      "index": "NA_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__CL_FILTRATION": {
-      "type": "TASK",
-      "index": "CL_FILTRATION",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__NA_REABSORPTION": {
-      "type": "TASK",
-      "index": "NA_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__CL_REABSORPTION": {
-      "type": "TASK",
-      "index": "CL_REABSORPTION",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__diuresis": {
-      "type": "TASK",
-      "index": "diuresis",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__Vurine": {
-      "type": "TASK",
-      "index": "Vurine",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__na_urine": {
-      "type": "TASK",
-      "index": "na_urine",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__cl_urine": {
-      "type": "TASK",
-      "index": "cl_urine",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__na": {
-      "type": "TASK",
-      "index": "na",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__cl": {
-      "type": "TASK",
-      "index": "cl",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__ECF": {
-      "type": "TASK",
-      "index": "ECF",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__vin_na": {
-      "type": "TASK",
-      "index": "vin_na",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__vin_cl": {
-      "type": "TASK",
-      "index": "vin_cl",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__NA_UPTAKE": {
-      "type": "TASK",
-      "index": "NA_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__CL_UPTAKE": {
-      "type": "TASK",
-      "index": "CL_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__vin_h2o": {
-      "type": "TASK",
-      "index": "vin_h2o",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__H2O_UPTAKE": {
-      "type": "TASK",
-      "index": "H2O_UPTAKE",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__h2o_reabsorption": {
-      "type": "TASK",
-      "index": "h2o_reabsorption",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__bp_systolic": {
-      "type": "TASK",
-      "index": "bp_systolic",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__bp_diastolic": {
-      "type": "TASK",
-      "index": "bp_diastolic",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__f_renal_function": {
-      "type": "TASK",
-      "index": "f_renal_function",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__f_cirrhosis": {
-      "type": "TASK",
-      "index": "f_cirrhosis",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
-    },
-    "task_scan_po25_dose_scan__f_cardiac_function": {
-      "type": "TASK",
-      "index": "f_cardiac_function",
-      "unit": null,
-      "task": "task_scan_po25_dose_scan",
-      "dataset": null,
-      "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     }
   },
   "figures": {}

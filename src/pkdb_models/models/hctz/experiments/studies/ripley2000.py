@@ -1,57 +1,72 @@
-from typing import Dict
+"""Simulation experiment of the study Ripley2000."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
+from sbmlsim.simulation import Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Ripley2000(HCTZSimulationExperiment):
     """Simulation experiment of Ripley2000.
 
     Single  oral dosing of 25mg HCTZ, comparing between black and white populations.
+
+    The patients had stage 1 or 2 hypertension (p. 158). The cumulative sodium
+    after HCTZ is the 0-24 hr total of Fig1 with the 0-12 hr and 24-36 hr
+    intervals of Fig2. Fig2 gives the SD of the interval, the data carry the SD
+    of the cumulative value at 36 hr as sqrt(SD_0-24^2 + SD_24-36^2), the SD of
+    the sum of independent intervals.
     """
 
-    interventions = ["baseline", "hctz"]  # ["baseline", "diet", "hctz"] no diet data
-    groups = ["black", "white"]
-    positions = ["supine", "upright"]
-    colors = {
+    interventions: ClassVar[list[str]] = [
+        "baseline",
+        "hctz",
+    ]  # ["baseline", "diet", "hctz"] no diet data
+    groups: ClassVar[list[str]] = ["black", "white"]
+    positions: ClassVar[list[str]] = ["supine", "upright"]
+    colors: ClassVar[dict[str, str]] = {
         "baseline": "black",
         "diet": "gray",
         "hctz": "tab:blue",
     }
-    markers = {
+    markers: ClassVar[dict[str, str]] = {
         "supine": "s",
         "upright": "o",
         "black": "<",
         "white": ">",
     }
-    doses = {  # [mg]
+    doses: ClassVar[dict[str, int]] = {  # [mg]
         "baseline": 0,
         "diet": 25,
         "hctz": 25,
     }
 
-
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Tab3", "Fig1_2", "Fig3"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
@@ -61,48 +76,46 @@ class Ripley2000(HCTZSimulationExperiment):
                 #     dset.unit_conversion("mean", 1 / self.Mr.ald)
                 dsets[f"{fig_id}_{label}"] = dset
 
-        # print(dsets.keys())
-        # print(dsets)
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
         for intervention in self.interventions:
             dose = self.doses[intervention]
-            tcsims[f"hctz{dose}_{intervention}"] = TimecourseSim(
-                Timecourse(
-                    start=0,
-                    end=40 * 60,  # [min]
-                    steps=500,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_hctz": Q_(dose, "mg"),
-
-                        # # mean value of acute renin at baseline
-                        # "ren_ref": Q_((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
-                        # "[ren]": Q_((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
-                        #
-                        # # mean value of acute aldosterone at baseline
-                        # "ald_ref": Q_((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
-                        # "[ald]": Q_((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
-                    },
-                )
+            simulations[f"hctz{dose}_{intervention}"] = Simulation(
+                time_unit="hr",
+                end=40,
+                steps=500,
+                preinit_changes={
+                    **self.default_changes(),
+                    "PODOSE_hctz": Q(dose, "mg"),
+                    # # mean value of acute renin at baseline
+                    # "ren_ref": Q((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
+                    # "[ren]": Q((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
+                    #
+                    # # mean value of acute aldosterone at baseline
+                    # "ald_ref": Q((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
+                    # "[ald]": Q((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
+                },
             )
-        return tcsims
+        return simulations
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
+        # the dataset, the observable and the intervention whose simulation
+        # the dataset is compared with
         infos = [
-            ("Tab3_hctz_aurine_black", "Aurine_hctz"),
-            ("Tab3_hctz_aurine_white", "Aurine_hctz"),
-            ("Fig1_2_sodium_baseline_black", "na_urine"),
-            ("Fig1_2_sodium_baseline_white", "na_urine"),
-            # ("Fig1_2_sodium_diet_black", "na_urine"),
-            # ("Fig1_2_sodium_diet_white", "na_urine"),
-            ("Fig1_2_sodium_hctz_black", "na_urine"),
-            ("Fig1_2_sodium_hctz_white", "na_urine"),
+            ("Tab3_hctz_aurine_black", "Aurine_hctz", "hctz"),
+            ("Tab3_hctz_aurine_white", "Aurine_hctz", "hctz"),
+            ("Fig1_2_sodium_baseline_black", "na_urine", "baseline"),
+            ("Fig1_2_sodium_baseline_white", "na_urine", "baseline"),
+            # ("Fig1_2_sodium_diet_black", "na_urine", "diet"),
+            # ("Fig1_2_sodium_diet_white", "na_urine", "diet"),
+            ("Fig1_2_sodium_hctz_black", "na_urine", "hctz"),
+            ("Fig1_2_sodium_hctz_white", "na_urine", "hctz"),
             # ("Fig3_renin_plasma_hctz_black_supine", "[ren]"),
             # ("Fig3_renin_plasma_hctz_white_supine", "[ren]"),
             # ("Fig3_renin_plasma_hctz_black_upright", "[ren]"),
@@ -111,12 +124,11 @@ class Ripley2000(HCTZSimulationExperiment):
             # ("Fig3_aldo_plasma_hctz_white_supine", "[ald]"),
             # ("Fig3_aldo_plasma_hctz_black_upright", "[ald]"),
             # ("Fig3_aldo_plasma_hctz_white_upright", "[ald]")
-            ]
-
-        # FIXME: use the correct simulations, i.e. diet, baseline or hctz!!
+        ]
 
         for info in infos:
-            (dset_id, yid) = info
+            (dset_id, yid, intervention) = info
+            dose = self.doses[intervention]
             mappings[f"fm_{dset_id}"] = FitMapping(
                 self,
                 reference=FitData(
@@ -127,27 +139,35 @@ class Ripley2000(HCTZSimulationExperiment):
                     yid_sd="mean_sd",
                     count="count",
                 ),
-                observable=FitData(self, task=f"task_hctz25_hctz", xid="time", yid=yid),
-                metadata=HCTZMappingMetaData(
+                observable=FitData(
+                    self,
+                    task=f"task_hctz{dose}_{intervention}",
+                    xid="time",
+                    yid=yid,
+                ),
+                metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
-                    health=Health.HEALTHY,
+                    # stage 1 or 2 hypertension, antihypertensive drugs
+                    # withdrawn 4 weeks before (p. 158)
+                    health=Health.HYPERTENSION,
                     fasting=Fasting.NR,
                     coadministration=Coadministration.NONE,
                 ),
             )
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
-            **self.figure_Tab3(),
-            **self.figure_Fig1_2(),
+            **self._figure_Tab3(),
+            **self._figure_Fig1_2(),
             # **self.figure_Fig3(),
         }
 
-    def figure_Tab3(self) -> Dict[str, Figure]:
+    def _figure_Tab3(self) -> dict[str, Figure]:
         name = "Tab3"
         fig = Figure(
             experiment=self,
@@ -161,7 +181,7 @@ class Ripley2000(HCTZSimulationExperiment):
         plots[0].set_yaxis(self.labels["Aurine_hctz"], self.units["Aurine_hctz"])
 
         # simulation
-        for k, intervention in enumerate(self.interventions):
+        for intervention in self.interventions:
             dose = self.doses[intervention]
             plots[0].add_data(
                 task=f"task_hctz{dose}_{intervention}",
@@ -172,7 +192,7 @@ class Ripley2000(HCTZSimulationExperiment):
             )
 
         # data
-        for k, group in enumerate(self.groups):
+        for group in self.groups:
             plots[0].add_data(
                 dataset=f"Tab3_hctz_aurine_{group}",
                 xid="time",
@@ -185,10 +205,10 @@ class Ripley2000(HCTZSimulationExperiment):
                 linestyle="",
             )
         return {
-            fig.sid: fig,
+            name: fig,
         }
 
-    def figure_Fig1_2(self) -> Dict[str, Figure]:
+    def _figure_Fig1_2(self) -> dict[str, Figure]:
         name = "Fig1_2"
         fig = Figure(
             experiment=self,
@@ -199,14 +219,14 @@ class Ripley2000(HCTZSimulationExperiment):
         plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)
         plots[0].set_yaxis(label="Urine Sodium\n", unit="mmole")
 
-        for k, intervention in enumerate(self.interventions):
+        for intervention in self.interventions:
             dose = self.doses[intervention]
             # simulation
             plots[0].add_data(
                 task=f"task_hctz{dose}_{intervention}",
                 xid="time",
                 yid="na_urine",
-                label=f"Sim",
+                label="Sim",
                 color=self.colors[intervention],
             )
 
@@ -234,7 +254,7 @@ class Ripley2000(HCTZSimulationExperiment):
         # )
 
         return {
-            fig.sid: fig,
+            name: fig,
         }
 
     # def figure_Fig3(self) -> Dict[str, Figure]:
@@ -282,5 +302,6 @@ class Ripley2000(HCTZSimulationExperiment):
     #         fig.sid: fig,
     #     }
 
+
 if __name__ == "__main__":
-    run_experiments(Ripley2000, output_dir=Ripley2000.__name__)
+    MODEL.run_experiments(Ripley2000, output_dir=Ripley2000.__name__)

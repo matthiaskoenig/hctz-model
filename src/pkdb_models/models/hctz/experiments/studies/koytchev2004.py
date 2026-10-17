@@ -1,21 +1,28 @@
-from typing import Dict
+"""Simulation experiment of the study Koytchev2004."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
+from sbmlsim.simulation import Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Koytchev2004(HCTZSimulationExperiment):
@@ -24,61 +31,59 @@ class Koytchev2004(HCTZSimulationExperiment):
     Single oral dosing of 20mg lisinopril/12.5mg hydrochlorothiazide combination tablet.
     Comparing test product to reference drug.
     """
-    prefixes = [
+
+    prefixes: ClassVar[list[str]] = [
         "test",
         "reference",
     ]
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig2"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label=="reference_hydro" or label=="test_hydro":
+                if label == "reference_hydro" or label == "test_hydro":
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                dsets[f"{fig_id}_{label}"] = dset
-        # print(dsets.key())
-        # print(dsets)
+                dsets[self.to_sid(f"{fig_id}_{label}")] = dset
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
-        tcsims["hctz12.5"] = TimecourseSim(
-            Timecourse(
-                start=0,
-                end=80 * 60,  # [min]
-                steps=500,
-                changes={
-                    **self.default_changes(),
-                    "PODOSE_hctz": Q_(12.5, 'mg'),
-                },
-            )
+        simulations["hctz12p5"] = Simulation(
+            time_unit="hr",
+            end=80,
+            steps=500,
+            preinit_changes={
+                **self.default_changes(),
+                "PODOSE_hctz": Q(12.5, "mg"),
+            },
         )
 
-        return tcsims
+        return simulations
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         for prefix in self.prefixes:
-            mappings[f"fm_Fig2_{prefix}_hydro"] = FitMapping(
+            mappings[self.to_sid(f"fm_Fig2_{prefix}_hydro")] = FitMapping(
                 self,
                 reference=FitData(
                     self,
-                    dataset=f"Fig2_{prefix}_hydro",
+                    dataset=self.to_sid(f"Fig2_{prefix}_hydro"),
                     xid="time",
                     yid="mean",
                     yid_sd=None,
                     count="count",
                 ),
                 observable=FitData(
-                    self, task=f"task_hctz12.5", xid="time", yid="[Cve_hctz]"
+                    self, task="task_hctz12p5", xid="time", yid="[Cve_hctz]"
                 ),
-                metadata=HCTZMappingMetaData(
+                metadata=PKPDMappingMetaData(
                     # coadministration with lisinopril
                     tissue=Tissue.PLASMA,
                     application_form=ApplicationForm.TABLET,
@@ -91,11 +96,12 @@ class Koytchev2004(HCTZSimulationExperiment):
             )
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         name = "Fig 2"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             num_rows=1,
             num_cols=1,
             name=f"{self.__class__.__name__} {name}",
@@ -106,28 +112,28 @@ class Koytchev2004(HCTZSimulationExperiment):
 
         # simulation
         plots[0].add_data(
-            task=f"task_hctz12.5",
+            task="task_hctz12p5",
             xid="time",
             yid="[Cve_hctz]",
-            label=f"Sim",
+            label="Sim",
             color=self.color_hctz,
         )
         # data
         for prefix in self.prefixes:
             plots[0].add_data(
-                dataset=f"Fig2_{prefix}_hydro",
+                dataset=self.to_sid(f"Fig2_{prefix}_hydro"),
                 xid="time",
                 yid="mean",
                 yid_sd=None,
                 count="count",
-                label="12.5 mg + LIS20 A" if prefix=="test" else "12.5 mg + LIS20 B",
-                color="tab:orange" if prefix=="test" else "tab:blue",
+                label="12.5 mg + LIS20 A" if prefix == "test" else "12.5 mg + LIS20 B",
+                color="tab:orange" if prefix == "test" else "tab:blue",
             )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
 
 if __name__ == "__main__":
-    run_experiments(Koytchev2004, output_dir="test")
+    MODEL.run_experiments(Koytchev2004, output_dir=Koytchev2004.__name__)

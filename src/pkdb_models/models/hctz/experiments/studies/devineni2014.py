@@ -1,22 +1,28 @@
-from copy import deepcopy
-from typing import Dict
+"""Simulation experiment of the study Devineni2014."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
+from sbmlsim.simulation import Change, Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Devineni2014(HCTZSimulationExperiment):
@@ -24,68 +30,47 @@ class Devineni2014(HCTZSimulationExperiment):
 
     Multiple oral dosing of 25mg HCTZ alone or with Canagliflozin 300mg per day
     """
-    groups = ["HCTZ25", "CAN300_HCTZ25"]
-    colors = {
+
+    groups: ClassVar[list[str]] = ["HCTZ25", "CAN300_HCTZ25"]
+    colors: ClassVar[dict[str, str]] = {
         "HCTZ25": "black",
         "CAN300_HCTZ25": "tab:blue",
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig3"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hydrochlorothiazide"):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
                 dsets[f"{fig_id}_{label}"] = dset
 
-        # print(dsets.keys())
-        # print(dsets)
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
-
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
         # multiple dosing: S-27T1R28 for HCTZ25 and for
-        tc0 = Timecourse(
-            start=0,
-            end=24 * 60,  # [min]
-            steps=500,
-            changes={
-                **self.default_changes(),
-                "PODOSE_hctz": Q_(25, "mg"),
-            },
-        )
-        tc1 = Timecourse(
-            start=0,
-            end=24 * 60,  # [min]
-            steps=500,
-            changes={
-                "PODOSE_hctz": Q_(25, "mg"),
-            },
-        )
-        tc2 = Timecourse(
-            start=0,
-            end=25 * 60,  # [min]
-            steps=500,
-            changes={
-                "PODOSE_hctz": Q_(25, "mg"),
-            },
+        # 29 doses, every 24 hours, the data is reported from the last dose
+        dose_times = [24 * k for k in range(29)]
+        simulations["hctz25"] = Simulation(
+            time_unit="hr",
+            end=28 * 24 + 25,
+            steps=16728,
+            preinit_changes=self.default_changes(),
+            changes=[Change(dose_times, {"PODOSE_hctz": Q(25, "mg")})],
+            time_shift=-28 * 24,  # shift to the last day
         )
 
-        tcsims["hctz25"] = TimecourseSim(
-            timecourses=[tc0] + [deepcopy(tc1) for _ in range(27)] + [tc2],
-            time_offset=-28 * 24 * 60,  # shift to the last day
-        )
+        return simulations
 
-        return tcsims
-
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         for group in self.groups:
             mappings[f"fm_Fig3_hydrochlorothiazide_{group}"] = FitMapping(
@@ -98,20 +83,25 @@ class Devineni2014(HCTZSimulationExperiment):
                     yid_sd="mean_sd",
                     count="count",
                 ),
-                observable=FitData(self, task=f"task_hctz25", xid="time", yid="[Cve_hctz]"),
-                metadata=HCTZMappingMetaData(
+                observable=FitData(
+                    self, task="task_hctz25", xid="time", yid="[Cve_hctz]"
+                ),
+                metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
-                    dosing=Dosing.MULTI,
+                    dosing=Dosing.MULTIPLE,
                     health=Health.HEALTHY,
                     fasting=Fasting.NR,
-                    coadministration=Coadministration.CANAGLIFLOZIN if "CAN300" in group else Coadministration.NONE,
+                    coadministration=Coadministration.CANAGLIFLOZIN
+                    if "CAN300" in group
+                    else Coadministration.NONE,
                 ),
             )
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         name = "Fig3"
         fig = Figure(
             experiment=self,
@@ -119,15 +109,17 @@ class Devineni2014(HCTZSimulationExperiment):
             name=f"{self.__class__.__name__} {name}",
         )
 
-        plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr", min=-25, max=25), legend=True)
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit="hr", min=-25, max=25), legend=True
+        )
         plots[0].set_yaxis(self.label_hctz, unit=self.unit_hctz)
 
         # simulation
         plots[0].add_data(
-            task=f"task_hctz25",
+            task="task_hctz25",
             xid="time",
             yid="[Cve_hctz]",
-            label=f"Sim",
+            label="Sim",
             color="black",
         )
         # data
@@ -143,9 +135,9 @@ class Devineni2014(HCTZSimulationExperiment):
             )
 
         return {
-            fig.sid: fig,
+            name: fig,
         }
 
 
 if __name__ == "__main__":
-    run_experiments(Devineni2014, output_dir=Devineni2014.__name__)
+    MODEL.run_experiments(Devineni2014, output_dir=Devineni2014.__name__)

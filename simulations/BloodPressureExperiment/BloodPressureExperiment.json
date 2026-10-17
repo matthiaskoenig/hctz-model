@@ -1,0 +1,5939 @@
+{
+  "experiment_id": "BloodPressureExperiment",
+  "base_path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz",
+  "data_path": [
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/lisinopril",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/enalapril",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/aliskiren",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/canagliflozin"
+  ],
+  "models": {
+    "model": {
+      "sid": null,
+      "name": null,
+      "language": "SBML",
+      "language_type": "SBML",
+      "source": {
+        "source": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_fluid.xml",
+        "path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_fluid.xml",
+        "content": null
+      },
+      "base_path": null,
+      "changes": {},
+      "selections": [
+        "CL_EXCRETION",
+        "CL_UPTAKE",
+        "ECF",
+        "ECF_ref",
+        "NA_EXCRETION",
+        "NA_UPTAKE",
+        "Vurine",
+        "[cl]",
+        "[na]",
+        "bp_diastolic",
+        "bp_systolic",
+        "cl_urine",
+        "diuresis",
+        "na_urine",
+        "time",
+        "vin_cl",
+        "vin_h2o",
+        "vin_na",
+        "vout_cl",
+        "vout_na"
+      ],
+      "parameters": {}
+    }
+  },
+  "tasks": {
+    "task_bp_Reference": {
+      "sid": "model__bp_Reference",
+      "name": null,
+      "model": "model",
+      "simulation": "bp_Reference",
+      "observables": []
+    },
+    "task_bp_Increase_H2O_uptake": {
+      "sid": "model__bp_Increase_H2O_uptake",
+      "name": null,
+      "model": "model",
+      "simulation": "bp_Increase_H2O_uptake",
+      "observables": []
+    },
+    "task_bp_Increase_diuresis_via_GFR": {
+      "sid": "model__bp_Increase_diuresis_via_GFR",
+      "name": null,
+      "model": "model",
+      "simulation": "bp_Increase_diuresis_via_GFR",
+      "observables": []
+    },
+    "task_bp_Increase_ECF": {
+      "sid": "model__bp_Increase_ECF",
+      "name": null,
+      "model": "model",
+      "simulation": "bp_Increase_ECF",
+      "observables": []
+    },
+    "task_bp_Increase_HCTZ": {
+      "sid": "model__bp_Increase_HCTZ",
+      "name": null,
+      "model": "model",
+      "simulation": "bp_Increase_HCTZ",
+      "observables": []
+    }
+  },
+  "observables": {},
+  "simulations": {
+    "bp_Reference": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0,
+      "end": 840,
+      "preinit_changes": {},
+      "changes": [],
+      "presimulation": null,
+      "times": null,
+      "steps": 840,
+      "time_shift": -120
+    },
+    "bp_Increase_H2O_uptake": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0,
+      "end": 840,
+      "preinit_changes": {},
+      "changes": [
+        {
+          "times": [
+            120
+          ],
+          "values": {
+            "vin_h2o": {
+              "value": 0.002395833333333333,
+              "unit": "liter / minute"
+            }
+          }
+        }
+      ],
+      "presimulation": null,
+      "times": null,
+      "steps": 840,
+      "time_shift": -120
+    },
+    "bp_Increase_diuresis_via_GFR": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0,
+      "end": 840,
+      "preinit_changes": {},
+      "changes": [
+        {
+          "times": [
+            120
+          ],
+          "values": {
+            "GFR_base": {
+              "value": 200,
+              "unit": "milliliter / minute"
+            }
+          }
+        }
+      ],
+      "presimulation": null,
+      "times": null,
+      "steps": 840,
+      "time_shift": -120
+    },
+    "bp_Increase_ECF": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0,
+      "end": 840,
+      "preinit_changes": {},
+      "changes": [
+        {
+          "times": [
+            120
+          ],
+          "values": {
+            "ECF": {
+              "value": 27.225,
+              "unit": "liter"
+            },
+            "[hctz]": "hctz / 27.225",
+            "[na]": "na / 27.225",
+            "[cl]": "cl / 27.225"
+          }
+        }
+      ],
+      "presimulation": null,
+      "times": null,
+      "steps": 840,
+      "time_shift": -120
+    },
+    "bp_Increase_HCTZ": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0,
+      "end": 840,
+      "preinit_changes": {},
+      "changes": [
+        {
+          "times": [
+            120
+          ],
+          "values": {
+            "[hctz]": {
+              "value": 0.0001,
+              "unit": "millimolar"
+            }
+          }
+        }
+      ],
+      "presimulation": null,
+      "times": null,
+      "steps": 840,
+      "time_shift": -120
+    }
+  },
+  "data": {
+    "task_bp_Reference__time": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__vin_h2o": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__vin_h2o",
+      "index": "vin_h2o",
+      "selection": "vin_h2o",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__ECF": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__ECF",
+      "index": "ECF",
+      "selection": "ECF",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__ECF_ref": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__ECF_ref",
+      "index": "ECF_ref",
+      "selection": "ECF_ref",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__Vurine": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__Vurine",
+      "index": "Vurine",
+      "selection": "Vurine",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__diuresis": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__diuresis",
+      "index": "diuresis",
+      "selection": "diuresis",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__bp_systolic": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__bp_systolic",
+      "index": "bp_systolic",
+      "selection": "bp_systolic",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__bp_diastolic": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__bp_diastolic",
+      "index": "bp_diastolic",
+      "selection": "bp_diastolic",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__conc__na": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__conc__na",
+      "index": "na",
+      "selection": "[na]",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__conc__cl": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__conc__cl",
+      "index": "cl",
+      "selection": "[cl]",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__na_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__na_urine",
+      "index": "na_urine",
+      "selection": "na_urine",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__cl_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__cl_urine",
+      "index": "cl_urine",
+      "selection": "cl_urine",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__NA_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__NA_UPTAKE",
+      "index": "NA_UPTAKE",
+      "selection": "NA_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__CL_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__CL_UPTAKE",
+      "index": "CL_UPTAKE",
+      "selection": "CL_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__NA_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__NA_EXCRETION",
+      "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__CL_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__CL_EXCRETION",
+      "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__vin_na": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__vin_na",
+      "index": "vin_na",
+      "selection": "vin_na",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__vin_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__vin_cl",
+      "index": "vin_cl",
+      "selection": "vin_cl",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__vout_na": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__vout_na",
+      "index": "vout_na",
+      "selection": "vout_na",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Reference__vout_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Reference__vout_cl",
+      "index": "vout_cl",
+      "selection": "vout_cl",
+      "unit": null,
+      "task": "task_bp_Reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__time": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__vin_h2o": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__vin_h2o",
+      "index": "vin_h2o",
+      "selection": "vin_h2o",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__ECF": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__ECF",
+      "index": "ECF",
+      "selection": "ECF",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__ECF_ref": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__ECF_ref",
+      "index": "ECF_ref",
+      "selection": "ECF_ref",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__Vurine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__Vurine",
+      "index": "Vurine",
+      "selection": "Vurine",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__diuresis": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__diuresis",
+      "index": "diuresis",
+      "selection": "diuresis",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__bp_systolic": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__bp_systolic",
+      "index": "bp_systolic",
+      "selection": "bp_systolic",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__bp_diastolic": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__bp_diastolic",
+      "index": "bp_diastolic",
+      "selection": "bp_diastolic",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__conc__na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__conc__na",
+      "index": "na",
+      "selection": "[na]",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__conc__cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__conc__cl",
+      "index": "cl",
+      "selection": "[cl]",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__na_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__na_urine",
+      "index": "na_urine",
+      "selection": "na_urine",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__cl_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__cl_urine",
+      "index": "cl_urine",
+      "selection": "cl_urine",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__NA_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__NA_UPTAKE",
+      "index": "NA_UPTAKE",
+      "selection": "NA_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__CL_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__CL_UPTAKE",
+      "index": "CL_UPTAKE",
+      "selection": "CL_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__NA_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__NA_EXCRETION",
+      "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__CL_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__CL_EXCRETION",
+      "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__vin_na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__vin_na",
+      "index": "vin_na",
+      "selection": "vin_na",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__vin_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__vin_cl",
+      "index": "vin_cl",
+      "selection": "vin_cl",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__vout_na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__vout_na",
+      "index": "vout_na",
+      "selection": "vout_na",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_H2O_uptake__vout_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_H2O_uptake__vout_cl",
+      "index": "vout_cl",
+      "selection": "vout_cl",
+      "unit": null,
+      "task": "task_bp_Increase_H2O_uptake",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__time": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__vin_h2o": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__vin_h2o",
+      "index": "vin_h2o",
+      "selection": "vin_h2o",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__ECF": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__ECF",
+      "index": "ECF",
+      "selection": "ECF",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__ECF_ref": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__ECF_ref",
+      "index": "ECF_ref",
+      "selection": "ECF_ref",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__Vurine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__Vurine",
+      "index": "Vurine",
+      "selection": "Vurine",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__diuresis": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__diuresis",
+      "index": "diuresis",
+      "selection": "diuresis",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__bp_systolic": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__bp_systolic",
+      "index": "bp_systolic",
+      "selection": "bp_systolic",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__bp_diastolic": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__bp_diastolic",
+      "index": "bp_diastolic",
+      "selection": "bp_diastolic",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__conc__na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__conc__na",
+      "index": "na",
+      "selection": "[na]",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__conc__cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__conc__cl",
+      "index": "cl",
+      "selection": "[cl]",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__na_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__na_urine",
+      "index": "na_urine",
+      "selection": "na_urine",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__cl_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__cl_urine",
+      "index": "cl_urine",
+      "selection": "cl_urine",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__NA_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__NA_UPTAKE",
+      "index": "NA_UPTAKE",
+      "selection": "NA_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__CL_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__CL_UPTAKE",
+      "index": "CL_UPTAKE",
+      "selection": "CL_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__NA_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__NA_EXCRETION",
+      "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__CL_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__CL_EXCRETION",
+      "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__vin_na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__vin_na",
+      "index": "vin_na",
+      "selection": "vin_na",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__vin_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__vin_cl",
+      "index": "vin_cl",
+      "selection": "vin_cl",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__vout_na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__vout_na",
+      "index": "vout_na",
+      "selection": "vout_na",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_diuresis_via_GFR__vout_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_diuresis_via_GFR__vout_cl",
+      "index": "vout_cl",
+      "selection": "vout_cl",
+      "unit": null,
+      "task": "task_bp_Increase_diuresis_via_GFR",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__time": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__vin_h2o": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__vin_h2o",
+      "index": "vin_h2o",
+      "selection": "vin_h2o",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__ECF": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__ECF",
+      "index": "ECF",
+      "selection": "ECF",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__ECF_ref": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__ECF_ref",
+      "index": "ECF_ref",
+      "selection": "ECF_ref",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__Vurine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__Vurine",
+      "index": "Vurine",
+      "selection": "Vurine",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__diuresis": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__diuresis",
+      "index": "diuresis",
+      "selection": "diuresis",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__bp_systolic": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__bp_systolic",
+      "index": "bp_systolic",
+      "selection": "bp_systolic",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__bp_diastolic": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__bp_diastolic",
+      "index": "bp_diastolic",
+      "selection": "bp_diastolic",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__conc__na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__conc__na",
+      "index": "na",
+      "selection": "[na]",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__conc__cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__conc__cl",
+      "index": "cl",
+      "selection": "[cl]",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__na_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__na_urine",
+      "index": "na_urine",
+      "selection": "na_urine",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__cl_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__cl_urine",
+      "index": "cl_urine",
+      "selection": "cl_urine",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__NA_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__NA_UPTAKE",
+      "index": "NA_UPTAKE",
+      "selection": "NA_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__CL_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__CL_UPTAKE",
+      "index": "CL_UPTAKE",
+      "selection": "CL_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__NA_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__NA_EXCRETION",
+      "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__CL_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__CL_EXCRETION",
+      "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__vin_na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__vin_na",
+      "index": "vin_na",
+      "selection": "vin_na",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__vin_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__vin_cl",
+      "index": "vin_cl",
+      "selection": "vin_cl",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__vout_na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__vout_na",
+      "index": "vout_na",
+      "selection": "vout_na",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_ECF__vout_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_ECF__vout_cl",
+      "index": "vout_cl",
+      "selection": "vout_cl",
+      "unit": null,
+      "task": "task_bp_Increase_ECF",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__time": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__vin_h2o": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__vin_h2o",
+      "index": "vin_h2o",
+      "selection": "vin_h2o",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__ECF": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__ECF",
+      "index": "ECF",
+      "selection": "ECF",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__ECF_ref": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__ECF_ref",
+      "index": "ECF_ref",
+      "selection": "ECF_ref",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__Vurine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__Vurine",
+      "index": "Vurine",
+      "selection": "Vurine",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__diuresis": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__diuresis",
+      "index": "diuresis",
+      "selection": "diuresis",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__bp_systolic": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__bp_systolic",
+      "index": "bp_systolic",
+      "selection": "bp_systolic",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__bp_diastolic": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__bp_diastolic",
+      "index": "bp_diastolic",
+      "selection": "bp_diastolic",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__conc__na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__conc__na",
+      "index": "na",
+      "selection": "[na]",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__conc__cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__conc__cl",
+      "index": "cl",
+      "selection": "[cl]",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__na_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__na_urine",
+      "index": "na_urine",
+      "selection": "na_urine",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__cl_urine": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__cl_urine",
+      "index": "cl_urine",
+      "selection": "cl_urine",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__NA_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__NA_UPTAKE",
+      "index": "NA_UPTAKE",
+      "selection": "NA_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__CL_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__CL_UPTAKE",
+      "index": "CL_UPTAKE",
+      "selection": "CL_UPTAKE",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__NA_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__NA_EXCRETION",
+      "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__CL_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__CL_EXCRETION",
+      "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__vin_na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__vin_na",
+      "index": "vin_na",
+      "selection": "vin_na",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__vin_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__vin_cl",
+      "index": "vin_cl",
+      "selection": "vin_cl",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__vout_na": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__vout_na",
+      "index": "vout_na",
+      "selection": "vout_na",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_bp_Increase_HCTZ__vout_cl": {
+      "type": "TASK",
+      "sid": "task_bp_Increase_HCTZ__vout_cl",
+      "index": "vout_cl",
+      "selection": "vout_cl",
+      "unit": null,
+      "task": "task_bp_Increase_HCTZ",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    }
+  },
+  "figures": {
+    "Fig_blood_pressure_Reference": {
+      "sid": "Fig_blood_pressure_Reference",
+      "name": "Reference",
+      "num_rows": 3,
+      "num_cols": 3,
+      "width": null,
+      "height": null,
+      "settings": {},
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Reference__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot0_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot0_yaxis",
+              "name": "Extracellular fluid [l]",
+              "label": "Extracellular fluid",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Reference__plot0_curve0",
+                "name": "Extracellular fluid",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__ECF",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Reference__plot0_curve1",
+                "name": "Extracellular fluid reference",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__ECF_ref",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Reference__plot1",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot1_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot1_yaxis",
+              "name": "H2O uptake [l/day]",
+              "label": "H2O uptake",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Reference__plot1_curve0",
+                "name": "H2O uptake",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__vin_h2o",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Reference__plot2",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot2_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot2_yaxis",
+              "name": "Diuresis [l/day]",
+              "label": "Diuresis",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Reference__plot2_curve0",
+                "name": "Diuresis",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__diuresis",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Reference__plot3",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot3_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot3_yaxis",
+              "name": "Urine volume [l]",
+              "label": "Urine volume",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Reference__plot3_curve0",
+                "name": "Urine volume",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__Vurine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Reference__plot4",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot4_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot4_yaxis",
+              "name": "Blood pressure [mmHg]",
+              "label": "Blood pressure",
+              "unit": "mmHg",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Reference__plot4_curve0",
+                "name": "Systolic blood pressure",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__bp_systolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Reference__plot4_curve1",
+                "name": "Diastolic blood pressure",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__bp_diastolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Reference__plot5",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot5_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot5_yaxis",
+              "name": "Uptake [mmole/day]",
+              "label": "Uptake",
+              "unit": "mmole/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Reference__plot5_curve0",
+                "name": "Na uptake",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__vin_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Reference__plot5_curve1",
+                "name": "Cl uptake",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__vin_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Reference__plot6",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot6_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot6_yaxis",
+              "name": "Concentration (ECF) [mmole/l]",
+              "label": "Concentration (ECF)",
+              "unit": "mmole/l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Reference__plot6_curve0",
+                "name": "Na (ECF)",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__conc__na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Reference__plot6_curve1",
+                "name": "Cl (ECF)",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__conc__cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Reference__plot7",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot7_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot7_yaxis",
+              "name": "Excretion [g/day]",
+              "label": "Excretion",
+              "unit": "g/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Reference__plot7_curve0",
+                "name": "Na excretion",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__vout_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Reference__plot7_curve1",
+                "name": "Cl excretion",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__vout_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Reference__plot8",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot8_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Reference__plot8_yaxis",
+              "name": "Urine [mmole]",
+              "label": "Urine",
+              "unit": "mmole",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Reference__plot8_curve0",
+                "name": "Na (urine)",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__na_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Reference__plot8_curve1",
+                "name": "Cl (urine)",
+                "x": "task_bp_Reference__time",
+                "y": "task_bp_Reference__cl_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    },
+    "Fig_blood_pressure_Increase_H2O_uptake": {
+      "sid": "Fig_blood_pressure_Increase_H2O_uptake",
+      "name": "Increase H2O uptake",
+      "num_rows": 3,
+      "num_cols": 3,
+      "width": null,
+      "height": null,
+      "settings": {},
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot0_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot0_yaxis",
+              "name": "Extracellular fluid [l]",
+              "label": "Extracellular fluid",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot0_curve0",
+                "name": "Extracellular fluid",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__ECF",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot0_curve1",
+                "name": "Extracellular fluid reference",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__ECF_ref",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot1",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot1_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot1_yaxis",
+              "name": "H2O uptake [l/day]",
+              "label": "H2O uptake",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot1_curve0",
+                "name": "H2O uptake",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__vin_h2o",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot2",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot2_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot2_yaxis",
+              "name": "Diuresis [l/day]",
+              "label": "Diuresis",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot2_curve0",
+                "name": "Diuresis",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__diuresis",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot3",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot3_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot3_yaxis",
+              "name": "Urine volume [l]",
+              "label": "Urine volume",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot3_curve0",
+                "name": "Urine volume",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__Vurine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot4",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot4_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot4_yaxis",
+              "name": "Blood pressure [mmHg]",
+              "label": "Blood pressure",
+              "unit": "mmHg",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot4_curve0",
+                "name": "Systolic blood pressure",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__bp_systolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot4_curve1",
+                "name": "Diastolic blood pressure",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__bp_diastolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot5",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot5_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot5_yaxis",
+              "name": "Uptake [mmole/day]",
+              "label": "Uptake",
+              "unit": "mmole/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot5_curve0",
+                "name": "Na uptake",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__vin_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot5_curve1",
+                "name": "Cl uptake",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__vin_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot6",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot6_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot6_yaxis",
+              "name": "Concentration (ECF) [mmole/l]",
+              "label": "Concentration (ECF)",
+              "unit": "mmole/l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot6_curve0",
+                "name": "Na (ECF)",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__conc__na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot6_curve1",
+                "name": "Cl (ECF)",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__conc__cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot7",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot7_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot7_yaxis",
+              "name": "Excretion [g/day]",
+              "label": "Excretion",
+              "unit": "g/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot7_curve0",
+                "name": "Na excretion",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__vout_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot7_curve1",
+                "name": "Cl excretion",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__vout_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot8",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot8_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot8_yaxis",
+              "name": "Urine [mmole]",
+              "label": "Urine",
+              "unit": "mmole",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot8_curve0",
+                "name": "Na (urine)",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__na_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot8_curve1",
+                "name": "Cl (urine)",
+                "x": "task_bp_Increase_H2O_uptake__time",
+                "y": "task_bp_Increase_H2O_uptake__cl_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    },
+    "Fig_blood_pressure_Increase_diuresis_via_GFR": {
+      "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR",
+      "name": "Increase diuresis via GFR",
+      "num_rows": 3,
+      "num_cols": 3,
+      "width": null,
+      "height": null,
+      "settings": {},
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot0_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot0_yaxis",
+              "name": "Extracellular fluid [l]",
+              "label": "Extracellular fluid",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot0_curve0",
+                "name": "Extracellular fluid",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__ECF",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot0_curve1",
+                "name": "Extracellular fluid reference",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__ECF_ref",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot1",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot1_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot1_yaxis",
+              "name": "H2O uptake [l/day]",
+              "label": "H2O uptake",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot1_curve0",
+                "name": "H2O uptake",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__vin_h2o",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot2",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot2_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot2_yaxis",
+              "name": "Diuresis [l/day]",
+              "label": "Diuresis",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot2_curve0",
+                "name": "Diuresis",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__diuresis",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot3",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot3_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot3_yaxis",
+              "name": "Urine volume [l]",
+              "label": "Urine volume",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot3_curve0",
+                "name": "Urine volume",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__Vurine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot4",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot4_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot4_yaxis",
+              "name": "Blood pressure [mmHg]",
+              "label": "Blood pressure",
+              "unit": "mmHg",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot4_curve0",
+                "name": "Systolic blood pressure",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__bp_systolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot4_curve1",
+                "name": "Diastolic blood pressure",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__bp_diastolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot5",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot5_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot5_yaxis",
+              "name": "Uptake [mmole/day]",
+              "label": "Uptake",
+              "unit": "mmole/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot5_curve0",
+                "name": "Na uptake",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__vin_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot5_curve1",
+                "name": "Cl uptake",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__vin_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot6",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot6_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot6_yaxis",
+              "name": "Concentration (ECF) [mmole/l]",
+              "label": "Concentration (ECF)",
+              "unit": "mmole/l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot6_curve0",
+                "name": "Na (ECF)",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__conc__na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot6_curve1",
+                "name": "Cl (ECF)",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__conc__cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot7",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot7_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot7_yaxis",
+              "name": "Excretion [g/day]",
+              "label": "Excretion",
+              "unit": "g/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot7_curve0",
+                "name": "Na excretion",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__vout_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot7_curve1",
+                "name": "Cl excretion",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__vout_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot8",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot8_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot8_yaxis",
+              "name": "Urine [mmole]",
+              "label": "Urine",
+              "unit": "mmole",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot8_curve0",
+                "name": "Na (urine)",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__na_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot8_curve1",
+                "name": "Cl (urine)",
+                "x": "task_bp_Increase_diuresis_via_GFR__time",
+                "y": "task_bp_Increase_diuresis_via_GFR__cl_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    },
+    "Fig_blood_pressure_Increase_ECF": {
+      "sid": "Fig_blood_pressure_Increase_ECF",
+      "name": "Increase ECF",
+      "num_rows": 3,
+      "num_cols": 3,
+      "width": null,
+      "height": null,
+      "settings": {},
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_ECF__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot0_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot0_yaxis",
+              "name": "Extracellular fluid [l]",
+              "label": "Extracellular fluid",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot0_curve0",
+                "name": "Extracellular fluid",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__ECF",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot0_curve1",
+                "name": "Extracellular fluid reference",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__ECF_ref",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_ECF__plot1",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot1_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot1_yaxis",
+              "name": "H2O uptake [l/day]",
+              "label": "H2O uptake",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot1_curve0",
+                "name": "H2O uptake",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__vin_h2o",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_ECF__plot2",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot2_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot2_yaxis",
+              "name": "Diuresis [l/day]",
+              "label": "Diuresis",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot2_curve0",
+                "name": "Diuresis",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__diuresis",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_ECF__plot3",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot3_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot3_yaxis",
+              "name": "Urine volume [l]",
+              "label": "Urine volume",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot3_curve0",
+                "name": "Urine volume",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__Vurine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_ECF__plot4",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot4_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot4_yaxis",
+              "name": "Blood pressure [mmHg]",
+              "label": "Blood pressure",
+              "unit": "mmHg",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot4_curve0",
+                "name": "Systolic blood pressure",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__bp_systolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot4_curve1",
+                "name": "Diastolic blood pressure",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__bp_diastolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_ECF__plot5",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot5_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot5_yaxis",
+              "name": "Uptake [mmole/day]",
+              "label": "Uptake",
+              "unit": "mmole/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot5_curve0",
+                "name": "Na uptake",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__vin_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot5_curve1",
+                "name": "Cl uptake",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__vin_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_ECF__plot6",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot6_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot6_yaxis",
+              "name": "Concentration (ECF) [mmole/l]",
+              "label": "Concentration (ECF)",
+              "unit": "mmole/l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot6_curve0",
+                "name": "Na (ECF)",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__conc__na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot6_curve1",
+                "name": "Cl (ECF)",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__conc__cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_ECF__plot7",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot7_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot7_yaxis",
+              "name": "Excretion [g/day]",
+              "label": "Excretion",
+              "unit": "g/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot7_curve0",
+                "name": "Na excretion",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__vout_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot7_curve1",
+                "name": "Cl excretion",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__vout_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_ECF__plot8",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot8_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_ECF__plot8_yaxis",
+              "name": "Urine [mmole]",
+              "label": "Urine",
+              "unit": "mmole",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot8_curve0",
+                "name": "Na (urine)",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__na_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_ECF__plot8_curve1",
+                "name": "Cl (urine)",
+                "x": "task_bp_Increase_ECF__time",
+                "y": "task_bp_Increase_ECF__cl_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    },
+    "Fig_blood_pressure_Increase_HCTZ": {
+      "sid": "Fig_blood_pressure_Increase_HCTZ",
+      "name": "Increase HCTZ",
+      "num_rows": 3,
+      "num_cols": 3,
+      "width": null,
+      "height": null,
+      "settings": {},
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_HCTZ__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot0_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot0_yaxis",
+              "name": "Extracellular fluid [l]",
+              "label": "Extracellular fluid",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot0_curve0",
+                "name": "Extracellular fluid",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__ECF",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot0_curve1",
+                "name": "Extracellular fluid reference",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__ECF_ref",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_HCTZ__plot1",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot1_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot1_yaxis",
+              "name": "H2O uptake [l/day]",
+              "label": "H2O uptake",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot1_curve0",
+                "name": "H2O uptake",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__vin_h2o",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_HCTZ__plot2",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot2_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot2_yaxis",
+              "name": "Diuresis [l/day]",
+              "label": "Diuresis",
+              "unit": "l/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot2_curve0",
+                "name": "Diuresis",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__diuresis",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_HCTZ__plot3",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot3_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot3_yaxis",
+              "name": "Urine volume [l]",
+              "label": "Urine volume",
+              "unit": "l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot3_curve0",
+                "name": "Urine volume",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__Vurine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_HCTZ__plot4",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot4_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot4_yaxis",
+              "name": "Blood pressure [mmHg]",
+              "label": "Blood pressure",
+              "unit": "mmHg",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot4_curve0",
+                "name": "Systolic blood pressure",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__bp_systolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot4_curve1",
+                "name": "Diastolic blood pressure",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__bp_diastolic",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#a9a9a9ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#a9a9a9ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#a9a9a9ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_HCTZ__plot5",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot5_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot5_yaxis",
+              "name": "Uptake [mmole/day]",
+              "label": "Uptake",
+              "unit": "mmole/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot5_curve0",
+                "name": "Na uptake",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__vin_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot5_curve1",
+                "name": "Cl uptake",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__vin_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 2,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_HCTZ__plot6",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot6_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot6_yaxis",
+              "name": "Concentration (ECF) [mmole/l]",
+              "label": "Concentration (ECF)",
+              "unit": "mmole/l",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot6_curve0",
+                "name": "Na (ECF)",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__conc__na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot6_curve1",
+                "name": "Cl (ECF)",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__conc__cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_HCTZ__plot7",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot7_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot7_yaxis",
+              "name": "Excretion [g/day]",
+              "label": "Excretion",
+              "unit": "g/day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot7_curve0",
+                "name": "Na excretion",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__vout_na",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot7_curve1",
+                "name": "Cl excretion",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__vout_cl",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig_blood_pressure_Increase_HCTZ__plot8",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot8_xaxis",
+              "name": "time [day]",
+              "label": "time",
+              "unit": "day",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig_blood_pressure_Increase_HCTZ__plot8_yaxis",
+              "name": "Urine [mmole]",
+              "label": "Urine",
+              "unit": "mmole",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot8_curve0",
+                "name": "Na (urine)",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__na_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig_blood_pressure_Increase_HCTZ__plot8_curve1",
+                "name": "Cl (urine)",
+                "x": "task_bp_Increase_HCTZ__time",
+                "y": "task_bp_Increase_HCTZ__cl_urine",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#2ca02cff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#2ca02cff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#2ca02cff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 3,
+          "col": 3,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    }
+  }
+}

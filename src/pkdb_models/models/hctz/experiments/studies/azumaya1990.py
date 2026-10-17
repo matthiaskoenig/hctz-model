@@ -1,22 +1,28 @@
-from typing import Dict
+"""Simulation experiment of the study Azumaya1990."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlutils.console import console
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
+from sbmlsim.simulation import Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Azumaya1990(HCTZSimulationExperiment):
@@ -25,60 +31,60 @@ class Azumaya1990(HCTZSimulationExperiment):
     Single oral dosing of 12,5 or 25mg HCTZ.
     """
 
-    doses = [12.5, 25]
-    colors = ["tab:blue", "tab:orange"]
+    doses: ClassVar[list[float]] = [12.5, 25]
+    colors: ClassVar[list[str]] = ["tab:blue", "tab:orange"]
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig3"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                dsets[f"{fig_id}_{label}"] = dset
+                dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
-        # console.print(dsets.keys())
-        # console.print(dsets)
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
         for dose in self.doses:
-            tcsims[f"hctz{dose}"] = TimecourseSim(
-                Timecourse(
-                    start=0,
-                    end=60 * 60,  # [min]
-                    steps=500,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_hctz": Q_(dose, "mg"),
-                    },
-                )
+            simulations[self.to_sid(f"hctz{dose}")] = Simulation(
+                time_unit="hr",
+                end=60,
+                steps=500,
+                preinit_changes={
+                    **self.default_changes(),
+                    "PODOSE_hctz": Q(dose, "mg"),
+                },
             )
-        return tcsims
+        return simulations
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
-        for kd, dose in enumerate(self.doses):
-            mappings[f"fm_hctz{dose}"] = FitMapping(
+        for dose in self.doses:
+            mappings[self.to_sid(f"fm_hctz{dose}")] = FitMapping(
                 self,
                 reference=FitData(
                     self,
-                    dataset=f"Fig3_hctz{dose}",
+                    dataset=self.to_sid(f"Fig3_hctz{dose}"),
                     xid="time",
                     yid="mean",
                     yid_sd=None,
                     count="count",
                 ),
                 observable=FitData(
-                    self, task=f"task_hctz{dose}", xid="time", yid="[Cve_hctz]",
+                    self,
+                    task=self.to_sid(f"task_hctz{dose}"),
+                    xid="time",
+                    yid="[Cve_hctz]",
                 ),
-                metadata=HCTZMappingMetaData(
+                metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
@@ -88,14 +94,14 @@ class Azumaya1990(HCTZSimulationExperiment):
                     coadministration=Coadministration.NONE,
                 ),
             )
-        # console.print(mappings)
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         name = "Fig3"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             name=f"{self.__class__.__name__} {name}",
         )
         plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)
@@ -103,7 +109,7 @@ class Azumaya1990(HCTZSimulationExperiment):
         # simulation
         for kd, dose in enumerate(self.doses):
             plots[0].add_data(
-                task=f"task_hctz{dose}",
+                task=self.to_sid(f"task_hctz{dose}"),
                 xid="time",
                 yid="[Cve_hctz]",
                 label=f"Sim {dose}",
@@ -111,7 +117,7 @@ class Azumaya1990(HCTZSimulationExperiment):
             )
             # data
             plots[0].add_data(
-                dataset=f"Fig3_hctz{dose}",
+                dataset=self.to_sid(f"Fig3_hctz{dose}"),
                 xid="time",
                 yid="mean",
                 yid_sd=None,
@@ -121,9 +127,9 @@ class Azumaya1990(HCTZSimulationExperiment):
             )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
 
 if __name__ == "__main__":
-    run_experiments(Azumaya1990, output_dir=Azumaya1990.__name__)
+    MODEL.run_experiments(Azumaya1990, output_dir=Azumaya1990.__name__)

@@ -1,125 +1,129 @@
-from copy import deepcopy
-from typing import Dict
+"""Simulation experiment of the study Giudicelli1987."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-from sbmlutils.console import console
+from sbmlsim.simulation import Change, Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Giudicelli1987(HCTZSimulationExperiment):
     """Simulation experiment of Giudicelli1987.
 
-    single dose vs multiple dose of hydrochlorothiazide 25 mg.
+    single dose vs multiple dose of hydrochlorothiazide 25 mg in patients with
+    moderate essential hypertension (p. 52S).
     """
-    colors = ["black", "tab:blue"]
 
+    colors: ClassVar[list[str]] = ["black", "tab:blue"]
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig3", "Fig5"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
                 if label.startswith("renin"):
                     dset.unit_conversion("mean", 1 / self.Mr.ren)
-                dsets[f"{fig_id}_{label}"] = dset
+                dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
-        # print(dsets.keys())
-        # print(dsets)
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
-        tc0 = Timecourse(
-            start=0,
-            end=24 * 60,  # [min]
+        simulations["hctz25_acute"] = Simulation(
+            time_unit="hr",
+            end=24,
             steps=500,
-            changes={
+            preinit_changes={
                 **self.default_changes(),
-                "PODOSE_hctz": Q_(25, "mg"),
-
+                "PODOSE_hctz": Q(25, "mg"),
                 # mean value of acute renin at baseline
-                # "ren_ref": Q_((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
-                # "[ren]": Q_((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
+                # "ren_ref": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
+                # "[ren]": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
             },
         )
 
-        tc1 = Timecourse(
-            start=0,
-            end=24 * 60,  # [min]
-            steps=500,
-            changes={
-                "PODOSE_hctz": Q_(25, "mg"),
+        # 45 doses, every 24 hours, the data is reported from the last dose
+        dose_times = [24 * k for k in range(45)]
+        simulations["hctz25_chronic"] = Simulation(
+            time_unit="hr",
+            end=44 * 24 + 40,
+            steps=26304,
+            preinit_changes={
+                **self.default_changes(),
+                # mean value of acute renin at baseline
+                # "ren_ref": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
+                # "[ren]": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
+            },
+            changes=[
+                Change(dose_times, {"PODOSE_hctz": Q(25, "mg")}),
                 # mean value of chronic renin at baseline
-                # "ren_ref": Q_((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
-                # "[ren]": Q_((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
-            },
-        )
-        tc2 = Timecourse(
-            start=0,
-            end=40 * 60,  # [min]
-            steps=500,
-            changes={
-                "PODOSE_hctz": Q_(25, "mg"),
-                # mean value of chronic renin at baseline
-                # "ren_ref": Q_((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
-                # "[ren]": Q_((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
-            },
+                # Change(dose_times[1:], {
+                #     "ren_ref": Q((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
+                #     "[ren]": Q((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
+                # }),
+            ],
+            time_shift=-44 * 24,  # shift to the last day
         )
 
-        tcsims["hctz25_acute"] = TimecourseSim(timecourses=tc0)
-        tcsims["hctz25_chronic"] = TimecourseSim(
-            timecourses=[tc0] + [deepcopy(tc1) for _ in range(43)] + [tc2],
-            time_offset=-44 * 24 * 60,  # shift to the last day
-        )
+        return simulations
 
-        return tcsims
-
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
-        for k, suffix in enumerate(["acute", "chronic"]):
-            for kd, infix in enumerate(["hctz25", "hctz25_combi"]):
-                mappings[f"fm_Fig3_{infix}_{suffix}"] = FitMapping(
+        for suffix in ["acute", "chronic"]:
+            for infix in ["hctz25", "hctz25_combi"]:
+                mappings[self.to_sid(f"fm_Fig3_{infix}_{suffix}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"Fig3_{infix}_{suffix}",
+                        dataset=self.to_sid(f"Fig3_{infix}_{suffix}"),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
                         count="count",
                     ),
                     observable=FitData(
-                        self, task=f"task_hctz25_{suffix}", xid="time", yid="[Cve_hctz]"
+                        self,
+                        task=self.to_sid(f"task_hctz25_{suffix}"),
+                        xid="time",
+                        yid="[Cve_hctz]",
                     ),
-                    metadata=HCTZMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
                         application_form=ApplicationForm.TABLET,
                         route=Route.PO,
-                        dosing=Dosing.SINGLE if suffix == "acute" else Dosing.MULTI,
-                        health=Health.HEALTHY,
+                        dosing=Dosing.SINGLE if suffix == "acute" else Dosing.MULTIPLE,
+                        # moderate essential hypertension (p. 52S)
+                        health=Health.HYPERTENSION,
                         fasting=Fasting.FASTED,
-                        coadministration=Coadministration.CAPTOPRIL if "combi" in infix else Coadministration.NONE,
+                        coadministration=Coadministration.CAPTOPRIL
+                        if "combi" in infix
+                        else Coadministration.NONE,
                     ),
                 )
             # for kd, infix in enumerate(["hctz25", "combi"]):
@@ -136,30 +140,30 @@ class Giudicelli1987(HCTZSimulationExperiment):
             #         observable=FitData(
             #             self, task=f"task_hctz25_{suffix}", xid="time", yid="[ren]"
             #         ),
-            #         metadata=HCTZMappingMetaData(
+            #         metadata=PKPDMappingMetaData(
             #             tissue=Tissue.PLASMA,
             #             application_form=ApplicationForm.TABLET,
             #             route=Route.PO,
-            #             dosing=Dosing.SINGLE if suffix == "acute" else Dosing.MULTI,
+            #             dosing=Dosing.SINGLE if suffix == "acute" else Dosing.MULTIPLE,
             #             health=Health.HEALTHY,
             #             fasting=Fasting.FASTED,
             #             coadministration=Coadministration.CAPTOPRIL if "combi" in infix else Coadministration.NONE,
             #         ),
             #     )
-            # console.print(mappings)
-            return mappings
+        return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
-            **self.figure_Fig3(),
+            **self._figure_Fig3(),
             # **self.figure_Fig5(),
         }
 
-    def figure_Fig3(self) -> Dict[str, Figure]:
+    def _figure_Fig3(self) -> dict[str, Figure]:
         name = "Fig3"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             num_rows=1,
             num_cols=2,
             name=f"{self.__class__.__name__} {name}",
@@ -170,13 +174,12 @@ class Giudicelli1987(HCTZSimulationExperiment):
             yaxis=Axis(self.label_hctz, unit=self.unit_hctz),
             legend=True,
         )
-        plots[1].xaxis.min = -25  # [hr]
-        plots[1].xaxis.max = 40  # [hr]
+        plots[1].set_xaxis(self.label_time, unit="hr", min=-25, max=40)  # [hr]
 
         for k, suffix in enumerate(["acute", "chronic"]):
             # simulation
             plots[k].add_data(
-                task=f"task_hctz25_{suffix}",
+                task=self.to_sid(f"task_hctz25_{suffix}"),
                 xid="time",
                 yid="[Cve_hctz]",
                 label=f"Sim {suffix}",
@@ -186,7 +189,7 @@ class Giudicelli1987(HCTZSimulationExperiment):
             # data
             for kd, infix in enumerate(["hctz25", "hctz25_combi"]):
                 plots[k].add_data(
-                    dataset=f"Fig3_{infix}_{suffix}",
+                    dataset=self.to_sid(f"Fig3_{infix}_{suffix}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
@@ -196,7 +199,7 @@ class Giudicelli1987(HCTZSimulationExperiment):
                 )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
     # def figure_Fig5(self) -> Dict[str, Figure]:
@@ -244,4 +247,4 @@ class Giudicelli1987(HCTZSimulationExperiment):
 
 
 if __name__ == "__main__":
-    run_experiments(Giudicelli1987, output_dir=Giudicelli1987.__name__)
+    MODEL.run_experiments(Giudicelli1987, output_dir=Giudicelli1987.__name__)

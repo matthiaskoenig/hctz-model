@@ -1,0 +1,1366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:distrib="http://www.sbml.org/sbml/level3/version1/distrib/version1" level="3" version="2" comp:required="true" distrib:required="true">
+  <notes>
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>Created with <a href="https://github.com/matthiaskoenig/sbmlutils">https://github.com/matthiaskoenig/sbmlutils</a>.
+<a href="https://doi.org/10.5281/zenodo.5525390">
+        <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5525390.svg" alt="DOI"/></a></p>
+      </body>
+    </notes>
+  <model metaid="meta_hctz_fluid" id="hctz_fluid" name="Model for renal body fluid system for blood pressure regulation." substanceUnits="mmole" timeUnits="min" volumeUnits="litre" areaUnits="m2" lengthUnits="metre" extentUnits="mmole">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <h1>Model for blood pressure regulation based on extracellular fluid (ECF) volume and ion balance.</h1>
+        <p>The content of this model has been carefully created in a manual research effort.</p>
+        <h2>Terms of use</h2>
+        <p>Copyright © 2026 <a href="https://livermetabolism.com" title="Matthias König" target="_blank">Matthias König</a>.</p>
+        <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png"/>
+        </a>
+        <br/>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<p>Redistribution and use of any part of this model, with or without modification, are permitted provided
+that the following conditions are met:</p>
+        <ul>
+          <li>Redistributions of this SBML file must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+          <li>Redistributions in a different form must reproduce the above copyright notice, this list of conditions
+and the following disclaimer in the documentation and/or other materials provided
+with the distribution.</li>
+        </ul>
+        <p>This model is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></body>
+      </notes>
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#meta_hctz_fluid">
+          <dcterms:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Schwaiger</vCard4:family-name>
+                  <vCard4:given-name>Amanda</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>amanda.lim@charite.de</vCard4:hasEmail>
+                <vCard4:organization-name>Charité - Universitätsmedizin Berlin, Charitéplatz 1, 10117 Berlin, Germany</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>König</vCard4:family-name>
+                  <vCard4:given-name>Matthias</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>koenigmx@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-University Berlin, Faculty of Life Science, Institute for Biology, Biology, Berlin; University Lübeck; University Hospital Schleswig-Holstein, Campus Lübeck, First Department of Medicine, Germany</vCard4:organization-name>
+              </rdf:li>
+            </rdf:Bag>
+          </dcterms:creator>
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-10-17T05:01:22Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-10-17T05:01:22Z</dcterms:W3CDTF>
+          </dcterms:modified>
+          <bqbiol:hasTaxon>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/taxonomy:9606"/>
+              <rdf:li rdf:resource="https://identifiers.org/snomedct:337915000"/>
+            </rdf:Bag>
+          </bqbiol:hasTaxon>
+          <bqbiol:hasProperty>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/mamo:MAMO_0000046"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C49185"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C15299"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C3117"/>
+            </rdf:Bag>
+          </bqbiol:hasProperty>
+          <bqbiol:is>
+            <rdf:Bag>
+              <rdf:li rdf:resource="PBPKO_00003"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+            </rdf:Bag>
+          </bqbiol:is>
+          <bqbiol:isDescribedBy>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/doi:10.5281/zenodo.15427418"/>
+            </rdf:Bag>
+          </bqbiol:isDescribedBy>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfUnitDefinitions>
+      <unitDefinition id="g_per_mole" name="g/mole">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="kg" name="kg">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1000"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_kg" name="l/kg">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1000"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_min" name="l/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_min_mmole" name="l/min/mmole">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_ml" name="l/ml">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="m2" name="meter^2">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mM" name="mmole/liter">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg" name="mg">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_min" name="mg/min">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min" name="min">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="ml" name="ml">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="ml_per_min" name="ml/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmHg" name="133.32239 N/m^2">
+        <listOfUnits>
+          <unit kind="newton" exponent="1" scale="0" multiplier="133.32239"/>
+          <unit kind="metre" exponent="-2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole" name="mmole">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_l_ml" name="mmole/l/ml">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min" name="mmole/min">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min_l" name="mmole/min/liter">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_hr" name="1/hr">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_min" name="1/min">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_min_l" name="1/min/liter">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="meta_ECF" sboTerm="SBO:0000290" id="ECF" name="extracellular fluid (ECF)" size="NaN" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_ECF">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/mesh:D045604"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:55450009"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:hasPart>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0000913"/>
+                </rdf:Bag>
+              </bqbiol:hasPart>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vloop" sboTerm="SBO:0000290" id="Vloop" name="renal tubule" size="0.5" units="litre" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The fluid of the renal tubule, lumped from the glomerulus to the
+urine: the filtered sodium, chloride and water are reabsorbed from
+it or excreted into the urine. HCTZ increases the excretion of
+sodium and chloride, by its inhibition of the sodium chloride
+cotransporter in the distal convoluted tubule, a part of the
+tubule. The id <code>Vloop</code> is historical, the compartment is not the
+loop of Henle.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vloop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0009773"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:15627"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C49274"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000343"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:hasPart>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0001292"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:17721"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C32469"/>
+                </rdf:Bag>
+              </bqbiol:hasPart>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vurine" sboTerm="SBO:0000290" id="Vurine" name="urine" size="1e-06" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vurine">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:12274"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13283"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001419"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vki" sboTerm="SBO:0000290" id="Vki" name="kidney" size="NaN" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vki">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7203"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000671"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12415"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="meta_hctz" sboTerm="SBO:0000247" id="hctz" name="hydrochlorothiazide" compartment="ECF" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>This should be the concentration in the kidney, but no kidney compartment in the fluid model.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_na" sboTerm="SBO:0000247" id="na" name="Sodium (Na+) (ECF)" compartment="ECF" initialConcentration="140" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_na">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_na_loop" sboTerm="SBO:0000247" id="na_loop" name="Sodium (Na+) (renal tubule)" compartment="Vloop" initialConcentration="140" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_na_loop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_na_urine" sboTerm="SBO:0000247" id="na_urine" name="Sodium (Na+) (urine)" compartment="Vurine" initialAmount="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_na_urine">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_cl" sboTerm="SBO:0000247" id="cl" name="Chloride (Cl-) (ECF)" compartment="ECF" initialConcentration="102" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_cl">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_cl_loop" sboTerm="SBO:0000247" id="cl_loop" name="Chloride (Cl-) (renal tubule)" compartment="Vloop" initialConcentration="102" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_cl_loop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_cl_urine" sboTerm="SBO:0000247" id="cl_urine" name="Chloride (Cl-) (urine)" compartment="Vurine" initialAmount="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_cl_urine">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter sboTerm="SBO:0000002" id="BW" name="body weight" value="75" units="kg" constant="true"/>
+      <parameter sboTerm="SBO:0000002" id="f_renal_function" name="renal function" value="1" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <blockquote>
+              <p>1.0: increased kidney function
+1.0: normal kidney function (healthy control)
+&lt;1.0: decreased kidney function</p>
+            </blockquote>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="GFR_base" name="glomerular filtration rate (base)" value="100" units="ml_per_min" constant="true"/>
+      <parameter sboTerm="SBO:0000002" id="f_TBW" name="Total body water (TBW) fraction of bodyweight" value="0.55" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>0.55 l/kg, between the typical values of men and women:
+male: 0.6 l/kg
+female: 0.5 l/kg</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="f_ECF" name="ECF fraction of TBW" value="0.33" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Around 1/3 of total body water (TBW) is extracellular fluid (ECF).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="ECF_ref" name="Reference extracellular fluid volume (ECF)" value="NaN" units="litre" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>ECF value is calculated based on body weight and sex.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="Psys_ref" name="Reference systolic blood pressure" value="120" units="mmHg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Psys value is dependent on sex and age.</p>
+            <pre>
+              <code>    Young Adult Men (18-39 years): Average=120/80 mmHg
+    Middle-aged Men (40-59 years): Average=125−130/80−85 mmHg
+    Older Men (60+ years): Average=135−140/85−90 mmHg
+
+    Young Adult Women (18-39 years): Average=110−120/70−80mmHg
+    Middle-aged Women (40-59 years): Average=120−130/80−85mmHg
+    Older Women (60+ years): Average=135−140/85−90mmHg
+</code>
+            </pre>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="Pdia_ref" name="Reference diastolic blood pressure" value="80" units="mmHg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Pdia value is dependent on sex and age.</p>
+            <pre>
+              <code>    Young Adult Men (18-39 years): Average=120/80 mmHg
+    Middle-aged Men (40-59 years): Average=125−130/80−85 mmHg
+    Older Men (60+ years): Average=135−140/85−90 mmHg
+
+    Young Adult Women (18-39 years): Average=110−120/70−80mmHg
+    Middle-aged Women (40-59 years): Average=120−130/80−85mmHg
+    Older Women (60+ years): Average=135−140/85−90mmHg
+</code>
+            </pre>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="bp_systolic" name="Systolic blood pressure" value="120" units="mmHg" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="bp_diastolic" name="Diastolic blood pressure" value="80" units="mmHg" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="bp_mean" name="Mean arterial pressure" value="NaN" units="mmHg" constant="false"/>
+      <parameter sboTerm="SBO:0000647" id="Mr_nacl" name="Molecular weight sodium chloride" value="58.44" units="g_per_mole" constant="true"/>
+      <parameter sboTerm="SBO:0000647" id="Mr_na" name="Molecular weight sodium" value="22.99" units="g_per_mole" constant="true"/>
+      <parameter sboTerm="SBO:0000647" id="Mr_cl" name="Molecular weight chloride" value="35.45" units="g_per_mole" constant="true"/>
+      <parameter sboTerm="SBO:0000002" id="vin_na" name="Na uptake via food" value="NaN" units="mmole_per_min" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="vin_cl" name="Cl uptake via food" value="NaN" units="mmole_per_min" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="vin_h2o" name="H2O uptake via food" value="0.00159722222222222" units="l_per_min" constant="true"/>
+      <parameter sboTerm="SBO:0000002" id="vout_h2o" name="H2O loss without urine" value="0.000625" units="l_per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The water lost without urine: insensible through the skin and the
+lungs (about 700 ml a day), the sweat and the feces (about 100 ml
+each) [Hall2021, Guyton and Hall Textbook of Medical Physiology,
+chapter 25]. Of the intake of 2.3 l a day the urine is 1.4 l at
+the reference, the 1.47 to 1.96 l a day of Jeon2012 and Dussol2005;
+without the loss the urine was the whole intake.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="k_na" value="0.000676649741186695" units="l_per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate sodium urine.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>k_na</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 0.00067665 l/(min) |
+| bounds | [0.00025, 0.0015] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.000584015, 0.000788186] |
+| Fisher confidence interval | [0.000590186, 0.00077578] |
+| distribution of the draws | <code>lognormal(-7.29835678793397, 0.07648283595859079, 0.00025, 0.0015)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="l_per_min" distrib:type="confidenceInterval" distrib:valueLower="0.000584015429114786" distrib:valueUpper="0.000788186399934477"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="4.68442935432338e-05" distrib:units="l_per_min" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 7.29835678793397 </cn>
+                  </apply>
+                  <cn> 0.0764828359585908 </cn>
+                  <cn> 0.00025 </cn>
+                  <cn> 0.0015 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="k_cl" value="0.00370716553162286" units="l_per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate chloride urine.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>k_cl</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 0.00370717 l/(min) |
+| bounds | [0.00034, 0.007] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.00252036, 0.00511843] |
+| Fisher confidence interval | [0.00272023, 0.00505217] |
+| distribution of the draws | <code>lognormal(-5.597487702014201, 0.18072977949087393, 0.00034, 0.007)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="l_per_min" distrib:type="confidenceInterval" distrib:valueLower="0.00252035788024369" distrib:valueUpper="0.00511843447084373"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.000581097876815446" distrib:units="l_per_min" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 5.5974877020142 </cn>
+                  </apply>
+                  <cn> 0.180729779490874 </cn>
+                  <cn> 0.00034 </cn>
+                  <cn> 0.007 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter id="k_h2o" value="NaN" units="l_per_ml" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate water urine.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="h2o_reabsorption" name="H2O reabsorption from the renal tubule" value="NaN" units="l_per_min" constant="false"/>
+      <parameter id="diuresis" value="NaN" units="l_per_min" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate water urine.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="f_h2o_max" name="maximal fractional excretion of water" value="0.3" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The urine is at most this fraction of the filtration, the rest of
+the filtered water is reabsorbed. Without the limit an expanded
+extracellular fluid (twice its reference) with HCTZ excretes more
+water than is filtered: the reabsorption of water and sodium turns
+negative and the integration fails. Within the supported domain the
+fractional excretion of water stays below 0.09, the limit is not
+reached.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="counter_gamma" value="5" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Counter-regulation feedback.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000287" id="E50_hctz_nacl" value="8.61825350924873e-05" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>E50 for HCTZ effect on sodium and chloride excretion.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>E50_hctz_nacl</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 8.61825e-05 mmol/l |
+| bounds | [1e-06, 0.01] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [2.86313e-05, 0.000289411] |
+| Fisher confidence interval | [4.75241e-05, 0.000156288] |
+| distribution of the draws | <code>lognormal(-9.359043009958508, 0.5901502764384875, 1e-06, 0.01)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="mM" distrib:type="confidenceInterval" distrib:valueLower="2.86312789046828e-05" distrib:valueUpper="0.000289410577351406"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="2.5976480328119e-05" distrib:units="mM" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 9.35904300995851 </cn>
+                  </apply>
+                  <cn> 0.590150276438487 </cn>
+                  <cn type="e-notation"> 1 <sep/> -6 </cn>
+                  <cn> 0.01 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="Emax_hctz_na" value="1.72544627809791" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Emax for HCTZ effect on sodium excretion.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>Emax_hctz_na</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 1.72545 dimensionless |
+| bounds | [0.1, 5] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [1.25084, 2.6032] |
+| Fisher confidence interval | [1.35309, 2.20027] |
+| distribution of the draws | <code>lognormal(0.5454857289639774, 0.18697584998156824, 0.1, 5.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="dimensionless" distrib:type="confidenceInterval" distrib:valueLower="1.25083511671922" distrib:valueUpper="2.60320475869873"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.212398766034347" distrib:units="dimensionless" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <cn> 0.545485728963977 </cn>
+                  <cn> 0.186975849981568 </cn>
+                  <cn> 0.1 </cn>
+                  <cn> 5 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="Emax_hctz_cl" value="0.457489998677387" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Emax for HCTZ effect on chloride excretion.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>Emax_hctz_cl</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 0.45749 dimensionless |
+| bounds | [0.1, 5] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.312448, 0.767901] |
+| Fisher confidence interval | [0.318591, 0.656947] |
+| distribution of the draws | <code>lognormal(-0.7820002553199671, 0.22939735913373016, 0.1, 5.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="dimensionless" distrib:type="confidenceInterval" distrib:valueLower="0.312448419540539" distrib:valueUpper="0.767900772390777"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.0838268541449215" distrib:units="dimensionless" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 0.782000255319967 </cn>
+                  </apply>
+                  <cn> 0.22939735913373 </cn>
+                  <cn> 0.1 </cn>
+                  <cn> 5 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter id="na_ref" value="140" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>reference sodium concentration.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="cl_ref" value="102" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>reference chloride concentration.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="GFR" name="glomerular filtration rate" units="ml_per_min" constant="false"/>
+      <parameter id="vout_na" units="mg_per_min" constant="false"/>
+      <parameter id="vout_cl" units="mg_per_min" constant="false"/>
+      <parameter id="H2O_UPTAKE" units="l_per_min" constant="false"/>
+    </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="ECF">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> ECF_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="Vloop">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <cn sbml:units="dimensionless"> 0.05 </cn>
+            <ci> ECF_ref </ci>
+          </apply>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="na">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> na_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="cl">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> cl_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="k_h2o">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <minus/>
+              <ci> vin_h2o </ci>
+              <ci> vout_h2o </ci>
+            </apply>
+            <ci> GFR_base </ci>
+          </apply>
+        </math>
+      </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfRules>
+      <assignmentRule variable="ECF_ref">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> f_ECF </ci>
+            <ci> f_TBW </ci>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="bp_systolic">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Simplified calculation of blood pressure based on change relative to reference ECF volume.</p>
+            <p>Regulation is more complicated probably via: Increased ECF volume → Increased blood volume →
+Increased venous return → Increased cardiac output → Increased blood pressure.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> Psys_ref </ci>
+              <ci> ECF </ci>
+            </apply>
+            <ci> ECF_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="bp_diastolic">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Simplified calculation of blood pressure based on change relative to reference ECF volume.</p>
+            <p>Regulation is more complicated probably via: Increased ECF volume → Increased blood volume →
+Increased venous return → Increased cardiac output → Increased blood pressure.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> Pdia_ref </ci>
+              <ci> ECF </ci>
+            </apply>
+            <ci> ECF_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="bp_mean">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Mean arterial pressure, one third of the pulse pressure above
+the diastolic pressure.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <divide/>
+            <apply>
+              <plus/>
+              <ci> bp_systolic </ci>
+              <apply>
+                <times/>
+                <cn sbml:units="dimensionless" type="integer"> 2 </cn>
+                <ci> bp_diastolic </ci>
+              </apply>
+            </apply>
+            <cn sbml:units="dimensionless" type="integer"> 3 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="vin_na">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> k_na </ci>
+            <ci> na_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="vin_cl">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> k_cl </ci>
+            <ci> cl_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="glomerular filtration rate" variable="GFR">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> f_renal_function </ci>
+            <ci> GFR_base </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="vout_na">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion sodium.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> NA_EXCRETION </ci>
+            <ci> Mr_na </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="vout_cl">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion chloride.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> CL_EXCRETION </ci>
+            <ci> Mr_cl </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="H2O_UPTAKE">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Water uptake.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> vin_h2o </ci>
+              <apply>
+                <power/>
+                <ci> ECF_ref </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+            <apply>
+              <power/>
+              <ci> ECF </ci>
+              <ci> counter_gamma </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="diuresis">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate water urine.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <min/>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> k_h2o </ci>
+                    <ci> GFR </ci>
+                    <apply>
+                      <power/>
+                      <ci> ECF </ci>
+                      <ci> counter_gamma </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <power/>
+                    <ci> ECF_ref </ci>
+                    <ci> counter_gamma </ci>
+                  </apply>
+                </apply>
+                <ci> NA_EXCRETION </ci>
+              </apply>
+              <ci> vin_na </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> f_h2o_max </ci>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="h2o_reabsorption">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Reabsorption rate of water from the renal tubule.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+            </apply>
+            <ci> diuresis </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <rateRule variable="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Rate rule for calculation of water change ECF.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <plus/>
+            <apply>
+              <minus/>
+              <apply>
+                <minus/>
+                <ci> H2O_UPTAKE </ci>
+                <ci> vout_h2o </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> GFR </ci>
+                <cn sbml:units="l_per_ml"> 0.001 </cn>
+              </apply>
+            </apply>
+            <ci> h2o_reabsorption </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="Vloop">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Rate rule for calculation of water change renal tubule.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> GFR </ci>
+                <cn sbml:units="l_per_ml"> 0.001 </cn>
+              </apply>
+              <ci> diuresis </ci>
+            </apply>
+            <ci> h2o_reabsorption </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="Vurine">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Rate rule for calculation of water change urine.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> diuresis </ci>
+        </math>
+      </rateRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction sboTerm="SBO:0000655" id="NA_UPTAKE" name="Na uptake via food" reversible="false" compartment="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Na uptake increased when concentrations too low.</p>
+          </body>
+        </notes>
+        <listOfProducts>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> vin_na </ci>
+                <apply>
+                  <power/>
+                  <ci> na_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
+              </apply>
+              <apply>
+                <power/>
+                <ci> na </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="CL_UPTAKE" name="Cl uptake via food" reversible="false" compartment="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Cl uptake increased when concentrations too low.</p>
+          </body>
+        </notes>
+        <listOfProducts>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> vin_cl </ci>
+                <apply>
+                  <power/>
+                  <ci> cl_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
+              </apply>
+              <apply>
+                <power/>
+                <ci> cl </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="NA_FILTRATION" name="Na filtration kidney" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> na </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="NA_EXCRETION" name="Na excretion urine" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na_urine" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="hctz"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> k_na </ci>
+              <ci> na_loop </ci>
+              <apply>
+                <plus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <divide/>
+                      <ci> GFR </ci>
+                      <ci> GFR_base </ci>
+                    </apply>
+                    <ci> Emax_hctz_na </ci>
+                    <apply>
+                      <max/>
+                      <ci> hctz </ci>
+                      <cn sbml:units="mM" type="integer"> 0 </cn>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <max/>
+                      <ci> hctz </ci>
+                      <cn sbml:units="mM" type="integer"> 0 </cn>
+                    </apply>
+                    <ci> E50_hctz_nacl </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="NA_REABSORPTION" name="Na reabsorption kidney" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> h2o_reabsorption </ci>
+              <ci> na_loop </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="CL_FILTRATION" name="Cl filtration kidney" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> cl </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="CL_EXCRETION" name="Cl excretion urine" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cl_urine" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="hctz"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> k_cl </ci>
+              <ci> cl_loop </ci>
+              <apply>
+                <plus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <divide/>
+                      <ci> GFR </ci>
+                      <ci> GFR_base </ci>
+                    </apply>
+                    <ci> Emax_hctz_cl </ci>
+                    <apply>
+                      <max/>
+                      <ci> hctz </ci>
+                      <cn sbml:units="mM" type="integer"> 0 </cn>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <max/>
+                      <ci> hctz </ci>
+                      <cn sbml:units="mM" type="integer"> 0 </cn>
+                    </apply>
+                    <ci> E50_hctz_nacl </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="CL_REABSORPTION" name="Cl reabsorption kidney" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> h2o_reabsorption </ci>
+              <ci> cl_loop </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <comp:listOfPorts>
+      <comp:port metaid="BW_port" sboTerm="SBO:0000599" comp:idRef="BW" comp:id="BW_port" comp:name="Port of BW"/>
+      <comp:port metaid="f_renal_function_port" sboTerm="SBO:0000599" comp:idRef="f_renal_function" comp:id="f_renal_function_port" comp:name="Port of f_renal_function"/>
+      <comp:port metaid="GFR_base_port" sboTerm="SBO:0000599" comp:idRef="GFR_base" comp:id="GFR_base_port" comp:name="Port of GFR_base"/>
+      <comp:port metaid="hctz_port" sboTerm="SBO:0000599" comp:idRef="hctz" comp:id="hctz_port" comp:name="Port of hctz"/>
+    </comp:listOfPorts>
+  </model>
+</sbml>

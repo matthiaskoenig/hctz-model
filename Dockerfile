@@ -1,16 +1,9 @@
-# -----------------------
-# Dockerfile
-# -----------------------
-# Build and push image
-#   docker build -f Dockerfile -t matthiaskoenig/hctz:0.7.1 -t matthiaskoenig/hctz:latest .
-#   docker login
-#   docker push --all-tags matthiaskoenig/hctz
+# The image is built and pushed by pkpd_release.
 
 FROM python:3.14-slim
 
 # install uv
-COPY --from=ghcr.io/astral-sh/uv:0.11.16 /uv /bin/uv
-ENV UV_SYSTEM_PYTHON=1
+COPY --from=ghcr.io/astral-sh/uv:0.13.1 /uv /bin/uv
 
 # install git
 RUN apt-get update && \
@@ -21,8 +14,10 @@ RUN apt-get update && \
 WORKDIR /code
 COPY .python-version /code/.python-version
 COPY pyproject.toml /code/pyproject.toml
+COPY uv.lock /code/uv.lock
 COPY README.md /code/README.md
 COPY src /code/src
 
 # install package
-RUN uv pip install -e .
+RUN uv sync --locked --no-dev
+ENV PATH="/code/.venv/bin:$PATH"

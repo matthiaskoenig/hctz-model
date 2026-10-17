@@ -1,209 +1,260 @@
-"""Sensitivity analysis."""
-from __future__ import annotations
+"""Sensitivity analysis of the HCTZ model.
+
+The outputs are the pharmacokinetic parameters of a single oral dose (the
+non-compartmental analysis of `pkpdutils`) and the extremes of the
+pharmacodynamics. The parameters are the parameters of the model with bounds
+of +-15 % around their value. The analyses are run as a script, the local
+analysis by default:
+
+    python -m pkdb_models.models.hctz.sensitivity.sensitivity_analysis
+    python -m pkdb_models.models.hctz.sensitivity.sensitivity_analysis local sampling
+
+The analyses run on `pkpdsim.sensitivity.SensitivityRunner`, which writes the
+table of the parameters into `results/sensitivity` of the model and the tables
+and figures of an analysis into `results/sensitivity/<analysis>`.
+An analysis does not vary a parameter which one of its groups sets
+(`pkpdsim.sensitivity.free_parameters`): `sampling`, over the four groups, leaves
+out `f_renal_function`. The environment variable `PKPDSIM_SENSITIVITY_N`
+replaces the numbers of samples of the global analyses for a quick run, see
+`pkpdsim.sensitivity.sample_size`.
+
+The simulation of a group starts `EQUILIBRATION_DAYS` before the dose without
+HCTZ: in impaired renal function the model without HCTZ is not stationary, the
+extracellular fluid and with it the blood pressure rise to a new steady state
+((ECF/ECF_ref)^10 = 1/f_renal_function; 120 to 141 mmHg in severe renal
+impairment), which an analysis from the reference state would attribute to
+HCTZ. After the equilibration the pressure without HCTZ changes by less than
+0.05 mmHg in the following 720 hr, so that the change of the pressure against
+its value at the dose is the effect of HCTZ (`min_bp_systolic`,
+`min_bp_diastolic`), and the extremes are taken after the dose. The dose is
+followed for `END_HR` hours, long enough for the non-compartmental analysis of
+severe renal impairment (0.04 % of the maximal concentration at the end).
+"""
+
+from collections.abc import Callable, Mapping
 
 import numpy as np
-import pandas as pd
-import roadrunner
-from pint import UnitRegistry
-from sbmlutils.console import console
-
-from pkdb_analysis.pk.pharmacokinetics import TimecoursePK
-
-from sbmlsim.sensitivity.analysis import (
-    SensitivitySimulation,
-    SensitivityOutput,
-    AnalysisGroup,
-)
-from sbmlsim.sensitivity.parameters import (
-    SensitivityParameter,
+from pkpdsim.sensitivity import (
+    FastAnalysis,
+    LocalAnalysis,
     ParameterType,
+    SamplingAnalysis,
+    SensitivityGroup,
+    SensitivityOutput,
+    SensitivityParameter,
+    SensitivityRunner,
+    SobolAnalysis,
+    parameters_from_sbml,
+    set_bounds,
+    set_relative_bounds,
 )
+from pkpdutils import NCAOptions
+from sbmlsim import Q
+from sbmlsim.simulation import PK, Change, Custom, Formula, Simulation
 
-from pkdb_models.models.hctz import MODEL_PATH
+from pkdb_models.models.hctz import MODEL, MODEL_PATH
+from pkdb_models.models.hctz.experiments.base_experiment import (
+    HCTZSimulationExperiment,
+)
 from pkdb_models.models.hctz.fitting.parameters import parameters_all as fit_parameters
 
-# Dose for sensitivity analysis
-dose_hctz = 25  # [mg]
+#: oral dose of the analysis [mg]
+DOSE_HCTZ = 25
+#: the days without HCTZ before the dose, the equilibration of the fluid
+EQUILIBRATION_DAYS = 14
+#: the hours after the dose
+END_HR = 720
+#: the limit of quantification of the non-compartmental analysis [mM], 1e-6 of
+#: the maximal concentration of the control (4.5e-4 mM) as in the scans
+#: (`hctz_pk.LLOQ_FRACTION`), so that the noise of the integrator is not the
+#: terminal phase
+LLOQ = 4.5e-10
+#: fraction of the bounds of a parameter relative to its value
+BOUNDS_FRACTION = 0.15
 
-# Subgroups to perform sensitivity analysis on
-sensitivity_groups: list[AnalysisGroup] = [
-    AnalysisGroup(
-        uid="control",
-        name="Control",
-        changes={},
-        color="dimgrey",
+#: outputs of the non-compartmental analysis of pkpdutils -> unit of the output
+PK_OUTPUTS: dict[str, str] = {
+    "auc_inf_obs": "mM*min",
+    "cmax": "mM",
+    "thalf": "min",
+    "vz_f": "l",
+    "cl_f": "ml/min",
+    "lambda_z": "1/min",
+}
+#: the non-compartmental analysis of the concentration; the id `hctz` is a
+#: species of the model, which an observable must not share
+PK_ID = "pk_hctz"
+#: the outputs whose unit has the amount of the dose: the dose is a mass
+#: (`PODOSE_hctz` in mg), so they are divided by the molecular weight (its value
+#: at the start, a value per simulation like the parameter of the analysis)
+PK_PER_DOSE_MASS: frozenset[str] = frozenset({"vz_f", "cl_f"})
+
+
+def max_after_dose(time: np.ndarray, values: dict[str, np.ndarray]) -> float:
+    """Get the maximum of a timecourse after the dose (time 0)."""
+    (x,) = values.values()
+    return float(np.max(x[time >= 0]))
+
+
+def change_after_dose(time: np.ndarray, values: dict[str, np.ndarray]) -> float:
+    """Get the largest decrease after the dose (time 0) against the value at the dose."""
+    (x,) = values.values()
+    after = time >= 0
+    return float(np.min(x[after]) - x[after][0])
+
+
+#: the extremes of the pharmacodynamics after the dose: id -> function,
+#: selection, unit
+EXTREMES: dict[
+    str, tuple[Callable[[np.ndarray, dict[str, np.ndarray]], float], str, str]
+] = {
+    "max_NA_EXCRETION": (max_after_dose, "NA_EXCRETION", "mmole/min"),
+    "max_CL_EXCRETION": (max_after_dose, "CL_EXCRETION", "mmole/min"),
+    "max_diuresis": (max_after_dose, "diuresis", "l/min"),
+    "min_bp_systolic": (change_after_dose, "bp_systolic", "mmHg"),
+    "min_bp_diastolic": (change_after_dose, "bp_diastolic", "mmHg"),
+}
+
+#: the outputs with their ids and names
+OUTPUTS: list[SensitivityOutput] = [
+    SensitivityOutput("auc_inf_obs", "HCTZ AUC∞"),
+    SensitivityOutput("cmax", "HCTZ Cmax"),
+    SensitivityOutput("thalf", "HCTZ Half-life"),
+    SensitivityOutput("vz_f", "HCTZ Vz/F"),
+    SensitivityOutput("cl_f", "HCTZ CL/F"),
+    SensitivityOutput("lambda_z", "HCTZ λz"),
+    SensitivityOutput("max_NA_EXCRETION", "max Sodium excretion"),
+    SensitivityOutput("max_CL_EXCRETION", "max Chloride excretion"),
+    SensitivityOutput("max_diuresis", "max diuresis"),
+    SensitivityOutput("min_bp_systolic", "change blood pressure systolic"),
+    SensitivityOutput("min_bp_diastolic", "change blood pressure diastolic"),
+]
+
+#: the observables of a simulation, the outputs with their units
+OBSERVABLES = [
+    PK(
+        PK_ID,
+        "[Cve_hctz]",
+        dose="PODOSE_hctz",
+        route="oral",
+        options=NCAOptions(lloq=LLOQ),
+        parameters=list(PK_OUTPUTS),
     ),
-    AnalysisGroup(
-        uid="mildRI",
-        name="Mild renal impairment",
-        changes={"f_renal_function": 0.69},
-        color="#66c2a4",
+    *(
+        Formula(
+            key,
+            f"{PK_ID}.{key} / at(Mr_hctz, 0)"
+            if key in PK_PER_DOSE_MASS
+            else f"{PK_ID}.{key}",
+            unit=unit,
+        )
+        for key, unit in PK_OUTPUTS.items()
     ),
-    AnalysisGroup(
-        uid="modRI",
-        name="Moderate renal impairment",
-        changes={"f_renal_function": 0.32},
-        color="#2ca25f",
-    ),
-    AnalysisGroup(
-        uid="sevRI",
-        name="Severe renal impairment",
-        changes={"f_renal_function": 0.19},
-        color="#006d2c",
+    *(
+        Custom(key, function, unit, symbols=[selection])
+        for key, (function, selection, unit) in EXTREMES.items()
     ),
 ]
 
 
-class HCTZSensitivitySimulation(SensitivitySimulation):
-    """Simulation for sensitivity calculation."""
-    tend = 5 * 24 * 60  # [min]
-    steps = 10000
-
-    def simulate(self, r: roadrunner.RoadRunner, changes: dict[str, float]) -> dict[str, float]:
-
-        # apply changes and simulate
-        all_changes = {
-            **self.changes_simulation,  # model
-            **changes  # sensitivity
-        }
-        self.apply_changes(r, all_changes, reset_all=True)
-        # ensure tolerances
-        r.integrator.setValue("absolute_tolerance", self.init_tolerances)
-        s = r.simulate(start=0, end=self.tend, steps=self.steps)
-
-        # pharmacokinetic parameters
-        y: dict[str, float] = {}
-
-        # pharmacokinetics
-        ureg = UnitRegistry()
-        Q_ = ureg.Quantity
-
-        # losartan
-        Mr_hctz = Q_(297.7, "g/mole")
-        time = Q_(s["time"], "min")
-        tcpk = TimecoursePK(
-            time=time,
-            concentration=Q_(s["[Cve_hctz]"], "mM"),
-            substance="hctz",
-            ureg=ureg,
-            dose=Q_(dose_hctz, "mg")/Mr_hctz,
+#: the output times [hr]: every hour of the equilibration, every 0.02 hr in
+#: the first day after the dose (absorption and maximum), every 0.5 hr after it
+TIMES_HR: tuple[float, ...] = tuple(
+    np.unique(
+        np.concatenate(
+            [
+                np.arange(-24 * EQUILIBRATION_DAYS, 0, 1.0),
+                np.linspace(0, 24, 1201),
+                np.linspace(24, END_HR, 2 * (END_HR - 24) + 1),
+            ]
         )
-        pk_dict = tcpk.pk.to_dict()
-        # console.print(pk_dict)
-        for pk_key in [
-            "aucinf",
-            "cmax",
-            "thalf",
-            "vd",
-            "cl",
-            "kel",
-        ]:
-            y[pk_key] = pk_dict[pk_key]
-
-        # pharmacodynamics
-        y["max_NA_EXCRETION"] = np.max(s["NA_EXCRETION"])
-        y["max_CL_EXCRETION"] = np.max(s["CL_EXCRETION"])
-        y["max_diuresis"] = np.max(s["diuresis"])
-        y["min_bp_systolic"] = np.min(s["bp_systolic"])
-        y["min_bp_diastolic"] = np.min(s["bp_diastolic"])
-
-        return y
-
-
-sensitivity_simulation = HCTZSensitivitySimulation(
-    model_path=MODEL_PATH,
-    selections=[
-        "time",
-        "[Cve_hctz]",
-        "NA_EXCRETION",
-        "CL_EXCRETION",
-        "diuresis",
-        "bp_systolic",
-        "bp_diastolic",
-    ],
-    changes_simulation = {
-        # ! make sure all the changes from base-experiment are injected here !
-        "PODOSE_hctz": dose_hctz,  # [mg]
-        # "f_cirrhosis": 0,  # [-]
-        # "f_renal_function": 1.0,  # [-]
-    },
-    outputs=[
-        # FIXME: auto-calculate units
-        SensitivityOutput(uid='aucinf', name='HCTZ AUC∞', unit="mM*min"),
-        SensitivityOutput(uid='cmax', name='HCTZ Cmax', unit="mM"),
-        SensitivityOutput(uid='thalf', name='HCTZ Half-life', unit="min"),
-        SensitivityOutput(uid='vd', name='HCTZ Vd', unit="l"),
-        SensitivityOutput(uid='cl', name='HCTZ CL', unit="mole/min/mM"),
-        SensitivityOutput(uid='kel', name='HCTZ kel', unit="1/min"),
-
-        SensitivityOutput(uid='max_NA_EXCRETION', name='max Sodium excretion', unit="mmole/min"),
-        SensitivityOutput(uid='max_CL_EXCRETION', name='max Chloride excretion', unit="mmole/min"),
-        SensitivityOutput(uid='max_diuresis', name='max diuresis', unit="l/min"),
-        SensitivityOutput(uid='min_bp_systolic', name='blood pressure systolic', unit="mmHg"),
-        SensitivityOutput(uid='min_bp_diastolic', name='blood pressure diastolic', unit="mmHg"),
-    ]
+    ).tolist()
 )
 
 
-def _sensitivity_parameters() -> list[SensitivityParameter]:
-    """Definition of parameters and bounds for sensitivity analysis."""
-    console.rule("Parameters", style="white")
-    parameters: list[SensitivityParameter] = SensitivityParameter.parameters_from_sbml(
-        sbml_path=MODEL_PATH,
+def sensitivity_simulation(changes: Mapping[str, float]) -> Simulation:
+    """Get the simulation of a group: a single oral dose of HCTZ at time 0.
+
+    The simulation starts `EQUILIBRATION_DAYS` before the dose without HCTZ,
+    see the module.
+    """
+    return Simulation(
+        start=-24 * EQUILIBRATION_DAYS,
+        end=END_HR,
+        times=TIMES_HR,
+        time_unit="hr",
+        preinit_changes={**changes},
+        changes=[Change(0, {"PODOSE_hctz": Q(DOSE_HCTZ, "mg")})],
+    )
+
+
+#: the groups the analyses are run for: the control and the stages of renal
+#: impairment of the simulation experiments
+SENSITIVITY_GROUPS: list[SensitivityGroup] = [
+    SensitivityGroup("control", "Control", sensitivity_simulation({}), "dimgrey"),
+    *(
+        SensitivityGroup(
+            uid,
+            name,
+            sensitivity_simulation(
+                {"f_renal_function": HCTZSimulationExperiment.renal_map[name]}
+            ),
+            HCTZSimulationExperiment.renal_colors[name],
+        )
+        for uid, name in [
+            ("mildRI", "Mild renal impairment"),
+            ("modRI", "Moderate renal impairment"),
+            ("sevRI", "Severe renal impairment"),
+        ]
+    ),
+]
+
+
+def sensitivity_parameters() -> list[SensitivityParameter]:
+    """Get the parameters of the analyses with their bounds and references."""
+    parameters = parameters_from_sbml(
+        MODEL_PATH,
         exclude_ids={
             # conversion factors
             "conversion_min_per_day",
-            # "KI__cf_mg_per_g",
-            # "KI__cf_ml_per_l",
-
             # molecular weights
             "Mr_hctz",
             "Mr_na",
             "Mr_cl",
-            "Mr_nacl"
-
-            # unchangable values
+            "Mr_nacl",
+            # reference values
+            "BW_ref",
+            # unchangeable values
             "FQlu",
             "FVhv",
             "FVpo",
-            "GFR_healthy",
-
             # dosing parameters
             "PODOSE_hctz",
             "ti_hctz",
-
             # unused volumes
             "Vurine",
-            "KI__urine_volume",
             "Vfeces",
-            "Vplasma",
-            "Vstomach",
         },
         exclude_na=True,
         exclude_zero=True,
     )
-    bounds_fraction = 0.15  # fraction of bounds relative to value
 
-    # bounds from fitted parameters
-    fit_bounds = [
-        # (fp.pid, fp.lower_bound, fp.upper_bound, ParameterType.FIT) for fp in fit_parameters
-        (fp.pid, np.nan, np.nan, ParameterType.FIT) for fp in fit_parameters
-    ]
-    SensitivityParameter.parameters_set_bounds(parameters, bounds=fit_bounds)
+    # the fitted parameters, their bounds are set relative to the value below
+    set_bounds(
+        parameters,
+        [(fp.pid, np.nan, np.nan, ParameterType.FIT) for fp in fit_parameters],
+    )
+    # the scaling factors of the organ functions
+    set_bounds(
+        parameters,
+        [
+            (uid, 1 - BOUNDS_FRACTION, 1 + BOUNDS_FRACTION, ParameterType.SCALING)
+            for uid in ["f_cardiac_function", "f_renal_function"]
+        ],
+    )
 
-    # bounds from scaled parameters
-    uids_scaling = [
-        "f_cardiac_function",
-        "f_renal_function",
-    ]
-    scaling_bounds = [
-        (uid, 1 - bounds_fraction, 1 + bounds_fraction, ParameterType.SCALING) for uid in uids_scaling
-    ]
-    SensitivityParameter.parameters_set_bounds(parameters, bounds=scaling_bounds)
-
-    # references for values
-    reference_data={
-        "HCT": r"\cite{Mondal2025, Fiseha2023}",
+    # the references of the values from the literature
+    references = {
         "BW": r"\cite{Ogden2004, Jones2013, Thompson2009, Brown1997}",
         "FQgu": r"\cite{Jones2013, Thompson2009, Brown1997}",
         "FQh": r"\cite{Jones2013, Wynne1989, Thompson2009, Brown1997}",
@@ -216,94 +267,34 @@ def _sensitivity_parameters() -> list[SensitivityParameter]:
         "FVve": r"\cite{Jones2013, Thompson2009, Brown1997}",
         "COBW": r"\cite{Cattermole2017, Patel2021, Collis2001}",
         "f_renal_function": r"\cite{Stevens2024}",
-        # "LI__f_cyp2c9": r"\cite{Kusama2009, Wang2014, Maekawa2009}",
     }
-    p_dict = {p.uid: p for p in parameters}
-    for pid, reference in reference_data.items():
-        p = p_dict[pid]
+    by_uid = {p.uid: p for p in parameters}
+    for uid, reference in references.items():
+        p = by_uid[uid]
         p.reference = reference
         if p.type == ParameterType.NA:
             p.type = ParameterType.DATA
 
-    # setting missing bounds;
-    for p in parameters:
-        if np.isnan(p.lower_bound) and np.isnan(p.upper_bound):
-            p.lower_bound = p.value * (1 - bounds_fraction)
-            p.upper_bound = p.value * (1 + bounds_fraction)
-
-    # print parameters
-    pd.options.display.float_format = "{:.5g}".format
-    df_parameters = SensitivityParameter.parameters_to_df(parameters)
-    console.print(df_parameters)
-
+    # every parameter without bounds varies around its value
+    set_relative_bounds(parameters, BOUNDS_FRACTION)
     return parameters
 
-sensitivity_parameters = _sensitivity_parameters()
+
+#: the analyses of the script, with their groups and numbers of samples
+SENSITIVITY = SensitivityRunner(
+    model=MODEL,
+    parameters=sensitivity_parameters,
+    outputs=OUTPUTS,
+    observables=OBSERVABLES,
+    analyses={
+        "local": LocalAnalysis(groups=SENSITIVITY_GROUPS[:1], delta=0.01),
+        "sampling": SamplingAnalysis(groups=SENSITIVITY_GROUPS, n=1000),
+        "fast": FastAnalysis(groups=SENSITIVITY_GROUPS[:1], n=1000),
+        "sobol": SobolAnalysis(groups=SENSITIVITY_GROUPS[:1], n=4096),
+    },
+    default=("local",),
+)
 
 
 if __name__ == "__main__":
-    import multiprocessing
-    from sbmlsim.sensitivity import (
-        LocalSensitivityAnalysis,
-        SamplingSensitivityAnalysis,
-        FASTSensitivityAnalysis,
-        SobolSensitivityAnalysis,
-    )
-    from pkdb_models.models.hctz import RESULTS_PATH
-
-    sensitivity_path = RESULTS_PATH / "sensitivity"
-    sensitivity_path.mkdir(parents=True, exist_ok=True)
-    df_parameters = SensitivityParameter.parameters_to_df(sensitivity_parameters)
-    df_parameters.to_csv(sensitivity_path / "parameters.tsv", sep="\t", index=False)
-    console.print(df_parameters)
-    SensitivityParameter.parameter_to_latex(
-        tex_path=sensitivity_path / "parameters.tex",
-        parameters=sensitivity_parameters,
-    )
-
-    settings = {
-        "cache_results": False,
-        "n_cores": int(round(0.9 * multiprocessing.cpu_count())),
-        "seed": 1234
-    }
-
-    sa_local = LocalSensitivityAnalysis(
-        sensitivity_simulation=sensitivity_simulation,
-        parameters=sensitivity_parameters,
-        groups=[sensitivity_groups[0]],
-        results_path=sensitivity_path / "local",
-        difference=0.01,
-        **settings,
-    )
-    sa_sampling = SamplingSensitivityAnalysis(
-        sensitivity_simulation=sensitivity_simulation,
-        parameters=sensitivity_parameters,
-        groups=sensitivity_groups,
-        results_path=sensitivity_path / "sampling",
-        N=1000,
-        **settings,
-    )
-    # sa_fast = FASTSensitivityAnalysis(
-    #     sensitivity_simulation=sensitivity_simulation,
-    #     parameters=sensitivity_parameters,
-    #     groups=[sensitivity_groups[0]],
-    #     results_path=sensitivity_path / "fast",
-    #     N=1000,
-    #     **settings,
-    # )
-    # sa_sobol = SobolSensitivityAnalysis(
-    #     sensitivity_simulation=sensitivity_simulation,
-    #     parameters=sensitivity_parameters,
-    #     groups=[sensitivity_groups[0]],
-    #     results_path=sensitivity_path / "sobol",
-    #     N=4096,
-    #     **settings,
-    # )
-    for sa in [
-        sa_local,
-        # sa_sampling,
-        # sa_fast,
-        # sa_sobol,
-    ]:
-        sa.execute()
-        sa.plot()
+    SENSITIVITY.main()

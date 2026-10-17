@@ -10,11 +10,11 @@ Ripley2000	NA	white	9.0	Diet	cumulative amount	sodium	urine	NR	sodium_diet_white
 Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_black	0.0	hr	NA	0.0	0.0	0.0	0.0	mmol	NA
 Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_black	12.0	hr	NA	206.72268907563	249.579831932773	42.857142857143	14.2857142857143	mmol	von Fig2
 Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_black	24.0	hr	NA	272.146118721461	319.634703196347	47.488584474886	15.8295281582953	mmol	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_black	36.0	hr	NA	335.294117647058	370.588235294117	35.2941176470588	11.7647058823529	mmol	von Fig2
+Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_black	36.0	hr	NA	335.294117647058	394.46201769355963	59.16790004650166	19.722633348833885	mmol	0-24 hr of Fig1 plus 24-36 hr of Fig2; the SD of the sum is sqrt(SD_0-24^2 + SD_24-36^2) of the independent intervals, Fig2 gives the SD 35.29 of the 24-36 hr interval
 Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_white	0.0	hr	NA	0.0	0.0	0.0	0.0	mmol	NA
 Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_white	12.0	hr	NA	204.201680672268	234.453781512605	30.252100840337	10.0840336134457	mmol	von Fig2
 Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_white	24.0	hr	NA	263.013698630136	297.716894977169	34.703196347033	11.5677321156777	mmol	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_white	36.0	hr	NA	299.999999999999	317.647058823528	17.6470588235295	5.8823529411765	mmol	von Fig2
+Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_white	36.0	hr	NA	299.999999999999	338.9323839730083	38.932383973009344	12.977461324336447	mmol	0-24 hr of Fig1 plus 24-36 hr of Fig2; the SD of the sum is sqrt(SD_0-24^2 + SD_24-36^2) of the independent intervals, Fig2 gives the SD 17.65 of the 24-36 hr interval
 Ripley2000	NA	black	9.0	Baseline	cumulative amount	potassium	urine	NR	pot_baseline_black	0.0	hr	NA	0.0	0.0	0.0	0.0	mmol	NA
 Ripley2000	NA	black	9.0	Baseline	cumulative amount	potassium	urine	NR	pot_baseline_black	24.0	hr	NA	43.4408602150537	52.0430107526881	8.60215053763439	2.8673835125448	mmol	NA
 Ripley2000	NA	white	9.0	Baseline	cumulative amount	potassium	urine	NR	pot_baseline_white	0.0	hr	NA	0.0	0.0	0.0	0.0	mmol	NA
@@ -26,8 +26,8 @@ Ripley2000	NA	white	9.0	Diet	cumulative amount	potassium	urine	NR	pot_diet_white
 Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_black	0.0	hr	NA	0.0	0.0	0.0	0.0	mmol	NA
 Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_black	12.0	hr	NA	42.5531914893617	51.9148936170212	9.3617021276595	3.1205673758865	mmol	von Fig2
 Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_black	24.0	hr	NA	67.0967741935483	81.2903225806451	14.1935483870968	4.73118279569893	mmol	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_black	36.0	hr	NA	97.0212765957445	105.531914893617	8.5106382978724	2.83687943262413	mmol	von Fig2
+Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_black	36.0	hr	NA	97.0212765957445	113.57083187841208	16.549555282667587	5.516518427555862	mmol	0-24 hr of Fig1 plus 24-36 hr of Fig2; the SD of the sum is sqrt(SD_0-24^2 + SD_24-36^2) of the independent intervals, Fig2 gives the SD 8.511 of the 24-36 hr interval
 Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	0.0	hr	NA	0.0	0.0	0.0	0.0	mmol	NA
 Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	12.0	hr	NA	61.2765957446808	68.0851063829787	6.8085106382979	2.2695035460993	mmol	von Fig2
 Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	24.0	hr	NA	87.3118279569892	101.075268817204	13.7634408602148	4.5878136200716	mmol	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	36.0	hr	NA	117.872340425532	123.829787234042	5.9574468085106	1.98581560283687	mmol	von Fig2
+Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	36.0	hr	NA	117.872340425532	132.86978943490902	14.99744900937701	4.999149669792337	mmol	0-24 hr of Fig1 plus 24-36 hr of Fig2; the SD of the sum is sqrt(SD_0-24^2 + SD_24-36^2) of the independent intervals, Fig2 gives the SD 5.957 of the 24-36 hr interval

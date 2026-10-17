@@ -1,21 +1,28 @@
-from typing import Dict
+"""Simulation experiment of the study Jeon2012."""
+
+from typing import override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
+from sbmlsim.simulation import Change, Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Jeon2012(HCTZSimulationExperiment):
@@ -24,84 +31,74 @@ class Jeon2012(HCTZSimulationExperiment):
     Multiple oral dosing of 25mg HCTZ.
     """
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig3", "Fig4", "Fig5", "Fig6", "Tab2"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith("hctz"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                elif fig_id == "Tab2" and label.startswith("amount_"):
+                if label.startswith("hctz") or (
+                    fig_id == "Tab2" and label.startswith("amount_")
+                ):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
                 # elif fig_id == "Fig5" and label.startswith("pra_"):
                 #     dset.unit_conversion("mean", 1 / self.Mr.ren)
                 # elif fig_id == "Fig5" and label.startswith("aldosterone_"):
                 #     dset.unit_conversion("mean", 1 / self.Mr.ald)
-                dsets[f"{fig_id}_{label}"] = dset
+                dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
-        # print(dsets.keys())
-        # print(dsets)
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
-        tc0 = Timecourse(
-            start=0,
-            end=24 * 60,  # [min]
-            steps=500,
-            changes={
+        # 7 doses, every 24 hours, the data is reported from the last dose
+        dose_times = [24 * k for k in range(7)]
+        # the urine of the last dose is collected over 0-2, 2-4, 4-6, 6-12 and
+        # 12-24 hr (Fig4 gives the volume of every collection): the urinary
+        # volume is reset at the end of every collection, a data point at the
+        # end of a collection is compared with the volume before the reset
+        collection_ends = [dose_times[-1] + t for t in [2, 4, 6, 12, 24]]
+        simulations["hctz25"] = Simulation(
+            time_unit="hr",
+            end=6 * 24 + 30,
+            steps=4176,
+            preinit_changes={
                 **self.default_changes(),
-                "PODOSE_hctz": Q_(25, "mg"),
-
                 # # mean value of acute renin at baseline
-                # "ren_ref": Q_(7.58, "ng/ml") / self.Mr.ren,  # HCTZ25 mono
-                # "[ren]": Q_(7.58, "ng/ml") / self.Mr.ren,  # HCTZ25 mono
+                # "ren_ref": Q(7.58, "ng/ml") / self.Mr.ren,  # HCTZ25 mono
+                # "[ren]": Q(7.58, "ng/ml") / self.Mr.ren,  # HCTZ25 mono
                 # # mean value of acute aldosterone at baseline
-                # "ald_ref": Q_(209.58, "pg/ml") / self.Mr.ald,  # HCTZ25 mono
-                # "[ald]": Q_(209.58, "pg/ml") / self.Mr.ald,  # HCTZ25 mono
-
+                # "ald_ref": Q(209.58, "pg/ml") / self.Mr.ald,  # HCTZ25 mono
+                # "[ald]": Q(209.58, "pg/ml") / self.Mr.ald,  # HCTZ25 mono
                 # blood pressure
                 # blood pressures were within predetermined criteria
                 # (systolic blood pressure <140 and >100 mmHg and
                 #  diastolic blood pressure <90 and >65 mmHg)
-                "Psys_ref": Q_((140+100)/2, "mmHg"),  # HCTZ25 mono
-                "Pdia_ref": Q_((90+65)/2, "mmHg"),   # HCTZ25 mono
+                "Psys_ref": Q((140 + 100) / 2, "mmHg"),  # HCTZ25 mono
+                "Pdia_ref": Q((90 + 65) / 2, "mmHg"),  # HCTZ25 mono
             },
-        )
-        tc1 = Timecourse(
-            start=0,
-            end=24 * 60,  # [min]
-            steps=500,
-            changes={
-                "PODOSE_hctz": Q_(25, "mg"),
-                "Aurine_hctz": Q_(0, "mmole"), # reset urinary amount
-                "Vurine": Q_(1E-15, "l"),  # reset urinary volume
-            },
-        )
-        tc2 = Timecourse(
-            start=0,
-            end=30 * 60,  # [min]
-            steps=500,
-            changes={
-                "PODOSE_hctz": Q_(25, "mg"),
-                "Aurine_hctz": Q_(0, "mmole"),  # reset urinary amount
-                "Vurine": Q_(1E-15, "l"),  # reset urinary volume
-            },
+            changes=[
+                Change(dose_times, {"PODOSE_hctz": Q(25, "mg")}),
+                Change(
+                    dose_times[1:],
+                    {
+                        "Aurine_hctz": Q(0, "mmole"),  # reset urinary amount
+                        "Vurine": Q(1e-6, "l"),  # reset urinary volume
+                    },
+                ),
+                Change(collection_ends, {"Vurine": Q(1e-6, "l")}),
+            ],
+            time_shift=-6 * 24,
         )
 
-        tcsims["hctz25"] = TimecourseSim(
-            [tc0] + [tc1 for _ in range(5)] + [tc2],
-            time_offset=-6 * 24 * 60,
-        )
+        return simulations
 
-        return tcsims
-
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         infos = [
             ("Fig3_hctz25", "[Cve_hctz]", Tissue.PLASMA),
@@ -109,72 +106,77 @@ class Jeon2012(HCTZSimulationExperiment):
             ("Fig4_urine_vol_hctz25", "Vurine", Tissue.URINE),
             # ("Fig5_pra_hctz25", "[ren]", Tissue.PLASMA),  # renin activity
             # ("Fig5_aldosterone_hctz25", "[ald]", Tissue.PLASMA),
-            ("Fig6_bpsys_hctz25", "bp_systolic", Tissue.PLASMA),
-            ("Fig6_bpdia_hctz25", "bp_diastolic", Tissue.PLASMA),
+            ("Fig6_bpsys_hctz25", "bp_systolic", Tissue.NONE),
+            ("Fig6_bpdia_hctz25", "bp_diastolic", Tissue.NONE),
         ]
 
         for info in infos:
             (dset_id, yid, tissue) = info
-            mappings[f"fm_{dset_id}"] = FitMapping(
+            mappings[self.to_sid(f"fm_{dset_id}")] = FitMapping(
                 self,
                 reference=FitData(
                     self,
-                    dataset=dset_id,
+                    dataset=self.to_sid(dset_id),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
                 ),
-                observable=FitData(self, task=f"task_hctz25", xid="time", yid=yid),
-                metadata=HCTZMappingMetaData(
+                observable=FitData(self, task="task_hctz25", xid="time", yid=yid),
+                metadata=PKPDMappingMetaData(
                     tissue=tissue,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
-                    dosing=Dosing.MULTI,
+                    dosing=Dosing.MULTIPLE,
                     health=Health.HEALTHY,
                     fasting=Fasting.FASTED,
-                    coadministration=Coadministration.FIMASARTAN if "fima240" in dset_id else Coadministration.NONE,
+                    coadministration=Coadministration.FIMASARTAN
+                    if "fima240" in dset_id
+                    else Coadministration.NONE,
                 ),
             )
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
-            **self.figure_Fig3_Tab2(),
-            **self.figure_Fig4(),
+            **self._figure_Fig3_Tab2(),
+            **self._figure_Fig4(),
             # **self.figure_Fig5(),
-            **self.figure_Fig6(),
+            **self._figure_Fig6(),
         }
 
-    def figure_Fig3_Tab2(self) -> Dict[str, Figure]:
+    def _figure_Fig3_Tab2(self) -> dict[str, Figure]:
         name = "Fig3_Tab2"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             num_rows=1,
             num_cols=2,
             name=f"{self.__class__.__name__} {name}",
         )
 
-        plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr", min=-25, max=40), legend=True)
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit="hr", min=-25, max=40), legend=True
+        )
         plots[0].set_yaxis(self.label_hctz, unit=self.unit_hctz)
         plots[1].set_yaxis(self.label_hctz_urine, unit=self.unit_hctz_urine)
 
         # simulation
         for k, yid in enumerate(["[Cve_hctz]", "Aurine_hctz"]):
             plots[k].add_data(
-                task=f"task_hctz25",
+                task="task_hctz25",
                 xid="time",
                 yid=yid,
-                label=f"Sim",
+                label="Sim",
                 color="black",
             )
 
         # data
-        for kd, suffix in enumerate(["hctz25", "hctz25_kombi"]):
+        for suffix in ["hctz25", "hctz25_kombi"]:
             plots[0].add_data(
-                dataset=f"Fig3_{suffix}",
+                dataset=self.to_sid(f"Fig3_{suffix}"),
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
@@ -183,7 +185,7 @@ class Jeon2012(HCTZSimulationExperiment):
                 color="black" if suffix == "hctz25" else "tab:blue",
             )
             plots[1].add_data(
-                dataset=f"Tab2_amount_cumulative_{suffix}",
+                dataset=self.to_sid(f"Tab2_amount_cumulative_{suffix}"),
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
@@ -194,42 +196,47 @@ class Jeon2012(HCTZSimulationExperiment):
             )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
-
-    def figure_Fig4(self) -> Dict[str, Figure]:
+    def _figure_Fig4(self) -> dict[str, Figure]:
         name = "Fig 4"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             name=f"{self.__class__.__name__} {name}",
         )
 
-        plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr", min=-25, max=40), legend=True)
-        plots[0].set_yaxis(label="urine volume", unit="l")
+        # the volume of every collection after the last dose, the simulation is
+        # reset at the end of every collection; the upper limit leaves out the
+        # volume of the 24 hr before the last dose
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit="hr", min=-1, max=30), legend=True
+        )
+        plots[0].set_yaxis(label="urine volume (collection)", unit="l", max=1.2)
 
         # simulation
         plots[0].add_data(
-            task=f"task_hctz25",
+            task="task_hctz25",
             xid="time",
             yid="Vurine",
-            label=f"Sim",
+            label="Sim",
             color=self.color_hctz,
         )
         # data
         plots[0].add_data(
-            dataset=f"Fig4_urine_vol_hctz25",
+            dataset="Fig4_urine_vol_hctz25",
             xid="time",
             yid="mean",
             yid_sd="mean_sd",
             count="count",
-            label=f"25 mg HCTZ",
+            label="25 mg HCTZ",
             color=self.color_hctz,
+            linestyle="",
         )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
     # def figure_Fig5(self) -> Dict[str, Figure]:
@@ -284,61 +291,61 @@ class Jeon2012(HCTZSimulationExperiment):
     #         fig.sid: fig,
     #     }
 
-    def figure_Fig6(self) -> Dict[str, Figure]:
+    def _figure_Fig6(self) -> dict[str, Figure]:
         name = "Fig 6"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             num_rows=1,
             num_cols=2,
             name=f"{self.__class__.__name__} {name}",
         )
-        plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr",
-                                            min=-25, max=25
-                                            ), legend=True)
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit="hr", min=-25, max=25), legend=True
+        )
         plots[0].set_yaxis(self.labels["bp_systolic"], unit=self.units["bp_systolic"])
         plots[1].set_yaxis(self.labels["bp_diastolic"], unit=self.units["bp_diastolic"])
 
         # simulation
         plots[0].add_data(
-            task=f"task_hctz25",
+            task="task_hctz25",
             xid="time",
             yid="bp_systolic",
-            label=f"Sim",
+            label="Sim",
             color=self.color_hctz,
         )
         plots[1].add_data(
-            task=f"task_hctz25",
+            task="task_hctz25",
             xid="time",
             yid="bp_diastolic",
-            label=f"Sim",
+            label="Sim",
             color=self.color_hctz,
         )
 
         # data
         plots[0].add_data(
-            dataset=f"Fig6_bpsys_hctz25",
+            dataset="Fig6_bpsys_hctz25",
             xid="time",
             yid="mean",
             yid_sd="mean_sd",
             count="count",
-            label=f"25 mg HCTZ",
+            label="25 mg HCTZ",
             color=self.color_hctz,
         )
         plots[1].add_data(
-            dataset=f"Fig6_bpdia_hctz25",
+            dataset="Fig6_bpdia_hctz25",
             xid="time",
             yid="mean",
             yid_sd="mean_sd",
             count="count",
-            label=f"25 mg HCTZ",
+            label="25 mg HCTZ",
             color=self.color_hctz,
         )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
 
 if __name__ == "__main__":
-    run_experiments(Jeon2012, output_dir=Jeon2012.__name__)
+    MODEL.run_experiments(Jeon2012, output_dir=Jeon2012.__name__)

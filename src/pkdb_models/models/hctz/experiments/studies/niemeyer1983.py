@@ -1,73 +1,99 @@
-from typing import Dict
+"""Simulation experiment of the study Niemeyer1983."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-from sbmlutils.console import console
+from sbmlsim.simulation import Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Niemeyer1983(HCTZSimulationExperiment):
     """Simulation experiment of Niemeyer1983.
 
     single oral dosing of 50mg HCTZ.
-    """
-    labels = ["NRF", "MRI", "SRI"]
-    patients = ["C", "S", "W"]
-    crcl = [106, 30, 10]   #  [ml/min]
-    colors = ["black", HCTZSimulationExperiment.renal_colors["Moderate renal impairment"], HCTZSimulationExperiment.renal_colors["Severe renal impairment"]]
 
-    def datasets(self) -> Dict[str, DataSet]:
+    Fig1 shows three of the 23 subjects (Table 1, p. 662): patient C (71 years,
+    arterial hypertension, creatinine clearance 106 ml/min) of group 1 with
+    the normal renal function, patients S (30 ml/min) and W (10 ml/min), both
+    with chronic glomerulonephritis, of group 3 with moderate to severe renal
+    failure (creatinine clearance up to 30 ml/min). The patients were kept on
+    their usual therapy, which is not reported, only diuretics were stopped at
+    least 3 days before the dose (p. 662).
+
+    The concentrations of 0 of patient C at 33 hr and of patient S at 48 hr
+    are not quantified samples: the limit of the assay is not reported, and S
+    has 91 ng/ml at 24 hr with a half-life of 15.4 hr (Table 3), i.e. about 30
+    ng/ml at 48 hr. They are left out of the data.
+    """
+
+    group_labels: ClassVar[list[str]] = ["group 1", "group 3", "group 3"]
+    patients: ClassVar[list[str]] = ["C", "S", "W"]
+    crcl: ClassVar[list[int]] = [106, 30, 10]  #  [ml/min]
+    health: ClassVar[list[Health]] = [
+        Health.HYPERTENSION,
+        Health.RENAL_IMPAIRMENT,
+        Health.RENAL_IMPAIRMENT,
+    ]
+    colors: ClassVar[list[str]] = [
+        "black",
+        HCTZSimulationExperiment.renal_colors["Moderate renal impairment"],
+        HCTZSimulationExperiment.renal_colors["Severe renal impairment"],
+    ]
+
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig1"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
+            # the samples without a quantified concentration, see the docstring
+            df = df[df["value"] > 0]
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
                     dset.unit_conversion("value", 1 / self.Mr.hctz)
                 dsets[f"{fig_id}_{label}"] = dset
 
-        # print(dsets.keys())
-        # print(dsets)
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
         for kp, patient in enumerate(self.patients):
-            tcsims[f"hctz50_{patient}"] = TimecourseSim(
-                Timecourse(
-                    start=0,
-                    end=60 * 60,  # [min]
-                    steps=500,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_hctz": Q_(50, "mg"),
-                        "f_renal_function": Q_(
-                            self.crcl[kp] / 100, "dimensionless"
-                        ),  # relative kidney function
-                    },
-                )
+            simulations[f"hctz50_{patient}"] = Simulation(
+                time_unit="hr",
+                end=60,
+                steps=500,
+                preinit_changes={
+                    **self.default_changes(),
+                    "PODOSE_hctz": Q(50, "mg"),
+                    "f_renal_function": self.renal_function(self.crcl[kp]),
+                },
             )
 
-        return tcsims
+        return simulations
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         for kp, patient in enumerate(self.patients):
             mappings[f"fm_Fig1_hctz50_{patient}"] = FitMapping(
@@ -82,27 +108,28 @@ class Niemeyer1983(HCTZSimulationExperiment):
                 observable=FitData(
                     self, task=f"task_hctz50_{patient}", xid="time", yid="[Cve_hctz]"
                 ),
-                metadata=HCTZMappingMetaData(
+                metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
-                    health=Health.HEALTHY if self.labels[kp] == "NRF" else Health.RENAL_IMPAIRMENT,
+                    health=self.health[kp],
                     fasting=Fasting.FASTED,
-                    coadministration=Coadministration.NONE,
+                    # the usual therapy of the patients
+                    coadministration=Coadministration.COMEDICATION,
                 ),
             )
 
-        # console.print(mappings)
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
-            **self.figure_Fig1(),
+            **self._figure_Fig1(),
             #    **self.figure_Fig2(),
         }
 
-    def figure_Fig1(self) -> Dict[str, Figure]:
+    def _figure_Fig1(self) -> dict[str, Figure]:
         name = "Fig1"
         fig = Figure(
             experiment=self,
@@ -121,7 +148,7 @@ class Niemeyer1983(HCTZSimulationExperiment):
                 task=f"task_hctz50_{patient}",
                 xid="time",
                 yid="[Cve_hctz]",
-                label=f"Sim {self.labels[kp]}",
+                label=f"Sim {patient}",
                 color=self.colors[kp],
             )
 
@@ -131,14 +158,17 @@ class Niemeyer1983(HCTZSimulationExperiment):
                 xid="time",
                 yid="value",
                 count="count",
-                label=f"50 mg {self.labels[kp]}",
+                label=(
+                    f"50 mg {patient}, {self.group_labels[kp]} "
+                    f"(CrCl {self.crcl[kp]} ml/min)"
+                ),
                 color=self.colors[kp],
             )
 
         return {
-            fig.sid: fig,
+            name: fig,
         }
 
 
 if __name__ == "__main__":
-    run_experiments(Niemeyer1983, output_dir=Niemeyer1983.__name__)
+    MODEL.run_experiments(Niemeyer1983, output_dir=Niemeyer1983.__name__)

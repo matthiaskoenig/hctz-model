@@ -1,12 +1,28 @@
 """Hydrochlorothiazide body model."""
-import numpy as np
-from sbmlutils.converters import odefac
-from sbmlutils.cytoscape import visualize_sbml
-from sbmlutils.factory import *
-from sbmlutils.metadata import *
 
-from pkdb_models.models.hctz.models import templates
-from pkdb_models.models.hctz.models import annotations
+from typing import NotRequired, TypedDict
+
+import numpy as np
+from sbmlutils.factory import (
+    PORT_SUFFIX,
+    AssignmentRule,
+    Compartment,
+    ExternalModelDefinition,
+    Model,
+    NaN,
+    Parameter,
+    RateRule,
+    Reaction,
+    ReplacedElement,
+    Species,
+    Submodel,
+    UnitDefinition,
+    create_model,
+)
+from sbmlutils.metadata import BQB, SBO
+
+from pkdb_models.models.hctz.models import annotations, templates
+from pkdb_models.models.hctz.models.fits import FITS
 
 
 # -----------------------------------------------------------------------------
@@ -68,24 +84,38 @@ _m = Model(
     + templates.terms_of_use,
     units=U,
     model_units=templates.model_units,
-    creators = templates.creators,
-    annotations = annotations.model + [
+    creators=templates.creators,
+    annotations=[
+        *annotations.model,
         # tissue
         (BQB.OCCURS_IN, "BTO:0001489"),  # whole body
         (BQB.OCCURS_IN, "FMA:256135"),  # body
-
         (BQB.HAS_PROPERTY, "NCIT:C79369"),  # Pharmacokinetics: Absorption
         # (BQB.HAS_PROPERTY, "NCIT:C79371"),  # Pharmacokinetics: Metabolism
         (BQB.HAS_PROPERTY, "NCIT:C79372"),  # Pharmacokinetics: Excretion
         (BQB.HAS_PROPERTY, "NCIT:C79370"),  # Pharmacokinetics: Distribution
-    ]
+    ],
 )
 
 _m.ports = []
 _m.deletions = []
 _m.replaced_elements = []
 
-SUBSTANCES_BODY = {
+
+class SubstanceBody(TypedDict):
+    """Definition of a substance transported in the whole-body model."""
+
+    name: str
+    unit: UnitDefinition
+    cinit: float  # initial concentration [mmole/l]
+    Mr: float  # molecular weight [g/mole]
+    #: distribution into the tissues (`ftissue_<sid>`, `Kp_<sid>`, fitted)
+    tissue_distribution: NotRequired[bool]
+    IVDOSE: NotRequired[float]  # intravenous dose [mg]
+    PODOSE: NotRequired[float]  # oral dose [mg]
+
+
+SUBSTANCES_BODY: dict[str, SubstanceBody] = {
     "hctz": {
         "name": "hydrochlorothiazide",
         "unit": U.mmole,
@@ -97,12 +127,13 @@ SUBSTANCES_BODY = {
         "IVDOSE": 0,  # venous plasma
         # oral absorption
         "PODOSE": 0,  # dose
-        "Ka_dis": 0.35181331155360623,  # [1/hr] rate of dissolution & stomach passage
-        'ftissue': 0.24614387687774153,  # [litre_per_min] distribution in tissues
+        # the rate of dissolution and stomach passage (Ka_dis), the
+        # distribution in tissues (ftissue) and the tissue/plasma partition
+        # coefficient (Kp) are fitted, see `fits.FITS`
         # logP = -0.07; Hansch et al 1995;  P = 10^-0.07 = 0.85  (drug bank)
         # predicted: -0.16 ALOGPS (drug bank); Kp = 0.69
         # predicted: -0.58 Chemaxon (drug bank); Kp = 0.26
-        "Kp": 0.9997280036700814,  # [-] tissue/plasma partition coefficient
+        "tissue_distribution": True,
     },
 }
 
@@ -225,7 +256,7 @@ _m.compartments = [
     Compartment(
         "Vurine",
         metaId="meta_Vurine",
-        value=1E-12,
+        value=1e-6,
         unit=U.liter,
         constant=False,
         name="urine",
@@ -243,14 +274,19 @@ _m.compartments = [
         annotations=annotations.compartments["feces"],
     ),
     Compartment(
-        "Vstomach",
-        metaId="meta_Vstomach",
+        "Vgu_lumen",
+        metaId="meta_Vgu_lumen",
         value=1,
         unit=U.liter,
-        constant=True,
-        name="stomach",
+        constant=False,
+        name="intestinal lumen",
         sboTerm=SBO.PHYSICAL_COMPARTMENT,
-        annotations=annotations.compartments["stomach"],
+        annotations=annotations.compartments["gu_lumen"],
+        notes="""
+        The volume the concentration of hydrochlorothiazide in the lumen of
+        the intestine (`Cgu_hctz`) refers to; it is the volume of the gut
+        `Vgu`, the model has no volume of the lumen of its own.
+        """,
     ),
     Compartment(
         "Vpo",
@@ -275,7 +311,7 @@ _m.compartments = [
 ]
 
 # create plasma and tissue compartments (for correct blood volume)
-for cid in COMPARTMENTS_BODY.keys():
+for cid in COMPARTMENTS_BODY:
     if cid not in ["ar", "ve", "po", "hv"]:
         _m.compartments.extend(
             [
@@ -339,11 +375,11 @@ _m.replaced_elements.extend(
         ),
         # intestine
         ReplacedElement(
-            sid="Vstomach_RE",
-            metaId="Vstomach_RE",
-            elementRef="Vstomach",
+            sid="Vgu_lumen_RE",
+            metaId="Vgu_lumen_RE",
+            elementRef="Vgu_lumen",
             submodelRef=SUBMODEL_SID_DICT["gu"],
-            portRef=f"Vstomach{PORT_SUFFIX}",
+            portRef=f"Vlumen{PORT_SUFFIX}",
         ),
         ReplacedElement(
             sid="Vgu_plasma_RE",
@@ -400,27 +436,33 @@ for sid, sdict in SUBSTANCES_BODY.items():
 
     # tissue species
     for cid, cname in COMPARTMENTS_BODY.items():
-        if "ftissue" in sdict:
-            if cid not in ["ve", "ar", "ki", "gu", "po", "hv"]:
-                sid_ex = f"C{cid}_{sid}"
-                cid_ex = f"V{cid}_tissue"
+        if sdict.get("tissue_distribution") and cid not in [
+            "ve",
+            "ar",
+            "ki",
+            "gu",
+            "po",
+            "hv",
+        ]:
+            sid_ex = f"C{cid}_{sid}"
+            cid_ex = f"V{cid}_tissue"
 
-                _m.species.extend(
-                    [
-                        Species(
-                            sid_ex,
-                            metaId=f"meta_{sid_ex}",
-                            initialConcentration=sdict["cinit"],
-                            compartment=cid_ex,
-                            substanceUnit=sdict["unit"],
-                            name=f"{sdict['name']} ({cname})",
-                            hasOnlySubstanceUnits=False,
-                            port=True,
-                            sboTerm=SBO.SIMPLE_CHEMICAL,
-                            annotations=annotations.species[sid],
-                        )
-                    ]
-                )
+            _m.species.extend(
+                [
+                    Species(
+                        sid_ex,
+                        metaId=f"meta_{sid_ex}",
+                        initialConcentration=sdict["cinit"],
+                        compartment=cid_ex,
+                        substanceUnit=sdict["unit"],
+                        name=f"{sdict['name']} ({cname})",
+                        hasOnlySubstanceUnits=False,
+                        port=True,
+                        sboTerm=SBO.SIMPLE_CHEMICAL,
+                        annotations=annotations.species[sid],
+                    )
+                ]
+            )
 
     # urine metabolites dummy species
     if sid in ["hctz"]:
@@ -460,9 +502,9 @@ for sid, sdict in SUBSTANCES_BODY.items():
                 f"Cgu_{sid}",
                 metaId=f"meta_Cgu_{sid}",
                 initialConcentration=0,
-                compartment="Vgu",
+                compartment="Vgu_lumen",
                 substanceUnit=sdict["unit"],
-                name=f"{sdict['name']} (gut)",
+                name=f"{sdict['name']} (intestinal lumen)",
                 hasOnlySubstanceUnits=False,
                 sboTerm=SBO.SIMPLE_CHEMICAL,
                 annotations=annotations.species[sid],
@@ -543,6 +585,23 @@ _m.parameters.extend(
             name="body weight [kg]",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
             port=True,
+            notes="""
+            Reference adult body weight (Ogden2004, Jones2013, Thompson2009, Brown1997).
+            """,
+        ),
+        Parameter(
+            "BW_ref",
+            75,
+            U.kg,
+            constant=True,
+            name="reference body weight [kg]",
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes=(
+                "Body weight at which the exchange flows of the tissue "
+                "distribution (`ftissue_<sid>`) are given; they scale with the "
+                "body weight as the volumes, the blood flows and the renal "
+                "clearance do."
+            ),
         ),
         Parameter(
             "HEIGHT",
@@ -553,62 +612,49 @@ _m.parameters.extend(
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         ),
         Parameter(
-            "HR",
-            70,
-            U.per_min,
-            constant=True,
-            name="heart rate [1/min]",
-            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        ),
-        Parameter(
-            "map",
-            100,
-            U.mmHg,
-            constant=True,
-            name="mean arterial pressure [mmHg]",
-            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        ),
-        # Parameter(
-        #     "bp_systolic",
-        #     120,
-        #     U.mmHg,
-        #     constant=True,
-        #     name="blood pressure systolic [mmHg]",
-        #     sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        # ),
-        # Parameter(
-        #     "bp_diastolic",
-        #     80,
-        #     U.mmHg,
-        #     constant=True,
-        #     name="blood pressure systolic [mmHg]",
-        #     sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        # ),
-        Parameter(
             "f_renal_function",
             1.0,
             U.dimensionless,
             name="renal function",
-            sboTerm=SBO.KINETIC_CONSTANT,
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
             notes="""
                >1.0: increased kidney function
                1.0: normal kidney function (healthy control)
                <1.0: decreased kidney function
+
+               Renal function relative to the healthy glomerular filtration
+               rate GFR_base, which is 101 ml/min at 75 kg; a measured
+               clearance of X ml/min is the renal function X/101.
+
+               Supported range 0.05 to 2, a GFR of 5 to 202 ml/min. The renal
+               perfusion does not change with the renal function: the GFR is
+               f_renal_function * 0.0763 of the renal blood flow `Qki` (the
+               model has no hematocrit; with a hematocrit of 0.45 it is
+               f_renal_function * 0.139 of the renal plasma flow, a filtration
+               fraction of 0.28 at 2). Below 0.05 the urine flow approaches 0
+               and the concentration of HCTZ in the urine is not defined.
             """,
             port=True,
         ),
         Parameter(
             "f_GFR_Qki",
-            0.151 * 1000,
+            101 / 1.32354,
             U.ml_per_l,
-            name=f"relationship GFR and Qki",
-            notes="""[Cody1988]"""
+            name="relationship GFR and Qki",
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            GFR per renal blood flow (76.3 ml/l, a ratio of 0.0763). Calibrated
+            so that the healthy GFR is 101 ml/min at the renal blood flow of
+            1.32354 l/min of 75 kg, the normal GFR of the classes of renal
+            impairment.
+            """,
         ),
         Parameter(
             "GFR_base",
             NaN,
             U.ml_per_min,
-            name=f"glomerular filtration rate (base)",
+            name="glomerular filtration rate (base)",
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
             port=True,
         ),
         Parameter(
@@ -637,6 +683,10 @@ _m.parameters.extend(
             constant=True,
             name="cardiac output per bodyweight [ml/s/kg]",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Cardiac output per body weight of healthy adults, about 6.5
+            l/min at 70 kg (Cattermole2017, Patel2021, Collis2001).
+            """,
         ),
         Parameter(
             "CO",
@@ -648,10 +698,10 @@ _m.parameters.extend(
         ),
         Parameter(
             "QC",
-            108.33 * 1000 * 60,
+            108.33 * 60 / 1000,
             U.l_per_min,
             constant=False,
-            name="cardiac output [L/hr]",
+            name="cardiac output [l/min]",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         ),
         # fractional tissue volumes
@@ -662,15 +712,18 @@ _m.parameters.extend(
             constant=True,
             name="blood fraction of organ volume",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        ),
-        Parameter(
-            "HCT",
-            0.51,
-            U.dimensionless,
-            constant=True,
-            metaId="meta_HCT",
-            name="hematocrit",
-            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            The vascular compartments are whole blood: the arterial and the
+            venous blood, the portal and the hepatic vein and the blood of the
+            tissues (`V*_plasma`). The flows are blood flows, and the species
+            of the vascular compartments (named plasma) are the concentration
+            in plasma with a blood to plasma ratio of 1, which is what the
+            data of plasma are compared with. An erythrocyte uptake of HCTZ
+            (blood to plasma ratio above 1) is not modelled. The value 0.02 is
+            an assumption of the model without a source; the vascular
+            fraction of the kidney and the liver is about ten times larger
+            (ICRP 89, Valentin2002).
+            """,
         ),
         # fractional tissue volumes
         Parameter(
@@ -680,6 +733,9 @@ _m.parameters.extend(
             constant=True,
             name="gut fractional tissue volume",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Fractional volume of the gut (Brown1997, Jones2013, Thompson2009).
+            """,
         ),
         Parameter(
             "FVki",
@@ -688,6 +744,9 @@ _m.parameters.extend(
             constant=True,
             name="kidney fractional tissue volume",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Fractional volume of the kidneys (Brown1997, Jones2013, Thompson2009).
+            """,
         ),
         Parameter(
             "FVli",
@@ -696,6 +755,10 @@ _m.parameters.extend(
             constant=True,
             name="liver fractional tissue volume",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Fractional volume of the liver (Wynne1989, Brown1997, Jones2013,
+            Thompson2009).
+            """,
         ),
         Parameter(
             "FVlu",
@@ -704,6 +767,9 @@ _m.parameters.extend(
             constant=True,
             name="lung fractional tissue volume",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Fractional volume of the lungs (Brown1997, Jones2013, Thompson2009).
+            """,
         ),
         Parameter(
             "FVre",
@@ -721,6 +787,9 @@ _m.parameters.extend(
             constant=True,
             name="venous fractional tissue volume",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Fractional volume of the venous blood (Brown1997, Jones2013, Thompson2009).
+            """,
         ),
         Parameter(
             "FVar",
@@ -729,6 +798,10 @@ _m.parameters.extend(
             constant=True,
             name="arterial fractional tissue volume",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Fractional volume of the arterial blood (Brown1997, Jones2013,
+            Thompson2009).
+            """,
         ),
         Parameter(
             "FVpo",
@@ -737,6 +810,9 @@ _m.parameters.extend(
             constant=True,
             name="portal fractional tissue volume",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Small volume of the portal vein, an assumption of the model without a source.
+            """,
         ),
         Parameter(
             "FVhv",
@@ -745,6 +821,9 @@ _m.parameters.extend(
             constant=True,
             name="hepatic venous fractional tissue volume",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Small volume of the hepatic vein, an assumption of the model without a source.
+            """,
         ),
         # fractional tissue blood flows
         Parameter(
@@ -756,7 +835,7 @@ _m.parameters.extend(
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
             notes="""
         Assumed FQgu is the sum of FQgu + FQsp + FQpa for correct portal blood flow.
-        with FQgu=0.146, FQsp=0.017, FQpa=0.017 
+        with FQgu=0.146, FQsp=0.017, FQpa=0.017 (Brown1997, Jones2013, Thompson2009).
         """,
         ),
         Parameter(
@@ -766,6 +845,10 @@ _m.parameters.extend(
             constant=True,
             name="kidney fractional tissue blood flow",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Fraction of the cardiac output to the kidneys (Brown1997,
+            Jones2013, Thompson2009).
+            """,
         ),
         Parameter(
             "FQh",
@@ -774,6 +857,14 @@ _m.parameters.extend(
             constant=True,
             name="hepatic (venous side) fractional tissue blood flow",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Fraction of the cardiac output leaving the liver, the portal
+            (FQgu) and the hepatic arterial flow (Wynne1989, Brown1997,
+            Jones2013, Thompson2009). The hepatic artery is 3.5 % of the
+            cardiac output here, about 6.5 % in ICRP 89 (Valentin2002);
+            without a hepatic clearance of HCTZ the difference does not
+            change the pharmacokinetics.
+            """,
         ),
         Parameter(
             "FQlu",
@@ -796,7 +887,7 @@ _m.parameters.extend(
             1440,
             U.min_per_day,
             constant=True,
-            name="Conversion factor min to hours",
+            name="Conversion factor day to min",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         ),
         Parameter(
@@ -806,6 +897,12 @@ _m.parameters.extend(
             constant=True,
             name="severity of cirrhosis [0, 0.95]",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            Cirrhosis is not supported for HCTZ: it changes only the shunts
+            and the liver tissue, HCTZ has no hepatic clearance (the AUC
+            changes by 0.03 % at 0.9); ascites, the expansion of the
+            extracellular fluid and aldosterone are not in the model.
+            """,
             annotations=[
                 (BQB.IS, "ncit/C2951"),  # Cirrhosis
                 (BQB.IS, "efo/0001422"),  # cirrhosis of liver
@@ -850,11 +947,18 @@ for sid, sdict in SUBSTANCES_BODY.items():
                     name=f"oral dose {sid} [mg]",
                 ),
                 Parameter(
-                    f"Ka_dis_{sid}",
-                    sdict["Ka_dis"],
-                    U.per_hr,
-                    constant=True,
+                    f"POSOLUTION_{sid}",
+                    0,
+                    U.mg,
+                    constant=False,
                     sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+                    name=f"oral dose as solution {sid} [mg]",
+                ),
+                Parameter(
+                    f"Ka_dis_{sid}",
+                    **FITS.parameter(f"Ka_dis_{sid}", unit=U.per_hr),
+                    constant=True,
+                    sboTerm=SBO.KINETIC_CONSTANT,
                     name=f"Ka_dis [1/hr] dissolution {sdict['name']}",
                 ),
             ]
@@ -869,6 +973,13 @@ for sid, sdict in SUBSTANCES_BODY.items():
                     portRef=f"PODOSE_{sid}{PORT_SUFFIX}",
                 ),
                 ReplacedElement(
+                    sid=f"POSOLUTION_{sid}_RE",
+                    metaId=f"POSOLUTION_{sid}_RE",
+                    elementRef=f"POSOLUTION_{sid}",
+                    submodelRef=SUBMODEL_SID_DICT["gu"],
+                    portRef=f"POSOLUTION_{sid}{PORT_SUFFIX}",
+                ),
+                ReplacedElement(
                     sid=f"Ka_dis_{sid}_RE",
                     metaId=f"Ka_dis_{sid}_RE",
                     elementRef=f"Ka_dis_{sid}",
@@ -878,7 +989,8 @@ for sid, sdict in SUBSTANCES_BODY.items():
             ]
         )
 
-_m.rules = _m.rules + [
+_m.rules = [
+    *_m.rules,
     AssignmentRule("f_shunts", "f_cirrhosis", unit=U.dimensionless),
     AssignmentRule("f_tissue_loss", "f_cirrhosis", unit=U.dimensionless),
 ]
@@ -929,25 +1041,26 @@ for sid, sdict in SUBSTANCES_BODY.items():
     )
 
     # tissue distribution
-    if "ftissue" in sdict:
-        _m.parameters.extend([
-            Parameter(
-                f"ftissue_{sid}",
-                sdict["ftissue"],
-                U.l_per_min,
-                constant=True,
-                sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-                name=f"tissue distribution {sid}",
-            ),
-            Parameter(
-                f"Kp_{sid}",
-                sdict["Kp"],
-                U.dimensionless,
-                constant=True,
-                sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-                name=f"tissue/plasma partition coefficient {sid}",
-            ),
-        ])
+    if sdict.get("tissue_distribution"):
+        _m.parameters.extend(
+            [
+                Parameter(
+                    f"ftissue_{sid}",
+                    **FITS.parameter(f"ftissue_{sid}", unit=U.l_per_min),
+                    constant=True,
+                    sboTerm=SBO.KINETIC_CONSTANT,
+                    name=f"tissue distribution {sid}",
+                    notes="Exchange flow at the reference body weight `BW_ref`.",
+                ),
+                Parameter(
+                    f"Kp_{sid}",
+                    **FITS.parameter(f"Kp_{sid}", unit=U.dimensionless),
+                    constant=True,
+                    sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+                    name=f"tissue/plasma partition coefficient {sid}",
+                ),
+            ]
+        )
 
     # dosing
     if "IVDOSE" in sdict:
@@ -975,25 +1088,8 @@ for sid, sdict in SUBSTANCES_BODY.items():
                     0.02,
                     U.per_min,
                     constant=False,
-                    sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+                    sboTerm=SBO.KINETIC_CONSTANT,
                     name=f"Ki [1/min] injection {sid}",
-                ),
-                # continuous infusion
-                Parameter(
-                    f"Ri_{sid}",
-                    0,
-                    U.mg_per_min,
-                    constant=True,
-                    sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-                    name=f"Ri [mg/min] rate of infusion {sid}",
-                ),
-                Parameter(
-                    f"cum_dose_{sid}",
-                    0,
-                    U.mg,
-                    constant=False,
-                    sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-                    name=f"Cumulative dose due to infusion {sid}",
                 ),
             ]
         )
@@ -1001,7 +1097,8 @@ for sid, sdict in SUBSTANCES_BODY.items():
 # -------------------------------------------------------------------------------------------------
 # AssignmentRules
 # -------------------------------------------------------------------------------------------------
-_m.rules = _m.rules + [
+_m.rules = [
+    *_m.rules,
     # Rest body volume
     AssignmentRule(
         "FVre",
@@ -1024,6 +1121,7 @@ _m.rules = _m.rules + [
     AssignmentRule("QC", "CO/1000 ml_per_l * 60 s_per_min", U.l_per_min),
     # volumes
     AssignmentRule("Vgu", "BW*FVgu", U.liter),
+    AssignmentRule("Vgu_lumen", "Vgu", U.liter),
     AssignmentRule("Vki", "BW*FVki", U.liter),
     AssignmentRule("Vli", "BW*FVli", U.liter),
     AssignmentRule("Vlu", "BW*FVlu", U.liter),
@@ -1041,14 +1139,14 @@ _m.rules = _m.rules + [
     ),
     AssignmentRule(
         "Vpo",
-        "(1 dimensionless - HCT) * (BW*FVpo - FVpo/(FVar+FVve+FVpo+FVhv) "
-        "* BW * Fblood * (1 l_per_kg - (FVar+FVve+FVpo+FVhv)))",
+        "BW*FVpo - FVpo/(FVar+FVve+FVpo+FVhv) "
+        "* BW * Fblood * (1 l_per_kg - (FVar+FVve+FVpo+FVhv))",
         U.liter,
     ),
     AssignmentRule(
         "Vhv",
-        "(1 dimensionless - HCT) * (BW*FVhv - FVhv/(FVar+FVve+FVpo+FVhv) "
-        "* BW * Fblood * (1 l_per_kg - (FVar+FVve+FVpo+FVhv)))",
+        "BW*FVhv - FVhv/(FVar+FVve+FVpo+FVhv) "
+        "* BW * Fblood * (1 l_per_kg - (FVar+FVve+FVpo+FVhv))",
         U.liter,
     ),
     # blood flows
@@ -1061,20 +1159,24 @@ _m.rules = _m.rules + [
     AssignmentRule("Qlu", "QC*FQlu", U.l_per_min, name="lung blood flow"),
     AssignmentRule("Qre", "QC*FQre", U.l_per_min, name="rest of body blood flow"),
     AssignmentRule("Qpo", "Qgu", U.l_per_min, name="portal blood flow"),
-    AssignmentRule("GFR_base", "f_GFR_Qki * Qki", U.ml_per_min, name="glomerular filtration rate (base)"),
+    AssignmentRule(
+        "GFR_base",
+        "f_GFR_Qki * Qki",
+        U.ml_per_min,
+        name="glomerular filtration rate (base)",
+    ),
 ]
 
 # Volumes for explicit tissue models
 for cid, cname in COMPARTMENTS_BODY.items():
     if cid not in ["ve", "ar", "po", "hv"]:
-
         _m.rules.append(
-            # plasma volume associated with tissue
+            # blood volume of the tissue, see the notes of `Fblood`
             AssignmentRule(
                 f"V{cid}_plasma",
-                value=f"V{cid} * Fblood * (1 dimensionless - HCT)",
+                value=f"V{cid} * Fblood",
                 unit=U.liter,
-                name=f"plasma volume of {cname}",
+                name=f"blood volume of {cname}",
             ),
         )
 
@@ -1129,15 +1231,15 @@ for sid, sdict in SUBSTANCES_BODY.items():
     # --------------------
     # tissue distribution
     # --------------------
-    if "ftissue" in sdict:
-        for cid in COMPARTMENTS_BODY.keys():
+    if sdict.get("tissue_distribution"):
+        for cid in COMPARTMENTS_BODY:
             if cid not in ["ve", "ar", "gu", "ki", "po", "hv"]:
                 _m.reactions.append(
                     Reaction(
                         sid=f"transport_{cid}_{sid}",
                         name=f"transport {sname}",
                         formula=(
-                            f"ftissue_{sid} * (C{cid}_plasma_{sid}*Kp_{sid} - C{cid}_{sid})",
+                            f"ftissue_{sid} * BW/BW_ref * (C{cid}_plasma_{sid}*Kp_{sid} - C{cid}_{sid})",
                             U.mmole_per_min,
                         ),
                         equation=f"C{cid}_plasma_{sid} <-> C{cid}_{sid}",
@@ -1283,7 +1385,7 @@ for sid, sdict in SUBSTANCES_BODY.items():
                     # shunted arterial flow
                     Reaction(
                         sid=f"Flow_arli_hv_{sid}",
-                        name=f"flow arterial shunts",
+                        name="flow arterial shunts",
                         formula=(f"f_shunts*Qha*Car_{sid}", U.mmole_per_min),
                         equation=f"Car_{sid} -> Chv_{sid}",
                         sboTerm=SBO.TRANSPORT_REACTION,
@@ -1302,7 +1404,7 @@ for sid, sdict in SUBSTANCES_BODY.items():
                     # portal shunts
                     Reaction(
                         sid=f"Flow_po_hv_{sid}",
-                        name=f"flow portal shunts",
+                        name="flow portal shunts",
                         formula=(f"f_shunts*Qpo*Cpo_{sid}", U.mmole_per_min),
                         equation=f"Cpo_{sid} -> Chv_{sid}",
                         sboTerm=SBO.TRANSPORT_REACTION,
@@ -1337,21 +1439,22 @@ for sid, sdict in SUBSTANCES_BODY.items():
         _m.rate_rules.extend(
             [
                 # injection of dose
-                RateRule(
-                    f"IVDOSE_{sid}", f"-iv_{sid}*Mr_{sid} + Ri_{sid}", U.mg_per_min
-                ),
-                # cumulative infusion dose
-                RateRule(f"cum_dose_{sid}", f"Ri_{sid}", U.mg_per_min),
+                RateRule(f"IVDOSE_{sid}", f"-iv_{sid}*Mr_{sid}", U.mg_per_min),
             ]
         )
 
 # coupling between pharmacokinetic and pharmacodynamic
-_m.rules.extend([
-    AssignmentRule(
+_m.rules.extend(
+    [
+        AssignmentRule(
             "hctz_urine_excretion",
-            "v_HCTZEX/diuresis",   # [mmole/min]/[l/min] = [mmole/min]
+            "v_HCTZEX/diuresis",  # [mmole/min]/[l/min] = [mM]
             unit=U.mM,
             name="HCTZ concentration in excreted urine",
+            notes="""
+            The concentration of HCTZ in the urine formed at the time, the
+            rate of its excretion over the urine flow.
+            """,
         )
     ]
 )
@@ -1360,17 +1463,25 @@ _m.rules.extend([
 
 
 model_body: Model = _m
-model_body.rules.extend([
-    AssignmentRule("hctz", "Cki_plasma_hctz", unit=U.mM),
-])
-
+model_body.rules.extend(
+    [
+        AssignmentRule("hctz", "Cki_plasma_hctz", unit=U.mM),
+    ]
+)
 
 
 if __name__ == "__main__":
     from pkdb_models.models.hctz import MODEL_BASE_PATH
     from pkdb_models.models.hctz.models.model_fluid import model_fluid
-    model_fluid.compartments = [c for c in model_fluid.compartments if c.sid not in {"Vki", "Vurine"}]
-    model_fluid.parameters = [p for p in model_fluid.parameters if p.sid not in {"BW", "f_renal_function", "GFR_base"}]
+
+    model_fluid.compartments = [
+        c for c in model_fluid.compartments if c.sid not in {"Vki", "Vurine"}
+    ]
+    model_fluid.parameters = [
+        p
+        for p in model_fluid.parameters
+        if p.sid not in {"BW", "f_renal_function", "GFR_base"}
+    ]
 
     results = create_model(
         filepath=MODEL_BASE_PATH / f"{model_body.sid}.xml",
@@ -1380,10 +1491,6 @@ if __name__ == "__main__":
         ],
         sbml_level=3,
         sbml_version=2,
+        create_antimony=False,
+        create_markdown=True,
     )
-    # create differential equations
-    md_path = MODEL_BASE_PATH / f"{model_body.sid}.md"
-    ode_factory = odefac.SBML2ODE.from_file(sbml_file=results.sbml_path)
-    ode_factory.to_markdown(md_file=md_path)
-
-    visualize_sbml(results.sbml_path, delete_session=False)

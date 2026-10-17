@@ -1,0 +1,1303 @@
+// Created by libAntimony v3.1.3
+model *hctz_body()
+
+  // Compartments and Species:
+  compartment ECF, Vloop, Vre, Vgu, Vki, Vli, Vlu, Vve, Var, Vurine, Vfeces;
+  compartment Vgu_lumen, Vpo, Vhv, Vki_tissue, Vki_plasma, Vli_tissue, Vli_plasma;
+  compartment Vlu_tissue, Vlu_plasma, Vgu_tissue, Vgu_plasma, Vre_tissue;
+  compartment Vre_plasma;
+  species $hctz in ECF, Cki_plasma_hctz in Vki_plasma, na in ECF, na_loop in Vloop;
+  species cl in ECF, cl_loop in Vloop, Cli_plasma_hctz in Vli_plasma, Clu_plasma_hctz in Vlu_plasma;
+  species Cgu_plasma_hctz in Vgu_plasma, Cre_plasma_hctz in Vre_plasma, Car_hctz in Var;
+  species Cve_hctz in Vve, Cpo_hctz in Vpo, Chv_hctz in Vhv, Cli_hctz in Vli_tissue;
+  species Clu_hctz in Vlu_tissue, Cre_hctz in Vre_tissue, Cgu_hctz in Vgu_lumen;
+  substanceOnly species na_urine in Vurine, cl_urine in Vurine, Aurine_hctz in Vurine;
+  substanceOnly species Afeces_hctz in Vfeces;
+
+  // Assignment Rules:
+  ECF_ref := f_ECF*f_TBW*BW;
+  H2O_UPTAKE := vin_h2o*ECF_ref^counter_gamma/ECF^counter_gamma;
+  GFR := f_renal_function*GFR_base;
+  h2o_reabsorption := GFR*0.001 l_per_ml - diuresis;
+  diuresis := min((k_h2o*GFR*ECF^counter_gamma/ECF_ref^counter_gamma)*NA_EXCRETION/vin_na, f_h2o_max*GFR*0.001 l_per_ml);
+  Vre := BW*FVre;
+  FVre := 1 l_per_kg - (FVgu + FVki + FVli + FVlu + FVve + FVar);
+  Vgu := BW*FVgu;
+  Vki := BW*FVki;
+  Vli := BW*FVli;
+  Vlu := BW*FVlu;
+  Vve := BW*FVve - (FVve/(FVar + FVve))*BW*Fblood*(1 l_per_kg - FVve - FVar);
+  Var := BW*FVar - (FVar/(FVar + FVve))*BW*Fblood*(1 l_per_kg - FVve - FVar);
+  Vgu_lumen := Vgu;
+  Vpo := BW*FVpo - (FVpo/(FVar + FVve + FVpo + FVhv))*BW*Fblood*(1 l_per_kg - (FVar + FVve + FVpo + FVhv));
+  Vhv := BW*FVhv - (FVhv/(FVar + FVve + FVpo + FVhv))*BW*Fblood*(1 l_per_kg - (FVar + FVve + FVpo + FVhv));
+  Vki_tissue := Vki*(1 dimensionless - Fblood);
+  Vki_plasma := Vki*Fblood;
+  Vli_tissue := Vli*(1 dimensionless - f_tissue_loss)*(1 dimensionless - Fblood);
+  f_tissue_loss := f_cirrhosis;
+  Vli_plasma := Vli*Fblood;
+  Vlu_tissue := Vlu*(1 dimensionless - Fblood);
+  Vlu_plasma := Vlu*Fblood;
+  Vgu_tissue := Vgu*(1 dimensionless - Fblood);
+  Vgu_plasma := Vgu*Fblood;
+  Vre_tissue := Vre*(1 dimensionless - Fblood);
+  Vre_plasma := Vre*Fblood;
+  hctz := Cki_plasma_hctz;
+  bp_systolic := Psys_ref*ECF/ECF_ref;
+  bp_diastolic := Pdia_ref*ECF/ECF_ref;
+  bp_mean := (bp_systolic + 2 dimensionless*bp_diastolic)/3 dimensionless;
+  vin_na := k_na*na_ref;
+  vin_cl := k_cl*cl_ref;
+  GFR_base := f_GFR_Qki*Qki;
+  Qki := QC*FQki;
+  BSA := 0.024265 m2*(BW/1 kg)^0.5378*(HEIGHT/1 cm)^0.3964;
+  CO := BW*f_cardiac_function*COBW;
+  QC := (CO/1000 ml_per_l)*60 s_per_min;
+  FQre := 1 dimensionless - (FQki + FQh);
+  f_shunts := f_cirrhosis;
+  GU__application_hctz := (GU__Ka_application_hctz/60 GU__min_per_hr)*PODOSE_hctz/Mr_hctz;
+  v_HCTZEX := KI__GFR*0.001 KI__l_per_ml*KI__HCTZEX_f*Cki_plasma_hctz;
+  KI__GFR := f_renal_function*GFR_base;
+  Ki_hctz := (0.693 dimensionless/ti_hctz)*60 s_per_min;
+  vout_na := NA_EXCRETION*Mr_na;
+  vout_cl := CL_EXCRETION*Mr_cl;
+  Qgu := QC*FQgu;
+  Qh := QC*FQh;
+  Qha := Qh - Qgu;
+  Qlu := QC*FQlu;
+  Qre := QC*FQre;
+  Qpo := Qgu;
+  hctz_urine_excretion := v_HCTZEX/diuresis;
+  GU__absorption := GU__HCTZABS_k*Vgu_lumen*Cgu_hctz;
+
+  // Rate Rules:
+  ECF' = (H2O_UPTAKE - vout_h2o - GFR*0.001 l_per_ml) + h2o_reabsorption;
+  Vloop' = GFR*0.001 l_per_ml - diuresis - h2o_reabsorption;
+  Vurine' = diuresis;
+  PODOSE_hctz' = -GU__application_hctz*Mr_hctz;
+  POSOLUTION_hctz' = -GU__application_solution_hctz*Mr_hctz;
+  IVDOSE_hctz' = -iv_hctz*Mr_hctz;
+  GU__POSTOMACH_hctz' = (GU__application_hctz - GU__dissolution_hctz)*Mr_hctz;
+
+  // Reactions:
+  NA_EXCRETION in Vki: na_loop => na_urine; k_na*na_loop*(1 dimensionless + (GFR/GFR_base)*Emax_hctz_na*max(hctz, 0 mM)/(max(hctz, 0 mM) + E50_hctz_nacl));
+  GU__application_solution_hctz in Vgu_lumen:  => Cgu_hctz; (GU__Ka_application_hctz/60 GU__min_per_hr)*POSOLUTION_hctz/Mr_hctz;
+  iv_hctz in Vve:  => Cve_hctz; Ki_hctz*IVDOSE_hctz/Mr_hctz;
+  CL_EXCRETION in Vki: cl_loop => cl_urine; k_cl*cl_loop*(1 dimensionless + (GFR/GFR_base)*Emax_hctz_cl*max(hctz, 0 mM)/(max(hctz, 0 mM) + E50_hctz_nacl));
+  GU__dissolution_hctz in Vgu_lumen:  => Cgu_hctz; (Ka_dis_hctz/60 GU__min_per_hr)*GU__POSTOMACH_hctz/Mr_hctz;
+  NA_UPTAKE in ECF:  => na; vin_na*na_ref^counter_gamma/na^counter_gamma;
+  CL_UPTAKE in ECF:  => cl; vin_cl*cl_ref^counter_gamma/cl^counter_gamma;
+  NA_FILTRATION in Vki: na => na_loop; GFR*0.001 l_per_ml*na;
+  NA_REABSORPTION in Vki: na_loop => na; h2o_reabsorption*na_loop;
+  CL_FILTRATION in Vki: cl => cl_loop; GFR*0.001 l_per_ml*cl;
+  CL_REABSORPTION in Vki: cl_loop => cl; h2o_reabsorption*cl_loop;
+  transport_li_hctz in Vli_tissue: Cli_plasma_hctz -> Cli_hctz; (ftissue_hctz*BW/BW_ref)*(Cli_plasma_hctz*Kp_hctz - Cli_hctz);
+  transport_lu_hctz in Vlu_tissue: Clu_plasma_hctz -> Clu_hctz; (ftissue_hctz*BW/BW_ref)*(Clu_plasma_hctz*Kp_hctz - Clu_hctz);
+  transport_re_hctz in Vre_tissue: Cre_plasma_hctz -> Cre_hctz; (ftissue_hctz*BW/BW_ref)*(Cre_plasma_hctz*Kp_hctz - Cre_hctz);
+  Flow_ar_ki_hctz: Car_hctz => Cki_plasma_hctz; Qki*Car_hctz;
+  Flow_ki_ve_hctz: Cki_plasma_hctz => Cve_hctz; Qki*Cki_plasma_hctz;
+  Flow_arli_li_hctz: Car_hctz => Cli_plasma_hctz; (1 dimensionless - f_shunts)*Qha*Car_hctz;
+  Flow_arli_hv_hctz: Car_hctz => Chv_hctz; f_shunts*Qha*Car_hctz;
+  Flow_po_li_hctz: Cpo_hctz => Cli_plasma_hctz; (1 dimensionless - f_shunts)*Qpo*Cpo_hctz;
+  Flow_po_hv_hctz: Cpo_hctz => Chv_hctz; f_shunts*Qpo*Cpo_hctz;
+  Flow_li_hv_hctz: Cli_plasma_hctz => Chv_hctz; (1 dimensionless - f_shunts)*(Qpo + Qha)*Cli_plasma_hctz;
+  Flow_hv_ve_hctz: Chv_hctz => Cve_hctz; Qh*Chv_hctz;
+  Flow_ve_lu_hctz: Cve_hctz => Clu_plasma_hctz; Qlu*Cve_hctz;
+  Flow_lu_ar_hctz: Clu_plasma_hctz => Car_hctz; Qlu*Clu_plasma_hctz;
+  Flow_ar_gu_hctz: Car_hctz => Cgu_plasma_hctz; Qgu*Car_hctz;
+  Flow_gu_po_hctz: Cgu_plasma_hctz => Cpo_hctz; Qgu*Cgu_plasma_hctz;
+  Flow_ar_re_hctz: Car_hctz => Cre_plasma_hctz; Qre*Car_hctz;
+  Flow_re_ve_hctz: Cre_plasma_hctz => Cve_hctz; Qre*Cre_plasma_hctz;
+  KI__HCTZEX: Cki_plasma_hctz => Aurine_hctz; v_HCTZEX;
+  GU__HCTZABS in Vgu: Cgu_hctz => Cgu_plasma_hctz; GU__F_hctz_abs*GU__absorption;
+  GU__HCTZEXC in Vgu_lumen: Cgu_hctz => Afeces_hctz; (1 dimensionless - GU__F_hctz_abs)*GU__absorption;
+  hctz has mM;
+
+  // Species initializations:
+  Cki_plasma_hctz = 0;
+  Cki_plasma_hctz has mM;
+  na = na_ref;
+  na has mM;
+  na_loop = 140;
+  na_loop has mM;
+  na_urine = 0;
+  na_urine has mmole;
+  cl = cl_ref;
+  cl has mM;
+  cl_loop = 102;
+  cl_loop has mM;
+  cl_urine = 0;
+  cl_urine has mmole;
+  Cli_plasma_hctz = 0;
+  Cli_plasma_hctz has mM;
+  Clu_plasma_hctz = 0;
+  Clu_plasma_hctz has mM;
+  Cgu_plasma_hctz = 0;
+  Cgu_plasma_hctz has mM;
+  Cre_plasma_hctz = 0;
+  Cre_plasma_hctz has mM;
+  Car_hctz = 0;
+  Car_hctz has mM;
+  Cve_hctz = 0;
+  Cve_hctz has mM;
+  Cpo_hctz = 0;
+  Cpo_hctz has mM;
+  Chv_hctz = 0;
+  Chv_hctz has mM;
+  Cli_hctz = 0;
+  Cli_hctz has mM;
+  Clu_hctz = 0;
+  Clu_hctz has mM;
+  Cre_hctz = 0;
+  Cre_hctz has mM;
+  Aurine_hctz = 0;
+  Aurine_hctz has mmole;
+  Afeces_hctz = 0;
+  Afeces_hctz has mmole;
+  Cgu_hctz = 0;
+  Cgu_hctz has mM;
+
+  // Compartment initializations:
+  ECF = ECF_ref;
+  ECF has litre;
+  Vloop = 0.05 dimensionless*ECF_ref;
+  Vloop has litre;
+  Vre has litre;
+  Vgu has litre;
+  Vki has litre;
+  Vli has litre;
+  Vlu has litre;
+  Vve has litre;
+  Var has litre;
+  Vurine = 1e-06;
+  Vurine has litre;
+  Vfeces = 1;
+  Vfeces has litre;
+  Vgu_lumen has litre;
+  Vpo has litre;
+  Vhv has litre;
+  Vki_tissue has litre;
+  Vki_plasma has litre;
+  Vli_tissue has litre;
+  Vli_plasma has litre;
+  Vlu_tissue has litre;
+  Vlu_plasma has litre;
+  Vgu_tissue has litre;
+  Vgu_plasma has litre;
+  Vre_tissue has litre;
+  Vre_plasma has litre;
+  ECF_ref has litre;
+  H2O_UPTAKE has l_per_min;
+
+  // Variable initializations:
+  vout_h2o = 0.000625;
+  vout_h2o has l_per_min;
+  GFR has ml_per_min;
+  h2o_reabsorption has l_per_min;
+  diuresis has l_per_min;
+  BW = 75;
+  BW has kg;
+  FVre has l_per_kg;
+  FVgu = 0.0171;
+  FVgu has l_per_kg;
+  FVki = 0.0044;
+  FVki has l_per_kg;
+  FVli = 0.021;
+  FVli has l_per_kg;
+  FVlu = 0.0076;
+  FVlu has l_per_kg;
+  FVve = 0.0514;
+  FVve has l_per_kg;
+  FVar = 0.0257;
+  FVar has l_per_kg;
+  Fblood = 0.02;
+  Fblood has dimensionless;
+  FVpo = 0.001;
+  FVpo has l_per_kg;
+  FVhv = 0.001;
+  FVhv has l_per_kg;
+  f_tissue_loss has dimensionless;
+  na_ref = 140;
+  na_ref has mM;
+  cl_ref = 102;
+  cl_ref has mM;
+  f_TBW = 0.55;
+  f_TBW has l_per_kg;
+  f_ECF = 0.33;
+  f_ECF has dimensionless;
+  Psys_ref = 120;
+  Psys_ref has mmHg;
+  Pdia_ref = 80;
+  Pdia_ref has mmHg;
+  bp_systolic has mmHg;
+  bp_diastolic has mmHg;
+  bp_mean has mmHg;
+  Mr_nacl = 58.44;
+  Mr_nacl has g_per_mole;
+  Mr_na = 22.99;
+  Mr_na has g_per_mole;
+  Mr_cl = 35.45;
+  Mr_cl has g_per_mole;
+  vin_na has mmole_per_min;
+  k_na = 0.000676649741186695;
+  k_na has l_per_min;
+  vin_cl has mmole_per_min;
+  k_cl = 0.00370716553162286;
+  k_cl has l_per_min;
+  vin_h2o = 0.00159722222222222;
+  vin_h2o has l_per_min;
+  k_h2o = (vin_h2o - vout_h2o)/GFR_base;
+  k_h2o has l_per_ml;
+  GFR_base has ml_per_min;
+  counter_gamma = 5;
+  counter_gamma has dimensionless;
+  f_h2o_max = 0.3;
+  f_h2o_max has dimensionless;
+  E50_hctz_nacl = 8.61825350924873e-05;
+  E50_hctz_nacl has mM;
+  Emax_hctz_na = 1.72544627809791;
+  Emax_hctz_na has dimensionless;
+  Emax_hctz_cl = 0.457489998677387;
+  Emax_hctz_cl has dimensionless;
+  BW_ref = 75;
+  BW_ref has kg;
+  HEIGHT = 170;
+  HEIGHT has cm;
+  f_renal_function = 1;
+  f_renal_function has dimensionless;
+  f_GFR_Qki = 76.3105006271061;
+  f_GFR_Qki has ml_per_l;
+  Qki has l_per_min;
+  BSA has m2;
+  f_cardiac_function = 1;
+  f_cardiac_function has dimensionless;
+  COBW = 1.548;
+  COBW has ml_per_s_kg;
+  CO has ml_per_s;
+  QC has l_per_min;
+  FQgu = 0.18;
+  FQgu has dimensionless;
+  FQki = 0.19;
+  FQki has dimensionless;
+  FQh = 0.215;
+  FQh has dimensionless;
+  FQlu = 1;
+  FQlu has dimensionless;
+  FQre has dimensionless;
+  conversion_min_per_day = 1440;
+  conversion_min_per_day has min_per_day;
+  f_cirrhosis = 0;
+  f_cirrhosis has dimensionless;
+  f_shunts has dimensionless;
+  PODOSE_hctz = 0;
+  PODOSE_hctz has mg;
+  GU__application_hctz has GU__mmole_per_min;
+  Mr_hctz = 297.7;
+  Mr_hctz has g_per_mole;
+  POSOLUTION_hctz = 0;
+  POSOLUTION_hctz has mg;
+  Ka_dis_hctz = 1.30141095353971;
+  Ka_dis_hctz has per_hr;
+  v_HCTZEX has mmole_per_min;
+  KI__GFR has KI__ml_per_min;
+  KI__HCTZEX_f = 3.23772819218966;
+  KI__HCTZEX_f has dimensionless;
+  ftissue_hctz = 0.0637160968791131;
+  ftissue_hctz has l_per_min;
+  Kp_hctz = 2.36426059508621;
+  Kp_hctz has dimensionless;
+  IVDOSE_hctz = 0;
+  IVDOSE_hctz has mg;
+  ti_hctz = 10;
+  ti_hctz has second;
+  Ki_hctz has per_min;
+  vout_na has mg_per_min;
+  vout_cl has mg_per_min;
+  Qgu has l_per_min;
+  Qh has l_per_min;
+  Qha has l_per_min;
+  Qlu has l_per_min;
+  Qre has l_per_min;
+  Qpo has l_per_min;
+  hctz_urine_excretion has mM;
+  GU__F_hctz_abs = 0.7;
+  GU__F_hctz_abs has dimensionless;
+  GU__HCTZABS_k = 0.00507166463188506;
+  GU__HCTZABS_k has GU__per_min;
+  GU__POSTOMACH_hctz = 0;
+  GU__POSTOMACH_hctz has GU__mg;
+  GU__Ka_application_hctz = 1000;
+  GU__Ka_application_hctz has GU__per_hr;
+  GU__absorption has GU__mmole_per_min;
+
+  // Other declarations:
+  var ECF, ECF_ref, H2O_UPTAKE, GFR, h2o_reabsorption, Vloop, diuresis, Vre;
+  var FVre, Vgu, Vki, Vli, Vlu, Vve, Var, Vurine, Vgu_lumen, Vpo, Vhv, Vki_tissue;
+  var Vki_plasma, Vli_tissue, f_tissue_loss, Vli_plasma, Vlu_tissue, Vlu_plasma;
+  var Vgu_tissue, Vgu_plasma, Vre_tissue, Vre_plasma, bp_systolic, bp_diastolic;
+  var bp_mean, vin_na, vin_cl, k_h2o, GFR_base, Qki, BSA, CO, QC, FQre, f_shunts;
+  var PODOSE_hctz, GU__application_hctz, POSOLUTION_hctz, v_HCTZEX, KI__GFR;
+  var IVDOSE_hctz, Ki_hctz, vout_na, vout_cl, Qgu, Qh, Qha, Qlu, Qre, Qpo;
+  var hctz_urine_excretion, GU__POSTOMACH_hctz, GU__absorption;
+  const vout_h2o, BW, FVgu, FVki, FVli, FVlu, FVve, FVar, Fblood, Vfeces;
+  const FVpo, FVhv, na_ref, cl_ref, f_TBW, f_ECF, Psys_ref, Pdia_ref, Mr_nacl;
+  const Mr_na, Mr_cl, k_na, k_cl, vin_h2o, counter_gamma, f_h2o_max, E50_hctz_nacl;
+  const Emax_hctz_na, Emax_hctz_cl, BW_ref, HEIGHT, f_renal_function, f_GFR_Qki;
+  const f_cardiac_function, COBW, FQgu, FQki, FQh, FQlu, conversion_min_per_day;
+  const f_cirrhosis, Mr_hctz, Ka_dis_hctz, KI__HCTZEX_f, ftissue_hctz, Kp_hctz;
+  const ti_hctz, GU__F_hctz_abs, GU__HCTZABS_k, GU__Ka_application_hctz;
+
+  // Unit definitions:
+  unit g_per_mole = gram / mole;
+  unit kg = 1000 gram;
+  unit l_per_kg = litre / 1000 gram;
+  unit l_per_min = litre / 60 second;
+  unit l_per_min_mmole = litre / (60 second * 0.001 mole);
+  unit l_per_ml = litre / 0.001 litre;
+  unit m2 = metre^2;
+  unit mM = 0.001 mole / litre;
+  unit mg = 0.001 gram;
+  unit mg_per_min = 0.001 gram / 60 second;
+  unit min_unit = 60 second;
+  unit ml = 0.001 litre;
+  unit ml_per_min = 0.001 litre / 60 second;
+  unit mmHg = 133.322 newton / metre^2;
+  unit mmole = 0.001 mole;
+  unit mmole_per_l_ml = 0.001 mole / (litre * 0.001 litre);
+  unit mmole_per_min = 0.001 mole / 60 second;
+  unit mmole_per_min_l = 0.001 mole / (60 second * litre);
+  unit per_hr = 1 / 3600 second;
+  unit per_min = 1 / 60 second;
+  unit per_min_l = 1 / (60 second * litre);
+  unit cm = 0.01 metre;
+  unit hr = 3600 second;
+  unit l_per_hr = litre / 3600 second;
+  unit l_per_min_kg = litre / (60 second * 1000 gram);
+  unit m2_per_kg = metre^2 / 1000 gram;
+  unit mg_per_day = 0.001 gram / 86400 second;
+  unit mg_per_g = 0.001 gram / gram;
+  unit mg_per_hr = 0.001 gram / 3600 second;
+  unit mg_per_l = 0.001 gram / litre;
+  unit min_per_day = 60 second / 86400 second;
+  unit min_per_hr = 60 second / 3600 second;
+  unit ml_per_l = 0.001 litre / litre;
+  unit ml_per_s = 0.001 litre / second;
+  unit ml_per_s_kg = 0.001 litre / (second * 1000 gram);
+  unit mmole_per_hr = 0.001 mole / 3600 second;
+  unit mmole_per_hr_ml = 0.001 mole / (3600 second * 0.001 litre);
+  unit mmole_per_l = 0.001 mole / litre;
+  unit mmole_per_min_kg = 0.001 mole / (60 second * 1000 gram);
+  unit mulitre_per_g = 1e-06 litre / gram;
+  unit mul_per_min_mg = 1e-06 litre / (60 second * 0.001 gram);
+  unit per_min_kg = 1 / (60 second * 1000 gram);
+  unit s_per_min = second / 60 second;
+  unit KI__g_per_mole = gram / mole;
+  unit KI__l_per_min = litre / 60 second;
+  unit KI__l_per_min_mmole = litre / (60 second * 0.001 mole);
+  unit KI__l_per_ml = litre / 0.001 litre;
+  unit KI__m2 = metre^2;
+  unit KI__mM = 0.001 mole / litre;
+  unit KI__mg = 0.001 gram;
+  unit KI__mg_per_min = 0.001 gram / 60 second;
+  unit KI__min = 60 second;
+  unit KI__ml = 0.001 litre;
+  unit KI__ml_per_min = 0.001 litre / 60 second;
+  unit KI__mmole = 0.001 mole;
+  unit KI__mmole_per_l_ml = 0.001 mole / (litre * 0.001 litre);
+  unit KI__mmole_per_min = 0.001 mole / 60 second;
+  unit KI__mmole_per_min_l = 0.001 mole / (60 second * litre);
+  unit KI__per_hr = 1 / 3600 second;
+  unit KI__per_min = 1 / 60 second;
+  unit KI__per_min_l = 1 / (60 second * litre);
+  unit KI__per_ml = 1 / 0.001 litre;
+  unit GU__g_per_mole = gram / mole;
+  unit GU__l_per_min = litre / 60 second;
+  unit GU__l_per_min_mmole = litre / (60 second * 0.001 mole);
+  unit GU__m2 = metre^2;
+  unit GU__mM = 0.001 mole / litre;
+  unit GU__mg = 0.001 gram;
+  unit GU__mg_per_min = 0.001 gram / 60 second;
+  unit GU__min = 60 second;
+  unit GU__min_per_hr = 60 second / 3600 second;
+  unit GU__mmole = 0.001 mole;
+  unit GU__mmole_per_min = 0.001 mole / 60 second;
+  unit GU__mmole_per_min_l = 0.001 mole / (60 second * litre);
+  unit GU__per_hr = 1 / 3600 second;
+  unit GU__per_min = 1 / 60 second;
+  unit GU__per_min_l = 1 / (60 second * litre);
+  unit length = metre;
+  unit area = m2;
+  unit volume = litre;
+  unit substance = mmole;
+  unit extent = mmole;
+  unit time_unit = min_unit;
+  unit mmole_litre = 0.001 mole * litre;
+
+  // Display Names:
+  g_per_mole is "g/mole";
+  l_per_kg is "l/kg";
+  l_per_min is "l/min";
+  l_per_min_mmole is "l/min/mmole";
+  l_per_ml is "l/ml";
+  m2 is "meter^2";
+  mM is "mmole/liter";
+  mg_per_min is "mg/min";
+  min_unit is "min";
+  ml_per_min is "ml/min";
+  mmHg is "133.32239 N/m^2";
+  mmole_per_l_ml is "mmole/l/ml";
+  mmole_per_min is "mmole/min";
+  mmole_per_min_l is "mmole/min/liter";
+  per_hr is "1/hr";
+  per_min is "1/min";
+  per_min_l is "1/min/l";
+  l_per_hr is "l/hr";
+  l_per_min_kg is "l/min/kg";
+  m2_per_kg is "meter^2/kg";
+  mg_per_day is "mg/day";
+  mg_per_g is "mg/g";
+  mg_per_hr is "mg/hr";
+  mg_per_l is "mg/l";
+  min_per_day is "min/day";
+  min_per_hr is "min/hr";
+  ml_per_l is "ml/l";
+  ml_per_s is "ml/s";
+  ml_per_s_kg is "ml/s/kg";
+  mmole_per_hr is "mmole/hr";
+  mmole_per_hr_ml is "mmole/hr/ml";
+  mmole_per_l is "mmole/l";
+  mmole_per_min_kg is "mmole/min/kg";
+  mulitre_per_g is "microlitre/g";
+  mul_per_min_mg is "microliter/min/mg";
+  per_min_kg is "1/min/kg";
+  s_per_min is "s/min";
+  KI__g_per_mole is "g/mole";
+  KI__l_per_min is "l/min";
+  KI__l_per_min_mmole is "l/min/mmole";
+  KI__l_per_ml is "l/ml";
+  KI__m2 is "meter^2";
+  KI__mM is "mmole/liter";
+  KI__mg is "mg";
+  KI__mg_per_min is "mg/min";
+  KI__min is "min";
+  KI__ml is "ml";
+  KI__ml_per_min is "ml/min";
+  KI__mmole is "mmole";
+  KI__mmole_per_l_ml is "mmole/l/ml";
+  KI__mmole_per_min is "mmole/min";
+  KI__mmole_per_min_l is "mmole/min/liter";
+  KI__per_hr is "1/hr";
+  KI__per_min is "1/min";
+  KI__per_min_l is "1/min/liter";
+  KI__per_ml is "1/ml";
+  GU__g_per_mole is "g/mole";
+  GU__l_per_min is "l/min";
+  GU__l_per_min_mmole is "l/min/mmole";
+  GU__m2 is "meter^2";
+  GU__mM is "mmole/liter";
+  GU__mg is "mg";
+  GU__mg_per_min is "mg/min";
+  GU__min is "min";
+  GU__min_per_hr is "min/hr";
+  GU__mmole is "mmole";
+  GU__mmole_per_min is "mmole/min";
+  GU__mmole_per_min_l is "mmole/min/liter";
+  GU__per_hr is "1/hr";
+  GU__per_min is "1/min";
+  GU__per_min_l is "1/min/liter";
+  ECF is "extracellular fluid (ECF)";
+  ECF_ref is "Reference extracellular fluid volume (ECF)";
+  vout_h2o is "H2O loss without urine";
+  GFR is "glomerular filtration rate";
+  h2o_reabsorption is "H2O reabsorption from the renal tubule";
+  Vloop is "renal tubule";
+  Vre is "rest of body";
+  BW is "body weight [kg]";
+  FVre is "rest of body fractional tissue volume";
+  Vgu is "gut";
+  FVgu is "gut fractional tissue volume";
+  Vki is "kidney";
+  FVki is "kidney fractional tissue volume";
+  Vli is "liver";
+  FVli is "liver fractional tissue volume";
+  Vlu is "lung";
+  FVlu is "lung fractional tissue volume";
+  Vve is "venous blood";
+  FVve is "venous fractional tissue volume";
+  FVar is "arterial fractional tissue volume";
+  Fblood is "blood fraction of organ volume";
+  Var is "arterial blood";
+  Vurine is "urine";
+  Vfeces is "feces";
+  Vgu_lumen is "intestinal lumen";
+  Vpo is "portal plasma";
+  FVpo is "portal fractional tissue volume";
+  FVhv is "hepatic venous fractional tissue volume";
+  Vhv is "hepatic venous plasma";
+  Vki_tissue is "ki tissue";
+  Vki_plasma is "ki plasma";
+  Vli_tissue is "li tissue";
+  f_tissue_loss is "fraction of lost parenchymal liver volume";
+  Vli_plasma is "li plasma";
+  Vlu_tissue is "lu tissue";
+  Vlu_plasma is "lu plasma";
+  Vgu_tissue is "gu tissue";
+  Vgu_plasma is "gu plasma";
+  Vre_tissue is "re tissue";
+  Vre_plasma is "re plasma";
+  hctz is "hydrochlorothiazide";
+  Cki_plasma_hctz is "hydrochlorothiazide (kidney plasma)";
+  na is "Sodium (Na+) (ECF)";
+  na_loop is "Sodium (Na+) (renal tubule)";
+  na_urine is "Sodium (Na+) (urine)";
+  cl is "Chloride (Cl-) (ECF)";
+  cl_loop is "Chloride (Cl-) (renal tubule)";
+  cl_urine is "Chloride (Cl-) (urine)";
+  Cli_plasma_hctz is "hydrochlorothiazide (liver plasma)";
+  Clu_plasma_hctz is "hydrochlorothiazide (lung plasma)";
+  Cgu_plasma_hctz is "hydrochlorothiazide (gut plasma)";
+  Cre_plasma_hctz is "hydrochlorothiazide (rest plasma)";
+  Car_hctz is "hydrochlorothiazide (arterial blood plasma)";
+  Cve_hctz is "hydrochlorothiazide (venous blood plasma)";
+  Cpo_hctz is "hydrochlorothiazide (portal vein plasma)";
+  Chv_hctz is "hydrochlorothiazide (hepatic vein plasma)";
+  Cli_hctz is "hydrochlorothiazide (liver)";
+  Clu_hctz is "hydrochlorothiazide (lung)";
+  Cre_hctz is "hydrochlorothiazide (rest)";
+  Aurine_hctz is "hydrochlorothiazide (urine)";
+  Afeces_hctz is "hydrochlorothiazide (feces)";
+  Cgu_hctz is "hydrochlorothiazide (intestinal lumen)";
+  f_TBW is "Total body water (TBW) fraction of bodyweight";
+  f_ECF is "ECF fraction of TBW";
+  Psys_ref is "Reference systolic blood pressure";
+  Pdia_ref is "Reference diastolic blood pressure";
+  bp_systolic is "Systolic blood pressure";
+  bp_diastolic is "Diastolic blood pressure";
+  bp_mean is "Mean arterial pressure";
+  Mr_nacl is "Molecular weight sodium chloride";
+  Mr_na is "Molecular weight sodium";
+  Mr_cl is "Molecular weight chloride";
+  vin_na is "Na uptake via food";
+  vin_cl is "Cl uptake via food";
+  vin_h2o is "H2O uptake via food";
+  GFR_base is "glomerular filtration rate (base)";
+  NA_EXCRETION is "Na excretion urine";
+  f_h2o_max is "maximal fractional excretion of water";
+  BW_ref is "reference body weight [kg]";
+  HEIGHT is "height [cm]";
+  f_renal_function is "renal function";
+  f_GFR_Qki is "relationship GFR and Qki";
+  Qki is "kidney blood flow";
+  BSA is "body surface area [m^2]";
+  f_cardiac_function is "factor for cardiac impairment";
+  COBW is "cardiac output per bodyweight [ml/s/kg]";
+  CO is "cardiac output [ml/s]";
+  QC is "cardiac output [l/min]";
+  FQgu is "gut fractional tissue blood flow";
+  FQki is "kidney fractional tissue blood flow";
+  FQh is "hepatic (venous side) fractional tissue blood flow";
+  FQlu is "lung fractional tissue blood flow";
+  FQre is "rest of body fractional tissue blood flow";
+  conversion_min_per_day is "Conversion factor day to min";
+  f_cirrhosis is "severity of cirrhosis [0, 0.95]";
+  f_shunts is "fraction of portal venous blood shunted by the liver";
+  PODOSE_hctz is "oral dose hctz [mg]";
+  GU__application_hctz is "PO application hydrochlorothiazide";
+  Mr_hctz is "Molecular weight hctz [g/mole]";
+  POSOLUTION_hctz is "oral dose as solution hctz [mg]";
+  GU__application_solution_hctz is "application of the solution hydrochlorothiazide";
+  Ka_dis_hctz is "Ka_dis [1/hr] dissolution hydrochlorothiazide";
+  v_HCTZEX is "rate of HCTZ excretion";
+  KI__GFR is "glomerular filtration rate";
+  KI__HCTZEX_f is "intrinsic renal clearance of hydrochlorothiazide relative to the GFR";
+  ftissue_hctz is "tissue distribution hctz";
+  Kp_hctz is "tissue/plasma partition coefficient hctz";
+  IVDOSE_hctz is "IV bolus dose hctz [mg]";
+  iv_hctz is "iv hydrochlorothiazide";
+  ti_hctz is "injection time hctz [s]";
+  Ki_hctz is "Ki [1/min] injection hctz";
+  CL_EXCRETION is "Cl excretion urine";
+  Qgu is "gut blood flow";
+  Qh is "hepatic (venous side) blood flow";
+  Qha is "hepatic artery blood flow";
+  Qlu is "lung blood flow";
+  Qre is "rest of body blood flow";
+  Qpo is "portal blood flow";
+  hctz_urine_excretion is "HCTZ concentration in excreted urine";
+  GU__F_hctz_abs is "fraction absorbed hydrochlorothiazide";
+  GU__HCTZABS_k is "rate of hydrochlorothiazide absorption";
+  GU__POSTOMACH_hctz is "oral dose in stomach hydrochlorothiazide [mg]";
+  GU__dissolution_hctz is "dissolution hydrochlorothiazide";
+  GU__Ka_application_hctz is "Ka [1/hr] application hydrochlorothiazide";
+  GU__absorption is "absorption hydrochlorothiazide";
+  NA_UPTAKE is "Na uptake via food";
+  CL_UPTAKE is "Cl uptake via food";
+  NA_FILTRATION is "Na filtration kidney";
+  NA_REABSORPTION is "Na reabsorption kidney";
+  CL_FILTRATION is "Cl filtration kidney";
+  CL_REABSORPTION is "Cl reabsorption kidney";
+  transport_li_hctz is "transport hydrochlorothiazide";
+  transport_lu_hctz is "transport hydrochlorothiazide";
+  transport_re_hctz is "transport hydrochlorothiazide";
+  Flow_ar_ki_hctz is "inflow kidney hydrochlorothiazide";
+  Flow_ki_ve_hctz is "outflow kidney hydrochlorothiazide";
+  Flow_arli_li_hctz is "arterial inflow liver hydrochlorothiazide";
+  Flow_arli_hv_hctz is "flow arterial shunts";
+  Flow_po_li_hctz is "outflow po hydrochlorothiazide";
+  Flow_po_hv_hctz is "flow portal shunts";
+  Flow_li_hv_hctz is "outflow liver hydrochlorothiazide";
+  Flow_hv_ve_hctz is "outflow hepatic vein hydrochlorothiazide";
+  Flow_ve_lu_hctz is "inflow lung hydrochlorothiazide";
+  Flow_lu_ar_hctz is "outflow lung hydrochlorothiazide";
+  Flow_ar_gu_hctz is "inflow gut hydrochlorothiazide";
+  Flow_gu_po_hctz is "outflow gut hydrochlorothiazide";
+  Flow_ar_re_hctz is "inflow rest hydrochlorothiazide";
+  Flow_re_ve_hctz is "outflow rest hydrochlorothiazide";
+  KI__HCTZEX is "hydrochlorothiazide renal excretion";
+  GU__HCTZABS is "absorption hydrochlorothiazide";
+  GU__HCTZEXC is "excretion hydrochlorothiazide (feces)";
+
+  // SBO terms:
+  ECF.sboTerm = 290
+  ECF_ref.sboTerm = 2
+  vout_h2o.sboTerm = 2
+  h2o_reabsorption.sboTerm = 2
+  Vloop.sboTerm = 290
+  Vre.sboTerm = 290
+  BW.sboTerm = 2
+  FVre.sboTerm = 2
+  Vgu.sboTerm = 290
+  FVgu.sboTerm = 2
+  Vki.sboTerm = 290
+  FVki.sboTerm = 2
+  Vli.sboTerm = 290
+  FVli.sboTerm = 2
+  Vlu.sboTerm = 290
+  FVlu.sboTerm = 2
+  Vve.sboTerm = 290
+  FVve.sboTerm = 2
+  FVar.sboTerm = 2
+  Fblood.sboTerm = 2
+  Var.sboTerm = 290
+  Vurine.sboTerm = 290
+  Vfeces.sboTerm = 290
+  Vgu_lumen.sboTerm = 290
+  Vpo.sboTerm = 290
+  FVpo.sboTerm = 2
+  FVhv.sboTerm = 2
+  Vhv.sboTerm = 290
+  Vki_tissue.sboTerm = 290
+  Vki_plasma.sboTerm = 290
+  Vli_tissue.sboTerm = 290
+  f_tissue_loss.sboTerm = 2
+  Vli_plasma.sboTerm = 290
+  Vlu_tissue.sboTerm = 290
+  Vlu_plasma.sboTerm = 290
+  Vgu_tissue.sboTerm = 290
+  Vgu_plasma.sboTerm = 290
+  Vre_tissue.sboTerm = 290
+  Vre_plasma.sboTerm = 290
+  hctz.sboTerm = 247
+  Cki_plasma_hctz.sboTerm = 247
+  na.sboTerm = 247
+  na_loop.sboTerm = 247
+  na_urine.sboTerm = 247
+  cl.sboTerm = 247
+  cl_loop.sboTerm = 247
+  cl_urine.sboTerm = 247
+  Cli_plasma_hctz.sboTerm = 247
+  Clu_plasma_hctz.sboTerm = 247
+  Cgu_plasma_hctz.sboTerm = 247
+  Cre_plasma_hctz.sboTerm = 247
+  Car_hctz.sboTerm = 247
+  Cve_hctz.sboTerm = 247
+  Cpo_hctz.sboTerm = 247
+  Chv_hctz.sboTerm = 247
+  Cli_hctz.sboTerm = 247
+  Clu_hctz.sboTerm = 247
+  Cre_hctz.sboTerm = 247
+  Aurine_hctz.sboTerm = 247
+  Afeces_hctz.sboTerm = 247
+  Cgu_hctz.sboTerm = 247
+  f_TBW.sboTerm = 2
+  f_ECF.sboTerm = 2
+  Psys_ref.sboTerm = 2
+  Pdia_ref.sboTerm = 2
+  bp_systolic.sboTerm = 2
+  bp_diastolic.sboTerm = 2
+  bp_mean.sboTerm = 2
+  Mr_nacl.sboTerm = 647
+  Mr_na.sboTerm = 647
+  Mr_cl.sboTerm = 647
+  vin_na.sboTerm = 2
+  k_na.sboTerm = 9
+  vin_cl.sboTerm = 2
+  k_cl.sboTerm = 9
+  vin_h2o.sboTerm = 2
+  GFR_base.sboTerm = 2
+  NA_EXCRETION.sboTerm = 655
+  E50_hctz_nacl.sboTerm = 287
+  Emax_hctz_na.sboTerm = 2
+  Emax_hctz_cl.sboTerm = 2
+  BW_ref.sboTerm = 2
+  HEIGHT.sboTerm = 2
+  f_renal_function.sboTerm = 2
+  f_GFR_Qki.sboTerm = 2
+  BSA.sboTerm = 2
+  f_cardiac_function.sboTerm = 2
+  COBW.sboTerm = 2
+  CO.sboTerm = 2
+  QC.sboTerm = 2
+  FQgu.sboTerm = 2
+  FQki.sboTerm = 2
+  FQh.sboTerm = 2
+  FQlu.sboTerm = 2
+  FQre.sboTerm = 2
+  conversion_min_per_day.sboTerm = 2
+  f_cirrhosis.sboTerm = 2
+  f_shunts.sboTerm = 2
+  PODOSE_hctz.sboTerm = 2
+  GU__application_hctz.sboTerm = 612
+  Mr_hctz.sboTerm = 647
+  POSOLUTION_hctz.sboTerm = 2
+  GU__application_solution_hctz.sboTerm = 655
+  Ka_dis_hctz.sboTerm = 9
+  KI__HCTZEX_f.sboTerm = 9
+  ftissue_hctz.sboTerm = 9
+  Kp_hctz.sboTerm = 2
+  IVDOSE_hctz.sboTerm = 2
+  iv_hctz.sboTerm = 655
+  ti_hctz.sboTerm = 2
+  Ki_hctz.sboTerm = 9
+  CL_EXCRETION.sboTerm = 655
+  GU__F_hctz_abs.sboTerm = 2
+  GU__HCTZABS_k.sboTerm = 9
+  GU__POSTOMACH_hctz.sboTerm = 2
+  GU__dissolution_hctz.sboTerm = 655
+  GU__Ka_application_hctz.sboTerm = 9
+  NA_UPTAKE.sboTerm = 655
+  CL_UPTAKE.sboTerm = 655
+  NA_FILTRATION.sboTerm = 655
+  NA_REABSORPTION.sboTerm = 655
+  CL_FILTRATION.sboTerm = 655
+  CL_REABSORPTION.sboTerm = 655
+  transport_li_hctz.sboTerm = 655
+  transport_lu_hctz.sboTerm = 655
+  transport_re_hctz.sboTerm = 655
+  Flow_ar_ki_hctz.sboTerm = 655
+  Flow_ki_ve_hctz.sboTerm = 655
+  Flow_arli_li_hctz.sboTerm = 655
+  Flow_arli_hv_hctz.sboTerm = 655
+  Flow_po_li_hctz.sboTerm = 655
+  Flow_po_hv_hctz.sboTerm = 655
+  Flow_li_hv_hctz.sboTerm = 655
+  Flow_hv_ve_hctz.sboTerm = 655
+  Flow_ve_lu_hctz.sboTerm = 655
+  Flow_lu_ar_hctz.sboTerm = 655
+  Flow_ar_gu_hctz.sboTerm = 655
+  Flow_gu_po_hctz.sboTerm = 655
+  Flow_ar_re_hctz.sboTerm = 655
+  Flow_re_ve_hctz.sboTerm = 655
+  KI__HCTZEX.sboTerm = 655
+  GU__HCTZABS.sboTerm = 655
+  GU__HCTZEXC.sboTerm = 655
+
+  // CV terms:
+  ECF identity "https://identifiers.org/mesh:D045604",
+               "https://identifiers.org/snomedct:55450009"
+  ECF hasPart "https://identifiers.org/ncit:C13356",
+              "https://identifiers.org/UBERON:0000913"
+  Vloop identity "https://identifiers.org/UBERON:0009773",
+                 "https://identifiers.org/FMA:15627",
+                 "https://identifiers.org/ncit:C49274",
+                 "https://identifiers.org/BTO:0000343"
+  Vloop hasPart "https://identifiers.org/UBERON:0001292",
+                "https://identifiers.org/FMA:17721",
+                "https://identifiers.org/ncit:C32469"
+  Vre isVersionOf "https://identifiers.org/FMA:62955"
+  Vre isPartOf "https://identifiers.org/ncit:C14250"
+  Vgu identity "https://identifiers.org/BTO:0000545",
+               "https://identifiers.org/ncit:C12736",
+               "https://identifiers.org/FMA:7199",
+               "https://identifiers.org/BTO:0000648"
+  Vki identity "https://identifiers.org/FMA:7203",
+               "https://identifiers.org/BTO:0000671",
+               "https://identifiers.org/ncit:C12415"
+  Vli identity "https://identifiers.org/FMA:7197",
+               "https://identifiers.org/BTO:0000759",
+               "https://identifiers.org/ncit:C12392",
+               "PBPKO_00558"
+  Vlu identity "https://identifiers.org/FMA:7195",
+               "https://identifiers.org/BTO:0000763",
+               "https://identifiers.org/ncit:C12468"
+  Vve identity "https://identifiers.org/BTO:0000131",
+               "https://identifiers.org/ncit:C13356"
+  Vve isPartOf "https://identifiers.org/FMA:50723"
+  Var identity "https://identifiers.org/BTO:0000131",
+               "https://identifiers.org/ncit:C13356"
+  Var isPartOf "https://identifiers.org/FMA:50720"
+  Vurine identity "https://identifiers.org/FMA:12274",
+                  "https://identifiers.org/ncit:C13283",
+                  "https://identifiers.org/BTO:0001419"
+  Vfeces identity "https://identifiers.org/FMA:64183",
+                  "https://identifiers.org/ncit:C13234",
+                  "https://identifiers.org/BTO:0000440"
+  Vgu_lumen identity "https://identifiers.org/FMA:14586",
+                     "https://identifiers.org/UBERON:0018543"
+  Vpo identity "https://identifiers.org/BTO:0000131",
+               "https://identifiers.org/ncit:C13356"
+  Vpo isPartOf "https://identifiers.org/FMA:66645"
+  Vhv identity "https://identifiers.org/BTO:0000131",
+               "https://identifiers.org/ncit:C13356"
+  Vhv isPartOf "https://identifiers.org/FMA:14337"
+  Vki_tissue identity "https://identifiers.org/FMA:45732",
+                      "https://identifiers.org/ncit:C74601",
+                      "https://identifiers.org/BTO:0001539"
+  Vki_tissue isPartOf "https://identifiers.org/FMA:7203",
+                      "https://identifiers.org/BTO:0000671",
+                      "https://identifiers.org/ncit:C12415"
+  Vki_plasma identity "https://identifiers.org/ncit:C13356",
+                      "https://identifiers.org/BTO:0000131"
+  Vki_plasma isPartOf "https://identifiers.org/FMA:7203",
+                      "https://identifiers.org/BTO:0000671",
+                      "https://identifiers.org/ncit:C12415"
+  Vli_tissue identity "https://identifiers.org/FMA:45732",
+                      "https://identifiers.org/ncit:C74601",
+                      "https://identifiers.org/BTO:0001539"
+  Vli_tissue isPartOf "https://identifiers.org/FMA:7197",
+                      "https://identifiers.org/BTO:0000759",
+                      "https://identifiers.org/ncit:C12392",
+                      "PBPKO_00558"
+  Vli_plasma identity "https://identifiers.org/ncit:C13356",
+                      "https://identifiers.org/BTO:0000131"
+  Vli_plasma isPartOf "https://identifiers.org/FMA:7197",
+                      "https://identifiers.org/BTO:0000759",
+                      "https://identifiers.org/ncit:C12392",
+                      "PBPKO_00558"
+  Vlu_tissue identity "https://identifiers.org/FMA:45732",
+                      "https://identifiers.org/ncit:C74601",
+                      "https://identifiers.org/BTO:0001539"
+  Vlu_tissue isPartOf "https://identifiers.org/FMA:7195",
+                      "https://identifiers.org/BTO:0000763",
+                      "https://identifiers.org/ncit:C12468"
+  Vlu_plasma identity "https://identifiers.org/ncit:C13356",
+                      "https://identifiers.org/BTO:0000131"
+  Vlu_plasma isPartOf "https://identifiers.org/FMA:7195",
+                      "https://identifiers.org/BTO:0000763",
+                      "https://identifiers.org/ncit:C12468"
+  Vgu_tissue identity "https://identifiers.org/FMA:45732",
+                      "https://identifiers.org/ncit:C74601",
+                      "https://identifiers.org/BTO:0001539"
+  Vgu_tissue isPartOf "https://identifiers.org/BTO:0000545",
+                      "https://identifiers.org/ncit:C12736",
+                      "https://identifiers.org/FMA:7199",
+                      "https://identifiers.org/BTO:0000648"
+  Vgu_plasma identity "https://identifiers.org/ncit:C13356",
+                      "https://identifiers.org/BTO:0000131"
+  Vgu_plasma isPartOf "https://identifiers.org/BTO:0000545",
+                      "https://identifiers.org/ncit:C12736",
+                      "https://identifiers.org/FMA:7199",
+                      "https://identifiers.org/BTO:0000648"
+  Vre_tissue identity "https://identifiers.org/FMA:45732",
+                      "https://identifiers.org/ncit:C74601",
+                      "https://identifiers.org/BTO:0001539"
+  Vre_tissue isPartOf "https://identifiers.org/FMA:62955",
+                      "https://identifiers.org/ncit:C14250"
+  Vre_plasma identity "https://identifiers.org/ncit:C13356",
+                      "https://identifiers.org/BTO:0000131"
+  Vre_plasma isPartOf "https://identifiers.org/FMA:62955",
+                      "https://identifiers.org/ncit:C14250"
+  hctz identity "https://identifiers.org/ncit:C29098",
+                "https://identifiers.org/CHEBI:5778",
+                "https://identifiers.org/pubchem.compound:3639",
+                "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                "https://identifiers.org/snomedct:387525002",
+                "COB_0000013"
+  Cki_plasma_hctz identity "https://identifiers.org/ncit:C29098",
+                           "https://identifiers.org/CHEBI:5778",
+                           "https://identifiers.org/pubchem.compound:3639",
+                           "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                           "https://identifiers.org/snomedct:387525002",
+                           "COB_0000013"
+  na identity "https://identifiers.org/CHEBI:29101",
+              "COB_0000013"
+  na_loop identity "https://identifiers.org/CHEBI:29101",
+                   "COB_0000013"
+  na_urine identity "https://identifiers.org/CHEBI:29101",
+                    "COB_0000013"
+  cl identity "https://identifiers.org/CHEBI:17996",
+              "COB_0000013"
+  cl_loop identity "https://identifiers.org/CHEBI:17996",
+                   "COB_0000013"
+  cl_urine identity "https://identifiers.org/CHEBI:17996",
+                    "COB_0000013"
+  Cli_plasma_hctz identity "https://identifiers.org/ncit:C29098",
+                           "https://identifiers.org/CHEBI:5778",
+                           "https://identifiers.org/pubchem.compound:3639",
+                           "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                           "https://identifiers.org/snomedct:387525002",
+                           "COB_0000013"
+  Clu_plasma_hctz identity "https://identifiers.org/ncit:C29098",
+                           "https://identifiers.org/CHEBI:5778",
+                           "https://identifiers.org/pubchem.compound:3639",
+                           "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                           "https://identifiers.org/snomedct:387525002",
+                           "COB_0000013"
+  Cgu_plasma_hctz identity "https://identifiers.org/ncit:C29098",
+                           "https://identifiers.org/CHEBI:5778",
+                           "https://identifiers.org/pubchem.compound:3639",
+                           "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                           "https://identifiers.org/snomedct:387525002",
+                           "COB_0000013"
+  Cre_plasma_hctz identity "https://identifiers.org/ncit:C29098",
+                           "https://identifiers.org/CHEBI:5778",
+                           "https://identifiers.org/pubchem.compound:3639",
+                           "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                           "https://identifiers.org/snomedct:387525002",
+                           "COB_0000013"
+  Car_hctz identity "https://identifiers.org/ncit:C29098",
+                    "https://identifiers.org/CHEBI:5778",
+                    "https://identifiers.org/pubchem.compound:3639",
+                    "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                    "https://identifiers.org/snomedct:387525002",
+                    "COB_0000013"
+  Cve_hctz identity "https://identifiers.org/ncit:C29098",
+                    "https://identifiers.org/CHEBI:5778",
+                    "https://identifiers.org/pubchem.compound:3639",
+                    "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                    "https://identifiers.org/snomedct:387525002",
+                    "COB_0000013"
+  Cpo_hctz identity "https://identifiers.org/ncit:C29098",
+                    "https://identifiers.org/CHEBI:5778",
+                    "https://identifiers.org/pubchem.compound:3639",
+                    "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                    "https://identifiers.org/snomedct:387525002",
+                    "COB_0000013"
+  Chv_hctz identity "https://identifiers.org/ncit:C29098",
+                    "https://identifiers.org/CHEBI:5778",
+                    "https://identifiers.org/pubchem.compound:3639",
+                    "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                    "https://identifiers.org/snomedct:387525002",
+                    "COB_0000013"
+  Cli_hctz identity "https://identifiers.org/ncit:C29098",
+                    "https://identifiers.org/CHEBI:5778",
+                    "https://identifiers.org/pubchem.compound:3639",
+                    "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                    "https://identifiers.org/snomedct:387525002",
+                    "COB_0000013"
+  Clu_hctz identity "https://identifiers.org/ncit:C29098",
+                    "https://identifiers.org/CHEBI:5778",
+                    "https://identifiers.org/pubchem.compound:3639",
+                    "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                    "https://identifiers.org/snomedct:387525002",
+                    "COB_0000013"
+  Cre_hctz identity "https://identifiers.org/ncit:C29098",
+                    "https://identifiers.org/CHEBI:5778",
+                    "https://identifiers.org/pubchem.compound:3639",
+                    "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                    "https://identifiers.org/snomedct:387525002",
+                    "COB_0000013"
+  Aurine_hctz identity "https://identifiers.org/ncit:C29098",
+                       "https://identifiers.org/CHEBI:5778",
+                       "https://identifiers.org/pubchem.compound:3639",
+                       "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                       "https://identifiers.org/snomedct:387525002",
+                       "COB_0000013"
+  Afeces_hctz identity "https://identifiers.org/ncit:C29098",
+                       "https://identifiers.org/CHEBI:5778",
+                       "https://identifiers.org/pubchem.compound:3639",
+                       "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                       "https://identifiers.org/snomedct:387525002",
+                       "COB_0000013"
+  Cgu_hctz identity "https://identifiers.org/ncit:C29098",
+                    "https://identifiers.org/CHEBI:5778",
+                    "https://identifiers.org/pubchem.compound:3639",
+                    "https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N",
+                    "https://identifiers.org/snomedct:387525002",
+                    "COB_0000013"
+  f_cirrhosis identity "https://identifiers.org/ncit:C2951",
+                       "https://identifiers.org/efo:0001422"
+  f_shunts identity "https://identifiers.org/HP:0002629"
+  iv_hctz identity "https://identifiers.org/ncit:C38276"
+
+  model hasTaxon "https://identifiers.org/taxonomy:9606",
+                 "https://identifiers.org/snomedct:337915000"
+  model hasProperty "https://identifiers.org/mamo:MAMO_0000046",
+                    "https://identifiers.org/ncit:C49185",
+                    "https://identifiers.org/ncit:C15299",
+                    "https://identifiers.org/ncit:C3117",
+                    "https://identifiers.org/ncit:C79369",
+                    "https://identifiers.org/ncit:C79372",
+                    "https://identifiers.org/ncit:C79370"
+  model identity "PBPKO_00003",
+                 "https://identifiers.org/ncit:C29098"
+  model isDescribedBy "https://identifiers.org/doi:10.5281/zenodo.15427418"
+  model occursIn "https://identifiers.org/BTO:0001489",
+                 "https://identifiers.org/FMA:256135"
+  model created "2026-10-17T05:01:22Z"
+  model modified "2026-10-17T05:01:22Z"
+  model creator1.givenName "Amanda"
+  model creator1.familyName "Schwaiger"
+  model creator1.organization "Charité - Universitätsmedizin Berlin, Charitéplatz 1, 10117 Berlin, Germany"
+  model creator1.email "amanda.lim@charite.de"
+  model creator2.givenName "Matthias"
+  model creator2.familyName "König"
+  model creator2.organization "Humboldt-University Berlin, Faculty of Life Science, Institute for Biology, Biology, Berlin; University Lübeck; University Hospital Schleswig-Holstein, Campus Lübeck, First Department of Medicine, Germany"
+  model creator2.email "koenigmx@hu-berlin.de"
+
+  // Notes:
+  model notes ```
+# Hydrochlorothiazide (HCTZ) body model
+
+The content of this model has been carefully created in a manual research effort.
+
+## Terms of use
+
+Copyright © 2026 [Matthias König](https://livermetabolism.com "Matthias König").
+[ ![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png)
+](https://creativecommons.org/licenses/by-sa/4.0/)
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+Redistribution and use of any part of this model, with or without modification, are
+permitted providedthat the following conditions are met:
+
+- Redistributions of this SBML file must retain the above copyright notice, this list of conditions and the following disclaimer.
+- Redistributions in a different form must reproduce the above copyright notice, this list of conditionsand the following disclaimer in the documentation and/or other materials providedwith the distribution.
+
+
+This model is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even theimplied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+  ECF_ref notes "ECF value is calculated based on body weight and sex."
+  vout_h2o notes ```
+The water lost without urine: insensible through the skin and thelungs (about 700
+ml a day), the sweat and the feces (about 100 mleach) [Hall2021, Guyton and Hall
+Textbook of Medical Physiology,chapter 25]. Of the intake of 2.3 l a day the urine
+is 1.4 l atthe reference, the 1.47 to 1.96 l a day of Jeon2012 and Dussol2005;without
+the loss the urine was the whole intake.
+```
+  Vloop notes ```
+The fluid of the renal tubule, lumped from the glomerulus to theurine: the filtered
+sodium, chloride and water are reabsorbed fromit or excreted into the urine. HCTZ
+increases the excretion ofsodium and chloride, by its inhibition of the sodium chloridecotransporter
+in the distal convoluted tubule, a part of thetubule. The id `Vloop` is historical, the
+compartment is not theloop of Henle.
+```
+  diuresis notes "Excretion rate water urine."
+  BW notes "Reference adult body weight (Ogden2004, Jones2013, Thompson2009, Brown1997)."
+  FVgu notes "Fractional volume of the gut (Brown1997, Jones2013, Thompson2009)."
+  FVki notes "Fractional volume of the kidneys (Brown1997, Jones2013, Thompson2009)."
+  FVli notes "Fractional volume of the liver (Wynne1989, Brown1997, Jones2013,Thompson2009)."
+  FVlu notes "Fractional volume of the lungs (Brown1997, Jones2013, Thompson2009)."
+  FVve notes "Fractional volume of the venous blood (Brown1997, Jones2013, Thompson2009)."
+  FVar notes "Fractional volume of the arterial blood (Brown1997, Jones2013,Thompson2009)."
+  Fblood notes ```
+The vascular compartments are whole blood: the arterial and thevenous blood, the
+portal and the hepatic vein and the blood of thetissues (`V*_plasma`). The flows are blood
+flows, and the speciesof the vascular compartments (named plasma) are the concentrationin
+plasma with a blood to plasma ratio of 1, which is what thedata of plasma are compared
+with. An erythrocyte uptake of HCTZ(blood to plasma ratio above 1) is not modelled.
+The value 0.02 isan assumption of the model without a source; the vascularfraction
+of the kidney and the liver is about ten times larger(ICRP 89, Valentin2002).
+```
+  Vgu_lumen notes ```
+The volume the concentration of hydrochlorothiazide in the lumen ofthe intestine
+(`Cgu_hctz`) refers to; it is the volume of the gut`Vgu`, the model has no volume of the lumen
+of its own.
+```
+  FVpo notes "Small volume of the portal vein, an assumption of the model without a source."
+  FVhv notes "Small volume of the hepatic vein, an assumption of the model without a source."
+  hctz notes ```
+This should be the concentration in the kidney, but no kidney compartment in the
+fluid model.
+```
+  na notes "Concentration in mM corresponding to mEq/l."
+  na_ref notes "reference sodium concentration."
+  na_loop notes "Concentration in mM corresponding to mEq/l."
+  na_urine notes "Concentration in mM corresponding to mEq/l."
+  cl notes "Concentration in mM corresponding to mEq/l."
+  cl_ref notes "reference chloride concentration."
+  cl_loop notes "Concentration in mM corresponding to mEq/l."
+  cl_urine notes "Concentration in mM corresponding to mEq/l."
+  f_TBW notes ```
+0.55 l/kg, between the typical values of men and women:male: 0.6 l/kgfemale: 0.5
+l/kg
+```
+  f_ECF notes "Around 1/3 of total body water (TBW) is extracellular fluid (ECF)."
+  Psys_ref notes ```
+Psys value is dependent on sex and age.
+
+
+ 
+ Young Adult Men (18-39 years): Average=120/80 mmHg
+ Middle-aged Men (40-59 years): Average=125−130/80−85 mmHg
+ Older Men (60+ years): Average=135−140/85−90 mmHg
+
+ Young Adult Women (18-39 years): Average=110−120/70−80mmHg
+ Middle-aged Women (40-59 years): Average=120−130/80−85mmHg
+ Older Women (60+ years): Average=135−140/85−90mmHg
+```
+  Pdia_ref notes ```
+Pdia value is dependent on sex and age.
+
+
+ 
+ Young Adult Men (18-39 years): Average=120/80 mmHg
+ Middle-aged Men (40-59 years): Average=125−130/80−85 mmHg
+ Older Men (60+ years): Average=135−140/85−90 mmHg
+
+ Young Adult Women (18-39 years): Average=110−120/70−80mmHg
+ Middle-aged Women (40-59 years): Average=120−130/80−85mmHg
+ Older Women (60+ years): Average=135−140/85−90mmHg
+```
+  k_na notes "Excretion rate sodium urine."
+  k_cl notes "Excretion rate chloride urine."
+  k_h2o notes "Excretion rate water urine."
+  counter_gamma notes "Counter-regulation feedback."
+  f_h2o_max notes ```
+The urine is at most this fraction of the filtration, the rest ofthe filtered water
+is reabsorbed. Without the limit an expandedextracellular fluid (twice its reference)
+with HCTZ excretes morewater than is filtered: the reabsorption of water and sodium
+turnsnegative and the integration fails. Within the supported domain thefractional
+excretion of water stays below 0.09, the limit is notreached.
+```
+  E50_hctz_nacl notes "E50 for HCTZ effect on sodium and chloride excretion."
+  Emax_hctz_na notes "Emax for HCTZ effect on sodium excretion."
+  Emax_hctz_cl notes "Emax for HCTZ effect on chloride excretion."
+  BW_ref notes ```
+Body weight at which the exchange flows of the tissue distribution (`ftissue_<sid>`) are given;
+they scale with the body weight as the volumes, the blood flows and the renal clearance
+do.
+```
+  f_renal_function notes ```
+>
+> 1.0: increased kidney function
+> 1.0: normal kidney function (healthy control)
+> <1.0: decreased kidney function
+>
+> 
+Renal function relative to the healthy glomerular filtrationrate GFR_base, which
+is 101 ml/min at 75 kg; a measuredclearance of X ml/min is the renal function X/101.
+
+Supported range 0.05 to 2, a GFR of 5 to 202 ml/min. The renalperfusion does not
+change with the renal function: the GFR isf_renal_function \* 0.0763 of the renal
+blood flow `Qki` (themodel has no hematocrit; with a hematocrit of 0.45 it isf_renal_function
+\* 0.139 of the renal plasma flow, a filtrationfraction of 0.28 at 2). Below 0.05
+the urine flow approaches 0and the concentration of HCTZ in the urine is not defined.
+```
+  f_GFR_Qki notes ```
+GFR per renal blood flow (76.3 ml/l, a ratio of 0.0763). Calibratedso that the healthy
+GFR is 101 ml/min at the renal blood flow of1.32354 l/min of 75 kg, the normal GFR
+of the classes of renalimpairment.
+```
+  f_cardiac_function notes "Factor scaling cardiac output in cardiac impairment."
+  COBW notes ```
+Cardiac output per body weight of healthy adults, about 6.5l/min at 70 kg (Cattermole2017,
+Patel2021, Collis2001).
+```
+  FQgu notes ```
+Assumed FQgu is the sum of FQgu + FQsp + FQpa for correct portal blood flow.with
+FQgu=0.146, FQsp=0.017, FQpa=0.017 (Brown1997, Jones2013, Thompson2009).
+```
+  FQki notes "Fraction of the cardiac output to the kidneys (Brown1997,Jones2013, Thompson2009)."
+  FQh notes ```
+Fraction of the cardiac output leaving the liver, the portal(FQgu) and the hepatic
+arterial flow (Wynne1989, Brown1997,Jones2013, Thompson2009). The hepatic artery
+is 3.5 % of thecardiac output here, about 6.5 % in ICRP 89 (Valentin2002);without
+a hepatic clearance of HCTZ the difference does notchange the pharmacokinetics.
+```
+  f_cirrhosis notes ```
+Cirrhosis is not supported for HCTZ: it changes only the shuntsand the liver tissue,
+HCTZ has no hepatic clearance (the AUCchanges by 0.03 % at 0.9); ascites, the expansion
+of theextracellular fluid and aldosterone are not in the model.
+```
+  GU__application_hctz notes "The rate at which the oral dose `PODOSE_hctz` enters the stomach(`POSTOMACH_hctz`)."
+  GU__application_solution_hctz notes "The oral dose given as a solution enters the lumen of the intestinewithout dissolution."
+  KI__HCTZEX_f notes ```
+The intrinsic renal clearance of HCTZ is HCTZEX_f times the GFR(filtration and secretion),
+acting on the renal venous plasma of awell-stirred kidney: the systemic renal clearance
+isQki \* CLint/(Qki + CLint), limited by the renal blood flow (2.26GFR at renal function
+1 with HCTZEX_f 2.68, 2.63 at 0.1 and 1.96at 2). It scales with the body weight as
+the GFR does (linearly).
+```
+  ftissue_hctz notes "Exchange flow at the reference body weight `BW_ref`."
+  GU__F_hctz_abs notes ```
+Fraction absorbed, i.e., only a fraction of the hydrochlorothiazide in the intestinal
+lumenis absorbed. This parameter determines how much of the hydrochlorothiazide is
+excreted.
+
+`F_hctz_abs` of dose is absorbed. `(1-F_hctz_abs)` is excreted in feces.
+
+around 11-25% of dose recovered in feces {Beermann1976}around 60-70 percent urinary
+recovery of oral dose~70-80 percent urinary recovery of oral dose [Barbhaiya1982]~70
+percent after oral dose, ~93% IV dose [Beermann1976]
+```
+  GU__dissolution_hctz notes "Dissolution of the dose in the stomach and its passage into thelumen of the intestine."
+  GU__Ka_application_hctz notes "Fast application to shift applied dose in the stomach."
+  NA_UPTAKE notes "Na uptake increased when concentrations too low."
+  CL_UPTAKE notes "Cl uptake increased when concentrations too low."
+
+  // Uncertainty parameters:
+  k_na.confidenceInterval = {0.000584015429114786, 0.000788186399934477}
+  k_na.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  k_na.standardError = 4.68442935432338e-05
+  k_na.standardError is "standard error (Fisher information)"
+  k_na.distribution = lognormal(-7.29835678793397, 0.0764828359585908, 0.00025, 0.0015)
+  k_na.distribution is "distribution of the draws"
+  k_cl.confidenceInterval = {0.00252035788024369, 0.00511843447084373}
+  k_cl.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  k_cl.standardError = 0.000581097876815446
+  k_cl.standardError is "standard error (Fisher information)"
+  k_cl.distribution = lognormal(-5.5974877020142, 0.180729779490874, 0.00034, 0.007)
+  k_cl.distribution is "distribution of the draws"
+  E50_hctz_nacl.confidenceInterval = {2.86312789046828e-05, 0.000289410577351406}
+  E50_hctz_nacl.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  E50_hctz_nacl.standardError = 2.5976480328119e-05
+  E50_hctz_nacl.standardError is "standard error (Fisher information)"
+  E50_hctz_nacl.distribution = lognormal(-9.35904300995851, 0.590150276438487, 1e-6, 0.01)
+  E50_hctz_nacl.distribution is "distribution of the draws"
+  Emax_hctz_na.confidenceInterval = {1.25083511671922, 2.60320475869873}
+  Emax_hctz_na.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  Emax_hctz_na.standardError = 0.212398766034347
+  Emax_hctz_na.standardError is "standard error (Fisher information)"
+  Emax_hctz_na.distribution = lognormal(0.545485728963977, 0.186975849981568, 0.1, 5)
+  Emax_hctz_na.distribution is "distribution of the draws"
+  Emax_hctz_cl.confidenceInterval = {0.312448419540539, 0.767900772390777}
+  Emax_hctz_cl.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  Emax_hctz_cl.standardError = 0.0838268541449215
+  Emax_hctz_cl.standardError is "standard error (Fisher information)"
+  Emax_hctz_cl.distribution = lognormal(-0.782000255319967, 0.22939735913373, 0.1, 5)
+  Emax_hctz_cl.distribution is "distribution of the draws"
+  Ka_dis_hctz.confidenceInterval = {0.793937646556894, 1.95562836916308}
+  Ka_dis_hctz.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  Ka_dis_hctz.standardError = 0.00423042333321125
+  Ka_dis_hctz.standardError is "standard error (Fisher information)"
+  Ka_dis_hctz.distribution = lognormal(0.263449024778929, 0.229968998655057, 0.0001, 10)
+  Ka_dis_hctz.distribution is "distribution of the draws"
+  KI__HCTZEX_f.confidenceInterval = {2.88613376605622, 3.69937065512214}
+  KI__HCTZEX_f.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  KI__HCTZEX_f.standardError = 0.0259382116978903
+  KI__HCTZEX_f.standardError is "standard error (Fisher information)"
+  KI__HCTZEX_f.distribution = lognormal(1.1748719086158, 0.0633289449878157, 0.1, 10)
+  KI__HCTZEX_f.distribution is "distribution of the draws"
+  ftissue_hctz.confidenceInterval = {0.0257629468616404, 0.117951797546407}
+  ftissue_hctz.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  ftissue_hctz.standardError = 0.000288435218948533
+  ftissue_hctz.standardError is "standard error (Fisher information)"
+  ftissue_hctz.distribution = lognormal(-2.75331805006761, 0.388103752452405, 0.01, 10)
+  ftissue_hctz.distribution is "distribution of the draws"
+  Kp_hctz.confidenceInterval = {1.62915666110116, 4.23557037973026}
+  Kp_hctz.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  Kp_hctz.standardError = 0.0115594439307037
+  Kp_hctz.standardError is "standard error (Fisher information)"
+  Kp_hctz.distribution = lognormal(0.860465328276485, 0.243743128398163, 0.25, 10)
+  Kp_hctz.distribution is "distribution of the draws"
+  GU__HCTZABS_k.confidenceInterval = {0.00379700548990431, 0.00774267090833456}
+  GU__HCTZABS_k.confidenceInterval is "95 % confidence interval (profile likelihood)"
+  GU__HCTZABS_k.standardError = 3.05278970933864e-05
+  GU__HCTZABS_k.standardError is "standard error (Fisher information)"
+  GU__HCTZABS_k.distribution = lognormal(-5.2840861855071, 0.181772212446387, 0.0001, 10)
+  GU__HCTZABS_k.distribution is "distribution of the draws"
+end
+
+hctz_body is "Hydrochlorothiazide (HCTZ) body model"

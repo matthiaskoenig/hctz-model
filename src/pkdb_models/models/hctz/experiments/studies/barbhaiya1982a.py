@@ -1,95 +1,93 @@
-from typing import Dict
+"""Simulation experiment of the study Barbhaiya1982a."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-from sbmlutils.console import console
+from sbmlsim.simulation import Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Barbhaiya1982a(HCTZSimulationExperiment):
     """Simulation experiment of Barbhaiya1982a.
+
     Comparative bioavailability and pharmacokinetics of hydrochlorothiazide from oral tablet dosage forms, determined by plasma level and urinary excretion methods.
     Single 50 mg oral doses of hydrochlorothiazide, comparing bioavailability of two hydrochlorothiazide products
     """
 
-    group_keys = ["msd", "stanlab"]
-    group_labels = [
-        "HCTZ 50 msd",
-        "HCTZ 50 stanlab"
-    ]
-    colors = ["tab:blue", "tab:green"]
+    group_keys: ClassVar[list[str]] = ["msd", "stanlab"]
+    group_labels: ClassVar[list[str]] = ["HCTZ 50 msd", "HCTZ 50 stanlab"]
+    colors: ClassVar[list[str]] = ["tab:blue", "tab:green"]
 
-    yids = [
+    yids: ClassVar[list[str]] = [
         "[Cve_hctz]",  # plasma concentration
         "Aurine_hctz",  # cumulative amount urine
     ]
-    prefixes = [
+    prefixes: ClassVar[list[str]] = [
         "hctz50_",
         "amount_",
     ]
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Tab1", "Tab2"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if (
-                    label.startswith("hctz")
-                    or label.startswith("amount")
-                ):
+                if label.startswith(("hctz", "amount")):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                dsets[label] = dset
+                dsets[self.to_sid(label)] = dset
 
-        # console.print(dsets.keys())
-        # console.print(dsets)
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
         # no simulation of fasting or different water amounts !
-        tcsims["hctz50"] = TimecourseSim(
-            Timecourse(
-                start=0,
-                end=50 * 60,  # [min]
-                steps=500,
-                changes={
-                    **self.default_changes(),
-                    "PODOSE_hctz": Q_(50, "mg"),
-                },
-            )
+        simulations["hctz50"] = Simulation(
+            time_unit="hr",
+            end=50,
+            steps=500,
+            preinit_changes={
+                **self.default_changes(),
+                "PODOSE_hctz": Q(50, "mg"),
+            },
         )
 
-        return tcsims
+        return simulations
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
 
-        for kg, group_key in enumerate(self.group_keys):
+        for group_key in self.group_keys:
             for k, yid in enumerate(self.yids):
                 prefix = self.prefixes[k]
-                mappings[f"fm_{prefix}{group_key}"] = FitMapping(
+                mappings[self.to_sid(f"fm_{prefix}{group_key}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"{prefix}{group_key}",
+                        dataset=self.to_sid(f"{prefix}{group_key}"),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
@@ -97,12 +95,14 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
                     ),
                     observable=FitData(
                         self,
-                        task=f"task_hctz50",
+                        task="task_hctz50",
                         xid="time",
                         yid=yid,
                     ),
-                    metadata=HCTZMappingMetaData(
-                        tissue=Tissue.PLASMA if yid.startswith("[Cve_") else Tissue.URINE,
+                    metadata=PKPDMappingMetaData(
+                        tissue=Tissue.PLASMA
+                        if yid.startswith("[Cve_")
+                        else Tissue.URINE,
                         application_form=ApplicationForm.TABLET,
                         route=Route.PO,
                         dosing=Dosing.SINGLE,
@@ -112,14 +112,14 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
                     ),
                 )
 
-        # console.print(mappings)
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         name = "Tab 1 & 2"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             num_rows=1,
             num_cols=2,
             name=f"{self.__class__.__name__} {name}",
@@ -135,17 +135,17 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
             # simulation
             for k, yid in enumerate(self.yids):
                 plots[k].add_data(
-                    task=f"task_hctz50",
+                    task="task_hctz50",
                     xid="time",
                     yid=yid,
-                    label=f"Sim hctz50",
+                    label="Sim hctz50",
                     color="black",
                 )
 
             # data
             for k, prefix in enumerate(self.prefixes):
                 plots[k].add_data(
-                    dataset=f"{prefix}{group_key}",
+                    dataset=self.to_sid(f"{prefix}{group_key}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
@@ -155,9 +155,9 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
                 )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
 
 if __name__ == "__main__":
-    run_experiments(Barbhaiya1982a, output_dir=Barbhaiya1982a.__name__)
+    MODEL.run_experiments(Barbhaiya1982a, output_dir=Barbhaiya1982a.__name__)

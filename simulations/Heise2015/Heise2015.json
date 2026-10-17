@@ -1,7 +1,13 @@
 {
   "experiment_id": "Heise2015",
-  "base_path": "/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz",
-  "data_path": "[PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/hydrochlorothiazide'), PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/lisinopril'), PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/enalapril'), PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/aliskiren'), PosixPath('/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/data/canagliflozin')]",
+  "base_path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz",
+  "data_path": [
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/lisinopril",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/enalapril",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/aliskiren",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/canagliflozin"
+  ],
   "models": {
     "model": {
       "sid": null,
@@ -9,380 +15,1100 @@
       "language": "SBML",
       "language_type": "SBML",
       "source": {
-        "source": "/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/models/results/models/hctz_body_flat.xml",
-        "path": "/home/mkoenig/git/pkdb_models/pkdb_models/models/hctz/models/results/models/hctz_body_flat.xml",
-        "content": "None"
+        "source": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "content": null
       },
-      "changes": {}
+      "base_path": null,
+      "changes": {},
+      "selections": [
+        "Afeces_hctz",
+        "Aurine_hctz",
+        "CL_EXCRETION",
+        "CL_FILTRATION",
+        "CL_REABSORPTION",
+        "CL_UPTAKE",
+        "ECF",
+        "H2O_UPTAKE",
+        "IVDOSE_hctz",
+        "KI__HCTZEX",
+        "NA_EXCRETION",
+        "NA_FILTRATION",
+        "NA_REABSORPTION",
+        "NA_UPTAKE",
+        "PODOSE_hctz",
+        "Vurine",
+        "[Cve_hctz]",
+        "[cl]",
+        "[na]",
+        "bp_diastolic",
+        "bp_mean",
+        "bp_systolic",
+        "cl_urine",
+        "diuresis",
+        "f_cardiac_function",
+        "f_cirrhosis",
+        "f_renal_function",
+        "h2o_reabsorption",
+        "hctz_urine_excretion",
+        "na_urine",
+        "time",
+        "vin_cl",
+        "vin_h2o",
+        "vin_na"
+      ],
+      "parameters": {}
     }
   },
   "tasks": {
     "task_hctz25": {
+      "sid": "model__hctz25",
+      "name": null,
       "model": "model",
-      "simulation": "hctz25"
+      "simulation": "hctz25",
+      "observables": []
+    },
+    "task_hctz25_emp25": {
+      "sid": "model__hctz25_emp25",
+      "name": null,
+      "model": "model",
+      "simulation": "hctz25_emp25",
+      "observables": []
     }
   },
+  "observables": {},
   "simulations": {
     "hctz25": {
-      "type": "TimecourseSim",
-      "selections": null,
-      "reset": true,
-      "time_offset": 0.0,
-      "timecourses": [
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0.0,
+      "end": 102,
+      "preinit_changes": {},
+      "changes": [
         {
-          "start": 0,
-          "end": 1800,
-          "steps": 500,
-          "changes": {
+          "times": [
+            0,
+            24,
+            48,
+            72
+          ],
+          "values": {
             "PODOSE_hctz": {
-              "_magnitude": 25,
-              "_units": "milligram"
+              "value": 25,
+              "unit": "milligram"
             }
-          },
-          "model_changes": {},
-          "model_manipulations": {},
-          "discard": false
+          }
+        },
+        {
+          "times": [
+            24,
+            48,
+            72
+          ],
+          "values": {
+            "Aurine_hctz": {
+              "value": 0,
+              "unit": "millimole"
+            },
+            "Vurine": {
+              "value": 1e-06,
+              "unit": "liter"
+            },
+            "na_urine": {
+              "value": 0,
+              "unit": "millimole"
+            },
+            "cl_urine": {
+              "value": 0,
+              "unit": "millimole"
+            }
+          }
         }
-      ]
+      ],
+      "presimulation": null,
+      "times": null,
+      "steps": 2040,
+      "time_shift": -72
+    },
+    "hctz25_emp25": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0.0,
+      "end": 222,
+      "preinit_changes": {},
+      "changes": [
+        {
+          "times": [
+            0,
+            24,
+            48,
+            72,
+            96,
+            120,
+            144,
+            168,
+            192
+          ],
+          "values": {
+            "PODOSE_hctz": {
+              "value": 25,
+              "unit": "milligram"
+            }
+          }
+        },
+        {
+          "times": [
+            24,
+            48,
+            72,
+            96,
+            120,
+            144,
+            168,
+            192
+          ],
+          "values": {
+            "Aurine_hctz": {
+              "value": 0,
+              "unit": "millimole"
+            },
+            "Vurine": {
+              "value": 1e-06,
+              "unit": "liter"
+            },
+            "na_urine": {
+              "value": 0,
+              "unit": "millimole"
+            },
+            "cl_urine": {
+              "value": 0,
+              "unit": "millimole"
+            }
+          }
+        }
+      ],
+      "presimulation": null,
+      "times": null,
+      "steps": 4440,
+      "time_shift": -192
     }
   },
   "data": {
     "task_hctz25__time": {
       "type": "TASK",
+      "sid": "task_hctz25__time",
       "index": "time",
+      "selection": "time",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__IVDOSE_hctz": {
       "type": "TASK",
+      "sid": "task_hctz25__IVDOSE_hctz",
       "index": "IVDOSE_hctz",
+      "selection": "IVDOSE_hctz",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__PODOSE_hctz": {
       "type": "TASK",
+      "sid": "task_hctz25__PODOSE_hctz",
       "index": "PODOSE_hctz",
+      "selection": "PODOSE_hctz",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_hctz25__Cve_hctz": {
+    "task_hctz25__conc__Cve_hctz": {
       "type": "TASK",
+      "sid": "task_hctz25__conc__Cve_hctz",
       "index": "Cve_hctz",
+      "selection": "[Cve_hctz]",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__Afeces_hctz": {
       "type": "TASK",
+      "sid": "task_hctz25__Afeces_hctz",
       "index": "Afeces_hctz",
+      "selection": "Afeces_hctz",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__KI__HCTZEX": {
       "type": "TASK",
+      "sid": "task_hctz25__KI__HCTZEX",
       "index": "KI__HCTZEX",
+      "selection": "KI__HCTZEX",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__Aurine_hctz": {
       "type": "TASK",
+      "sid": "task_hctz25__Aurine_hctz",
       "index": "Aurine_hctz",
+      "selection": "Aurine_hctz",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__hctz_urine_excretion": {
       "type": "TASK",
+      "sid": "task_hctz25__hctz_urine_excretion",
       "index": "hctz_urine_excretion",
+      "selection": "hctz_urine_excretion",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
-    },
-    "task_hctz25__HR": {
-      "type": "TASK",
-      "index": "HR",
-      "unit": null,
-      "task": "task_hctz25",
-      "dataset": null,
-      "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__NA_EXCRETION": {
       "type": "TASK",
+      "sid": "task_hctz25__NA_EXCRETION",
       "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__CL_EXCRETION": {
       "type": "TASK",
+      "sid": "task_hctz25__CL_EXCRETION",
       "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__NA_FILTRATION": {
       "type": "TASK",
+      "sid": "task_hctz25__NA_FILTRATION",
       "index": "NA_FILTRATION",
+      "selection": "NA_FILTRATION",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__CL_FILTRATION": {
       "type": "TASK",
+      "sid": "task_hctz25__CL_FILTRATION",
       "index": "CL_FILTRATION",
+      "selection": "CL_FILTRATION",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__NA_REABSORPTION": {
       "type": "TASK",
+      "sid": "task_hctz25__NA_REABSORPTION",
       "index": "NA_REABSORPTION",
+      "selection": "NA_REABSORPTION",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__CL_REABSORPTION": {
       "type": "TASK",
+      "sid": "task_hctz25__CL_REABSORPTION",
       "index": "CL_REABSORPTION",
+      "selection": "CL_REABSORPTION",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__diuresis": {
       "type": "TASK",
+      "sid": "task_hctz25__diuresis",
       "index": "diuresis",
+      "selection": "diuresis",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__Vurine": {
       "type": "TASK",
+      "sid": "task_hctz25__Vurine",
       "index": "Vurine",
+      "selection": "Vurine",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__na_urine": {
       "type": "TASK",
+      "sid": "task_hctz25__na_urine",
       "index": "na_urine",
+      "selection": "na_urine",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__cl_urine": {
       "type": "TASK",
+      "sid": "task_hctz25__cl_urine",
       "index": "cl_urine",
+      "selection": "cl_urine",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_hctz25__na": {
+    "task_hctz25__conc__na": {
       "type": "TASK",
+      "sid": "task_hctz25__conc__na",
       "index": "na",
+      "selection": "[na]",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
-    "task_hctz25__cl": {
+    "task_hctz25__conc__cl": {
       "type": "TASK",
+      "sid": "task_hctz25__conc__cl",
       "index": "cl",
+      "selection": "[cl]",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__ECF": {
       "type": "TASK",
+      "sid": "task_hctz25__ECF",
       "index": "ECF",
+      "selection": "ECF",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__vin_na": {
       "type": "TASK",
+      "sid": "task_hctz25__vin_na",
       "index": "vin_na",
+      "selection": "vin_na",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__vin_cl": {
       "type": "TASK",
+      "sid": "task_hctz25__vin_cl",
       "index": "vin_cl",
+      "selection": "vin_cl",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__NA_UPTAKE": {
       "type": "TASK",
+      "sid": "task_hctz25__NA_UPTAKE",
       "index": "NA_UPTAKE",
+      "selection": "NA_UPTAKE",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__CL_UPTAKE": {
       "type": "TASK",
+      "sid": "task_hctz25__CL_UPTAKE",
       "index": "CL_UPTAKE",
+      "selection": "CL_UPTAKE",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__vin_h2o": {
       "type": "TASK",
+      "sid": "task_hctz25__vin_h2o",
       "index": "vin_h2o",
+      "selection": "vin_h2o",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__H2O_UPTAKE": {
       "type": "TASK",
+      "sid": "task_hctz25__H2O_UPTAKE",
       "index": "H2O_UPTAKE",
+      "selection": "H2O_UPTAKE",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__h2o_reabsorption": {
       "type": "TASK",
+      "sid": "task_hctz25__h2o_reabsorption",
       "index": "h2o_reabsorption",
+      "selection": "h2o_reabsorption",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__bp_systolic": {
       "type": "TASK",
+      "sid": "task_hctz25__bp_systolic",
       "index": "bp_systolic",
+      "selection": "bp_systolic",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__bp_diastolic": {
       "type": "TASK",
+      "sid": "task_hctz25__bp_diastolic",
       "index": "bp_diastolic",
+      "selection": "bp_diastolic",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25__bp_mean": {
+      "type": "TASK",
+      "sid": "task_hctz25__bp_mean",
+      "index": "bp_mean",
+      "selection": "bp_mean",
+      "unit": null,
+      "task": "task_hctz25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__f_renal_function": {
       "type": "TASK",
+      "sid": "task_hctz25__f_renal_function",
       "index": "f_renal_function",
+      "selection": "f_renal_function",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__f_cirrhosis": {
       "type": "TASK",
+      "sid": "task_hctz25__f_cirrhosis",
       "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
     },
     "task_hctz25__f_cardiac_function": {
       "type": "TASK",
+      "sid": "task_hctz25__f_cardiac_function",
       "index": "f_cardiac_function",
+      "selection": "f_cardiac_function",
       "unit": null,
       "task": "task_hctz25",
       "dataset": null,
       "function": null,
-      "variables": null
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__time": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__IVDOSE_hctz": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__IVDOSE_hctz",
+      "index": "IVDOSE_hctz",
+      "selection": "IVDOSE_hctz",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__PODOSE_hctz": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__PODOSE_hctz",
+      "index": "PODOSE_hctz",
+      "selection": "PODOSE_hctz",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__conc__Cve_hctz": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__conc__Cve_hctz",
+      "index": "Cve_hctz",
+      "selection": "[Cve_hctz]",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__Afeces_hctz": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__Afeces_hctz",
+      "index": "Afeces_hctz",
+      "selection": "Afeces_hctz",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__KI__HCTZEX": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__KI__HCTZEX",
+      "index": "KI__HCTZEX",
+      "selection": "KI__HCTZEX",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__Aurine_hctz": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__Aurine_hctz",
+      "index": "Aurine_hctz",
+      "selection": "Aurine_hctz",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__hctz_urine_excretion": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__hctz_urine_excretion",
+      "index": "hctz_urine_excretion",
+      "selection": "hctz_urine_excretion",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__NA_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__NA_EXCRETION",
+      "index": "NA_EXCRETION",
+      "selection": "NA_EXCRETION",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__CL_EXCRETION": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__CL_EXCRETION",
+      "index": "CL_EXCRETION",
+      "selection": "CL_EXCRETION",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__NA_FILTRATION": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__NA_FILTRATION",
+      "index": "NA_FILTRATION",
+      "selection": "NA_FILTRATION",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__CL_FILTRATION": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__CL_FILTRATION",
+      "index": "CL_FILTRATION",
+      "selection": "CL_FILTRATION",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__NA_REABSORPTION": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__NA_REABSORPTION",
+      "index": "NA_REABSORPTION",
+      "selection": "NA_REABSORPTION",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__CL_REABSORPTION": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__CL_REABSORPTION",
+      "index": "CL_REABSORPTION",
+      "selection": "CL_REABSORPTION",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__diuresis": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__diuresis",
+      "index": "diuresis",
+      "selection": "diuresis",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__Vurine": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__Vurine",
+      "index": "Vurine",
+      "selection": "Vurine",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__na_urine": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__na_urine",
+      "index": "na_urine",
+      "selection": "na_urine",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__cl_urine": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__cl_urine",
+      "index": "cl_urine",
+      "selection": "cl_urine",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__conc__na": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__conc__na",
+      "index": "na",
+      "selection": "[na]",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__conc__cl": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__conc__cl",
+      "index": "cl",
+      "selection": "[cl]",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__ECF": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__ECF",
+      "index": "ECF",
+      "selection": "ECF",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__vin_na": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__vin_na",
+      "index": "vin_na",
+      "selection": "vin_na",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__vin_cl": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__vin_cl",
+      "index": "vin_cl",
+      "selection": "vin_cl",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__NA_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__NA_UPTAKE",
+      "index": "NA_UPTAKE",
+      "selection": "NA_UPTAKE",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__CL_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__CL_UPTAKE",
+      "index": "CL_UPTAKE",
+      "selection": "CL_UPTAKE",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__vin_h2o": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__vin_h2o",
+      "index": "vin_h2o",
+      "selection": "vin_h2o",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__H2O_UPTAKE": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__H2O_UPTAKE",
+      "index": "H2O_UPTAKE",
+      "selection": "H2O_UPTAKE",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__h2o_reabsorption": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__h2o_reabsorption",
+      "index": "h2o_reabsorption",
+      "selection": "h2o_reabsorption",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__bp_systolic": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__bp_systolic",
+      "index": "bp_systolic",
+      "selection": "bp_systolic",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__bp_diastolic": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__bp_diastolic",
+      "index": "bp_diastolic",
+      "selection": "bp_diastolic",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__bp_mean": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__bp_mean",
+      "index": "bp_mean",
+      "selection": "bp_mean",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__f_renal_function": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__f_renal_function",
+      "index": "f_renal_function",
+      "selection": "f_renal_function",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__f_cirrhosis": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__f_cirrhosis",
+      "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_hctz25_emp25__f_cardiac_function": {
+      "type": "TASK",
+      "sid": "task_hctz25_emp25__f_cardiac_function",
+      "index": "f_cardiac_function",
+      "selection": "f_cardiac_function",
+      "unit": null,
+      "task": "task_hctz25_emp25",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
     }
   },
   "figures": {
-    "Fig3 & Tab3A": {
-      "sid": "Fig3 & Tab3A",
+    "Fig3___Tab3A": {
+      "sid": "Fig3___Tab3A",
       "name": "Heise2015 Fig3 & Tab3A",
       "num_rows": 1,
       "num_cols": 2,
-      "width": 14.0,
-      "height": 5.0,
+      "width": null,
+      "height": null,
+      "settings": {},
       "subplots": [
         {
           "sid": null,
           "name": null,
           "plot": {
-            "sid": "Fig3 & Tab3A__plot0",
+            "sid": "Fig3___Tab3A__plot0",
             "name": null,
             "xaxis": {
-              "sid": "Fig3 & Tab3A__plot0_xaxis",
+              "sid": "Fig3___Tab3A__plot0_xaxis",
               "name": "time [hr]",
               "label": "time",
               "unit": "hr",
               "scale": "LINEAR",
-              "min": null,
-              "max": null,
+              "min": -24,
+              "max": 30,
               "grid": false,
               "label_visible": true,
               "ticks_visible": true
             },
             "yaxis": {
-              "sid": "Fig3 & Tab3A__plot0_yaxis",
+              "sid": "Fig3___Tab3A__plot0_yaxis",
               "name": "HCTZ [\u00b5M]",
               "label": "HCTZ",
               "unit": "\u00b5M",
@@ -399,12 +1125,13 @@
             "title_visible": true,
             "curves": [
               {
-                "sid": "Fig3 & Tab3A__plot0_curve0",
-                "name": "Sim",
+                "sid": "Fig3___Tab3A__plot0_curve0",
+                "name": "Sim hctz25",
                 "x": "task_hctz25__time",
-                "y": "task_hctz25__Cve_hctz",
+                "y": "task_hctz25__conc__Cve_hctz",
                 "xerr": null,
                 "yerr": null,
+                "over": [],
                 "yaxis_position": null,
                 "style": {
                   "sid": null,
@@ -430,12 +1157,45 @@
                 "order": 0
               },
               {
-                "sid": "Fig3 & Tab3A__plot0_curve1",
+                "sid": "Fig3___Tab3A__plot0_curve1",
+                "name": "Sim hctz25,emp25",
+                "x": "task_hctz25_emp25__time",
+                "y": "task_hctz25_emp25__conc__Cve_hctz",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              },
+              {
+                "sid": "Fig3___Tab3A__plot0_curve2",
                 "name": "25 mg hctz25\u00b1SD (n=11)",
                 "x": "Fig3_hctz25__time",
                 "y": "Fig3_hctz25__mean",
                 "xerr": null,
                 "yerr": "Fig3_hctz25__mean_sd",
+                "over": [],
                 "yaxis_position": null,
                 "style": {
                   "sid": null,
@@ -458,15 +1218,16 @@
                     "second_color": null
                   }
                 },
-                "order": 1
+                "order": 2
               },
               {
-                "sid": "Fig3 & Tab3A__plot0_curve2",
+                "sid": "Fig3___Tab3A__plot0_curve3",
                 "name": "25 mg hctz25,emp25\u00b1SD (n=10)",
-                "x": "Fig3_hctz25,emp25__time",
-                "y": "Fig3_hctz25,emp25__mean",
+                "x": "Fig3_hctz25_emp25__time",
+                "y": "Fig3_hctz25_emp25__mean",
                 "xerr": null,
-                "yerr": "Fig3_hctz25,emp25__mean_sd",
+                "yerr": "Fig3_hctz25_emp25__mean_sd",
+                "over": [],
                 "yaxis_position": null,
                 "style": {
                   "sid": null,
@@ -489,10 +1250,11 @@
                     "second_color": null
                   }
                 },
-                "order": 2
+                "order": 3
               }
             ],
-            "areas": []
+            "areas": [],
+            "bands": []
           },
           "row": 1,
           "col": 1,
@@ -503,22 +1265,22 @@
           "sid": null,
           "name": null,
           "plot": {
-            "sid": "Fig3 & Tab3A__plot1",
+            "sid": "Fig3___Tab3A__plot1",
             "name": null,
             "xaxis": {
-              "sid": "Fig3 & Tab3A__plot1_xaxis",
+              "sid": "Fig3___Tab3A__plot1_xaxis",
               "name": "time [hr]",
               "label": "time",
               "unit": "hr",
               "scale": "LINEAR",
-              "min": null,
-              "max": null,
+              "min": -24,
+              "max": 30,
               "grid": false,
               "label_visible": true,
               "ticks_visible": true
             },
             "yaxis": {
-              "sid": "Fig3 & Tab3A__plot1_yaxis",
+              "sid": "Fig3___Tab3A__plot1_yaxis",
               "name": "HCTZ urine\n [\u00b5mol]",
               "label": "HCTZ urine\n",
               "unit": "\u00b5mol",
@@ -535,12 +1297,13 @@
             "title_visible": true,
             "curves": [
               {
-                "sid": "Fig3 & Tab3A__plot1_curve0",
-                "name": "Sim",
+                "sid": "Fig3___Tab3A__plot1_curve0",
+                "name": "Sim hctz25",
                 "x": "task_hctz25__time",
                 "y": "task_hctz25__Aurine_hctz",
                 "xerr": null,
                 "yerr": null,
+                "over": [],
                 "yaxis_position": null,
                 "style": {
                   "sid": null,
@@ -566,12 +1329,45 @@
                 "order": 0
               },
               {
-                "sid": "Fig3 & Tab3A__plot1_curve1",
+                "sid": "Fig3___Tab3A__plot1_curve1",
+                "name": "Sim hctz25,emp25",
+                "x": "task_hctz25_emp25__time",
+                "y": "task_hctz25_emp25__Aurine_hctz",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#1f77b4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#1f77b4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#1f77b4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              },
+              {
+                "sid": "Fig3___Tab3A__plot1_curve2",
                 "name": "25 mg hctz25\u00b1SD (n=11)",
                 "x": "Tab3A_hctz25_aurine__time",
                 "y": "Tab3A_hctz25_aurine__mean",
                 "xerr": null,
                 "yerr": "Tab3A_hctz25_aurine__mean_sd",
+                "over": [],
                 "yaxis_position": null,
                 "style": {
                   "sid": null,
@@ -594,15 +1390,16 @@
                     "second_color": null
                   }
                 },
-                "order": 1
+                "order": 2
               },
               {
-                "sid": "Fig3 & Tab3A__plot1_curve2",
+                "sid": "Fig3___Tab3A__plot1_curve3",
                 "name": "25 mg hctz25,emp25\u00b1SD (n=10)",
-                "x": "Tab3A_hctz25,emp25_aurine__time",
-                "y": "Tab3A_hctz25,emp25_aurine__mean",
+                "x": "Tab3A_hctz25_emp25_aurine__time",
+                "y": "Tab3A_hctz25_emp25_aurine__mean",
                 "xerr": null,
-                "yerr": "Tab3A_hctz25,emp25_aurine__mean_sd",
+                "yerr": "Tab3A_hctz25_emp25_aurine__mean_sd",
+                "over": [],
                 "yaxis_position": null,
                 "style": {
                   "sid": null,
@@ -625,10 +1422,11 @@
                     "second_color": null
                   }
                 },
-                "order": 2
+                "order": 3
               }
             ],
-            "areas": []
+            "areas": [],
+            "bands": []
           },
           "row": 1,
           "col": 2,

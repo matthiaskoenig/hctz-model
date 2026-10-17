@@ -1,0 +1,921 @@
+--------------------------------------------------------------------------------
+OptimizationProblem: PK_20261017_025702__4167a
+--------------------------------------------------------------------------------
+Experiments
+	*** FitMappingCollection ***
+experiment: Anderson1961
+mappings: ['fm_amount_HCTZpo_5', 'fm_cmax_HCTZpo_5', 'fm_amount_HCTZiv_2', 'fm_cmax_HCTZiv_2']
+weights: [1.0, 1.0, 1.0, 1.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Anderson1961
+mappings: ['fm_amount_HCTZpo_6', 'fm_cmax_HCTZpo_6', 'fm_amount_HCTZpo_7', 'fm_cmax_HCTZpo_7', 'fm_amount_HCTZpo_8', 'fm_cmax_HCTZpo_8', 'fm_amount_HCTZpo_1', 'fm_cmax_HCTZpo_1', 'fm_amount_HCTZpo_3', 'fm_cmax_HCTZpo_3', 'fm_amount_HCTZpo_4', 'fm_cmax_HCTZpo_4', 'fm_amount_HCTZpo_12', 'fm_cmax_HCTZpo_12', 'fm_amount_HCTZpo_9', 'fm_cmax_HCTZpo_9', 'fm_amount_HCTZiv_8A', 'fm_cmax_HCTZiv_8A', 'fm_amount_HCTZiv_8B', 'fm_cmax_HCTZiv_8B', 'fm_amount_HCTZiv_12', 'fm_cmax_HCTZiv_12', 'fm_amount_HCTZiv_13A', 'fm_cmax_HCTZiv_13A', 'fm_amount_HCTZiv_13B', 'fm_cmax_HCTZiv_13B', 'fm_amount_HCTZiv_14', 'fm_cmax_HCTZiv_14', 'fm_amount_HCTZiv_15', 'fm_cmax_HCTZiv_15', 'fm_amount_HCTZiv_10', 'fm_cmax_HCTZiv_10', 'fm_amount_HCTZiv_11', 'fm_cmax_HCTZiv_11']
+weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Anderson1961
+mappings: ['fm_amount_HCTZpo_cardiac', 'fm_amount_HCTZpo_control', 'fm_amount_HCTZpo_hepatic', 'fm_amount_HCTZpo_renal', 'fm_amount_HCTZiv_cardiac', 'fm_amount_HCTZiv_control', 'fm_amount_HCTZiv_hepatic', 'fm_amount_HCTZiv_renal']
+weights: [None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Azumaya1990
+mappings: ['fm_hctz12p5', 'fm_hctz25']
+weights: [1.0, 1.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Barbhaiya1982
+mappings: ['fm_hctz50_fast250', 'fm_excretion_hctz50_fast250', 'fm_hctz50_fast20', 'fm_excretion_hctz50_fast20']
+weights: [8.0, 8.0, 8.0, 8.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Barbhaiya1982
+mappings: ['fm_hctz50_nofast250', 'fm_excretion_hctz50_nofast250']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Barbhaiya1982a
+mappings: ['fm_hctz50_msd', 'fm_amount_msd', 'fm_hctz50_stanlab', 'fm_amount_stanlab']
+weights: [20.0, 20.0, 20.0, 20.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1976
+mappings: ['fm_hctz_po5_3_feces', 'fm_hctz_po5_4_feces', 'fm_hctz_iv1_5_urine', 'fm_hctz_iv35_4_urine', 'fm_hctz_po50_III_urine', 'fm_hctz_po5_3_urine', 'fm_hctz_po5_4_urine', 'fm_hctz5po_4', 'fm_excretion_hctz5po_4', 'fm_hctz75po_6']
+weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1976
+mappings: ['fm_hctz_iv1_5_feces', 'fm_hctz_iv35_4_feces', 'fm_hctz_po5_1_feces', 'fm_hctz_po5_2_feces', 'fm_hctz_po50_I_urine', 'fm_hctz_po50_II_urine', 'fm_hctz_po5_1_urine', 'fm_hctz_po5_2_urine']
+weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1977a
+mappings: ['fm_Fig1_2_hctz25_HD', 'fm_Fig1_2_hctz25_MLL', 'fm_Fig1_2_excretion_hctz25_HD', 'fm_Fig1_2_excretion_hctz25_MLL', 'fm_Tab4_amount_HCTZ12p5_IJ', 'fm_Tab4_amount_HCTZ12p5_YO', 'fm_Tab4_amount_HCTZ12p5_MLL', 'fm_Tab4_amount_HCTZ12p5_ACL', 'fm_Tab4_amount_HCTZ12p5_KCL', 'fm_Tab4_amount_HCTZ12p5_LE', 'fm_Tab4_amount_HCTZ25_IJ', 'fm_Tab4_amount_HCTZ25_YO', 'fm_Tab4_amount_HCTZ25_ACL', 'fm_Tab4_amount_HCTZ25_KCL', 'fm_Tab4_amount_HCTZ25_AH', 'fm_Tab4_amount_HCTZ25_LE', 'fm_Tab4_amount_HCTZ50_IJ', 'fm_Tab4_amount_HCTZ50_YO', 'fm_Tab4_amount_HCTZ50_MLL', 'fm_Tab4_amount_HCTZ50_ACL', 'fm_Tab4_amount_HCTZ50_HD', 'fm_Tab4_amount_HCTZ50_KCL', 'fm_Tab4_amount_HCTZ50_AH', 'fm_Tab4_amount_HCTZ50_LE', 'fm_Tab4_amount_HCTZ75_IJ', 'fm_Tab4_amount_HCTZ75_YO', 'fm_Tab4_amount_HCTZ75_MLL', 'fm_Tab4_amount_HCTZ75_ACL', 'fm_Tab4_amount_HCTZ75_HD', 'fm_Tab4_amount_HCTZ75_KCL', 'fm_Tab4_amount_HCTZ75_AH', 'fm_Tab4_amount_HCTZ75_LE']
+weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1977a
+mappings: ['fm_Fig5tc_0_urinvol', 'fm_Fig5tc_0_aurine_na', 'fm_Fig5tc_12_5_urinvol', 'fm_Fig5tc_12_5_aurine_na', 'fm_Fig5tc_25_urinvol', 'fm_Fig5tc_25_aurine_na', 'fm_Fig5tc_50_urinvol', 'fm_Fig5tc_50_aurine_na', 'fm_Fig5tc_75_urinvol', 'fm_Fig5tc_75_aurine_na', 'fm_Tab4_amount_HCTZ12p5_mean', 'fm_Tab4_amount_HCTZ25_mean', 'fm_Tab4_amount_HCTZ25_MLL', 'fm_Tab4_amount_HCTZ25_HD', 'fm_Tab4_amount_HCTZ50_mean', 'fm_Tab4_amount_HCTZ75_mean']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1979
+mappings: ['fm_Fig1_hctz50_SP', 'fm_Fig1_hctz50_NL', 'fm_Tab3_amount_NL', 'fm_Tab3_amount_SP', 'fm_Tab3_amount_JG', 'fm_Tab3_amount_SH', 'fm_Tab3_amount_NK', 'fm_Tab3_amount_GN']
+weights: [None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Devineni2014
+mappings: ['fm_Fig3_hydrochlorothiazide_HCTZ25']
+weights: [30.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Devineni2014
+mappings: ['fm_Fig3_hydrochlorothiazide_CAN300_HCTZ25']
+weights: [None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Giudicelli1987
+mappings: ['fm_Fig3_hctz25_acute', 'fm_Fig3_hctz25_chronic']
+weights: [10.0, 10.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Giudicelli1987
+mappings: ['fm_Fig3_hctz25_combi_acute', 'fm_Fig3_hctz25_combi_chronic']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Heise2015
+mappings: ['fm_Fig3_hctz25', 'fm_Tab3A_hctz25_aurine']
+weights: [11.0, 11.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Heise2015
+mappings: ['fm_Fig3_hctz25_emp25', 'fm_Tab3A_hctz25_emp25_aurine']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Howes1991
+mappings: ['fm_Fig1_HCTZ25_hydrochlorothiazide', 'fm_Tab2_HCTZ25_cumulative_amount_hydrochlorothiazide']
+weights: [12.0, 12.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Howes1991
+mappings: ['fm_Fig1_HCTZ25__ENA10_multi_hydrochlorothiazide', 'fm_Tab2_ENA10__HCTZ25multi_cumulative_amount_hydrochlorothiazide', 'fm_Fig1_HCTZ25_combi_hydrochlorothiazide', 'fm_Tab2_ENA10__HCTZ25combi_cumulative_amount_hydrochlorothiazide']
+weights: [12.0, 12.0, 12.0, 12.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Hsiao2015
+mappings: ['fm_Fig1_hctz25']
+weights: [27.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Hsiao2015
+mappings: ['fm_Fig1_hctz25_kombi']
+weights: [None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Hunninghake1986
+mappings: ['fm_Fig1_amount_cumulative_hctz75', 'fm_Fig2_amount_cumulative_hctz75_def', 'fm_Fig3_hctz75']
+weights: [4.0, 6.0, 6.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Jeon2012
+mappings: ['fm_Fig3_hctz25', 'fm_Tab2_amount_cumulative_hctz25']
+weights: [13.0, 13.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Jeon2012
+mappings: ['fm_Fig4_urine_vol_hctz25', 'fm_Fig6_bpsys_hctz25', 'fm_Fig6_bpdia_hctz25']
+weights: [None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Jordo1979
+mappings: ['fm_Fig2_25_hctz', 'fm_Tab2_1_25_amount_cumulative', 'fm_Tab2_2_25_amount_cumulative', 'fm_Tab2_3_25_amount_cumulative', 'fm_Tab2_4_25_amount_cumulative', 'fm_Tab2_5_25_amount_cumulative', 'fm_Tab2_6_25_amount_cumulative']
+weights: [6.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Jordo1979
+mappings: ['fm_Fig1_12p5_hctz', 'fm_Tab2_1_12p5_amount_cumulative', 'fm_Tab2_2_12p5_amount_cumulative', 'fm_Tab2_3_12p5_amount_cumulative', 'fm_Tab2_4_12p5_amount_cumulative', 'fm_Tab2_5_12p5_amount_cumulative', 'fm_Tab2_6_12p5_amount_cumulative']
+weights: [6.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Jordo1979
+mappings: ['fm_Tab2_0_12p5_amount_cumulative', 'fm_Tab2_0_25_amount_cumulative']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Knauf1995
+mappings: ['fm_hctz25_Fig1_na_urine_healthy', 'fm_Fig3_na_net_s01', 'fm_Fig3_na_net_s02', 'fm_Fig3_na_net_s03', 'fm_Fig3_na_net_s04', 'fm_Fig3_na_net_s05', 'fm_Fig3_na_net_s06', 'fm_Fig3_na_net_s07', 'fm_Fig3_na_net_s08', 'fm_Fig3_na_net_s09', 'fm_Fig3_na_net_s10', 'fm_Fig3_na_net_s11', 'fm_Fig3_na_net_s12', 'fm_Fig3_na_net_s13', 'fm_Fig3_na_net_s14', 'fm_Fig3_na_net_s15', 'fm_Fig3_na_net_s16', 'fm_Fig3_na_net_s17', 'fm_Fig3_na_net_s18', 'fm_Fig3_na_net_s19', 'fm_Fig3_na_net_s20', 'fm_Fig3_na_net_s21', 'fm_Fig3_na_net_s22', 'fm_Fig3_na_net_s23', 'fm_Fig3_na_net_s24', 'fm_Tab2_na_net', 'fm_Fig3_cl_net_s01', 'fm_Fig3_cl_net_s02', 'fm_Fig3_cl_net_s03', 'fm_Fig3_cl_net_s04', 'fm_Fig3_cl_net_s05', 'fm_Fig3_cl_net_s06', 'fm_Fig3_cl_net_s07', 'fm_Fig3_cl_net_s08', 'fm_Fig3_cl_net_s09', 'fm_Fig3_cl_net_s10', 'fm_Fig3_cl_net_s11', 'fm_Fig3_cl_net_s12', 'fm_Fig3_cl_net_s13', 'fm_Fig3_cl_net_s14', 'fm_Fig3_cl_net_s15', 'fm_Fig3_cl_net_s16', 'fm_Fig3_cl_net_s17', 'fm_Fig3_cl_net_s18', 'fm_Fig3_cl_net_s19', 'fm_Fig3_cl_net_s20', 'fm_Fig3_cl_net_s21', 'fm_Fig3_cl_net_s22', 'fm_Fig3_cl_net_s23', 'fm_Fig3_cl_net_s24', 'fm_Tab2_cl_net']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Koytchev2004
+mappings: ['fm_Fig2_test_hydro', 'fm_Fig2_reference_hydro']
+weights: [24.0, 24.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Niemeyer1983
+mappings: ['fm_Fig1_hctz50_C', 'fm_Fig1_hctz50_W']
+weights: [1.0, 1.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Niemeyer1983
+mappings: ['fm_Fig1_hctz50_S']
+weights: [1.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Nilsen1989
+mappings: ['fm_Fig4_excretion_sodium_hctz25']
+weights: [None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Niopas2011
+mappings: ['fm_Fig2_hydrochlorothiazide_ENA20', 'fm_Fig2_hydrochlorothiazide_REF20']
+weights: [24.0, 24.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Patel1984
+mappings: ['fm_25_tab', 'fm_25_sus', 'fm_50_sus', 'fm_100_tab', 'fm_100_sus', 'fm_25_tab_urine', 'fm_25_sus_urine', 'fm_50_sus_urine', 'fm_100_tab_urine', 'fm_100_sus_urine', 'fm_200_tab_urine', 'fm_200_sus_urine']
+weights: [12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Patel1984
+mappings: ['fm_50_tab', 'fm_50_tab_urine']
+weights: [12.0, 12.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Patel1984
+mappings: ['fm_Naurine_25_tab', 'fm_Clurine_25_tab', 'fm_Naurine_25_sus', 'fm_Clurine_25_sus', 'fm_Naurine_50_tab', 'fm_Clurine_50_tab', 'fm_Naurine_50_sus', 'fm_Clurine_50_sus', 'fm_Naurine_100_tab', 'fm_Clurine_100_tab', 'fm_Naurine_100_sus', 'fm_Clurine_100_sus']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Ripley2000
+mappings: ['fm_Tab3_hctz_aurine_black', 'fm_Tab3_hctz_aurine_white']
+weights: [9.0, 9.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Ripley2000
+mappings: ['fm_Fig1_2_sodium_baseline_black', 'fm_Fig1_2_sodium_baseline_white', 'fm_Fig1_2_sodium_hctz_black', 'fm_Fig1_2_sodium_hctz_white']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Vaidyanathan2006
+mappings: ['fm_Fig3_hctz_HCTZ25']
+weights: [22.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Vaidyanathan2006
+mappings: ['fm_Fig3_hctz_HCTZ25_ALI300HCTZ']
+weights: [22.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Weir1998
+mappings: ['fm_Fig2_hctz25', 'fm_Fig3_amount_cumulative_hctz25']
+weights: [15.0, 20.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Weir1998
+mappings: ['fm_Fig2_hctz25_kombi', 'fm_Fig3_amount_cumulative_hctz25_kombi']
+weights: [15.0, 20.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Williams1982
+mappings: ['fm_Fig2_excretion_hctz50', 'fm_Fig2_excretion_hctz100']
+weights: [10.0, 10.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Williams1982
+mappings: ['fm_Fig2_diuresis_hctz50', 'fm_Fig2_diuresis_hctz100', 'fm_Fig2_sodium_hctz50', 'fm_Fig2_sodium_hctz100', 'fm_Fig2_chlor_hctz50', 'fm_Fig2_chlor_hctz100']
+weights: [None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+Parameters
+	FitParameter<ftissue_hctz = 0.1 [0.01 - 10]>
+	FitParameter<Kp_hctz = 0.85 [0.25 - 10.0]>
+	FitParameter<KI__HCTZEX_f = 2.5 [0.1 - 10]>
+	FitParameter<Ka_dis_hctz = 1.0 [0.0001 - 10]>
+	FitParameter<GU__HCTZABS_k = 0.02 [0.0001 - 10]>
+FitSettings:
+	residual: NORMALIZED
+	parameter_scale: LOG10
+	loss_function: LINEAR
+	weighting_curves: ['MAPPING', 'POINTS']
+	weighting_points: ERROR_WEIGHTING
+	variable_step_size: True
+	relative_tolerance: 1e-06
+	absolute_tolerance: {'amount': 1e-06, 'concentration': 1e-06, 'other': 1e-06, 'ids': {}}
+	initial_time_step: 0.0
+	data_at_change: before
+Mappings: 160 (97 training, 63 validation)
+Data
+	experiment_keys: ['Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Anderson1961', 'Azumaya1990', 'Azumaya1990', 'Barbhaiya1982', 'Barbhaiya1982', 'Barbhaiya1982', 'Barbhaiya1982', 'Barbhaiya1982a', 'Barbhaiya1982a', 'Barbhaiya1982a', 'Barbhaiya1982a', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1976', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Devineni2014', 'Giudicelli1987', 'Giudicelli1987', 'Heise2015', 'Heise2015', 'Howes1991', 'Howes1991', 'Howes1991', 'Howes1991', 'Howes1991', 'Howes1991', 'Hsiao2015', 'Hunninghake1986', 'Hunninghake1986', 'Hunninghake1986', 'Jeon2012', 'Jeon2012', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Jordo1979', 'Koytchev2004', 'Koytchev2004', 'Niemeyer1983', 'Niemeyer1983', 'Niemeyer1983', 'Niopas2011', 'Niopas2011', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Ripley2000', 'Ripley2000', 'Vaidyanathan2006', 'Vaidyanathan2006', 'Weir1998', 'Weir1998', 'Weir1998', 'Weir1998', 'Williams1982', 'Williams1982']
+	mapping_keys: ['fm_amount_HCTZpo_5', 'fm_cmax_HCTZpo_5', 'fm_amount_HCTZiv_2', 'fm_cmax_HCTZiv_2', 'fm_amount_HCTZpo_6', 'fm_cmax_HCTZpo_6', 'fm_amount_HCTZpo_7', 'fm_cmax_HCTZpo_7', 'fm_amount_HCTZpo_8', 'fm_cmax_HCTZpo_8', 'fm_amount_HCTZpo_1', 'fm_cmax_HCTZpo_1', 'fm_amount_HCTZpo_3', 'fm_cmax_HCTZpo_3', 'fm_amount_HCTZpo_4', 'fm_cmax_HCTZpo_4', 'fm_amount_HCTZpo_12', 'fm_cmax_HCTZpo_12', 'fm_amount_HCTZpo_9', 'fm_cmax_HCTZpo_9', 'fm_amount_HCTZiv_8A', 'fm_cmax_HCTZiv_8A', 'fm_amount_HCTZiv_8B', 'fm_cmax_HCTZiv_8B', 'fm_amount_HCTZiv_12', 'fm_cmax_HCTZiv_12', 'fm_amount_HCTZiv_13A', 'fm_cmax_HCTZiv_13A', 'fm_amount_HCTZiv_13B', 'fm_cmax_HCTZiv_13B', 'fm_amount_HCTZiv_14', 'fm_cmax_HCTZiv_14', 'fm_amount_HCTZiv_15', 'fm_cmax_HCTZiv_15', 'fm_amount_HCTZiv_10', 'fm_cmax_HCTZiv_10', 'fm_amount_HCTZiv_11', 'fm_cmax_HCTZiv_11', 'fm_hctz12p5', 'fm_hctz25', 'fm_hctz50_fast250', 'fm_excretion_hctz50_fast250', 'fm_hctz50_fast20', 'fm_excretion_hctz50_fast20', 'fm_hctz50_msd', 'fm_amount_msd', 'fm_hctz50_stanlab', 'fm_amount_stanlab', 'fm_hctz_po5_3_feces', 'fm_hctz_po5_4_feces', 'fm_hctz_iv1_5_urine', 'fm_hctz_iv35_4_urine', 'fm_hctz_po50_III_urine', 'fm_hctz_po5_3_urine', 'fm_hctz_po5_4_urine', 'fm_hctz5po_4', 'fm_excretion_hctz5po_4', 'fm_hctz75po_6', 'fm_hctz_iv1_5_feces', 'fm_hctz_iv35_4_feces', 'fm_hctz_po5_1_feces', 'fm_hctz_po5_2_feces', 'fm_hctz_po50_I_urine', 'fm_hctz_po50_II_urine', 'fm_hctz_po5_1_urine', 'fm_hctz_po5_2_urine', 'fm_Fig1_2_hctz25_HD', 'fm_Fig1_2_hctz25_MLL', 'fm_Fig1_2_excretion_hctz25_HD', 'fm_Fig1_2_excretion_hctz25_MLL', 'fm_Tab4_amount_HCTZ12p5_IJ', 'fm_Tab4_amount_HCTZ12p5_YO', 'fm_Tab4_amount_HCTZ12p5_MLL', 'fm_Tab4_amount_HCTZ12p5_ACL', 'fm_Tab4_amount_HCTZ12p5_KCL', 'fm_Tab4_amount_HCTZ12p5_LE', 'fm_Tab4_amount_HCTZ25_IJ', 'fm_Tab4_amount_HCTZ25_YO', 'fm_Tab4_amount_HCTZ25_ACL', 'fm_Tab4_amount_HCTZ25_KCL', 'fm_Tab4_amount_HCTZ25_AH', 'fm_Tab4_amount_HCTZ25_LE', 'fm_Tab4_amount_HCTZ50_IJ', 'fm_Tab4_amount_HCTZ50_YO', 'fm_Tab4_amount_HCTZ50_MLL', 'fm_Tab4_amount_HCTZ50_ACL', 'fm_Tab4_amount_HCTZ50_HD', 'fm_Tab4_amount_HCTZ50_KCL', 'fm_Tab4_amount_HCTZ50_AH', 'fm_Tab4_amount_HCTZ50_LE', 'fm_Tab4_amount_HCTZ75_IJ', 'fm_Tab4_amount_HCTZ75_YO', 'fm_Tab4_amount_HCTZ75_MLL', 'fm_Tab4_amount_HCTZ75_ACL', 'fm_Tab4_amount_HCTZ75_HD', 'fm_Tab4_amount_HCTZ75_KCL', 'fm_Tab4_amount_HCTZ75_AH', 'fm_Tab4_amount_HCTZ75_LE', 'fm_Fig3_hydrochlorothiazide_HCTZ25', 'fm_Fig3_hctz25_acute', 'fm_Fig3_hctz25_chronic', 'fm_Fig3_hctz25', 'fm_Tab3A_hctz25_aurine', 'fm_Fig1_HCTZ25_hydrochlorothiazide', 'fm_Tab2_HCTZ25_cumulative_amount_hydrochlorothiazide', 'fm_Fig1_HCTZ25__ENA10_multi_hydrochlorothiazide', 'fm_Tab2_ENA10__HCTZ25multi_cumulative_amount_hydrochlorothiazide', 'fm_Fig1_HCTZ25_combi_hydrochlorothiazide', 'fm_Tab2_ENA10__HCTZ25combi_cumulative_amount_hydrochlorothiazide', 'fm_Fig1_hctz25', 'fm_Fig1_amount_cumulative_hctz75', 'fm_Fig2_amount_cumulative_hctz75_def', 'fm_Fig3_hctz75', 'fm_Fig3_hctz25', 'fm_Tab2_amount_cumulative_hctz25', 'fm_Fig2_25_hctz', 'fm_Tab2_1_25_amount_cumulative', 'fm_Tab2_2_25_amount_cumulative', 'fm_Tab2_3_25_amount_cumulative', 'fm_Tab2_4_25_amount_cumulative', 'fm_Tab2_5_25_amount_cumulative', 'fm_Tab2_6_25_amount_cumulative', 'fm_Fig1_12p5_hctz', 'fm_Tab2_1_12p5_amount_cumulative', 'fm_Tab2_2_12p5_amount_cumulative', 'fm_Tab2_3_12p5_amount_cumulative', 'fm_Tab2_4_12p5_amount_cumulative', 'fm_Tab2_5_12p5_amount_cumulative', 'fm_Tab2_6_12p5_amount_cumulative', 'fm_Fig2_test_hydro', 'fm_Fig2_reference_hydro', 'fm_Fig1_hctz50_C', 'fm_Fig1_hctz50_W', 'fm_Fig1_hctz50_S', 'fm_Fig2_hydrochlorothiazide_ENA20', 'fm_Fig2_hydrochlorothiazide_REF20', 'fm_25_tab', 'fm_25_sus', 'fm_50_sus', 'fm_100_tab', 'fm_100_sus', 'fm_25_tab_urine', 'fm_25_sus_urine', 'fm_50_sus_urine', 'fm_100_tab_urine', 'fm_100_sus_urine', 'fm_200_tab_urine', 'fm_200_sus_urine', 'fm_50_tab', 'fm_50_tab_urine', 'fm_Tab3_hctz_aurine_black', 'fm_Tab3_hctz_aurine_white', 'fm_Fig3_hctz_HCTZ25', 'fm_Fig3_hctz_HCTZ25_ALI300HCTZ', 'fm_Fig2_hctz25', 'fm_Fig3_amount_cumulative_hctz25', 'fm_Fig2_hctz25_kombi', 'fm_Fig3_amount_cumulative_hctz25_kombi', 'fm_Fig2_excretion_hctz50', 'fm_Fig2_excretion_hctz100']
+	xid_observable: ['time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time']
+	yid_observable: ['Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Afeces_hctz', 'Afeces_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'KI__HCTZEX', '[Cve_hctz]', 'Afeces_hctz', 'Afeces_hctz', 'Afeces_hctz', 'Afeces_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz', '[Cve_hctz]', '[Cve_hctz]', '[Cve_hctz]', 'Aurine_hctz', '[Cve_hctz]', 'Aurine_hctz', 'Aurine_hctz', 'Aurine_hctz']
+	x_references: [array([ 240.,  480., 1440.]), array([240.]), array([ 240.,  480., 1440.]), array([90.]), array([ 240.,  480., 1440.]), array([240.]), array([ 240.,  480., 1440.]), array([270.]), array([ 240.,  480., 1440.]), array([240.]), array([ 240.,  480., 1440.]), array([120.]), array([ 240.,  480., 1440.]), array([240.]), array([ 240.,  480., 1440.]), array([360.]), array([ 240.,  480., 1440.]), array([240.]), array([ 240.,  480., 1440.]), array([360.]), array([ 240.,  480., 1440.]), array([60.]), array([ 240.,  480., 1440.]), array([60.]), array([ 240.,  480., 1440.]), array([60.]), array([ 240.,  480., 1440.]), array([78.]), array([ 240.,  480., 1440.]), array([48.]), array([ 240.,  480., 1440.]), array([360.]), array([ 240.,  480., 1440.]), array([120.]), array([ 240.,  480., 1440.]), array([48.]), array([ 240.,  480., 1440.]), array([120.]), array([  60.,  120.,  180.,  240.,  360.,  480.,  720., 1440., 2880.]), array([   0.,   60.,  120.,  180.,  240.,  360.,  480.,  720., 1440.,
+       2880.]), array([  30.,   60.,   90.,  120.,  240.,  360.,  480.,  720., 1440.]), array([  60.,  120.,  240.,  360.,  480.,  720., 1440., 2880.]), array([  30.,   60.,   90.,  120.,  240.,  360.,  480.,  720., 1440.]), array([  60.,  120.,  240.,  360.,  480.,  720., 1440., 2880.]), array([  30.,   60.,   90.,  120.,  240.,  360.,  480.,  720., 1440.]), array([  60.,  120.,  180.,  240.,  360.,  480.,  720., 1440., 2880.]), array([  30.,   60.,   90.,  120.,  240.,  360.,  480.,  720., 1440.]), array([  60.,  120.,  180.,  240.,  360.,  480.,  720., 1440., 2880.]), array([10080.]), array([10080.]), array([ 720., 5760.]), array([  720.,  5760., 10080.]), array([ 720., 4320.]), array([  720.,  5760., 10080.]), array([  720.,  5760., 10080.]), array([ 14.30323213,  28.62233703,  43.08149578,  60.76469398,
+        90.06956008, 121.59848119, 180.        , 237.8823859 ,
+       297.08034422, 359.39870217, 417.95521389, 480.45284076,
+       600.        ]), array([ 28.22738519,  88.13961812, 149.74090039, 207.71478813,
+       266.84552061, 326.49165123, 386.00333017, 444.82874527,
+       505.56449479, 562.71766701]), array([  30.,   60.,   90.,  120.,  180.,  240.,  300.,  360.,  420.,
+        480.,  540.,  720.,  900., 1080., 1260., 1380., 2160.]), array([5760.]), array([10080.]), array([5760.]), array([10080.]), array([ 720., 5760.]), array([ 720., 5760.]), array([ 720., 5760.]), array([  720.,  5760., 10080.]), array([ 30.,  60.,  90., 120., 180., 240., 300., 360., 420.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  300.,  360.,  420.,
+        480.,  540.,  720., 1440., 1800.]), array([ 120.,  180.,  240.,  300.,  360.,  420.,  480.,  540.,  600.,
+        720., 1440., 2880.]), array([  60.,  120.,  180.,  240.,  300.,  360.,  420.,  480.,  540.,
+        600.,  720., 1440., 2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  300.,  360.,
+        480.,  600.,  720.,  960., 1440.]), array([  30.,   60.,   90.,  120.,  180.,  360.,  540.,  720., 1440.]), array([  30.,   60.,   90.,  120.,  180.,  360.,  540.,  720., 1440.]), array([   0.,   30.,   60.,   90.,  120.,  150.,  180.,  240.,  360.,
+        480.,  720.,  960., 1440.]), array([1440.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440.]), array([5760.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440.]), array([5760.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440.]), array([5760.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,
+        720., 1440.]), array([ 120.,  240.,  360.,  480.,  720., 1440.]), array([ 120.,  240.,  360.,  480.,  720., 1440.]), array([  30.,   45.,   60.,   90.,  120.,  180.,  240.,  300.,  360.,
+        480.,  720., 1080., 1440.]), array([   0.,   30.,   60.,   90.,  120.,  150.,  180.,  240.,  360.,
+        480.,  720., 1440.]), array([1440.]), array([  22.02643172,   41.85022026,   60.        ,   90.        ,
+        120.        ,  180.        ,  240.        ,  300.        ,
+        360.        ,  480.        , 1440.        , 1500.        ]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([  21.6730038 ,   46.76806084,   60.        ,   90.        ,
+        120.        ,  180.        ,  240.        ,  300.        ,
+        360.        ,  480.        , 1440.        , 1500.        ]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([2880.]), array([  30.,   60.,   90.,  120.,  150.,  180.,  240.,  300.,  360.,
+        480.,  600.,  720., 1440., 2160., 2880.]), array([  30.,   60.,   90.,  120.,  150.,  180.,  240.,  300.,  360.,
+        480.,  600.,  720., 1440., 2160., 2880.]), array([ 114.89361702,  240.        ,  480.        ,  720.        ,
+       1440.        ]), array([  61.86579378,  114.89361702,  173.81342062,  297.54500818,
+        474.30441899,  715.87561375, 1075.28641571, 1437.64320786,
+       2872.34042553]), array([  30.       ,   90.       ,  117.8396072,  150.       ,
+        180.       ,  300.       ,  480.       ,  720.       ,
+       1080.       , 1440.       ]), array([  30.,   45.,   60.,   90.,  120.,  150.,  180.,  210.,  240.,
+        300.,  360.,  480.,  600.,  720.,  960., 1440.]), array([   0.,   30.,   45.,   60.,   90.,  120.,  150.,  180.,  210.,
+        240.,  300.,  360.,  480.,  600.,  720.,  960., 1440.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([ 120.,  240.,  360.,  480.,  720., 1440., 1800., 2160., 2880.]), array([ 120.,  240.,  360.,  480.,  720., 1440., 1800., 2160., 2880.]), array([ 120.,  240.,  360.,  480.,  720., 1440., 1800., 2160., 2880.]), array([ 120.,  240.,  360.,  480.,  720., 1440., 1800., 2160., 2880.]), array([ 120.,  240.,  360.,  480.,  720., 1440., 1800., 2160., 2880.]), array([ 120.,  240.,  360.,  480.,  720., 1440., 1800., 2160., 2880.]), array([ 120.,  240.,  360.,  480.,  720., 1440., 1800., 2160., 2880.]), array([  30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1440., 2160.]), array([ 120.,  240.,  360.,  480.,  720., 1440., 1800., 2160., 2880.]), array([2160.]), array([2160.]), array([   0.,   15.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,
+        480.,  720.,  960., 1440.]), array([   0.,   15.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,
+        480.,  720.,  960., 1440.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,
+        600.,  720., 1080., 1440.]), array([ 240.,  480.,  720., 1440., 2160., 2880.]), array([   0.,   30.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,
+        600.,  720., 1080., 1440.]), array([ 240.,  480.,  720., 1440., 2160., 2880.]), array([ 120.,  240.,  360.,  480.,  720., 1440.]), array([ 120.,  240.,  360.,  480.,  720., 1440.])]
+	y_references: [array([0.03275109, 0.08515284, 0.13318777]), array([0.00671817]), array([0.16375546, 0.18340611, 0.21834061]), array([0.0040309]), array([0.04585153, 0.08515284, 0.12227074]), array([0.00167954]), array([0.00764192, 0.03056769, 0.05458515]), array([0.00235136]), array([0.00436681, 0.03930131, 0.10043668]), array([0.00067182]), array([0.06113537, 0.10262009, 0.1441048 ]), array([0.00167954]), array([0.08296943, 0.11353712, 0.13537118]), array([0.00100773]), array([0.00655022, 0.04366812, 0.13973799]), array([0.00134363]), array([0.01091703, 0.05895197, 0.09606987]), array([0.00134363]), array([0.00218341, 0.00873362, 0.01965066]), array([0.00436681]), array([0.07423581, 0.09825328, 0.1419214 ]), array([0.0040309]), array([0.10917031, 0.16593886, 0.21834061]), array([0.0040309]), array([0.04585153, 0.069869  , 0.12882096]), array([0.00503863]), array([0.01528384, 0.03275109, 0.10043668]), array([0.00503863]), array([0.02947598, 0.04803493, 0.1441048 ]), array([0.00638226]), array([0.0371179 , 0.04803493, 0.09825328]), array([0.00470272]), array([0.09170306, 0.11790393, 0.13973799]), array([0.00335909]), array([0.08515284, 0.15502183, 0.18995633]), array([0.00335909]), array([0.01528384, 0.02401747, 0.05458515]), array([0.00470272]), array([5.47572407e-05, 2.38545357e-04, 2.87688788e-04, 2.58293100e-04,
+       1.39184895e-04, 9.58179416e-05, 5.95757911e-05, 2.09695507e-05,
+       2.69665313e-06]), array([7.01274406e-06, 4.96552887e-04, 6.06005916e-04, 4.04100339e-04,
+       3.28420540e-04, 2.05104690e-04, 1.29475498e-04, 9.04282502e-05,
+       5.46271073e-05, 2.69665313e-06]), array([8.30340060e-05, 3.53678960e-04, 7.19559873e-04, 9.25805322e-04,
+       7.40465362e-04, 4.52453966e-04, 2.91093234e-04, 1.85146155e-04,
+       7.48996644e-05]), array([0.00265602, 0.01455583, 0.03065174, 0.02671491, 0.01204987,
+       0.01191358, 0.01602894, 0.00806181]), array([8.92357305e-05, 3.74427353e-04, 6.66788214e-04, 8.47629918e-04,
+       7.95996195e-04, 4.54710322e-04, 3.01352475e-04, 1.71165879e-04,
+       6.86111759e-05]), array([0.00182753, 0.01476994, 0.03173479, 0.02128633, 0.01283271,
+       0.01330645, 0.01630999, 0.01119652]), array([1.78031575e-04, 6.61740007e-04, 8.76721532e-04, 9.64057776e-04,
+       7.42358079e-04, 4.13167618e-04, 2.82163252e-04, 1.71313403e-04,
+       7.38998992e-05]), array([0.00537454, 0.02267383, 0.04047699, 0.05676856, 0.07306013,
+       0.08448102, 0.09657373, 0.11336916, 0.12495801]), array([1.57877057e-04, 6.38226402e-04, 9.17030568e-04, 9.90930467e-04,
+       7.99462546e-04, 4.56835741e-04, 3.05676856e-04, 1.81390662e-04,
+       7.72589856e-05]), array([0.00487068, 0.0231777 , 0.04131676, 0.05777628, 0.07608331,
+       0.08817602, 0.10094054, 0.1187437 , 0.12898892]), array([0.00283843]), array([0.00191468]), array([0.00248908, 0.00302654]), array([0.08500168, 0.10980853, 0.10980853]), array([0.03157541, 0.09875714]), array([0.00822976, 0.01108498, 0.01113537]), array([0.01011085, 0.01387303, 0.01388982]), array([3.04876309e-05, 7.02145971e-05, 9.37682272e-05, 1.07007824e-04,
+       1.16801369e-04, 1.16700968e-04, 8.93915800e-05, 7.58919909e-05,
+       5.78394195e-05, 4.91047221e-05, 4.33635392e-05, 3.82894827e-05,
+       2.95688289e-05]), array([8.58721090e-06, 3.22727074e-05, 2.34160130e-05, 1.82005375e-05,
+       1.36683598e-05, 1.14916660e-05, 9.38119158e-06, 8.78704067e-06,
+       7.03354648e-06, 6.09065028e-06]), array([2.52963638e-04, 7.79474391e-04, 8.85696893e-04, 1.03535739e-03,
+       1.23935629e-03, 1.39512581e-03, 1.02134498e-03, 7.95103421e-04,
+       6.21913305e-04, 4.66184107e-04, 3.82292403e-04, 1.72852487e-04,
+       1.57342908e-04, 1.61961964e-04, 1.30996760e-04, 1.16988744e-04,
+       5.07924674e-05]), array([0.00014444]), array([0.00117568]), array([0.00411488]), array([0.00342627]), array([0.09187101, 0.12445415]), array([0.03207927, 0.06902922]), array([0.00851528, 0.01229426]), array([0.00658381, 0.00962378, 0.00965737]), array([2.00171904e-05, 3.31134665e-05, 1.00512558e-04, 2.51568974e-04,
+       3.41507133e-04, 2.37667529e-04, 1.07286251e-04, 3.27723080e-05,
+       2.31315213e-05]), array([5.17834630e-05, 2.86201755e-04, 6.21067007e-04, 8.12231469e-04,
+       6.65600511e-04, 5.84551352e-04, 4.66743532e-04, 4.13472595e-04,
+       3.77548757e-04, 2.62469176e-04, 1.80894004e-04, 1.60247991e-04,
+       7.01083970e-05, 5.99930394e-05]), array([0.00951196, 0.01115402, 0.00907274, 0.00526492, 0.00564763,
+       0.0039352 , 0.00412332, 0.00184884, 0.00094532, 0.00267447,
+       0.00839788, 0.00442392]), array([0.00099117, 0.00389162, 0.00550183, 0.00508947, 0.00522337,
+       0.00330143, 0.00587087, 0.00433634, 0.00443121, 0.00188895,
+       0.00314995, 0.00889995, 0.00525221]), array([0.02989587]), array([0.03930131]), array([0.02821633]), array([0.02015452]), array([0.0231777]), array([0.02989587]), array([0.04131676]), array([0.04098085]), array([0.05710447]), array([0.07994625]), array([0.07289217]), array([0.06348673]), array([0.10245213]), array([0.04232449]), array([0.11823984]), array([0.10278804]), array([0.12663755]), array([0.12294256]), array([0.1246221]), array([0.13033255]), array([0.12798119]), array([0.14612026]), array([0.14847162]), array([0.15351025]), array([0.17769567]), array([0.18743702]), array([0.16560296]), array([0.20691972]), array([4.65196653e-05, 2.38107311e-04, 4.43374854e-04, 4.49971543e-04,
+       4.22907229e-04, 3.76443101e-04, 3.18212990e-04, 2.75032425e-04,
+       2.01750005e-04, 1.51786133e-04, 1.29734337e-04, 9.23574081e-05,
+       6.65883047e-05, 4.65202179e-05]), array([6.50288766e-05, 2.23302758e-04, 3.09909398e-04, 3.75332389e-04,
+       4.38452274e-04, 3.07520080e-04, 1.80553661e-04, 1.47214046e-04,
+       6.02379234e-05]), array([0.0001947 , 0.00029073, 0.00046873, 0.00055034, 0.00060397,
+       0.0004144 , 0.00029395, 0.00024369, 0.00014081]), array([3.30467661e-05, 1.34604024e-04, 4.02008605e-04, 6.83489432e-04,
+       6.77931329e-04, 5.39380106e-04, 4.32663484e-04, 3.19848685e-04,
+       1.97571688e-04, 1.40213084e-04, 8.73202122e-05, 5.71107179e-05,
+       3.52774968e-05]), array([0.06046355]), array([1.12798948e-04, 3.47686170e-04, 4.93661280e-04, 4.93661280e-04,
+       4.49868747e-04, 3.63610728e-04, 2.21616757e-04, 1.45975110e-04,
+       7.96227870e-05, 3.05220684e-05]), array([0.06348673]), array([1.36685784e-04, 3.30434566e-04, 5.18239839e-04, 5.05604698e-04,
+       4.49868747e-04, 3.45032077e-04, 2.01711061e-04, 1.23415320e-04,
+       7.03334619e-05, 1.99056968e-05]), array([0.05307356]), array([1.91094689e-04, 3.86170517e-04, 5.13566976e-04, 4.72428536e-04,
+       4.11384400e-04, 3.55648449e-04, 1.93748782e-04, 1.23415320e-04,
+       7.03334619e-05, 2.38868361e-05]), array([0.05777628]), array([3.40051036e-05, 2.02089505e-04, 5.14422215e-04, 6.14132577e-04,
+       5.69600729e-04, 5.03306022e-04, 4.30505018e-04, 2.58493667e-04,
+       1.85418264e-04, 1.20580918e-04, 5.83107239e-05]), array([0.01479306, 0.04781181, 0.0751095 , 0.09848416, 0.11188781,
+       0.12185883]), array([0.01586235, 0.05915724, 0.08808271, 0.1031986 , 0.11719479,
+       0.13977531]), array([7.91462060e-05, 2.09023941e-04, 4.96384333e-04, 9.02925871e-04,
+       1.08623577e-03, 1.34127275e-03, 1.14988708e-03, 8.19364473e-04,
+       6.23407612e-04, 3.66008847e-04, 2.10491801e-04, 9.67960878e-05,
+       1.82731603e-05]), array([4.47070898e-05, 1.96550863e-04, 5.06736295e-04, 5.05574664e-04,
+       5.67632630e-04, 5.82607400e-04, 5.55757822e-04, 5.25196156e-04,
+       2.73100921e-04, 1.88538793e-04, 1.07523779e-04, 5.17812300e-05]), array([0.04467585]), array([8.34827784e-05, 3.45457645e-04, 5.66842627e-04, 4.85855883e-04,
+       4.30283817e-04, 3.22077733e-04, 2.72219256e-04, 2.00926727e-04,
+       1.69822743e-04, 1.15237490e-04, 5.04047332e-05, 4.12312858e-05]), array([0.07877057]), array([0.05567686]), array([0.08078603]), array([0.03988915]), array([0.07843467]), array([0.033087]), array([5.69857196e-05, 1.47220114e-04, 2.16681703e-04, 2.06335883e-04,
+       1.80803388e-04, 1.73863565e-04, 1.24051200e-04, 9.80873642e-05,
+       7.64277222e-05, 5.24379036e-05, 1.09043859e-05, 1.00341479e-05]), array([0.03585825]), array([0.02175008]), array([0.01805509]), array([0.02615888]), array([0.03098757]), array([0.01746725]), array([4.51771879e-05, 1.55219491e-04, 2.14296347e-04, 2.14303537e-04,
+       1.95771954e-04, 1.77820832e-04, 1.41921201e-04, 1.11811792e-04,
+       9.09701343e-05, 6.60809440e-05, 4.92998931e-05, 3.83097168e-05,
+       1.46513896e-05, 6.63018849e-06, 3.24351723e-06]), array([5.15491763e-05, 1.88810354e-04, 2.25299597e-04, 2.26463132e-04,
+       2.14304191e-04, 1.91141347e-04, 1.52925105e-04, 1.18182473e-04,
+       9.32867456e-05, 7.18724722e-05, 5.27748100e-05, 3.88882159e-05,
+       1.69680009e-05, 7.78849412e-06, 3.82201638e-06]), array([6.09322636e-04, 2.96849489e-04, 9.37419441e-05, 6.24946294e-05,
+       2.34354860e-05]), array([0.00123427, 0.00182797, 0.00254666, 0.00306224, 0.00335909,
+       0.00299974, 0.00149987, 0.00114053, 0.00057808]), array([0.00045309, 0.00071088, 0.00146081, 0.00165611, 0.00143738,
+       0.00085149, 0.00046871, 0.00058589, 0.00039059, 0.00030466]), array([6.09102981e-05, 1.25129547e-04, 1.87701706e-04, 2.53006705e-04,
+       2.57908580e-04, 2.42501278e-04, 2.24348828e-04, 2.12235705e-04,
+       1.92433703e-04, 1.57229323e-04, 1.24218601e-04, 8.07098380e-05,
+       5.36695064e-05, 4.41981274e-05, 2.96476075e-05, 1.92160419e-05]), array([5.51491785e-07, 5.81651492e-05, 1.22930966e-04, 1.71777381e-04,
+       2.23903203e-04, 2.33751270e-04, 2.29873594e-04, 2.17758009e-04,
+       2.17726002e-04, 2.04514820e-04, 1.72602157e-04, 1.35201658e-04,
+       9.22370011e-05, 5.75127148e-05, 4.63942464e-05, 3.12971588e-05,
+       2.08631312e-05]), array([7.65871683e-05, 2.40510581e-04, 3.28854552e-04, 3.59422237e-04,
+       3.86294928e-04, 3.11051394e-04, 1.82062479e-04, 1.32012093e-04,
+       7.82667115e-05, 3.02317770e-05, 1.54517971e-05]), array([1.40073900e-04, 3.45985892e-04, 4.09808532e-04, 4.13167618e-04,
+       3.96372187e-04, 3.24151831e-04, 1.72657037e-04, 1.25965737e-04,
+       6.81894525e-05, 3.56063151e-05, 2.48572388e-05]), array([3.52704064e-04, 7.15485388e-04, 8.63285186e-04, 7.62512597e-04,
+       6.98689956e-04, 5.81121935e-04, 3.45985892e-04, 2.25058784e-04,
+       1.41417534e-04, 5.71044676e-05, 2.72085993e-05]), array([3.86294928e-04, 9.53980517e-04, 1.18911656e-03, 1.23614377e-03,
+       1.34699362e-03, 1.18575747e-03, 6.91971784e-04, 4.76990259e-04,
+       2.83170977e-04, 1.08162580e-04, 4.19885791e-05]), array([4.19885791e-04, 1.14544844e-03, 1.51494793e-03, 1.54517971e-03,
+       1.34699362e-03, 1.15552570e-03, 6.61740007e-04, 4.66913000e-04,
+       2.30097414e-04, 9.53980517e-05, 4.03090359e-05]), array([0.00788394, 0.0180981 , 0.02577073, 0.02835534, 0.03352623,
+       0.04055996, 0.04323075, 0.04674927, 0.05124645]), array([0.01127485, 0.01894582, 0.02577073, 0.02920307, 0.0343723 ,
+       0.04310148, 0.04492621, 0.05014018, 0.05209252]), array([0.01721059, 0.04013899, 0.05289633, 0.05887351, 0.06658591,
+       0.078706  , 0.08222618, 0.08574305, 0.09193402]), array([0.02823104, 0.07574352, 0.10291221, 0.11821272, 0.1327086 ,
+       0.15161051, 0.15851994, 0.16373391, 0.16992489]), array([0.03925149, 0.08591458, 0.10799691, 0.12245136, 0.13694558,
+       0.15839067, 0.16699555, 0.17221118, 0.17924988]), array([0.07400663, 0.17322878, 0.22498321, 0.24960872, 0.28360232,
+       0.32963148, 0.34332272, 0.35362306, 0.36490039]), array([0.08926571, 0.17916453, 0.23600366, 0.26825871, 0.30818639,
+       0.34658601, 0.36366816, 0.37227305, 0.38524583]), array([1.66274773e-04, 6.18071884e-04, 7.79308028e-04, 8.43130668e-04,
+       7.12126302e-04, 5.97917366e-04, 3.79576755e-04, 2.71078267e-04,
+       1.48807524e-04, 6.61740007e-05, 2.92240511e-05]), array([0.01636287, 0.03335718, 0.04696224, 0.05548094, 0.06234728,
+       0.0753151 , 0.07968135, 0.08489532, 0.0910863 ]), array([0.04114881]), array([0.04618744]), array([4.64225731e-05, 8.12227074e-05, 2.66879409e-04, 6.86563655e-04,
+       7.81289889e-04, 6.78736984e-04, 5.56802150e-04, 4.31004367e-04,
+       2.56768559e-04, 1.88915015e-04, 1.13134028e-04, 8.18945247e-05,
+       4.44743030e-05]), array([4.83372523e-05, 8.12227074e-05, 2.12730937e-04, 4.17702385e-04,
+       5.31776957e-04, 5.78165939e-04, 5.10379577e-04, 3.92307692e-04,
+       2.33557272e-04, 1.73429627e-04, 1.03459859e-04, 7.60833053e-05,
+       5.02855223e-05]), array([1.77260940e-04, 2.80068890e-04, 5.60201451e-04, 6.41233811e-04,
+       6.34930351e-04, 5.56285665e-04, 4.01394580e-04, 2.89969779e-04,
+       2.24006297e-04, 1.86259819e-04, 1.86992040e-04, 1.08591427e-04,
+       7.84536717e-05]), array([0.03008752, 0.04368873, 0.05399268, 0.06615133, 0.07150938,
+       0.07501273]), array([1.75526780e-04, 3.40143159e-04, 5.69996371e-04, 6.72478762e-04,
+       6.75542583e-04, 5.96247770e-04, 4.31515272e-04, 2.94665545e-04,
+       2.24614544e-04, 1.92614317e-04, 1.83142075e-04, 9.95689526e-05,
+       7.58036372e-05]), array([0.03354723, 0.04983788, 0.0588085 , 0.06962017, 0.07364981,
+       0.07652565]), array([0.01406633, 0.02986159, 0.01961602, 0.01417305, 0.01169704,
+       0.01716135]), array([0.03317006, 0.04544341, 0.03060867, 0.01993619, 0.01831397,
+       0.02868762])]
+	y_errors: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, array([2.27846362e-05, 1.87624320e-04, 3.45031394e-04, 4.57531616e-04,
+       2.74866178e-04, 1.51182858e-04, 1.01656173e-04, 6.87276120e-05,
+       3.16807452e-05]), array([0.00197338, 0.00608743, 0.00680412, 0.00989255, 0.00381313,
+       0.0026446 , 0.00531541, 0.00134834]), array([3.27019063e-04, 2.27730878e-04, 3.27019063e-04, 3.07899990e-04,
+       2.37442617e-04, 1.18801689e-04, 6.42935011e-05, 3.72853429e-05,
+       1.46381831e-05]), array([0.00140087, 0.00910218, 0.00583993, 0.00482958, 0.00452908,
+       0.00273189, 0.00575708, 0.00550788]), array([1.74672489e-04, 3.62781323e-04, 4.13167618e-04, 3.49344978e-04,
+       2.25058784e-04, 1.31004367e-04, 6.71817266e-05, 4.36681223e-05,
+       2.01545180e-05]), array([0.0058784 , 0.00890158, 0.01024521, 0.01444407, 0.01394021,
+       0.01427612, 0.01696339, 0.01629157, 0.01713134]), array([1.64595230e-04, 4.73631172e-04, 3.99731273e-04, 3.62781323e-04,
+       2.51931475e-04, 1.37722539e-04, 8.06180719e-05, 4.36681223e-05,
+       2.01545180e-05]), array([0.00503863, 0.01108498, 0.01242862, 0.01192476, 0.01242862,
+       0.01326839, 0.01494793, 0.01612361, 0.01595566]), None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, array([1.36840424e-05, 1.25880480e-04, 1.61455398e-04, 1.19312526e-04,
+       9.85154344e-05, 8.34642311e-05, 8.01801162e-05, 9.19460993e-05,
+       6.26665866e-05, 3.74904907e-05, 3.50281644e-05, 2.38081062e-05,
+       1.80613886e-05, 1.36829371e-05]), array([9.73281762e-05, 1.69847209e-04, 1.44181236e-04, 1.67938814e-04,
+       1.64472544e-04, 1.83322819e-04, 1.33470852e-04, 1.30238264e-04,
+       8.74746233e-05]), array([0.00026009, 0.00029105, 0.0003677 , 0.00033708, 0.00041654,
+       0.00042526, 0.00040493, 0.00034896, 0.00031851]), array([1.83124431e-05, 9.90373008e-05, 2.58318508e-04, 2.47278703e-04,
+       1.47287980e-04, 8.86871817e-05, 8.09286082e-05, 4.37179288e-05,
+       4.47415789e-05, 2.62265020e-05, 2.15375653e-05, 1.76612647e-05,
+       1.28340737e-05]), array([0.01239503]), None, array([0.00806181]), None, array([0.00940544]), None, array([0.01209271]), array([8.40598378e-05, 1.33456478e-04, 2.12668538e-04, 2.13460659e-04,
+       1.33614902e-04, 1.41250945e-04, 1.30636529e-04, 7.11324297e-05,
+       5.58286597e-05, 3.27937927e-05, 1.96445908e-05]), array([0.00980755, 0.01013447, 0.01274982, 0.01994202, 0.02255737,
+       0.02615347]), array([0.01279919, 0.01279919, 0.01051362, 0.0100565 , 0.01051362,
+       0.00914228]), array([1.90997455e-04, 2.47169518e-04, 3.37019936e-04, 3.37019936e-04,
+       1.79750601e-04, 2.09721476e-04, 1.90997455e-04, 7.11637208e-05,
+       5.99168670e-05, 5.24396999e-05, 4.49376503e-05, 3.74480419e-05,
+       3.37156789e-05]), array([2.09913934e-05, 1.52353988e-04, 3.84338793e-04, 2.53344424e-04,
+       1.91330491e-04, 1.55191808e-04, 1.21948062e-04, 1.07722760e-04,
+       6.15012222e-05, 6.05919025e-05, 3.12387796e-05, 1.86078302e-05]), array([0.00884582]), array([4.54965239e-05, 1.69116093e-04, 2.77493382e-04, 2.31191423e-04,
+       2.89827011e-04, 1.03172480e-04, 6.53065646e-05, 9.28701213e-05,
+       7.61888895e-05, 5.48350245e-05, 4.85631454e-05, 4.03838163e-05]), None, None, None, None, None, None, array([5.99165293e-05, 1.23031901e-04, 1.88080401e-04, 1.53517817e-04,
+       6.96980644e-05, 5.63327143e-05, 2.28787654e-05, 4.84190823e-05,
+       3.69940671e-05, 2.58850382e-05, 8.38403122e-06, 7.71493321e-06]), None, None, None, None, None, None, None, None, None, None, None, array([6.58811102e-05, 7.74107353e-05, 9.22370011e-05, 1.04859762e-04,
+       7.79646891e-05, 7.79646891e-05, 7.30234212e-05, 6.42389449e-05,
+       5.92976770e-05, 4.44738733e-05, 3.45937994e-05, 2.08606692e-05,
+       1.42772360e-05, 1.09781334e-05, 8.78447629e-06, 9.33104405e-06]), array([3.83828434e-06, 4.83121576e-05, 7.46705105e-05, 9.16904333e-05,
+       9.99234178e-05, 8.83987167e-05, 8.61976736e-05, 7.68715536e-05,
+       7.30234212e-05, 7.79646891e-05, 7.57661080e-05, 5.92952150e-05,
+       4.99641709e-05, 2.41573098e-05, 1.92160419e-05, 1.09830574e-05,
+       8.78447629e-06]), array([7.35639906e-05, 1.08834397e-04, 1.31340275e-04, 1.20927108e-04,
+       9.74135035e-05, 7.08767215e-05, 3.89654014e-05, 3.19113201e-05,
+       3.99731273e-05, 2.11622439e-05, 1.74672489e-05]), array([9.87571381e-05, 1.74672489e-04, 1.51158885e-04, 1.47799798e-04,
+       1.17568021e-04, 9.03594222e-05, 5.17299295e-05, 3.15754115e-05,
+       2.45213302e-05, 1.84749748e-05, 2.01545180e-05]), array([1.71313403e-04, 2.65367820e-04, 2.82163252e-04, 2.25058784e-04,
+       1.67954316e-04, 1.14208935e-04, 7.05408129e-05, 6.18071884e-05,
+       3.69499496e-05, 2.55290561e-05, 2.38495129e-05]), array([3.79576755e-04, 5.03862949e-04, 4.97144777e-04, 4.63553913e-04,
+       3.02317770e-04, 3.32549547e-04, 2.01545180e-04, 1.17568021e-04,
+       5.44171985e-05, 3.49344978e-05, 1.81390662e-05]), array([4.03090359e-05, 5.07222036e-04, 4.16526705e-04, 3.93013100e-04,
+       3.79576755e-04, 3.15754115e-04, 1.91467921e-04, 1.07490763e-04,
+       7.69230769e-05, 3.49344978e-05, 3.02317770e-05]), None, None, None, None, None, None, None, array([1.29660732e-04, 4.19885791e-04, 3.09035942e-04, 3.42626806e-04,
+       1.91467921e-04, 9.40544172e-05, 5.37453813e-05, 4.53476654e-05,
+       3.52704064e-05, 2.58649647e-05, 1.54517971e-05]), None, array([0.01343635]), array([0.00755794]), array([0.00034473, 0.00034473, 0.00010887, 0.00033575, 0.00034473,
+       0.00028124, 0.00010887, 0.00011785, 0.00034473, 0.00034473,
+       0.00034473, 0.00034473, 0.00034473]), array([0.00017237, 0.00017237, 0.00017237, 0.00016323, 0.00017237,
+       0.00015425, 0.00017237, 0.00010887, 0.00017237, 0.00017237,
+       0.00017237, 0.00017237, 0.00017237]), array([6.73324153e-05, 1.36352121e-04, 2.55534210e-04, 2.06634640e-04,
+       1.81643649e-04, 1.68707760e-04, 1.17441740e-04, 8.09156292e-05,
+       7.72014691e-05, 7.12057537e-05, 7.50578682e-05, 4.77322623e-05,
+       3.78950442e-05]), array([0.01277689, 0.01421945, 0.01669239, 0.01916534, 0.01937142,
+       0.02060789]), array([6.36863625e-05, 1.91836702e-04, 2.67172057e-04, 2.29892236e-04,
+       1.83293410e-04, 1.46013588e-04, 1.19606096e-04, 8.46572142e-05,
+       7.68896328e-05, 6.60153996e-05, 7.68896328e-05, 5.59187812e-05,
+       3.65031590e-05]), array([0.00870573, 0.01147924, 0.01194149, 0.0156395 , 0.01664104,
+       0.0181051 ]), None, None]
+	y_errors_type: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', None, 'SD', None, 'SD', None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, None, None, None, 'SD', None, None, None, None, None, None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, None, None, None, None, 'SD', None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None]
+	weights: [array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.66666667, 0.66666667, 0.66666667]), array([2.]), array([0.22222222, 0.22222222, 0.22222222, 0.22222222, 0.22222222,
+       0.22222222, 0.22222222, 0.22222222, 0.22222222]), array([0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]), array([3.23937607, 1.67558927, 1.85376979, 1.79864743, 2.39458866,
+       2.66023084, 2.54534017, 2.39458866, 2.10151242]), array([1.34592304, 2.3911292 , 4.50487731, 2.70050705, 3.16009877,
+       4.50487731, 3.01556101, 5.97904475]), array([0.24255665, 1.46148083, 1.81243451, 2.44705697, 2.97988702,
+       3.4021987 , 4.16634438, 4.08062354, 4.16634438]), array([1.30456777, 1.62268193, 5.43410108, 4.40748872, 2.83340402,
+       4.87078623, 2.83303123, 2.03281924]), array([2.26495726, 4.05349794, 4.71544715, 6.13247863, 7.33001658,
+       7.00854701, 9.33333333, 8.71794872, 8.14814815]), array([ 2.03174603,  5.66037736,  8.77959927,  8.73385013, 11.64658635,
+       13.1503268 , 12.65126513, 15.46391753, 16.20915033]), array([2.13151927, 2.99448385, 5.09803922, 6.06995885, 7.05185185,
+       7.37127371, 8.42592593, 9.23076923, 8.51851852]), array([ 2.14814815,  4.64646465,  7.38738739, 10.76682316, 13.6036036 ,
+       14.76793249, 15.0062422 , 16.36574074, 17.96491228]), array([2.]), array([2.]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([0.66666667, 0.66666667, 0.66666667]), array([0.15384615, 0.15384615, 0.15384615, 0.15384615, 0.15384615,
+       0.15384615, 0.15384615, 0.15384615, 0.15384615, 0.15384615,
+       0.15384615, 0.15384615, 0.15384615]), array([0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]), array([0.11764706, 0.11764706, 0.11764706, 0.11764706, 0.11764706,
+       0.11764706, 0.11764706, 0.11764706, 0.11764706, 0.11764706,
+       0.11764706, 0.11764706, 0.11764706, 0.11764706, 0.11764706,
+       0.11764706, 0.11764706]), array([2.]), array([2.]), array([2.]), array([2.]), array([1., 1.]), array([1., 1.]), array([1., 1.]), array([0.66666667, 0.66666667, 0.66666667]), array([0.22222222, 0.22222222, 0.22222222, 0.22222222, 0.22222222,
+       0.22222222, 0.22222222, 0.22222222, 0.22222222]), array([0.14285714, 0.14285714, 0.14285714, 0.14285714, 0.14285714,
+       0.14285714, 0.14285714, 0.14285714, 0.14285714, 0.14285714,
+       0.14285714, 0.14285714, 0.14285714, 0.14285714]), array([0.16666667, 0.16666667, 0.16666667, 0.16666667, 0.16666667,
+       0.16666667, 0.16666667, 0.16666667, 0.16666667, 0.16666667,
+       0.16666667, 0.16666667]), array([0.15384615, 0.15384615, 0.15384615, 0.15384615, 0.15384615,
+       0.15384615, 0.15384615, 0.15384615, 0.15384615, 0.15384615,
+       0.15384615, 0.15384615, 0.15384615]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([7.28476239, 4.0532889 , 5.88452901, 8.08150465, 9.19886089,
+       9.66478427, 8.50441495, 6.40979008, 6.89875519, 8.67569333,
+       7.9365321 , 8.31266167, 7.90023555, 7.28543735]), array([0.74237811, 1.46080808, 2.38827039, 2.48326148, 2.96200923,
+       1.86386495, 1.5030636 , 1.25593783, 0.76514792]), array([0.83179341, 1.10990271, 1.41639849, 1.81406223, 1.61108445,
+       1.082732  , 0.80657969, 0.7759031 , 0.49121383]), array([1.5269753 , 1.15002844, 1.31682832, 2.3388072 , 3.8946437 ,
+       5.1461614 , 4.52373863, 6.19062254, 3.73648066, 4.52373863,
+       3.43057966, 2.73618308, 2.32585461]), array([53.65853659]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([94.5]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([67.71428571]), array([2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4]), array([57.33333333]), array([ 0.99294829,  3.71685124,  5.93728024,  7.06179928, 10.46373463,
+        8.74604774,  8.08881056,  8.91976357,  8.15204163,  9.0252246 ,
+        7.28578791]), array([1.00555556, 3.14516129, 3.92735043, 3.29234973, 3.30676329,
+       3.10625   ]), array([ 1.23932517,  4.62195386,  8.37796492, 10.26187748, 11.14695332,
+       15.28889848]), array([0.19125395, 0.39030941, 0.67978311, 1.23652928, 2.78908433,
+       2.95176714, 2.77866066, 5.3140591 , 4.80209672, 3.22136016,
+       2.16188567, 1.19298941, 0.25014375]), array([2.30726373, 1.3976011 , 1.4283344 , 2.16190227, 3.21399557,
+       4.06695446, 4.93710981, 5.28172974, 4.81062523, 3.37091841,
+       3.72882986, 3.01466274]), array([65.65656566]), array([0.91746326, 1.02136243, 1.02136243, 1.05076537, 0.74231145,
+       1.56087036, 2.08416457, 1.08176195, 1.11448496, 1.05076537,
+       0.51896075, 0.51049269]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([0.47554256, 0.59830057, 0.57603478, 0.67202585, 1.29704741,
+       1.5431847 , 2.71105537, 1.01289987, 1.03297269, 1.01289987,
+       0.65030685, 0.65030685]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2,
+       3.2, 3.2]), array([3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2,
+       3.2, 3.2]), array([0.4, 0.4, 0.4, 0.4, 0.4]), array([0.22222222, 0.22222222, 0.22222222, 0.22222222, 0.22222222,
+       0.22222222, 0.22222222, 0.22222222, 0.22222222]), array([0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]), array([1.38682312, 2.42465492, 3.05249039, 3.61921533, 4.96202672,
+       4.66559826, 4.60842886, 4.95577188, 4.8678223 , 5.3029783 ,
+       5.38616469, 5.80349345, 5.63864459, 6.0390222 , 5.0625    ,
+       3.08905013]), array([0.20284496, 1.69968614, 2.32420533, 2.64486964, 3.163409  ,
+       3.73310615, 3.76492094, 3.99917858, 4.20930546, 3.70330219,
+       3.21612974, 3.21902752, 2.60620641, 3.36107048, 3.4084938 ,
+       4.02294395, 3.35294118]), array([1.13574097, 2.41077441, 2.7314578 , 3.24242424, 4.32601881,
+       4.78759156, 5.09717868, 4.51291866, 2.13598167, 1.55844156,
+       0.96503497]), array([1.54730983, 2.16083916, 2.95757576, 3.04958678, 3.67792208,
+       3.91348429, 3.64108619, 4.35203095, 3.03362391, 2.10247934,
+       1.34545455]), array([2.2459893 , 2.94131185, 3.33766234, 3.69606513, 4.53818182,
+       5.55080214, 5.35064935, 3.97233202, 4.17520661, 2.44019139,
+       1.24455826]), array([1.11021722, 2.06545455, 2.60933661, 2.90909091, 4.86060606,
+       3.88980716, 3.74545455, 4.42597403, 5.67676768, 3.37762238,
+       2.52525253]), array([11.36363636,  2.46357616,  3.96774194,  4.28904429,  3.87127916,
+        3.99226306,  3.77033493,  4.73863636,  3.26319968,  2.97902098,
+        1.45454545]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667]), array([1.39896373, 1.60581818, 2.75098814, 2.68449198, 4.05741627,
+       6.93506494, 7.70454545, 6.52121212, 4.6025974 , 2.79102715,
+       2.06324111]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667]), array([27.5625]), array([55.]), array([0.22789181, 0.39872821, 4.14843073, 3.46054246, 3.83540923,
+       4.0842293 , 8.65505195, 6.18909138, 1.26049564, 0.92739763,
+       0.55538322, 0.40202621, 0.21832761]), array([0.47458222, 0.79745643, 2.08862347, 4.33065934, 5.22106398,
+       6.34332019, 5.01098137, 6.09811485, 2.29309948, 1.70275746,
+       1.01578403, 0.74699703, 0.49371062]), array([3.03764321, 2.37001383, 2.52954894, 3.5806444 , 4.03323731,
+       3.804615  , 3.94363701, 4.13493064, 3.3479778 , 3.01822767,
+       2.87458265, 2.62501283, 2.38879435]), array([ 7.84946237, 10.24154589, 10.781893  , 11.50537634, 12.30496454,
+       12.13333333]), array([3.18012981, 2.04586959, 2.46166507, 3.3752207 , 4.25259267,
+       4.71174091, 4.16285002, 4.01618113, 3.37068365, 3.36659765,
+       2.74832602, 2.05453786, 2.39611413]), array([12.84488597, 14.47188999, 16.41573574, 14.83853578, 14.75264357,
+       14.08915206]), array([3.33333333, 3.33333333, 3.33333333, 3.33333333, 3.33333333,
+       3.33333333]), array([3.33333333, 3.33333333, 3.33333333, 3.33333333, 3.33333333,
+       3.33333333])]
+	weights_points: [array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2.]), array([2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([3.64429808, 1.88503793, 2.08549102, 2.02347836, 2.69391224,
+       2.9927597 , 2.86350769, 2.69391224, 2.36420147]), array([1.34592304, 2.3911292 , 4.50487731, 2.70050705, 3.16009877,
+       4.50487731, 3.01556101, 5.97904475]), array([0.27287623, 1.64416594, 2.03898882, 2.75293909, 3.3523729 ,
+       3.82747354, 4.68713743, 4.59070149, 4.68713743]), array([1.30456777, 1.62268193, 5.43410108, 4.40748872, 2.83340402,
+       4.87078623, 2.83303123, 2.03281924]), array([1.01923077, 1.82407407, 2.12195122, 2.75961538, 3.29850746,
+       3.15384615, 4.2       , 3.92307692, 3.66666667]), array([0.91428571, 2.54716981, 3.95081967, 3.93023256, 5.24096386,
+       5.91764706, 5.69306931, 6.95876289, 7.29411765]), array([0.95918367, 1.34751773, 2.29411765, 2.73148148, 3.17333333,
+       3.31707317, 3.79166667, 4.15384615, 3.83333333]), array([0.96666667, 2.09090909, 3.32432432, 4.84507042, 6.12162162,
+       6.64556962, 6.75280899, 7.36458333, 8.08421053]), array([2.]), array([2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2., 2.]), array([2., 2.]), array([2., 2.]), array([2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([3.39955578, 1.89153482, 2.74611354, 3.77136884, 4.29280175,
+       4.51023266, 3.96872698, 2.99123537, 3.21941909, 4.04865689,
+       3.70371498, 3.87924211, 3.68677659, 3.39987076]), array([0.6681403 , 1.31472727, 2.14944335, 2.23493534, 2.6658083 ,
+       1.67747846, 1.35275724, 1.13034405, 0.68863313]), array([0.74861407, 0.99891244, 1.27475864, 1.63265601, 1.44997601,
+       0.9744588 , 0.72592172, 0.69831279, 0.44209245]), array([1.80460717, 1.35912453, 1.55625165, 2.76404487, 4.60276073,
+       6.08182711, 5.34623657, 7.31619027, 4.41584078, 5.34623657,
+       4.05432141, 3.23367092, 2.74873727]), array([4.87804878]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([7.875]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([5.64285714]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([4.77777778]), array([0.40453449, 1.51427273, 2.41889195, 2.87702934, 4.263003  ,
+       3.56320463, 3.29544134, 3.63397775, 3.32120214, 3.67694336,
+       2.96828396]), array([1.50833333, 4.71774194, 5.89102564, 4.93852459, 4.96014493,
+       4.659375  ]), array([ 1.23932517,  4.62195386,  8.37796492, 10.26187748, 11.14695332,
+       15.28889848]), array([ 0.41438356,  0.84567038,  1.47286341,  2.67914676,  6.04301604,
+        6.39549547,  6.02043143, 11.51379472, 10.40454288,  6.97961368,
+        4.68408562,  2.58481039,  0.54197812]), array([2.1297819 , 1.29009332, 1.31846252, 1.9956021 , 2.96676514,
+       3.75411181, 4.55733214, 4.87544284, 4.44057713, 3.11161699,
+       3.4419968 , 2.78276561]), array([5.05050505]), array([1.83492652, 2.04272485, 2.04272485, 2.10153074, 1.4846229 ,
+       3.12174072, 4.16832914, 2.1635239 , 2.22896992, 2.10153074,
+       1.03792151, 1.02098537]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([0.95108512, 1.19660114, 1.15206955, 1.3440517 , 2.59409482,
+       3.08636939, 5.42211073, 2.02579974, 2.06594539, 2.02579974,
+       1.30061371, 1.30061371]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([0.92454875, 1.61643661, 2.03499359, 2.41281022, 3.30801781,
+       3.11039884, 3.07228591, 3.30384792, 3.24521486, 3.53531887,
+       3.59077646, 3.86899563, 3.7590964 , 4.0260148 , 3.375     ,
+       2.05936675]), array([0.14368185, 1.20394435, 1.64631211, 1.87344933, 2.24074804,
+       2.64428353, 2.666819  , 2.8327515 , 2.98159137, 2.62317239,
+       2.2780919 , 2.28014449, 1.84606288, 2.38075826, 2.41434978,
+       2.84958529, 2.375     ]), array([1.04109589, 2.20987654, 2.50383632, 2.97222222, 3.96551724,
+       4.38862559, 4.67241379, 4.13684211, 1.95798319, 1.42857143,
+       0.88461538]), array([1.41836735, 1.98076923, 2.71111111, 2.79545455, 3.37142857,
+       3.58736059, 3.33766234, 3.9893617 , 2.78082192, 1.92727273,
+       1.23333333]), array([2.05882353, 2.69620253, 3.05952381, 3.3880597 , 4.16      ,
+       5.08823529, 4.9047619 , 3.64130435, 3.82727273, 2.23684211,
+       1.14084507]), array([1.01769912, 1.89333333, 2.39189189, 2.66666667, 4.45555556,
+       3.56565657, 3.43333333, 4.05714286, 5.2037037 , 3.09615385,
+       2.31481481]), array([10.41666667,  2.25827815,  3.63709677,  3.93162393,  3.54867257,
+        3.65957447,  3.45614035,  4.34375   ,  2.99126638,  2.73076923,
+        1.33333333]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([1.28238342, 1.472     , 2.52173913, 2.46078431, 3.71929825,
+       6.35714286, 7.0625    , 5.97777778, 4.21904762, 2.55844156,
+       1.89130435]), array([2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([3.0625]), array([6.11111111]), array([0.13466334, 0.23561213, 2.45134543, 2.044866  , 2.26637818,
+       2.41340822, 5.11434888, 3.65719036, 0.74483833, 0.54800769,
+       0.32818099, 0.23756094, 0.12901177]), array([0.28043495, 0.47122425, 1.2341866 , 2.55902597, 3.08517417,
+       3.74832557, 2.96103445, 3.6034315 , 1.35501333, 1.00617486,
+       0.60023602, 0.44140733, 0.29173809]), array([2.63262411, 2.05401199, 2.19227575, 3.10322514, 3.49547234,
+       3.297333  , 3.41781874, 3.58360656, 2.90158076, 2.61579732,
+       2.49130496, 2.27501112, 2.07028843]), array([2.35483871, 3.07246377, 3.2345679 , 3.4516129 , 3.69148936,
+       3.64      ]), array([2.75611251, 1.77308698, 2.13344306, 2.92519128, 3.68558031,
+       4.08350879, 3.60780335, 3.48069031, 2.92125916, 2.91771796,
+       2.38188255, 1.78059948, 2.07663225]), array([3.85346579, 4.341567  , 4.92472072, 4.45156073, 4.42579307,
+       4.22674562]), array([2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2.])]
+	weights_curves: [0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.3333333333333333, 1.0, 0.1111111111111111, 0.1, 0.8888888888888888, 1.0, 0.8888888888888888, 1.0, 2.2222222222222223, 2.2222222222222223, 2.2222222222222223, 2.2222222222222223, 1.0, 1.0, 0.5, 0.3333333333333333, 0.5, 0.3333333333333333, 0.3333333333333333, 0.07692307692307693, 0.1, 0.058823529411764705, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.3333333333333333, 0.1111111111111111, 0.07142857142857142, 0.08333333333333333, 0.07692307692307693, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.142857142857143, 1.1111111111111112, 1.1111111111111112, 0.8461538461538461, 11.0, 1.2, 12.0, 1.2, 12.0, 1.2, 12.0, 2.4545454545454546, 0.6666666666666666, 1.0, 0.46153846153846156, 1.0833333333333333, 13.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.6, 1.6, 0.2, 0.1111111111111111, 0.1, 1.5, 1.411764705882353, 1.0909090909090908, 1.0909090909090908, 1.0909090909090908, 1.0909090909090908, 1.0909090909090908, 1.3333333333333333, 1.3333333333333333, 1.3333333333333333, 1.3333333333333333, 1.3333333333333333, 1.3333333333333333, 1.3333333333333333, 1.0909090909090908, 1.3333333333333333, 9.0, 9.0, 1.6923076923076923, 1.6923076923076923, 1.1538461538461537, 3.3333333333333335, 1.1538461538461537, 3.3333333333333335, 1.6666666666666667, 1.6666666666666667]
+--------------------------------------------------------------------------------
+Parameter sets: ['PK_20261017_025702__4167a_0']
+--------------------------------------------------------------------------------
+    parameter          unit  PK_20261017_025702__4167a_0
+ ftissue_hctz         l/min                     0.063716
+      Kp_hctz dimensionless                     2.364261
+ KI__HCTZEX_f dimensionless                     3.237728
+  Ka_dis_hctz          1/hr                     1.301411
+GU__HCTZABS_k         1/min                     0.005072
+
+PK_20261017_025702__4167a_0: cost = 59.4076
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Metrics: PK_20261017_025702__4167a_0
+--------------------------------------------------------------------------------
+              parameter_set       kind   n  k      cost      MSE     RMSE    NRMSE   RMSE_w       R2  within_2fold          AIC          BIC
+PK_20261017_025702__4167a_0   training 530  5 59.407647 0.000139 0.011787 0.389575 0.473476 0.966634     91.395793 -4697.229793 -4675.865408
+PK_20261017_025702__4167a_0 validation 246  5       NaN 0.000735 0.027117 0.681740 0.642160 0.578025     87.242798 -1764.935255 -1747.408598
+
+      experiment                                                          mapping       kind  n          MSE     RMSE    NRMSE   RMSE_w         R2  within_2fold
+    Anderson1961                                               fm_amount_HCTZpo_5   training  3 2.060151e-04 0.014353 0.171490 0.140021   0.877541    100.000000
+    Anderson1961                                                 fm_cmax_HCTZpo_5   training  1 3.412710e-05 0.005842 0.869558 1.229741        NaN      0.000000
+    Anderson1961                                               fm_amount_HCTZiv_2   training  3 6.584057e-04 0.025659 0.136124 0.111145  -0.292088    100.000000
+    Anderson1961                                                 fm_cmax_HCTZiv_2   training  1 9.700813e-06 0.003115 0.772684 1.092740        NaN      0.000000
+    Anderson1961                                               fm_amount_HCTZpo_6 validation  3 1.117559e-04 0.010571 0.125217 0.102239   0.885212    100.000000
+    Anderson1961                                                 fm_cmax_HCTZpo_6 validation  1 1.605247e-07 0.000401 0.238550 0.337361        NaN    100.000000
+    Anderson1961                                               fm_amount_HCTZpo_7 validation  3 1.984502e-03 0.044548 1.440203 1.175921  -4.402299     33.333333
+    Anderson1961                                                 fm_cmax_HCTZpo_7 validation  1 1.417192e-06 0.001190 0.506285 0.715995        NaN      0.000000
+    Anderson1961                                               fm_amount_HCTZpo_8 validation  3 8.853928e-04 0.029756 0.619456 0.505784   0.438336     66.666667
+    Anderson1961                                                 fm_cmax_HCTZpo_8 validation  1 3.685347e-07 0.000607 0.903625 1.277918        NaN    100.000000
+    Anderson1961                                               fm_amount_HCTZpo_1 validation  3 1.692296e-04 0.013009 0.126767 0.103505   0.852500    100.000000
+    Anderson1961                                                 fm_cmax_HCTZpo_1 validation  1 2.929054e-07 0.000541 0.322235 0.455709        NaN    100.000000
+    Anderson1961                                               fm_amount_HCTZpo_3 validation  3 4.475099e-04 0.021154 0.191225 0.156134   0.031143    100.000000
+    Anderson1961                                                 fm_cmax_HCTZpo_3 validation  1 1.726420e-08 0.000131 0.130386 0.184394        NaN    100.000000
+    Anderson1961                                               fm_amount_HCTZpo_4 validation  3 1.628967e-03 0.040360 0.637417 0.520449   0.482797     33.333333
+    Anderson1961                                                 fm_cmax_HCTZpo_4 validation  1 6.307932e-07 0.000794 0.591102 0.835944        NaN      0.000000
+    Anderson1961                                              fm_amount_HCTZpo_12 validation  3 1.410171e-03 0.037552 0.678905 0.554324  -0.160518     66.666667
+    Anderson1961                                                fm_cmax_HCTZpo_12 validation  1 2.387404e-07 0.000489 0.363648 0.514277        NaN    100.000000
+    Anderson1961                                               fm_amount_HCTZpo_9 validation  3 1.441727e-03 0.037970 3.726493 3.042668 -26.773493      0.000000
+    Anderson1961                                                 fm_cmax_HCTZpo_9 validation  1 9.121218e-06 0.003020 0.691611 0.978086        NaN      0.000000
+    Anderson1961                                              fm_amount_HCTZiv_8A validation  3 1.178488e-03 0.034329 0.327557 0.267449  -0.501240    100.000000
+    Anderson1961                                                fm_cmax_HCTZiv_8A validation  1 7.696877e-07 0.000877 0.217648 0.307801        NaN    100.000000
+    Anderson1961                                              fm_amount_HCTZiv_8B validation  3 8.978333e-04 0.029964 0.182170 0.148741   0.548241    100.000000
+    Anderson1961                                                fm_cmax_HCTZiv_8B validation  1 4.071385e-06 0.002018 0.500574 0.707919        NaN      0.000000
+    Anderson1961                                              fm_amount_HCTZiv_12 validation  3 7.284868e-03 0.085351 1.047079 0.854937  -4.995173     33.333333
+    Anderson1961                                                fm_cmax_HCTZiv_12 validation  1 1.292042e-05 0.003594 0.713388 1.008883        NaN      0.000000
+    Anderson1961                                             fm_amount_HCTZiv_13A validation  3 1.355936e-02 0.116445 2.352867 1.921108  -9.054357     33.333333
+    Anderson1961                                               fm_cmax_HCTZiv_13A validation  1 1.491666e-05 0.003862 0.766520 1.084023        NaN      0.000000
+    Anderson1961                                             fm_amount_HCTZiv_13B validation  3 9.339227e-03 0.096640 1.308206 1.068146  -2.700557     33.333333
+    Anderson1961                                               fm_cmax_HCTZiv_13B validation  1 1.536053e-05 0.003919 0.614085 0.868447        NaN      0.000000
+    Anderson1961                                              fm_amount_HCTZiv_14 validation  3 1.083110e-02 0.104073 1.702330 1.389946 -14.282340     33.333333
+    Anderson1961                                                fm_cmax_HCTZiv_14 validation  1 2.073250e-05 0.004553 0.968226 1.369278        NaN      0.000000
+    Anderson1961                                              fm_amount_HCTZiv_15 validation  3 2.365004e-03 0.048631 0.417621 0.340986  -5.133014    100.000000
+    Anderson1961                                                fm_cmax_HCTZiv_15 validation  1 9.643002e-06 0.003105 0.924453 1.307374        NaN      0.000000
+    Anderson1961                                              fm_amount_HCTZiv_10 validation  3 1.353776e-03 0.036794 0.256622 0.209531   0.286897    100.000000
+    Anderson1961                                                fm_cmax_HCTZiv_10 validation  1 8.029475e-07 0.000896 0.266761 0.377257        NaN    100.000000
+    Anderson1961                                              fm_amount_HCTZiv_11 validation  3 3.005653e-03 0.054824 1.751813 1.430349  -9.586382      0.000000
+    Anderson1961                                                fm_cmax_HCTZiv_11 validation  1 5.241572e-06 0.002289 0.486835 0.688488        NaN    100.000000
+     Azumaya1990                                                      fm_hctz12p5   training  9 3.276928e-09 0.000057 0.445086 0.209816   0.683073     88.888889
+     Azumaya1990                                                        fm_hctz25   training 10 6.074628e-09 0.000078 0.335308 0.149954   0.853525     77.777778
+   Barbhaiya1982                                                fm_hctz50_fast250   training  9 1.806202e-08 0.000134 0.316130 0.477919   0.785516     88.888889
+   Barbhaiya1982                                      fm_excretion_hctz50_fast250   training  8 1.972038e-05 0.004441 0.289695 0.531533   0.737651    100.000000
+   Barbhaiya1982                                                 fm_hctz50_fast20   training  9 1.875708e-08 0.000137 0.326959 0.374586   0.757900     88.888889
+   Barbhaiya1982                                       fm_excretion_hctz50_fast20   training  8 1.012967e-05 0.003183 0.206562 0.435198   0.842815    100.000000
+  Barbhaiya1982a                                                    fm_hctz50_msd   training  9 4.466655e-09 0.000067 0.137849 0.284275   0.954748    100.000000
+  Barbhaiya1982a                                                    fm_amount_msd   training  9 1.613465e-04 0.012702 0.185063 0.664076   0.890593    100.000000
+  Barbhaiya1982a                                                fm_hctz50_stanlab   training  9 8.065685e-09 0.000090 0.178638 0.394236   0.924427     88.888889
+  Barbhaiya1982a                                                fm_amount_stanlab   training  9 2.460306e-04 0.015685 0.220550 0.845252   0.848081    100.000000
+    Beermann1976                                              fm_hctz_po5_3_feces   training  1 4.840881e-06 0.002200 0.775147 1.096224        NaN    100.000000
+    Beermann1976                                              fm_hctz_po5_4_feces   training  1 9.759057e-06 0.003124 1.631578 2.307400        NaN      0.000000
+    Beermann1976                                              fm_hctz_iv1_5_urine   training  2 4.646666e-08 0.000216 0.078164 0.078164   0.356544    100.000000
+    Beermann1976                                             fm_hctz_iv35_4_urine   training  3 4.077108e-05 0.006385 0.062884 0.051345   0.701859    100.000000
+    Beermann1976                                           fm_hctz_po50_III_urine   training  2 1.391466e-03 0.037302 0.572418 0.572418  -0.233191     50.000000
+    Beermann1976                                              fm_hctz_po5_3_urine   training  3 2.226529e-07 0.000472 0.046489 0.037958   0.879266    100.000000
+    Beermann1976                                              fm_hctz_po5_4_urine   training  3 4.252511e-06 0.002062 0.163345 0.133371  -0.345973    100.000000
+    Beermann1976                                                     fm_hctz5po_4   training 13 3.677958e-10 0.000019 0.271457 0.106474   0.608300     92.307692
+    Beermann1976                                           fm_excretion_hctz5po_4   training 10 2.810059e-11 0.000005 0.381562 0.170640   0.557736     90.000000
+    Beermann1976                                                    fm_hctz75po_6   training 17 3.115146e-08 0.000176 0.310422 0.106474   0.826628    100.000000
+    Beermann1976                                              fm_hctz_iv1_5_feces validation  1 2.086312e-08 0.000144 1.000000 1.414214        NaN           NaN
+    Beermann1976                                             fm_hctz_iv35_4_feces validation  1 1.382224e-06 0.001176 1.000000 1.414214        NaN           NaN
+    Beermann1976                                              fm_hctz_po5_1_feces validation  1 8.532907e-07 0.000924 0.224487 0.317473        NaN    100.000000
+    Beermann1976                                              fm_hctz_po5_2_feces validation  1 2.599705e-06 0.001612 0.470588 0.665512        NaN    100.000000
+    Beermann1976                                             fm_hctz_po50_I_urine validation  2 8.297446e-05 0.009109 0.084216 0.084216   0.687379    100.000000
+    Beermann1976                                            fm_hctz_po50_II_urine validation  2 1.825315e-03 0.042724 0.845106 0.845106  -4.347737     50.000000
+    Beermann1976                                              fm_hctz_po5_1_urine validation  2 2.448975e-07 0.000495 0.047562 0.047562   0.931404    100.000000
+    Beermann1976                                              fm_hctz_po5_2_urine validation  3 3.829200e-06 0.001957 0.226967 0.185318  -0.843980    100.000000
+   Beermann1977a                                              fm_Fig1_2_hctz25_HD   training  9 3.611928e-08 0.000190 1.490494 0.702626  -1.831812     33.333333
+   Beermann1977a                                             fm_Fig1_2_hctz25_MLL   training 14 3.470046e-08 0.000186 0.520242 0.196633   0.382688     64.285714
+   Beermann1977a                                    fm_Fig1_2_excretion_hctz25_HD   training 12 1.108656e-05 0.003330 0.596353 0.243460  -0.139214    100.000000
+   Beermann1977a                                   fm_Fig1_2_excretion_hctz25_MLL   training 13 2.497831e-06 0.001580 0.355291 0.139357   0.300699     91.666667
+   Beermann1977a                                       fm_Tab4_amount_HCTZ12p5_IJ   training  1 7.234680e-06 0.002690 0.089970 0.127237        NaN    100.000000
+   Beermann1977a                                       fm_Tab4_amount_HCTZ12p5_YO   training  1 1.462933e-04 0.012095 0.307755 0.435231        NaN    100.000000
+   Beermann1977a                                      fm_Tab4_amount_HCTZ12p5_MLL   training  1 1.020490e-06 0.001010 0.035802 0.050631        NaN    100.000000
+   Beermann1977a                                      fm_Tab4_amount_HCTZ12p5_ACL   training  1 4.972526e-05 0.007052 0.349878 0.494802        NaN    100.000000
+   Beermann1977a                                      fm_Tab4_amount_HCTZ12p5_KCL   training  1 1.622830e-05 0.004028 0.173807 0.245800        NaN    100.000000
+   Beermann1977a                                       fm_Tab4_amount_HCTZ12p5_LE   training  1 7.234680e-06 0.002690 0.089970 0.127237        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ25_IJ   training  1 1.714951e-04 0.013096 0.316956 0.448244        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ25_YO   training  1 1.804058e-04 0.013432 0.327751 0.463510        NaN    100.000000
+   Beermann1977a                                        fm_Tab4_amount_HCTZ25_ACL   training  1 7.247354e-06 0.002692 0.047143 0.066671        NaN    100.000000
+   Beermann1977a                                        fm_Tab4_amount_HCTZ25_KCL   training  1 6.519789e-04 0.025534 0.319388 0.451683        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ25_AH   training  1 3.415029e-04 0.018480 0.253522 0.358535        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ25_LE   training  1 8.234392e-05 0.009074 0.142933 0.202138        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ50_IJ   training  1 4.060984e-05 0.006373 0.062201 0.087965        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ50_YO   training  1 4.422281e-03 0.066500 1.571200 2.222012        NaN      0.000000
+   Beermann1977a                                        fm_Tab4_amount_HCTZ50_MLL   training  1 8.864450e-05 0.009415 0.079627 0.112610        NaN    100.000000
+   Beermann1977a                                        fm_Tab4_amount_HCTZ50_ACL   training  1 3.644146e-05 0.006037 0.058729 0.083056        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ50_HD   training  1 3.172971e-04 0.017813 0.140660 0.198923        NaN    100.000000
+   Beermann1977a                                        fm_Tab4_amount_HCTZ50_KCL   training  1 1.993134e-04 0.014118 0.114833 0.162398        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ50_AH   training  1 2.495574e-04 0.015797 0.126762 0.179269        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ50_LE   training  1 4.625868e-04 0.021508 0.165023 0.233377        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ75_IJ   training  1 1.242984e-03 0.035256 0.275478 0.389584        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ75_YO   training  1 2.929886e-04 0.017117 0.117143 0.165665        NaN    100.000000
+   Beermann1977a                                        fm_Tab4_amount_HCTZ75_MLL   training  1 2.180215e-04 0.014766 0.099450 0.140644        NaN    100.000000
+   Beermann1977a                                        fm_Tab4_amount_HCTZ75_ACL   training  1 9.461300e-05 0.009727 0.063363 0.089609        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ75_HD   training  1 2.090482e-04 0.014459 0.081367 0.115070        NaN    100.000000
+   Beermann1977a                                        fm_Tab4_amount_HCTZ75_KCL   training  1 5.856328e-04 0.024200 0.129109 0.182588        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ75_AH   training  1 5.596961e-06 0.002366 0.014286 0.020203        NaN    100.000000
+   Beermann1977a                                         fm_Tab4_amount_HCTZ75_LE   training  1 1.908165e-03 0.043683 0.211109 0.298553        NaN    100.000000
+    Devineni2014                               fm_Fig3_hydrochlorothiazide_HCTZ25   training 14 1.536722e-09 0.000039 0.168384 0.463699   0.926394    100.000000
+  Giudicelli1987                                             fm_Fig3_hctz25_acute   training  9 6.204725e-09 0.000079 0.336376 0.429243   0.607268     66.666667
+  Giudicelli1987                                           fm_Fig3_hctz25_chronic   training  9 1.350503e-08 0.000116 0.326709 0.337481   0.416831     66.666667
+       Heise2015                                                   fm_Fig3_hctz25   training 13 8.830019e-09 0.000094 0.326587 0.573838   0.831831    100.000000
+       Heise2015                                           fm_Tab3A_hctz25_aurine   training  1 5.913659e-06 0.002432 0.040219 0.294614        NaN    100.000000
+       Howes1991                               fm_Fig1_HCTZ25_hydrochlorothiazide   training 10 1.655006e-09 0.000041 0.148527 0.230096   0.941535    100.000000
+       Howes1991             fm_Tab2_HCTZ25_cumulative_amount_hydrochlorothiazide   training  1 2.976289e-05 0.005456 0.085932 0.835354        NaN    100.000000
+       Howes1991                  fm_Fig1_HCTZ25__ENA10_multi_hydrochlorothiazide validation 10 1.959759e-09 0.000044 0.163885 0.253890   0.935768    100.000000
+       Howes1991 fm_Tab2_ENA10__HCTZ25multi_cumulative_amount_hydrochlorothiazide validation  1 2.457810e-05 0.004958 0.093411 0.768663        NaN    100.000000
+       Howes1991                         fm_Fig1_HCTZ25_combi_hydrochlorothiazide validation 10 1.823879e-09 0.000043 0.155769 0.241317   0.933657    100.000000
+       Howes1991 fm_Tab2_ENA10__HCTZ25combi_cumulative_amount_hydrochlorothiazide validation  1 6.497889e-08 0.000255 0.004412 0.033407        NaN    100.000000
+       Hsiao2015                                                   fm_Fig1_hctz25   training 11 6.443814e-09 0.000080 0.252948 0.683121   0.845300    100.000000
+ Hunninghake1986                                 fm_Fig1_amount_cumulative_hctz75   training  6 2.159178e-04 0.014694 0.187607 0.328451   0.845879    100.000000
+ Hunninghake1986                             fm_Fig2_amount_cumulative_hctz75_def   training  6 3.261934e-05 0.005711 0.065488 0.153213   0.980021    100.000000
+ Hunninghake1986                                                   fm_Fig3_hctz75   training 13 6.702796e-08 0.000259 0.454868 0.398673   0.644245     76.923077
+        Jeon2012                                                   fm_Fig3_hctz25   training 12 6.838594e-09 0.000083 0.241700 0.465049   0.841880    100.000000
+        Jeon2012                                 fm_Tab2_amount_cumulative_hctz25   training  1 1.975706e-04 0.014056 0.314621 2.549338        NaN    100.000000
+       Jordo1979                                                  fm_Fig2_25_hctz   training 12 1.154058e-08 0.000107 0.418026 0.405415   0.593740     83.333333
+       Jordo1979                                   fm_Tab2_1_25_amount_cumulative   training  1 5.873413e-04 0.024235 0.307667 0.435107        NaN    100.000000
+       Jordo1979                                   fm_Tab2_2_25_amount_cumulative   training  1 1.302807e-06 0.001141 0.020501 0.028992        NaN    100.000000
+       Jordo1979                                   fm_Tab2_3_25_amount_cumulative   training  1 6.890928e-04 0.026251 0.324940 0.459534        NaN    100.000000
+       Jordo1979                                   fm_Tab2_4_25_amount_cumulative   training  1 2.145141e-04 0.014646 0.367175 0.519264        NaN    100.000000
+       Jordo1979                                   fm_Tab2_5_25_amount_cumulative   training  1 5.711725e-04 0.023899 0.304702 0.430914        NaN    100.000000
+       Jordo1979                                   fm_Tab2_6_25_amount_cumulative   training  1 4.600360e-04 0.021448 0.648244 0.916755        NaN    100.000000
+       Jordo1979                                                fm_Fig1_12p5_hctz validation 12 3.208485e-09 0.000057 0.502072 0.383749   0.341249     91.666667
+       Jordo1979                                 fm_Tab2_1_12p5_amount_cumulative validation  1 7.379708e-05 0.008591 0.239569 0.338802        NaN    100.000000
+       Jordo1979                                 fm_Tab2_2_12p5_amount_cumulative validation  1 3.044435e-05 0.005518 0.253684 0.358763        NaN    100.000000
+       Jordo1979                                 fm_Tab2_3_12p5_amount_cumulative validation  1 8.487264e-05 0.009213 0.510251 0.721604        NaN    100.000000
+       Jordo1979                                 fm_Tab2_4_12p5_amount_cumulative validation  1 1.229524e-06 0.001109 0.042389 0.059947        NaN    100.000000
+       Jordo1979                                 fm_Tab2_5_12p5_amount_cumulative validation  1 1.383727e-05 0.003720 0.120043 0.169767        NaN    100.000000
+       Jordo1979                                 fm_Tab2_6_12p5_amount_cumulative validation  1 9.604931e-05 0.009800 0.561077 0.793483        NaN    100.000000
+    Koytchev2004                                               fm_Fig2_test_hydro validation 15 2.661035e-10 0.000016 0.160399 0.286931   0.951463    100.000000
+    Koytchev2004                                          fm_Fig2_reference_hydro validation 15 2.076074e-10 0.000014 0.130664 0.233740   0.967662    100.000000
+    Niemeyer1983                                                 fm_Fig1_hctz50_C   training  5 4.385074e-08 0.000209 0.964253 0.609847   0.074193     40.000000
+    Niemeyer1983                                                 fm_Fig1_hctz50_W   training  9 1.809693e-06 0.001345 0.663467 0.312761  -1.063359     44.444444
+    Niemeyer1983                                                 fm_Fig1_hctz50_S validation 10 4.546339e-08 0.000213 0.256288 0.114616   0.799291    100.000000
+      Niopas2011                                fm_Fig2_hydrochlorothiazide_ENA20 validation 16 5.504867e-10 0.000023 0.165734 0.343654   0.918772    100.000000
+      Niopas2011                                fm_Fig2_hydrochlorothiazide_REF20 validation 17 4.374393e-10 0.000021 0.158939 0.290120   0.933210    100.000000
+       Patel1984                                                        fm_25_tab   training 11 2.577341e-09 0.000051 0.260864 0.412657   0.849400     90.909091
+       Patel1984                                                        fm_25_sus   training 11 3.388641e-10 0.000018 0.082419 0.142097   0.984701    100.000000
+       Patel1984                                                        fm_50_sus   training 11 4.658524e-09 0.000068 0.157379 0.326762   0.943952    100.000000
+       Patel1984                                                       fm_100_tab   training 11 7.028077e-08 0.000265 0.369107 0.620374   0.670648    100.000000
+       Patel1984                                                       fm_100_sus   training 11 2.579971e-08 0.000161 0.204913 0.467601   0.913515    100.000000
+       Patel1984                                                  fm_25_tab_urine   training  9 3.083247e-05 0.005553 0.169163 0.276242   0.827700    100.000000
+       Patel1984                                                  fm_25_sus_urine   training  9 1.926739e-05 0.004389 0.127507 0.208218   0.893115    100.000000
+       Patel1984                                                  fm_50_sus_urine   training  9 1.885777e-04 0.013732 0.215198 0.351417   0.640124    100.000000
+       Patel1984                                                 fm_100_tab_urine   training  9 1.074792e-03 0.032784 0.267844 0.437387   0.452667    100.000000
+       Patel1984                                                 fm_100_sus_urine   training  9 7.050215e-04 0.026552 0.204352 0.333705   0.630022    100.000000
+       Patel1984                                                 fm_200_tab_urine   training  9 2.081863e-03 0.045627 0.171324 0.279770   0.750890    100.000000
+       Patel1984                                                 fm_200_sus_urine   training  9 9.450702e-04 0.030742 0.108559 0.177275   0.894142    100.000000
+       Patel1984                                                        fm_50_tab validation 11 4.222657e-09 0.000065 0.154998 0.270697   0.948618    100.000000
+       Patel1984                                                  fm_50_tab_urine validation  9 2.696238e-04 0.016420 0.270917 0.442405   0.516095    100.000000
+      Ripley2000                                        fm_Tab3_hctz_aurine_black   training  1 1.176766e-04 0.010848 0.263626 1.384035        NaN    100.000000
+      Ripley2000                                        fm_Tab3_hctz_aurine_white   training  1 3.374743e-05 0.005809 0.125776 0.932777        NaN    100.000000
+Vaidyanathan2006                                              fm_Fig3_hctz_HCTZ25   training 13 2.193181e-08 0.000148 0.456851 0.909236   0.674263    100.000000
+Vaidyanathan2006                                   fm_Fig3_hctz_HCTZ25_ALI300HCTZ validation 13 2.157299e-09 0.000046 0.177099 0.408852   0.940278    100.000000
+        Weir1998                                                   fm_Fig2_hctz25   training 13 3.322974e-09 0.000058 0.173243 0.312517   0.912040    100.000000
+        Weir1998                                 fm_Fig3_amount_cumulative_hctz25   training  6 1.185743e-04 0.010889 0.191912 0.664678   0.534649    100.000000
+        Weir1998                                             fm_Fig2_hctz25_kombi validation 13 5.235567e-09 0.000072 0.207562 0.383578   0.879633    100.000000
+        Weir1998                           fm_Fig3_amount_cumulative_hctz25_kombi validation  6 8.774739e-05 0.009367 0.155265 0.587293   0.611663    100.000000
+    Williams1982                                         fm_Fig2_excretion_hctz50   training  6 4.101155e-05 0.006404 0.360535 0.658244  -0.152438    100.000000
+    Williams1982                                        fm_Fig2_excretion_hctz100   training  6 1.943920e-04 0.013942 0.474879 0.867007  -1.399768    100.000000
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Optimization results: PK_20261017_025702__4167a
+--------------------------------------------------------------------------------
+   run  success    duration       cost  ftissue_hctz   Kp_hctz  KI__HCTZEX_f  Ka_dis_hctz  GU__HCTZABS_k                                message                                                  x                           x0
+0    0     True  230.917790  59.407647      0.063716  2.364261      3.237728     1.301411       0.005072  Optimization terminated successfully.  [0.06371609687911314, 2.364260595086214, 3.237...  [0.1, 0.85, 2.5, 1.0, 0.02]
+1    1     True  197.370724  59.423011      0.054583  2.521039      3.284950     1.377435       0.004906  Optimization terminated successfully.  [0.054582592277286, 2.5210394608641247, 3.2849...  [0.1, 0.85, 2.5, 1.0, 0.02]
+2    2     True  171.472750  59.436365      0.061433  2.357658      3.286408     1.253895       0.005039  Optimization terminated successfully.  [0.0614334600419156, 2.357657989611395, 3.2864...  [0.1, 0.85, 2.5, 1.0, 0.02]
+--------------------------------------------------------------------------------
+Optimal parameters:
+	'ftissue_hctz': Q(0.06371609687911314, 'l/(min)'),  # [0.01 - 10]
+	'Kp_hctz': Q(2.364260595086214, 'dimensionless'),  # [0.25 - 10.0]
+	'KI__HCTZEX_f': Q(3.23772819218966, 'dimensionless'),  # [0.1 - 10]
+	'Ka_dis_hctz': Q(1.301410953539714, '1/(hr)'),  # [0.0001 - 10]
+	'GU__HCTZABS_k': Q(0.005071664631885059, '1/(min)'),  # [0.0001 - 10]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Identifiability 'PK_20261017_025702__4167a'
+--------------------------------------------------------------------------------
+parameter set: PK_20261017_025702__4167a_0
+cost: 59.4076
+cost_min: 59.4037
+alpha: 0.95
+degrees of freedom: 1
+threshold: 61.3244
+reoptimize: True
+duration: 56.1 s
+
+    parameter    value          unit  lower_bound  upper_bound  ci_lower  ci_upper identifiability  n_points  cost_min  converged
+ ftissue_hctz 0.063716         l/min       0.0100         10.0  0.025763  0.117952    identifiable        17 59.403715       True
+      Kp_hctz 2.364261 dimensionless       0.2500         10.0  1.629157  4.235570    identifiable        17 59.407647       True
+ KI__HCTZEX_f 3.237728 dimensionless       0.1000         10.0  2.886134  3.699371    identifiable        11 59.407647       True
+  Ka_dis_hctz 1.301411          1/hr       0.0001         10.0  0.793938  1.955628    identifiable        18 59.407647       True
+GU__HCTZABS_k 0.005072         1/min       0.0001         10.0  0.003797  0.007743    identifiable        16 59.407647       True
+--------------------------------------------------------------------------------

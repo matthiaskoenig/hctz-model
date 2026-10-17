@@ -1,25 +1,31 @@
 study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Januszewicz1959	NA	all	5.0	HCTZ25	urinary volume rate	sodium	urine	NR	25_diuresis	0.0	hr	NA	10.1	NA	NA	NA	ml/min	NA
-Januszewicz1959	NA	all	5.0	HCTZ25	urinary volume rate	sodium	urine	NR	25_diuresis	10.0	hr	NA	16.2	NA	NA	NA	ml/min	NA
-Januszewicz1959	NA	all	2.0	HCTZ50	urinary volume rate	sodium	urine	NR	50_diuresis	0.0	hr	NA	13.6	NA	NA	NA	ml/min	NA
-Januszewicz1959	NA	all	2.0	HCTZ50	urinary volume rate	sodium	urine	NR	50_diuresis	10.0	hr	NA	21.6	NA	NA	NA	ml/min	NA
-Januszewicz1959	NA	all	3.0	HCTZ100	urinary volume rate	sodium	urine	NR	100_diuresis	0.0	hr	NA	14.3	NA	NA	NA	ml/min	NA
-Januszewicz1959	NA	all	3.0	HCTZ100	urinary volume rate	sodium	urine	NR	100_diuresis	10.0	hr	NA	20.3	NA	NA	NA	ml/min	NA
-Januszewicz1959	NA	all	5.0	HCTZ25	excretion rate	sodium	urine	NR	25_excretion_na	0.0	hr	NA	120.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	5.0	HCTZ25	excretion rate	sodium	urine	NR	25_excretion_na	10.0	hr	NA	821.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	2.0	HCTZ50	excretion rate	sodium	urine	NR	50_excretion_na	0.0	hr	NA	91.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	2.0	HCTZ50	excretion rate	sodium	urine	NR	50_excretion_na	10.0	hr	NA	924.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	3.0	HCTZ100	excretion rate	sodium	urine	NR	100_excretion_na	0.0	hr	NA	132.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	3.0	HCTZ100	excretion rate	sodium	urine	NR	100_excretion_na	10.0	hr	NA	902.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	5.0	HCTZ25	excretion rate	chloride	urine	NR	25_excretion_cl	0.0	hr	NA	113.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	5.0	HCTZ25	excretion rate	chloride	urine	NR	25_excretion_cl	10.0	hr	NA	750.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	2.0	HCTZ50	excretion rate	chloride	urine	NR	50_excretion_cl	0.0	hr	NA	86.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	2.0	HCTZ50	excretion rate	chloride	urine	NR	50_excretion_cl	10.0	hr	NA	924.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	3.0	HCTZ100	excretion rate	chloride	urine	NR	100_excretion_cl	0.0	hr	NA	112.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	3.0	HCTZ100	excretion rate	chloride	urine	NR	100_excretion_cl	10.0	hr	NA	770.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	5.0	HCTZ25	excretion rate	potassium	urine	NR	25_excretion_k	0.0	hr	NA	38.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	5.0	HCTZ25	excretion rate	potassium	urine	NR	25_excretion_k	10.0	hr	NA	64.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	2.0	HCTZ50	excretion rate	potassium	urine	NR	50_excretion_k	0.0	hr	NA	30.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	2.0	HCTZ50	excretion rate	potassium	urine	NR	50_excretion_k	10.0	hr	NA	57.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	3.0	HCTZ100	excretion rate	potassium	urine	NR	100_excretion_k	0.0	hr	NA	28.0	NA	NA	NA	mmol/min	NA
-Januszewicz1959	NA	all	3.0	HCTZ100	excretion rate	potassium	urine	NR	100_excretion_k	10.0	hr	NA	82.0	NA	NA	NA	mmol/min	NA
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	clearance_renal	inulin	urine	NR	HCTZ25_without_case5_clearance_inulin	-15.0	min	NA	129	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	clearance_renal	inulin	urine	NR	HCTZ25_without_case5_clearance_inulin	15.0	min	NA	115	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	excretion rate	chloride	urine	NR	HCTZ25_without_case5_excretion_rate_chloride	-15.0	min	NA	113	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	excretion rate	chloride	urine	NR	HCTZ25_without_case5_excretion_rate_chloride	15.0	min	NA	750	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	excretion rate	potassium	urine	NR	HCTZ25_without_case5_excretion_rate_potassium	-15.0	min	NA	38	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	excretion rate	potassium	urine	NR	HCTZ25_without_case5_excretion_rate_potassium	15.0	min	NA	64	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	excretion rate	sodium	urine	NR	HCTZ25_without_case5_excretion_rate_sodium	-15.0	min	NA	120	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	excretion rate	sodium	urine	NR	HCTZ25_without_case5_excretion_rate_sodium	15.0	min	NA	821	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	urinary volume rate	NA	urine	NR	HCTZ25_without_case5_urinary_volume_rate	-15.0	min	NA	10.1	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ25_without_case5	4.0	HCTZ25	urinary volume rate	NA	urine	NR	HCTZ25_without_case5_urinary_volume_rate	15.0	min	NA	16.2	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	clearance_renal	inulin	urine	NR	HCTZ50_clearance_inulin	-15.0	min	NA	146	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	clearance_renal	inulin	urine	NR	HCTZ50_clearance_inulin	15.0	min	NA	133	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	excretion rate	chloride	urine	NR	HCTZ50_excretion_rate_chloride	-15.0	min	NA	86	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	excretion rate	chloride	urine	NR	HCTZ50_excretion_rate_chloride	15.0	min	NA	924	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	excretion rate	potassium	urine	NR	HCTZ50_excretion_rate_potassium	-15.0	min	NA	30	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	excretion rate	potassium	urine	NR	HCTZ50_excretion_rate_potassium	15.0	min	NA	57	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	excretion rate	sodium	urine	NR	HCTZ50_excretion_rate_sodium	-15.0	min	NA	91	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	excretion rate	sodium	urine	NR	HCTZ50_excretion_rate_sodium	15.0	min	NA	924	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	urinary volume rate	NA	urine	NR	HCTZ50_urinary_volume_rate	-15.0	min	NA	13.6	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ50	2.0	HCTZ50	urinary volume rate	NA	urine	NR	HCTZ50_urinary_volume_rate	15.0	min	NA	21.6	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	clearance_renal	inulin	urine	NR	HCTZ100_clearance_inulin	-15.0	min	NA	146	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	clearance_renal	inulin	urine	NR	HCTZ100_clearance_inulin	15.0	min	NA	129	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	excretion rate	chloride	urine	NR	HCTZ100_excretion_rate_chloride	-15.0	min	NA	112	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	excretion rate	chloride	urine	NR	HCTZ100_excretion_rate_chloride	15.0	min	NA	770	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	excretion rate	potassium	urine	NR	HCTZ100_excretion_rate_potassium	-15.0	min	NA	28	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	excretion rate	potassium	urine	NR	HCTZ100_excretion_rate_potassium	15.0	min	NA	82	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	excretion rate	sodium	urine	NR	HCTZ100_excretion_rate_sodium	-15.0	min	NA	132	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	excretion rate	sodium	urine	NR	HCTZ100_excretion_rate_sodium	15.0	min	NA	902	NA	NA	NA	µmol/min	mean values of Fig2, as printed in Table 1; µEq/min (Table 1 prints milliequiv./min.), µmol of a monovalent ion
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	urinary volume rate	NA	urine	NR	HCTZ100_urinary_volume_rate	-15.0	min	NA	14.3	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1
+Januszewicz1959	NA	HCTZ100	3.0	HCTZ100	urinary volume rate	NA	urine	NR	HCTZ100_urinary_volume_rate	15.0	min	NA	20.3	NA	NA	NA	ml/min	mean values of Fig2, as printed in Table 1

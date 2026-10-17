@@ -1,93 +1,109 @@
-from typing import Dict
+"""Simulation experiment of the study Jordo1979."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-from sbmlutils.console import console
+from sbmlsim.simulation import Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Jordo1979(HCTZSimulationExperiment):
     """Simulation experiment of Jordo1979.
 
-    Multiple oral dosing of 12,5mg and 25mg HCTZ.
+    Single oral doses of 12.5 and 25 mg HCTZ to six healthy volunteers after a
+    fast of at least 10 hours, the plasma for 25 hr and the urine for 48 hr
+    (p. 563-564). HCTZ alone was "dissolved in 50 ml of an alcoholic solution
+    (20%)" (p. 564), which is what the data are; the arms of the combination
+    tablet with metoprolol are not part of the model.
+
+    The model has no form of the dose: the solution dissolves like a tablet,
+    with the fitted `Ka_dis_hctz`, which a fit sets in every experiment. Table 1
+    gives a tmax of 1.3 hr for 25 mg in solution and 2.2 hr for the
+    combination tablet.
     """
 
-    doses = [12.5, 25]
-    doses_keys = ["12_5", "25"]
-    individuals = ["mean", "JD", "LB", "US", "AH", "LW", "TB"]
+    doses: ClassVar[list[float]] = [12.5, 25]
+    doses_keys: ClassVar[list[str]] = ["12_5", "25"]
+    individuals: ClassVar[list[str]] = ["mean", "JD", "LB", "US", "AH", "LW", "TB"]
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig1", "Fig2", "Tab2", "Tab2Mean"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
                 elif label.startswith("amount_"):
                     dset.unit_conversion("value", 1 / self.Mr.hctz)
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                dsets[f"{fig_id}_{label}"] = dset
-        # console.print(dsets.keys())
-        # print(dsets)
+                dsets[self.to_sid(f"{fig_id}_{label}")] = dset
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
         for dose in self.doses:
-            tcsims[f"hctz{dose}"] = TimecourseSim(
-                Timecourse(
-                    start=0,
-                    end=60 * 60,  # [min]
-                    steps=500,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_hctz": Q_(dose, "mg"),
-                    },
-                )
+            simulations[self.to_sid(f"hctz{dose}")] = Simulation(
+                time_unit="hr",
+                end=60,
+                steps=500,
+                preinit_changes={
+                    **self.default_changes(),
+                    # HCTZ alone was an alcoholic solution (p. 564)
+                    "POSOLUTION_hctz": Q(dose, "mg"),
+                },
             )
 
-        return tcsims
+        return simulations
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
 
         # Fig1_2
         for kd, dose in enumerate([12.5, 25]):
-            fig_id = f"Fig{kd+1}"
-            mappings[f"fm_{fig_id}_{dose}_hctz"] = FitMapping(
+            fig_id = f"Fig{kd + 1}"
+            mappings[self.to_sid(f"fm_{fig_id}_{dose}_hctz")] = FitMapping(
                 self,
                 reference=FitData(
                     self,
-                    dataset=f"{fig_id}_hctz{str(dose).replace('.', '_')}",
+                    dataset=self.to_sid(f"{fig_id}_hctz{str(dose).replace('.', '_')}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
                 ),
                 observable=FitData(
-                    self, task=f"task_hctz{dose}", xid="time", yid="[Cve_hctz]"
+                    self,
+                    task=self.to_sid(f"task_hctz{dose}"),
+                    xid="time",
+                    yid="[Cve_hctz]",
                 ),
-                metadata=HCTZMappingMetaData(
+                metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
-                    application_form=ApplicationForm.TABLET,
+                    application_form=ApplicationForm.SOLUTION,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
                     health=Health.HEALTHY,
@@ -103,22 +119,26 @@ class Jordo1979(HCTZSimulationExperiment):
         ]
         for kd, individual in enumerate(self.individuals):
             for dose, yid, name in tab2_info:
-                mappings[f"fm_Tab2_{kd}_{dose}_{name}"] = FitMapping(
+                mappings[self.to_sid(f"fm_Tab2_{kd}_{dose}_{name}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"Tab2Mean_{name}_hctz{str(dose).replace('.', '_')}" if "mean" in individual else f"Tab2_{name}_hctz{str(dose).replace('.', '_')}_{individual}",
+                        dataset=self.to_sid(
+                            f"Tab2Mean_{name}_hctz{str(dose).replace('.', '_')}"
+                            if "mean" in individual
+                            else f"Tab2_{name}_hctz{str(dose).replace('.', '_')}_{individual}"
+                        ),
                         xid="time",
                         yid="mean" if "mean" in individual else "value",
                         yid_sd="mean_sd" if "mean" in individual else None,
                         count="count",
                     ),
                     observable=FitData(
-                        self, task=f"task_hctz{dose}", xid="time", yid=yid
+                        self, task=self.to_sid(f"task_hctz{dose}"), xid="time", yid=yid
                     ),
-                    metadata=HCTZMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.URINE,
-                        application_form=ApplicationForm.TABLET,
+                        application_form=ApplicationForm.SOLUTION,
                         route=Route.PO,
                         dosing=Dosing.SINGLE,
                         health=Health.HEALTHY,
@@ -126,20 +146,20 @@ class Jordo1979(HCTZSimulationExperiment):
                         coadministration=Coadministration.NONE,
                     ),
                 )
-        # console.print(mappings)
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
-            **self.figure_Fig1_2(),
-            **self.figure_Tab2(),
+            **self._figure_Fig1_2(),
+            **self._figure_Tab2(),
         }
 
-    def figure_Fig1_2(self) -> Dict[str, Figure]:
+    def _figure_Fig1_2(self) -> dict[str, Figure]:
         name = "Fig1_2"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             num_rows=1,
             num_cols=1,
             name=f"{self.__class__.__name__} {name}",
@@ -155,7 +175,7 @@ class Jordo1979(HCTZSimulationExperiment):
         # simulation
         for kd, dose in enumerate([12.5, 25]):
             plots[0].add_data(
-                task=f"task_hctz{dose}",
+                task=self.to_sid(f"task_hctz{dose}"),
                 xid="time",
                 yid="[Cve_hctz]",
                 label=f"Sim {dose}",
@@ -164,7 +184,7 @@ class Jordo1979(HCTZSimulationExperiment):
         # data
         for kd, dose in enumerate([12.5, 25]):
             plots[0].add_data(
-                dataset=f"Fig{kd+1}_hctz{str(dose).replace('.', '_')}",
+                dataset=self.to_sid(f"Fig{kd + 1}_hctz{str(dose).replace('.', '_')}"),
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
@@ -174,14 +194,14 @@ class Jordo1979(HCTZSimulationExperiment):
             )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
-    def figure_Tab2(self) -> Dict[str, Figure]:
+    def _figure_Tab2(self) -> dict[str, Figure]:
         name = "Tab2"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             num_rows=1,
             num_cols=2,
             name=f"{self.__class__.__name__} {name}",
@@ -199,7 +219,7 @@ class Jordo1979(HCTZSimulationExperiment):
             (1, 25, "Aurine_hctz"),
         ]:
             plots[kplot].add_data(
-                task=f"task_hctz{dose}",
+                task=self.to_sid(f"task_hctz{dose}"),
                 xid="time",
                 yid=yid,
                 label=f"Sim {dose}",
@@ -213,7 +233,11 @@ class Jordo1979(HCTZSimulationExperiment):
                 (1, 25, "amount_cumulative"),
             ]:
                 plots[kplot].add_data(
-                    dataset=f"Tab2Mean_{name}_hctz{str(dose).replace('.', '_')}" if "mean" in individual else f"Tab2_{name}_hctz{str(dose).replace('.', '_')}_{individual}",
+                    dataset=self.to_sid(
+                        f"Tab2Mean_{name}_hctz{str(dose).replace('.', '_')}"
+                        if "mean" in individual
+                        else f"Tab2_{name}_hctz{str(dose).replace('.', '_')}_{individual}"
+                    ),
                     xid="time",
                     yid="mean" if "mean" in individual else "value",
                     yid_sd="mean_sd" if "mean" in individual else None,
@@ -223,7 +247,7 @@ class Jordo1979(HCTZSimulationExperiment):
                     linestyle="",
                 )
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
     ##### Plotting Tab2Mean which is the mean of individual data listed in Tab2
@@ -269,4 +293,4 @@ class Jordo1979(HCTZSimulationExperiment):
 
 
 if __name__ == "__main__":
-    run_experiments(Jordo1979, output_dir=Jordo1979.__name__)
+    MODEL.run_experiments(Jordo1979, output_dir=Jordo1979.__name__)

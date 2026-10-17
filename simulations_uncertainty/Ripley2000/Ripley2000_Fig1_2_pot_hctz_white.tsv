@@ -1,0 +1,4 @@
+study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
+Ripley2000		white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	12.0	hr		61.2765957446808	68.0851063829787	6.8085106382979	2.2695035460993	von Fig2	mmol	mmol	dimensionless
+Ripley2000		white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	24.0	hr		87.3118279569892	101.075268817204	13.7634408602148	4.5878136200716		mmol	mmol	dimensionless
+Ripley2000		white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	36.0	hr		117.872340425532	132.86978943490902	14.99744900937701	4.999149669792337	0-24 hr of Fig1 plus 24-36 hr of Fig2; the SD of the sum is sqrt(SD_0-24^2 + SD_24-36^2) of the independent intervals, Fig2 gives the SD 5.957 of the 24-36 hr interval	mmol	mmol	dimensionless

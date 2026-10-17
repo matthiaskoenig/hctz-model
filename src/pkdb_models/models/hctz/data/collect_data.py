@@ -1,52 +1,49 @@
+"""Collect the data of the HCTZ studies from the PK-DB study folders.
+
+The studies are copied from a `pkdb_data` checkout (`PKDB_DATA`, else
+`../pkdb_data`, see `pkpdsim.data.studies_dir`) into the data folders of the
+model, see `pkpdsim.data.collect_tsv_files`:
+all hydrochlorothiazide studies and the studies of the coadministered drugs
+which report hydrochlorothiazide.
+"""
+
 from pathlib import Path
 
-from pkdb_models.models.data import collect_tsv_files
+from pkpdsim.data import collect_tsv_files
+from pkpdsim.data import studies_dir as pkdb_studies_dir
 
-def collect_hctz_data():
-    common_parent: Path = Path(__file__).parents[5]
-    source_dir = common_parent / "pkdb_data" / "studies" / "hydrochlorothiazide"
-    target_dir = Path(__file__).parent / "hydrochlorothiazide"
+from pkdb_models.models.hctz import DATA_PATH_BASE
 
-    collect_tsv_files(source_dir=source_dir, target_dir=target_dir)
+#: the studies of other substances which report hydrochlorothiazide
+COADMINISTRATION_STUDIES: dict[str, str] = {
+    "canagliflozin": "Devineni2014",
+    "lisinopril": "Koytchev2004",
+    "enalapril": "Niopas2011",
+    "aliskiren": "Vaidyanathan2006",
+}
 
 
-    def is_Devineni2014(study_name) -> bool:
-        return study_name == "Devineni2014"
+def collect_hctz_data(studies_dir: Path | None = None) -> None:
+    """Copy the data of the HCTZ studies into the data folders of the model.
 
-    collect_tsv_files(
-        source_dir=common_parent / "pkdb_data" / "studies" / "canagliflozin",
-        target_dir=Path(__file__).parent / "canagliflozin",
-        filter_study=is_Devineni2014,
-    )
-
-    def is_Koytchev2004(study_name) -> bool:
-        return study_name == "Koytchev2004"
-
-    collect_tsv_files(
-        source_dir=common_parent / "pkdb_data" / "studies" / "lisinopril",
-        target_dir=Path(__file__).parent / "lisinopril",
-        filter_study=is_Koytchev2004,
-    )
-
-    def is_Niopas2011(study_name) -> bool:
-        return study_name == "Niopas2011"
+    Args:
+        studies_dir: the `studies` folder of pkdb_data, by default the one of
+            the checkout `pkpdsim.data.studies_dir` finds.
+    """
+    if studies_dir is None:
+        studies_dir = pkdb_studies_dir()
 
     collect_tsv_files(
-        source_dir=common_parent / "pkdb_data" / "studies" / "enalapril",
-        target_dir=Path(__file__).parent / "enalapril",
-        filter_study=is_Niopas2011,
+        source_dir=studies_dir / "hydrochlorothiazide",
+        target_dir=DATA_PATH_BASE / "hydrochlorothiazide",
     )
-
-    def is_Vaidyanathan2006(study_name) -> bool:
-        return study_name == "Vaidyanathan2006"
-
-    collect_tsv_files(
-        source_dir=common_parent / "pkdb_data" / "studies" / "aliskiren",
-        target_dir=Path(__file__).parent / "aliskiren",
-        filter_study=is_Vaidyanathan2006,
-    )
+    for substance, study in COADMINISTRATION_STUDIES.items():
+        collect_tsv_files(
+            source_dir=studies_dir / substance,
+            target_dir=DATA_PATH_BASE / substance,
+            filter_study=lambda name, study=study: name == study,
+        )
 
 
 if __name__ == "__main__":
     collect_hctz_data()
-

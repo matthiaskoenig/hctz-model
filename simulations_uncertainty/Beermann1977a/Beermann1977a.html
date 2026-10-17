@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beermann1977a | sbmlsim experiment</title>
+<style>
+:root {
+  --bg: #ffffff; --bg-soft: #f6f7f9; --bg-card: #ffffff;
+  --fg: #1b1f24; --fg-soft: #5b6472; --line: #e3e6ea;
+  --accent: #3b5bdb; --training: #2f9e44; --validation: #1c7ed6; --outlier: #e8590c;
+  --excluded: #868e96;
+  --radius: 10px; --shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171c; --bg-soft: #1a1e24; --bg-card: #1a1e24;
+    --fg: #e6e9ee; --fg-soft: #9aa4b2; --line: #2a3038;
+    --accent: #748ffc; --training: #51cf66; --validation: #4dabf7; --outlier: #ff922b;
+    --excluded: #adb5bd;
+    --shadow: none;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header.top {
+  position: sticky; top: 0; z-index: 20; background: var(--bg);
+  border-bottom: 1px solid var(--line); padding: 14px 24px 0;
+}
+.top .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; }
+.top h1 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -.01em; }
+.top .sub { color: var(--fg-soft); font-size: 13px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.badge {
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px;
+  padding: 2px 10px; font-size: 12px; color: var(--fg-soft); white-space: nowrap;
+}
+.badge b { color: var(--fg); font-weight: 600; }
+.badge.failed, .badge.failed b { color: var(--outlier); border-color: var(--outlier); }
+nav.sections { display: flex; gap: 4px; margin-top: 12px; }
+nav.sections a {
+  padding: 8px 14px; border-bottom: 2px solid transparent; color: var(--fg-soft);
+  font-size: 14px; font-weight: 550;
+}
+nav.sections a.active { color: var(--fg); border-bottom-color: var(--accent); }
+.search { display: flex; gap: 8px; align-items: center; padding: 10px 0 12px; }
+.search input {
+  flex: 1; max-width: 460px; padding: 8px 12px; font-size: 14px; color: var(--fg);
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px;
+}
+.search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.chip {
+  border: 1px solid var(--line); background: var(--bg-soft); color: var(--fg-soft);
+  border-radius: 999px; padding: 5px 12px; font-size: 12.5px; cursor: pointer;
+}
+.chip[aria-pressed="true"] { color: #fff; border-color: transparent; }
+.chip[data-kind="training"][aria-pressed="true"] { background: var(--training); }
+.chip[data-kind="validation"][aria-pressed="true"] { background: var(--validation); }
+.chip[data-kind="outlier"][aria-pressed="true"] { background: var(--outlier); }
+.chip[data-kind="excluded"][aria-pressed="true"] { background: var(--excluded); }
+#hits { color: var(--fg-soft); font-size: 12.5px; margin-left: auto; }
+
+main { padding: 24px; max-width: 1400px; margin: 0 auto; }
+section { margin-bottom: 44px; scroll-margin-top: 150px; }
+section > h2 {
+  font-size: 17px; font-weight: 650; margin: 0 0 4px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 14px; font-weight: 600; color: var(--fg-soft); margin: 26px 0 10px;
+     text-transform: uppercase; letter-spacing: .04em; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 16px; margin-bottom: 16px;
+}
+/* a heading which opens a card sits at the padding of the card */
+.card > h3:first-child { margin-top: 0; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+        margin-bottom: 16px; }
+/* the gap of the grid is the space between its cards */
+.grid > .card { margin-bottom: 0; }
+.card.wide { grid-column: 1 / -1; }
+
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+/* two tables in one card, e.g. the networks and their arrays */
+table + table { margin-top: 24px; }
+th, td { text-align: left; padding: 7px 12px 7px 0; border-bottom: 1px solid var(--line); }
+th { color: var(--fg-soft); font-weight: 600; white-space: nowrap; }
+th[data-sort] { cursor: pointer; user-select: none; }
+th[data-sort]:hover { color: var(--fg); }
+th[data-sort]::after { content: " ⇅"; opacity: .35; }
+th[data-sort].asc::after { content: " ↑"; opacity: 1; }
+th[data-sort].desc::after { content: " ↓"; opacity: 1; }
+td.num, th.num { text-align: right; padding-right: 18px; font-variant-numeric: tabular-nums; }
+tbody tr:hover { background: var(--bg-soft); }
+tr.total td { font-weight: 650; border-top: 2px solid var(--line); }
+
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 20px; font-size: 13.5px;
+      margin: 0; }
+.kv dt { color: var(--fg-soft); }
+.kv dd { margin: 0; word-break: break-word; white-space: pre-line; }
+
+.tag { border-radius: 999px; padding: 1px 9px; font-size: 11.5px; font-weight: 600; color: #fff; }
+.tag.training { background: var(--training); }
+.tag.validation { background: var(--validation); }
+.tag.outlier { background: var(--outlier); }
+.tag.excluded { background: var(--excluded); }
+.warn { color: var(--outlier); }
+
+/* what a value means, on the header of a column or next to a figure */
+.hint {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 14px; height: 14px; margin-left: 4px; border-radius: 50%;
+  border: 1px solid var(--line); color: var(--fg-soft);
+  font-size: 10px; font-weight: 700; line-height: 1; cursor: help;
+  position: relative; vertical-align: middle; user-select: none;
+}
+.hint:hover, .hint:focus { border-color: var(--accent); color: var(--accent); }
+.hint::after {
+  content: attr(data-tip);
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%);
+  width: max-content; max-width: 320px; padding: 8px 10px;
+  border-radius: 6px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); box-shadow: 0 4px 16px rgb(0 0 0 / 18%);
+  font-size: 12px; font-weight: 400; line-height: 1.45; text-align: left;
+  white-space: normal; opacity: 0; visibility: hidden; transition: opacity .12s;
+  z-index: 20; pointer-events: none;
+}
+.hint:hover::after, .hint:focus::after { opacity: 1; visibility: visible; }
+/* a tooltip of the last columns would leave the page */
+td:last-child .hint::after, th:last-child .hint::after { left: auto; right: 0; transform: none; }
+/* on a phone a wide table scrolls inside its card and not the page; the
+   tooltips of its header open downwards, into the table, not above the card */
+@media (max-width: 700px) {
+  .card { overflow-x: auto; }
+  th .hint::after { bottom: auto; top: calc(100% + 8px); }
+  /* the header of a phone is not sticky, it would cover half of the screen,
+     and its rows wrap; the gutter is 16px */
+  header.top { position: static; padding: 12px 16px 0; }
+  main { padding: 16px; }
+  footer { padding: 8px 16px 24px; }
+  section { scroll-margin-top: 16px; }
+  nav.sections { overflow-x: auto; }
+  nav.sections a { padding: 8px 10px; white-space: nowrap; }
+  .search { flex-wrap: wrap; }
+  .search input { flex-basis: 100%; max-width: none; }
+}
+
+figure { margin: 0; }
+figure img {
+  width: 100%; height: auto; background: #fff; border: 1px solid var(--line);
+  border-radius: 8px; cursor: zoom-in;
+}
+figcaption { color: var(--fg-soft); font-size: 12.5px; margin-top: 6px; }
+
+.mapping { }
+.mapping header { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 10px; }
+.mapping header .name { font-weight: 650; }
+.mapping header .exp { color: var(--fg-soft); font-size: 13px; }
+.mapping .metrics { margin-left: auto; display: flex; gap: 14px; font-size: 12.5px; color: var(--fg-soft); }
+.mapping .metrics b { color: var(--fg); font-weight: 600; }
+.hidden { display: none !important; }
+.failed { color: var(--outlier); }
+.empty { color: var(--fg-soft); font-style: italic; padding: 16px 0; }
+
+pre.code {
+  margin: 0; padding: 14px 16px; overflow-x: auto; max-height: 70vh;
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px; line-height: 1.5; tab-size: 4;
+}
+#lightbox {
+  position: fixed; inset: 0; background: rgba(8,10,14,.86); z-index: 50;
+  display: none; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out;
+}
+#lightbox.open { display: flex; }
+#lightbox img { max-width: 100%; max-height: 100%; background: #fff; border-radius: 8px; }
+footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-width: 1400px; margin: 0 auto; }
+</style>
+<style>
+  /* an interactive figure is a page of its own, shown in place of the image */
+  figure iframe { width: 100%; height: 520px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg-card); }
+  /* a figure of one panel is not stretched to the width of the page, a figure
+     of many panels still uses it */
+  #figures figure img { width: auto; max-width: 100%; max-height: 70vh; display: block; margin: 0 auto; }
+  .mapping header .exp a + a::before { content: "·"; color: var(--fg-soft); margin: 0 6px; }
+</style>
+</head>
+<body data-items="figures">
+
+<header class="top">
+  <div class="row">
+    <h1>Beermann1977a</h1>
+    <span class="sub">simulation experiment</span>
+    <div class="badges">
+<span class="badge">models <b>1</b></span>
+<span class="badge">datasets <b>105</b></span>
+<span class="badge">figures <b>3</b></span>
+    </div>
+  </div>
+  <nav class="sections">
+<a href="#overview">Overview</a>
+<a href="#figures">Figures</a>
+<a href="#code">Code</a>
+  </nav>
+  <div class="search">
+    <input id="search" type="search" placeholder="Search figures, models, datasets …" autocomplete="off">
+    <span id="hits"></span>
+  </div>
+</header>
+
+<main>
+
+<section id="overview">
+  <h2>Overview</h2>
+
+  <h3>Models</h3>
+  <div class="card">
+    <table data-filter="row">
+      <thead><tr><th data-sort="text">model</th><th data-sort="text">source</th></tr></thead>
+      <tbody>
+      <tr><td class="mono">model</td><td><a href="../../../../src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml" title="../../../../src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml">hctz_body_flat.xml</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Datasets</h3>
+  <div class="card">
+    <table data-filter="row">
+      <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
+      <tbody>
+      <tr><td class="mono">Fig1_2_excretion_hctz25_HD</td><td><a href="Beermann1977a_Fig1_2_excretion_hctz25_HD.tsv">Beermann1977a_Fig1_2_excretion_hctz25_HD.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_2_excretion_hctz25_HD_collected</td><td><a href="Beermann1977a_Fig1_2_excretion_hctz25_HD_collected.tsv">Beermann1977a_Fig1_2_excretion_hctz25_HD_collected.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_2_excretion_hctz25_MLL</td><td><a href="Beermann1977a_Fig1_2_excretion_hctz25_MLL.tsv">Beermann1977a_Fig1_2_excretion_hctz25_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_2_excretion_hctz25_MLL_collected</td><td><a href="Beermann1977a_Fig1_2_excretion_hctz25_MLL_collected.tsv">Beermann1977a_Fig1_2_excretion_hctz25_MLL_collected.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_2_hctz25_HD</td><td><a href="Beermann1977a_Fig1_2_hctz25_HD.tsv">Beermann1977a_Fig1_2_hctz25_HD.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_2_hctz25_MLL</td><td><a href="Beermann1977a_Fig1_2_hctz25_MLL.tsv">Beermann1977a_Fig1_2_hctz25_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_0_aurine_ca</td><td><a href="Beermann1977a_Fig5tc_0_aurine_ca.tsv">Beermann1977a_Fig5tc_0_aurine_ca.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_0_aurine_k</td><td><a href="Beermann1977a_Fig5tc_0_aurine_k.tsv">Beermann1977a_Fig5tc_0_aurine_k.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_0_aurine_mg</td><td><a href="Beermann1977a_Fig5tc_0_aurine_mg.tsv">Beermann1977a_Fig5tc_0_aurine_mg.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_0_aurine_na</td><td><a href="Beermann1977a_Fig5tc_0_aurine_na.tsv">Beermann1977a_Fig5tc_0_aurine_na.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_0_urinvol</td><td><a href="Beermann1977a_Fig5tc_0_urinvol.tsv">Beermann1977a_Fig5tc_0_urinvol.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_12_5_aurine_ca</td><td><a href="Beermann1977a_Fig5tc_12_5_aurine_ca.tsv">Beermann1977a_Fig5tc_12_5_aurine_ca.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_12_5_aurine_k</td><td><a href="Beermann1977a_Fig5tc_12_5_aurine_k.tsv">Beermann1977a_Fig5tc_12_5_aurine_k.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_12_5_aurine_mg</td><td><a href="Beermann1977a_Fig5tc_12_5_aurine_mg.tsv">Beermann1977a_Fig5tc_12_5_aurine_mg.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_12_5_aurine_na</td><td><a href="Beermann1977a_Fig5tc_12_5_aurine_na.tsv">Beermann1977a_Fig5tc_12_5_aurine_na.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_12_5_urinvol</td><td><a href="Beermann1977a_Fig5tc_12_5_urinvol.tsv">Beermann1977a_Fig5tc_12_5_urinvol.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_25_aurine_ca</td><td><a href="Beermann1977a_Fig5tc_25_aurine_ca.tsv">Beermann1977a_Fig5tc_25_aurine_ca.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_25_aurine_k</td><td><a href="Beermann1977a_Fig5tc_25_aurine_k.tsv">Beermann1977a_Fig5tc_25_aurine_k.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_25_aurine_mg</td><td><a href="Beermann1977a_Fig5tc_25_aurine_mg.tsv">Beermann1977a_Fig5tc_25_aurine_mg.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_25_aurine_na</td><td><a href="Beermann1977a_Fig5tc_25_aurine_na.tsv">Beermann1977a_Fig5tc_25_aurine_na.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_25_urinvol</td><td><a href="Beermann1977a_Fig5tc_25_urinvol.tsv">Beermann1977a_Fig5tc_25_urinvol.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_50_aurine_ca</td><td><a href="Beermann1977a_Fig5tc_50_aurine_ca.tsv">Beermann1977a_Fig5tc_50_aurine_ca.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_50_aurine_k</td><td><a href="Beermann1977a_Fig5tc_50_aurine_k.tsv">Beermann1977a_Fig5tc_50_aurine_k.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_50_aurine_mg</td><td><a href="Beermann1977a_Fig5tc_50_aurine_mg.tsv">Beermann1977a_Fig5tc_50_aurine_mg.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_50_aurine_na</td><td><a href="Beermann1977a_Fig5tc_50_aurine_na.tsv">Beermann1977a_Fig5tc_50_aurine_na.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_50_urinvol</td><td><a href="Beermann1977a_Fig5tc_50_urinvol.tsv">Beermann1977a_Fig5tc_50_urinvol.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_75_aurine_ca</td><td><a href="Beermann1977a_Fig5tc_75_aurine_ca.tsv">Beermann1977a_Fig5tc_75_aurine_ca.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_75_aurine_k</td><td><a href="Beermann1977a_Fig5tc_75_aurine_k.tsv">Beermann1977a_Fig5tc_75_aurine_k.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_75_aurine_mg</td><td><a href="Beermann1977a_Fig5tc_75_aurine_mg.tsv">Beermann1977a_Fig5tc_75_aurine_mg.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_75_aurine_na</td><td><a href="Beermann1977a_Fig5tc_75_aurine_na.tsv">Beermann1977a_Fig5tc_75_aurine_na.tsv</a></td></tr>
+      <tr><td class="mono">Fig5tc_75_urinvol</td><td><a href="Beermann1977a_Fig5tc_75_urinvol.tsv">Beermann1977a_Fig5tc_75_urinvol.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ12_5_ACL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ12_5_ACL.tsv">Beermann1977a_Tab4_amount_HCTZ12_5_ACL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ12_5_IJ</td><td><a href="Beermann1977a_Tab4_amount_HCTZ12_5_IJ.tsv">Beermann1977a_Tab4_amount_HCTZ12_5_IJ.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ12_5_KCL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ12_5_KCL.tsv">Beermann1977a_Tab4_amount_HCTZ12_5_KCL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ12_5_LE</td><td><a href="Beermann1977a_Tab4_amount_HCTZ12_5_LE.tsv">Beermann1977a_Tab4_amount_HCTZ12_5_LE.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ12_5_MLL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ12_5_MLL.tsv">Beermann1977a_Tab4_amount_HCTZ12_5_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ12_5_YO</td><td><a href="Beermann1977a_Tab4_amount_HCTZ12_5_YO.tsv">Beermann1977a_Tab4_amount_HCTZ12_5_YO.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ12_5_mean</td><td><a href="Beermann1977a_Tab4_amount_HCTZ12_5_mean.tsv">Beermann1977a_Tab4_amount_HCTZ12_5_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ25_ACL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ25_ACL.tsv">Beermann1977a_Tab4_amount_HCTZ25_ACL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ25_AH</td><td><a href="Beermann1977a_Tab4_amount_HCTZ25_AH.tsv">Beermann1977a_Tab4_amount_HCTZ25_AH.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ25_HD</td><td><a href="Beermann1977a_Tab4_amount_HCTZ25_HD.tsv">Beermann1977a_Tab4_amount_HCTZ25_HD.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ25_IJ</td><td><a href="Beermann1977a_Tab4_amount_HCTZ25_IJ.tsv">Beermann1977a_Tab4_amount_HCTZ25_IJ.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ25_KCL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ25_KCL.tsv">Beermann1977a_Tab4_amount_HCTZ25_KCL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ25_LE</td><td><a href="Beermann1977a_Tab4_amount_HCTZ25_LE.tsv">Beermann1977a_Tab4_amount_HCTZ25_LE.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ25_MLL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ25_MLL.tsv">Beermann1977a_Tab4_amount_HCTZ25_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ25_YO</td><td><a href="Beermann1977a_Tab4_amount_HCTZ25_YO.tsv">Beermann1977a_Tab4_amount_HCTZ25_YO.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ25_mean</td><td><a href="Beermann1977a_Tab4_amount_HCTZ25_mean.tsv">Beermann1977a_Tab4_amount_HCTZ25_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ50_ACL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ50_ACL.tsv">Beermann1977a_Tab4_amount_HCTZ50_ACL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ50_AH</td><td><a href="Beermann1977a_Tab4_amount_HCTZ50_AH.tsv">Beermann1977a_Tab4_amount_HCTZ50_AH.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ50_HD</td><td><a href="Beermann1977a_Tab4_amount_HCTZ50_HD.tsv">Beermann1977a_Tab4_amount_HCTZ50_HD.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ50_IJ</td><td><a href="Beermann1977a_Tab4_amount_HCTZ50_IJ.tsv">Beermann1977a_Tab4_amount_HCTZ50_IJ.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ50_KCL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ50_KCL.tsv">Beermann1977a_Tab4_amount_HCTZ50_KCL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ50_LE</td><td><a href="Beermann1977a_Tab4_amount_HCTZ50_LE.tsv">Beermann1977a_Tab4_amount_HCTZ50_LE.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ50_MLL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ50_MLL.tsv">Beermann1977a_Tab4_amount_HCTZ50_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ50_YO</td><td><a href="Beermann1977a_Tab4_amount_HCTZ50_YO.tsv">Beermann1977a_Tab4_amount_HCTZ50_YO.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ50_mean</td><td><a href="Beermann1977a_Tab4_amount_HCTZ50_mean.tsv">Beermann1977a_Tab4_amount_HCTZ50_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ75_ACL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ75_ACL.tsv">Beermann1977a_Tab4_amount_HCTZ75_ACL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ75_AH</td><td><a href="Beermann1977a_Tab4_amount_HCTZ75_AH.tsv">Beermann1977a_Tab4_amount_HCTZ75_AH.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ75_HD</td><td><a href="Beermann1977a_Tab4_amount_HCTZ75_HD.tsv">Beermann1977a_Tab4_amount_HCTZ75_HD.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ75_IJ</td><td><a href="Beermann1977a_Tab4_amount_HCTZ75_IJ.tsv">Beermann1977a_Tab4_amount_HCTZ75_IJ.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ75_KCL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ75_KCL.tsv">Beermann1977a_Tab4_amount_HCTZ75_KCL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ75_LE</td><td><a href="Beermann1977a_Tab4_amount_HCTZ75_LE.tsv">Beermann1977a_Tab4_amount_HCTZ75_LE.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ75_MLL</td><td><a href="Beermann1977a_Tab4_amount_HCTZ75_MLL.tsv">Beermann1977a_Tab4_amount_HCTZ75_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ75_YO</td><td><a href="Beermann1977a_Tab4_amount_HCTZ75_YO.tsv">Beermann1977a_Tab4_amount_HCTZ75_YO.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_amount_HCTZ75_mean</td><td><a href="Beermann1977a_Tab4_amount_HCTZ75_mean.tsv">Beermann1977a_Tab4_amount_HCTZ75_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ12_5_ACL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ12_5_ACL.tsv">Beermann1977a_Tab4_clearance_HCTZ12_5_ACL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ12_5_IJ</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ12_5_IJ.tsv">Beermann1977a_Tab4_clearance_HCTZ12_5_IJ.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ12_5_KCL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ12_5_KCL.tsv">Beermann1977a_Tab4_clearance_HCTZ12_5_KCL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ12_5_LE</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ12_5_LE.tsv">Beermann1977a_Tab4_clearance_HCTZ12_5_LE.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ12_5_MLL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ12_5_MLL.tsv">Beermann1977a_Tab4_clearance_HCTZ12_5_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ12_5_YO</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ12_5_YO.tsv">Beermann1977a_Tab4_clearance_HCTZ12_5_YO.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ12_5_mean</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ12_5_mean.tsv">Beermann1977a_Tab4_clearance_HCTZ12_5_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ25_ACL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ25_ACL.tsv">Beermann1977a_Tab4_clearance_HCTZ25_ACL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ25_AH</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ25_AH.tsv">Beermann1977a_Tab4_clearance_HCTZ25_AH.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ25_IJ</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ25_IJ.tsv">Beermann1977a_Tab4_clearance_HCTZ25_IJ.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ25_KCL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ25_KCL.tsv">Beermann1977a_Tab4_clearance_HCTZ25_KCL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ25_LE</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ25_LE.tsv">Beermann1977a_Tab4_clearance_HCTZ25_LE.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ25_MLL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ25_MLL.tsv">Beermann1977a_Tab4_clearance_HCTZ25_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ25_YO</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ25_YO.tsv">Beermann1977a_Tab4_clearance_HCTZ25_YO.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ25_mean</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ25_mean.tsv">Beermann1977a_Tab4_clearance_HCTZ25_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ50_ACL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ50_ACL.tsv">Beermann1977a_Tab4_clearance_HCTZ50_ACL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ50_AH</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ50_AH.tsv">Beermann1977a_Tab4_clearance_HCTZ50_AH.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ50_HD</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ50_HD.tsv">Beermann1977a_Tab4_clearance_HCTZ50_HD.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ50_IJ</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ50_IJ.tsv">Beermann1977a_Tab4_clearance_HCTZ50_IJ.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ50_KCL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ50_KCL.tsv">Beermann1977a_Tab4_clearance_HCTZ50_KCL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ50_LE</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ50_LE.tsv">Beermann1977a_Tab4_clearance_HCTZ50_LE.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ50_MLL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ50_MLL.tsv">Beermann1977a_Tab4_clearance_HCTZ50_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ50_YO</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ50_YO.tsv">Beermann1977a_Tab4_clearance_HCTZ50_YO.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ50_mean</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ50_mean.tsv">Beermann1977a_Tab4_clearance_HCTZ50_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ75_ACL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ75_ACL.tsv">Beermann1977a_Tab4_clearance_HCTZ75_ACL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ75_HD</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ75_HD.tsv">Beermann1977a_Tab4_clearance_HCTZ75_HD.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ75_IJ</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ75_IJ.tsv">Beermann1977a_Tab4_clearance_HCTZ75_IJ.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ75_KCL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ75_KCL.tsv">Beermann1977a_Tab4_clearance_HCTZ75_KCL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ75_LE</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ75_LE.tsv">Beermann1977a_Tab4_clearance_HCTZ75_LE.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ75_MLL</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ75_MLL.tsv">Beermann1977a_Tab4_clearance_HCTZ75_MLL.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ75_YO</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ75_YO.tsv">Beermann1977a_Tab4_clearance_HCTZ75_YO.tsv</a></td></tr>
+      <tr><td class="mono">Tab4_clearance_HCTZ75_mean</td><td><a href="Beermann1977a_Tab4_clearance_HCTZ75_mean.tsv">Beermann1977a_Tab4_clearance_HCTZ75_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4mean_amount_HCTZ12_5_mean</td><td><a href="Beermann1977a_Tab4mean_amount_HCTZ12_5_mean.tsv">Beermann1977a_Tab4mean_amount_HCTZ12_5_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4mean_amount_HCTZ25_mean</td><td><a href="Beermann1977a_Tab4mean_amount_HCTZ25_mean.tsv">Beermann1977a_Tab4mean_amount_HCTZ25_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4mean_amount_HCTZ50_mean</td><td><a href="Beermann1977a_Tab4mean_amount_HCTZ50_mean.tsv">Beermann1977a_Tab4mean_amount_HCTZ50_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4mean_amount_HCTZ75_mean</td><td><a href="Beermann1977a_Tab4mean_amount_HCTZ75_mean.tsv">Beermann1977a_Tab4mean_amount_HCTZ75_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4mean_clearance_HCTZ12_5_mean</td><td><a href="Beermann1977a_Tab4mean_clearance_HCTZ12_5_mean.tsv">Beermann1977a_Tab4mean_clearance_HCTZ12_5_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4mean_clearance_HCTZ25_mean</td><td><a href="Beermann1977a_Tab4mean_clearance_HCTZ25_mean.tsv">Beermann1977a_Tab4mean_clearance_HCTZ25_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4mean_clearance_HCTZ50_mean</td><td><a href="Beermann1977a_Tab4mean_clearance_HCTZ50_mean.tsv">Beermann1977a_Tab4mean_clearance_HCTZ50_mean.tsv</a></td></tr>
+      <tr><td class="mono">Tab4mean_clearance_HCTZ75_mean</td><td><a href="Beermann1977a_Tab4mean_clearance_HCTZ75_mean.tsv">Beermann1977a_Tab4mean_clearance_HCTZ75_mean.tsv</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="figures">
+  <h2>Figures (3)</h2>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">Fig1_2</span>
+      <span class="exp">
+<a href="Beermann1977a_Fig1_2.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="Beermann1977a_Fig1_2.svg" alt="Fig1_2">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">Fig5tc</span>
+      <span class="exp">
+<a href="Beermann1977a_Fig5tc.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="Beermann1977a_Fig5tc.svg" alt="Fig5tc">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">Tab4</span>
+      <span class="exp">
+<a href="Beermann1977a_Tab4.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="Beermann1977a_Tab4.svg" alt="Tab4">
+    </figure>
+  </div>
+  <p class="empty hidden" data-empty>No figure matches the search.</p>
+</section>
+
+<section id="code">
+  <h2>Code</h2>
+  <div class="card">
+    <p><a href="../../../../src/pkdb_models/models/hctz/experiments/studies/beermann1977a.py" title="../../../../src/pkdb_models/models/hctz/experiments/studies/beermann1977a.py">beermann1977a.py</a></p>
+    <pre class="code"><code>&#34;&#34;&#34;Simulation experiment of the study Beermann1977a.&#34;&#34;&#34;
+
+from typing import ClassVar, override
+
+import libsbml
+import pandas as pd
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Change, Simulation
+from sbmlsim.units import Quantity
+
+from pkdb_models.models.hctz import MODEL
+from pkdb_models.models.hctz.experiments.base_experiment import (
+    HCTZSimulationExperiment,
+)
+
+
+class Beermann1977a(HCTZSimulationExperiment):
+    &#34;&#34;&#34;Simulation experiment of Beermann1977a.
+
+    HCTZ in various single oral doses 12.5, 25, 50 and 75 mg.
+    &#34;&#34;&#34;
+
+    colors_dose: ClassVar[dict[float, str]] = {
+        0: &#34;black&#34;,
+        12.5: &#34;tab:blue&#34;,
+        25: &#34;tab:orange&#34;,
+        50: &#34;tab:green&#34;,
+        75: &#34;tab:red&#34;,
+    }
+    doses: ClassVar[list[float]] = list(colors_dose)
+
+    # Figure 1_2
+    individuals_fig1_2: ClassVar[list[str]] = [&#34;HD&#34;, &#34;MLL&#34;]
+    #: the urine collections of Fig1 and Fig2 [hr]: every hour from 0 to 10 hr,
+    #: then 10-12, 12-24 and 24-48 hr (methods). The curated time of a rate is
+    #: the start of its collection for HD and the end for MLL (the bars of the
+    #: figure end at the axis at 32 hr, the last collection ends at 48 hr, the
+    #: sums of the collections are the 48 hr recoveries of Tab4). The point at
+    #: 32 hr of HD and at 0 hr of MLL are no collections.
+    collections_fig1_2: ClassVar[dict[str, dict[float, tuple[float, float]]]] = {
+        &#34;HD&#34;: {
+            **{float(t): (t, t + 1) for t in range(10)},
+            10.0: (10, 12),
+            12.0: (12, 24),
+            24.0: (24, 48),
+        },
+        &#34;MLL&#34;: {
+            **{float(t): (t - 1, t) for t in range(1, 11)},
+            12.0: (10, 12),
+            24.0: (12, 24),
+            32.0: (24, 48),
+        },
+    }
+    info_fig1_2: ClassVar[dict[str, str]] = {
+        &#34;[Cve_hctz]&#34;: &#34;hctz25&#34;,  # plasma concentration
+        &#34;KI__HCTZEX&#34;: &#34;excretion_hctz25&#34;,  # excretion rate
+    }
+    # Figure 5
+    info_fig5: ClassVar[dict[str, str]] = {
+        &#34;Vurine&#34;: &#34;urinvol&#34;,  # urine volume
+        &#34;na_urine&#34;: &#34;aurine_na&#34;,  # cumulative amount of sodium in urine
+    }
+    # Table 4
+    markers_tab4: ClassVar[dict[str, str]] = {
+        &#34;IJ&#34;: &#34;o&#34;,
+        &#34;YO&#34;: &#34;D&#34;,
+        &#34;MLL&#34;: &#34;*&#34;,
+        &#34;ACL&#34;: &#34;x&#34;,
+        &#34;HD&#34;: &#34;v&#34;,
+        &#34;KCL&#34;: &#34;^&#34;,
+        &#34;AH&#34;: &#34;&gt;&#34;,
+        &#34;LE&#34;: &#34;&lt;&#34;,
+    }
+    subjects_tab4: ClassVar[list[str]] = list(markers_tab4)
+
+    @override
+    def datasets(self) -&gt; dict[str, DataSet]:
+        dsets = {}
+        for fig_id in [&#34;Fig1_2&#34;, &#34;Fig5tc&#34;, &#34;Tab4&#34;, &#34;Tab4mean&#34;]:
+            df: pd.DataFrame = self.load_dataframe(fig_id)
+            for label, df_label in df.groupby(&#34;label&#34;):
+                label = str(label)
+                if fig_id == &#34;Fig1_2&#34; and label.startswith(&#34;excretion_&#34;):
+                    dsets.update(self._collections(label, df_label))
+                    continue
+                dset = DataSet.from_df(df_label, self.ureg)
+                if label.startswith((&#34;hctz&#34;, &#34;excretion_&#34;, &#34;amount&#34;)):
+                    dset.unit_conversion(&#34;value&#34;, 1 / self.Mr.hctz)
+                    dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr.hctz)
+                dsets[self.to_sid(f&#34;{fig_id}_{label}&#34;)] = dset
+        return dsets
+
+    def _collections(self, label: str, df: pd.DataFrame) -&gt; dict[str, DataSet]:
+        &#34;&#34;&#34;Get the rates of a subject at the midpoints and the amounts collected.
+
+        Args:
+            label: the label of the rates, `excretion_hctz25_&lt;subject&gt;`.
+            df: the rates of Fig1_2.
+
+        Returns:
+            The rates at the midpoints of the collections and the amounts of the
+            collections (`_collected`).
+        &#34;&#34;&#34;
+        collections = self.collections_fig1_2[label.split(&#34;_&#34;)[-1]]
+        df = df[df[&#34;time&#34;].isin(collections)].sort_values(&#34;time&#34;)
+        intervals = [collections[float(t)] for t in df[&#34;time&#34;]]
+        rates = df.copy()
+        rates[&#34;time&#34;] = [(start + end) / 2 for start, end in intervals]
+        collected = self.collected_amounts(df, intervals)
+        dsets = {}
+        for key, data in [(label, rates), (f&#34;{label}_collected&#34;, collected)]:
+            dset = DataSet.from_df(data, self.ureg)
+            dset.unit_conversion(&#34;value&#34;, 1 / self.Mr.hctz)
+            dsets[self.to_sid(f&#34;Fig1_2_{key}&#34;)] = dset
+        return dsets
+
+    #: the water load: 150 ml tap water every hour from -2 to 10 hr (at 4, 5
+    #: and 6 hr 75 ml water and 75 ml Trilgar), after 10 hr the subjects drank
+    #: at will (methods p297-298). The model has a constant water intake
+    #: `vin_h2o`, the load is a raised intake over the 12 hr, then the intake
+    #: of the model again
+    water_load: ClassVar[tuple[float, float, Quantity]] = (-2, 10, Q(150, &#34;ml/hr&#34;))
+
+    @classmethod
+    def vin_h2o(cls) -&gt; Quantity:
+        &#34;&#34;&#34;Get the water intake of the model, `vin_h2o` of the simulated model.&#34;&#34;&#34;
+        model = libsbml.readSBMLFromFile(str(MODEL.model_path)).getModel()
+        return Q(model.getParameter(&#34;vin_h2o&#34;).getValue(), &#34;l/min&#34;)
+
+    def _protocol(self, dose: float) -&gt; list[Change]:
+        &#34;&#34;&#34;Get the changes of the protocol: the water load and the dose at 0 hr.
+
+        The intake `vin_h2o` is changed after the initialization, so the
+        excretion of water of the model (`k_h2o`, initialized from `vin_h2o`)
+        stays that of its own intake and the load is excreted as the
+        extracellular fluid expands. The urine is emptied at the dose, the
+        collections start at 0 hr. The sodium intake of the study (6.75 mmol
+        in 10 hr, Table 1) is not encoded: the intake of the model, `k_na *
+        na_ref`, is the excretion constant `k_na` of the fit times the
+        reference sodium, no parameter of its own.
+        &#34;&#34;&#34;
+        start, end, rate = self.water_load
+        return [
+            Change(start, {&#34;vin_h2o&#34;: rate}),
+            Change(end, {&#34;vin_h2o&#34;: self.vin_h2o()}),
+            Change(0, {&#34;PODOSE_hctz&#34;: Q(dose, &#34;mg&#34;), **self.urine_reset}),
+        ]
+
+    @override
+    def simulations(self) -&gt; dict[str, Simulation]:
+        simulations = {}
+        # the simulations start 1 hr before the water load
+        start = self.water_load[0] - 1
+        steps = int((50 - start) * 10)
+        for dose in self.doses:
+            simulations[self.to_sid(f&#34;hctz{dose}&#34;)] = Simulation(
+                time_unit=&#34;hr&#34;,
+                start=start,
+                end=50,
+                steps=steps,
+                preinit_changes=self.default_changes(),
+                changes=self._protocol(dose),
+            )
+        # the urine of Fig1_2 emptied at the end of every collection
+        ends = sorted({end for _, end in self.collections_fig1_2[&#34;HD&#34;].values()})
+        simulations[&#34;hctz25_collections&#34;] = Simulation(
+            time_unit=&#34;hr&#34;,
+            start=start,
+            end=50,
+            steps=steps,
+            preinit_changes=self.default_changes(),
+            changes=[*self._protocol(25), Change(ends, self.urine_reset)],
+        )
+
+        return simulations
+
+    @override
+    def fit_mappings(self) -&gt; dict[str, FitMapping]:
+        mappings = {}
+
+        # Figure 1_2: the plasma and the amounts of the urine collections
+        for sid in self.info_fig1_2:
+            name = self.info_fig1_2[sid]
+            excretion = sid == &#34;KI__HCTZEX&#34;
+            for individual in self.individuals_fig1_2:
+                mappings[self.to_sid(f&#34;fm_Fig1_2_{name}_{individual}&#34;)] = FitMapping(
+                    self,
+                    reference=FitData(
+                        self,
+                        dataset=self.to_sid(
+                            f&#34;Fig1_2_{name}_{individual}&#34;
+                            + (&#34;_collected&#34; if excretion else &#34;&#34;)
+                        ),
+                        xid=&#34;time&#34;,
+                        yid=&#34;value&#34;,
+                        count=&#34;count&#34;,
+                    ),
+                    observable=FitData(
+                        self,
+                        task=&#34;task_hctz25_collections&#34; if excretion else &#34;task_hctz25&#34;,
+                        xid=&#34;time&#34;,
+                        yid=&#34;Aurine_hctz&#34; if excretion else sid,
+                    ),
+                    metadata=PKPDMappingMetaData(
+                        tissue=Tissue.URINE if &#34;excretion&#34; in name else Tissue.PLASMA,
+                        application_form=ApplicationForm.TABLET,
+                        route=Route.PO,
+                        dosing=Dosing.SINGLE,
+                        health=Health.HEALTHY,
+                        fasting=Fasting.FASTED,
+                        coadministration=Coadministration.NONE,
+                    ),
+                )
+
+        # Figure 5
+        for dose in self.doses:
+            dose_str = str(dose).replace(&#34;.&#34;, &#34;_&#34;)
+            for sid in self.info_fig5:
+                name = self.info_fig5[sid]
+                mappings[self.to_sid(f&#34;fm_Fig5tc_{dose_str}_{name}&#34;)] = FitMapping(
+                    self,
+                    reference=FitData(
+                        self,
+                        dataset=self.to_sid(f&#34;Fig5tc_{dose_str}_{name}&#34;),
+                        xid=&#34;time&#34;,
+                        yid=&#34;mean&#34;,
+                        yid_sd=&#34;mean_sd&#34;,
+                        count=&#34;count&#34;,
+                    ),
+                    observable=FitData(
+                        self, task=self.to_sid(f&#34;task_hctz{dose}&#34;), xid=&#34;time&#34;, yid=sid
+                    ),
+                    metadata=PKPDMappingMetaData(
+                        tissue=Tissue.URINE,
+                        application_form=ApplicationForm.TABLET,
+                        route=Route.PO,
+                        dosing=Dosing.SINGLE,
+                        health=Health.HEALTHY,
+                        fasting=Fasting.FASTED,
+                        coadministration=Coadministration.NONE,
+                    ),
+                )
+
+        # Table 4
+        for dose in self.doses:
+            dose_str = str(dose).replace(&#34;.&#34;, &#34;_&#34;)
+            if dose == 0:
+                continue
+
+            # data (mean)
+            mappings[self.to_sid(f&#34;fm_Tab4_amount_HCTZ{dose}_mean&#34;)] = FitMapping(
+                self,
+                reference=FitData(
+                    self,
+                    dataset=self.to_sid(f&#34;Tab4_amount_HCTZ{dose_str}_mean&#34;),
+                    xid=&#34;time&#34;,
+                    yid=&#34;mean&#34;,
+                    yid_sd=&#34;mean_sd&#34;,
+                    count=&#34;count&#34;,
+                ),
+                observable=FitData(
+                    self,
+                    task=self.to_sid(f&#34;task_hctz{dose}&#34;),
+                    xid=&#34;time&#34;,
+                    yid=&#34;Aurine_hctz&#34;,
+                ),
+                metadata=PKPDMappingMetaData(
+                    tissue=Tissue.URINE,
+                    application_form=ApplicationForm.TABLET,
+                    route=Route.PO,
+                    dosing=Dosing.SINGLE,
+                    health=Health.HEALTHY,
+                    fasting=Fasting.FASTED,
+                    coadministration=Coadministration.NONE,
+                ),
+            )
+
+            # data (individual)
+            for subject in self.subjects_tab4:
+                # HD and AH missing in 12.5 mg
+                if dose == 12.5 and subject in {&#34;HD&#34;, &#34;AH&#34;}:
+                    continue
+
+                mappings[self.to_sid(f&#34;fm_Tab4_amount_HCTZ{dose}_{subject}&#34;)] = (
+                    FitMapping(
+                        self,
+                        reference=FitData(
+                            self,
+                            dataset=self.to_sid(
+                                f&#34;Tab4_amount_HCTZ{dose_str}_{subject}&#34;
+                            ),
+                            xid=&#34;time&#34;,
+                            yid=&#34;value&#34;,
+                            yid_sd=None,
+                            count=&#34;count&#34;,
+                        ),
+                        observable=FitData(
+                            self,
+                            task=self.to_sid(f&#34;task_hctz{dose}&#34;),
+                            xid=&#34;time&#34;,
+                            yid=&#34;Aurine_hctz&#34;,
+                        ),
+                        metadata=PKPDMappingMetaData(
+                            tissue=Tissue.URINE,
+                            application_form=ApplicationForm.TABLET,
+                            route=Route.PO,
+                            dosing=Dosing.SINGLE,
+                            health=Health.HEALTHY,
+                            fasting=Fasting.FASTED,
+                            coadministration=Coadministration.NONE,
+                        ),
+                    )
+                )
+
+        return mappings
+
+    @override
+    def figures(self) -&gt; dict[str, Figure]:
+        return {
+            **self._figure_Fig1_2(),
+            **self._figure_Fig5tc(),
+            **self._figure_Tab4(),
+        }
+
+    def _figure_Fig1_2(self) -&gt; dict[str, Figure]:
+        name = &#34;Fig1_2&#34;
+        fig = Figure(
+            experiment=self,
+            sid=self.to_sid(name),
+            num_rows=1,
+            num_cols=3,
+            name=f&#34;{self.__class__.__name__} {name}&#34;,
+        )
+
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit=&#34;hr&#34;, max=50), legend=True
+        )
+        plots[0].set_yaxis(self.label_hctz, unit=self.unit_hctz)
+        plots[1].set_yaxis(
+            self.label_hctz_excretion_urine, unit=self.unit_hctz_excretion_urine
+        )
+        plots[2].set_yaxis(
+            f&#34;{self.label_hctz_urine.strip()} (collection)&#34;, unit=self.unit_hctz_urine
+        )
+
+        # simulation
+        for k, (task, sid) in enumerate(
+            [
+                (&#34;task_hctz25&#34;, &#34;[Cve_hctz]&#34;),
+                (&#34;task_hctz25&#34;, &#34;KI__HCTZEX&#34;),
+                (&#34;task_hctz25_collections&#34;, &#34;Aurine_hctz&#34;),
+            ]
+        ):
+            plots[k].add_data(
+                task=task,
+                xid=&#34;time&#34;,
+                yid=sid,
+                label=&#34;Sim 25 mg&#34;,
+                color=self.colors_dose[25],
+            )
+
+        # data: the plasma, the rates at the midpoints and the amounts of the
+        # collections at their ends
+        for k, (label, suffix) in enumerate(
+            [
+                (&#34;hctz25&#34;, &#34;&#34;),
+                (&#34;excretion_hctz25&#34;, &#34;&#34;),
+                (&#34;excretion_hctz25&#34;, &#34;_collected&#34;),
+            ]
+        ):
+            for individual in self.individuals_fig1_2:
+                plots[k].add_data(
+                    dataset=self.to_sid(f&#34;Fig1_2_{label}_{individual}{suffix}&#34;),
+                    xid=&#34;time&#34;,
+                    yid=&#34;value&#34;,
+                    yid_sd=None,
+                    count=&#34;count&#34;,
+                    label=individual,
+                    marker=&#34;v&#34; if &#34;HD&#34; in individual else &#34;*&#34;,
+                    color=self.colors_dose[25],
+                    linestyle=&#34;&#34; if suffix else &#34;--&#34;,
+                )
+
+        return {
+            self.to_sid(name): fig,
+        }
+
+    def _figure_Fig5tc(self) -&gt; dict[str, Figure]:
+        name = &#34;Fig5tc&#34;
+        fig = Figure(
+            experiment=self,
+            sid=self.to_sid(name),
+            num_rows=1,
+            num_cols=2,
+            name=f&#34;{self.__class__.__name__} {name}&#34;,
+        )
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit=self.unit_time, min=0, max=10.5),
+            legend=True,
+        )
+        plots[0].set_yaxis(
+            label=self.label_urine_volume, unit=self.unit_urine_volume, max=3000
+        )
+        plots[1].set_yaxis(label=self.label_na_urine, unit=self.unit_na_urine, max=400)
+
+        for dose in self.doses:
+            for k, sid in enumerate(self.info_fig5):
+                label = self.info_fig5[sid]
+                # simulation
+                plots[k].add_data(
+                    task=self.to_sid(f&#34;task_hctz{dose}&#34;),
+                    xid=&#34;time&#34;,
+                    yid=sid,
+                    label=f&#34;Sim {dose}&#34;,
+                    color=self.colors_dose[dose],
+                )
+                # data
+                plots[k].add_data(
+                    dataset=self.to_sid(
+                        f&#34;Fig5tc_{str(dose).replace(&#39;.&#39;, &#39;_&#39;)}_{label}&#34;
+                    ),
+                    xid=&#34;time&#34;,
+                    yid=&#34;mean&#34;,
+                    yid_sd=&#34;mean_sd&#34;,
+                    count=&#34;count&#34;,
+                    label=f&#34;hctz {dose} mg&#34;,
+                    color=self.colors_dose[dose],
+                )
+
+        return {
+            self.to_sid(name): fig,
+        }
+
+    def _figure_Tab4(self) -&gt; dict[str, Figure]:
+        name = &#34;Tab4&#34;
+        fig = Figure(
+            experiment=self,
+            sid=self.to_sid(name),
+            name=f&#34;{self.__class__.__name__} {name}&#34;,
+        )
+
+        plots = fig.create_plots(xaxis=Axis(self.label_time, unit=&#34;hr&#34;), legend=True)
+        plots[0].set_yaxis(self.label_hctz_urine, unit=self.unit_hctz_urine)
+
+        for dose in self.doses:
+            dose_str = str(dose).replace(&#34;.&#34;, &#34;_&#34;)
+            if dose == 0:
+                continue
+
+            # simulation
+            plots[0].add_data(
+                task=self.to_sid(f&#34;task_hctz{dose}&#34;),
+                xid=&#34;time&#34;,
+                yid=&#34;Aurine_hctz&#34;,
+                label=f&#34;Sim {dose}&#34;,
+                color=self.colors_dose[dose],
+            )
+            # data (individual)
+            for subject in self.subjects_tab4:
+                # HD and AH missing in 12.5 mg
+                if dose == 12.5 and subject in {&#34;HD&#34;, &#34;AH&#34;}:
+                    continue
+
+                plots[0].add_data(
+                    dataset=self.to_sid(f&#34;Tab4_amount_HCTZ{dose_str}_{subject}&#34;),
+                    xid=&#34;time&#34;,
+                    yid=&#34;value&#34;,
+                    yid_sd=None,
+                    count=&#34;count&#34;,
+                    label=None,
+                    linestyle=&#34;&#34;,
+                    marker=self.markers_tab4[subject],
+                    color=self.colors_dose[dose],
+                    markersize=4,
+                )
+
+            # data (mean)
+            plots[0].add_data(
+                dataset=self.to_sid(f&#34;Tab4_amount_HCTZ{dose_str}_mean&#34;),
+                xid=&#34;time&#34;,
+                yid=&#34;mean&#34;,
+                yid_sd=&#34;mean_sd&#34;,
+                count=&#34;count&#34;,
+                label=f&#34;hctz {dose} mg&#34;,
+                marker=&#34;s&#34;,
+                linestyle=&#34;&#34;,
+                color=self.colors_dose[dose],
+            )
+
+        return {
+            self.to_sid(name): fig,
+        }
+
+
+if __name__ == &#34;__main__&#34;:
+    MODEL.run_experiments(Beermann1977a, output_dir=Beermann1977a.__name__)
+</code></pre>
+  </div>
+</section>
+
+</main>
+
+<footer>
+<a href="../index.html">all experiments</a> · <a href="../../../../src/pkdb_models/models/hctz/experiments/studies/beermann1977a.py" title="../../../../src/pkdb_models/models/hctz/experiments/studies/beermann1977a.py">beermann1977a.py</a>
+</footer>
+
+<div id="lightbox"><img alt=""></div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- search and the filter chips ------------------------------------
+  const search = document.getElementById("search");
+  const hits = document.getElementById("hits");
+  const chips = Array.from(document.querySelectorAll(".chip"));
+  const cards = Array.from(document.querySelectorAll('[data-filter="card"]'));
+  const rows = Array.from(document.querySelectorAll('table[data-filter="row"] tbody tr'));
+  const empty = document.querySelector("[data-empty]");
+  const itemLabel = document.body.dataset.items || "items";
+
+  const haystack = new Map();
+  for (const node of [...cards, ...rows]) {
+    haystack.set(node, node.textContent.toLowerCase());
+  }
+
+  function activeKinds() {
+    return new Set(chips.filter((c) => c.getAttribute("aria-pressed") === "true")
+                        .map((c) => c.dataset.kind));
+  }
+
+  function matches(node, query, kinds) {
+    const kind = node.dataset.kind;
+    if (kind && !kinds.has(kind)) return false;
+    return !query || haystack.get(node).includes(query);
+  }
+
+  function apply() {
+    const query = search.value.trim().toLowerCase();
+    const kinds = activeKinds();
+    let shownCards = 0;
+    for (const node of cards) {
+      const show = matches(node, query, kinds);
+      node.classList.toggle("hidden", !show);
+      if (show) shownCards += 1;
+    }
+    for (const node of rows) {
+      node.classList.toggle("hidden", !matches(node, query, kinds));
+    }
+    if (empty) empty.classList.toggle("hidden", shownCards > 0 || cards.length === 0);
+    const filtering = Boolean(query) || (chips.length > 0 && kinds.size < chips.length);
+    hits.textContent = filtering
+      ? shownCards + " / " + cards.length + " " + itemLabel
+      : "";
+  }
+
+  search.addEventListener("input", apply);
+  for (const chip of chips) {
+    chip.addEventListener("click", () => {
+      chip.setAttribute("aria-pressed", chip.getAttribute("aria-pressed") === "true" ? "false" : "true");
+      apply();
+    });
+  }
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "/" && document.activeElement !== search) {
+      event.preventDefault();
+      search.focus();
+    } else if (event.key === "Escape") {
+      if (document.activeElement === search && search.value) { search.value = ""; apply(); }
+      closeLightbox();
+    }
+  });
+
+  // ---- sortable tables -------------------------------------------------
+  function cellValue(row, index, kind) {
+    const text = row.cells[index] ? row.cells[index].textContent.trim() : "";
+    if (kind !== "num") return text.toLowerCase();
+    // the AIC of a perfect fit is -inf, a cell without a value sorts last
+    if (text === "-inf") return Number.NEGATIVE_INFINITY;
+    const value = parseFloat(text);
+    return Number.isNaN(value) ? Number.POSITIVE_INFINITY : value;
+  }
+
+  for (const table of document.querySelectorAll("table")) {
+    const headers = Array.from(table.querySelectorAll("th[data-sort]"));
+    headers.forEach((th, index) => {
+      th.addEventListener("click", () => {
+        const body = table.tBodies[0];
+        if (!body) return;
+        const kind = th.dataset.sort;
+        const descending = th.classList.contains("asc");
+        for (const other of headers) other.classList.remove("asc", "desc");
+        th.classList.add(descending ? "desc" : "asc");
+        const sorted = Array.from(body.rows).sort((a, b) => {
+          const left = cellValue(a, index, kind);
+          const right = cellValue(b, index, kind);
+          if (left < right) return descending ? 1 : -1;
+          if (left > right) return descending ? -1 : 1;
+          return 0;
+        });
+        for (const row of sorted) body.appendChild(row);
+      });
+    });
+  }
+
+  // ---- the section the page is scrolled to -----------------------------
+  // a tab (data-tab) is not a section, its page marks the tab which is shown
+  const links = Array.from(document.querySelectorAll("nav.sections a:not([data-tab])"));
+  const sections = links.map((link) => document.querySelector(link.getAttribute("href")));
+  function scrollspy() {
+    let current = 0;
+    sections.forEach((section, index) => {
+      if (section && section.getBoundingClientRect().top < 200) current = index;
+    });
+    links.forEach((link, index) => link.classList.toggle("active", index === current));
+  }
+  window.addEventListener("scroll", scrollspy, { passive: true });
+  scrollspy();
+
+  // ---- click a figure to enlarge it ------------------------------------
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = lightbox.querySelector("img");
+  function closeLightbox() { lightbox.classList.remove("open"); lightboxImage.src = ""; }
+  for (const image of document.querySelectorAll("figure img")) {
+    image.addEventListener("click", () => {
+      lightboxImage.src = image.getAttribute("src");
+      lightbox.classList.add("open");
+    });
+  }
+  lightbox.addEventListener("click", closeLightbox);
+
+  apply();
+})();
+</script>
+</body>
+</html>

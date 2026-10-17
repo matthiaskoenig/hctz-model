@@ -1,0 +1,3506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:distrib="http://www.sbml.org/sbml/level3/version1/distrib/version1" level="3" version="2" comp:required="true" distrib:required="true">
+  <notes>
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>Created with <a href="https://github.com/matthiaskoenig/sbmlutils">https://github.com/matthiaskoenig/sbmlutils</a>.
+<a href="https://doi.org/10.5281/zenodo.5525390">
+        <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5525390.svg" alt="DOI"/></a></p>
+      </body>
+    </notes>
+  <model metaid="meta_hctz_body" id="hctz_body" name="Hydrochlorothiazide (HCTZ) body model" substanceUnits="mmole" timeUnits="min" volumeUnits="litre" areaUnits="m2" lengthUnits="metre" extentUnits="mmole">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <h1>Hydrochlorothiazide (HCTZ) body model</h1>
+        <p>The content of this model has been carefully created in a manual research effort.</p>
+        <h2>Terms of use</h2>
+        <p>Copyright © 2026 <a href="https://livermetabolism.com" title="Matthias König" target="_blank">Matthias König</a>.</p>
+        <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png"/>
+        </a>
+        <br/>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<p>Redistribution and use of any part of this model, with or without modification, are permitted provided
+that the following conditions are met:</p>
+        <ul>
+          <li>Redistributions of this SBML file must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+          <li>Redistributions in a different form must reproduce the above copyright notice, this list of conditions
+and the following disclaimer in the documentation and/or other materials provided
+with the distribution.</li>
+        </ul>
+        <p>This model is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></body>
+      </notes>
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#meta_hctz_body">
+          <dcterms:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Schwaiger</vCard4:family-name>
+                  <vCard4:given-name>Amanda</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>amanda.lim@charite.de</vCard4:hasEmail>
+                <vCard4:organization-name>Charité - Universitätsmedizin Berlin, Charitéplatz 1, 10117 Berlin, Germany</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>König</vCard4:family-name>
+                  <vCard4:given-name>Matthias</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>koenigmx@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-University Berlin, Faculty of Life Science, Institute for Biology, Biology, Berlin; University Lübeck; University Hospital Schleswig-Holstein, Campus Lübeck, First Department of Medicine, Germany</vCard4:organization-name>
+              </rdf:li>
+            </rdf:Bag>
+          </dcterms:creator>
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-10-17T05:01:22Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-10-17T05:01:22Z</dcterms:W3CDTF>
+          </dcterms:modified>
+          <bqbiol:hasTaxon>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/taxonomy:9606"/>
+              <rdf:li rdf:resource="https://identifiers.org/snomedct:337915000"/>
+            </rdf:Bag>
+          </bqbiol:hasTaxon>
+          <bqbiol:hasProperty>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/mamo:MAMO_0000046"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C49185"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C15299"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C3117"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C79369"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C79372"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C79370"/>
+            </rdf:Bag>
+          </bqbiol:hasProperty>
+          <bqbiol:is>
+            <rdf:Bag>
+              <rdf:li rdf:resource="PBPKO_00003"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+            </rdf:Bag>
+          </bqbiol:is>
+          <bqbiol:isDescribedBy>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/doi:10.5281/zenodo.15427418"/>
+            </rdf:Bag>
+          </bqbiol:isDescribedBy>
+          <bqbiol:occursIn>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/BTO:0001489"/>
+              <rdf:li rdf:resource="https://identifiers.org/FMA:256135"/>
+            </rdf:Bag>
+          </bqbiol:occursIn>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfUnitDefinitions>
+      <unitDefinition id="g_per_mole" name="g/mole">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="kg" name="kg">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1000"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_kg" name="l/kg">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1000"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_min" name="l/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_min_mmole" name="l/min/mmole">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_ml" name="l/ml">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="m2" name="meter^2">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mM" name="mmole/liter">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg" name="mg">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_min" name="mg/min">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min" name="min">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="ml" name="ml">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="ml_per_min" name="ml/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmHg" name="133.32239 N/m^2">
+        <listOfUnits>
+          <unit kind="newton" exponent="1" scale="0" multiplier="133.32239"/>
+          <unit kind="metre" exponent="-2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole" name="mmole">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_l_ml" name="mmole/l/ml">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min" name="mmole/min">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min_l" name="mmole/min/liter">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_hr" name="1/hr">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_min" name="1/min">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_min_l" name="1/min/l">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="cm" name="cm">
+        <listOfUnits>
+          <unit kind="metre" exponent="1" scale="0" multiplier="0.01"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="hr" name="hr">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_hr" name="l/hr">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_min_kg" name="l/min/kg">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1000"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="m2_per_kg" name="meter^2/kg">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1000"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_day" name="mg/day">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="86400"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_g" name="mg/g">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_hr" name="mg/hr">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_l" name="mg/l">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min_per_day" name="min/day">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="86400"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min_per_hr" name="min/hr">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="ml_per_l" name="ml/l">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="ml_per_s" name="ml/s">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="ml_per_s_kg" name="ml/s/kg">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1000"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_hr" name="mmole/hr">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_hr_ml" name="mmole/hr/ml">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_l" name="mmole/l">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min_kg" name="mmole/min/kg">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1000"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mulitre_per_g" name="microlitre/g">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1e-06"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mul_per_min_mg" name="microliter/min/mg">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1e-06"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_min_kg" name="1/min/kg">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1000"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="s_per_min" name="s/min">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="meta_ECF" sboTerm="SBO:0000290" id="ECF" name="extracellular fluid (ECF)" size="NaN" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_ECF">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/mesh:D045604"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:55450009"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:hasPart>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0000913"/>
+                </rdf:Bag>
+              </bqbiol:hasPart>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vloop" sboTerm="SBO:0000290" id="Vloop" name="renal tubule" size="0.5" units="litre" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The fluid of the renal tubule, lumped from the glomerulus to the
+urine: the filtered sodium, chloride and water are reabsorbed from
+it or excreted into the urine. HCTZ increases the excretion of
+sodium and chloride, by its inhibition of the sodium chloride
+cotransporter in the distal convoluted tubule, a part of the
+tubule. The id <code>Vloop</code> is historical, the compartment is not the
+loop of Henle.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vloop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0009773"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:15627"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C49274"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000343"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:hasPart>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0001292"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:17721"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C32469"/>
+                </rdf:Bag>
+              </bqbiol:hasPart>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vre" sboTerm="SBO:0000290" id="Vre" name="rest of body" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vre">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:62955"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C14250"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vgu" sboTerm="SBO:0000290" id="Vgu" name="gut" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vgu">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000545"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12736"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7199"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000648"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Vgu_RE" comp:portRef="Vgu_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+      <compartment metaid="meta_Vki" sboTerm="SBO:0000290" id="Vki" name="kidney" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vki">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7203"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000671"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12415"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vli" sboTerm="SBO:0000290" id="Vli" name="liver" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vli">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7197"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000759"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12392"/>
+                  <rdf:li rdf:resource="PBPKO_00558"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vlu" sboTerm="SBO:0000290" id="Vlu" name="lung" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vlu">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7195"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000763"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12468"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vve" sboTerm="SBO:0000290" id="Vve" name="venous blood" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vve">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:50723"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Var" sboTerm="SBO:0000290" id="Var" name="arterial blood" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Var">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:50720"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vurine" sboTerm="SBO:0000290" id="Vurine" name="urine" size="1e-06" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vurine">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:12274"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13283"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001419"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Vurine_RE" comp:portRef="Vurine_port" comp:submodelRef="KI"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+      <compartment metaid="meta_Vfeces" sboTerm="SBO:0000290" id="Vfeces" name="feces" size="1" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vfeces">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:64183"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13234"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000440"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Vfeces_RE" comp:portRef="Vfeces_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+      <compartment metaid="meta_Vgu_lumen" sboTerm="SBO:0000290" id="Vgu_lumen" name="intestinal lumen" size="1" units="litre" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The volume the concentration of hydrochlorothiazide in the lumen of
+the intestine (<code>Cgu_hctz</code>) refers to; it is the volume of the gut
+<code>Vgu</code>, the model has no volume of the lumen of its own.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vgu_lumen">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:14586"/>
+                  <rdf:li rdf:resource="https://identifiers.org/UBERON:0018543"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Vgu_lumen_RE" comp:portRef="Vlumen_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+      <compartment metaid="meta_Vpo" sboTerm="SBO:0000290" id="Vpo" name="portal plasma" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vpo">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:66645"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vhv" sboTerm="SBO:0000290" id="Vhv" name="hepatic venous plasma" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vhv">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:14337"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vki_tissue" sboTerm="SBO:0000290" id="Vki_tissue" name="ki tissue" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vki_tissue">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7203"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000671"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12415"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Vki_tissue_RE" comp:portRef="Vki_port" comp:submodelRef="KI"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+      <compartment metaid="meta_Vki_plasma" sboTerm="SBO:0000290" id="Vki_plasma" name="ki plasma" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vki_plasma">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7203"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000671"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12415"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Vki_plasma_RE" comp:portRef="Vext_port" comp:submodelRef="KI"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+      <compartment metaid="meta_Vli_tissue" sboTerm="SBO:0000290" id="Vli_tissue" name="li tissue" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vli_tissue">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7197"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000759"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12392"/>
+                  <rdf:li rdf:resource="PBPKO_00558"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vli_plasma" sboTerm="SBO:0000290" id="Vli_plasma" name="li plasma" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vli_plasma">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7197"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000759"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12392"/>
+                  <rdf:li rdf:resource="PBPKO_00558"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vlu_tissue" sboTerm="SBO:0000290" id="Vlu_tissue" name="lu tissue" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vlu_tissue">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7195"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000763"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12468"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vlu_plasma" sboTerm="SBO:0000290" id="Vlu_plasma" name="lu plasma" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vlu_plasma">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7195"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000763"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12468"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vgu_tissue" sboTerm="SBO:0000290" id="Vgu_tissue" name="gu tissue" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vgu_tissue">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000545"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12736"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7199"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000648"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vgu_plasma" sboTerm="SBO:0000290" id="Vgu_plasma" name="gu plasma" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vgu_plasma">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000545"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C12736"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7199"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000648"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Vgu_plasma_RE" comp:portRef="Vext_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+      <compartment metaid="meta_Vre_tissue" sboTerm="SBO:0000290" id="Vre_tissue" name="re tissue" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vre_tissue">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45732"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C74601"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0001539"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:62955"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C14250"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vre_plasma" sboTerm="SBO:0000290" id="Vre_plasma" name="re plasma" size="1" units="litre" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vre_plasma">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:isPartOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:62955"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C14250"/>
+                </rdf:Bag>
+              </bqbiol:isPartOf>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="meta_hctz" sboTerm="SBO:0000247" id="hctz" name="hydrochlorothiazide" compartment="ECF" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>This should be the concentration in the kidney, but no kidney compartment in the fluid model.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_na" sboTerm="SBO:0000247" id="na" name="Sodium (Na+) (ECF)" compartment="ECF" initialConcentration="140" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_na">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_na_loop" sboTerm="SBO:0000247" id="na_loop" name="Sodium (Na+) (renal tubule)" compartment="Vloop" initialConcentration="140" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_na_loop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_na_urine" sboTerm="SBO:0000247" id="na_urine" name="Sodium (Na+) (urine)" compartment="Vurine" initialAmount="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_na_urine">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:29101"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_cl" sboTerm="SBO:0000247" id="cl" name="Chloride (Cl-) (ECF)" compartment="ECF" initialConcentration="102" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_cl">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_cl_loop" sboTerm="SBO:0000247" id="cl_loop" name="Chloride (Cl-) (renal tubule)" compartment="Vloop" initialConcentration="102" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_cl_loop">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_cl_urine" sboTerm="SBO:0000247" id="cl_urine" name="Chloride (Cl-) (urine)" compartment="Vurine" initialAmount="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Concentration in mM corresponding to mEq/l.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_cl_urine">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:17996"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Cki_plasma_hctz" sboTerm="SBO:0000247" id="Cki_plasma_hctz" name="hydrochlorothiazide (kidney plasma)" compartment="Vki_plasma" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cki_plasma_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Cki_plasma_hctz_RE" comp:portRef="hctz_ext_port" comp:submodelRef="KI"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species metaid="meta_Cli_plasma_hctz" sboTerm="SBO:0000247" id="Cli_plasma_hctz" name="hydrochlorothiazide (liver plasma)" compartment="Vli_plasma" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cli_plasma_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Clu_plasma_hctz" sboTerm="SBO:0000247" id="Clu_plasma_hctz" name="hydrochlorothiazide (lung plasma)" compartment="Vlu_plasma" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Clu_plasma_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Cgu_plasma_hctz" sboTerm="SBO:0000247" id="Cgu_plasma_hctz" name="hydrochlorothiazide (gut plasma)" compartment="Vgu_plasma" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cgu_plasma_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Cgu_plasma_hctz_RE" comp:portRef="hctz_ext_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species metaid="meta_Cre_plasma_hctz" sboTerm="SBO:0000247" id="Cre_plasma_hctz" name="hydrochlorothiazide (rest plasma)" compartment="Vre_plasma" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cre_plasma_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Car_hctz" sboTerm="SBO:0000247" id="Car_hctz" name="hydrochlorothiazide (arterial blood plasma)" compartment="Var" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Car_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Cve_hctz" sboTerm="SBO:0000247" id="Cve_hctz" name="hydrochlorothiazide (venous blood plasma)" compartment="Vve" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cve_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Cpo_hctz" sboTerm="SBO:0000247" id="Cpo_hctz" name="hydrochlorothiazide (portal vein plasma)" compartment="Vpo" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cpo_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Chv_hctz" sboTerm="SBO:0000247" id="Chv_hctz" name="hydrochlorothiazide (hepatic vein plasma)" compartment="Vhv" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Chv_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Cli_hctz" sboTerm="SBO:0000247" id="Cli_hctz" name="hydrochlorothiazide (liver)" compartment="Vli_tissue" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cli_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Clu_hctz" sboTerm="SBO:0000247" id="Clu_hctz" name="hydrochlorothiazide (lung)" compartment="Vlu_tissue" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Clu_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Cre_hctz" sboTerm="SBO:0000247" id="Cre_hctz" name="hydrochlorothiazide (rest)" compartment="Vre_tissue" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cre_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_Aurine_hctz" sboTerm="SBO:0000247" id="Aurine_hctz" name="hydrochlorothiazide (urine)" compartment="Vurine" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Aurine_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Aurine_hctz_RE" comp:portRef="hctz_urine_port" comp:submodelRef="KI"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species metaid="meta_Afeces_hctz" sboTerm="SBO:0000247" id="Afeces_hctz" name="hydrochlorothiazide (feces)" compartment="Vfeces" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Afeces_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Afeces_hctz_RE" comp:portRef="hctz_feces_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </species>
+      <species metaid="meta_Cgu_hctz" sboTerm="SBO:0000247" id="Cgu_hctz" name="hydrochlorothiazide (intestinal lumen)" compartment="Vgu_lumen" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cgu_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C29098"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:5778"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:3639"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:JZUFKLXOESDKRF-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:387525002"/>
+                  <rdf:li rdf:resource="COB_0000013"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Cgu_hctz_RE" comp:portRef="hctz_lumen_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter sboTerm="SBO:0000002" id="f_TBW" name="Total body water (TBW) fraction of bodyweight" value="0.55" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>0.55 l/kg, between the typical values of men and women:
+male: 0.6 l/kg
+female: 0.5 l/kg</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="f_ECF" name="ECF fraction of TBW" value="0.33" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Around 1/3 of total body water (TBW) is extracellular fluid (ECF).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="ECF_ref" name="Reference extracellular fluid volume (ECF)" value="NaN" units="litre" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>ECF value is calculated based on body weight and sex.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="Psys_ref" name="Reference systolic blood pressure" value="120" units="mmHg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Psys value is dependent on sex and age.</p>
+            <pre>
+              <code>    Young Adult Men (18-39 years): Average=120/80 mmHg
+    Middle-aged Men (40-59 years): Average=125−130/80−85 mmHg
+    Older Men (60+ years): Average=135−140/85−90 mmHg
+
+    Young Adult Women (18-39 years): Average=110−120/70−80mmHg
+    Middle-aged Women (40-59 years): Average=120−130/80−85mmHg
+    Older Women (60+ years): Average=135−140/85−90mmHg
+</code>
+            </pre>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="Pdia_ref" name="Reference diastolic blood pressure" value="80" units="mmHg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Pdia value is dependent on sex and age.</p>
+            <pre>
+              <code>    Young Adult Men (18-39 years): Average=120/80 mmHg
+    Middle-aged Men (40-59 years): Average=125−130/80−85 mmHg
+    Older Men (60+ years): Average=135−140/85−90 mmHg
+
+    Young Adult Women (18-39 years): Average=110−120/70−80mmHg
+    Middle-aged Women (40-59 years): Average=120−130/80−85mmHg
+    Older Women (60+ years): Average=135−140/85−90mmHg
+</code>
+            </pre>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="bp_systolic" name="Systolic blood pressure" value="120" units="mmHg" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="bp_diastolic" name="Diastolic blood pressure" value="80" units="mmHg" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="bp_mean" name="Mean arterial pressure" value="NaN" units="mmHg" constant="false"/>
+      <parameter sboTerm="SBO:0000647" id="Mr_nacl" name="Molecular weight sodium chloride" value="58.44" units="g_per_mole" constant="true"/>
+      <parameter sboTerm="SBO:0000647" id="Mr_na" name="Molecular weight sodium" value="22.99" units="g_per_mole" constant="true"/>
+      <parameter sboTerm="SBO:0000647" id="Mr_cl" name="Molecular weight chloride" value="35.45" units="g_per_mole" constant="true"/>
+      <parameter sboTerm="SBO:0000002" id="vin_na" name="Na uptake via food" value="NaN" units="mmole_per_min" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="vin_cl" name="Cl uptake via food" value="NaN" units="mmole_per_min" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="vin_h2o" name="H2O uptake via food" value="0.00159722222222222" units="l_per_min" constant="true"/>
+      <parameter sboTerm="SBO:0000002" id="vout_h2o" name="H2O loss without urine" value="0.000625" units="l_per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The water lost without urine: insensible through the skin and the
+lungs (about 700 ml a day), the sweat and the feces (about 100 ml
+each) [Hall2021, Guyton and Hall Textbook of Medical Physiology,
+chapter 25]. Of the intake of 2.3 l a day the urine is 1.4 l at
+the reference, the 1.47 to 1.96 l a day of Jeon2012 and Dussol2005;
+without the loss the urine was the whole intake.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="k_na" value="0.000676649741186695" units="l_per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate sodium urine.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>k_na</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 0.00067665 l/(min) |
+| bounds | [0.00025, 0.0015] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.000584015, 0.000788186] |
+| Fisher confidence interval | [0.000590186, 0.00077578] |
+| distribution of the draws | <code>lognormal(-7.29835678793397, 0.07648283595859079, 0.00025, 0.0015)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="l_per_min" distrib:type="confidenceInterval" distrib:valueLower="0.000584015429114786" distrib:valueUpper="0.000788186399934477"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="4.68442935432338e-05" distrib:units="l_per_min" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 7.29835678793397 </cn>
+                  </apply>
+                  <cn> 0.0764828359585908 </cn>
+                  <cn> 0.00025 </cn>
+                  <cn> 0.0015 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="k_cl" value="0.00370716553162286" units="l_per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate chloride urine.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>k_cl</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 0.00370717 l/(min) |
+| bounds | [0.00034, 0.007] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.00252036, 0.00511843] |
+| Fisher confidence interval | [0.00272023, 0.00505217] |
+| distribution of the draws | <code>lognormal(-5.597487702014201, 0.18072977949087393, 0.00034, 0.007)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="l_per_min" distrib:type="confidenceInterval" distrib:valueLower="0.00252035788024369" distrib:valueUpper="0.00511843447084373"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.000581097876815446" distrib:units="l_per_min" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 5.5974877020142 </cn>
+                  </apply>
+                  <cn> 0.180729779490874 </cn>
+                  <cn> 0.00034 </cn>
+                  <cn> 0.007 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter id="k_h2o" value="NaN" units="l_per_ml" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate water urine.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="h2o_reabsorption" name="H2O reabsorption from the renal tubule" value="NaN" units="l_per_min" constant="false"/>
+      <parameter id="diuresis" value="NaN" units="l_per_min" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate water urine.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="f_h2o_max" name="maximal fractional excretion of water" value="0.3" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The urine is at most this fraction of the filtration, the rest of
+the filtered water is reabsorbed. Without the limit an expanded
+extracellular fluid (twice its reference) with HCTZ excretes more
+water than is filtered: the reabsorption of water and sodium turns
+negative and the integration fails. Within the supported domain the
+fractional excretion of water stays below 0.09, the limit is not
+reached.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="counter_gamma" value="5" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Counter-regulation feedback.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000287" id="E50_hctz_nacl" value="8.61825350924873e-05" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>E50 for HCTZ effect on sodium and chloride excretion.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>E50_hctz_nacl</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 8.61825e-05 mmol/l |
+| bounds | [1e-06, 0.01] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [2.86313e-05, 0.000289411] |
+| Fisher confidence interval | [4.75241e-05, 0.000156288] |
+| distribution of the draws | <code>lognormal(-9.359043009958508, 0.5901502764384875, 1e-06, 0.01)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="mM" distrib:type="confidenceInterval" distrib:valueLower="2.86312789046828e-05" distrib:valueUpper="0.000289410577351406"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="2.5976480328119e-05" distrib:units="mM" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 9.35904300995851 </cn>
+                  </apply>
+                  <cn> 0.590150276438487 </cn>
+                  <cn type="e-notation"> 1 <sep/> -6 </cn>
+                  <cn> 0.01 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="Emax_hctz_na" value="1.72544627809791" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Emax for HCTZ effect on sodium excretion.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>Emax_hctz_na</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 1.72545 dimensionless |
+| bounds | [0.1, 5] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [1.25084, 2.6032] |
+| Fisher confidence interval | [1.35309, 2.20027] |
+| distribution of the draws | <code>lognormal(0.5454857289639774, 0.18697584998156824, 0.1, 5.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="dimensionless" distrib:type="confidenceInterval" distrib:valueLower="1.25083511671922" distrib:valueUpper="2.60320475869873"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.212398766034347" distrib:units="dimensionless" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <cn> 0.545485728963977 </cn>
+                  <cn> 0.186975849981568 </cn>
+                  <cn> 0.1 </cn>
+                  <cn> 5 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="Emax_hctz_cl" value="0.457489998677387" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Emax for HCTZ effect on chloride excretion.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PD_20261017_030352__10c1d">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>Emax_hctz_cl</code> is the result of the fit <code>PD_20261017_030352__10c1d</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PD_20261017_030352__10c1d</code> |
+| record | <code>PD_20261017_030352__10c1d/</code> |
+| cost | 65.144 |
+| data points | 166 |
+| value | 0.45749 dimensionless |
+| bounds | [0.1, 5] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.312448, 0.767901] |
+| Fisher confidence interval | [0.318591, 0.656947] |
+| distribution of the draws | <code>lognormal(-0.7820002553199671, 0.22939735913373016, 0.1, 5.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="dimensionless" distrib:type="confidenceInterval" distrib:valueLower="0.312448419540539" distrib:valueUpper="0.767900772390777"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.0838268541449215" distrib:units="dimensionless" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 0.782000255319967 </cn>
+                  </apply>
+                  <cn> 0.22939735913373 </cn>
+                  <cn> 0.1 </cn>
+                  <cn> 5 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter id="na_ref" value="140" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>reference sodium concentration.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter id="cl_ref" value="102" units="mM" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>reference chloride concentration.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="BW" name="body weight [kg]" value="75" units="kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Reference adult body weight (Ogden2004, Jones2013, Thompson2009, Brown1997).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="BW_ref" name="reference body weight [kg]" value="75" units="kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Body weight at which the exchange flows of the tissue distribution (<code>ftissue_&lt;sid&gt;</code>) are given; they scale with the body weight as the volumes, the blood flows and the renal clearance do.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="HEIGHT" name="height [cm]" value="170" units="cm" constant="true"/>
+      <parameter sboTerm="SBO:0000002" id="f_renal_function" name="renal function" value="1" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <blockquote>
+              <p>1.0: increased kidney function
+1.0: normal kidney function (healthy control)
+&lt;1.0: decreased kidney function</p>
+            </blockquote>
+            <p>Renal function relative to the healthy glomerular filtration
+rate GFR_base, which is 101 ml/min at 75 kg; a measured
+clearance of X ml/min is the renal function X/101.</p>
+            <p>Supported range 0.05 to 2, a GFR of 5 to 202 ml/min. The renal
+perfusion does not change with the renal function: the GFR is
+f_renal_function * 0.0763 of the renal blood flow <code>Qki</code> (the
+model has no hematocrit; with a hematocrit of 0.45 it is
+f_renal_function * 0.139 of the renal plasma flow, a filtration
+fraction of 0.28 at 2). Below 0.05 the urine flow approaches 0
+and the concentration of HCTZ in the urine is not defined.</p>
+          </body>
+        </notes>
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="f_renal_function_ki_RE" comp:portRef="f_renal_function_port" comp:submodelRef="KI"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="f_GFR_Qki" name="relationship GFR and Qki" value="76.3105006271061" units="ml_per_l" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>GFR per renal blood flow (76.3 ml/l, a ratio of 0.0763). Calibrated
+so that the healthy GFR is 101 ml/min at the renal blood flow of
+1.32354 l/min of 75 kg, the normal GFR of the classes of renal
+impairment.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="GFR_base" name="glomerular filtration rate (base)" value="NaN" units="ml_per_min" constant="false">
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="GFR_base_ki_RE" comp:portRef="GFR_base_port" comp:submodelRef="KI"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="BSA" name="body surface area [m^2]" value="0" units="m2" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="f_cardiac_function" name="factor for cardiac impairment" value="1" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Factor scaling cardiac output in cardiac impairment.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="COBW" name="cardiac output per bodyweight [ml/s/kg]" value="1.548" units="ml_per_s_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Cardiac output per body weight of healthy adults, about 6.5
+l/min at 70 kg (Cattermole2017, Patel2021, Collis2001).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="CO" name="cardiac output [ml/s]" value="108.33" units="ml_per_s" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="QC" name="cardiac output [l/min]" value="6.4998" units="l_per_min" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="Fblood" name="blood fraction of organ volume" value="0.02" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The vascular compartments are whole blood: the arterial and the
+venous blood, the portal and the hepatic vein and the blood of the
+tissues (<code>V*_plasma</code>). The flows are blood flows, and the species
+of the vascular compartments (named plasma) are the concentration
+in plasma with a blood to plasma ratio of 1, which is what the
+data of plasma are compared with. An erythrocyte uptake of HCTZ
+(blood to plasma ratio above 1) is not modelled. The value 0.02 is
+an assumption of the model without a source; the vascular
+fraction of the kidney and the liver is about ten times larger
+(ICRP 89, Valentin2002).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FVgu" name="gut fractional tissue volume" value="0.0171" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Fractional volume of the gut (Brown1997, Jones2013, Thompson2009).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FVki" name="kidney fractional tissue volume" value="0.0044" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Fractional volume of the kidneys (Brown1997, Jones2013, Thompson2009).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FVli" name="liver fractional tissue volume" value="0.021" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Fractional volume of the liver (Wynne1989, Brown1997, Jones2013,
+Thompson2009).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FVlu" name="lung fractional tissue volume" value="0.0076" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Fractional volume of the lungs (Brown1997, Jones2013, Thompson2009).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FVre" name="rest of body fractional tissue volume" value="0" units="l_per_kg" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="FVve" name="venous fractional tissue volume" value="0.0514" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Fractional volume of the venous blood (Brown1997, Jones2013, Thompson2009).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FVar" name="arterial fractional tissue volume" value="0.0257" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Fractional volume of the arterial blood (Brown1997, Jones2013,
+Thompson2009).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FVpo" name="portal fractional tissue volume" value="0.001" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Small volume of the portal vein, an assumption of the model without a source.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FVhv" name="hepatic venous fractional tissue volume" value="0.001" units="l_per_kg" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Small volume of the hepatic vein, an assumption of the model without a source.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FQgu" name="gut fractional tissue blood flow" value="0.18" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Assumed FQgu is the sum of FQgu + FQsp + FQpa for correct portal blood flow.
+with FQgu=0.146, FQsp=0.017, FQpa=0.017 (Brown1997, Jones2013, Thompson2009).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FQki" name="kidney fractional tissue blood flow" value="0.19" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Fraction of the cardiac output to the kidneys (Brown1997,
+Jones2013, Thompson2009).</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FQh" name="hepatic (venous side) fractional tissue blood flow" value="0.215" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Fraction of the cardiac output leaving the liver, the portal
+(FQgu) and the hepatic arterial flow (Wynne1989, Brown1997,
+Jones2013, Thompson2009). The hepatic artery is 3.5 % of the
+cardiac output here, about 6.5 % in ICRP 89 (Valentin2002);
+without a hepatic clearance of HCTZ the difference does not
+change the pharmacokinetics.</p>
+          </body>
+        </notes>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="FQlu" name="lung fractional tissue blood flow" value="1" units="dimensionless" constant="true"/>
+      <parameter sboTerm="SBO:0000002" id="FQre" name="rest of body fractional tissue blood flow" value="0" units="dimensionless" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="conversion_min_per_day" name="Conversion factor day to min" value="1440" units="min_per_day" constant="true"/>
+      <parameter metaid="meta_f_cirrhosis" sboTerm="SBO:0000002" id="f_cirrhosis" name="severity of cirrhosis [0, 0.95]" value="0" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Cirrhosis is not supported for HCTZ: it changes only the shunts
+and the liver tissue, HCTZ has no hepatic clearance (the AUC
+changes by 0.03 % at 0.9); ascites, the expansion of the
+extracellular fluid and aldosterone are not in the model.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_f_cirrhosis">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C2951"/>
+                  <rdf:li rdf:resource="https://identifiers.org/efo:0001422"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_f_shunts" sboTerm="SBO:0000002" id="f_shunts" name="fraction of portal venous blood shunted by the liver" value="0" units="dimensionless" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_f_shunts">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/HP:0002629"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="f_tissue_loss" name="fraction of lost parenchymal liver volume" value="0" units="dimensionless" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="PODOSE_hctz" name="oral dose hctz [mg]" value="0" units="mg" constant="false">
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="PODOSE_hctz_RE" comp:portRef="PODOSE_hctz_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="POSOLUTION_hctz" name="oral dose as solution hctz [mg]" value="0" units="mg" constant="false">
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="POSOLUTION_hctz_RE" comp:portRef="POSOLUTION_hctz_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="Ka_dis_hctz" name="Ka_dis [1/hr] dissolution hydrochlorothiazide" value="1.30141095353971" units="per_hr" constant="true">
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Ka_dis_hctz_RE" comp:portRef="Ka_dis_hctz_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_025702__4167a">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>Ka_dis_hctz</code> is the result of the fit <code>PK_20261017_025702__4167a</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_025702__4167a</code> |
+| record | <code>PK_20261017_025702__4167a/</code> |
+| cost | 59.4076 |
+| data points | 530 |
+| value | 1.30141 1/(hr) |
+| bounds | [0.0001, 10] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.793938, 1.95563] |
+| Fisher confidence interval | [1.29313, 1.30975] |
+| distribution of the draws | <code>lognormal(0.26344902477892934, 0.2299689986550574, 0.0001, 10.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="per_hr" distrib:type="confidenceInterval" distrib:valueLower="0.793937646556894" distrib:valueUpper="1.95562836916308"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.00423042333321125" distrib:units="per_hr" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <cn> 0.263449024778929 </cn>
+                  <cn> 0.229968998655057 </cn>
+                  <cn> 0.0001 </cn>
+                  <cn> 10 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter id="v_HCTZEX" name="rate of HCTZ excretion" value="NaN" units="mmole_per_min" constant="false">
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="v_HCTZEX_ki_RE" comp:portRef="v_HCTZEX_port" comp:submodelRef="KI"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter sboTerm="SBO:0000647" id="Mr_hctz" name="Molecular weight hctz [g/mole]" value="297.7" units="g_per_mole" constant="true">
+        <comp:listOfReplacedElements>
+          <comp:replacedElement metaid="Mr_hctz_gu_RE" comp:portRef="Mr_hctz_port" comp:submodelRef="GU"/>
+        </comp:listOfReplacedElements>
+      </parameter>
+      <parameter sboTerm="SBO:0000009" id="ftissue_hctz" name="tissue distribution hctz" value="0.0637160968791131" units="l_per_min" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Exchange flow at the reference body weight <code>BW_ref</code>.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_025702__4167a">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>ftissue_hctz</code> is the result of the fit <code>PK_20261017_025702__4167a</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_025702__4167a</code> |
+| record | <code>PK_20261017_025702__4167a/</code> |
+| cost | 59.4076 |
+| data points | 530 |
+| value | 0.0637161 l/(min) |
+| bounds | [0.01, 10] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.0257629, 0.117952] |
+| Fisher confidence interval | [0.063152, 0.0642853] |
+| distribution of the draws | <code>lognormal(-2.7533180500676138, 0.3881037524524049, 0.01, 10.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="l_per_min" distrib:type="confidenceInterval" distrib:valueLower="0.0257629468616404" distrib:valueUpper="0.117951797546407"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.000288435218948533" distrib:units="l_per_min" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 2.75331805006761 </cn>
+                  </apply>
+                  <cn> 0.388103752452405 </cn>
+                  <cn> 0.01 </cn>
+                  <cn> 10 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="Kp_hctz" name="tissue/plasma partition coefficient hctz" value="2.36426059508621" units="dimensionless" constant="true">
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_025702__4167a">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>Kp_hctz</code> is the result of the fit <code>PK_20261017_025702__4167a</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_025702__4167a</code> |
+| record | <code>PK_20261017_025702__4167a/</code> |
+| cost | 59.4076 |
+| data points | 530 |
+| value | 2.36426 dimensionless |
+| bounds | [0.25, 10] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [1.62916, 4.23557] |
+| Fisher confidence interval | [2.34166, 2.38708] |
+| distribution of the draws | <code>lognormal(0.8604653282764849, 0.24374312839816292, 0.25, 10.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="dimensionless" distrib:type="confidenceInterval" distrib:valueLower="1.62915666110116" distrib:valueUpper="4.23557037973026"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.0115594439307037" distrib:units="dimensionless" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <cn> 0.860465328276485 </cn>
+                  <cn> 0.243743128398163 </cn>
+                  <cn> 0.25 </cn>
+                  <cn> 10 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
+      </parameter>
+      <parameter sboTerm="SBO:0000002" id="IVDOSE_hctz" name="IV bolus dose hctz [mg]" value="0" units="mg" constant="false"/>
+      <parameter sboTerm="SBO:0000002" id="ti_hctz" name="injection time hctz [s]" value="10" units="second" constant="true"/>
+      <parameter sboTerm="SBO:0000009" id="Ki_hctz" name="Ki [1/min] injection hctz" value="0.02" units="per_min" constant="false"/>
+      <parameter id="GFR" name="glomerular filtration rate" units="ml_per_min" constant="false"/>
+      <parameter id="vout_na" units="mg_per_min" constant="false"/>
+      <parameter id="vout_cl" units="mg_per_min" constant="false"/>
+      <parameter id="H2O_UPTAKE" units="l_per_min" constant="false"/>
+      <parameter id="Qgu" name="gut blood flow" units="l_per_min" constant="false"/>
+      <parameter id="Qki" name="kidney blood flow" units="l_per_min" constant="false"/>
+      <parameter id="Qh" name="hepatic (venous side) blood flow" units="l_per_min" constant="false"/>
+      <parameter id="Qha" name="hepatic artery blood flow" units="l_per_min" constant="false"/>
+      <parameter id="Qlu" name="lung blood flow" units="l_per_min" constant="false"/>
+      <parameter id="Qre" name="rest of body blood flow" units="l_per_min" constant="false"/>
+      <parameter id="Qpo" name="portal blood flow" units="l_per_min" constant="false"/>
+      <parameter id="hctz_urine_excretion" name="HCTZ concentration in excreted urine" units="mM" constant="false"/>
+    </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="ECF">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> ECF_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="Vloop">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <cn sbml:units="dimensionless"> 0.05 </cn>
+            <ci> ECF_ref </ci>
+          </apply>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="na">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> na_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="cl">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> cl_ref </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="k_h2o">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <minus/>
+              <ci> vin_h2o </ci>
+              <ci> vout_h2o </ci>
+            </apply>
+            <ci> GFR_base </ci>
+          </apply>
+        </math>
+      </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfRules>
+      <assignmentRule variable="ECF_ref">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> f_ECF </ci>
+            <ci> f_TBW </ci>
+            <ci> BW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="bp_systolic">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Simplified calculation of blood pressure based on change relative to reference ECF volume.</p>
+            <p>Regulation is more complicated probably via: Increased ECF volume → Increased blood volume →
+Increased venous return → Increased cardiac output → Increased blood pressure.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> Psys_ref </ci>
+              <ci> ECF </ci>
+            </apply>
+            <ci> ECF_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="bp_diastolic">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Simplified calculation of blood pressure based on change relative to reference ECF volume.</p>
+            <p>Regulation is more complicated probably via: Increased ECF volume → Increased blood volume →
+Increased venous return → Increased cardiac output → Increased blood pressure.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> Pdia_ref </ci>
+              <ci> ECF </ci>
+            </apply>
+            <ci> ECF_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="bp_mean">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Mean arterial pressure, one third of the pulse pressure above
+the diastolic pressure.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <divide/>
+            <apply>
+              <plus/>
+              <ci> bp_systolic </ci>
+              <apply>
+                <times/>
+                <cn sbml:units="dimensionless" type="integer"> 2 </cn>
+                <ci> bp_diastolic </ci>
+              </apply>
+            </apply>
+            <cn sbml:units="dimensionless" type="integer"> 3 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="vin_na">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> k_na </ci>
+            <ci> na_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="vin_cl">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> k_cl </ci>
+            <ci> cl_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="glomerular filtration rate" variable="GFR">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> f_renal_function </ci>
+            <ci> GFR_base </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="vout_na">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion sodium.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> NA_EXCRETION </ci>
+            <ci> Mr_na </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="vout_cl">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion chloride.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> CL_EXCRETION </ci>
+            <ci> Mr_cl </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="H2O_UPTAKE">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Water uptake.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> vin_h2o </ci>
+              <apply>
+                <power/>
+                <ci> ECF_ref </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+            <apply>
+              <power/>
+              <ci> ECF </ci>
+              <ci> counter_gamma </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="diuresis">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Excretion rate water urine.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <min/>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> k_h2o </ci>
+                    <ci> GFR </ci>
+                    <apply>
+                      <power/>
+                      <ci> ECF </ci>
+                      <ci> counter_gamma </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <power/>
+                    <ci> ECF_ref </ci>
+                    <ci> counter_gamma </ci>
+                  </apply>
+                </apply>
+                <ci> NA_EXCRETION </ci>
+              </apply>
+              <ci> vin_na </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> f_h2o_max </ci>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="h2o_reabsorption">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Reabsorption rate of water from the renal tubule.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+            </apply>
+            <ci> diuresis </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="f_shunts">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> f_cirrhosis </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="f_tissue_loss">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> f_cirrhosis </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="FVre">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <cn sbml:units="l_per_kg"> 1 </cn>
+            <apply>
+              <plus/>
+              <ci> FVgu </ci>
+              <ci> FVki </ci>
+              <ci> FVli </ci>
+              <ci> FVlu </ci>
+              <ci> FVve </ci>
+              <ci> FVar </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="FQre">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <cn sbml:units="dimensionless"> 1 </cn>
+            <apply>
+              <plus/>
+              <ci> FQki </ci>
+              <ci> FQh </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="BSA">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <cn sbml:units="m2"> 0.024265 </cn>
+            <apply>
+              <power/>
+              <apply>
+                <divide/>
+                <ci> BW </ci>
+                <cn sbml:units="kg" type="integer"> 1 </cn>
+              </apply>
+              <cn> 0.5378 </cn>
+            </apply>
+            <apply>
+              <power/>
+              <apply>
+                <divide/>
+                <ci> HEIGHT </ci>
+                <cn sbml:units="cm" type="integer"> 1 </cn>
+              </apply>
+              <cn> 0.3964 </cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="CO">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> BW </ci>
+            <ci> f_cardiac_function </ci>
+            <ci> COBW </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="QC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <ci> CO </ci>
+              <cn sbml:units="ml_per_l" type="integer"> 1000 </cn>
+            </apply>
+            <cn sbml:units="s_per_min" type="integer"> 60 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vgu">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> BW </ci>
+            <ci> FVgu </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vgu_lumen">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> Vgu </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vki">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> BW </ci>
+            <ci> FVki </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vli">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> BW </ci>
+            <ci> FVli </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vlu">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> BW </ci>
+            <ci> FVlu </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vre">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> BW </ci>
+            <ci> FVre </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vve">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> BW </ci>
+              <ci> FVve </ci>
+            </apply>
+            <apply>
+              <times/>
+              <apply>
+                <divide/>
+                <ci> FVve </ci>
+                <apply>
+                  <plus/>
+                  <ci> FVar </ci>
+                  <ci> FVve </ci>
+                </apply>
+              </apply>
+              <ci> BW </ci>
+              <ci> Fblood </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <minus/>
+                  <cn sbml:units="l_per_kg" type="integer"> 1 </cn>
+                  <ci> FVve </ci>
+                </apply>
+                <ci> FVar </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Var">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> BW </ci>
+              <ci> FVar </ci>
+            </apply>
+            <apply>
+              <times/>
+              <apply>
+                <divide/>
+                <ci> FVar </ci>
+                <apply>
+                  <plus/>
+                  <ci> FVar </ci>
+                  <ci> FVve </ci>
+                </apply>
+              </apply>
+              <ci> BW </ci>
+              <ci> Fblood </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <minus/>
+                  <cn sbml:units="l_per_kg" type="integer"> 1 </cn>
+                  <ci> FVve </ci>
+                </apply>
+                <ci> FVar </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vpo">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> BW </ci>
+              <ci> FVpo </ci>
+            </apply>
+            <apply>
+              <times/>
+              <apply>
+                <divide/>
+                <ci> FVpo </ci>
+                <apply>
+                  <plus/>
+                  <ci> FVar </ci>
+                  <ci> FVve </ci>
+                  <ci> FVpo </ci>
+                  <ci> FVhv </ci>
+                </apply>
+              </apply>
+              <ci> BW </ci>
+              <ci> Fblood </ci>
+              <apply>
+                <minus/>
+                <cn sbml:units="l_per_kg" type="integer"> 1 </cn>
+                <apply>
+                  <plus/>
+                  <ci> FVar </ci>
+                  <ci> FVve </ci>
+                  <ci> FVpo </ci>
+                  <ci> FVhv </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vhv">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> BW </ci>
+              <ci> FVhv </ci>
+            </apply>
+            <apply>
+              <times/>
+              <apply>
+                <divide/>
+                <ci> FVhv </ci>
+                <apply>
+                  <plus/>
+                  <ci> FVar </ci>
+                  <ci> FVve </ci>
+                  <ci> FVpo </ci>
+                  <ci> FVhv </ci>
+                </apply>
+              </apply>
+              <ci> BW </ci>
+              <ci> Fblood </ci>
+              <apply>
+                <minus/>
+                <cn sbml:units="l_per_kg" type="integer"> 1 </cn>
+                <apply>
+                  <plus/>
+                  <ci> FVar </ci>
+                  <ci> FVve </ci>
+                  <ci> FVpo </ci>
+                  <ci> FVhv </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="gut blood flow" variable="Qgu">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> QC </ci>
+            <ci> FQgu </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="kidney blood flow" variable="Qki">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> QC </ci>
+            <ci> FQki </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="hepatic (venous side) blood flow" variable="Qh">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> QC </ci>
+            <ci> FQh </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="hepatic artery blood flow" variable="Qha">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> Qh </ci>
+            <ci> Qgu </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="lung blood flow" variable="Qlu">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> QC </ci>
+            <ci> FQlu </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="rest of body blood flow" variable="Qre">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> QC </ci>
+            <ci> FQre </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="portal blood flow" variable="Qpo">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> Qgu </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="glomerular filtration rate (base)" variable="GFR_base">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> f_GFR_Qki </ci>
+            <ci> Qki </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="blood volume of kidney" variable="Vki_plasma">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Vki </ci>
+            <ci> Fblood </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="tissue volume of kidney" variable="Vki_tissue">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> Vki </ci>
+            <apply>
+              <minus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <ci> Fblood </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="blood volume of liver" variable="Vli_plasma">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Vli </ci>
+            <ci> Fblood </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="tissue volume of liver" variable="Vli_tissue">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> Vli </ci>
+            <apply>
+              <minus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <ci> f_tissue_loss </ci>
+            </apply>
+            <apply>
+              <minus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <ci> Fblood </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="blood volume of lung" variable="Vlu_plasma">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Vlu </ci>
+            <ci> Fblood </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="tissue volume of lung" variable="Vlu_tissue">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> Vlu </ci>
+            <apply>
+              <minus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <ci> Fblood </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="blood volume of gut" variable="Vgu_plasma">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Vgu </ci>
+            <ci> Fblood </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="tissue volume of gut" variable="Vgu_tissue">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> Vgu </ci>
+            <apply>
+              <minus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <ci> Fblood </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="blood volume of rest" variable="Vre_plasma">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Vre </ci>
+            <ci> Fblood </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="tissue volume of rest" variable="Vre_tissue">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> Vre </ci>
+            <apply>
+              <minus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <ci> Fblood </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="injection rate IV" variable="Ki_hctz">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>log(2) ~ 0.693 used for conversion of half-life injection time to
+injection rate.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <cn sbml:units="dimensionless"> 0.693 </cn>
+              <ci> ti_hctz </ci>
+            </apply>
+            <cn sbml:units="s_per_min" type="integer"> 60 </cn>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="HCTZ concentration in excreted urine" variable="hctz_urine_excretion">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The concentration of HCTZ in the urine formed at the time, the
+rate of its excretion over the urine flow.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> v_HCTZEX </ci>
+            <ci> diuresis </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="hctz">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> Cki_plasma_hctz </ci>
+        </math>
+      </assignmentRule>
+      <rateRule variable="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Rate rule for calculation of water change ECF.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <plus/>
+            <apply>
+              <minus/>
+              <apply>
+                <minus/>
+                <ci> H2O_UPTAKE </ci>
+                <ci> vout_h2o </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> GFR </ci>
+                <cn sbml:units="l_per_ml"> 0.001 </cn>
+              </apply>
+            </apply>
+            <ci> h2o_reabsorption </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="Vloop">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Rate rule for calculation of water change renal tubule.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <minus/>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> GFR </ci>
+                <cn sbml:units="l_per_ml"> 0.001 </cn>
+              </apply>
+              <ci> diuresis </ci>
+            </apply>
+            <ci> h2o_reabsorption </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="Vurine">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Rate rule for calculation of water change urine.</p>
+          </body>
+        </notes>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> diuresis </ci>
+        </math>
+      </rateRule>
+      <rateRule variable="IVDOSE_hctz">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <minus/>
+              <ci> iv_hctz </ci>
+            </apply>
+            <ci> Mr_hctz </ci>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction sboTerm="SBO:0000655" id="NA_UPTAKE" name="Na uptake via food" reversible="false" compartment="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Na uptake increased when concentrations too low.</p>
+          </body>
+        </notes>
+        <listOfProducts>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> vin_na </ci>
+                <apply>
+                  <power/>
+                  <ci> na_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
+              </apply>
+              <apply>
+                <power/>
+                <ci> na </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="CL_UPTAKE" name="Cl uptake via food" reversible="false" compartment="ECF">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Cl uptake increased when concentrations too low.</p>
+          </body>
+        </notes>
+        <listOfProducts>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> vin_cl </ci>
+                <apply>
+                  <power/>
+                  <ci> cl_ref </ci>
+                  <ci> counter_gamma </ci>
+                </apply>
+              </apply>
+              <apply>
+                <power/>
+                <ci> cl </ci>
+                <ci> counter_gamma </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="NA_FILTRATION" name="Na filtration kidney" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> na </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="NA_EXCRETION" name="Na excretion urine" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na_urine" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="hctz"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> k_na </ci>
+              <ci> na_loop </ci>
+              <apply>
+                <plus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <divide/>
+                      <ci> GFR </ci>
+                      <ci> GFR_base </ci>
+                    </apply>
+                    <ci> Emax_hctz_na </ci>
+                    <apply>
+                      <max/>
+                      <ci> hctz </ci>
+                      <cn sbml:units="mM" type="integer"> 0 </cn>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <max/>
+                      <ci> hctz </ci>
+                      <cn sbml:units="mM" type="integer"> 0 </cn>
+                    </apply>
+                    <ci> E50_hctz_nacl </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="NA_REABSORPTION" name="Na reabsorption kidney" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="na_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="na" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> h2o_reabsorption </ci>
+              <ci> na_loop </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="CL_FILTRATION" name="Cl filtration kidney" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> cl </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="CL_EXCRETION" name="Cl excretion urine" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cl_urine" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="hctz"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <ci> k_cl </ci>
+              <ci> cl_loop </ci>
+              <apply>
+                <plus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <divide/>
+                      <ci> GFR </ci>
+                      <ci> GFR_base </ci>
+                    </apply>
+                    <ci> Emax_hctz_cl </ci>
+                    <apply>
+                      <max/>
+                      <ci> hctz </ci>
+                      <cn sbml:units="mM" type="integer"> 0 </cn>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <max/>
+                      <ci> hctz </ci>
+                      <cn sbml:units="mM" type="integer"> 0 </cn>
+                    </apply>
+                    <ci> E50_hctz_nacl </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="CL_REABSORPTION" name="Cl reabsorption kidney" reversible="false" compartment="Vki">
+        <listOfReactants>
+          <speciesReference species="cl_loop" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="cl" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> h2o_reabsorption </ci>
+              <ci> cl_loop </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="transport_li_hctz" name="transport hydrochlorothiazide" reversible="true" compartment="Vli_tissue">
+        <listOfReactants>
+          <speciesReference species="Cli_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cli_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> ftissue_hctz </ci>
+                  <ci> BW </ci>
+                </apply>
+                <ci> BW_ref </ci>
+              </apply>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> Cli_plasma_hctz </ci>
+                  <ci> Kp_hctz </ci>
+                </apply>
+                <ci> Cli_hctz </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="transport_lu_hctz" name="transport hydrochlorothiazide" reversible="true" compartment="Vlu_tissue">
+        <listOfReactants>
+          <speciesReference species="Clu_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Clu_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> ftissue_hctz </ci>
+                  <ci> BW </ci>
+                </apply>
+                <ci> BW_ref </ci>
+              </apply>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> Clu_plasma_hctz </ci>
+                  <ci> Kp_hctz </ci>
+                </apply>
+                <ci> Clu_hctz </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="transport_re_hctz" name="transport hydrochlorothiazide" reversible="true" compartment="Vre_tissue">
+        <listOfReactants>
+          <speciesReference species="Cre_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cre_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> ftissue_hctz </ci>
+                  <ci> BW </ci>
+                </apply>
+                <ci> BW_ref </ci>
+              </apply>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> Cre_plasma_hctz </ci>
+                  <ci> Kp_hctz </ci>
+                </apply>
+                <ci> Cre_hctz </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_iv_hctz" sboTerm="SBO:0000655" id="iv_hctz" name="iv hydrochlorothiazide" reversible="false" compartment="Vve">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_iv_hctz">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C38276"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfProducts>
+          <speciesReference species="Cve_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Ki_hctz </ci>
+                <ci> IVDOSE_hctz </ci>
+              </apply>
+              <ci> Mr_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_ar_ki_hctz" name="inflow kidney hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Car_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cki_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qki </ci>
+              <ci> Car_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_ki_ve_hctz" name="outflow kidney hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Cki_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cve_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qki </ci>
+              <ci> Cki_plasma_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_arli_li_hctz" name="arterial inflow liver hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Car_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cli_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <apply>
+                <minus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <ci> f_shunts </ci>
+              </apply>
+              <ci> Qha </ci>
+              <ci> Car_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_arli_hv_hctz" name="flow arterial shunts" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Car_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Chv_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> f_shunts </ci>
+              <ci> Qha </ci>
+              <ci> Car_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_po_li_hctz" name="outflow po hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Cpo_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cli_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <apply>
+                <minus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <ci> f_shunts </ci>
+              </apply>
+              <ci> Qpo </ci>
+              <ci> Cpo_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_po_hv_hctz" name="flow portal shunts" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Cpo_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Chv_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> f_shunts </ci>
+              <ci> Qpo </ci>
+              <ci> Cpo_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_li_hv_hctz" name="outflow liver hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Cli_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Chv_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <times/>
+              <apply>
+                <minus/>
+                <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+                <ci> f_shunts </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Qpo </ci>
+                <ci> Qha </ci>
+              </apply>
+              <ci> Cli_plasma_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_hv_ve_hctz" name="outflow hepatic vein hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Chv_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cve_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qh </ci>
+              <ci> Chv_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_ve_lu_hctz" name="inflow lung hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Cve_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Clu_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qlu </ci>
+              <ci> Cve_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_lu_ar_hctz" name="outflow lung hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Clu_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Car_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qlu </ci>
+              <ci> Clu_plasma_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_ar_gu_hctz" name="inflow gut hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Car_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cgu_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qgu </ci>
+              <ci> Car_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_gu_po_hctz" name="outflow gut hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Cgu_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cpo_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qgu </ci>
+              <ci> Cgu_plasma_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_ar_re_hctz" name="inflow rest hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Car_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cre_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qre </ci>
+              <ci> Car_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction sboTerm="SBO:0000655" id="Flow_re_ve_hctz" name="outflow rest hydrochlorothiazide" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Cre_plasma_hctz" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cve_hctz" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Qre </ci>
+              <ci> Cre_plasma_hctz </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <comp:listOfSubmodels>
+      <comp:submodel comp:id="KI" comp:name="kidney submodel" comp:modelRef="kidney"/>
+      <comp:submodel comp:id="GU" comp:name="gut submodel" comp:modelRef="gut"/>
+    </comp:listOfSubmodels>
+    <comp:listOfPorts>
+      <comp:port metaid="BW_port" sboTerm="SBO:0000599" comp:idRef="BW" comp:id="BW_port" comp:name="Port of BW"/>
+      <comp:port metaid="f_renal_function_port" sboTerm="SBO:0000599" comp:idRef="f_renal_function" comp:id="f_renal_function_port" comp:name="Port of f_renal_function"/>
+      <comp:port metaid="GFR_base_port" sboTerm="SBO:0000599" comp:idRef="GFR_base" comp:id="GFR_base_port" comp:name="Port of GFR_base"/>
+      <comp:port metaid="v_HCTZEX_port" sboTerm="SBO:0000599" comp:idRef="v_HCTZEX" comp:id="v_HCTZEX_port" comp:name="Port of v_HCTZEX"/>
+      <comp:port metaid="Vki_tissue_port" sboTerm="SBO:0000599" comp:idRef="Vki_tissue" comp:id="Vki_tissue_port" comp:name="Port of Vki_tissue"/>
+      <comp:port metaid="Vki_plasma_port" sboTerm="SBO:0000599" comp:idRef="Vki_plasma" comp:id="Vki_plasma_port" comp:name="Port of Vki_plasma"/>
+      <comp:port metaid="Vli_tissue_port" sboTerm="SBO:0000599" comp:idRef="Vli_tissue" comp:id="Vli_tissue_port" comp:name="Port of Vli_tissue"/>
+      <comp:port metaid="Vli_plasma_port" sboTerm="SBO:0000599" comp:idRef="Vli_plasma" comp:id="Vli_plasma_port" comp:name="Port of Vli_plasma"/>
+      <comp:port metaid="Vlu_tissue_port" sboTerm="SBO:0000599" comp:idRef="Vlu_tissue" comp:id="Vlu_tissue_port" comp:name="Port of Vlu_tissue"/>
+      <comp:port metaid="Vlu_plasma_port" sboTerm="SBO:0000599" comp:idRef="Vlu_plasma" comp:id="Vlu_plasma_port" comp:name="Port of Vlu_plasma"/>
+      <comp:port metaid="Vgu_tissue_port" sboTerm="SBO:0000599" comp:idRef="Vgu_tissue" comp:id="Vgu_tissue_port" comp:name="Port of Vgu_tissue"/>
+      <comp:port metaid="Vgu_plasma_port" sboTerm="SBO:0000599" comp:idRef="Vgu_plasma" comp:id="Vgu_plasma_port" comp:name="Port of Vgu_plasma"/>
+      <comp:port metaid="Vre_tissue_port" sboTerm="SBO:0000599" comp:idRef="Vre_tissue" comp:id="Vre_tissue_port" comp:name="Port of Vre_tissue"/>
+      <comp:port metaid="Vre_plasma_port" sboTerm="SBO:0000599" comp:idRef="Vre_plasma" comp:id="Vre_plasma_port" comp:name="Port of Vre_plasma"/>
+      <comp:port metaid="hctz_port" sboTerm="SBO:0000599" comp:idRef="hctz" comp:id="hctz_port" comp:name="Port of hctz"/>
+      <comp:port metaid="Cki_plasma_hctz_port" sboTerm="SBO:0000599" comp:idRef="Cki_plasma_hctz" comp:id="Cki_plasma_hctz_port" comp:name="Port of Cki_plasma_hctz"/>
+      <comp:port metaid="Cli_plasma_hctz_port" sboTerm="SBO:0000599" comp:idRef="Cli_plasma_hctz" comp:id="Cli_plasma_hctz_port" comp:name="Port of Cli_plasma_hctz"/>
+      <comp:port metaid="Clu_plasma_hctz_port" sboTerm="SBO:0000599" comp:idRef="Clu_plasma_hctz" comp:id="Clu_plasma_hctz_port" comp:name="Port of Clu_plasma_hctz"/>
+      <comp:port metaid="Cgu_plasma_hctz_port" sboTerm="SBO:0000599" comp:idRef="Cgu_plasma_hctz" comp:id="Cgu_plasma_hctz_port" comp:name="Port of Cgu_plasma_hctz"/>
+      <comp:port metaid="Cre_plasma_hctz_port" sboTerm="SBO:0000599" comp:idRef="Cre_plasma_hctz" comp:id="Cre_plasma_hctz_port" comp:name="Port of Cre_plasma_hctz"/>
+      <comp:port metaid="Car_hctz_port" sboTerm="SBO:0000599" comp:idRef="Car_hctz" comp:id="Car_hctz_port" comp:name="Port of Car_hctz"/>
+      <comp:port metaid="Cve_hctz_port" sboTerm="SBO:0000599" comp:idRef="Cve_hctz" comp:id="Cve_hctz_port" comp:name="Port of Cve_hctz"/>
+      <comp:port metaid="Cpo_hctz_port" sboTerm="SBO:0000599" comp:idRef="Cpo_hctz" comp:id="Cpo_hctz_port" comp:name="Port of Cpo_hctz"/>
+      <comp:port metaid="Chv_hctz_port" sboTerm="SBO:0000599" comp:idRef="Chv_hctz" comp:id="Chv_hctz_port" comp:name="Port of Chv_hctz"/>
+      <comp:port metaid="Cli_hctz_port" sboTerm="SBO:0000599" comp:idRef="Cli_hctz" comp:id="Cli_hctz_port" comp:name="Port of Cli_hctz"/>
+      <comp:port metaid="Clu_hctz_port" sboTerm="SBO:0000599" comp:idRef="Clu_hctz" comp:id="Clu_hctz_port" comp:name="Port of Clu_hctz"/>
+      <comp:port metaid="Cre_hctz_port" sboTerm="SBO:0000599" comp:idRef="Cre_hctz" comp:id="Cre_hctz_port" comp:name="Port of Cre_hctz"/>
+    </comp:listOfPorts>
+  </model>
+  <comp:listOfExternalModelDefinitions>
+    <comp:externalModelDefinition comp:id="kidney" comp:name="kidney model definition" comp:source="hctz_kidney.xml" comp:modelRef="hctz_kidney"/>
+    <comp:externalModelDefinition comp:id="gut" comp:name="gut model definition" comp:source="hctz_intestine.xml" comp:modelRef="hctz_intestine"/>
+  </comp:listOfExternalModelDefinitions>
+</sbml>

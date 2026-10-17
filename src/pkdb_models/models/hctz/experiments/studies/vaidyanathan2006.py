@@ -1,21 +1,28 @@
-from typing import Dict
+"""Simulation experiment of the study Vaidyanathan2006."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
+from sbmlsim.simulation import Change, Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Vaidyanathan2006(HCTZSimulationExperiment):
@@ -23,96 +30,80 @@ class Vaidyanathan2006(HCTZSimulationExperiment):
 
     multiple dose 25mg HCTZ alone and in combination with aliskiren 300 mg.
     """
-    labels = ["hctz_HCTZ25", "hctz_HCTZ25,ALI300HCTZ"]
-    colors = {
+
+    groups: ClassVar[list[str]] = ["hctz_HCTZ25", "hctz_HCTZ25,ALI300HCTZ"]
+    colors: ClassVar[dict[str, str]] = {
         "hctz_HCTZ25": "black",
         "hctz_HCTZ25,ALI300HCTZ": "tab:blue",
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig3"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                dsets[f"{fig_id}_{label}"] = dset
+                dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
-        # print(dsets.keys())
-        # print(dsets)
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
-        tc0 = Timecourse(
-            start=0,
-            end=24 * 60,  # [min]
-            steps=500,
-            changes={
-                **self.default_changes(),
-                "PODOSE_hctz": Q_(25, "mg"),
-            },
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
+        # 4 doses, every 24 hours, the data is reported from the last dose
+        dose_times = [24 * k for k in range(4)]
+        simulations["hctz25"] = Simulation(
+            time_unit="hr",
+            end=3 * 24 + 25,
+            steps=2328,
+            preinit_changes=self.default_changes(),
+            changes=[Change(dose_times, {"PODOSE_hctz": Q(25, "mg")})],
+            time_shift=-3 * 24,
         )
-        tc1 = Timecourse(
-            start=0,
-            end=24 * 60,  # [min]
-            steps=500,
-            changes={
-                "PODOSE_hctz": Q_(25, "mg"),
-            }
-        )
-        tc2 = Timecourse(
-            start=0,
-            end=25 * 60,  # [min]
-            steps=500,
-            changes={
-                "PODOSE_hctz": Q_(25, "mg"),
-            }
-        )
-        tcsims["hctz25"] =TimecourseSim(
-            [tc0, tc1, tc1, tc2],
-            time_offset=-3*24*60,
-        )
-        return tcsims
+        return simulations
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
-        for label in self.labels:
-            mappings[f"fm_Fig3_{label}"] = FitMapping(
+        for label in self.groups:
+            mappings[self.to_sid(f"fm_Fig3_{label}")] = FitMapping(
                 self,
                 reference=FitData(
                     self,
-                    dataset=f"Fig3_{label}",
+                    dataset=self.to_sid(f"Fig3_{label}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
                 ),
                 observable=FitData(
-                    self, task=f"task_hctz25", xid="time", yid="[Cve_hctz]"
+                    self, task="task_hctz25", xid="time", yid="[Cve_hctz]"
                 ),
-                metadata=HCTZMappingMetaData(
+                metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
-                    dosing=Dosing.MULTI,
+                    dosing=Dosing.MULTIPLE,
                     health=Health.HEALTHY,
                     fasting=Fasting.FASTED,
-                    coadministration=Coadministration.ALISKIREN if "ALI300" in label else Coadministration.NONE,
+                    coadministration=Coadministration.ALISKIREN
+                    if "ALI300" in label
+                    else Coadministration.NONE,
                 ),
             )
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         name = "Fig3"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             name=f"{self.__class__.__name__} {name}",
         )
 
@@ -121,28 +112,28 @@ class Vaidyanathan2006(HCTZSimulationExperiment):
 
         # simulation
         plots[0].add_data(
-            task=f"task_hctz25",
+            task="task_hctz25",
             xid="time",
             yid="[Cve_hctz]",
-            label=f"Sim 25",
+            label="Sim 25",
             color="black",
         )
         # data
-        for label in self.labels:
+        for label in self.groups:
             plots[0].add_data(
-                dataset=f"Fig3_{label}",
+                dataset=self.to_sid(f"Fig3_{label}"),
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
                 count="count",
-                label="25 mg + Aliskiren" if label == self.labels[1] else "25 mg",
+                label="25 mg + Aliskiren" if label == self.groups[1] else "25 mg",
                 color=self.colors[label],
             )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
 
 if __name__ == "__main__":
-    run_experiments(Vaidyanathan2006, output_dir=Vaidyanathan2006.__name__)
+    MODEL.run_experiments(Vaidyanathan2006, output_dir=Vaidyanathan2006.__name__)

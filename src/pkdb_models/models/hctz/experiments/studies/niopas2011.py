@@ -1,21 +1,28 @@
-from typing import Dict
+"""Simulation experiment of the study Niopas2011."""
+
+from typing import ClassVar, override
 
 import pandas as pd
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
+from sbmlsim.simulation import Simulation
 
+from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
-from pkdb_models.models.hctz.experiments.metadata import (
-    Health, Tissue, ApplicationForm,
-    Dosing, Route, Fasting, Coadministration,
-    HCTZMappingMetaData,
-)
-from pkdb_models.models.hctz.helpers import run_experiments
 
 
 class Niopas2011(HCTZSimulationExperiment):
@@ -23,59 +30,57 @@ class Niopas2011(HCTZSimulationExperiment):
 
     Combination with enalapril.
     """
-    suffixes = ["ENA20", "REF20"]
 
-    def datasets(self) -> Dict[str, DataSet]:
+    suffixes: ClassVar[list[str]] = ["ENA20", "REF20"]
+
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig2"]:
-            df: pd.DataFrame = load_pkdb_dataframe(
-                f"{self.sid}_{fig_id}", data_path=self.data_path
-            )
+            df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hydrochlorothiazide"):
                     dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                dsets[f"{fig_id}_{label}"] = dset
+                dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
-        # print(dsets.keys())
-        # print(dsets)
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        simulations = {}
 
-        tcsims["hctz12.5"] = TimecourseSim(
-            Timecourse(
-                start=0,
-                end=40 * 60,  # [min]
-                steps=500,
-                changes={
-                    **self.default_changes(),
-                    "PODOSE_hctz": Q_(12.5, "mg"),
-                },
-            )
+        simulations["hctz12p5"] = Simulation(
+            time_unit="hr",
+            end=40,
+            steps=500,
+            preinit_changes={
+                **self.default_changes(),
+                "PODOSE_hctz": Q(12.5, "mg"),
+            },
         )
 
-        return tcsims
+        return simulations
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         for suffix in self.suffixes:
-            mappings[f"fm_Fig2_hydrochlorothiazide_{suffix}"] = FitMapping(
+            mappings[self.to_sid(f"fm_Fig2_hydrochlorothiazide_{suffix}")] = FitMapping(
                 self,
                 reference=FitData(
                     self,
-                    dataset=f"Fig2_hydrochlorothiazide_{suffix}",
+                    dataset=self.to_sid(f"Fig2_hydrochlorothiazide_{suffix}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
                 ),
                 observable=FitData(
-                    self, task=f"task_hctz12.5", xid="time", yid="[Cve_hctz]"
+                    self, task="task_hctz12p5", xid="time", yid="[Cve_hctz]"
                 ),
-                metadata=HCTZMappingMetaData(
+                metadata=PKPDMappingMetaData(
                     # coadministration enalapril 20 mg
                     tissue=Tissue.PLASMA,
                     application_form=ApplicationForm.TABLET,
@@ -89,15 +94,15 @@ class Niopas2011(HCTZSimulationExperiment):
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         name = "Fig2"
         fig = Figure(
             experiment=self,
-            sid=name,
+            sid=self.to_sid(name),
             num_rows=1,
             num_cols=1,
-            # name=f"{self.__class__.__name__} {name}",
-            name=f"Niopas2004 {name}",
+            name=f"{self.__class__.__name__} {name}",
         )
 
         plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)
@@ -105,28 +110,28 @@ class Niopas2011(HCTZSimulationExperiment):
 
         # simulation
         plots[0].add_data(
-            task=f"task_hctz12.5",
+            task="task_hctz12p5",
             xid="time",
             yid="[Cve_hctz]",
-            label=f"Sim 12.5",
+            label="Sim 12.5",
             color=self.color_hctz,
         )
         # data
         for suffix in self.suffixes:
             plots[0].add_data(
-                dataset=f"Fig2_hydrochlorothiazide_{suffix}",
+                dataset=self.to_sid(f"Fig2_hydrochlorothiazide_{suffix}"),
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
                 count="count",
                 label=f"12.5 mg + {suffix}",
-                color="tab:orange" if suffix=="ENA20" else "tab:blue",
+                color="tab:orange" if suffix == "ENA20" else "tab:blue",
             )
 
         return {
-            fig.sid: fig,
+            self.to_sid(name): fig,
         }
 
 
 if __name__ == "__main__":
-    run_experiments(Niopas2011, output_dir=Niopas2011.__name__)
+    MODEL.run_experiments(Niopas2011, output_dir=Niopas2011.__name__)
