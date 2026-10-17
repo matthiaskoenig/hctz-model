@@ -78,7 +78,7 @@ constraints = [
     { name = "petab", specifier = "==0.9.0" },
     { name = "pillow", specifier = "==12.3.0" },
     { name = "pint", specifier = "==0.26.1" },
-    { name = "pkpdsim", specifier = "==0.9.1" },
+    { name = "pkpdsim", specifier = "==0.9.2" },
     { name = "pkpdutils", specifier = "==1.3.0" },
     { name = "platformdirs", specifier = "==4.12.4" },
     { name = "plotly", specifier = "==7.1.0" },
@@ -632,7 +632,7 @@ wheels = [
 
 [[package]]
 name = "hctz-model"
-version = "0.9.0"
+version = "0.9.1"
 source = { editable = "." }
 dependencies = [
     { name = "libsbgnpy" },
@@ -655,7 +655,7 @@ docs = [
 [package.metadata]
 requires-dist = [
     { name = "libsbgnpy", specifier = ">=0.7.0" },
-    { name = "pkpdsim", specifier = ">=0.9.1" },
+    { name = "pkpdsim", specifier = ">=0.9.2" },
     { name = "pkpdutils", specifier = ">=1.3.0" },
     { name = "plotly", specifier = ">=7.1.0" },
     { name = "pymetadata", specifier = ">=0.8.0" },
@@ -1443,7 +1443,7 @@ wheels = [
 
 [[package]]
 name = "pkpdsim"
-version = "0.9.1"
+version = "0.9.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jinja2" },
@@ -1456,9 +1456,9 @@ dependencies = [
     { name = "sbmlsim" },
     { name = "sbmlutils" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/37/6a/bc76c525ad0377a72e90c1b55abf692f48fe0cd6e6bbde4af0092f2dbac2/pkpdsim-0.9.1.tar.gz", hash = "sha256:6567ec222ed5f3087848dffe917d3ea714a1f39347cc8605e81776e06c2a9b1c", size = 460975, upload-time = "2026-10-17T02:52:22.568Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/48/01/fcf1dd7a5364b2051f05d137933abf31dc78296083f430604eb4ca125561/pkpdsim-0.9.2.tar.gz", hash = "sha256:3fdc010aeb9d7af1e9a41d3bb35132e89e94b151044b827403cef9a8f448dc02", size = 461849, upload-time = "2026-10-17T03:46:13.012Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1e/71/9527b8ab0690ac72080e99204262a43a80d4eff8eeadc438f38f8ffc4022/pkpdsim-0.9.1-py3-none-any.whl", hash = "sha256:a26c7c917165dc28afdd9c651a0bb9a50cd0f4660caec6ed3636c42540c41e3d", size = 164512, upload-time = "2026-10-17T02:52:21.082Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/29/5e0ccfcf043526945c54f8c7b8eb325112b0070cac32041f2f3ed39f4989/pkpdsim-0.9.2-py3-none-any.whl", hash = "sha256:3c6b86f750d83e83edc67ccb8e9cb195c1c4a4da60befc7974e2db6e45518354", size = 164797, upload-time = "2026-10-17T03:46:11.167Z" },
 ]
 
 [[package]]

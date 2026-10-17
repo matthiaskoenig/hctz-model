@@ -59,6 +59,10 @@ class HCTZParameterScan(HCTZSimulationExperiment):
     # 0.4 % and 0.6 %
     tend = 720
     steps = 15000
+    #: the end of the timecourses of the figures [hr]: the scan is simulated
+    #: to `tend` for the pharmacokinetic parameters, the figures show the
+    #: initial phase, 6 days with a tick per day
+    tend_plot = 144
     #: the output times of a run over the draws [hr]: every 0.02 hr in the
     #: first day (absorption and maximum), every 0.5 hr after it. The grid of
     #: 15000 steps over 720 hr for every draw of every point would need about
@@ -145,7 +149,7 @@ class HCTZParameterScan(HCTZSimulationExperiment):
             "scale": "linear",
             "colormap": "Purples",
             "units": "mg",
-            "label": "hydrochlorothiazide dose [mg]",
+            "label": "HCTZ dose [mg]",
         },
     }
 
@@ -228,6 +232,9 @@ class HCTZParameterScan(HCTZSimulationExperiment):
     ) -> tuple[Quantity, Quantity]:
         """Get the timecourse of a point of a scan, drawing the band of its draws.
 
+        The timecourse ends at `tend_plot`, so that the axes scale to the
+        initial phase.
+
         Returns:
             The time and the values, the median of the draws in a run over
             them.
@@ -239,17 +246,20 @@ class HCTZParameterScan(HCTZSimulationExperiment):
             time, lower, values, upper = point_band(
                 res, sid, across=run.id, quantiles=run.quantiles, **point
             )
+        time_plot = Q(time, res.units["time"]).to(self.units["time"]).magnitude
+        shown = time_plot <= self.tend_plot
+        if run is not None:
             ax.fill_between(
-                Q(time, res.units["time"]).to(self.units["time"]).magnitude,
-                Q(lower, res.units[sid]).to(self.units[sid]).magnitude,
-                Q(upper, res.units[sid]).to(self.units[sid]).magnitude,
+                time_plot[shown],
+                Q(lower[shown], res.units[sid]).to(self.units[sid]).magnitude,
+                Q(upper[shown], res.units[sid]).to(self.units[sid]).magnitude,
                 color=color,
                 alpha=self.band_alpha,
                 linewidth=0,
             )
         return (
-            Q(time, res.units["time"]).to(self.units["time"]),
-            Q(values, res.units[sid]).to(self.units[sid]),
+            Q(time_plot[shown], self.units["time"]),
+            Q(values[shown], res.units[sid]).to(self.units[sid]),
         )
 
     def _summary(
@@ -432,6 +442,8 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                     linewidth=2.0,
                 )
 
+                ax.set_xlim(0, self.tend_plot)
+                ax.set_xticks(np.arange(0, self.tend_plot + 1, 24))
                 ax.set_xlabel(
                     f"{self.label_time} [{self.units['time']}]",
                     fontdict=self.font,
@@ -475,7 +487,7 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                 ticks.append(scan_data["default"])
                 ticks = sorted(ticks)
             cbar.set_ticks(ticks)
-            cbar.set_ticklabels([str(t) for t in ticks], fontsize=15)
+            cbar.set_ticklabels([f"{t:g}" for t in ticks], fontsize=15)
 
             figures[f"timecourse__pk__{scan_key}"] = f
 

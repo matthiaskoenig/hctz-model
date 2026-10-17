@@ -1,5 +1,54 @@
 # Release notes
 
+## Release notes for hctz-model 0.9.1
+
+Made from pkdb_models 1bdb95b16f with pkpdsim 0.9.2.
+
+The changes since 0.9.0.
+
+### Core libraries
+
+pkpdsim 0.9.1 → 0.9.2:
+
+- The CI workflow of a release puts `libpython` on the library search path before the dependencies are installed.
+
+### Libraries
+
+| Package | Previous | New |
+| --- | --- | --- |
+| `pkpdsim` | 0.9.1 | 0.9.2 |
+
+<details>
+<summary>All changed packages</summary>
+
+| Package | Previous | New |
+| --- | --- | --- |
+| `pkpdsim` | 0.9.1 | 0.9.2 |
+
+</details>
+
+### Data
+
+No changes.
+
+### Analysis
+
+#### Models
+
+- `hctz_body.xml`: changed, with the same species, reactions and parameter values
+- `hctz_body_flat.xml`: changed, with the same species, reactions and parameter values
+- `hctz_fluid.xml`: changed, with the same species, reactions and parameter values
+- `hctz_intestine.xml`: changed, with the same species, reactions and parameter values
+- `hctz_kidney.xml`: changed, with the same species, reactions and parameter values
+
+#### Experiments
+
+No changes.
+
+#### Fits
+
+No changes.
+
 ## Release notes for hctz-model 0.9.0
 
 Made from pkdb_models d5a099d3c5 with pkpdsim 0.9.1.

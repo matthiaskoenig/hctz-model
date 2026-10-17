@@ -18,6 +18,15 @@ jobs:
           python-version: "3.14"
           enable-cache: true
 
+      - name: Put libpython on the library search path
+        # the extension of libroadrunner links against libpython. The standalone
+        # interpreters uv installs ship it in their `lib`, where the loader does
+        # not look; without it the import of roadrunner fails with
+        # `libpython3.14.so.1.0: cannot open shared object file`
+        run: |
+          prefix=$(uv run --no-project python -c "import sys; print(sys.base_prefix)")
+          echo "LD_LIBRARY_PATH=$prefix/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" >> "$GITHUB_ENV"
+
       - name: Install dependencies
         run: uv sync --locked
 
