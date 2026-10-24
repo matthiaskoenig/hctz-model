@@ -26,8 +26,14 @@ from typing import TYPE_CHECKING
 
 import numpy as np
 import pandas as pd
-from pkpdsim.scan import point_timecourse, scan_dimensions, single_dimension
-from pkpdutils import Dose, NCAOptions, Route, Timecourse, nca_single, ureg
+from pkpdsim.pk import nca_frame, scan_nca
+from pkpdsim.scan import (
+    end_values,
+    point_timecourse,
+    scan_dimensions,
+    start_values,
+)
+from pkpdutils import NCAOptions, Route, ureg
 from sbmlsim import Q
 from sbmlsim.result import ScanResult
 
@@ -85,13 +91,12 @@ def _columns(point: dict[str, int], across: str | None) -> dict[str, int]:
     return columns
 
 
-def pk_parameters(
-    experiment: HCTZSimulationExperiment,
-    res: ScanResult,
-    index: int | dict[str, int],
-) -> dict[str, float | str]:
-    """Calculate the pharmacokinetic parameters of a simulation of a scan.
+def calculate_hctz_pk(
+    experiment: HCTZSimulationExperiment, res: ScanResult, across: str | None = None
+) -> pd.DataFrame:
+    """Calculate the pharmacokinetic parameters of every simulation of a scan.
 
+    The non-compartmental analysis of all simulations at once (`scan_nca`).
     The fractions of the dose in the urine (`fe_urine`) and in the feces
     (`fe_feces`, the oral dose which is not absorbed) at the end of the
     simulation, and the rest in the body (`f_remaining`). The renal clearance
@@ -104,79 +109,55 @@ def pk_parameters(
     Args:
         experiment: experiment of the scan, for the molecular weight.
         res: result of the scan.
-        index: index of the simulation in a scan of one dimension, or the
-            position of the point along every dimension of the scan.
-
-    Returns:
-        The parameters and their units (`<name>_unit`).
-    """
-    units = res.units
-    point = index if isinstance(index, dict) else {single_dimension(res): index}
-
-    # the dose in the substance unit of the concentration, which `cl_f` and
-    # `vz_f` require
-    dose_mass = Q(res[DOSE].isel({**point, "time": 0}).item(), units[DOSE])
-    dose = (dose_mass / experiment.Mr.hctz).to("mmole")
-    time, values = point_timecourse(res, CONCENTRATION, **point)
-    cmax = float(values.max())
-    timecourse = Timecourse(
-        time=time,
-        value=values,
-        time_unit=str(units["time"]),
-        unit=str(units[CONCENTRATION]),
-        lloq=LLOQ_FRACTION * cmax if cmax > 0 else None,
-        dose=Dose(amount=dose.magnitude, unit="mmol", route=Route.ORAL),
-        substance="hctz",
-    )
-    result = nca_single(
-        timecourse, options=NCAOptions(extrapolation_warning=EXTRAPOLATION_WARNING)
-    )
-    pk = result.to_quantities()
-
-    urine, feces = (
-        ureg.Quantity(res[sid].isel({**point, "time": -1}).item(), str(units[sid]))
-        for sid in [URINE, FECES]
-    )
-    dose_amount = ureg.Quantity(dose.magnitude, "mmol")
-    excretion = {
-        "fe_urine": (urine / dose_amount).to("dimensionless"),
-        "fe_feces": (feces / dose_amount).to("dimensionless"),
-        "f_remaining": (1 - (urine + feces) / dose_amount).to("dimensionless"),
-        "cl_renal": (urine / pk["auc_last"]).to("ml/min"),
-        "cl_sys": ((dose_amount - feces) / pk["auc_inf_obs"]).to("ml/min"),
-    }
-
-    parameters: dict[str, float | str] = {
-        "substance": "hctz",
-        "nca_flags": ", ".join(result.flags()),
-    }
-    for key, value in {**pk, **excretion}.items():
-        parameters[key] = value.magnitude
-        parameters[f"{key}_unit"] = str(value.units)
-    return parameters
-
-
-def calculate_hctz_pk(
-    experiment: HCTZSimulationExperiment, res: ScanResult, across: str | None = None
-) -> pd.DataFrame:
-    """Calculate the pharmacokinetic parameters of every simulation of a scan.
-
-    Args:
-        experiment: experiment of the scan.
-        res: result of the scan.
         across: the dimension of the draws of the fitted parameters, `None`
             for a scan without draws.
 
     Returns:
         One row per simulation of the scan, with its position (`point`, and
-        `draw` with draws).
+        `draw` with draws), the parameters and their units (`<name>_unit`).
     """
-    return pd.DataFrame(
-        [
-            {**_columns(point, across), **pk_parameters(experiment, res, point)}
-            for point in _points(res, across)
-        ]
+    # a scan of one dimension, and the draws
+    _points(res, across)
+    units = res.units
+    # the dose in the substance unit of the concentration, which `cl_f` and
+    # `vz_f` require
+    dose = (Q(start_values(res, DOSE).values, units[DOSE]) / experiment.Mr.hctz).to(
+        "mmole"
     )
+    result = scan_nca(
+        res,
+        CONCENTRATION,
+        dose=dose,
+        route=Route.ORAL,
+        substance="hctz",
+        lloq_fraction=LLOQ_FRACTION,
+        options=NCAOptions(extrapolation_warning=EXTRAPOLATION_WARNING),
+    )
+    df = nca_frame(result)
+    position = tuple(df[dim].to_numpy() for dim in res.dims)
+    urine, feces = (
+        ureg.Quantity(end_values(res, sid).values[position], str(units[sid]))
+        for sid in [URINE, FECES]
+    )
+    dose_amount = ureg.Quantity(dose.magnitude[position], "mmol")
+    auc_last = ureg.Quantity(df["auc_last"].to_numpy(), df["auc_last_unit"].iloc[0])
+    auc_inf = ureg.Quantity(
+        df["auc_inf_obs"].to_numpy(), df["auc_inf_obs_unit"].iloc[0]
+    )
+    excretion = {
+        "fe_urine": (urine / dose_amount).to("dimensionless"),
+        "fe_feces": (feces / dose_amount).to("dimensionless"),
+        "f_remaining": (1 - (urine + feces) / dose_amount).to("dimensionless"),
+        "cl_renal": (urine / auc_last).to("ml/min"),
+        "cl_sys": ((dose_amount - feces) / auc_inf).to("ml/min"),
+    }
+    for key, value in excretion.items():
+        df[key] = value.magnitude
+        df[f"{key}_unit"] = str(value.units)
+    df.insert(0, "substance", "hctz")
+    point = next(dim for dim in res.dims if dim != across)
+    names = {point: "point", **({across: "draw"} if across is not None else {})}
+    return df.rename(columns=names)
 
 
 def calculate_hctz_pd(

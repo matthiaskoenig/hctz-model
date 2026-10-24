@@ -4,7 +4,7 @@ from typing import ClassVar, override
 
 from sbmlsim import Q
 from sbmlsim.plot import Figure
-from sbmlsim.simulation import Change, Simulation
+from sbmlsim.simulation import Simulation
 
 from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
@@ -51,7 +51,6 @@ class DoseDependencyExperiment(HCTZSimulationExperiment):
                         ] = Simulation(
                             time_unit="hr",
                             end=5 * 24,
-                            steps=1000,
                             preinit_changes={
                                 **self.default_changes(),
                                 **changes,
@@ -67,14 +66,14 @@ class DoseDependencyExperiment(HCTZSimulationExperiment):
                         ] = Simulation(
                             time_unit="hr",
                             end=8 * 24 + 5 * 24,
-                            steps=3744,
                             preinit_changes={
                                 **self.default_changes(),
                                 **changes,
+                                f"{route.upper()}DOSE_hctz": Q(dose, "mg"),
                             },
                             changes=[
-                                Change(
-                                    dose_times,
+                                self.add_doses(
+                                    dose_times[1:],
                                     {f"{route.upper()}DOSE_hctz": Q(dose, "mg")},
                                 )
                             ],

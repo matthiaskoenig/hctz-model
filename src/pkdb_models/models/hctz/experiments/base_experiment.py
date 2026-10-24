@@ -5,6 +5,7 @@ from typing import Any, ClassVar, NamedTuple, override
 
 import pandas as pd
 from pkpdsim.experiment import PKPDSimulationExperiment
+from pkpdsim.scan import start_values
 from sbmlsim import Q
 from sbmlsim.units import Quantity
 
@@ -358,7 +359,7 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
                 experiment=self, res=self.results[f"task_{key}"], across=across
             )
             for key in keys
-            if float(self.results[f"task_{key}"]["PODOSE_hctz"].isel(time=0).max()) > 0
+            if float(start_values(self.results[f"task_{key}"], "PODOSE_hctz").max()) > 0
         }
 
     def calculate_hctz_pd(

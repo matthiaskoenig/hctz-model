@@ -17,7 +17,7 @@ from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Change, Simulation
+from sbmlsim.simulation import Simulation
 
 from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
@@ -32,6 +32,11 @@ class Devineni2014(HCTZSimulationExperiment):
     """
 
     groups: ClassVar[list[str]] = ["HCTZ25", "CAN300_HCTZ25"]
+    #: the legend names of the groups
+    legends: ClassVar[dict[str, str]] = {
+        "HCTZ25": "25 mg",
+        "CAN300_HCTZ25": "25 mg + canagliflozin 300 mg",
+    }
     colors: ClassVar[dict[str, str]] = {
         "HCTZ25": "black",
         "CAN300_HCTZ25": "tab:blue",
@@ -61,9 +66,11 @@ class Devineni2014(HCTZSimulationExperiment):
         simulations["hctz25"] = Simulation(
             time_unit="hr",
             end=28 * 24 + 25,
-            steps=16728,
-            preinit_changes=self.default_changes(),
-            changes=[Change(dose_times, {"PODOSE_hctz": Q(25, "mg")})],
+            preinit_changes={
+                **self.default_changes(),
+                "PODOSE_hctz": Q(25, "mg"),
+            },
+            changes=[self.add_doses(dose_times[1:], {"PODOSE_hctz": Q(25, "mg")})],
             time_shift=-28 * 24,  # shift to the last day
         )
 
@@ -130,7 +137,7 @@ class Devineni2014(HCTZSimulationExperiment):
                 yid="mean",
                 yid_sd="mean_sd",
                 count="count",
-                label=f"25 mg ({group})",
+                label=self.legends[group],
                 color=self.colors[group],
             )
 

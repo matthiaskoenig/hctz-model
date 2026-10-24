@@ -65,7 +65,6 @@ class Jeon2012(HCTZSimulationExperiment):
         simulations["hctz25"] = Simulation(
             time_unit="hr",
             end=6 * 24 + 30,
-            steps=4176,
             preinit_changes={
                 **self.default_changes(),
                 # # mean value of acute renin at baseline
@@ -80,9 +79,10 @@ class Jeon2012(HCTZSimulationExperiment):
                 #  diastolic blood pressure <90 and >65 mmHg)
                 "Psys_ref": Q((140 + 100) / 2, "mmHg"),  # HCTZ25 mono
                 "Pdia_ref": Q((90 + 65) / 2, "mmHg"),  # HCTZ25 mono
+                "PODOSE_hctz": Q(25, "mg"),
             },
             changes=[
-                Change(dose_times, {"PODOSE_hctz": Q(25, "mg")}),
+                self.add_doses(dose_times[1:], {"PODOSE_hctz": Q(25, "mg")}),
                 Change(
                     dose_times[1:],
                     {

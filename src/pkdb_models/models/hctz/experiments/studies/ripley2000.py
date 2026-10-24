@@ -87,7 +87,6 @@ class Ripley2000(HCTZSimulationExperiment):
             simulations[f"hctz{dose}_{intervention}"] = Simulation(
                 time_unit="hr",
                 end=40,
-                steps=500,
                 preinit_changes={
                     **self.default_changes(),
                     "PODOSE_hctz": Q(dose, "mg"),
@@ -226,7 +225,7 @@ class Ripley2000(HCTZSimulationExperiment):
                 task=f"task_hctz{dose}_{intervention}",
                 xid="time",
                 yid="na_urine",
-                label="Sim",
+                label=f"Sim {intervention}",
                 color=self.colors[intervention],
             )
 

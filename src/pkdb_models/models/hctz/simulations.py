@@ -34,7 +34,7 @@ from pkdb_models.models.hctz.experiments.studies import (
     Koytchev2004,
     Niemeyer1983,
     Nilsen1989,
-    Niopas2011,
+    Niopas2004,
     Patel1984,
     Ripley2000,
     Vaidyanathan2006,
@@ -66,7 +66,7 @@ EXPERIMENTS: dict[str, list[type[SimulationExperiment]]] = {
         Koytchev2004,
         Niemeyer1983,
         Nilsen1989,
-        Niopas2011,
+        Niopas2004,
         Patel1984,
         Ripley2000,
         Vaidyanathan2006,
@@ -116,8 +116,4 @@ EXPERIMENTS["all"] = EXPERIMENTS["studies"] + EXPERIMENTS["misc"] + EXPERIMENTS[
 
 
 if __name__ == "__main__":
-    MODEL.run_simulation_experiments(
-        EXPERIMENTS["all"],
-        MODEL.simulation_dir / "all",
-        figure_formats=["svg"],
-    )
+    MODEL.run_simulation_experiments(EXPERIMENTS["all"], MODEL.simulation_dir / "all")

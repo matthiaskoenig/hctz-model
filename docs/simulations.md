@@ -27,7 +27,7 @@
 | [Koytchev2004](https://matthiaskoenig.github.io/hctz-model/simulations/Koytchev2004/Koytchev2004.html) |
 | [Niemeyer1983](https://matthiaskoenig.github.io/hctz-model/simulations/Niemeyer1983/Niemeyer1983.html) |
 | [Nilsen1989](https://matthiaskoenig.github.io/hctz-model/simulations/Nilsen1989/Nilsen1989.html) |
-| [Niopas2011](https://matthiaskoenig.github.io/hctz-model/simulations/Niopas2011/Niopas2011.html) |
+| [Niopas2004](https://matthiaskoenig.github.io/hctz-model/simulations/Niopas2004/Niopas2004.html) |
 | [Patel1984](https://matthiaskoenig.github.io/hctz-model/simulations/Patel1984/Patel1984.html) |
 | [Ripley2000](https://matthiaskoenig.github.io/hctz-model/simulations/Ripley2000/Ripley2000.html) |
 | [Vaidyanathan2006](https://matthiaskoenig.github.io/hctz-model/simulations/Vaidyanathan2006/Vaidyanathan2006.html) |

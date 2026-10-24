@@ -134,7 +134,6 @@ class Januszewicz1959(HCTZSimulationExperiment):
                 time_unit="hr",
                 start=self.collections[0][0],
                 end=1,
-                steps=180,
                 preinit_changes=self.default_changes(),
                 changes=[
                     Change(0, {"IVDOSE_hctz": Q(dose, "mg")}),

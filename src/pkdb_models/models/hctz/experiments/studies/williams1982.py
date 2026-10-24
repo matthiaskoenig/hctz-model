@@ -142,7 +142,6 @@ class Williams1982(HCTZSimulationExperiment):
             simulations[f"hctz{dose}"] = Simulation(
                 time_unit="hr",
                 end=24 + 25,
-                steps=1960,
                 preinit_changes={
                     **self.default_changes(),
                     # the diet of the treatment days: 2000 ml fluid a day
@@ -352,7 +351,7 @@ class Williams1982(HCTZSimulationExperiment):
                     task=f"task_hctz{dose}",
                     xid=xid,
                     yid=yid,
-                    label="Sim",
+                    label=f"Sim {dose}",
                     color=self.colors[dose],
                 )
 

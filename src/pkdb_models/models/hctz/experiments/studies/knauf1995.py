@@ -175,7 +175,6 @@ class Knauf1995(HCTZSimulationExperiment):
             time_unit="hr",
             start=-24 * self.equilibration,
             end=self.action,
-            steps=int(24 * self.equilibration + self.action),
             preinit_changes={
                 **self.default_changes(),
                 "f_renal_function": self.renal_function(clearance),
@@ -183,13 +182,8 @@ class Knauf1995(HCTZSimulationExperiment):
             },
             changes=[
                 Change(-24, self.urine_reset),
-                Change(
-                    0,
-                    {
-                        "PODOSE_hctz": Q(25, "mg"),
-                        **{amount: f"{control:g} * {amount}" for amount in self.net},
-                    },
-                ),
+                Change(0, {amount: f"{control:g} * {amount}" for amount in self.net}),
+                self.add_doses(0, {"PODOSE_hctz": Q(25, "mg")}),
             ],
         )
 
@@ -201,12 +195,11 @@ class Knauf1995(HCTZSimulationExperiment):
         simulations["hctz25"] = Simulation(
             time_unit="hr",
             end=24 + 30,
-            steps=1080,
             preinit_changes={
                 **self.default_changes(),
                 "PODOSE_hctz": Q(0, "mg"),
             },
-            changes=[Change(24, {"PODOSE_hctz": Q(25, "mg")})],
+            changes=[self.add_doses(24, {"PODOSE_hctz": Q(25, "mg")})],
             time_shift=-24,
         )
 
@@ -224,7 +217,6 @@ class Knauf1995(HCTZSimulationExperiment):
                 time_unit="hr",
                 start=subject.start,
                 end=self.action,
-                steps=int((24 * self.equilibration + self.action) * 2),
                 preinit_changes=preinit_changes,
                 changes=subject.changes,
             ),

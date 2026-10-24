@@ -67,7 +67,6 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
         simulations["hctz50"] = Simulation(
             time_unit="hr",
             end=50,
-            steps=500,
             preinit_changes={
                 **self.default_changes(),
                 "PODOSE_hctz": Q(50, "mg"),
@@ -129,18 +128,18 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
         plots[0].set_yaxis(self.label_hctz, unit=self.unit_hctz)
         plots[1].set_yaxis(self.label_hctz_urine, unit=self.unit_hctz_urine)
 
+        # simulation, one for the groups
+        for k, yid in enumerate(self.yids):
+            plots[k].add_data(
+                task="task_hctz50",
+                xid="time",
+                yid=yid,
+                label="Sim hctz50",
+                color="black",
+            )
+
         for kg, group_key in enumerate(self.group_keys):
             group_label = self.group_labels[kg]
-
-            # simulation
-            for k, yid in enumerate(self.yids):
-                plots[k].add_data(
-                    task="task_hctz50",
-                    xid="time",
-                    yid=yid,
-                    label="Sim hctz50",
-                    color="black",
-                )
 
             # data
             for k, prefix in enumerate(self.prefixes):

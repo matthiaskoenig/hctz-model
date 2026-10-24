@@ -236,12 +236,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
       <tbody>
-      <tr><td class="mono">hctz50_msd</td><td><a href="Barbhaiya1982a_hctz50_msd.tsv">Barbhaiya1982a_hctz50_msd.tsv</a></td></tr>
-      <tr><td class="mono">hctz50_stanlab</td><td><a href="Barbhaiya1982a_hctz50_stanlab.tsv">Barbhaiya1982a_hctz50_stanlab.tsv</a></td></tr>
-      <tr><td class="mono">amount_msd</td><td><a href="Barbhaiya1982a_amount_msd.tsv">Barbhaiya1982a_amount_msd.tsv</a></td></tr>
-      <tr><td class="mono">amount_stanlab</td><td><a href="Barbhaiya1982a_amount_stanlab.tsv">Barbhaiya1982a_amount_stanlab.tsv</a></td></tr>
-      <tr><td class="mono">recovery_msd</td><td><a href="Barbhaiya1982a_recovery_msd.tsv">Barbhaiya1982a_recovery_msd.tsv</a></td></tr>
-      <tr><td class="mono">recovery_stanlab</td><td><a href="Barbhaiya1982a_recovery_stanlab.tsv">Barbhaiya1982a_recovery_stanlab.tsv</a></td></tr>
+      <tr><td class="mono">hctz50_msd</td><td><a href="datasets/Barbhaiya1982a_hctz50_msd.tsv">datasets/Barbhaiya1982a_hctz50_msd.tsv</a></td></tr>
+      <tr><td class="mono">hctz50_stanlab</td><td><a href="datasets/Barbhaiya1982a_hctz50_stanlab.tsv">datasets/Barbhaiya1982a_hctz50_stanlab.tsv</a></td></tr>
+      <tr><td class="mono">amount_msd</td><td><a href="datasets/Barbhaiya1982a_amount_msd.tsv">datasets/Barbhaiya1982a_amount_msd.tsv</a></td></tr>
+      <tr><td class="mono">amount_stanlab</td><td><a href="datasets/Barbhaiya1982a_amount_stanlab.tsv">datasets/Barbhaiya1982a_amount_stanlab.tsv</a></td></tr>
+      <tr><td class="mono">recovery_msd</td><td><a href="datasets/Barbhaiya1982a_recovery_msd.tsv">datasets/Barbhaiya1982a_recovery_msd.tsv</a></td></tr>
+      <tr><td class="mono">recovery_stanlab</td><td><a href="datasets/Barbhaiya1982a_recovery_stanlab.tsv">datasets/Barbhaiya1982a_recovery_stanlab.tsv</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -335,7 +335,6 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
         simulations[&#34;hctz50&#34;] = Simulation(
             time_unit=&#34;hr&#34;,
             end=50,
-            steps=500,
             preinit_changes={
                 **self.default_changes(),
                 &#34;PODOSE_hctz&#34;: Q(50, &#34;mg&#34;),
@@ -397,18 +396,18 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
         plots[0].set_yaxis(self.label_hctz, unit=self.unit_hctz)
         plots[1].set_yaxis(self.label_hctz_urine, unit=self.unit_hctz_urine)
 
+        # simulation, one for the groups
+        for k, yid in enumerate(self.yids):
+            plots[k].add_data(
+                task=&#34;task_hctz50&#34;,
+                xid=&#34;time&#34;,
+                yid=yid,
+                label=&#34;Sim hctz50&#34;,
+                color=&#34;black&#34;,
+            )
+
         for kg, group_key in enumerate(self.group_keys):
             group_label = self.group_labels[kg]
-
-            # simulation
-            for k, yid in enumerate(self.yids):
-                plots[k].add_data(
-                    task=&#34;task_hctz50&#34;,
-                    xid=&#34;time&#34;,
-                    yid=yid,
-                    label=&#34;Sim hctz50&#34;,
-                    color=&#34;black&#34;,
-                )
 
             # data
             for k, prefix in enumerate(self.prefixes):

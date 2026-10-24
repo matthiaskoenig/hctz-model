@@ -100,7 +100,6 @@ class Nilsen1989(HCTZSimulationExperiment):
         simulations["hctz25"] = Simulation(
             time_unit="hr",
             end=1 + 40,
-            steps=500,
             preinit_changes=self.default_changes(),
             changes=[
                 Change(1, {"PODOSE_hctz": Q(25, "mg")}),

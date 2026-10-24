@@ -98,7 +98,6 @@ class Barbhaiya1982(HCTZSimulationExperiment):
         simulations["hctz50"] = Simulation(
             time_unit="hr",
             end=50,
-            steps=500,
             preinit_changes={
                 **self.default_changes(),
                 "PODOSE_hctz": Q(50, "mg"),
@@ -108,7 +107,6 @@ class Barbhaiya1982(HCTZSimulationExperiment):
         simulations["hctz50_collections"] = Simulation(
             time_unit="hr",
             end=50,
-            steps=500,
             preinit_changes={
                 **self.default_changes(),
                 "PODOSE_hctz": Q(50, "mg"),

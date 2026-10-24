@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib.typing import ColorType
-from pkpdsim.scan import point_band, point_timecourse, scan_dimensions
+from pkpdsim.scan import point_band, point_timecourse, scan_dimensions, start_values
 from sbmlsim import Q
 from sbmlsim.plot.serialization_matplotlib import (
     FigureMPL,
@@ -58,15 +58,14 @@ class HCTZParameterScan(HCTZSimulationExperiment):
     # the dose is still in the body and 17 % of the AUC extrapolated, at 720 hr
     # 0.4 % and 0.6 %
     tend = 720
-    steps = 15000
     #: the end of the timecourses of the figures [hr]: the scan is simulated
     #: to `tend` for the pharmacokinetic parameters, the figures show the
     #: initial phase, 6 days with a tick per day
     tend_plot = 144
-    #: the output times of a run over the draws [hr]: every 0.02 hr in the
-    #: first day (absorption and maximum), every 0.5 hr after it. The grid of
-    #: 15000 steps over 720 hr for every draw of every point would need about
-    #: 30 GB. The AUC and Cmax of the two grids differ by less than 0.01 %, the
+    #: the output times of a run over the draws [hr], a grid which the draws
+    #: share for their bands: every 0.02 hr in the first day (absorption and
+    #: maximum), every 0.5 hr after it. A grid of 15000 steps over 720 hr for
+    #: every draw of every point would need about 30 GB. The AUC and Cmax of the two grids differ by less than 0.01 %, the
     #: half-life by less than 1 % (the NCA chooses other points of the
     #: terminal phase), see test_hctz
     times_uncertainty: ClassVar[tuple[float, ...]] = tuple(
@@ -189,17 +188,16 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                     "PODOSE_hctz": Q(dose_hctz, "mg"),
                 }
                 preinit_changes.pop(scan_data["parameter"], None)
-                grid: dict[str, Any] = (
-                    {"steps": self.steps}
-                    if self.uncertainty is None
-                    else {"times": self.times_uncertainty}
-                )
+                # the steps of the integrator, the times of the grid in a run
+                # over the draws
                 scans[sim_key] = Scan(
                     simulation=Simulation(
                         time_unit="hr",
                         end=self.tend,
                         preinit_changes=preinit_changes,
-                        **grid,
+                        times=None
+                        if self.uncertainty is None
+                        else self.times_uncertainty,
                     ),
                     dimensions=[
                         Dimension(
@@ -226,7 +224,7 @@ class HCTZParameterScan(HCTZSimulationExperiment):
 
     def _scanned(self, res: ScanResult, parameter_id: str) -> Quantity:
         """Get the values of the scanned parameter at the points of the scan."""
-        values = res[parameter_id].isel(time=0)
+        values = start_values(res, parameter_id)
         across = self._across()
         if across is not None:
             values = values.isel({across: 0})

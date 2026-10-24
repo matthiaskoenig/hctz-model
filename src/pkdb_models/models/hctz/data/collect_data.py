@@ -18,7 +18,7 @@ from pkdb_models.models.hctz import DATA_PATH_BASE
 COADMINISTRATION_STUDIES: dict[str, str] = {
     "canagliflozin": "Devineni2014",
     "lisinopril": "Koytchev2004",
-    "enalapril": "Niopas2011",
+    "enalapril": "Niopas2004",
     "aliskiren": "Vaidyanathan2006",
 }
 

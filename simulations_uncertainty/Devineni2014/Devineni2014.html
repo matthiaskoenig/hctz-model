@@ -236,8 +236,8 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
       <tbody>
-      <tr><td class="mono">Fig3_hydrochlorothiazide_CAN300_HCTZ25</td><td><a href="Devineni2014_Fig3_hydrochlorothiazide_CAN300_HCTZ25.tsv">Devineni2014_Fig3_hydrochlorothiazide_CAN300_HCTZ25.tsv</a></td></tr>
-      <tr><td class="mono">Fig3_hydrochlorothiazide_HCTZ25</td><td><a href="Devineni2014_Fig3_hydrochlorothiazide_HCTZ25.tsv">Devineni2014_Fig3_hydrochlorothiazide_HCTZ25.tsv</a></td></tr>
+      <tr><td class="mono">Fig3_hydrochlorothiazide_CAN300_HCTZ25</td><td><a href="datasets/Devineni2014_Fig3_hydrochlorothiazide_CAN300_HCTZ25.tsv">datasets/Devineni2014_Fig3_hydrochlorothiazide_CAN300_HCTZ25.tsv</a></td></tr>
+      <tr><td class="mono">Fig3_hydrochlorothiazide_HCTZ25</td><td><a href="datasets/Devineni2014_Fig3_hydrochlorothiazide_HCTZ25.tsv">datasets/Devineni2014_Fig3_hydrochlorothiazide_HCTZ25.tsv</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -281,7 +281,7 @@ from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Change, Simulation
+from sbmlsim.simulation import Simulation
 
 from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
@@ -296,6 +296,11 @@ class Devineni2014(HCTZSimulationExperiment):
     &#34;&#34;&#34;
 
     groups: ClassVar[list[str]] = [&#34;HCTZ25&#34;, &#34;CAN300_HCTZ25&#34;]
+    #: the legend names of the groups
+    legends: ClassVar[dict[str, str]] = {
+        &#34;HCTZ25&#34;: &#34;25 mg&#34;,
+        &#34;CAN300_HCTZ25&#34;: &#34;25 mg + canagliflozin 300 mg&#34;,
+    }
     colors: ClassVar[dict[str, str]] = {
         &#34;HCTZ25&#34;: &#34;black&#34;,
         &#34;CAN300_HCTZ25&#34;: &#34;tab:blue&#34;,
@@ -325,9 +330,11 @@ class Devineni2014(HCTZSimulationExperiment):
         simulations[&#34;hctz25&#34;] = Simulation(
             time_unit=&#34;hr&#34;,
             end=28 * 24 + 25,
-            steps=16728,
-            preinit_changes=self.default_changes(),
-            changes=[Change(dose_times, {&#34;PODOSE_hctz&#34;: Q(25, &#34;mg&#34;)})],
+            preinit_changes={
+                **self.default_changes(),
+                &#34;PODOSE_hctz&#34;: Q(25, &#34;mg&#34;),
+            },
+            changes=[self.add_doses(dose_times[1:], {&#34;PODOSE_hctz&#34;: Q(25, &#34;mg&#34;)})],
             time_shift=-28 * 24,  # shift to the last day
         )
 
@@ -394,7 +401,7 @@ class Devineni2014(HCTZSimulationExperiment):
                 yid=&#34;mean&#34;,
                 yid_sd=&#34;mean_sd&#34;,
                 count=&#34;count&#34;,
-                label=f&#34;25 mg ({group})&#34;,
+                label=self.legends[group],
                 color=self.colors[group],
             )
 

@@ -17,7 +17,7 @@ from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Change, Simulation
+from sbmlsim.simulation import Simulation
 
 from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
@@ -60,11 +60,11 @@ class Hsiao2015(HCTZSimulationExperiment):
         simulations["hctz25"] = Simulation(
             time_unit="hr",
             end=dose_times[-1] + 30,
-            steps=20 * (dose_times[-1] + 30),
             preinit_changes={
                 **self.default_changes(),
+                "PODOSE_hctz": Q(25, "mg"),
             },
-            changes=[Change(dose_times, {"PODOSE_hctz": Q(25, "mg")})],
+            changes=[self.add_doses(dose_times[1:], {"PODOSE_hctz": Q(25, "mg")})],
             time_shift=-dose_times[-1],
         )
 

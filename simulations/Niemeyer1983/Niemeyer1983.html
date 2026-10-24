@@ -236,9 +236,9 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
       <tbody>
-      <tr><td class="mono">Fig1_hctz50_C</td><td><a href="Niemeyer1983_Fig1_hctz50_C.tsv">Niemeyer1983_Fig1_hctz50_C.tsv</a></td></tr>
-      <tr><td class="mono">Fig1_hctz50_S</td><td><a href="Niemeyer1983_Fig1_hctz50_S.tsv">Niemeyer1983_Fig1_hctz50_S.tsv</a></td></tr>
-      <tr><td class="mono">Fig1_hctz50_W</td><td><a href="Niemeyer1983_Fig1_hctz50_W.tsv">Niemeyer1983_Fig1_hctz50_W.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_hctz50_C</td><td><a href="datasets/Niemeyer1983_Fig1_hctz50_C.tsv">datasets/Niemeyer1983_Fig1_hctz50_C.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_hctz50_S</td><td><a href="datasets/Niemeyer1983_Fig1_hctz50_S.tsv">datasets/Niemeyer1983_Fig1_hctz50_S.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_hctz50_W</td><td><a href="datasets/Niemeyer1983_Fig1_hctz50_W.tsv">datasets/Niemeyer1983_Fig1_hctz50_W.tsv</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -347,7 +347,6 @@ class Niemeyer1983(HCTZSimulationExperiment):
             simulations[f&#34;hctz50_{patient}&#34;] = Simulation(
                 time_unit=&#34;hr&#34;,
                 end=60,
-                steps=500,
                 preinit_changes={
                     **self.default_changes(),
                     &#34;PODOSE_hctz&#34;: Q(50, &#34;mg&#34;),

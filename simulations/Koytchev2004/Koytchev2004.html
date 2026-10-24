@@ -236,10 +236,10 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
       <tbody>
-      <tr><td class="mono">Fig2_reference_hydro</td><td><a href="Koytchev2004_Fig2_reference_hydro.tsv">Koytchev2004_Fig2_reference_hydro.tsv</a></td></tr>
-      <tr><td class="mono">Fig2_reference_lisinopril_hydro</td><td><a href="Koytchev2004_Fig2_reference_lisinopril_hydro.tsv">Koytchev2004_Fig2_reference_lisinopril_hydro.tsv</a></td></tr>
-      <tr><td class="mono">Fig2_test_hydro</td><td><a href="Koytchev2004_Fig2_test_hydro.tsv">Koytchev2004_Fig2_test_hydro.tsv</a></td></tr>
-      <tr><td class="mono">Fig2_test_lisinopril_hydro</td><td><a href="Koytchev2004_Fig2_test_lisinopril_hydro.tsv">Koytchev2004_Fig2_test_lisinopril_hydro.tsv</a></td></tr>
+      <tr><td class="mono">Fig2_reference_hydro</td><td><a href="datasets/Koytchev2004_Fig2_reference_hydro.tsv">datasets/Koytchev2004_Fig2_reference_hydro.tsv</a></td></tr>
+      <tr><td class="mono">Fig2_reference_lisinopril_hydro</td><td><a href="datasets/Koytchev2004_Fig2_reference_lisinopril_hydro.tsv">datasets/Koytchev2004_Fig2_reference_lisinopril_hydro.tsv</a></td></tr>
+      <tr><td class="mono">Fig2_test_hydro</td><td><a href="datasets/Koytchev2004_Fig2_test_hydro.tsv">datasets/Koytchev2004_Fig2_test_hydro.tsv</a></td></tr>
+      <tr><td class="mono">Fig2_test_lisinopril_hydro</td><td><a href="datasets/Koytchev2004_Fig2_test_lisinopril_hydro.tsv">datasets/Koytchev2004_Fig2_test_lisinopril_hydro.tsv</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -323,7 +323,6 @@ class Koytchev2004(HCTZSimulationExperiment):
         simulations[&#34;hctz12p5&#34;] = Simulation(
             time_unit=&#34;hr&#34;,
             end=80,
-            steps=500,
             preinit_changes={
                 **self.default_changes(),
                 &#34;PODOSE_hctz&#34;: Q(12.5, &#34;mg&#34;),

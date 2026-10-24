@@ -17,7 +17,7 @@ from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Change, Simulation
+from sbmlsim.simulation import Simulation
 
 from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
@@ -83,9 +83,10 @@ class Ernst2006(HCTZSimulationExperiment):
         simulations = {}
         for arm, (_, _, start) in self.arms.items():
             dose_times = [24 * (start + k) for k in range(len(self.doses))]
+            # the first dose at the start, the later ones add to the rest
             changes = [
-                Change([time], {"PODOSE_hctz": Q(dose, "mg")})
-                for time, dose in zip(dose_times, self.doses, strict=True)
+                self.add_doses(time, {"PODOSE_hctz": Q(dose, "mg")})
+                for time, dose in zip(dose_times[1:], self.doses[1:], strict=True)
             ]
             # the 24 hr ABPM after the visit at the end of week 8
             end = 24 * (start + len(self.doses))
@@ -93,10 +94,10 @@ class Ernst2006(HCTZSimulationExperiment):
                 time_unit="hr",
                 start=24 * start,
                 end=end,
-                steps=(end - 24 * start) * 2,
                 preinit_changes={
                     **self.default_changes(),
                     "Psys_ref": Q(self.baselines[arm], "mmHg"),
+                    "PODOSE_hctz": Q(self.doses[0], "mg"),
                 },
                 changes=changes,
             )

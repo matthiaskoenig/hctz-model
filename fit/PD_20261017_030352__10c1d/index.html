@@ -187,6 +187,15 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
 <style>
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
+/* the groupings of the evaluation, one shown at a time */
+.grouping-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.grouping-tab {
+  border: 1px solid var(--line); background: var(--bg-soft); color: var(--fg-soft);
+  border-radius: 999px; padding: 5px 12px; font-size: 12.5px; cursor: pointer;
+}
+.grouping-tab.active { background: var(--accent); border-color: transparent; color: #fff; }
+.grouping-panel { display: none; }
+.grouping-panel.active { display: block; }
 .warn.card { border-color: var(--outlier); }
 /* a long id of a fit mapping breaks, its table stays in its card */
 .wrap { overflow-wrap: anywhere; min-width: 12em; }
@@ -228,7 +237,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <h1>PD_20261017_030352__10c1d</h1>
     <span class="sub">PD</span>
     <div class="badges">
-<span class="badge">mappings <b>85</b></span><span class="badge">parameters <b>5</b></span><span class="badge">cost <b>65.144</b></span><span class="badge">runs <b>3</b></span><span class="badge">identifiable <b>5/5</b></span>    </div>
+<span class="badge">mappings <b>85</b></span><span class="badge">parameters <b>5</b></span><span class="badge">cost <b>65.1441</b></span><span class="badge">runs <b>3</b></span><span class="badge">identifiable <b>5/5</b></span>    </div>
   </div>
   <nav class="sections">
     <a href="#report" data-tab="report" class="active">Report</a>
@@ -543,7 +552,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
 <h3>Figures</h3>
 <figure id="fig:traces:PD_20261017_030352__10c1d"><img src="plots/traces.svg" alt="Figure 1"><figcaption>Figure 1. Cost of the optimizers over their steps, fit PD_20261017_030352__10c1d. The cost of every optimization run over its steps. Runs which end at the same cost found the same optimum; a run which stops much higher is stuck in a local minimum.</figcaption></figure>
 <figure id="fig:waterfall:PD_20261017_030352__10c1d"><img src="plots/waterfall.svg" alt="Figure 2"><figcaption>Figure 2. Cost of the optimization runs, ordered, fit PD_20261017_030352__10c1d. The final cost of the runs, ordered. A flat plateau at the left is the global optimum found repeatedly, which is the evidence that the multistart converged; steps to the right are local minima.</figcaption></figure>
-<figure id="fig:goodness_of_fit:PD_20261017_030352__10c1d"><img src="plots/goodness_of_fit.svg" alt="Figure 3"><figcaption>Figure 3. Prediction against the measured data points, per kind of fit mapping, with the agreement of the training data, the lines of twofold and the metrics of the panel, fit PD_20261017_030352__10c1d. Within twofold of the data are 143 of the 161 training data points (88.8%) and 21 of the 21 validation data points (100.0%); only the data points with a positive value and prediction are counted. Prediction against measurement, one point per data point, with a panel per kind of fit mapping. The points scatter around the diagonal when the model describes the data; a systematic deviation from it is a systematic error of the model. The band is the agreement of the training data, i.e. the same band the Bland-Altman plot draws, here as lines parallel to the diagonal. The dark red dotted lines are twofold, prediction = 2 x measurement and prediction = measurement / 2; the caption states the points between them of every kind. A point which is zero or negative is not drawn on the logarithmic axes and not counted, the title of a panel then states the points drawn of all. The validation panel shows how the fit describes data it was not fitted on, the outlier panel the data the fit dropped. The box of a panel carries its R², its normalized RMSE, the RMSE of the residuals of the cost and the percentage of its points within twofold.</figcaption></figure>
+<figure id="fig:goodness_of_fit:PD_20261017_030352__10c1d"><img src="plots/goodness_of_fit.svg" alt="Figure 3"><figcaption>Figure 3. Prediction against the measured data points, per kind of fit mapping, with the agreement of the training data, the lines of twofold and the metrics of the panel, fit PD_20261017_030352__10c1d. Within twofold of the data are 143 of the 161 training data points (88.8%) and 21 of the 21 validation data points (100.0%); only the data points with a positive value and prediction are counted. Prediction against measurement, one point per data point, with a panel per kind of fit mapping. The points scatter around the diagonal when the model describes the data; a systematic deviation from it is a systematic error of the model. The band is the agreement of the training data, i.e. the same band the Bland-Altman plot draws, here as lines parallel to the diagonal. The dark red dotted lines are twofold, prediction = 2 x measurement and prediction = measurement / 2; the caption states the points between them of every kind. A point which is zero or negative is not drawn on the logarithmic axes and not counted, the title of a panel then states the points drawn of all. The validation panel shows how the fit describes data it was not fitted on, the outlier panel the data the fit dropped. The box of a panel carries its R², its normalized RMSE, the RMSE of the residuals of the cost, its fold errors GMFE and AFE and the percentages of its points within twofold and within two standard deviations of the data.</figcaption></figure>
 <figure id="fig:bland_altman:PD_20261017_030352__10c1d"><img src="plots/bland_altman.svg" alt="Figure 4"><figcaption>Figure 4. Agreement of prediction and measurement as a ratio, per kind of fit mapping, with the agreement of the training data and the agreement of the panel, fit PD_20261017_030352__10c1d. The ratio of prediction and measurement over the geometric mean of the two, i.e. the goodness of fit with the diagonal turned into the horizontal. The band is the same, the bias and the limits of agreement <code>bias ± 1.96 SD</code> of the training data as fold factors. A bias away from 1 is a systematic over- or underprediction, wide limits are a large scatter, and a trend over the mean is a model which describes the large or the small values better. The box of a panel carries the bias and the SD of its own points as fold factors and the share of them inside the limits of agreement of the training data.</figcaption></figure>
 <figure id="fig:profiles:PD_20261017_030352__10c1d"><img src="plots/profiles.svg" alt="Figure 5"><figcaption>Figure 5. Profile likelihood of every parameter: the cost with the parameter fixed and the other parameters optimized, the threshold of the confidence level and the confidence interval, fit PD_20261017_030352__10c1d. One profile per parameter. A profile which crosses the dashed threshold on both sides gives a finite confidence interval; one which stays below it up to a bound is practically non-identifiable; a flat profile is structurally non-identifiable, the parameter is compensated by the others.</figcaption></figure>
 </section>
@@ -598,12 +607,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <dt>parameter sets</dt><dd class="mono">PD_20261017_030352__10c1d_0</dd>
       <dt>fit mappings</dt><dd class="mono">77 training, 8 validation</dd>
       <dt>experiments</dt><dd class="mono">Beermann1977a, Jeon2012, Knauf1995, Nilsen1989, Patel1984, Ripley2000, Williams1982</dd>
-      <dt>base path</dt><dd class="mono">/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz</dd>
-      <dt>data path</dt><dd class="mono">/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/hydrochlorothiazide
-/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/lisinopril
-/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/enalapril
-/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/aliskiren
-/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/canagliflozin</dd>
+      <dt>base path</dt><dd class="mono">/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz</dd>
+      <dt>data path</dt><dd class="mono">/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/hydrochlorothiazide
+/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/lisinopril
+/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/enalapril
+/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/aliskiren
+/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/canagliflozin</dd>
       <dt>optimization</dt><dd class="mono">3 runs</dd>
     </dl>
   </div>
@@ -726,10 +735,22 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
             data-sort="num">AIC<span class="hint" tabindex="0" data-tip="Akaike information criterion, n*ln(MSE) + 2*k, up to a constant. Only differences between models fitted on the same data are meaningful; the smaller one is preferred.">?</span></th>
         <th class="num"
             data-sort="num">BIC<span class="hint" tabindex="0" data-tip="Bayesian information criterion, n*ln(MSE) + k*ln(n), up to the same constant as the AIC. It charges a parameter more than the AIC from eight data points on, so it prefers the smaller model.">?</span></th>
+        <th class="num"
+            data-sort="num">GMFE</th>
+        <th class="num"
+            data-sort="num">AFE</th>
+        <th class="num"
+            data-sort="num">1.25-fold [%]<span class="hint" tabindex="0" data-tip="Percentage of the data points with a ratio whose prediction lies within 1.25-fold of the data.">?</span></th>
+        <th class="num"
+            data-sort="num">1.5-fold [%]<span class="hint" tabindex="0" data-tip="Percentage of the data points with a ratio whose prediction lies within 1.5-fold of the data.">?</span></th>
+        <th class="num"
+            data-sort="num">1 SD [%]<span class="hint" tabindex="0" data-tip="Percentage of the data points with a standard deviation whose prediction lies within one standard deviation of the data; - if no point has one.">?</span></th>
+        <th class="num"
+            data-sort="num">2 SD [%]<span class="hint" tabindex="0" data-tip="Percentage of the data points with a standard deviation whose prediction lies within two standard deviations of the data; - if no point has one.">?</span></th>
 </tr></thead>
       <tbody>
-      <tr><td class="">PD_20261017_030352__10c1d_0</td><td class="">training</td><td class="num mono">166</td><td class="num mono">5</td><td class="num mono">65.144</td><td class="num mono">995.627</td><td class="num mono">31.5536</td><td class="num mono">0.513703</td><td class="num mono">0.885928</td><td class="num mono">0.785042</td><td class="num mono">88.8</td><td class="num mono">1155.96</td><td class="num mono">1171.52</td></tr>
-      <tr><td class="">PD_20261017_030352__10c1d_0</td><td class="">validation</td><td class="num mono">21</td><td class="num mono">5</td><td class="num mono">-</td><td class="num mono">2329.16</td><td class="num mono">48.2614</td><td class="num mono">0.274991</td><td class="num mono">1.28551</td><td class="num mono">0.874772</td><td class="num mono">100.0</td><td class="num mono">172.819</td><td class="num mono">178.041</td></tr>
+      <tr><td class="">PD_20261017_030352__10c1d_0</td><td class="">training</td><td class="num mono">166</td><td class="num mono">5</td><td class="num mono">65.1441</td><td class="num mono">995.627</td><td class="num mono">31.5536</td><td class="num mono">0.513704</td><td class="num mono">0.885928</td><td class="num mono">0.785042</td><td class="num mono">88.8</td><td class="num mono">1155.96</td><td class="num mono">1171.52</td><td class="num mono">1.76449</td><td class="num mono">0.676719</td><td class="num mono">34.8</td><td class="num mono">63.4</td><td class="num mono">67.5</td><td class="num mono">95.0</td></tr>
+      <tr><td class="">PD_20261017_030352__10c1d_0</td><td class="">validation</td><td class="num mono">21</td><td class="num mono">5</td><td class="num mono">-</td><td class="num mono">2329.16</td><td class="num mono">48.2614</td><td class="num mono">0.274991</td><td class="num mono">1.28551</td><td class="num mono">0.874772</td><td class="num mono">100.0</td><td class="num mono">172.819</td><td class="num mono">178.041</td><td class="num mono">1.30343</td><td class="num mono">0.808766</td><td class="num mono">42.9</td><td class="num mono">85.7</td><td class="num mono">28.6</td><td class="num mono">57.1</td></tr>
       </tbody>
     </table>
   </div>
@@ -750,7 +771,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
   <div class="grid">
     <div class="card wide"><figure>
       <img loading="lazy" src="plots/goodness_of_fit.svg" alt="Prediction against the measured data points, per kind of fit mapping, with the agreement of the training data, the lines of twofold and the metrics of the panel. Within twofold of the data are 143 of the 161 training data points (88.8%) and 21 of the 21 validation data points (100.0%); only the data points with a positive value and prediction are counted">
-      <figcaption>Prediction against the measured data points, per kind of fit mapping, with the agreement of the training data, the lines of twofold and the metrics of the panel. Within twofold of the data are 143 of the 161 training data points (88.8%) and 21 of the 21 validation data points (100.0%); only the data points with a positive value and prediction are counted<span class="hint" tabindex="0" data-tip="Prediction against measurement, one point per data point, with a panel per kind of fit mapping. The points scatter around the diagonal when the model describes the data; a systematic deviation from it is a systematic error of the model. The band is the agreement of the training data, i.e. the same band the Bland-Altman plot draws, here as lines parallel to the diagonal. The dark red dotted lines are twofold, prediction = 2 x measurement and prediction = measurement / 2; the caption states the points between them of every kind. A point which is zero or negative is not drawn on the logarithmic axes and not counted, the title of a panel then states the points drawn of all. The validation panel shows how the fit describes data it was not fitted on, the outlier panel the data the fit dropped. The box of a panel carries its R², its normalized RMSE, the RMSE of the residuals of the cost and the percentage of its points within twofold.">?</span></figcaption>
+      <figcaption>Prediction against the measured data points, per kind of fit mapping, with the agreement of the training data, the lines of twofold and the metrics of the panel. Within twofold of the data are 143 of the 161 training data points (88.8%) and 21 of the 21 validation data points (100.0%); only the data points with a positive value and prediction are counted<span class="hint" tabindex="0" data-tip="Prediction against measurement, one point per data point, with a panel per kind of fit mapping. The points scatter around the diagonal when the model describes the data; a systematic deviation from it is a systematic error of the model. The band is the agreement of the training data, i.e. the same band the Bland-Altman plot draws, here as lines parallel to the diagonal. The dark red dotted lines are twofold, prediction = 2 x measurement and prediction = measurement / 2; the caption states the points between them of every kind. A point which is zero or negative is not drawn on the logarithmic axes and not counted, the title of a panel then states the points drawn of all. The validation panel shows how the fit describes data it was not fitted on, the outlier panel the data the fit dropped. The box of a panel carries its R², its normalized RMSE, the RMSE of the residuals of the cost, its fold errors GMFE and AFE and the percentages of its points within twofold and within two standard deviations of the data.">?</span></figcaption>
     </figure></div>
     <div class="card wide"><figure>
       <img loading="lazy" src="plots/bland_altman.svg" alt="Agreement of prediction and measurement as a ratio, per kind of fit mapping, with the agreement of the training data and the agreement of the panel">
@@ -771,6 +792,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     </table>
   </div>
 </section>
+
 
 <!-- the local analysis and the profiles are one section under one heading -->
 <section id="identifiability">
@@ -1064,9 +1086,9 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
         <td class="mono wrap">fm_Fig6_bpsys_hctz25</td>
         <td><span class="tag training">training</span></td>
         <td class="num">6</td>
-        <td class="num mono">7.496</td><td class="num mono">2.738</td>
+        <td class="num mono">7.497</td><td class="num mono">2.738</td>
         <td class="num mono">0.0241</td><td class="num mono">0.1211</td>
-        <td class="num mono">-0.7345</td><td class="num mono">100.0</td>
+        <td class="num mono">-0.7346</td><td class="num mono">100.0</td>
       </tr>
       <tr data-kind="training">
         <td>PD_20261017_030352__10c1d_0</td><td>Jeon2012</td>
@@ -1736,16 +1758,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>19.11</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>19.11</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.52</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_0_aurine_na.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_0_aurine_na.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_0_aurine_na.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1755,16 +1773,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>32.12</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>32.12</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.31</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_12_5_aurine_na.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_12_5_aurine_na.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_12_5_aurine_na.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1774,16 +1788,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>24.98</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>24.98</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.21</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_25_aurine_na.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_25_aurine_na.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_25_aurine_na.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1793,16 +1803,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>28.08</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>28.08</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.21</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_50_aurine_na.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_50_aurine_na.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_50_aurine_na.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1812,16 +1818,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>19.83</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>19.83</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.14</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_75_aurine_na.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_75_aurine_na.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_75_aurine_na.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1831,16 +1833,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · Vurine</span>
       <span class="tag validation">validation</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>0.5694</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>0.5694</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.89</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_0_urinvol.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_0_urinvol.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_0_urinvol.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1850,16 +1848,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · Vurine</span>
       <span class="tag validation">validation</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>0.9088</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>0.9088</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.83</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_12_5_urinvol.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_12_5_urinvol.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_12_5_urinvol.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1869,16 +1863,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · Vurine</span>
       <span class="tag validation">validation</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>0.7715</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>0.7715</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.63</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_25_urinvol.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_25_urinvol.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_25_urinvol.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1888,16 +1878,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · Vurine</span>
       <span class="tag validation">validation</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>0.6214</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>0.6214</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.46</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_50_urinvol.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_50_urinvol.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_50_urinvol.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1907,16 +1893,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Beermann1977a · Vurine</span>
       <span class="tag validation">validation</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>0.6524</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>0.6524</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.47</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_75_urinvol.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Beermann1977a_fm_Fig5tc_75_urinvol.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Beermann1977a_fm_Fig5tc_75_urinvol.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1926,16 +1908,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Jeon2012 · Vurine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>5</b></span><span>RMSE <b>0.24</b></span><span>R² <b>-1.56</b></span><span>2-fold <b>60.0%</b></span>      </span>
+<span>n <b>5</b></span><span>RMSE <b>0.24</b></span><span>R² <b>-1.56</b></span><span>2-fold <b>60.0%</b></span><span>GMFE <b>14.9</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Jeon2012_fm_Fig4_urine_vol_hctz25.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Jeon2012_fm_Fig4_urine_vol_hctz25.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Jeon2012_fm_Fig4_urine_vol_hctz25.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1945,16 +1923,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Jeon2012 · bp_systolic</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>6</b></span><span>RMSE <b>2.738</b></span><span>R² <b>-0.7345</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>6</b></span><span>RMSE <b>2.738</b></span><span>R² <b>-0.7346</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.02</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Jeon2012_fm_Fig6_bpsys_hctz25.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Jeon2012_fm_Fig6_bpsys_hctz25.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Jeon2012_fm_Fig6_bpsys_hctz25.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1964,16 +1938,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Jeon2012 · bp_diastolic</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>6</b></span><span>RMSE <b>7.619</b></span><span>R² <b>-10.48</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>6</b></span><span>RMSE <b>7.619</b></span><span>R² <b>-10.48</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.11</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Jeon2012_fm_Fig6_bpdia_hctz25.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Jeon2012_fm_Fig6_bpdia_hctz25.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Jeon2012_fm_Fig6_bpdia_hctz25.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -1983,16 +1953,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>2.722</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>2.722</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.66</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s01.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s01.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s01.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2002,16 +1968,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>10.72</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>10.72</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.75</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s02.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s02.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s02.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2021,16 +1983,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>3.463</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>3.463</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.27</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s03.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s03.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s03.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2040,16 +1998,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>6.564</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>6.564</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.36</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s04.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s04.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s04.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2059,16 +2013,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>0.09689</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>0.09689</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s05.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s05.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s05.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2078,16 +2028,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>12.49</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>12.49</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span><span>GMFE <b>2.27</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s06.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s06.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s06.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2097,16 +2043,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>2.944</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>2.944</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.11</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s07.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s07.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s07.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2116,16 +2058,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>10.13</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>10.13</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.51</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s08.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s08.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s08.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2135,16 +2073,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>16.65</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>16.65</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.5</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s09.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s09.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s09.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2154,16 +2088,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>24.18</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>24.18</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span><span>GMFE <b>3.58</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s10.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s10.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s10.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2173,16 +2103,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>18.36</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>18.36</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.79</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s11.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s11.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s11.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2192,16 +2118,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>10.75</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>10.75</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.25</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s12.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s12.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s12.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2211,16 +2133,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>23.78</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>23.78</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.96</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s13.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s13.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s13.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2230,16 +2148,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>7.674</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>7.674</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.19</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s14.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s14.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s14.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2249,16 +2163,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>1.492</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>1.492</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.03</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s15.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s15.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s15.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2268,16 +2178,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>3.418</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>3.418</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.07</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s16.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s16.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s16.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2287,16 +2193,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>5.298</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>5.298</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.11</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s17.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s17.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s17.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2306,16 +2208,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>16.88</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>16.88</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.42</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s18.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s18.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s18.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2325,16 +2223,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>17.23</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>17.23</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.3</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s19.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s19.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s19.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2344,16 +2238,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>4.299</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>4.299</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.06</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s20.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s20.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s20.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2363,16 +2253,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>4.832</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>4.832</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.07</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s21.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s21.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s21.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2382,16 +2268,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>7.13</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>7.13</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.09</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s22.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s22.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s22.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2401,16 +2283,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>3.755</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>3.755</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.04</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s23.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s23.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s23.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2420,16 +2298,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>10.18</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>10.18</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.12</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s24.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_na_net_s24.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_na_net_s24.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2439,16 +2313,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>0.2735</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>0.2735</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.06</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s01.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s01.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s01.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2458,16 +2328,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>12.75</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>12.75</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span><span>GMFE <b>2.12</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s02.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s02.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s02.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2477,16 +2343,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>18.51</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>18.51</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span><span>GMFE <b>2.4</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s03.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s03.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s03.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2496,16 +2358,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>12.77</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>12.77</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.85</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s04.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s04.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s04.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2515,16 +2373,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>3.508</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>3.508</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.26</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s05.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s05.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s05.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2534,16 +2388,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>4.797</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>4.797</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.33</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s06.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s06.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s06.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2553,16 +2403,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>11.53</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>11.53</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.48</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s07.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s07.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s07.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2572,16 +2418,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>7.528</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>7.528</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.38</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s08.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s08.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s08.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2591,16 +2433,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>23.24</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>23.24</b></span><span>R² <b>-</b></span><span>2-fold <b>0.0%</b></span><span>GMFE <b>4.16</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s09.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s09.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s09.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2610,16 +2448,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>18.93</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>18.93</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.61</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s10.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s10.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s10.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2629,16 +2463,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>7.462</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>7.462</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.19</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s11.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s11.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s11.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2648,16 +2478,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>20.8</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>20.8</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.51</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s12.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s12.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s12.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2667,16 +2493,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>32.31</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>32.31</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.69</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s13.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s13.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s13.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2686,16 +2508,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>12.38</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>12.38</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.36</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s14.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s14.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s14.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2705,16 +2523,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>14.63</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>14.63</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.29</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s15.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s15.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s15.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2724,16 +2538,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>25.35</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>25.35</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.5</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s16.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s16.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s16.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2743,16 +2553,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>9.271</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>9.271</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.21</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s17.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s17.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s17.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2762,16 +2568,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>8.935</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>8.935</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.16</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s18.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s18.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s18.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2781,16 +2583,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>42.5</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>42.5</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.75</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s19.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s19.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s19.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2800,16 +2598,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>3.312</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>3.312</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.05</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s20.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s20.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s20.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2819,16 +2613,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>14.72</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>14.72</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.2</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s21.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s21.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s21.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2838,16 +2628,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>23.63</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>23.63</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.4</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s22.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s22.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s22.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2857,16 +2643,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>17.46</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>17.46</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.2</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s23.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s23.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s23.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2876,16 +2658,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>37.07</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>37.07</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.38</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s24.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_Fig3_cl_net_s24.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_Fig3_cl_net_s24.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2895,16 +2673,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Knauf1995 · na_urine</span>
       <span class="tag validation">validation</span>
       <span class="metrics">
-<span>n <b>14</b></span><span>RMSE <b>57.93</b></span><span>R² <b>0.65</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>14</b></span><span>RMSE <b>57.93</b></span><span>R² <b>0.65</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.21</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Knauf1995_fm_hctz25_Fig1_na_urine_healthy.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Knauf1995_fm_hctz25_Fig1_na_urine_healthy.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Knauf1995_fm_hctz25_Fig1_na_urine_healthy.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2914,16 +2688,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Nilsen1989 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>6</b></span><span>RMSE <b>27.35</b></span><span>R² <b>0.7676</b></span><span>2-fold <b>80.0%</b></span>      </span>
+<span>n <b>6</b></span><span>RMSE <b>27.35</b></span><span>R² <b>0.7676</b></span><span>2-fold <b>80.0%</b></span><span>GMFE <b>1.76</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Nilsen1989_fm_Fig4_excretion_sodium_hctz25.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Nilsen1989_fm_Fig4_excretion_sodium_hctz25.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Nilsen1989_fm_Fig4_excretion_sodium_hctz25.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2933,16 +2703,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>29.33</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>29.33</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.4</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Naurine_25_tab.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Naurine_25_tab.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Naurine_25_tab.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2952,16 +2718,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>63.44</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>63.44</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.87</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Clurine_25_tab.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Clurine_25_tab.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Clurine_25_tab.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2971,16 +2733,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>30.33</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>30.33</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.42</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Naurine_25_sus.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Naurine_25_sus.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Naurine_25_sus.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -2990,16 +2748,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>64.44</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>64.44</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.89</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Clurine_25_sus.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Clurine_25_sus.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Clurine_25_sus.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3009,16 +2763,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>36.41</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>36.41</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.41</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Naurine_50_sus.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Naurine_50_sus.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Naurine_50_sus.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3028,16 +2778,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>71.76</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>71.76</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.81</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Clurine_50_sus.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Clurine_50_sus.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Clurine_50_sus.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3047,16 +2793,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>8.585</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>8.585</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.09</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Naurine_100_tab.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Naurine_100_tab.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Naurine_100_tab.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3066,16 +2808,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>42.15</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>42.15</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.42</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Clurine_100_tab.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Clurine_100_tab.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Clurine_100_tab.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3085,16 +2823,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>39.59</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>39.59</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.39</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Naurine_100_sus.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Naurine_100_sus.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Naurine_100_sus.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3104,16 +2838,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>76.15</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>76.15</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.76</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Clurine_100_sus.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Clurine_100_sus.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Clurine_100_sus.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3123,16 +2853,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · na_urine</span>
       <span class="tag validation">validation</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>4.412</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>4.412</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.05</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Naurine_50_tab.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Naurine_50_tab.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Naurine_50_tab.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3142,16 +2868,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Patel1984 · cl_urine</span>
       <span class="tag validation">validation</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>43.76</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>43.76</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.5</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Patel1984_fm_Clurine_50_tab.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Patel1984_fm_Clurine_50_tab.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Patel1984_fm_Clurine_50_tab.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3161,16 +2883,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Ripley2000 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>18.08</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>18.08</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.15</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Ripley2000_fm_Fig1_2_sodium_baseline_black.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Ripley2000_fm_Fig1_2_sodium_baseline_black.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Ripley2000_fm_Fig1_2_sodium_baseline_black.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3180,16 +2898,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Ripley2000 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>1</b></span><span>RMSE <b>5.668</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>1</b></span><span>RMSE <b>5.668</b></span><span>R² <b>-</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.04</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Ripley2000_fm_Fig1_2_sodium_baseline_white.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Ripley2000_fm_Fig1_2_sodium_baseline_white.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Ripley2000_fm_Fig1_2_sodium_baseline_white.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3199,16 +2913,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Ripley2000 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>3</b></span><span>RMSE <b>43.19</b></span><span>R² <b>0.3229</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>3</b></span><span>RMSE <b>43.19</b></span><span>R² <b>0.3229</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.2</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Ripley2000_fm_Fig1_2_sodium_hctz_black.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Ripley2000_fm_Fig1_2_sodium_hctz_black.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Ripley2000_fm_Fig1_2_sodium_hctz_black.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3218,16 +2928,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Ripley2000 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>3</b></span><span>RMSE <b>41.3</b></span><span>R² <b>-0.09604</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>3</b></span><span>RMSE <b>41.3</b></span><span>R² <b>-0.09604</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.2</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Ripley2000_fm_Fig1_2_sodium_hctz_white.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Ripley2000_fm_Fig1_2_sodium_hctz_white.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Ripley2000_fm_Fig1_2_sodium_hctz_white.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3237,16 +2943,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Williams1982 · Vurine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>12</b></span><span>RMSE <b>0.1561</b></span><span>R² <b>0.7444</b></span><span>2-fold <b>91.7%</b></span>      </span>
+<span>n <b>12</b></span><span>RMSE <b>0.1561</b></span><span>R² <b>0.7444</b></span><span>2-fold <b>91.7%</b></span><span>GMFE <b>3.74</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Williams1982_fm_Fig2_diuresis_hctz50.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Williams1982_fm_Fig2_diuresis_hctz50.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Williams1982_fm_Fig2_diuresis_hctz50.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3256,16 +2958,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Williams1982 · Vurine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>12</b></span><span>RMSE <b>0.1827</b></span><span>R² <b>0.726</b></span><span>2-fold <b>91.7%</b></span>      </span>
+<span>n <b>12</b></span><span>RMSE <b>0.1827</b></span><span>R² <b>0.726</b></span><span>2-fold <b>91.7%</b></span><span>GMFE <b>3.6</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Williams1982_fm_Fig2_diuresis_hctz100.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Williams1982_fm_Fig2_diuresis_hctz100.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Williams1982_fm_Fig2_diuresis_hctz100.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3275,16 +2973,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Williams1982 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>12</b></span><span>RMSE <b>19.69</b></span><span>R² <b>0.2325</b></span><span>2-fold <b>90.9%</b></span>      </span>
+<span>n <b>12</b></span><span>RMSE <b>19.69</b></span><span>R² <b>0.2325</b></span><span>2-fold <b>90.9%</b></span><span>GMFE <b>1.44</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Williams1982_fm_Fig2_sodium_hctz50.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Williams1982_fm_Fig2_sodium_hctz50.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Williams1982_fm_Fig2_sodium_hctz50.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3294,16 +2988,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Williams1982 · na_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>12</b></span><span>RMSE <b>20.26</b></span><span>R² <b>0.3564</b></span><span>2-fold <b>100.0%</b></span>      </span>
+<span>n <b>12</b></span><span>RMSE <b>20.26</b></span><span>R² <b>0.3564</b></span><span>2-fold <b>100.0%</b></span><span>GMFE <b>1.51</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Williams1982_fm_Fig2_sodium_hctz100.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Williams1982_fm_Fig2_sodium_hctz100.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Williams1982_fm_Fig2_sodium_hctz100.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3313,16 +3003,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Williams1982 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>12</b></span><span>RMSE <b>66.08</b></span><span>R² <b>-0.1325</b></span><span>2-fold <b>72.7%</b></span>      </span>
+<span>n <b>12</b></span><span>RMSE <b>66.08</b></span><span>R² <b>-0.1325</b></span><span>2-fold <b>72.7%</b></span><span>GMFE <b>1.64</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Williams1982_fm_Fig2_chlor_hctz50.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Williams1982_fm_Fig2_chlor_hctz50.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Williams1982_fm_Fig2_chlor_hctz50.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3332,16 +3018,12 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <span class="exp">Williams1982 · cl_urine</span>
       <span class="tag training">training</span>
       <span class="metrics">
-<span>n <b>12</b></span><span>RMSE <b>62.25</b></span><span>R² <b>-0.07013</b></span><span>2-fold <b>63.6%</b></span>      </span>
+<span>n <b>12</b></span><span>RMSE <b>62.25</b></span><span>R² <b>-0.07013</b></span><span>2-fold <b>63.6%</b></span><span>GMFE <b>1.66</b></span>      </span>
     </header>
     <div class="grid">
       <figure>
-        <img loading="lazy" src="plots/Williams1982_fm_Fig2_chlor_hctz100.svg" alt="Data and simulation">
-        <figcaption>Data and simulation</figcaption>
-      </figure>
-      <figure>
-        <img loading="lazy" src="plots/fit_Williams1982_fm_Fig2_chlor_hctz100.svg" alt="Residuals and weighted residuals">
-        <figcaption>Residuals and weighted residuals</figcaption>
+        <img loading="lazy" src="plots/Williams1982_fm_Fig2_chlor_hctz100.svg" alt="Data, simulation and agreement">
+        <figcaption>Data, simulation and agreement</figcaption>
       </figure>
     </div>
   </div>
@@ -3377,12 +3059,28 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     if (name) show(name);
   });
   show(tabOf(location.hash) || "report");
+
+  // ---- the groupings of the evaluation: a button shows its grouping -----
+  const groupingTabs = Array.from(document.querySelectorAll(".grouping-tab"));
+  const groupingPanels = Array.from(document.querySelectorAll(".grouping-panel"));
+  for (const tab of groupingTabs) {
+    tab.addEventListener("click", () => {
+      for (const other of groupingTabs) {
+        const active = other === tab;
+        other.classList.toggle("active", active);
+        other.setAttribute("aria-pressed", active ? "true" : "false");
+      }
+      for (const panel of groupingPanels) {
+        panel.classList.toggle("active", panel.dataset.grouping === tab.dataset.grouping);
+      }
+    });
+  }
 })();
 </script>
 </main>
 
 <footer>
-<a href="report.txt">report.txt</a> · <a href="parameters.json">parameters.json</a> · <a href="metrics.tsv">metrics.tsv</a> · <a href="metrics_mappings.tsv">metrics_mappings.tsv</a> · <a href="datapoints.tsv">datapoints.tsv</a> · <a href="optimization_result.json">optimization_result.json</a> · <a href="fisher.tsv">fisher.tsv</a> · <a href="identifiability.json">identifiability.json</a> · <a href="identifiability.tsv">identifiability.tsv</a><br>created by sbmlsim 0.10.0 on 2026-10-17 23:09</footer>
+<a href="report.txt">report.txt</a> · <a href="parameters.json">parameters.json</a> · <a href="metrics.tsv">metrics.tsv</a> · <a href="metrics_mappings.tsv">metrics_mappings.tsv</a> · <a href="metrics_observables.tsv">metrics_observables.tsv</a> · <a href="datapoints.tsv">datapoints.tsv</a> · <a href="optimization_result.json">optimization_result.json</a> · <a href="fisher.tsv">fisher.tsv</a> · <a href="identifiability.json">identifiability.json</a> · <a href="identifiability.tsv">identifiability.tsv</a><br>created by sbmlsim 0.13.0 on 2026-10-24 11:37</footer>
 
 <div id="lightbox"><img alt=""></div>
 

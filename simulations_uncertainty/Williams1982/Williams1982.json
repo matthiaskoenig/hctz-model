@@ -1,12 +1,12 @@
 {
   "experiment_id": "Williams1982",
-  "base_path": "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz",
+  "base_path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz",
   "data_path": [
-    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
-    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/lisinopril",
-    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/enalapril",
-    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/aliskiren",
-    "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/data/canagliflozin"
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/lisinopril",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/enalapril",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/aliskiren",
+    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/canagliflozin"
   ],
   "models": {
     "model": {
@@ -15,8 +15,8 @@
       "language": "SBML",
       "language_type": "SBML",
       "source": {
-        "source": "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
-        "path": "/home/mkoenig/git/hctz-model-0.9.2/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "source": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
         "content": null
       },
       "base_path": null,
@@ -126,7 +126,7 @@
         ],
         "presimulation": null,
         "times": null,
-        "steps": 1960,
+        "steps": null,
         "time_shift": -24
       },
       "dimensions": [
@@ -1437,7 +1437,7 @@
         ],
         "presimulation": null,
         "times": null,
-        "steps": 1960,
+        "steps": null,
         "time_shift": -24
       },
       "dimensions": [
@@ -2746,7 +2746,7 @@
       ],
       "presimulation": null,
       "times": null,
-      "steps": 1960,
+      "steps": null,
       "time_shift": -24
     },
     "hctz100_fitted": {
@@ -2809,7 +2809,7 @@
       ],
       "presimulation": null,
       "times": null,
-      "steps": 1960,
+      "steps": null,
       "time_shift": -24
     }
   },
@@ -11301,7 +11301,7 @@
               },
               {
                 "sid": "Fig3__plot0_curve0",
-                "name": "Sim (fit)",
+                "name": "Sim 50 (fit)",
                 "x": "task_hctz50_fitted__hctz_urine_excretion",
                 "y": "task_hctz50_fitted__NA_EXCRETION",
                 "xerr": null,
@@ -11365,7 +11365,7 @@
               },
               {
                 "sid": "Fig3__plot0_curve2",
-                "name": "Sim (fit)",
+                "name": "Sim 100 (fit)",
                 "x": "task_hctz100_fitted__hctz_urine_excretion",
                 "y": "task_hctz100_fitted__NA_EXCRETION",
                 "xerr": null,
@@ -17873,7 +17873,7 @@
               },
               {
                 "sid": "Fig3__plot1_curve0",
-                "name": "Sim (fit)",
+                "name": "Sim 50 (fit)",
                 "x": "task_hctz50_fitted__hctz_urine_excretion",
                 "y": "task_hctz50_fitted__diuresis",
                 "xerr": null,
@@ -17937,7 +17937,7 @@
               },
               {
                 "sid": "Fig3__plot1_curve2",
-                "name": "Sim (fit)",
+                "name": "Sim 100 (fit)",
                 "x": "task_hctz100_fitted__hctz_urine_excretion",
                 "y": "task_hctz100_fitted__diuresis",
                 "xerr": null,

@@ -59,7 +59,7 @@ from pkdb_models.models.hctz.experiments.studies import (
     Koytchev2004,
     Niemeyer1983,
     Nilsen1989,
-    Niopas2011,
+    Niopas2004,
     Patel1984,
     Ripley2000,
     Vaidyanathan2006,
@@ -98,7 +98,7 @@ EXPERIMENT_CLASSES: list[type[SimulationExperiment]] = [
     Koytchev2004,
     Niemeyer1983,
     Nilsen1989,
-    Niopas2011,
+    Niopas2004,
     Patel1984,
     Ripley2000,
     Vaidyanathan2006,
@@ -127,7 +127,7 @@ INTERACTION_VALIDATION: NamedMappings = {
         "fm_Tab2_ENA10__HCTZ25combi_cumulative_amount_hydrochlorothiazide",
     },
     # the combination tablets of 12.5 mg with enalapril and lisinopril
-    "Niopas2011": {
+    "Niopas2004": {
         "fm_Fig2_hydrochlorothiazide_ENA20",
         "fm_Fig2_hydrochlorothiazide_REF20",
     },

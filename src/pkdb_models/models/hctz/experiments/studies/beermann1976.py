@@ -127,7 +127,6 @@ class Beermann1976(HCTZSimulationExperiment):
             simulations[f"hctz_{route}{dose}"] = Simulation(
                 time_unit="hr",
                 end=180,
-                steps=1000,
                 preinit_changes={
                     **self.default_changes(),
                     parameter: Q(dose, "mg"),
@@ -138,7 +137,6 @@ class Beermann1976(HCTZSimulationExperiment):
         simulations["hctz_po50_II"] = Simulation(
             time_unit="hr",
             end=180,
-            steps=1000,
             preinit_changes={
                 **self.default_changes(),
                 "PODOSE_hctz": Q(50, "mg"),

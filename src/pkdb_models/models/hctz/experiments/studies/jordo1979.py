@@ -68,7 +68,6 @@ class Jordo1979(HCTZSimulationExperiment):
             simulations[self.to_sid(f"hctz{dose}")] = Simulation(
                 time_unit="hr",
                 end=60,
-                steps=500,
                 preinit_changes={
                     **self.default_changes(),
                     # HCTZ alone was an alcoholic solution (p. 564)

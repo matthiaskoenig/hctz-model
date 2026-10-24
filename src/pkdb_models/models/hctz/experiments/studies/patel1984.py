@@ -72,7 +72,6 @@ class Patel1984(HCTZSimulationExperiment):
             simulations[f"hctz{dose}"] = Simulation(
                 time_unit="hr",
                 end=12 + 50,
-                steps=620,
                 preinit_changes=self.default_changes(),
                 changes=[
                     Change(

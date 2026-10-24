@@ -51,7 +51,6 @@ class BloodPressureExperiment(BPSimulationExperiment):
                 time_unit="hr",
                 start=0,  # FIXME: report bug with event trigger; libroadrunner
                 end=24 * 5 + 24 * 30,
-                steps=840,
                 changes=[Change(24 * 5, changes)] if changes else [],
                 time_shift=-24 * 5,
             )

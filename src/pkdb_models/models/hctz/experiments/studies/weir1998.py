@@ -59,10 +59,12 @@ class Weir1998(HCTZSimulationExperiment):
         simulations["hctz25"] = Simulation(
             time_unit="hr",
             end=10 * 12 + 60,
-            steps=7200,
-            preinit_changes=self.default_changes(),
+            preinit_changes={
+                **self.default_changes(),
+                "PODOSE_hctz": Q(25, "mg"),
+            },
             changes=[
-                Change(dose_times, {"PODOSE_hctz": Q(25, "mg")}),
+                self.add_doses(dose_times[1:], {"PODOSE_hctz": Q(25, "mg")}),
                 # reset urine collection
                 Change(dose_times[1:], {"Aurine_hctz": Q(0, "mmole")}),
             ],

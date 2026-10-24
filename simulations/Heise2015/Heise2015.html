@@ -236,10 +236,10 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
       <tbody>
-      <tr><td class="mono">Fig3_hctz25</td><td><a href="Heise2015_Fig3_hctz25.tsv">Heise2015_Fig3_hctz25.tsv</a></td></tr>
-      <tr><td class="mono">Fig3_hctz25_emp25</td><td><a href="Heise2015_Fig3_hctz25_emp25.tsv">Heise2015_Fig3_hctz25_emp25.tsv</a></td></tr>
-      <tr><td class="mono">Tab3A_hctz25_emp25_aurine</td><td><a href="Heise2015_Tab3A_hctz25_emp25_aurine.tsv">Heise2015_Tab3A_hctz25_emp25_aurine.tsv</a></td></tr>
-      <tr><td class="mono">Tab3A_hctz25_aurine</td><td><a href="Heise2015_Tab3A_hctz25_aurine.tsv">Heise2015_Tab3A_hctz25_aurine.tsv</a></td></tr>
+      <tr><td class="mono">Fig3_hctz25</td><td><a href="datasets/Heise2015_Fig3_hctz25.tsv">datasets/Heise2015_Fig3_hctz25.tsv</a></td></tr>
+      <tr><td class="mono">Fig3_hctz25_emp25</td><td><a href="datasets/Heise2015_Fig3_hctz25_emp25.tsv">datasets/Heise2015_Fig3_hctz25_emp25.tsv</a></td></tr>
+      <tr><td class="mono">Tab3A_hctz25_emp25_aurine</td><td><a href="datasets/Heise2015_Tab3A_hctz25_emp25_aurine.tsv">datasets/Heise2015_Tab3A_hctz25_emp25_aurine.tsv</a></td></tr>
+      <tr><td class="mono">Tab3A_hctz25_aurine</td><td><a href="datasets/Heise2015_Tab3A_hctz25_aurine.tsv">datasets/Heise2015_Tab3A_hctz25_aurine.tsv</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -335,12 +335,12 @@ class Heise2015(HCTZSimulationExperiment):
             simulations[self.to_sid(group)] = Simulation(
                 time_unit=&#34;hr&#34;,
                 end=dose_times[-1] + 30,
-                steps=20 * (dose_times[-1] + 30),
                 preinit_changes={
                     **self.default_changes(),
+                    &#34;PODOSE_hctz&#34;: Q(25, &#34;mg&#34;),
                 },
                 changes=[
-                    Change(dose_times, {&#34;PODOSE_hctz&#34;: Q(25, &#34;mg&#34;)}),
+                    self.add_doses(dose_times[1:], {&#34;PODOSE_hctz&#34;: Q(25, &#34;mg&#34;)}),
                     Change(dose_times[1:], self.urine_reset),
                 ],
                 time_shift=-dose_times[-1],

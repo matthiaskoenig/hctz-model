@@ -22,7 +22,7 @@ from .knauf1995 import Knauf1995
 from .koytchev2004 import Koytchev2004
 from .niemeyer1983 import Niemeyer1983
 from .nilsen1989 import Nilsen1989
-from .niopas2011 import Niopas2011
+from .niopas2004 import Niopas2004
 from .patel1984 import Patel1984
 from .ripley2000 import Ripley2000
 from .vaidyanathan2006 import Vaidyanathan2006
@@ -52,7 +52,7 @@ __all__ = [
     "Koytchev2004",
     "Niemeyer1983",
     "Nilsen1989",
-    "Niopas2011",
+    "Niopas2004",
     "Patel1984",
     "Ripley2000",
     "Vaidyanathan2006",

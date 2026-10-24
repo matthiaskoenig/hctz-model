@@ -82,7 +82,6 @@ class Niemeyer1983(HCTZSimulationExperiment):
             simulations[f"hctz50_{patient}"] = Simulation(
                 time_unit="hr",
                 end=60,
-                steps=500,
                 preinit_changes={
                     **self.default_changes(),
                     "PODOSE_hctz": Q(50, "mg"),

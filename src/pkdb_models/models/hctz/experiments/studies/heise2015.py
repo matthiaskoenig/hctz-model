@@ -69,12 +69,12 @@ class Heise2015(HCTZSimulationExperiment):
             simulations[self.to_sid(group)] = Simulation(
                 time_unit="hr",
                 end=dose_times[-1] + 30,
-                steps=20 * (dose_times[-1] + 30),
                 preinit_changes={
                     **self.default_changes(),
+                    "PODOSE_hctz": Q(25, "mg"),
                 },
                 changes=[
-                    Change(dose_times, {"PODOSE_hctz": Q(25, "mg")}),
+                    self.add_doses(dose_times[1:], {"PODOSE_hctz": Q(25, "mg")}),
                     Change(dose_times[1:], self.urine_reset),
                 ],
                 time_shift=-dose_times[-1],

@@ -236,8 +236,8 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
       <tbody>
-      <tr><td class="mono">Fig3_hctz12p5</td><td><a href="Azumaya1990_Fig3_hctz12p5.tsv">Azumaya1990_Fig3_hctz12p5.tsv</a></td></tr>
-      <tr><td class="mono">Fig3_hctz25</td><td><a href="Azumaya1990_Fig3_hctz25.tsv">Azumaya1990_Fig3_hctz25.tsv</a></td></tr>
+      <tr><td class="mono">Fig3_hctz12p5</td><td><a href="datasets/Azumaya1990_Fig3_hctz12p5.tsv">datasets/Azumaya1990_Fig3_hctz12p5.tsv</a></td></tr>
+      <tr><td class="mono">Fig3_hctz25</td><td><a href="datasets/Azumaya1990_Fig3_hctz25.tsv">datasets/Azumaya1990_Fig3_hctz25.tsv</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -320,7 +320,6 @@ class Azumaya1990(HCTZSimulationExperiment):
             simulations[self.to_sid(f&#34;hctz{dose}&#34;)] = Simulation(
                 time_unit=&#34;hr&#34;,
                 end=60,
-                steps=500,
                 preinit_changes={
                     **self.default_changes(),
                     &#34;PODOSE_hctz&#34;: Q(dose, &#34;mg&#34;),

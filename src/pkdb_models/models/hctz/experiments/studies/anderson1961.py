@@ -222,7 +222,6 @@ class Anderson1961(HCTZSimulationExperiment):
                         Simulation(
                             time_unit="hr",
                             end=180,
-                            steps=2000,
                             preinit_changes={
                                 **self.default_changes(),
                                 f"{route.upper()}DOSE_hctz": Q(self.dose, "mg"),

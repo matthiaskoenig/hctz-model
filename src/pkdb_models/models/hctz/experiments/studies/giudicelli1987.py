@@ -17,7 +17,7 @@ from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Change, Simulation
+from sbmlsim.simulation import Simulation
 
 from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
@@ -57,7 +57,6 @@ class Giudicelli1987(HCTZSimulationExperiment):
         simulations["hctz25_acute"] = Simulation(
             time_unit="hr",
             end=24,
-            steps=500,
             preinit_changes={
                 **self.default_changes(),
                 "PODOSE_hctz": Q(25, "mg"),
@@ -72,15 +71,15 @@ class Giudicelli1987(HCTZSimulationExperiment):
         simulations["hctz25_chronic"] = Simulation(
             time_unit="hr",
             end=44 * 24 + 40,
-            steps=26304,
             preinit_changes={
                 **self.default_changes(),
                 # mean value of acute renin at baseline
                 # "ren_ref": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
                 # "[ren]": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
+                "PODOSE_hctz": Q(25, "mg"),
             },
             changes=[
-                Change(dose_times, {"PODOSE_hctz": Q(25, "mg")}),
+                self.add_doses(dose_times[1:], {"PODOSE_hctz": Q(25, "mg")}),
                 # mean value of chronic renin at baseline
                 # Change(dose_times[1:], {
                 #     "ren_ref": Q((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI

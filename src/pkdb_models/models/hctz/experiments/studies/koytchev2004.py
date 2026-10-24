@@ -57,7 +57,6 @@ class Koytchev2004(HCTZSimulationExperiment):
         simulations["hctz12p5"] = Simulation(
             time_unit="hr",
             end=80,
-            steps=500,
             preinit_changes={
                 **self.default_changes(),
                 "PODOSE_hctz": Q(12.5, "mg"),

@@ -600,7 +600,7 @@ The fit PK\_20261017\_025702\_\_4167a was run on 2026-10-17 00:57:06 UTC with sb
   [1 (10)],
   [-],
   [3 (24)],
-  [Niopas2011],
+  [Niopas2004],
   [-],
   [2 (33)],
   [-],
@@ -686,7 +686,7 @@ The fit PK\_20261017\_025702\_\_4167a was run on 2026-10-17 00:57:06 UTC with sb
 
 #figure(
   image("plots/goodness_of_fit.svg", width: 100%),
-  caption: [Prediction against the measured data points, per kind of fit mapping, with the agreement of the training data, the lines of twofold and the metrics of the panel, fit PK\_20261017\_025702\_\_4167a. Within twofold of the data are 478 of the 523 training data points (91.4%) and 212 of the 243 validation data points (87.2%); only the data points with a positive value and prediction are counted. Prediction against measurement, one point per data point, with a panel per kind of fit mapping. The points scatter around the diagonal when the model describes the data; a systematic deviation from it is a systematic error of the model. The band is the agreement of the training data, i.e. the same band the Bland-Altman plot draws, here as lines parallel to the diagonal. The dark red dotted lines are twofold, prediction \= 2 x measurement and prediction \= measurement \/ 2; the caption states the points between them of every kind. A point which is zero or negative is not drawn on the logarithmic axes and not counted, the title of a panel then states the points drawn of all. The validation panel shows how the fit describes data it was not fitted on, the outlier panel the data the fit dropped. The box of a panel carries its R², its normalized RMSE, the RMSE of the residuals of the cost and the percentage of its points within twofold.],
+  caption: [Prediction against the measured data points, per kind of fit mapping, with the agreement of the training data, the lines of twofold and the metrics of the panel, fit PK\_20261017\_025702\_\_4167a. Within twofold of the data are 478 of the 523 training data points (91.4%) and 212 of the 243 validation data points (87.2%); only the data points with a positive value and prediction are counted. Prediction against measurement, one point per data point, with a panel per kind of fit mapping. The points scatter around the diagonal when the model describes the data; a systematic deviation from it is a systematic error of the model. The band is the agreement of the training data, i.e. the same band the Bland-Altman plot draws, here as lines parallel to the diagonal. The dark red dotted lines are twofold, prediction \= 2 x measurement and prediction \= measurement \/ 2; the caption states the points between them of every kind. A point which is zero or negative is not drawn on the logarithmic axes and not counted, the title of a panel then states the points drawn of all. The validation panel shows how the fit describes data it was not fitted on, the outlier panel the data the fit dropped. The box of a panel carries its R², its normalized RMSE, the RMSE of the residuals of the cost, its fold errors GMFE and AFE and the percentages of its points within twofold and within two standard deviations of the data.],
 ) <fig:goodness_of_fit:PK_20261017_025702__4167a>
 
 #figure(

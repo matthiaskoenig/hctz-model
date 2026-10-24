@@ -236,8 +236,8 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
       <tbody>
-      <tr><td class="mono">Fig1_hctz25</td><td><a href="Hsiao2015_Fig1_hctz25.tsv">Hsiao2015_Fig1_hctz25.tsv</a></td></tr>
-      <tr><td class="mono">Fig1_hctz25_kombi</td><td><a href="Hsiao2015_Fig1_hctz25_kombi.tsv">Hsiao2015_Fig1_hctz25_kombi.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_hctz25</td><td><a href="datasets/Hsiao2015_Fig1_hctz25.tsv">datasets/Hsiao2015_Fig1_hctz25.tsv</a></td></tr>
+      <tr><td class="mono">Fig1_hctz25_kombi</td><td><a href="datasets/Hsiao2015_Fig1_hctz25_kombi.tsv">datasets/Hsiao2015_Fig1_hctz25_kombi.tsv</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -281,7 +281,7 @@ from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Change, Simulation
+from sbmlsim.simulation import Simulation
 
 from pkdb_models.models.hctz import MODEL
 from pkdb_models.models.hctz.experiments.base_experiment import (
@@ -324,11 +324,11 @@ class Hsiao2015(HCTZSimulationExperiment):
         simulations[&#34;hctz25&#34;] = Simulation(
             time_unit=&#34;hr&#34;,
             end=dose_times[-1] + 30,
-            steps=20 * (dose_times[-1] + 30),
             preinit_changes={
                 **self.default_changes(),
+                &#34;PODOSE_hctz&#34;: Q(25, &#34;mg&#34;),
             },
-            changes=[Change(dose_times, {&#34;PODOSE_hctz&#34;: Q(25, &#34;mg&#34;)})],
+            changes=[self.add_doses(dose_times[1:], {&#34;PODOSE_hctz&#34;: Q(25, &#34;mg&#34;)})],
             time_shift=-dose_times[-1],
         )
 

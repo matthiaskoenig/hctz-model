@@ -100,7 +100,6 @@ class Dussol2005(HCTZSimulationExperiment):
             time_unit="hr",
             start=-24 * self.equilibration,
             end=30 * 24,
-            steps=(self.equilibration + 30) * 24 * 6,
             preinit_changes={
                 **self.default_changes(),
                 "f_renal_function": f_renal_function,
@@ -108,7 +107,7 @@ class Dussol2005(HCTZSimulationExperiment):
                 "Pdia_ref": Q(80 * scale, "mmHg"),
             },
             changes=[
-                Change(dose_times, {"PODOSE_hctz": Q(25, "mg")}),
+                self.add_doses(dose_times, {"PODOSE_hctz": Q(25, "mg")}),
                 Change(
                     days,
                     {

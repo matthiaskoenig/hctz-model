@@ -164,13 +164,11 @@ class Beermann1977a(HCTZSimulationExperiment):
         simulations = {}
         # the simulations start 1 hr before the water load
         start = self.water_load[0] - 1
-        steps = int((50 - start) * 10)
         for dose in self.doses:
             simulations[self.to_sid(f"hctz{dose}")] = Simulation(
                 time_unit="hr",
                 start=start,
                 end=50,
-                steps=steps,
                 preinit_changes=self.default_changes(),
                 changes=self._protocol(dose),
             )
@@ -180,7 +178,6 @@ class Beermann1977a(HCTZSimulationExperiment):
             time_unit="hr",
             start=start,
             end=50,
-            steps=steps,
             preinit_changes=self.default_changes(),
             changes=[*self._protocol(25), Change(ends, self.urine_reset)],
         )
