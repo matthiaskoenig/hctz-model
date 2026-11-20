@@ -1,0 +1,10 @@
+check	factor	status	cases	largest	at	statement	problems
+dose_states	use_error	passed	1			Every state in mg which a reaction reads is a dose state the battery knows, so every dose of the model is checked.	
+mass_balance	numerical_code_verification	passed	5	3.511704815828397e-15	male PODOSE_hctz	The amounts of the substances, of their sinks and doses change by the infusion and the flows of the reactions which read no dose alone, at most 1e-06 of the largest term.	
+non_negativity	numerical_code_verification	passed	64	6.307071596015749e-31	male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz	No species becomes negative beyond 1e-06 of its largest value.	
+zero_dose	numerical_code_verification	passed	58	0.0		Without a dose the species of a substance which starts at zero stay zero.	
+steady_state	numerical_code_verification	passed	65	6.854583518700421e-15	male: FLUID__cl_loop	Without a change every state but the sinks stays at its start, within 1e-06 of it.	
+superposition	numerical_code_verification	passed	4	3.4438862043743422e-09	male IVDOSE_hctz two doses: MU__Cti_hctz	Twice a dose of 0.01 mg gives twice the response, and two doses at 0 and 720 min the sum of their responses, within 0.01 of the largest response.	
+cross_simulator	numerical_code_verification	not_applicable	0			AMICI is not installed, install sbmlsim with the extra 'amici'.	
+plausibility	use_error	passed	495			The initial state has finite values, positive compartments and species which are not negative, and no fitted value lies within 0.001 of the range of a bound.	
+rebuild	software_quality_assurance	passed	13			The factory builds the models of the project again, equal but for the dates of the model history.	

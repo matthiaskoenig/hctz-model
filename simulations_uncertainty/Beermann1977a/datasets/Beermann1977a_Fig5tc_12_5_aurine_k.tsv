@@ -1,2 +1,2 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Beermann1977a		all	8.0	HCTZ12_5	cumulative amount	potassium	urine	flame photometry	12_5_aurine_k	10.0	hr		35.6	50.5	14.9			mmol	mmol	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Beermann1977a	all		8	dimensionless	HCTZ12_5	cumulative amount	sample mean		potassium	urine	flame photometry	12_5_aurine_k	10.0	hr		mmol	35.6	14.9	5.267945519839778	mmol		mmol	0.4185393258426966				mmol		dimensionless		

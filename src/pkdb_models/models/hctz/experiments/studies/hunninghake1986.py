@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -49,7 +50,7 @@ class Hunninghake1986(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith(("hctz", "amount")):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
         return dsets
@@ -67,7 +68,7 @@ class Hunninghake1986(HCTZSimulationExperiment):
             },
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -92,6 +93,7 @@ class Hunninghake1986(HCTZSimulationExperiment):
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
@@ -113,7 +115,7 @@ class Hunninghake1986(HCTZSimulationExperiment):
                 yid_sd="mean_sd",
                 count="count",
             ),
-            observable=FitData(self, task="task_hctz75", xid="time", yid="[Cve_hctz]"),
+            observable=FitData(self, task="task_hctz75", xid="time", yid="Carm_hctz"),
             metadata=PKPDMappingMetaData(
                 tissue=Tissue.PLASMA,
                 application_form=ApplicationForm.TABLET,
@@ -147,7 +149,7 @@ class Hunninghake1986(HCTZSimulationExperiment):
         plots[1].set_yaxis(label=self.label_hctz_urine, unit=self.unit_hctz_urine)
 
         # simulation
-        for k, yid in enumerate(["[Cve_hctz]", "Aurine_hctz"]):
+        for k, yid in enumerate(["Carm_hctz", "Aurine_hctz"]):
             plots[k].add_data(
                 task="task_hctz75",
                 xid="time",

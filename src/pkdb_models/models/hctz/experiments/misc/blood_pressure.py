@@ -16,14 +16,19 @@ class BloodPressureExperiment(BPSimulationExperiment):
 
     @override
     def simulations(self) -> dict[str, Simulation]:
-        ecf = 13.6125 * 2  # [l] the doubled extracellular fluid
+        # the doubled extracellular fluid [l]
+        ecf = "2 * ECF_ref"
         info: dict[str, dict[str, Quantity | float | str]] = {
             "Reference": {},
             "Increase H2O uptake": {
                 "vin_h2o": Q(2.3 / 1440 * 1.5, "l/min"),
             },
+            # the healthy GFR raised, and the GFR with it at renal function 1:
+            # the filtration of the fluid model rises, its renal function
+            # (`GFR/GFR_base`) stays 1
             "Increase diuresis via GFR": {
-                "GFR_base": Q(200, "ml/min"),
+                "GFR_base_body": Q(200, "ml/min"),
+                "GFR_body": Q(200, "ml/min"),
             },
             # "Increase Na excretion": {
             #     "k_na": Q(0.00016975* 2, "l/min"),
@@ -32,15 +37,14 @@ class BloodPressureExperiment(BPSimulationExperiment):
             #     "k_cl": Q(0.000233 * 2, "l/min"),
             # },
             "Increase ECF": {
-                "ECF": Q(ecf, "l"),
+                "ECF": ecf,
                 # the amounts of the species in the ECF are kept, their
                 # concentrations follow the volume [mmole/l]
-                "[hctz]": f"hctz / {ecf}",
-                "[na]": f"na / {ecf}",
-                "[cl]": f"cl / {ecf}",
+                "[na]": f"na / ({ecf})",
+                "[cl]": f"cl / ({ecf})",
             },
             "Increase HCTZ": {
-                "[hctz]": Q(0.1e-3, "mM"),
+                "C_hctz": Q(0.1e-3, "mM"),
             },
         }
         simulations = {}

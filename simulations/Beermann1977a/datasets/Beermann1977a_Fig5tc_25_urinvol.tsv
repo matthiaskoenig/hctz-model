@@ -1,2 +1,2 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Beermann1977a		all	8.0	HCTZ25	urinary volume	h2o	urine	NR	25_urinvol	10.0	hr		2005.0	2384.0	379.0			ml	ml	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Beermann1977a	all		8	dimensionless	HCTZ25	urinary volume	sample mean		h2o	urine	NR	25_urinvol	10.0	hr		ml	2005.0	379.0	133.99673503485076	ml		ml	0.18902743142144637				ml		dimensionless		

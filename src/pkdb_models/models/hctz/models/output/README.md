@@ -6,18 +6,23 @@ The model is developed in the model folder `pkdb_models/models/hctz` of the repo
 [pkdb_models](https://github.com/matthiaskoenig/pkdb_models), with its
 [documentation](https://matthiaskoenig.github.io/pkdb_models/).
 
-The model is distributed as [SBML](http://sbml.org) format available from [`hctz_body_flat.xml`](./models/hctz_body_flat.xml) with 
-corresponding [model equations](./models/hctz_body_flat.md).
+The model is built with the PBPK library `pkpdsim.pbpk` of
+[pkpdsim](https://matthiaskoenig.github.io/pkpdsim/) from the definition
+`models/definition.py` of the model folder. It is distributed as
+[SBML](http://sbml.org) format available from [`hctz_body_flat.xml`](./models/hctz_body_flat.xml) with
+corresponding [model equations](./models/hctz_body_flat.md) and [antimony](./models/hctz_body_flat.ant).
 
 The COMBINE archive is available from [`hctz_model.omex`](./hctz_model.omex).
 
-![model overview](./figures/hctz_model.png)
+The figure of the model, [`hctz_body.svg`](./models/hctz_body.svg), shows its organs, the routes of
+the doses, the substance with its distribution and the processes of the kidney and the intestine;
+the PBPK library draws it from the definition.
 
-### Comp submodels
-* **kidney** submodel [`hctz_kidney.xml`](./models/hctz_kidney.xml) with [equations](./models/hctz_kidney.md).
-* **intestine** submodel [`hctz_intestine.xml`](./models/hctz_intestine.xml) with [equations](./models/hctz_intestine.md).
-* **whole-body** submodel [`hctz_body.xml`](./models/hctz_body.xml) with [equations](./models/hctz_body.md).
-* **fluid** submodel [`hctz_fluid.xml`](./models/hctz_fluid.xml) with [equations](./models/hctz_fluid.md).
+![model figure](./models/hctz_body.svg)
+
+### Models
+* **whole-body** comp model [`hctz_body.xml`](./models/hctz_body.xml): one submodel per organ and the fluid and electrolyte model `FLUID` as PD component; the flattened model [`hctz_body_flat.xml`](./models/hctz_body_flat.xml) is the one which is simulated.
+* **fluid** model on its own [`hctz_fluid.xml`](./models/hctz_fluid.xml): the sodium, chloride and water balance with the blood pressure, at the values of the reference individual of the library (but a body weight of 75 kg) and without HCTZ.
 
 ## How to cite
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15427418.svg)](https://doi.org/10.5281/zenodo.15427418)

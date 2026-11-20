@@ -1,0 +1,7814 @@
+{
+ "contract": "model/2",
+ "compiler": "sbmlsim-compiler 0.13.0",
+ "id": "hctz_body",
+ "states": [
+  {
+   "id": "IVDOSE_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "PODOSE_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "SOLDOSE_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "FLUID__ECF",
+   "kind": "compartment",
+   "initial": 13.247388300392123,
+   "settable": true
+  },
+  {
+   "id": "FLUID__Vloop",
+   "kind": "compartment",
+   "initial": 0.6624750000000001,
+   "settable": true
+  },
+  {
+   "id": "FLUID__Vurine",
+   "kind": "compartment",
+   "initial": 1e-06,
+   "settable": true
+  },
+  {
+   "id": "Car_hctz",
+   "kind": {
+    "species": {
+     "compartment": "Var_pl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "Cve_hctz",
+   "kind": {
+    "species": {
+     "compartment": "Vve_pl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "Cpo_hctz",
+   "kind": {
+    "species": {
+     "compartment": "Vpo_pl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "Aurine_hctz",
+   "kind": {
+    "species": {
+     "compartment": "Vurine",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "Afeces_hctz",
+   "kind": {
+    "species": {
+     "compartment": "Vfeces",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "Cbile_hctz",
+   "kind": {
+    "species": {
+     "compartment": "Vbile",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "LU__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "LU__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "LU__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "LU__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "HE__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "HE__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "HE__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "HE__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "BR__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "BR__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "BR__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "BR__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "LI__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "LI__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "LI__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "LI__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "KI__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "KI__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "KI__Cis_hctz",
+   "kind": {
+    "species": {
+     "compartment": "KI__Vis",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "KI__Cic_hctz",
+   "kind": {
+    "species": {
+     "compartment": "KI__Vic",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "ST__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "ST__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "ST__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "ST__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_st_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_st",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_du_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_du",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_jej1_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_jej1",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_jej2_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_jej2",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_ile1_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_ile1",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_ile2_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_ile2",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_cae_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_cae",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_asc_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_asc",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_tra_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_tra",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_des_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_des",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_sig_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_sig",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Clumen_rec_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_rec",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_du_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_du",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_jej1_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_jej1",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_jej2_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_jej2",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_ile1_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_ile1",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_ile2_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_ile2",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_cae_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_cae",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_asc_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_asc",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_tra_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_tra",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_des_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_des",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_sig_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_sig",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GU__Asolid_rec_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GU__Vlumen_rec",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "SP__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "SP__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "SP__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "SP__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "PA__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "PA__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "PA__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "PA__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "MU__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "MU__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "MU__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "MU__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "SK__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "SK__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "SK__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "SK__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "AD__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "AD__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "AD__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "AD__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "BO__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "BO__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "BO__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "BO__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GO__Cpl_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GO__Vpl_hctz",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "GO__Cti_hctz",
+   "kind": {
+    "species": {
+     "compartment": "GO__Vti",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "FLUID__na",
+   "kind": {
+    "species": {
+     "compartment": "FLUID__ECF",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 1853.8533842785787,
+   "settable": true
+  },
+  {
+   "id": "FLUID__na_loop",
+   "kind": {
+    "species": {
+     "compartment": "FLUID__Vloop",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 92.942022498463,
+   "settable": true
+  },
+  {
+   "id": "FLUID__na_urine",
+   "kind": {
+    "species": {
+     "compartment": "FLUID__Vurine",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "FLUID__cl",
+   "kind": {
+    "species": {
+     "compartment": "FLUID__ECF",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 1356.2087752238128,
+   "settable": true
+  },
+  {
+   "id": "FLUID__cl_loop",
+   "kind": {
+    "species": {
+     "compartment": "FLUID__Vloop",
+     "has_only_substance_units": false,
+     "stores_concentration": false
+    }
+   },
+   "initial": 66.34208331488547,
+   "settable": true
+  },
+  {
+   "id": "FLUID__cl_urine",
+   "kind": {
+    "species": {
+     "compartment": "FLUID__Vurine",
+     "has_only_substance_units": true,
+     "stores_concentration": false
+    }
+   },
+   "initial": 0.0,
+   "settable": true
+  }
+ ],
+ "parameters": [
+  {
+   "id": "Var_pl",
+   "kind": "compartment",
+   "initial": 0.317205,
+   "settable": true
+  },
+  {
+   "id": "Var_bc",
+   "kind": "compartment",
+   "initial": 0.239295,
+   "settable": true
+  },
+  {
+   "id": "Var_pl_hctz",
+   "kind": "compartment",
+   "initial": 0.94605,
+   "settable": true
+  },
+  {
+   "id": "Vve_pl",
+   "kind": "compartment",
+   "initial": 0.745498212,
+   "settable": true
+  },
+  {
+   "id": "Vve_bc",
+   "kind": "compartment",
+   "initial": 0.5623933879999999,
+   "settable": true
+  },
+  {
+   "id": "Vve_pl_hctz",
+   "kind": "compartment",
+   "initial": 2.2234157199999998,
+   "settable": true
+  },
+  {
+   "id": "Vpo_pl",
+   "kind": "compartment",
+   "initial": 0.0025013880000000002,
+   "settable": true
+  },
+  {
+   "id": "Vpo_bc",
+   "kind": "compartment",
+   "initial": 0.001887012,
+   "settable": true
+  },
+  {
+   "id": "Vpo_pl_hctz",
+   "kind": "compartment",
+   "initial": 0.00746028,
+   "settable": true
+  },
+  {
+   "id": "Vurine",
+   "kind": "compartment",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "Vfeces",
+   "kind": "compartment",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "Vbile",
+   "kind": "compartment",
+   "initial": 0.058,
+   "settable": true
+  },
+  {
+   "id": "LU__Vpl",
+   "kind": "compartment",
+   "initial": 0.37762500000000004,
+   "settable": true
+  },
+  {
+   "id": "LU__Vti",
+   "kind": "compartment",
+   "initial": 0.5000000000000001,
+   "settable": true
+  },
+  {
+   "id": "LU__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 1.12625,
+   "settable": true
+  },
+  {
+   "id": "HE__Vpl",
+   "kind": "compartment",
+   "initial": 0.03021,
+   "settable": true
+  },
+  {
+   "id": "HE__Vti",
+   "kind": "compartment",
+   "initial": 0.33,
+   "settable": true
+  },
+  {
+   "id": "HE__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.0901,
+   "settable": true
+  },
+  {
+   "id": "BR__Vpl",
+   "kind": "compartment",
+   "initial": 0.036252000000000006,
+   "settable": true
+  },
+  {
+   "id": "BR__Vti",
+   "kind": "compartment",
+   "initial": 1.3942307692307692,
+   "settable": true
+  },
+  {
+   "id": "BR__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.10812000000000001,
+   "settable": true
+  },
+  {
+   "id": "LI__Vpl",
+   "kind": "compartment",
+   "initial": 0.30210000000000004,
+   "settable": true
+  },
+  {
+   "id": "LI__Vti",
+   "kind": "compartment",
+   "initial": 1.8,
+   "settable": true
+  },
+  {
+   "id": "LI__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.901,
+   "settable": true
+  },
+  {
+   "id": "KI__Vpl",
+   "kind": "compartment",
+   "initial": 0.060420000000000015,
+   "settable": true
+  },
+  {
+   "id": "KI__Vis",
+   "kind": "compartment",
+   "initial": 0.04871147698002825,
+   "settable": true
+  },
+  {
+   "id": "KI__Vic",
+   "kind": "compartment",
+   "initial": 0.24652661825806693,
+   "settable": true
+  },
+  {
+   "id": "KI__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.18020000000000003,
+   "settable": true
+  },
+  {
+   "id": "ST__Vpl",
+   "kind": "compartment",
+   "initial": 0.030209999999999997,
+   "settable": true
+  },
+  {
+   "id": "ST__Vti",
+   "kind": "compartment",
+   "initial": 0.14354066985645933,
+   "settable": true
+  },
+  {
+   "id": "ST__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.09009999999999999,
+   "settable": true
+  },
+  {
+   "id": "GU__Vpl",
+   "kind": "compartment",
+   "initial": 0.18126000000000003,
+   "settable": true
+  },
+  {
+   "id": "GU__Vti",
+   "kind": "compartment",
+   "initial": 0.9760765550239235,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_st",
+   "kind": "compartment",
+   "initial": 0.028,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_du",
+   "kind": "compartment",
+   "initial": 0.007819,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_jej1",
+   "kind": "compartment",
+   "initial": 0.01955,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_jej2",
+   "kind": "compartment",
+   "initial": 0.01955,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_ile1",
+   "kind": "compartment",
+   "initial": 0.02904,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_ile2",
+   "kind": "compartment",
+   "initial": 0.02904,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_cae",
+   "kind": "compartment",
+   "initial": 0.002093,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_asc",
+   "kind": "compartment",
+   "initial": 0.002093,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_tra",
+   "kind": "compartment",
+   "initial": 0.002111,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_des",
+   "kind": "compartment",
+   "initial": 0.002111,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_sig",
+   "kind": "compartment",
+   "initial": 0.002296,
+   "settable": true
+  },
+  {
+   "id": "GU__Vlumen_rec",
+   "kind": "compartment",
+   "initial": 0.002296,
+   "settable": true
+  },
+  {
+   "id": "GU__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.5406,
+   "settable": true
+  },
+  {
+   "id": "SP__Vpl",
+   "kind": "compartment",
+   "initial": 0.042294000000000005,
+   "settable": true
+  },
+  {
+   "id": "SP__Vti",
+   "kind": "compartment",
+   "initial": 0.14150943396226415,
+   "settable": true
+  },
+  {
+   "id": "SP__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.12614,
+   "settable": true
+  },
+  {
+   "id": "PA__Vpl",
+   "kind": "compartment",
+   "initial": 0.018126000000000003,
+   "settable": true
+  },
+  {
+   "id": "PA__Vti",
+   "kind": "compartment",
+   "initial": 0.14,
+   "settable": true
+  },
+  {
+   "id": "PA__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.054060000000000004,
+   "settable": true
+  },
+  {
+   "id": "MU__Vpl",
+   "kind": "compartment",
+   "initial": 0.42294000000000004,
+   "settable": true
+  },
+  {
+   "id": "MU__Vti",
+   "kind": "compartment",
+   "initial": 29.000000000000004,
+   "settable": true
+  },
+  {
+   "id": "MU__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 1.2613999999999999,
+   "settable": true
+  },
+  {
+   "id": "SK__Vpl",
+   "kind": "compartment",
+   "initial": 0.09063000000000002,
+   "settable": true
+  },
+  {
+   "id": "SK__Vti",
+   "kind": "compartment",
+   "initial": 2.9999999999999996,
+   "settable": true
+  },
+  {
+   "id": "SK__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.2703,
+   "settable": true
+  },
+  {
+   "id": "AD__Vpl",
+   "kind": "compartment",
+   "initial": 0.15105000000000002,
+   "settable": true
+  },
+  {
+   "id": "AD__Vti",
+   "kind": "compartment",
+   "initial": 18.697000000000003,
+   "settable": true
+  },
+  {
+   "id": "AD__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.4505,
+   "settable": true
+  },
+  {
+   "id": "BO__Vpl",
+   "kind": "compartment",
+   "initial": 0.21147000000000002,
+   "settable": true
+  },
+  {
+   "id": "BO__Vti",
+   "kind": "compartment",
+   "initial": 8.076923076923078,
+   "settable": true
+  },
+  {
+   "id": "BO__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.6306999999999999,
+   "settable": true
+  },
+  {
+   "id": "GO__Vpl",
+   "kind": "compartment",
+   "initial": 0.0012084,
+   "settable": true
+  },
+  {
+   "id": "GO__Vti",
+   "kind": "compartment",
+   "initial": 0.03365384615384615,
+   "settable": true
+  },
+  {
+   "id": "GO__Vpl_hctz",
+   "kind": "compartment",
+   "initial": 0.0036039999999999996,
+   "settable": true
+  },
+  {
+   "id": "FLUID__Vki",
+   "kind": "compartment",
+   "initial": 0.4012380952380952,
+   "settable": true
+  },
+  {
+   "id": "BW",
+   "kind": "parameter",
+   "initial": 73.0,
+   "settable": true
+  },
+  {
+   "id": "HEIGHT",
+   "kind": "parameter",
+   "initial": 176.0,
+   "settable": true
+  },
+  {
+   "id": "f_renal_function",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "f_cardiac_function",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "f_shunt",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "f_functional",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "BW_ref",
+   "kind": "parameter",
+   "initial": 73.0,
+   "settable": true
+  },
+  {
+   "id": "HEIGHT_ref",
+   "kind": "parameter",
+   "initial": 176.0,
+   "settable": true
+  },
+  {
+   "id": "BSA_ref",
+   "kind": "parameter",
+   "initial": 1.8891881960671537,
+   "settable": true
+  },
+  {
+   "id": "fage_FFM",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "FFM_ref",
+   "kind": "parameter",
+   "initial": 57.49255994958636,
+   "settable": true
+  },
+  {
+   "id": "CO_ref",
+   "kind": "parameter",
+   "initial": 6.5,
+   "settable": true
+  },
+  {
+   "id": "GFR_ref",
+   "kind": "parameter",
+   "initial": 0.125,
+   "settable": true
+  },
+  {
+   "id": "Vblood_ref",
+   "kind": "parameter",
+   "initial": 5.3,
+   "settable": true
+  },
+  {
+   "id": "fage_HCT",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "HCT_ref",
+   "kind": "parameter",
+   "initial": 0.43,
+   "settable": true
+  },
+  {
+   "id": "HCT",
+   "kind": "parameter",
+   "initial": 0.43,
+   "settable": true
+  },
+  {
+   "id": "Mlu_ref",
+   "kind": "parameter",
+   "initial": 0.5,
+   "settable": true
+  },
+  {
+   "id": "Mhe_ref",
+   "kind": "parameter",
+   "initial": 0.33,
+   "settable": true
+  },
+  {
+   "id": "Mbr_ref",
+   "kind": "parameter",
+   "initial": 1.45,
+   "settable": true
+  },
+  {
+   "id": "Mli_ref",
+   "kind": "parameter",
+   "initial": 1.8,
+   "settable": true
+  },
+  {
+   "id": "Mki_ref",
+   "kind": "parameter",
+   "initial": 0.31,
+   "settable": true
+  },
+  {
+   "id": "Mst_ref",
+   "kind": "parameter",
+   "initial": 0.15,
+   "settable": true
+  },
+  {
+   "id": "Msi_ref",
+   "kind": "parameter",
+   "initial": 0.65,
+   "settable": true
+  },
+  {
+   "id": "Mla_ref",
+   "kind": "parameter",
+   "initial": 0.37,
+   "settable": true
+  },
+  {
+   "id": "Msp_ref",
+   "kind": "parameter",
+   "initial": 0.15,
+   "settable": true
+  },
+  {
+   "id": "Mpa_ref",
+   "kind": "parameter",
+   "initial": 0.14,
+   "settable": true
+  },
+  {
+   "id": "Mmu_ref",
+   "kind": "parameter",
+   "initial": 29.0,
+   "settable": true
+  },
+  {
+   "id": "Msk_ref",
+   "kind": "parameter",
+   "initial": 3.3,
+   "settable": true
+  },
+  {
+   "id": "Mbo_ref",
+   "kind": "parameter",
+   "initial": 10.5,
+   "settable": true
+  },
+  {
+   "id": "Mgo_ref",
+   "kind": "parameter",
+   "initial": 0.035,
+   "settable": true
+  },
+  {
+   "id": "fage_Qbr",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fage_Qli",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fage_Qki",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fage_Qrest",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fage_Qother",
+   "kind": "parameter",
+   "initial": 0.9999999999999993,
+   "settable": true
+  },
+  {
+   "id": "fQhe",
+   "kind": "parameter",
+   "initial": 0.04321988114532677,
+   "settable": true
+  },
+  {
+   "id": "fQbr",
+   "kind": "parameter",
+   "initial": 0.129659643435981,
+   "settable": true
+  },
+  {
+   "id": "fQli",
+   "kind": "parameter",
+   "initial": 0.0702323068611561,
+   "settable": true
+  },
+  {
+   "id": "fQki",
+   "kind": "parameter",
+   "initial": 0.205294435440303,
+   "settable": true
+  },
+  {
+   "id": "fQst",
+   "kind": "parameter",
+   "initial": 0.0108049702863317,
+   "settable": true
+  },
+  {
+   "id": "fQsi",
+   "kind": "parameter",
+   "initial": 0.108049702863317,
+   "settable": true
+  },
+  {
+   "id": "fQla",
+   "kind": "parameter",
+   "initial": 0.0432198811453268,
+   "settable": true
+  },
+  {
+   "id": "fQsp",
+   "kind": "parameter",
+   "initial": 0.0324149108589951,
+   "settable": true
+  },
+  {
+   "id": "fQpa",
+   "kind": "parameter",
+   "initial": 0.0108049702863317,
+   "settable": true
+  },
+  {
+   "id": "fQmu",
+   "kind": "parameter",
+   "initial": 0.18368449486763888,
+   "settable": true
+  },
+  {
+   "id": "fQsk",
+   "kind": "parameter",
+   "initial": 0.05402485143165857,
+   "settable": true
+  },
+  {
+   "id": "fQad",
+   "kind": "parameter",
+   "initial": 0.05402485143165857,
+   "settable": true
+  },
+  {
+   "id": "fQbo",
+   "kind": "parameter",
+   "initial": 0.05402485143165857,
+   "settable": true
+  },
+  {
+   "id": "fQgo",
+   "kind": "parameter",
+   "initial": 0.0005402485143165856,
+   "settable": true
+  },
+  {
+   "id": "fVar",
+   "kind": "parameter",
+   "initial": 0.105,
+   "settable": true
+  },
+  {
+   "id": "fVve",
+   "kind": "parameter",
+   "initial": 0.246772,
+   "settable": true
+  },
+  {
+   "id": "fVpo",
+   "kind": "parameter",
+   "initial": 0.000828,
+   "settable": true
+  },
+  {
+   "id": "BMI",
+   "kind": "parameter",
+   "initial": 23.56663223140496,
+   "settable": true
+  },
+  {
+   "id": "BSA",
+   "kind": "parameter",
+   "initial": 1.8891881960671537,
+   "settable": true
+  },
+  {
+   "id": "FFM",
+   "kind": "parameter",
+   "initial": 57.49255994958636,
+   "settable": true
+  },
+  {
+   "id": "SV_tis",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "Vblood",
+   "kind": "parameter",
+   "initial": 5.3,
+   "settable": true
+  },
+  {
+   "id": "Mlu",
+   "kind": "parameter",
+   "initial": 0.5,
+   "settable": true
+  },
+  {
+   "id": "Mhe",
+   "kind": "parameter",
+   "initial": 0.33,
+   "settable": true
+  },
+  {
+   "id": "Mbr",
+   "kind": "parameter",
+   "initial": 1.45,
+   "settable": true
+  },
+  {
+   "id": "Mli",
+   "kind": "parameter",
+   "initial": 1.8,
+   "settable": true
+  },
+  {
+   "id": "Mki",
+   "kind": "parameter",
+   "initial": 0.31,
+   "settable": true
+  },
+  {
+   "id": "Mst",
+   "kind": "parameter",
+   "initial": 0.15,
+   "settable": true
+  },
+  {
+   "id": "Msi",
+   "kind": "parameter",
+   "initial": 0.65,
+   "settable": true
+  },
+  {
+   "id": "Mla",
+   "kind": "parameter",
+   "initial": 0.37,
+   "settable": true
+  },
+  {
+   "id": "Msp",
+   "kind": "parameter",
+   "initial": 0.15,
+   "settable": true
+  },
+  {
+   "id": "Mpa",
+   "kind": "parameter",
+   "initial": 0.14,
+   "settable": true
+  },
+  {
+   "id": "Mmu",
+   "kind": "parameter",
+   "initial": 29.0,
+   "settable": true
+  },
+  {
+   "id": "Msk",
+   "kind": "parameter",
+   "initial": 3.3,
+   "settable": true
+  },
+  {
+   "id": "Mbo",
+   "kind": "parameter",
+   "initial": 10.5,
+   "settable": true
+  },
+  {
+   "id": "Mgo",
+   "kind": "parameter",
+   "initial": 0.035,
+   "settable": true
+  },
+  {
+   "id": "Mlean",
+   "kind": "parameter",
+   "initial": 48.684999999999995,
+   "settable": true
+  },
+  {
+   "id": "Mad",
+   "kind": "parameter",
+   "initial": 18.697000000000003,
+   "settable": true
+  },
+  {
+   "id": "Vlu",
+   "kind": "parameter",
+   "initial": 1.1625,
+   "settable": true
+  },
+  {
+   "id": "Vhe",
+   "kind": "parameter",
+   "initial": 0.383,
+   "settable": true
+  },
+  {
+   "id": "Vbr",
+   "kind": "parameter",
+   "initial": 1.4578307692307693,
+   "settable": true
+  },
+  {
+   "id": "Vli",
+   "kind": "parameter",
+   "initial": 2.33,
+   "settable": true
+  },
+  {
+   "id": "Vki",
+   "kind": "parameter",
+   "initial": 0.4012380952380952,
+   "settable": true
+  },
+  {
+   "id": "Vst",
+   "kind": "parameter",
+   "initial": 0.19654066985645932,
+   "settable": true
+  },
+  {
+   "id": "Vsi",
+   "kind": "parameter",
+   "initial": 0.8234095693779905,
+   "settable": true
+  },
+  {
+   "id": "Vla",
+   "kind": "parameter",
+   "initial": 0.470666985645933,
+   "settable": true
+  },
+  {
+   "id": "Vsp",
+   "kind": "parameter",
+   "initial": 0.21570943396226416,
+   "settable": true
+  },
+  {
+   "id": "Vpa",
+   "kind": "parameter",
+   "initial": 0.1718,
+   "settable": true
+  },
+  {
+   "id": "Vmu",
+   "kind": "parameter",
+   "initial": 29.742,
+   "settable": true
+  },
+  {
+   "id": "Vsk",
+   "kind": "parameter",
+   "initial": 3.1589999999999994,
+   "settable": true
+  },
+  {
+   "id": "Vad",
+   "kind": "parameter",
+   "initial": 18.962000000000003,
+   "settable": true
+  },
+  {
+   "id": "Vbo",
+   "kind": "parameter",
+   "initial": 8.447923076923077,
+   "settable": true
+  },
+  {
+   "id": "Vgo",
+   "kind": "parameter",
+   "initial": 0.035773846153846156,
+   "settable": true
+  },
+  {
+   "id": "Var",
+   "kind": "parameter",
+   "initial": 0.5565,
+   "settable": true
+  },
+  {
+   "id": "Vve",
+   "kind": "parameter",
+   "initial": 1.3078915999999998,
+   "settable": true
+  },
+  {
+   "id": "Vpo",
+   "kind": "parameter",
+   "initial": 0.0043884,
+   "settable": true
+  },
+  {
+   "id": "f_vas_lu",
+   "kind": "parameter",
+   "initial": 0.5698924731182795,
+   "settable": true
+  },
+  {
+   "id": "f_int_lu",
+   "kind": "parameter",
+   "initial": 0.0860215053763441,
+   "settable": true
+  },
+  {
+   "id": "f_vas_he",
+   "kind": "parameter",
+   "initial": 0.13838120104438642,
+   "settable": true
+  },
+  {
+   "id": "f_int_he",
+   "kind": "parameter",
+   "initial": 0.2154046997389034,
+   "settable": true
+  },
+  {
+   "id": "f_vas_br",
+   "kind": "parameter",
+   "initial": 0.043626462921727754,
+   "settable": true
+  },
+  {
+   "id": "f_int_br",
+   "kind": "parameter",
+   "initial": 0.004782017685946126,
+   "settable": true
+  },
+  {
+   "id": "f_vas_li",
+   "kind": "parameter",
+   "initial": 0.2274678111587983,
+   "settable": true
+  },
+  {
+   "id": "f_int_li",
+   "kind": "parameter",
+   "initial": 0.17770740447518651,
+   "settable": true
+  },
+  {
+   "id": "f_vas_ki",
+   "kind": "parameter",
+   "initial": 0.26418229290291956,
+   "settable": true
+  },
+  {
+   "id": "f_int_ki",
+   "kind": "parameter",
+   "initial": 0.1214029215025627,
+   "settable": true
+  },
+  {
+   "id": "f_vas_st",
+   "kind": "parameter",
+   "initial": 0.26966428901818534,
+   "settable": true
+  },
+  {
+   "id": "f_int_st",
+   "kind": "parameter",
+   "initial": 0.0701134283129331,
+   "settable": true
+  },
+  {
+   "id": "f_vas_si",
+   "kind": "parameter",
+   "initial": 0.2445927367010551,
+   "settable": true
+  },
+  {
+   "id": "f_int_si",
+   "kind": "parameter",
+   "initial": 0.07252069729208302,
+   "settable": true
+  },
+  {
+   "id": "f_vas_la",
+   "kind": "parameter",
+   "initial": 0.2477335431546802,
+   "settable": true
+  },
+  {
+   "id": "f_int_la",
+   "kind": "parameter",
+   "initial": 0.07221677989282067,
+   "settable": true
+  },
+  {
+   "id": "f_vas_sp",
+   "kind": "parameter",
+   "initial": 0.3439812466105698,
+   "settable": true
+  },
+  {
+   "id": "f_int_sp",
+   "kind": "parameter",
+   "initial": 0.16730478268605437,
+   "settable": true
+  },
+  {
+   "id": "f_vas_pa",
+   "kind": "parameter",
+   "initial": 0.1850989522700815,
+   "settable": true
+  },
+  {
+   "id": "f_int_pa",
+   "kind": "parameter",
+   "initial": 0.07823010058155787,
+   "settable": true
+  },
+  {
+   "id": "f_vas_mu",
+   "kind": "parameter",
+   "initial": 0.024947885145585366,
+   "settable": true
+  },
+  {
+   "id": "f_int_mu",
+   "kind": "parameter",
+   "initial": 0.14630031732034351,
+   "settable": true
+  },
+  {
+   "id": "f_vas_sk",
+   "kind": "parameter",
+   "initial": 0.05033238366571701,
+   "settable": true
+  },
+  {
+   "id": "f_int_sk",
+   "kind": "parameter",
+   "initial": 0.5697985698055897,
+   "settable": true
+  },
+  {
+   "id": "f_vas_ad",
+   "kind": "parameter",
+   "initial": 0.013975319059170972,
+   "settable": true
+  },
+  {
+   "id": "f_int_ad",
+   "kind": "parameter",
+   "initial": 0.13805650794701316,
+   "settable": true
+  },
+  {
+   "id": "f_vas_bo",
+   "kind": "parameter",
+   "initial": 0.04391611957422398,
+   "settable": true
+  },
+  {
+   "id": "f_int_bo",
+   "kind": "parameter",
+   "initial": 0.09561038805069508,
+   "settable": true
+  },
+  {
+   "id": "f_vas_go",
+   "kind": "parameter",
+   "initial": 0.05926117060164279,
+   "settable": true
+  },
+  {
+   "id": "f_int_go",
+   "kind": "parameter",
+   "initial": 0.09030988762353642,
+   "settable": true
+  },
+  {
+   "id": "CO_base",
+   "kind": "parameter",
+   "initial": 6.5,
+   "settable": true
+  },
+  {
+   "id": "CO",
+   "kind": "parameter",
+   "initial": 6.5,
+   "settable": true
+  },
+  {
+   "id": "Qlu",
+   "kind": "parameter",
+   "initial": 6.5,
+   "settable": true
+  },
+  {
+   "id": "Qhe",
+   "kind": "parameter",
+   "initial": 0.280929227444624,
+   "settable": true
+  },
+  {
+   "id": "Qbr",
+   "kind": "parameter",
+   "initial": 0.8427876823338765,
+   "settable": true
+  },
+  {
+   "id": "Qli",
+   "kind": "parameter",
+   "initial": 0.4565099945975146,
+   "settable": true
+  },
+  {
+   "id": "Qki",
+   "kind": "parameter",
+   "initial": 1.3344138303619695,
+   "settable": true
+  },
+  {
+   "id": "Qst",
+   "kind": "parameter",
+   "initial": 0.07023230686115606,
+   "settable": true
+  },
+  {
+   "id": "Qsi",
+   "kind": "parameter",
+   "initial": 0.7023230686115605,
+   "settable": true
+  },
+  {
+   "id": "Qla",
+   "kind": "parameter",
+   "initial": 0.28092922744462423,
+   "settable": true
+  },
+  {
+   "id": "Qsp",
+   "kind": "parameter",
+   "initial": 0.21069692058346817,
+   "settable": true
+  },
+  {
+   "id": "Qpa",
+   "kind": "parameter",
+   "initial": 0.07023230686115606,
+   "settable": true
+  },
+  {
+   "id": "Qmu",
+   "kind": "parameter",
+   "initial": 1.1939492166396528,
+   "settable": true
+  },
+  {
+   "id": "Qsk",
+   "kind": "parameter",
+   "initial": 0.3511615343057807,
+   "settable": true
+  },
+  {
+   "id": "Qad",
+   "kind": "parameter",
+   "initial": 0.3511615343057807,
+   "settable": true
+  },
+  {
+   "id": "Qbo",
+   "kind": "parameter",
+   "initial": 0.3511615343057807,
+   "settable": true
+  },
+  {
+   "id": "Qgo",
+   "kind": "parameter",
+   "initial": 0.0035116153430578066,
+   "settable": true
+  },
+  {
+   "id": "Qha",
+   "kind": "parameter",
+   "initial": 0.4565099945975146,
+   "settable": true
+  },
+  {
+   "id": "Qpo",
+   "kind": "parameter",
+   "initial": 1.334413830361965,
+   "settable": true
+  },
+  {
+   "id": "Qh",
+   "kind": "parameter",
+   "initial": 1.7909238249594797,
+   "settable": true
+  },
+  {
+   "id": "fage_GFR",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "GFR_base",
+   "kind": "parameter",
+   "initial": 0.12500000000000025,
+   "settable": true
+  },
+  {
+   "id": "GFR",
+   "kind": "parameter",
+   "initial": 0.12500000000000025,
+   "settable": true
+  },
+  {
+   "id": "CP_severity",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "HF_severity",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "CKD_hepatic",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_functional_liver",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_hepatic_artery_flow",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_kidney_flow",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_cardiac_index",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_gfr",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_albumin",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_agp",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_hematocrit",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_shunt",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "fcp_rest_flow",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "eGFR",
+   "kind": "parameter",
+   "initial": 0.114467156025102,
+   "settable": true
+  },
+  {
+   "id": "fckd_plasma_protein",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fckd_hematocrit",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fckd_kidney_volume",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fckd_kidney_flow",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fckd_gastric_emptying_time",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fckd_si_transit_time",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fhf_liver_flow",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fhf_kidney_flow",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fhf_peripheral_flow",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qhe",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qbr",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qli",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qki",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qst",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qsi",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qla",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qsp",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qpa",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qmu",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qsk",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qad",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qbo",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Qgo",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_CO",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_GFR",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_HCT",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_Mki",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_albumin",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_agp",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_plasma_protein",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_t_stomach",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_t_si",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fimp_ki_slc22a6",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "Mr_ren",
+   "kind": "parameter",
+   "initial": 45057.0,
+   "settable": true
+  },
+  {
+   "id": "Mr_hctz",
+   "kind": "parameter",
+   "initial": 297.7,
+   "settable": true
+  },
+  {
+   "id": "fu_ref_hctz",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "fu_hctz",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "f_reabsorbed_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "Kp_hctz",
+   "kind": "parameter",
+   "initial": 1.36015667679099,
+   "settable": true
+  },
+  {
+   "id": "ftissue_hctz",
+   "kind": "parameter",
+   "initial": 0.0317692988614749,
+   "settable": true
+  },
+  {
+   "id": "Vti_total_ref_hctz",
+   "kind": "parameter",
+   "initial": 35.5281724463884,
+   "settable": true
+  },
+  {
+   "id": "BP_hctz",
+   "kind": "parameter",
+   "initial": 1.7,
+   "settable": true
+  },
+  {
+   "id": "k_bile",
+   "kind": "parameter",
+   "initial": 0.01,
+   "settable": true
+  },
+  {
+   "id": "ka_hctz",
+   "kind": "parameter",
+   "initial": 0.307841020366845,
+   "settable": true
+  },
+  {
+   "id": "FED",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "ti_hctz",
+   "kind": "parameter",
+   "initial": 10.0,
+   "settable": true
+  },
+  {
+   "id": "Kiv_hctz",
+   "kind": "parameter",
+   "initial": 4.1588830833596715,
+   "settable": false
+  },
+  {
+   "id": "Ri_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": true
+  },
+  {
+   "id": "Ka_dis_hctz",
+   "kind": "parameter",
+   "initial": 1.46649187054811,
+   "settable": true
+  },
+  {
+   "id": "Ka_sol_hctz",
+   "kind": "parameter",
+   "initial": 60.0,
+   "settable": true
+  },
+  {
+   "id": "w_arm_sk",
+   "kind": "parameter",
+   "initial": 0.7,
+   "settable": true
+  },
+  {
+   "id": "w_arm_mu",
+   "kind": "parameter",
+   "initial": 0.3,
+   "settable": true
+  },
+  {
+   "id": "Car_free_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Car_blood_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cve_free_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cve_blood_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cpo_free_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cpo_blood_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Chv_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Chv_free_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Chv_blood_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Carm_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Carm_free_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Carm_blood_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_lu_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "LU__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.00044710009935656564,
+   "settable": true
+  },
+  {
+   "id": "LU__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_he_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "HE__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.0002950860655753333,
+   "settable": true
+  },
+  {
+   "id": "HE__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_br_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "BR__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.0012467214308981157,
+   "settable": true
+  },
+  {
+   "id": "BR__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_li_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "LI__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.0016095603576836359,
+   "settable": true
+  },
+  {
+   "id": "LI__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_ki_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "KI__f_water_int",
+   "kind": "parameter",
+   "initial": 0.93049,
+   "settable": true
+  },
+  {
+   "id": "KI__f_water_pls",
+   "kind": "parameter",
+   "initial": 0.93049,
+   "settable": true
+  },
+  {
+   "id": "KI__r_protein_int_pls",
+   "kind": "parameter",
+   "initial": 0.37,
+   "settable": true
+  },
+  {
+   "id": "KI__K_int_pls_hctz",
+   "kind": "parameter",
+   "initial": 0.9562087,
+   "settable": true
+  },
+  {
+   "id": "KI__K_cell_pls_hctz",
+   "kind": "parameter",
+   "initial": 1.4399732203821787,
+   "settable": true
+  },
+  {
+   "id": "KI__k_vas",
+   "kind": "parameter",
+   "initial": 1000.0,
+   "settable": true
+  },
+  {
+   "id": "KI__PS_vas",
+   "kind": "parameter",
+   "initial": 401.23809523809524,
+   "settable": true
+  },
+  {
+   "id": "KI__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.000264001963429591,
+   "settable": true
+  },
+  {
+   "id": "KI__Cu_is_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "KI__Cu_ic_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "KI__f_slc22a6",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "KI__f_abcc4",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "KI__f_tubular",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "Rurine_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "KI__HCTZUP_k",
+   "kind": "parameter",
+   "initial": 0.362349245398128,
+   "settable": true
+  },
+  {
+   "id": "KI__HCTZSEC_k",
+   "kind": "parameter",
+   "initial": 10.0,
+   "settable": true
+  },
+  {
+   "id": "Cout_st_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "ST__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.00012835409550906188,
+   "settable": true
+  },
+  {
+   "id": "ST__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "GU__Vgu",
+   "kind": "parameter",
+   "initial": 1.2940765550239235,
+   "settable": true
+  },
+  {
+   "id": "GU__f_vas_gu",
+   "kind": "parameter",
+   "initial": 0.24573507553741375,
+   "settable": true
+  },
+  {
+   "id": "GU__T_st",
+   "kind": "parameter",
+   "initial": 22.79,
+   "settable": true
+  },
+  {
+   "id": "GU__T_du",
+   "kind": "parameter",
+   "initial": 14.3,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_du",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "GU__T_jej1",
+   "kind": "parameter",
+   "initial": 35.74,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_jej1",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "GU__T_jej2",
+   "kind": "parameter",
+   "initial": 35.74,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_jej2",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "GU__T_ile1",
+   "kind": "parameter",
+   "initial": 53.11,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_ile1",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "GU__T_ile2",
+   "kind": "parameter",
+   "initial": 53.11,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_ile2",
+   "kind": "parameter",
+   "initial": 1.0,
+   "settable": true
+  },
+  {
+   "id": "GU__T_cae",
+   "kind": "parameter",
+   "initial": 339.0,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_cae",
+   "kind": "parameter",
+   "initial": 0.0362,
+   "settable": true
+  },
+  {
+   "id": "GU__T_asc",
+   "kind": "parameter",
+   "initial": 339.0,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_asc",
+   "kind": "parameter",
+   "initial": 0.0362,
+   "settable": true
+  },
+  {
+   "id": "GU__T_tra",
+   "kind": "parameter",
+   "initial": 342.0,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_tra",
+   "kind": "parameter",
+   "initial": 0.0362,
+   "settable": true
+  },
+  {
+   "id": "GU__T_des",
+   "kind": "parameter",
+   "initial": 342.0,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_des",
+   "kind": "parameter",
+   "initial": 0.0362,
+   "settable": true
+  },
+  {
+   "id": "GU__T_sig",
+   "kind": "parameter",
+   "initial": 372.0,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_sig",
+   "kind": "parameter",
+   "initial": 0.0362,
+   "settable": true
+  },
+  {
+   "id": "GU__T_rec",
+   "kind": "parameter",
+   "initial": 372.0,
+   "settable": true
+  },
+  {
+   "id": "GU__f_area_rec",
+   "kind": "parameter",
+   "initial": 0.0362,
+   "settable": true
+  },
+  {
+   "id": "GU__T_st_fed",
+   "kind": "parameter",
+   "initial": 63.48,
+   "settable": true
+  },
+  {
+   "id": "Cout_si_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "GU__Qgu",
+   "kind": "parameter",
+   "initial": 0.9832522960561847,
+   "settable": true
+  },
+  {
+   "id": "GU__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.0008728078494616208,
+   "settable": true
+  },
+  {
+   "id": "GU__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "T_st_eff",
+   "kind": "parameter",
+   "initial": 22.79,
+   "settable": true
+  },
+  {
+   "id": "Cout_sp_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "SP__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.0001265377639688393,
+   "settable": true
+  },
+  {
+   "id": "SP__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_pa_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "PA__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.00012518802781983837,
+   "settable": true
+  },
+  {
+   "id": "PA__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_mu_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "MU__kps_hctz",
+   "kind": "parameter",
+   "initial": 0.0215555200253895,
+   "settable": true
+  },
+  {
+   "id": "MU__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.6411042765951346,
+   "settable": true
+  },
+  {
+   "id": "MU__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_sk_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "SK__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.002682600596139393,
+   "settable": true
+  },
+  {
+   "id": "SK__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_ad_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "AD__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.016718861115339413,
+   "settable": true
+  },
+  {
+   "id": "AD__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_bo_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "BO__PS_hctz",
+   "kind": "parameter",
+   "initial": 0.007222386220375291,
+   "settable": true
+  },
+  {
+   "id": "BO__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "Cout_go_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "GO__PS_hctz",
+   "kind": "parameter",
+   "initial": 3.0093275918230376e-05,
+   "settable": true
+  },
+  {
+   "id": "GO__Cu_ti_hctz",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  },
+  {
+   "id": "FLUID__GFR_base",
+   "kind": "parameter",
+   "initial": 125.00000000000026,
+   "settable": false
+  },
+  {
+   "id": "FLUID__f_TBW",
+   "kind": "parameter",
+   "initial": 0.55,
+   "settable": true
+  },
+  {
+   "id": "FLUID__f_ECF",
+   "kind": "parameter",
+   "initial": 0.33,
+   "settable": true
+  },
+  {
+   "id": "FLUID__ECF_ref",
+   "kind": "parameter",
+   "initial": 13.249500000000001,
+   "settable": false
+  },
+  {
+   "id": "FLUID__Psys_ref",
+   "kind": "parameter",
+   "initial": 120.0,
+   "settable": true
+  },
+  {
+   "id": "FLUID__Pdia_ref",
+   "kind": "parameter",
+   "initial": 80.0,
+   "settable": true
+  },
+  {
+   "id": "FLUID__bp_systolic",
+   "kind": "parameter",
+   "initial": 119.98087445164381,
+   "settable": false
+  },
+  {
+   "id": "FLUID__bp_diastolic",
+   "kind": "parameter",
+   "initial": 79.9872496344292,
+   "settable": false
+  },
+  {
+   "id": "FLUID__bp_mean",
+   "kind": "parameter",
+   "initial": 93.31845790683407,
+   "settable": false
+  },
+  {
+   "id": "FLUID__Mr_nacl",
+   "kind": "parameter",
+   "initial": 58.44,
+   "settable": true
+  },
+  {
+   "id": "FLUID__Mr_na",
+   "kind": "parameter",
+   "initial": 22.99,
+   "settable": true
+  },
+  {
+   "id": "FLUID__Mr_cl",
+   "kind": "parameter",
+   "initial": 35.45,
+   "settable": true
+  },
+  {
+   "id": "FLUID__vin_na",
+   "kind": "parameter",
+   "initial": 0.0921209078378484,
+   "settable": false
+  },
+  {
+   "id": "FLUID__vin_cl",
+   "kind": "parameter",
+   "initial": 0.38357087920356037,
+   "settable": false
+  },
+  {
+   "id": "FLUID__vin_h2o",
+   "kind": "parameter",
+   "initial": 0.00159722222222222,
+   "settable": true
+  },
+  {
+   "id": "FLUID__vout_h2o",
+   "kind": "parameter",
+   "initial": 0.000625,
+   "settable": true
+  },
+  {
+   "id": "FLUID__k_na",
+   "kind": "parameter",
+   "initial": 0.00065800648455606,
+   "settable": true
+  },
+  {
+   "id": "FLUID__k_cl",
+   "kind": "parameter",
+   "initial": 0.00376049881572118,
+   "settable": true
+  },
+  {
+   "id": "FLUID__k_h2o",
+   "kind": "parameter",
+   "initial": 7.777777777777744e-06,
+   "settable": true
+  },
+  {
+   "id": "FLUID__h2o_reabsorption",
+   "kind": "parameter",
+   "initial": 0.12402650434601376,
+   "settable": false
+  },
+  {
+   "id": "FLUID__diuresis",
+   "kind": "parameter",
+   "initial": 0.00097349565398649,
+   "settable": false
+  },
+  {
+   "id": "FLUID__f_h2o_max",
+   "kind": "parameter",
+   "initial": 0.3,
+   "settable": true
+  },
+  {
+   "id": "FLUID__counter_gamma",
+   "kind": "parameter",
+   "initial": 5.0,
+   "settable": true
+  },
+  {
+   "id": "FLUID__E50_hctz_nacl",
+   "kind": "parameter",
+   "initial": 7.47394627108756e-05,
+   "settable": true
+  },
+  {
+   "id": "FLUID__Emax_hctz_na",
+   "kind": "parameter",
+   "initial": 1.82023051317122,
+   "settable": true
+  },
+  {
+   "id": "FLUID__Emax_hctz_cl",
+   "kind": "parameter",
+   "initial": 0.511521048025687,
+   "settable": true
+  },
+  {
+   "id": "FLUID__f_ECF_start",
+   "kind": "parameter",
+   "initial": 0.999840620430365,
+   "settable": true
+  },
+  {
+   "id": "FLUID__na_ref",
+   "kind": "parameter",
+   "initial": 140.0,
+   "settable": true
+  },
+  {
+   "id": "FLUID__cl_ref",
+   "kind": "parameter",
+   "initial": 102.0,
+   "settable": true
+  },
+  {
+   "id": "FLUID__GFR",
+   "kind": "parameter",
+   "initial": 125.00000000000026,
+   "settable": false
+  },
+  {
+   "id": "FLUID__vout_na",
+   "kind": "parameter",
+   "initial": 2.1223244134121155,
+   "settable": false
+  },
+  {
+   "id": "FLUID__vout_cl",
+   "kind": "parameter",
+   "initial": 13.350001279166365,
+   "settable": false
+  },
+  {
+   "id": "FLUID__H2O_UPTAKE",
+   "kind": "parameter",
+   "initial": 0.001598495653986485,
+   "settable": false
+  },
+  {
+   "id": "FLUID__hctz_urine_excretion",
+   "kind": "parameter",
+   "initial": 0.0,
+   "settable": false
+  }
+ ],
+ "selections": [
+  {
+   "id": "Var_pl",
+   "index": 0
+  },
+  {
+   "id": "Var_bc",
+   "index": 1
+  },
+  {
+   "id": "Var_pl_hctz",
+   "index": 2
+  },
+  {
+   "id": "Vve_pl",
+   "index": 3
+  },
+  {
+   "id": "Vve_bc",
+   "index": 4
+  },
+  {
+   "id": "Vve_pl_hctz",
+   "index": 5
+  },
+  {
+   "id": "Vpo_pl",
+   "index": 6
+  },
+  {
+   "id": "Vpo_bc",
+   "index": 7
+  },
+  {
+   "id": "Vpo_pl_hctz",
+   "index": 8
+  },
+  {
+   "id": "Vurine",
+   "index": 9
+  },
+  {
+   "id": "Vfeces",
+   "index": 10
+  },
+  {
+   "id": "Vbile",
+   "index": 11
+  },
+  {
+   "id": "LU__Vpl",
+   "index": 12
+  },
+  {
+   "id": "LU__Vti",
+   "index": 13
+  },
+  {
+   "id": "LU__Vpl_hctz",
+   "index": 14
+  },
+  {
+   "id": "HE__Vpl",
+   "index": 15
+  },
+  {
+   "id": "HE__Vti",
+   "index": 16
+  },
+  {
+   "id": "HE__Vpl_hctz",
+   "index": 17
+  },
+  {
+   "id": "BR__Vpl",
+   "index": 18
+  },
+  {
+   "id": "BR__Vti",
+   "index": 19
+  },
+  {
+   "id": "BR__Vpl_hctz",
+   "index": 20
+  },
+  {
+   "id": "LI__Vpl",
+   "index": 21
+  },
+  {
+   "id": "LI__Vti",
+   "index": 22
+  },
+  {
+   "id": "LI__Vpl_hctz",
+   "index": 23
+  },
+  {
+   "id": "KI__Vpl",
+   "index": 24
+  },
+  {
+   "id": "KI__Vis",
+   "index": 25
+  },
+  {
+   "id": "KI__Vic",
+   "index": 26
+  },
+  {
+   "id": "KI__Vpl_hctz",
+   "index": 27
+  },
+  {
+   "id": "ST__Vpl",
+   "index": 28
+  },
+  {
+   "id": "ST__Vti",
+   "index": 29
+  },
+  {
+   "id": "ST__Vpl_hctz",
+   "index": 30
+  },
+  {
+   "id": "GU__Vpl",
+   "index": 31
+  },
+  {
+   "id": "GU__Vti",
+   "index": 32
+  },
+  {
+   "id": "GU__Vlumen_st",
+   "index": 33
+  },
+  {
+   "id": "GU__Vlumen_du",
+   "index": 34
+  },
+  {
+   "id": "GU__Vlumen_jej1",
+   "index": 35
+  },
+  {
+   "id": "GU__Vlumen_jej2",
+   "index": 36
+  },
+  {
+   "id": "GU__Vlumen_ile1",
+   "index": 37
+  },
+  {
+   "id": "GU__Vlumen_ile2",
+   "index": 38
+  },
+  {
+   "id": "GU__Vlumen_cae",
+   "index": 39
+  },
+  {
+   "id": "GU__Vlumen_asc",
+   "index": 40
+  },
+  {
+   "id": "GU__Vlumen_tra",
+   "index": 41
+  },
+  {
+   "id": "GU__Vlumen_des",
+   "index": 42
+  },
+  {
+   "id": "GU__Vlumen_sig",
+   "index": 43
+  },
+  {
+   "id": "GU__Vlumen_rec",
+   "index": 44
+  },
+  {
+   "id": "GU__Vpl_hctz",
+   "index": 45
+  },
+  {
+   "id": "SP__Vpl",
+   "index": 46
+  },
+  {
+   "id": "SP__Vti",
+   "index": 47
+  },
+  {
+   "id": "SP__Vpl_hctz",
+   "index": 48
+  },
+  {
+   "id": "PA__Vpl",
+   "index": 49
+  },
+  {
+   "id": "PA__Vti",
+   "index": 50
+  },
+  {
+   "id": "PA__Vpl_hctz",
+   "index": 51
+  },
+  {
+   "id": "MU__Vpl",
+   "index": 52
+  },
+  {
+   "id": "MU__Vti",
+   "index": 53
+  },
+  {
+   "id": "MU__Vpl_hctz",
+   "index": 54
+  },
+  {
+   "id": "SK__Vpl",
+   "index": 55
+  },
+  {
+   "id": "SK__Vti",
+   "index": 56
+  },
+  {
+   "id": "SK__Vpl_hctz",
+   "index": 57
+  },
+  {
+   "id": "AD__Vpl",
+   "index": 58
+  },
+  {
+   "id": "AD__Vti",
+   "index": 59
+  },
+  {
+   "id": "AD__Vpl_hctz",
+   "index": 60
+  },
+  {
+   "id": "BO__Vpl",
+   "index": 61
+  },
+  {
+   "id": "BO__Vti",
+   "index": 62
+  },
+  {
+   "id": "BO__Vpl_hctz",
+   "index": 63
+  },
+  {
+   "id": "GO__Vpl",
+   "index": 64
+  },
+  {
+   "id": "GO__Vti",
+   "index": 65
+  },
+  {
+   "id": "GO__Vpl_hctz",
+   "index": 66
+  },
+  {
+   "id": "FLUID__ECF",
+   "index": 67
+  },
+  {
+   "id": "FLUID__Vloop",
+   "index": 68
+  },
+  {
+   "id": "FLUID__Vurine",
+   "index": 69
+  },
+  {
+   "id": "FLUID__Vki",
+   "index": 70
+  },
+  {
+   "id": "Car_hctz",
+   "index": 71
+  },
+  {
+   "id": "Cve_hctz",
+   "index": 72
+  },
+  {
+   "id": "Cpo_hctz",
+   "index": 73
+  },
+  {
+   "id": "Aurine_hctz",
+   "index": 74
+  },
+  {
+   "id": "Afeces_hctz",
+   "index": 75
+  },
+  {
+   "id": "Cbile_hctz",
+   "index": 76
+  },
+  {
+   "id": "LU__Cpl_hctz",
+   "index": 77
+  },
+  {
+   "id": "LU__Cti_hctz",
+   "index": 78
+  },
+  {
+   "id": "HE__Cpl_hctz",
+   "index": 79
+  },
+  {
+   "id": "HE__Cti_hctz",
+   "index": 80
+  },
+  {
+   "id": "BR__Cpl_hctz",
+   "index": 81
+  },
+  {
+   "id": "BR__Cti_hctz",
+   "index": 82
+  },
+  {
+   "id": "LI__Cpl_hctz",
+   "index": 83
+  },
+  {
+   "id": "LI__Cti_hctz",
+   "index": 84
+  },
+  {
+   "id": "KI__Cpl_hctz",
+   "index": 85
+  },
+  {
+   "id": "KI__Cis_hctz",
+   "index": 86
+  },
+  {
+   "id": "KI__Cic_hctz",
+   "index": 87
+  },
+  {
+   "id": "ST__Cpl_hctz",
+   "index": 88
+  },
+  {
+   "id": "ST__Cti_hctz",
+   "index": 89
+  },
+  {
+   "id": "GU__Cpl_hctz",
+   "index": 90
+  },
+  {
+   "id": "GU__Cti_hctz",
+   "index": 91
+  },
+  {
+   "id": "GU__Clumen_st_hctz",
+   "index": 92
+  },
+  {
+   "id": "GU__Clumen_du_hctz",
+   "index": 93
+  },
+  {
+   "id": "GU__Clumen_jej1_hctz",
+   "index": 94
+  },
+  {
+   "id": "GU__Clumen_jej2_hctz",
+   "index": 95
+  },
+  {
+   "id": "GU__Clumen_ile1_hctz",
+   "index": 96
+  },
+  {
+   "id": "GU__Clumen_ile2_hctz",
+   "index": 97
+  },
+  {
+   "id": "GU__Clumen_cae_hctz",
+   "index": 98
+  },
+  {
+   "id": "GU__Clumen_asc_hctz",
+   "index": 99
+  },
+  {
+   "id": "GU__Clumen_tra_hctz",
+   "index": 100
+  },
+  {
+   "id": "GU__Clumen_des_hctz",
+   "index": 101
+  },
+  {
+   "id": "GU__Clumen_sig_hctz",
+   "index": 102
+  },
+  {
+   "id": "GU__Clumen_rec_hctz",
+   "index": 103
+  },
+  {
+   "id": "GU__Asolid_du_hctz",
+   "index": 104
+  },
+  {
+   "id": "GU__Asolid_jej1_hctz",
+   "index": 105
+  },
+  {
+   "id": "GU__Asolid_jej2_hctz",
+   "index": 106
+  },
+  {
+   "id": "GU__Asolid_ile1_hctz",
+   "index": 107
+  },
+  {
+   "id": "GU__Asolid_ile2_hctz",
+   "index": 108
+  },
+  {
+   "id": "GU__Asolid_cae_hctz",
+   "index": 109
+  },
+  {
+   "id": "GU__Asolid_asc_hctz",
+   "index": 110
+  },
+  {
+   "id": "GU__Asolid_tra_hctz",
+   "index": 111
+  },
+  {
+   "id": "GU__Asolid_des_hctz",
+   "index": 112
+  },
+  {
+   "id": "GU__Asolid_sig_hctz",
+   "index": 113
+  },
+  {
+   "id": "GU__Asolid_rec_hctz",
+   "index": 114
+  },
+  {
+   "id": "SP__Cpl_hctz",
+   "index": 115
+  },
+  {
+   "id": "SP__Cti_hctz",
+   "index": 116
+  },
+  {
+   "id": "PA__Cpl_hctz",
+   "index": 117
+  },
+  {
+   "id": "PA__Cti_hctz",
+   "index": 118
+  },
+  {
+   "id": "MU__Cpl_hctz",
+   "index": 119
+  },
+  {
+   "id": "MU__Cti_hctz",
+   "index": 120
+  },
+  {
+   "id": "SK__Cpl_hctz",
+   "index": 121
+  },
+  {
+   "id": "SK__Cti_hctz",
+   "index": 122
+  },
+  {
+   "id": "AD__Cpl_hctz",
+   "index": 123
+  },
+  {
+   "id": "AD__Cti_hctz",
+   "index": 124
+  },
+  {
+   "id": "BO__Cpl_hctz",
+   "index": 125
+  },
+  {
+   "id": "BO__Cti_hctz",
+   "index": 126
+  },
+  {
+   "id": "GO__Cpl_hctz",
+   "index": 127
+  },
+  {
+   "id": "GO__Cti_hctz",
+   "index": 128
+  },
+  {
+   "id": "FLUID__na",
+   "index": 129
+  },
+  {
+   "id": "FLUID__na_loop",
+   "index": 130
+  },
+  {
+   "id": "FLUID__na_urine",
+   "index": 131
+  },
+  {
+   "id": "FLUID__cl",
+   "index": 132
+  },
+  {
+   "id": "FLUID__cl_loop",
+   "index": 133
+  },
+  {
+   "id": "FLUID__cl_urine",
+   "index": 134
+  },
+  {
+   "id": "[Car_hctz]",
+   "index": 135
+  },
+  {
+   "id": "[Cve_hctz]",
+   "index": 136
+  },
+  {
+   "id": "[Cpo_hctz]",
+   "index": 137
+  },
+  {
+   "id": "[Aurine_hctz]",
+   "index": 138
+  },
+  {
+   "id": "[Afeces_hctz]",
+   "index": 139
+  },
+  {
+   "id": "[Cbile_hctz]",
+   "index": 140
+  },
+  {
+   "id": "[LU__Cpl_hctz]",
+   "index": 141
+  },
+  {
+   "id": "[LU__Cti_hctz]",
+   "index": 142
+  },
+  {
+   "id": "[HE__Cpl_hctz]",
+   "index": 143
+  },
+  {
+   "id": "[HE__Cti_hctz]",
+   "index": 144
+  },
+  {
+   "id": "[BR__Cpl_hctz]",
+   "index": 145
+  },
+  {
+   "id": "[BR__Cti_hctz]",
+   "index": 146
+  },
+  {
+   "id": "[LI__Cpl_hctz]",
+   "index": 147
+  },
+  {
+   "id": "[LI__Cti_hctz]",
+   "index": 148
+  },
+  {
+   "id": "[KI__Cpl_hctz]",
+   "index": 149
+  },
+  {
+   "id": "[KI__Cis_hctz]",
+   "index": 150
+  },
+  {
+   "id": "[KI__Cic_hctz]",
+   "index": 151
+  },
+  {
+   "id": "[ST__Cpl_hctz]",
+   "index": 152
+  },
+  {
+   "id": "[ST__Cti_hctz]",
+   "index": 153
+  },
+  {
+   "id": "[GU__Cpl_hctz]",
+   "index": 154
+  },
+  {
+   "id": "[GU__Cti_hctz]",
+   "index": 155
+  },
+  {
+   "id": "[GU__Clumen_st_hctz]",
+   "index": 156
+  },
+  {
+   "id": "[GU__Clumen_du_hctz]",
+   "index": 157
+  },
+  {
+   "id": "[GU__Clumen_jej1_hctz]",
+   "index": 158
+  },
+  {
+   "id": "[GU__Clumen_jej2_hctz]",
+   "index": 159
+  },
+  {
+   "id": "[GU__Clumen_ile1_hctz]",
+   "index": 160
+  },
+  {
+   "id": "[GU__Clumen_ile2_hctz]",
+   "index": 161
+  },
+  {
+   "id": "[GU__Clumen_cae_hctz]",
+   "index": 162
+  },
+  {
+   "id": "[GU__Clumen_asc_hctz]",
+   "index": 163
+  },
+  {
+   "id": "[GU__Clumen_tra_hctz]",
+   "index": 164
+  },
+  {
+   "id": "[GU__Clumen_des_hctz]",
+   "index": 165
+  },
+  {
+   "id": "[GU__Clumen_sig_hctz]",
+   "index": 166
+  },
+  {
+   "id": "[GU__Clumen_rec_hctz]",
+   "index": 167
+  },
+  {
+   "id": "[GU__Asolid_du_hctz]",
+   "index": 168
+  },
+  {
+   "id": "[GU__Asolid_jej1_hctz]",
+   "index": 169
+  },
+  {
+   "id": "[GU__Asolid_jej2_hctz]",
+   "index": 170
+  },
+  {
+   "id": "[GU__Asolid_ile1_hctz]",
+   "index": 171
+  },
+  {
+   "id": "[GU__Asolid_ile2_hctz]",
+   "index": 172
+  },
+  {
+   "id": "[GU__Asolid_cae_hctz]",
+   "index": 173
+  },
+  {
+   "id": "[GU__Asolid_asc_hctz]",
+   "index": 174
+  },
+  {
+   "id": "[GU__Asolid_tra_hctz]",
+   "index": 175
+  },
+  {
+   "id": "[GU__Asolid_des_hctz]",
+   "index": 176
+  },
+  {
+   "id": "[GU__Asolid_sig_hctz]",
+   "index": 177
+  },
+  {
+   "id": "[GU__Asolid_rec_hctz]",
+   "index": 178
+  },
+  {
+   "id": "[SP__Cpl_hctz]",
+   "index": 179
+  },
+  {
+   "id": "[SP__Cti_hctz]",
+   "index": 180
+  },
+  {
+   "id": "[PA__Cpl_hctz]",
+   "index": 181
+  },
+  {
+   "id": "[PA__Cti_hctz]",
+   "index": 182
+  },
+  {
+   "id": "[MU__Cpl_hctz]",
+   "index": 183
+  },
+  {
+   "id": "[MU__Cti_hctz]",
+   "index": 184
+  },
+  {
+   "id": "[SK__Cpl_hctz]",
+   "index": 185
+  },
+  {
+   "id": "[SK__Cti_hctz]",
+   "index": 186
+  },
+  {
+   "id": "[AD__Cpl_hctz]",
+   "index": 187
+  },
+  {
+   "id": "[AD__Cti_hctz]",
+   "index": 188
+  },
+  {
+   "id": "[BO__Cpl_hctz]",
+   "index": 189
+  },
+  {
+   "id": "[BO__Cti_hctz]",
+   "index": 190
+  },
+  {
+   "id": "[GO__Cpl_hctz]",
+   "index": 191
+  },
+  {
+   "id": "[GO__Cti_hctz]",
+   "index": 192
+  },
+  {
+   "id": "[FLUID__na]",
+   "index": 193
+  },
+  {
+   "id": "[FLUID__na_loop]",
+   "index": 194
+  },
+  {
+   "id": "[FLUID__na_urine]",
+   "index": 195
+  },
+  {
+   "id": "[FLUID__cl]",
+   "index": 196
+  },
+  {
+   "id": "[FLUID__cl_loop]",
+   "index": 197
+  },
+  {
+   "id": "[FLUID__cl_urine]",
+   "index": 198
+  },
+  {
+   "id": "BW",
+   "index": 199
+  },
+  {
+   "id": "HEIGHT",
+   "index": 200
+  },
+  {
+   "id": "f_renal_function",
+   "index": 201
+  },
+  {
+   "id": "f_cardiac_function",
+   "index": 202
+  },
+  {
+   "id": "f_shunt",
+   "index": 203
+  },
+  {
+   "id": "f_functional",
+   "index": 204
+  },
+  {
+   "id": "BW_ref",
+   "index": 205
+  },
+  {
+   "id": "HEIGHT_ref",
+   "index": 206
+  },
+  {
+   "id": "BSA_ref",
+   "index": 207
+  },
+  {
+   "id": "fage_FFM",
+   "index": 208
+  },
+  {
+   "id": "FFM_ref",
+   "index": 209
+  },
+  {
+   "id": "CO_ref",
+   "index": 210
+  },
+  {
+   "id": "GFR_ref",
+   "index": 211
+  },
+  {
+   "id": "Vblood_ref",
+   "index": 212
+  },
+  {
+   "id": "fage_HCT",
+   "index": 213
+  },
+  {
+   "id": "HCT_ref",
+   "index": 214
+  },
+  {
+   "id": "HCT",
+   "index": 215
+  },
+  {
+   "id": "Mlu_ref",
+   "index": 216
+  },
+  {
+   "id": "Mhe_ref",
+   "index": 217
+  },
+  {
+   "id": "Mbr_ref",
+   "index": 218
+  },
+  {
+   "id": "Mli_ref",
+   "index": 219
+  },
+  {
+   "id": "Mki_ref",
+   "index": 220
+  },
+  {
+   "id": "Mst_ref",
+   "index": 221
+  },
+  {
+   "id": "Msi_ref",
+   "index": 222
+  },
+  {
+   "id": "Mla_ref",
+   "index": 223
+  },
+  {
+   "id": "Msp_ref",
+   "index": 224
+  },
+  {
+   "id": "Mpa_ref",
+   "index": 225
+  },
+  {
+   "id": "Mmu_ref",
+   "index": 226
+  },
+  {
+   "id": "Msk_ref",
+   "index": 227
+  },
+  {
+   "id": "Mbo_ref",
+   "index": 228
+  },
+  {
+   "id": "Mgo_ref",
+   "index": 229
+  },
+  {
+   "id": "fage_Qbr",
+   "index": 230
+  },
+  {
+   "id": "fage_Qli",
+   "index": 231
+  },
+  {
+   "id": "fage_Qki",
+   "index": 232
+  },
+  {
+   "id": "fage_Qrest",
+   "index": 233
+  },
+  {
+   "id": "fage_Qother",
+   "index": 234
+  },
+  {
+   "id": "fQhe",
+   "index": 235
+  },
+  {
+   "id": "fQbr",
+   "index": 236
+  },
+  {
+   "id": "fQli",
+   "index": 237
+  },
+  {
+   "id": "fQki",
+   "index": 238
+  },
+  {
+   "id": "fQst",
+   "index": 239
+  },
+  {
+   "id": "fQsi",
+   "index": 240
+  },
+  {
+   "id": "fQla",
+   "index": 241
+  },
+  {
+   "id": "fQsp",
+   "index": 242
+  },
+  {
+   "id": "fQpa",
+   "index": 243
+  },
+  {
+   "id": "fQmu",
+   "index": 244
+  },
+  {
+   "id": "fQsk",
+   "index": 245
+  },
+  {
+   "id": "fQad",
+   "index": 246
+  },
+  {
+   "id": "fQbo",
+   "index": 247
+  },
+  {
+   "id": "fQgo",
+   "index": 248
+  },
+  {
+   "id": "fVar",
+   "index": 249
+  },
+  {
+   "id": "fVve",
+   "index": 250
+  },
+  {
+   "id": "fVpo",
+   "index": 251
+  },
+  {
+   "id": "BMI",
+   "index": 252
+  },
+  {
+   "id": "BSA",
+   "index": 253
+  },
+  {
+   "id": "FFM",
+   "index": 254
+  },
+  {
+   "id": "SV_tis",
+   "index": 255
+  },
+  {
+   "id": "Vblood",
+   "index": 256
+  },
+  {
+   "id": "Mlu",
+   "index": 257
+  },
+  {
+   "id": "Mhe",
+   "index": 258
+  },
+  {
+   "id": "Mbr",
+   "index": 259
+  },
+  {
+   "id": "Mli",
+   "index": 260
+  },
+  {
+   "id": "Mki",
+   "index": 261
+  },
+  {
+   "id": "Mst",
+   "index": 262
+  },
+  {
+   "id": "Msi",
+   "index": 263
+  },
+  {
+   "id": "Mla",
+   "index": 264
+  },
+  {
+   "id": "Msp",
+   "index": 265
+  },
+  {
+   "id": "Mpa",
+   "index": 266
+  },
+  {
+   "id": "Mmu",
+   "index": 267
+  },
+  {
+   "id": "Msk",
+   "index": 268
+  },
+  {
+   "id": "Mbo",
+   "index": 269
+  },
+  {
+   "id": "Mgo",
+   "index": 270
+  },
+  {
+   "id": "Mlean",
+   "index": 271
+  },
+  {
+   "id": "Mad",
+   "index": 272
+  },
+  {
+   "id": "Vlu",
+   "index": 273
+  },
+  {
+   "id": "Vhe",
+   "index": 274
+  },
+  {
+   "id": "Vbr",
+   "index": 275
+  },
+  {
+   "id": "Vli",
+   "index": 276
+  },
+  {
+   "id": "Vki",
+   "index": 277
+  },
+  {
+   "id": "Vst",
+   "index": 278
+  },
+  {
+   "id": "Vsi",
+   "index": 279
+  },
+  {
+   "id": "Vla",
+   "index": 280
+  },
+  {
+   "id": "Vsp",
+   "index": 281
+  },
+  {
+   "id": "Vpa",
+   "index": 282
+  },
+  {
+   "id": "Vmu",
+   "index": 283
+  },
+  {
+   "id": "Vsk",
+   "index": 284
+  },
+  {
+   "id": "Vad",
+   "index": 285
+  },
+  {
+   "id": "Vbo",
+   "index": 286
+  },
+  {
+   "id": "Vgo",
+   "index": 287
+  },
+  {
+   "id": "Var",
+   "index": 288
+  },
+  {
+   "id": "Vve",
+   "index": 289
+  },
+  {
+   "id": "Vpo",
+   "index": 290
+  },
+  {
+   "id": "f_vas_lu",
+   "index": 291
+  },
+  {
+   "id": "f_int_lu",
+   "index": 292
+  },
+  {
+   "id": "f_vas_he",
+   "index": 293
+  },
+  {
+   "id": "f_int_he",
+   "index": 294
+  },
+  {
+   "id": "f_vas_br",
+   "index": 295
+  },
+  {
+   "id": "f_int_br",
+   "index": 296
+  },
+  {
+   "id": "f_vas_li",
+   "index": 297
+  },
+  {
+   "id": "f_int_li",
+   "index": 298
+  },
+  {
+   "id": "f_vas_ki",
+   "index": 299
+  },
+  {
+   "id": "f_int_ki",
+   "index": 300
+  },
+  {
+   "id": "f_vas_st",
+   "index": 301
+  },
+  {
+   "id": "f_int_st",
+   "index": 302
+  },
+  {
+   "id": "f_vas_si",
+   "index": 303
+  },
+  {
+   "id": "f_int_si",
+   "index": 304
+  },
+  {
+   "id": "f_vas_la",
+   "index": 305
+  },
+  {
+   "id": "f_int_la",
+   "index": 306
+  },
+  {
+   "id": "f_vas_sp",
+   "index": 307
+  },
+  {
+   "id": "f_int_sp",
+   "index": 308
+  },
+  {
+   "id": "f_vas_pa",
+   "index": 309
+  },
+  {
+   "id": "f_int_pa",
+   "index": 310
+  },
+  {
+   "id": "f_vas_mu",
+   "index": 311
+  },
+  {
+   "id": "f_int_mu",
+   "index": 312
+  },
+  {
+   "id": "f_vas_sk",
+   "index": 313
+  },
+  {
+   "id": "f_int_sk",
+   "index": 314
+  },
+  {
+   "id": "f_vas_ad",
+   "index": 315
+  },
+  {
+   "id": "f_int_ad",
+   "index": 316
+  },
+  {
+   "id": "f_vas_bo",
+   "index": 317
+  },
+  {
+   "id": "f_int_bo",
+   "index": 318
+  },
+  {
+   "id": "f_vas_go",
+   "index": 319
+  },
+  {
+   "id": "f_int_go",
+   "index": 320
+  },
+  {
+   "id": "CO_base",
+   "index": 321
+  },
+  {
+   "id": "CO",
+   "index": 322
+  },
+  {
+   "id": "Qlu",
+   "index": 323
+  },
+  {
+   "id": "Qhe",
+   "index": 324
+  },
+  {
+   "id": "Qbr",
+   "index": 325
+  },
+  {
+   "id": "Qli",
+   "index": 326
+  },
+  {
+   "id": "Qki",
+   "index": 327
+  },
+  {
+   "id": "Qst",
+   "index": 328
+  },
+  {
+   "id": "Qsi",
+   "index": 329
+  },
+  {
+   "id": "Qla",
+   "index": 330
+  },
+  {
+   "id": "Qsp",
+   "index": 331
+  },
+  {
+   "id": "Qpa",
+   "index": 332
+  },
+  {
+   "id": "Qmu",
+   "index": 333
+  },
+  {
+   "id": "Qsk",
+   "index": 334
+  },
+  {
+   "id": "Qad",
+   "index": 335
+  },
+  {
+   "id": "Qbo",
+   "index": 336
+  },
+  {
+   "id": "Qgo",
+   "index": 337
+  },
+  {
+   "id": "Qha",
+   "index": 338
+  },
+  {
+   "id": "Qpo",
+   "index": 339
+  },
+  {
+   "id": "Qh",
+   "index": 340
+  },
+  {
+   "id": "fage_GFR",
+   "index": 341
+  },
+  {
+   "id": "GFR_base",
+   "index": 342
+  },
+  {
+   "id": "GFR",
+   "index": 343
+  },
+  {
+   "id": "CP_severity",
+   "index": 344
+  },
+  {
+   "id": "HF_severity",
+   "index": 345
+  },
+  {
+   "id": "CKD_hepatic",
+   "index": 346
+  },
+  {
+   "id": "fcp_functional_liver",
+   "index": 347
+  },
+  {
+   "id": "fcp_hepatic_artery_flow",
+   "index": 348
+  },
+  {
+   "id": "fcp_kidney_flow",
+   "index": 349
+  },
+  {
+   "id": "fcp_cardiac_index",
+   "index": 350
+  },
+  {
+   "id": "fcp_gfr",
+   "index": 351
+  },
+  {
+   "id": "fcp_albumin",
+   "index": 352
+  },
+  {
+   "id": "fcp_agp",
+   "index": 353
+  },
+  {
+   "id": "fcp_hematocrit",
+   "index": 354
+  },
+  {
+   "id": "fcp_shunt",
+   "index": 355
+  },
+  {
+   "id": "fcp_rest_flow",
+   "index": 356
+  },
+  {
+   "id": "eGFR",
+   "index": 357
+  },
+  {
+   "id": "fckd_plasma_protein",
+   "index": 358
+  },
+  {
+   "id": "fckd_hematocrit",
+   "index": 359
+  },
+  {
+   "id": "fckd_kidney_volume",
+   "index": 360
+  },
+  {
+   "id": "fckd_kidney_flow",
+   "index": 361
+  },
+  {
+   "id": "fckd_gastric_emptying_time",
+   "index": 362
+  },
+  {
+   "id": "fckd_si_transit_time",
+   "index": 363
+  },
+  {
+   "id": "fhf_liver_flow",
+   "index": 364
+  },
+  {
+   "id": "fhf_kidney_flow",
+   "index": 365
+  },
+  {
+   "id": "fhf_peripheral_flow",
+   "index": 366
+  },
+  {
+   "id": "fimp_Qhe",
+   "index": 367
+  },
+  {
+   "id": "fimp_Qbr",
+   "index": 368
+  },
+  {
+   "id": "fimp_Qli",
+   "index": 369
+  },
+  {
+   "id": "fimp_Qki",
+   "index": 370
+  },
+  {
+   "id": "fimp_Qst",
+   "index": 371
+  },
+  {
+   "id": "fimp_Qsi",
+   "index": 372
+  },
+  {
+   "id": "fimp_Qla",
+   "index": 373
+  },
+  {
+   "id": "fimp_Qsp",
+   "index": 374
+  },
+  {
+   "id": "fimp_Qpa",
+   "index": 375
+  },
+  {
+   "id": "fimp_Qmu",
+   "index": 376
+  },
+  {
+   "id": "fimp_Qsk",
+   "index": 377
+  },
+  {
+   "id": "fimp_Qad",
+   "index": 378
+  },
+  {
+   "id": "fimp_Qbo",
+   "index": 379
+  },
+  {
+   "id": "fimp_Qgo",
+   "index": 380
+  },
+  {
+   "id": "fimp_CO",
+   "index": 381
+  },
+  {
+   "id": "fimp_GFR",
+   "index": 382
+  },
+  {
+   "id": "fimp_HCT",
+   "index": 383
+  },
+  {
+   "id": "fimp_Mki",
+   "index": 384
+  },
+  {
+   "id": "fimp_albumin",
+   "index": 385
+  },
+  {
+   "id": "fimp_agp",
+   "index": 386
+  },
+  {
+   "id": "fimp_plasma_protein",
+   "index": 387
+  },
+  {
+   "id": "fimp_t_stomach",
+   "index": 388
+  },
+  {
+   "id": "fimp_t_si",
+   "index": 389
+  },
+  {
+   "id": "fimp_ki_slc22a6",
+   "index": 390
+  },
+  {
+   "id": "Mr_ren",
+   "index": 391
+  },
+  {
+   "id": "Mr_hctz",
+   "index": 392
+  },
+  {
+   "id": "fu_ref_hctz",
+   "index": 393
+  },
+  {
+   "id": "fu_hctz",
+   "index": 394
+  },
+  {
+   "id": "f_reabsorbed_hctz",
+   "index": 395
+  },
+  {
+   "id": "Kp_hctz",
+   "index": 396
+  },
+  {
+   "id": "ftissue_hctz",
+   "index": 397
+  },
+  {
+   "id": "Vti_total_ref_hctz",
+   "index": 398
+  },
+  {
+   "id": "BP_hctz",
+   "index": 399
+  },
+  {
+   "id": "k_bile",
+   "index": 400
+  },
+  {
+   "id": "ka_hctz",
+   "index": 401
+  },
+  {
+   "id": "FED",
+   "index": 402
+  },
+  {
+   "id": "IVDOSE_hctz",
+   "index": 403
+  },
+  {
+   "id": "ti_hctz",
+   "index": 404
+  },
+  {
+   "id": "Kiv_hctz",
+   "index": 405
+  },
+  {
+   "id": "Ri_hctz",
+   "index": 406
+  },
+  {
+   "id": "PODOSE_hctz",
+   "index": 407
+  },
+  {
+   "id": "Ka_dis_hctz",
+   "index": 408
+  },
+  {
+   "id": "SOLDOSE_hctz",
+   "index": 409
+  },
+  {
+   "id": "Ka_sol_hctz",
+   "index": 410
+  },
+  {
+   "id": "w_arm_sk",
+   "index": 411
+  },
+  {
+   "id": "w_arm_mu",
+   "index": 412
+  },
+  {
+   "id": "Car_free_hctz",
+   "index": 413
+  },
+  {
+   "id": "Car_blood_hctz",
+   "index": 414
+  },
+  {
+   "id": "Cve_free_hctz",
+   "index": 415
+  },
+  {
+   "id": "Cve_blood_hctz",
+   "index": 416
+  },
+  {
+   "id": "Cpo_free_hctz",
+   "index": 417
+  },
+  {
+   "id": "Cpo_blood_hctz",
+   "index": 418
+  },
+  {
+   "id": "Chv_hctz",
+   "index": 419
+  },
+  {
+   "id": "Chv_free_hctz",
+   "index": 420
+  },
+  {
+   "id": "Chv_blood_hctz",
+   "index": 421
+  },
+  {
+   "id": "Carm_hctz",
+   "index": 422
+  },
+  {
+   "id": "Carm_free_hctz",
+   "index": 423
+  },
+  {
+   "id": "Carm_blood_hctz",
+   "index": 424
+  },
+  {
+   "id": "Cout_lu_hctz",
+   "index": 425
+  },
+  {
+   "id": "LU__PS_hctz",
+   "index": 426
+  },
+  {
+   "id": "LU__Cu_ti_hctz",
+   "index": 427
+  },
+  {
+   "id": "Cout_he_hctz",
+   "index": 428
+  },
+  {
+   "id": "HE__PS_hctz",
+   "index": 429
+  },
+  {
+   "id": "HE__Cu_ti_hctz",
+   "index": 430
+  },
+  {
+   "id": "Cout_br_hctz",
+   "index": 431
+  },
+  {
+   "id": "BR__PS_hctz",
+   "index": 432
+  },
+  {
+   "id": "BR__Cu_ti_hctz",
+   "index": 433
+  },
+  {
+   "id": "Cout_li_hctz",
+   "index": 434
+  },
+  {
+   "id": "LI__PS_hctz",
+   "index": 435
+  },
+  {
+   "id": "LI__Cu_ti_hctz",
+   "index": 436
+  },
+  {
+   "id": "Cout_ki_hctz",
+   "index": 437
+  },
+  {
+   "id": "KI__f_water_int",
+   "index": 438
+  },
+  {
+   "id": "KI__f_water_pls",
+   "index": 439
+  },
+  {
+   "id": "KI__r_protein_int_pls",
+   "index": 440
+  },
+  {
+   "id": "KI__K_int_pls_hctz",
+   "index": 441
+  },
+  {
+   "id": "KI__K_cell_pls_hctz",
+   "index": 442
+  },
+  {
+   "id": "KI__k_vas",
+   "index": 443
+  },
+  {
+   "id": "KI__PS_vas",
+   "index": 444
+  },
+  {
+   "id": "KI__PS_hctz",
+   "index": 445
+  },
+  {
+   "id": "KI__Cu_is_hctz",
+   "index": 446
+  },
+  {
+   "id": "KI__Cu_ic_hctz",
+   "index": 447
+  },
+  {
+   "id": "KI__f_slc22a6",
+   "index": 448
+  },
+  {
+   "id": "KI__f_abcc4",
+   "index": 449
+  },
+  {
+   "id": "KI__f_tubular",
+   "index": 450
+  },
+  {
+   "id": "Rurine_hctz",
+   "index": 451
+  },
+  {
+   "id": "KI__HCTZUP_k",
+   "index": 452
+  },
+  {
+   "id": "KI__HCTZSEC_k",
+   "index": 453
+  },
+  {
+   "id": "Cout_st_hctz",
+   "index": 454
+  },
+  {
+   "id": "ST__PS_hctz",
+   "index": 455
+  },
+  {
+   "id": "ST__Cu_ti_hctz",
+   "index": 456
+  },
+  {
+   "id": "GU__Vgu",
+   "index": 457
+  },
+  {
+   "id": "GU__f_vas_gu",
+   "index": 458
+  },
+  {
+   "id": "GU__T_st",
+   "index": 459
+  },
+  {
+   "id": "GU__T_du",
+   "index": 460
+  },
+  {
+   "id": "GU__f_area_du",
+   "index": 461
+  },
+  {
+   "id": "GU__T_jej1",
+   "index": 462
+  },
+  {
+   "id": "GU__f_area_jej1",
+   "index": 463
+  },
+  {
+   "id": "GU__T_jej2",
+   "index": 464
+  },
+  {
+   "id": "GU__f_area_jej2",
+   "index": 465
+  },
+  {
+   "id": "GU__T_ile1",
+   "index": 466
+  },
+  {
+   "id": "GU__f_area_ile1",
+   "index": 467
+  },
+  {
+   "id": "GU__T_ile2",
+   "index": 468
+  },
+  {
+   "id": "GU__f_area_ile2",
+   "index": 469
+  },
+  {
+   "id": "GU__T_cae",
+   "index": 470
+  },
+  {
+   "id": "GU__f_area_cae",
+   "index": 471
+  },
+  {
+   "id": "GU__T_asc",
+   "index": 472
+  },
+  {
+   "id": "GU__f_area_asc",
+   "index": 473
+  },
+  {
+   "id": "GU__T_tra",
+   "index": 474
+  },
+  {
+   "id": "GU__f_area_tra",
+   "index": 475
+  },
+  {
+   "id": "GU__T_des",
+   "index": 476
+  },
+  {
+   "id": "GU__f_area_des",
+   "index": 477
+  },
+  {
+   "id": "GU__T_sig",
+   "index": 478
+  },
+  {
+   "id": "GU__f_area_sig",
+   "index": 479
+  },
+  {
+   "id": "GU__T_rec",
+   "index": 480
+  },
+  {
+   "id": "GU__f_area_rec",
+   "index": 481
+  },
+  {
+   "id": "GU__T_st_fed",
+   "index": 482
+  },
+  {
+   "id": "Cout_si_hctz",
+   "index": 483
+  },
+  {
+   "id": "GU__Qgu",
+   "index": 484
+  },
+  {
+   "id": "GU__PS_hctz",
+   "index": 485
+  },
+  {
+   "id": "GU__Cu_ti_hctz",
+   "index": 486
+  },
+  {
+   "id": "T_st_eff",
+   "index": 487
+  },
+  {
+   "id": "Cout_sp_hctz",
+   "index": 488
+  },
+  {
+   "id": "SP__PS_hctz",
+   "index": 489
+  },
+  {
+   "id": "SP__Cu_ti_hctz",
+   "index": 490
+  },
+  {
+   "id": "Cout_pa_hctz",
+   "index": 491
+  },
+  {
+   "id": "PA__PS_hctz",
+   "index": 492
+  },
+  {
+   "id": "PA__Cu_ti_hctz",
+   "index": 493
+  },
+  {
+   "id": "Cout_mu_hctz",
+   "index": 494
+  },
+  {
+   "id": "MU__kps_hctz",
+   "index": 495
+  },
+  {
+   "id": "MU__PS_hctz",
+   "index": 496
+  },
+  {
+   "id": "MU__Cu_ti_hctz",
+   "index": 497
+  },
+  {
+   "id": "Cout_sk_hctz",
+   "index": 498
+  },
+  {
+   "id": "SK__PS_hctz",
+   "index": 499
+  },
+  {
+   "id": "SK__Cu_ti_hctz",
+   "index": 500
+  },
+  {
+   "id": "Cout_ad_hctz",
+   "index": 501
+  },
+  {
+   "id": "AD__PS_hctz",
+   "index": 502
+  },
+  {
+   "id": "AD__Cu_ti_hctz",
+   "index": 503
+  },
+  {
+   "id": "Cout_bo_hctz",
+   "index": 504
+  },
+  {
+   "id": "BO__PS_hctz",
+   "index": 505
+  },
+  {
+   "id": "BO__Cu_ti_hctz",
+   "index": 506
+  },
+  {
+   "id": "Cout_go_hctz",
+   "index": 507
+  },
+  {
+   "id": "GO__PS_hctz",
+   "index": 508
+  },
+  {
+   "id": "GO__Cu_ti_hctz",
+   "index": 509
+  },
+  {
+   "id": "FLUID__GFR_base",
+   "index": 510
+  },
+  {
+   "id": "FLUID__f_TBW",
+   "index": 511
+  },
+  {
+   "id": "FLUID__f_ECF",
+   "index": 512
+  },
+  {
+   "id": "FLUID__ECF_ref",
+   "index": 513
+  },
+  {
+   "id": "FLUID__Psys_ref",
+   "index": 514
+  },
+  {
+   "id": "FLUID__Pdia_ref",
+   "index": 515
+  },
+  {
+   "id": "FLUID__bp_systolic",
+   "index": 516
+  },
+  {
+   "id": "FLUID__bp_diastolic",
+   "index": 517
+  },
+  {
+   "id": "FLUID__bp_mean",
+   "index": 518
+  },
+  {
+   "id": "FLUID__Mr_nacl",
+   "index": 519
+  },
+  {
+   "id": "FLUID__Mr_na",
+   "index": 520
+  },
+  {
+   "id": "FLUID__Mr_cl",
+   "index": 521
+  },
+  {
+   "id": "FLUID__vin_na",
+   "index": 522
+  },
+  {
+   "id": "FLUID__vin_cl",
+   "index": 523
+  },
+  {
+   "id": "FLUID__vin_h2o",
+   "index": 524
+  },
+  {
+   "id": "FLUID__vout_h2o",
+   "index": 525
+  },
+  {
+   "id": "FLUID__k_na",
+   "index": 526
+  },
+  {
+   "id": "FLUID__k_cl",
+   "index": 527
+  },
+  {
+   "id": "FLUID__k_h2o",
+   "index": 528
+  },
+  {
+   "id": "FLUID__h2o_reabsorption",
+   "index": 529
+  },
+  {
+   "id": "FLUID__diuresis",
+   "index": 530
+  },
+  {
+   "id": "FLUID__f_h2o_max",
+   "index": 531
+  },
+  {
+   "id": "FLUID__counter_gamma",
+   "index": 532
+  },
+  {
+   "id": "FLUID__E50_hctz_nacl",
+   "index": 533
+  },
+  {
+   "id": "FLUID__Emax_hctz_na",
+   "index": 534
+  },
+  {
+   "id": "FLUID__Emax_hctz_cl",
+   "index": 535
+  },
+  {
+   "id": "FLUID__f_ECF_start",
+   "index": 536
+  },
+  {
+   "id": "FLUID__na_ref",
+   "index": 537
+  },
+  {
+   "id": "FLUID__cl_ref",
+   "index": 538
+  },
+  {
+   "id": "FLUID__GFR",
+   "index": 539
+  },
+  {
+   "id": "FLUID__vout_na",
+   "index": 540
+  },
+  {
+   "id": "FLUID__vout_cl",
+   "index": 541
+  },
+  {
+   "id": "FLUID__H2O_UPTAKE",
+   "index": 542
+  },
+  {
+   "id": "FLUID__hctz_urine_excretion",
+   "index": 543
+  },
+  {
+   "id": "J_iv_hctz",
+   "index": 544
+  },
+  {
+   "id": "LU__J_in_ve_pl_hctz",
+   "index": 545
+  },
+  {
+   "id": "LU__J_out_pl_hctz",
+   "index": 546
+  },
+  {
+   "id": "LU__J_ti_hctz",
+   "index": 547
+  },
+  {
+   "id": "HE__J_in_ar_pl_hctz",
+   "index": 548
+  },
+  {
+   "id": "HE__J_out_pl_hctz",
+   "index": 549
+  },
+  {
+   "id": "HE__J_ti_hctz",
+   "index": 550
+  },
+  {
+   "id": "BR__J_in_ar_pl_hctz",
+   "index": 551
+  },
+  {
+   "id": "BR__J_out_pl_hctz",
+   "index": 552
+  },
+  {
+   "id": "BR__J_ti_hctz",
+   "index": 553
+  },
+  {
+   "id": "LI__J_in_ar_pl_hctz",
+   "index": 554
+  },
+  {
+   "id": "LI__J_shunt_ar_pl_hctz",
+   "index": 555
+  },
+  {
+   "id": "LI__J_in_po_pl_hctz",
+   "index": 556
+  },
+  {
+   "id": "LI__J_shunt_po_pl_hctz",
+   "index": 557
+  },
+  {
+   "id": "LI__J_out_pl_hctz",
+   "index": 558
+  },
+  {
+   "id": "LI__J_ti_hctz",
+   "index": 559
+  },
+  {
+   "id": "KI__J_in_ar_pl_hctz",
+   "index": 560
+  },
+  {
+   "id": "KI__J_out_pl_hctz",
+   "index": 561
+  },
+  {
+   "id": "KI__J_gfr_hctz",
+   "index": 562
+  },
+  {
+   "id": "KI__J_is_hctz",
+   "index": 563
+  },
+  {
+   "id": "KI__J_ic_hctz",
+   "index": 564
+  },
+  {
+   "id": "KI__HCTZUP",
+   "index": 565
+  },
+  {
+   "id": "KI__HCTZSEC",
+   "index": 566
+  },
+  {
+   "id": "ST__J_in_ar_pl_hctz",
+   "index": 567
+  },
+  {
+   "id": "ST__J_out_pl_hctz",
+   "index": 568
+  },
+  {
+   "id": "ST__J_ti_hctz",
+   "index": 569
+  },
+  {
+   "id": "GU__J_in_ar_pl_hctz",
+   "index": 570
+  },
+  {
+   "id": "GU__J_out_pl_hctz",
+   "index": 571
+  },
+  {
+   "id": "GU__J_ti_hctz",
+   "index": 572
+  },
+  {
+   "id": "GU__J_tr_st_hctz",
+   "index": 573
+  },
+  {
+   "id": "GU__J_tr_du_hctz",
+   "index": 574
+  },
+  {
+   "id": "GU__J_abs_du_hctz",
+   "index": 575
+  },
+  {
+   "id": "GU__J_tr_jej1_hctz",
+   "index": 576
+  },
+  {
+   "id": "GU__J_abs_jej1_hctz",
+   "index": 577
+  },
+  {
+   "id": "GU__J_tr_jej2_hctz",
+   "index": 578
+  },
+  {
+   "id": "GU__J_abs_jej2_hctz",
+   "index": 579
+  },
+  {
+   "id": "GU__J_tr_ile1_hctz",
+   "index": 580
+  },
+  {
+   "id": "GU__J_abs_ile1_hctz",
+   "index": 581
+  },
+  {
+   "id": "GU__J_tr_ile2_hctz",
+   "index": 582
+  },
+  {
+   "id": "GU__J_abs_ile2_hctz",
+   "index": 583
+  },
+  {
+   "id": "GU__J_tr_cae_hctz",
+   "index": 584
+  },
+  {
+   "id": "GU__J_abs_cae_hctz",
+   "index": 585
+  },
+  {
+   "id": "GU__J_tr_asc_hctz",
+   "index": 586
+  },
+  {
+   "id": "GU__J_abs_asc_hctz",
+   "index": 587
+  },
+  {
+   "id": "GU__J_tr_tra_hctz",
+   "index": 588
+  },
+  {
+   "id": "GU__J_abs_tra_hctz",
+   "index": 589
+  },
+  {
+   "id": "GU__J_tr_des_hctz",
+   "index": 590
+  },
+  {
+   "id": "GU__J_abs_des_hctz",
+   "index": 591
+  },
+  {
+   "id": "GU__J_tr_sig_hctz",
+   "index": 592
+  },
+  {
+   "id": "GU__J_abs_sig_hctz",
+   "index": 593
+  },
+  {
+   "id": "GU__J_tr_rec_hctz",
+   "index": 594
+  },
+  {
+   "id": "GU__J_abs_rec_hctz",
+   "index": 595
+  },
+  {
+   "id": "GU__J_bile_hctz",
+   "index": 596
+  },
+  {
+   "id": "GU__J_po_hctz",
+   "index": 597
+  },
+  {
+   "id": "GU__J_trs_st_hctz",
+   "index": 598
+  },
+  {
+   "id": "GU__J_dis_du_hctz",
+   "index": 599
+  },
+  {
+   "id": "GU__J_trs_du_hctz",
+   "index": 600
+  },
+  {
+   "id": "GU__J_dis_jej1_hctz",
+   "index": 601
+  },
+  {
+   "id": "GU__J_trs_jej1_hctz",
+   "index": 602
+  },
+  {
+   "id": "GU__J_dis_jej2_hctz",
+   "index": 603
+  },
+  {
+   "id": "GU__J_trs_jej2_hctz",
+   "index": 604
+  },
+  {
+   "id": "GU__J_dis_ile1_hctz",
+   "index": 605
+  },
+  {
+   "id": "GU__J_trs_ile1_hctz",
+   "index": 606
+  },
+  {
+   "id": "GU__J_dis_ile2_hctz",
+   "index": 607
+  },
+  {
+   "id": "GU__J_trs_ile2_hctz",
+   "index": 608
+  },
+  {
+   "id": "GU__J_dis_cae_hctz",
+   "index": 609
+  },
+  {
+   "id": "GU__J_trs_cae_hctz",
+   "index": 610
+  },
+  {
+   "id": "GU__J_dis_asc_hctz",
+   "index": 611
+  },
+  {
+   "id": "GU__J_trs_asc_hctz",
+   "index": 612
+  },
+  {
+   "id": "GU__J_dis_tra_hctz",
+   "index": 613
+  },
+  {
+   "id": "GU__J_trs_tra_hctz",
+   "index": 614
+  },
+  {
+   "id": "GU__J_dis_des_hctz",
+   "index": 615
+  },
+  {
+   "id": "GU__J_trs_des_hctz",
+   "index": 616
+  },
+  {
+   "id": "GU__J_dis_sig_hctz",
+   "index": 617
+  },
+  {
+   "id": "GU__J_trs_sig_hctz",
+   "index": 618
+  },
+  {
+   "id": "GU__J_dis_rec_hctz",
+   "index": 619
+  },
+  {
+   "id": "GU__J_trs_rec_hctz",
+   "index": 620
+  },
+  {
+   "id": "GU__J_sol_hctz",
+   "index": 621
+  },
+  {
+   "id": "SP__J_in_ar_pl_hctz",
+   "index": 622
+  },
+  {
+   "id": "SP__J_out_pl_hctz",
+   "index": 623
+  },
+  {
+   "id": "SP__J_ti_hctz",
+   "index": 624
+  },
+  {
+   "id": "PA__J_in_ar_pl_hctz",
+   "index": 625
+  },
+  {
+   "id": "PA__J_out_pl_hctz",
+   "index": 626
+  },
+  {
+   "id": "PA__J_ti_hctz",
+   "index": 627
+  },
+  {
+   "id": "MU__J_in_ar_pl_hctz",
+   "index": 628
+  },
+  {
+   "id": "MU__J_out_pl_hctz",
+   "index": 629
+  },
+  {
+   "id": "MU__J_ti_hctz",
+   "index": 630
+  },
+  {
+   "id": "SK__J_in_ar_pl_hctz",
+   "index": 631
+  },
+  {
+   "id": "SK__J_out_pl_hctz",
+   "index": 632
+  },
+  {
+   "id": "SK__J_ti_hctz",
+   "index": 633
+  },
+  {
+   "id": "AD__J_in_ar_pl_hctz",
+   "index": 634
+  },
+  {
+   "id": "AD__J_out_pl_hctz",
+   "index": 635
+  },
+  {
+   "id": "AD__J_ti_hctz",
+   "index": 636
+  },
+  {
+   "id": "BO__J_in_ar_pl_hctz",
+   "index": 637
+  },
+  {
+   "id": "BO__J_out_pl_hctz",
+   "index": 638
+  },
+  {
+   "id": "BO__J_ti_hctz",
+   "index": 639
+  },
+  {
+   "id": "GO__J_in_ar_pl_hctz",
+   "index": 640
+  },
+  {
+   "id": "GO__J_out_pl_hctz",
+   "index": 641
+  },
+  {
+   "id": "GO__J_ti_hctz",
+   "index": 642
+  },
+  {
+   "id": "FLUID__NA_UPTAKE",
+   "index": 643
+  },
+  {
+   "id": "FLUID__CL_UPTAKE",
+   "index": 644
+  },
+  {
+   "id": "FLUID__NA_FILTRATION",
+   "index": 645
+  },
+  {
+   "id": "FLUID__NA_EXCRETION",
+   "index": 646
+  },
+  {
+   "id": "FLUID__NA_REABSORPTION",
+   "index": 647
+  },
+  {
+   "id": "FLUID__CL_FILTRATION",
+   "index": 648
+  },
+  {
+   "id": "FLUID__CL_EXCRETION",
+   "index": 649
+  },
+  {
+   "id": "FLUID__CL_REABSORPTION",
+   "index": 650
+  }
+ ],
+ "jacobian": {
+  "analytic": {
+   "n": 70,
+   "col_ptr": [
+    0,
+    2,
+    5,
+    7,
+    14,
+    23,
+    23,
+    39,
+    41,
+    44,
+    44,
+    44,
+    46,
+    49,
+    51,
+    54,
+    56,
+    59,
+    61,
+    64,
+    66,
+    78,
+    81,
+    84,
+    87,
+    89,
+    92,
+    94,
+    96,
+    99,
+    102,
+    105,
+    108,
+    111,
+    114,
+    117,
+    120,
+    123,
+    126,
+    129,
+    132,
+    135,
+    138,
+    141,
+    144,
+    147,
+    150,
+    153,
+    156,
+    159,
+    162,
+    165,
+    167,
+    170,
+    172,
+    175,
+    177,
+    180,
+    182,
+    185,
+    187,
+    190,
+    192,
+    195,
+    197,
+    199,
+    207,
+    207,
+    209,
+    212,
+    212
+   ],
+   "row_idx": [
+    0,
+    7,
+    1,
+    27,
+    39,
+    2,
+    27,
+    3,
+    4,
+    5,
+    64,
+    65,
+    67,
+    68,
+    3,
+    4,
+    5,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    6,
+    7,
+    9,
+    14,
+    16,
+    18,
+    20,
+    23,
+    25,
+    50,
+    52,
+    54,
+    56,
+    58,
+    60,
+    62,
+    7,
+    12,
+    7,
+    8,
+    18,
+    11,
+    28,
+    6,
+    12,
+    13,
+    12,
+    13,
+    7,
+    14,
+    15,
+    14,
+    15,
+    7,
+    16,
+    17,
+    16,
+    17,
+    7,
+    18,
+    19,
+    18,
+    19,
+    3,
+    4,
+    5,
+    7,
+    20,
+    21,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    20,
+    21,
+    22,
+    9,
+    21,
+    22,
+    8,
+    23,
+    24,
+    23,
+    24,
+    8,
+    25,
+    26,
+    25,
+    26,
+    27,
+    28,
+    25,
+    28,
+    29,
+    25,
+    29,
+    30,
+    25,
+    30,
+    31,
+    25,
+    31,
+    32,
+    25,
+    32,
+    33,
+    25,
+    33,
+    34,
+    25,
+    34,
+    35,
+    25,
+    35,
+    36,
+    25,
+    36,
+    37,
+    25,
+    37,
+    38,
+    10,
+    25,
+    38,
+    28,
+    39,
+    40,
+    29,
+    40,
+    41,
+    30,
+    41,
+    42,
+    31,
+    42,
+    43,
+    32,
+    43,
+    44,
+    33,
+    44,
+    45,
+    34,
+    45,
+    46,
+    35,
+    46,
+    47,
+    36,
+    47,
+    48,
+    37,
+    48,
+    49,
+    10,
+    38,
+    49,
+    8,
+    50,
+    51,
+    50,
+    51,
+    8,
+    52,
+    53,
+    52,
+    53,
+    7,
+    54,
+    55,
+    54,
+    55,
+    7,
+    56,
+    57,
+    56,
+    57,
+    7,
+    58,
+    59,
+    58,
+    59,
+    7,
+    60,
+    61,
+    60,
+    61,
+    7,
+    62,
+    63,
+    62,
+    63,
+    64,
+    65,
+    3,
+    4,
+    5,
+    64,
+    65,
+    66,
+    67,
+    68,
+    67,
+    68,
+    67,
+    68,
+    69
+   ]
+  }
+ },
+ "jacobian_p": {
+  "rows": 70,
+  "col_ptr": [
+   0,
+   0,
+   0,
+   16,
+   16,
+   16,
+   18,
+   18,
+   18,
+   21,
+   21,
+   21,
+   23,
+   23,
+   25,
+   28,
+   28,
+   30,
+   33,
+   33,
+   35,
+   38,
+   38,
+   40,
+   43,
+   43,
+   46,
+   49,
+   61,
+   61,
+   63,
+   66,
+   66,
+   68,
+   70,
+   73,
+   76,
+   79,
+   82,
+   85,
+   88,
+   91,
+   94,
+   97,
+   100,
+   103,
+   106,
+   106,
+   108,
+   111,
+   111,
+   113,
+   116,
+   116,
+   118,
+   121,
+   121,
+   123,
+   126,
+   126,
+   128,
+   131,
+   131,
+   133,
+   136,
+   136,
+   138,
+   141,
+   141,
+   148,
+   148,
+   151,
+   151,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   155,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   157,
+   160,
+   163,
+   166,
+   166,
+   169,
+   172,
+   172,
+   172,
+   175,
+   178,
+   181,
+   184,
+   187,
+   190,
+   193,
+   196,
+   199,
+   201,
+   201,
+   210,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   222,
+   226,
+   238,
+   240,
+   240,
+   246,
+   246,
+   277,
+   280,
+   306,
+   306,
+   306,
+   323,
+   325,
+   337,
+   341,
+   343,
+   343,
+   344,
+   368,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   370,
+   372,
+   372,
+   372,
+   374,
+   374,
+   374,
+   376,
+   376,
+   376,
+   378,
+   378,
+   378,
+   378,
+   378,
+   378,
+   381,
+   384,
+   384,
+   386,
+   388,
+   388,
+   388,
+   390,
+   392,
+   395,
+   395,
+   397,
+   399,
+   399,
+   401,
+   401,
+   401,
+   401,
+   405,
+   409,
+   411,
+   415,
+   417,
+   421,
+   423,
+   427,
+   429,
+   433,
+   435,
+   439,
+   441,
+   445,
+   447,
+   451,
+   453,
+   457,
+   459,
+   463,
+   465,
+   468,
+   470,
+   474,
+   474,
+   477,
+   479,
+   479,
+   479,
+   479,
+   481,
+   481,
+   481,
+   483,
+   483,
+   483,
+   483,
+   485,
+   485,
+   485,
+   487,
+   487,
+   487,
+   489,
+   489,
+   489,
+   491,
+   491,
+   491,
+   493,
+   493,
+   493,
+   500,
+   507,
+   507,
+   507,
+   507,
+   507,
+   507,
+   507,
+   507,
+   507,
+   507,
+   507,
+   507,
+   508,
+   509,
+   517,
+   520,
+   527,
+   527,
+   527,
+   534,
+   541,
+   550,
+   558,
+   560,
+   560,
+   567,
+   568,
+   568,
+   568,
+   568,
+   568,
+   568
+  ],
+  "row_idx": [
+   6,
+   7,
+   9,
+   14,
+   16,
+   18,
+   20,
+   23,
+   25,
+   50,
+   52,
+   54,
+   56,
+   58,
+   60,
+   62,
+   7,
+   12,
+   7,
+   8,
+   18,
+   11,
+   28,
+   12,
+   13,
+   6,
+   12,
+   13,
+   14,
+   15,
+   7,
+   14,
+   15,
+   16,
+   17,
+   7,
+   16,
+   17,
+   18,
+   19,
+   7,
+   18,
+   19,
+   20,
+   21,
+   22,
+   9,
+   21,
+   22,
+   3,
+   4,
+   5,
+   7,
+   20,
+   21,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   23,
+   24,
+   8,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   25,
+   28,
+   29,
+   25,
+   29,
+   30,
+   25,
+   30,
+   31,
+   25,
+   31,
+   32,
+   25,
+   32,
+   33,
+   25,
+   33,
+   34,
+   25,
+   34,
+   35,
+   25,
+   35,
+   36,
+   25,
+   36,
+   37,
+   25,
+   37,
+   38,
+   10,
+   25,
+   38,
+   8,
+   25,
+   26,
+   50,
+   51,
+   8,
+   50,
+   51,
+   52,
+   53,
+   8,
+   52,
+   53,
+   54,
+   55,
+   7,
+   54,
+   55,
+   56,
+   57,
+   7,
+   56,
+   57,
+   58,
+   59,
+   7,
+   58,
+   59,
+   60,
+   61,
+   7,
+   60,
+   61,
+   62,
+   63,
+   7,
+   62,
+   63,
+   3,
+   4,
+   5,
+   64,
+   65,
+   67,
+   68,
+   9,
+   21,
+   22,
+   6,
+   7,
+   8,
+   18,
+   21,
+   22,
+   6,
+   7,
+   12,
+   6,
+   7,
+   14,
+   6,
+   7,
+   16,
+   6,
+   7,
+   20,
+   6,
+   8,
+   23,
+   6,
+   8,
+   50,
+   6,
+   8,
+   52,
+   6,
+   7,
+   54,
+   6,
+   7,
+   56,
+   6,
+   7,
+   58,
+   6,
+   7,
+   60,
+   6,
+   7,
+   62,
+   6,
+   7,
+   18,
+   7,
+   8,
+   18,
+   7,
+   18,
+   3,
+   4,
+   5,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   3,
+   4,
+   5,
+   7,
+   9,
+   20,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   1,
+   27,
+   28,
+   39,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   21,
+   22,
+   0,
+   1,
+   2,
+   7,
+   27,
+   39,
+   7,
+   9,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   7,
+   9,
+   20,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   23,
+   24,
+   25,
+   26,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   6,
+   7,
+   8,
+   12,
+   14,
+   16,
+   18,
+   20,
+   23,
+   25,
+   50,
+   52,
+   54,
+   56,
+   58,
+   60,
+   62,
+   11,
+   28,
+   25,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   1,
+   27,
+   28,
+   39,
+   0,
+   7,
+   0,
+   1,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   2,
+   27,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   9,
+   21,
+   22,
+   20,
+   21,
+   21,
+   22,
+   21,
+   22,
+   9,
+   22,
+   9,
+   21,
+   22,
+   21,
+   22,
+   9,
+   22,
+   23,
+   24,
+   1,
+   27,
+   28,
+   39,
+   28,
+   29,
+   39,
+   40,
+   25,
+   28,
+   29,
+   30,
+   40,
+   41,
+   25,
+   29,
+   30,
+   31,
+   41,
+   42,
+   25,
+   30,
+   31,
+   32,
+   42,
+   43,
+   25,
+   31,
+   32,
+   33,
+   43,
+   44,
+   25,
+   32,
+   33,
+   34,
+   44,
+   45,
+   25,
+   33,
+   34,
+   35,
+   45,
+   46,
+   25,
+   34,
+   35,
+   36,
+   46,
+   47,
+   25,
+   35,
+   36,
+   37,
+   47,
+   48,
+   25,
+   36,
+   37,
+   38,
+   48,
+   49,
+   25,
+   37,
+   10,
+   38,
+   49,
+   25,
+   38,
+   1,
+   27,
+   28,
+   39,
+   6,
+   8,
+   25,
+   25,
+   26,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   3,
+   4,
+   5,
+   64,
+   65,
+   67,
+   68,
+   3,
+   4,
+   5,
+   64,
+   65,
+   67,
+   68,
+   3,
+   3,
+   3,
+   4,
+   5,
+   64,
+   65,
+   66,
+   67,
+   68,
+   67,
+   68,
+   69,
+   3,
+   4,
+   5,
+   64,
+   65,
+   67,
+   68,
+   3,
+   4,
+   5,
+   64,
+   65,
+   67,
+   68,
+   3,
+   4,
+   5,
+   64,
+   65,
+   67,
+   68,
+   3,
+   4,
+   5,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   3,
+   4,
+   5,
+   64,
+   65,
+   66,
+   67,
+   68,
+   68,
+   69,
+   3,
+   4,
+   5,
+   64,
+   65,
+   67,
+   68,
+   67
+  ]
+ },
+ "events": [],
+ "n_roots": 0,
+ "n_discontinuity_roots": 0,
+ "n_constants": 404,
+ "units": {
+  "AD__Cpl_hctz": "0.001*mole",
+  "AD__Cti_hctz": "0.001*mole",
+  "AD__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "AD__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "AD__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "AD__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "AD__PS_hctz": "litre*(60*second)**-1",
+  "AD__Vpl": "litre",
+  "AD__Vpl_hctz": "litre",
+  "AD__Vti": "litre",
+  "Afeces_hctz": "0.001*mole",
+  "Aurine_hctz": "0.001*mole",
+  "BMI": "1000*gram*metre**-2",
+  "BO__Cpl_hctz": "0.001*mole",
+  "BO__Cti_hctz": "0.001*mole",
+  "BO__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "BO__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "BO__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "BO__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "BO__PS_hctz": "litre*(60*second)**-1",
+  "BO__Vpl": "litre",
+  "BO__Vpl_hctz": "litre",
+  "BO__Vti": "litre",
+  "BP_hctz": "dimensionless",
+  "BR__Cpl_hctz": "0.001*mole",
+  "BR__Cti_hctz": "0.001*mole",
+  "BR__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "BR__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "BR__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "BR__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "BR__PS_hctz": "litre*(60*second)**-1",
+  "BR__Vpl": "litre",
+  "BR__Vpl_hctz": "litre",
+  "BR__Vti": "litre",
+  "BSA": "metre**2",
+  "BSA_ref": "metre**2",
+  "BW": "1000*gram",
+  "BW_ref": "1000*gram",
+  "CKD_hepatic": "dimensionless",
+  "CO": "litre*(60*second)**-1",
+  "CO_base": "litre*(60*second)**-1",
+  "CO_ref": "litre*(60*second)**-1",
+  "CP_severity": "dimensionless",
+  "Car_blood_hctz": "0.001*mole*litre**-1",
+  "Car_free_hctz": "0.001*mole*litre**-1",
+  "Car_hctz": "0.001*mole",
+  "Carm_blood_hctz": "0.001*mole*litre**-1",
+  "Carm_free_hctz": "0.001*mole*litre**-1",
+  "Carm_hctz": "0.001*mole*litre**-1",
+  "Cbile_hctz": "0.001*mole",
+  "Chv_blood_hctz": "0.001*mole*litre**-1",
+  "Chv_free_hctz": "0.001*mole*litre**-1",
+  "Chv_hctz": "0.001*mole*litre**-1",
+  "Cout_ad_hctz": "0.001*mole*litre**-1",
+  "Cout_bo_hctz": "0.001*mole*litre**-1",
+  "Cout_br_hctz": "0.001*mole*litre**-1",
+  "Cout_go_hctz": "0.001*mole*litre**-1",
+  "Cout_he_hctz": "0.001*mole*litre**-1",
+  "Cout_ki_hctz": "0.001*mole*litre**-1",
+  "Cout_li_hctz": "0.001*mole*litre**-1",
+  "Cout_lu_hctz": "0.001*mole*litre**-1",
+  "Cout_mu_hctz": "0.001*mole*litre**-1",
+  "Cout_pa_hctz": "0.001*mole*litre**-1",
+  "Cout_si_hctz": "0.001*mole*litre**-1",
+  "Cout_sk_hctz": "0.001*mole*litre**-1",
+  "Cout_sp_hctz": "0.001*mole*litre**-1",
+  "Cout_st_hctz": "0.001*mole*litre**-1",
+  "Cpo_blood_hctz": "0.001*mole*litre**-1",
+  "Cpo_free_hctz": "0.001*mole*litre**-1",
+  "Cpo_hctz": "0.001*mole",
+  "Cve_blood_hctz": "0.001*mole*litre**-1",
+  "Cve_free_hctz": "0.001*mole*litre**-1",
+  "Cve_hctz": "0.001*mole",
+  "FED": "dimensionless",
+  "FFM": "1000*gram",
+  "FFM_ref": "1000*gram",
+  "FLUID__CL_EXCRETION": "(0.001*mole)/(60*second)",
+  "FLUID__CL_FILTRATION": "(0.001*mole)/(60*second)",
+  "FLUID__CL_REABSORPTION": "(0.001*mole)/(60*second)",
+  "FLUID__CL_UPTAKE": "(0.001*mole)/(60*second)",
+  "FLUID__E50_hctz_nacl": "0.001*mole*litre**-1",
+  "FLUID__ECF": "litre",
+  "FLUID__ECF_ref": "litre",
+  "FLUID__Emax_hctz_cl": "dimensionless",
+  "FLUID__Emax_hctz_na": "dimensionless",
+  "FLUID__GFR": "0.001*litre*(60*second)**-1",
+  "FLUID__GFR_base": "0.001*litre*(60*second)**-1",
+  "FLUID__H2O_UPTAKE": "litre*(60*second)**-1",
+  "FLUID__Mr_cl": "gram*mole**-1",
+  "FLUID__Mr_na": "gram*mole**-1",
+  "FLUID__Mr_nacl": "gram*mole**-1",
+  "FLUID__NA_EXCRETION": "(0.001*mole)/(60*second)",
+  "FLUID__NA_FILTRATION": "(0.001*mole)/(60*second)",
+  "FLUID__NA_REABSORPTION": "(0.001*mole)/(60*second)",
+  "FLUID__NA_UPTAKE": "(0.001*mole)/(60*second)",
+  "FLUID__Pdia_ref": "133.32239*newton*metre**-2",
+  "FLUID__Psys_ref": "133.32239*newton*metre**-2",
+  "FLUID__Vki": "litre",
+  "FLUID__Vloop": "litre",
+  "FLUID__Vurine": "litre",
+  "FLUID__bp_diastolic": "133.32239*newton*metre**-2",
+  "FLUID__bp_mean": "133.32239*newton*metre**-2",
+  "FLUID__bp_systolic": "133.32239*newton*metre**-2",
+  "FLUID__cl": "0.001*mole",
+  "FLUID__cl_loop": "0.001*mole",
+  "FLUID__cl_ref": "0.001*mole*litre**-1",
+  "FLUID__cl_urine": "0.001*mole",
+  "FLUID__counter_gamma": "dimensionless",
+  "FLUID__diuresis": "litre*(60*second)**-1",
+  "FLUID__f_ECF": "dimensionless",
+  "FLUID__f_ECF_start": "dimensionless",
+  "FLUID__f_TBW": "litre*(1000*gram)**-1",
+  "FLUID__f_h2o_max": "dimensionless",
+  "FLUID__h2o_reabsorption": "litre*(60*second)**-1",
+  "FLUID__hctz_urine_excretion": "0.001*mole*litre**-1",
+  "FLUID__k_cl": "litre*(60*second)**-1",
+  "FLUID__k_h2o": "litre*(0.001*litre)**-1",
+  "FLUID__k_na": "litre*(60*second)**-1",
+  "FLUID__na": "0.001*mole",
+  "FLUID__na_loop": "0.001*mole",
+  "FLUID__na_ref": "0.001*mole*litre**-1",
+  "FLUID__na_urine": "0.001*mole",
+  "FLUID__vin_cl": "0.001*mole*(60*second)**-1",
+  "FLUID__vin_h2o": "litre*(60*second)**-1",
+  "FLUID__vin_na": "0.001*mole*(60*second)**-1",
+  "FLUID__vout_cl": "0.001*gram*(60*second)**-1",
+  "FLUID__vout_h2o": "litre*(60*second)**-1",
+  "FLUID__vout_na": "0.001*gram*(60*second)**-1",
+  "GFR": "litre*(60*second)**-1",
+  "GFR_base": "litre*(60*second)**-1",
+  "GFR_ref": "litre*(60*second)**-1",
+  "GO__Cpl_hctz": "0.001*mole",
+  "GO__Cti_hctz": "0.001*mole",
+  "GO__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "GO__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "GO__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "GO__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "GO__PS_hctz": "litre*(60*second)**-1",
+  "GO__Vpl": "litre",
+  "GO__Vpl_hctz": "litre",
+  "GO__Vti": "litre",
+  "GU__Asolid_asc_hctz": "0.001*mole",
+  "GU__Asolid_cae_hctz": "0.001*mole",
+  "GU__Asolid_des_hctz": "0.001*mole",
+  "GU__Asolid_du_hctz": "0.001*mole",
+  "GU__Asolid_ile1_hctz": "0.001*mole",
+  "GU__Asolid_ile2_hctz": "0.001*mole",
+  "GU__Asolid_jej1_hctz": "0.001*mole",
+  "GU__Asolid_jej2_hctz": "0.001*mole",
+  "GU__Asolid_rec_hctz": "0.001*mole",
+  "GU__Asolid_sig_hctz": "0.001*mole",
+  "GU__Asolid_tra_hctz": "0.001*mole",
+  "GU__Clumen_asc_hctz": "0.001*mole",
+  "GU__Clumen_cae_hctz": "0.001*mole",
+  "GU__Clumen_des_hctz": "0.001*mole",
+  "GU__Clumen_du_hctz": "0.001*mole",
+  "GU__Clumen_ile1_hctz": "0.001*mole",
+  "GU__Clumen_ile2_hctz": "0.001*mole",
+  "GU__Clumen_jej1_hctz": "0.001*mole",
+  "GU__Clumen_jej2_hctz": "0.001*mole",
+  "GU__Clumen_rec_hctz": "0.001*mole",
+  "GU__Clumen_sig_hctz": "0.001*mole",
+  "GU__Clumen_st_hctz": "0.001*mole",
+  "GU__Clumen_tra_hctz": "0.001*mole",
+  "GU__Cpl_hctz": "0.001*mole",
+  "GU__Cti_hctz": "0.001*mole",
+  "GU__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "GU__J_abs_asc_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_cae_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_des_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_du_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_ile1_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_ile2_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_jej1_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_jej2_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_rec_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_sig_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_abs_tra_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_bile_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_asc_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_cae_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_des_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_du_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_ile1_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_ile2_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_jej1_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_jej2_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_rec_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_sig_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_dis_tra_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_po_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_sol_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_asc_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_cae_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_des_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_du_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_ile1_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_ile2_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_jej1_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_jej2_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_rec_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_sig_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_st_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_tr_tra_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_asc_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_cae_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_des_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_du_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_ile1_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_ile2_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_jej1_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_jej2_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_rec_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_sig_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_st_hctz": "(0.001*mole)/(60*second)",
+  "GU__J_trs_tra_hctz": "(0.001*mole)/(60*second)",
+  "GU__PS_hctz": "litre*(60*second)**-1",
+  "GU__Qgu": "litre*(60*second)**-1",
+  "GU__T_asc": "60*second",
+  "GU__T_cae": "60*second",
+  "GU__T_des": "60*second",
+  "GU__T_du": "60*second",
+  "GU__T_ile1": "60*second",
+  "GU__T_ile2": "60*second",
+  "GU__T_jej1": "60*second",
+  "GU__T_jej2": "60*second",
+  "GU__T_rec": "60*second",
+  "GU__T_sig": "60*second",
+  "GU__T_st": "60*second",
+  "GU__T_st_fed": "60*second",
+  "GU__T_tra": "60*second",
+  "GU__Vgu": "litre",
+  "GU__Vlumen_asc": "litre",
+  "GU__Vlumen_cae": "litre",
+  "GU__Vlumen_des": "litre",
+  "GU__Vlumen_du": "litre",
+  "GU__Vlumen_ile1": "litre",
+  "GU__Vlumen_ile2": "litre",
+  "GU__Vlumen_jej1": "litre",
+  "GU__Vlumen_jej2": "litre",
+  "GU__Vlumen_rec": "litre",
+  "GU__Vlumen_sig": "litre",
+  "GU__Vlumen_st": "litre",
+  "GU__Vlumen_tra": "litre",
+  "GU__Vpl": "litre",
+  "GU__Vpl_hctz": "litre",
+  "GU__Vti": "litre",
+  "GU__f_area_asc": "dimensionless",
+  "GU__f_area_cae": "dimensionless",
+  "GU__f_area_des": "dimensionless",
+  "GU__f_area_du": "dimensionless",
+  "GU__f_area_ile1": "dimensionless",
+  "GU__f_area_ile2": "dimensionless",
+  "GU__f_area_jej1": "dimensionless",
+  "GU__f_area_jej2": "dimensionless",
+  "GU__f_area_rec": "dimensionless",
+  "GU__f_area_sig": "dimensionless",
+  "GU__f_area_tra": "dimensionless",
+  "GU__f_vas_gu": "dimensionless",
+  "HCT": "dimensionless",
+  "HCT_ref": "dimensionless",
+  "HEIGHT": "0.01*metre",
+  "HEIGHT_ref": "0.01*metre",
+  "HE__Cpl_hctz": "0.001*mole",
+  "HE__Cti_hctz": "0.001*mole",
+  "HE__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "HE__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "HE__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "HE__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "HE__PS_hctz": "litre*(60*second)**-1",
+  "HE__Vpl": "litre",
+  "HE__Vpl_hctz": "litre",
+  "HE__Vti": "litre",
+  "HF_severity": "dimensionless",
+  "IVDOSE_hctz": "0.001*gram",
+  "J_iv_hctz": "(0.001*mole)/(60*second)",
+  "KI__Cic_hctz": "0.001*mole",
+  "KI__Cis_hctz": "0.001*mole",
+  "KI__Cpl_hctz": "0.001*mole",
+  "KI__Cu_ic_hctz": "0.001*mole*litre**-1",
+  "KI__Cu_is_hctz": "0.001*mole*litre**-1",
+  "KI__HCTZSEC": "(0.001*mole)/(60*second)",
+  "KI__HCTZSEC_k": "litre*(60*second)**-1",
+  "KI__HCTZUP": "(0.001*mole)/(60*second)",
+  "KI__HCTZUP_k": "(60*second)**-1",
+  "KI__J_gfr_hctz": "(0.001*mole)/(60*second)",
+  "KI__J_ic_hctz": "(0.001*mole)/(60*second)",
+  "KI__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "KI__J_is_hctz": "(0.001*mole)/(60*second)",
+  "KI__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "KI__K_cell_pls_hctz": "dimensionless",
+  "KI__K_int_pls_hctz": "dimensionless",
+  "KI__PS_hctz": "litre*(60*second)**-1",
+  "KI__PS_vas": "litre*(60*second)**-1",
+  "KI__Vic": "litre",
+  "KI__Vis": "litre",
+  "KI__Vpl": "litre",
+  "KI__Vpl_hctz": "litre",
+  "KI__f_abcc4": "dimensionless",
+  "KI__f_slc22a6": "dimensionless",
+  "KI__f_tubular": "dimensionless",
+  "KI__f_water_int": "dimensionless",
+  "KI__f_water_pls": "dimensionless",
+  "KI__k_vas": "(60*second)**-1",
+  "KI__r_protein_int_pls": "dimensionless",
+  "Ka_dis_hctz": "(3600*second)**-1",
+  "Ka_sol_hctz": "(3600*second)**-1",
+  "Kiv_hctz": "(60*second)**-1",
+  "Kp_hctz": "dimensionless",
+  "LI__Cpl_hctz": "0.001*mole",
+  "LI__Cti_hctz": "0.001*mole",
+  "LI__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "LI__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "LI__J_in_po_pl_hctz": "(0.001*mole)/(60*second)",
+  "LI__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "LI__J_shunt_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "LI__J_shunt_po_pl_hctz": "(0.001*mole)/(60*second)",
+  "LI__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "LI__PS_hctz": "litre*(60*second)**-1",
+  "LI__Vpl": "litre",
+  "LI__Vpl_hctz": "litre",
+  "LI__Vti": "litre",
+  "LU__Cpl_hctz": "0.001*mole",
+  "LU__Cti_hctz": "0.001*mole",
+  "LU__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "LU__J_in_ve_pl_hctz": "(0.001*mole)/(60*second)",
+  "LU__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "LU__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "LU__PS_hctz": "litre*(60*second)**-1",
+  "LU__Vpl": "litre",
+  "LU__Vpl_hctz": "litre",
+  "LU__Vti": "litre",
+  "MU__Cpl_hctz": "0.001*mole",
+  "MU__Cti_hctz": "0.001*mole",
+  "MU__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "MU__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "MU__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "MU__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "MU__PS_hctz": "litre*(60*second)**-1",
+  "MU__Vpl": "litre",
+  "MU__Vpl_hctz": "litre",
+  "MU__Vti": "litre",
+  "MU__kps_hctz": "(60*second)**-1",
+  "Mad": "1000*gram",
+  "Mbo": "1000*gram",
+  "Mbo_ref": "1000*gram",
+  "Mbr": "1000*gram",
+  "Mbr_ref": "1000*gram",
+  "Mgo": "1000*gram",
+  "Mgo_ref": "1000*gram",
+  "Mhe": "1000*gram",
+  "Mhe_ref": "1000*gram",
+  "Mki": "1000*gram",
+  "Mki_ref": "1000*gram",
+  "Mla": "1000*gram",
+  "Mla_ref": "1000*gram",
+  "Mlean": "1000*gram",
+  "Mli": "1000*gram",
+  "Mli_ref": "1000*gram",
+  "Mlu": "1000*gram",
+  "Mlu_ref": "1000*gram",
+  "Mmu": "1000*gram",
+  "Mmu_ref": "1000*gram",
+  "Mpa": "1000*gram",
+  "Mpa_ref": "1000*gram",
+  "Mr_hctz": "gram*mole**-1",
+  "Mr_ren": "gram*mole**-1",
+  "Msi": "1000*gram",
+  "Msi_ref": "1000*gram",
+  "Msk": "1000*gram",
+  "Msk_ref": "1000*gram",
+  "Msp": "1000*gram",
+  "Msp_ref": "1000*gram",
+  "Mst": "1000*gram",
+  "Mst_ref": "1000*gram",
+  "PA__Cpl_hctz": "0.001*mole",
+  "PA__Cti_hctz": "0.001*mole",
+  "PA__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "PA__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "PA__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "PA__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "PA__PS_hctz": "litre*(60*second)**-1",
+  "PA__Vpl": "litre",
+  "PA__Vpl_hctz": "litre",
+  "PA__Vti": "litre",
+  "PODOSE_hctz": "0.001*gram",
+  "Qad": "litre*(60*second)**-1",
+  "Qbo": "litre*(60*second)**-1",
+  "Qbr": "litre*(60*second)**-1",
+  "Qgo": "litre*(60*second)**-1",
+  "Qh": "litre*(60*second)**-1",
+  "Qha": "litre*(60*second)**-1",
+  "Qhe": "litre*(60*second)**-1",
+  "Qki": "litre*(60*second)**-1",
+  "Qla": "litre*(60*second)**-1",
+  "Qli": "litre*(60*second)**-1",
+  "Qlu": "litre*(60*second)**-1",
+  "Qmu": "litre*(60*second)**-1",
+  "Qpa": "litre*(60*second)**-1",
+  "Qpo": "litre*(60*second)**-1",
+  "Qsi": "litre*(60*second)**-1",
+  "Qsk": "litre*(60*second)**-1",
+  "Qsp": "litre*(60*second)**-1",
+  "Qst": "litre*(60*second)**-1",
+  "Ri_hctz": "0.001*gram*(60*second)**-1",
+  "Rurine_hctz": "0.001*mole*(60*second)**-1",
+  "SK__Cpl_hctz": "0.001*mole",
+  "SK__Cti_hctz": "0.001*mole",
+  "SK__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "SK__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "SK__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "SK__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "SK__PS_hctz": "litre*(60*second)**-1",
+  "SK__Vpl": "litre",
+  "SK__Vpl_hctz": "litre",
+  "SK__Vti": "litre",
+  "SOLDOSE_hctz": "0.001*gram",
+  "SP__Cpl_hctz": "0.001*mole",
+  "SP__Cti_hctz": "0.001*mole",
+  "SP__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "SP__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "SP__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "SP__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "SP__PS_hctz": "litre*(60*second)**-1",
+  "SP__Vpl": "litre",
+  "SP__Vpl_hctz": "litre",
+  "SP__Vti": "litre",
+  "ST__Cpl_hctz": "0.001*mole",
+  "ST__Cti_hctz": "0.001*mole",
+  "ST__Cu_ti_hctz": "0.001*mole*litre**-1",
+  "ST__J_in_ar_pl_hctz": "(0.001*mole)/(60*second)",
+  "ST__J_out_pl_hctz": "(0.001*mole)/(60*second)",
+  "ST__J_ti_hctz": "(0.001*mole)/(60*second)",
+  "ST__PS_hctz": "litre*(60*second)**-1",
+  "ST__Vpl": "litre",
+  "ST__Vpl_hctz": "litre",
+  "ST__Vti": "litre",
+  "SV_tis": "dimensionless",
+  "T_st_eff": "60*second",
+  "Vad": "litre",
+  "Var": "litre",
+  "Var_bc": "litre",
+  "Var_pl": "litre",
+  "Var_pl_hctz": "litre",
+  "Vbile": "litre",
+  "Vblood": "litre",
+  "Vblood_ref": "litre",
+  "Vbo": "litre",
+  "Vbr": "litre",
+  "Vfeces": "litre",
+  "Vgo": "litre",
+  "Vhe": "litre",
+  "Vki": "litre",
+  "Vla": "litre",
+  "Vli": "litre",
+  "Vlu": "litre",
+  "Vmu": "litre",
+  "Vpa": "litre",
+  "Vpo": "litre",
+  "Vpo_bc": "litre",
+  "Vpo_pl": "litre",
+  "Vpo_pl_hctz": "litre",
+  "Vsi": "litre",
+  "Vsk": "litre",
+  "Vsp": "litre",
+  "Vst": "litre",
+  "Vti_total_ref_hctz": "litre",
+  "Vurine": "litre",
+  "Vve": "litre",
+  "Vve_bc": "litre",
+  "Vve_pl": "litre",
+  "Vve_pl_hctz": "litre",
+  "[AD__Cpl_hctz]": "(0.001*mole)/litre",
+  "[AD__Cti_hctz]": "(0.001*mole)/litre",
+  "[Afeces_hctz]": "(0.001*mole)/litre",
+  "[Aurine_hctz]": "(0.001*mole)/litre",
+  "[BO__Cpl_hctz]": "(0.001*mole)/litre",
+  "[BO__Cti_hctz]": "(0.001*mole)/litre",
+  "[BR__Cpl_hctz]": "(0.001*mole)/litre",
+  "[BR__Cti_hctz]": "(0.001*mole)/litre",
+  "[Car_hctz]": "(0.001*mole)/litre",
+  "[Cbile_hctz]": "(0.001*mole)/litre",
+  "[Cpo_hctz]": "(0.001*mole)/litre",
+  "[Cve_hctz]": "(0.001*mole)/litre",
+  "[FLUID__cl]": "(0.001*mole)/litre",
+  "[FLUID__cl_loop]": "(0.001*mole)/litre",
+  "[FLUID__cl_urine]": "(0.001*mole)/litre",
+  "[FLUID__na]": "(0.001*mole)/litre",
+  "[FLUID__na_loop]": "(0.001*mole)/litre",
+  "[FLUID__na_urine]": "(0.001*mole)/litre",
+  "[GO__Cpl_hctz]": "(0.001*mole)/litre",
+  "[GO__Cti_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_asc_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_cae_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_des_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_du_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_ile1_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_ile2_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_jej1_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_jej2_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_rec_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_sig_hctz]": "(0.001*mole)/litre",
+  "[GU__Asolid_tra_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_asc_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_cae_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_des_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_du_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_ile1_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_ile2_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_jej1_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_jej2_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_rec_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_sig_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_st_hctz]": "(0.001*mole)/litre",
+  "[GU__Clumen_tra_hctz]": "(0.001*mole)/litre",
+  "[GU__Cpl_hctz]": "(0.001*mole)/litre",
+  "[GU__Cti_hctz]": "(0.001*mole)/litre",
+  "[HE__Cpl_hctz]": "(0.001*mole)/litre",
+  "[HE__Cti_hctz]": "(0.001*mole)/litre",
+  "[KI__Cic_hctz]": "(0.001*mole)/litre",
+  "[KI__Cis_hctz]": "(0.001*mole)/litre",
+  "[KI__Cpl_hctz]": "(0.001*mole)/litre",
+  "[LI__Cpl_hctz]": "(0.001*mole)/litre",
+  "[LI__Cti_hctz]": "(0.001*mole)/litre",
+  "[LU__Cpl_hctz]": "(0.001*mole)/litre",
+  "[LU__Cti_hctz]": "(0.001*mole)/litre",
+  "[MU__Cpl_hctz]": "(0.001*mole)/litre",
+  "[MU__Cti_hctz]": "(0.001*mole)/litre",
+  "[PA__Cpl_hctz]": "(0.001*mole)/litre",
+  "[PA__Cti_hctz]": "(0.001*mole)/litre",
+  "[SK__Cpl_hctz]": "(0.001*mole)/litre",
+  "[SK__Cti_hctz]": "(0.001*mole)/litre",
+  "[SP__Cpl_hctz]": "(0.001*mole)/litre",
+  "[SP__Cti_hctz]": "(0.001*mole)/litre",
+  "[ST__Cpl_hctz]": "(0.001*mole)/litre",
+  "[ST__Cti_hctz]": "(0.001*mole)/litre",
+  "eGFR": "litre*(60*second)**-1",
+  "fQad": "dimensionless",
+  "fQbo": "dimensionless",
+  "fQbr": "dimensionless",
+  "fQgo": "dimensionless",
+  "fQhe": "dimensionless",
+  "fQki": "dimensionless",
+  "fQla": "dimensionless",
+  "fQli": "dimensionless",
+  "fQmu": "dimensionless",
+  "fQpa": "dimensionless",
+  "fQsi": "dimensionless",
+  "fQsk": "dimensionless",
+  "fQsp": "dimensionless",
+  "fQst": "dimensionless",
+  "fVar": "dimensionless",
+  "fVpo": "dimensionless",
+  "fVve": "dimensionless",
+  "f_cardiac_function": "dimensionless",
+  "f_functional": "dimensionless",
+  "f_int_ad": "dimensionless",
+  "f_int_bo": "dimensionless",
+  "f_int_br": "dimensionless",
+  "f_int_go": "dimensionless",
+  "f_int_he": "dimensionless",
+  "f_int_ki": "dimensionless",
+  "f_int_la": "dimensionless",
+  "f_int_li": "dimensionless",
+  "f_int_lu": "dimensionless",
+  "f_int_mu": "dimensionless",
+  "f_int_pa": "dimensionless",
+  "f_int_si": "dimensionless",
+  "f_int_sk": "dimensionless",
+  "f_int_sp": "dimensionless",
+  "f_int_st": "dimensionless",
+  "f_reabsorbed_hctz": "dimensionless",
+  "f_renal_function": "dimensionless",
+  "f_shunt": "dimensionless",
+  "f_vas_ad": "dimensionless",
+  "f_vas_bo": "dimensionless",
+  "f_vas_br": "dimensionless",
+  "f_vas_go": "dimensionless",
+  "f_vas_he": "dimensionless",
+  "f_vas_ki": "dimensionless",
+  "f_vas_la": "dimensionless",
+  "f_vas_li": "dimensionless",
+  "f_vas_lu": "dimensionless",
+  "f_vas_mu": "dimensionless",
+  "f_vas_pa": "dimensionless",
+  "f_vas_si": "dimensionless",
+  "f_vas_sk": "dimensionless",
+  "f_vas_sp": "dimensionless",
+  "f_vas_st": "dimensionless",
+  "fage_FFM": "dimensionless",
+  "fage_GFR": "dimensionless",
+  "fage_HCT": "dimensionless",
+  "fage_Qbr": "dimensionless",
+  "fage_Qki": "dimensionless",
+  "fage_Qli": "dimensionless",
+  "fage_Qother": "dimensionless",
+  "fage_Qrest": "dimensionless",
+  "fckd_gastric_emptying_time": "dimensionless",
+  "fckd_hematocrit": "dimensionless",
+  "fckd_kidney_flow": "dimensionless",
+  "fckd_kidney_volume": "dimensionless",
+  "fckd_plasma_protein": "dimensionless",
+  "fckd_si_transit_time": "dimensionless",
+  "fcp_agp": "dimensionless",
+  "fcp_albumin": "dimensionless",
+  "fcp_cardiac_index": "dimensionless",
+  "fcp_functional_liver": "dimensionless",
+  "fcp_gfr": "dimensionless",
+  "fcp_hematocrit": "dimensionless",
+  "fcp_hepatic_artery_flow": "dimensionless",
+  "fcp_kidney_flow": "dimensionless",
+  "fcp_rest_flow": "dimensionless",
+  "fcp_shunt": "dimensionless",
+  "fhf_kidney_flow": "dimensionless",
+  "fhf_liver_flow": "dimensionless",
+  "fhf_peripheral_flow": "dimensionless",
+  "fimp_CO": "dimensionless",
+  "fimp_GFR": "dimensionless",
+  "fimp_HCT": "dimensionless",
+  "fimp_Mki": "dimensionless",
+  "fimp_Qad": "dimensionless",
+  "fimp_Qbo": "dimensionless",
+  "fimp_Qbr": "dimensionless",
+  "fimp_Qgo": "dimensionless",
+  "fimp_Qhe": "dimensionless",
+  "fimp_Qki": "dimensionless",
+  "fimp_Qla": "dimensionless",
+  "fimp_Qli": "dimensionless",
+  "fimp_Qmu": "dimensionless",
+  "fimp_Qpa": "dimensionless",
+  "fimp_Qsi": "dimensionless",
+  "fimp_Qsk": "dimensionless",
+  "fimp_Qsp": "dimensionless",
+  "fimp_Qst": "dimensionless",
+  "fimp_agp": "dimensionless",
+  "fimp_albumin": "dimensionless",
+  "fimp_ki_slc22a6": "dimensionless",
+  "fimp_plasma_protein": "dimensionless",
+  "fimp_t_si": "dimensionless",
+  "fimp_t_stomach": "dimensionless",
+  "ftissue_hctz": "litre*(60*second)**-1",
+  "fu_hctz": "dimensionless",
+  "fu_ref_hctz": "dimensionless",
+  "k_bile": "(60*second)**-1",
+  "ka_hctz": "(3600*second)**-1",
+  "ti_hctz": "second",
+  "w_arm_mu": "dimensionless",
+  "w_arm_sk": "dimensionless"
+ }
+}

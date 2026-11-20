@@ -1,19 +1,19 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Nilsen1989	NA	volunteers	9.0	CIL5	cmax	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	83.8	NA	NA	7.4	ng/ml	NA
-Nilsen1989	NA	volunteers	9.0	CIL5	thalf	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	1.4	NA	NA	0.08	hr	2-8h
-Nilsen1989	NA	volunteers	9.0	CIL5	thalf	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	41.9	NA	NA	3.5	hr	24-94h
-Nilsen1989	NA	volunteers	9.0	CIL5	auc_end	cilazaprilat	plasma	radioenzymatic assay	24.0	hr	NA	396.0	NA	NA	20.0	µg/l*hr	NA
-Nilsen1989	NA	volunteers	9.0	CIL5	clearance_renal	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	6.4	NA	NA	0.5	l/hr	NA
-Nilsen1989	NA	volunteers	9.0	CIL5	amount	cilazaprilat	urine	radioenzymatic assay	24.0	hr	NA	1.975	NA	NA	0.145	mg	calculated
-Nilsen1989	NA	volunteers	9.0	CIL5, HCTZ25	cmax	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	81.5	NA	NA	5.6	ng/ml	NA
-Nilsen1989	NA	volunteers	9.0	CIL5, HCTZ25	thalf	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	1.6	NA	NA	0.05	hr	2-8h
-Nilsen1989	NA	volunteers	9.0	CIL5, HCTZ25	thalf	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	45.8	NA	NA	3.6	hr	24-94h
-Nilsen1989	NA	volunteers	9.0	CIL5, HCTZ25	auc_end	cilazaprilat	plasma	radioenzymatic assay	24.0	hr	NA	415.0	NA	NA	21.0	µg/l*hr	NA
-Nilsen1989	NA	volunteers	9.0	CIL5, HCTZ25	clearance_renal	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	5.5	NA	NA	0.6	l/hr	NA
-Nilsen1989	NA	volunteers	9.0	CIL5, HCTZ25	amount	cilazaprilat	urine	radioenzymatic assay	24.0	hr	NA	1.76	NA	NA	0.16	mg	calculated
-Nilsen1989	NA	patients	9.0	CIL5	cmax	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	48.4	NA	NA	7.5	ng/ml	NA
-Nilsen1989	NA	patients	9.0	CIL5	thalf	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	2.1	NA	NA	0.07	hr	2-8h
-Nilsen1989	NA	patients	9.0	CIL5	auc_end	cilazaprilat	plasma	radioenzymatic assay	24.0	hr	NA	181.0	NA	NA	10.0	µg/l*hr	NA
-Nilsen1989	NA	patients	9.0	CIL5, HCTZ25	cmax	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	47.6	NA	NA	4.5	ng/ml	NA
-Nilsen1989	NA	patients	9.0	CIL5, HCTZ25	thalf	cilazaprilat	plasma	radioenzymatic assay	NA	NA	NA	2.1	NA	NA	0.07	hr	2-8h
-Nilsen1989	NA	patients	9.0	CIL5, HCTZ25	auc_end	cilazaprilat	plasma	radioenzymatic assay	24.0	hr	NA	196.0	NA	NA	7.4	µg/l*hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Nilsen1989	patients	NA	16	CIL2.5	auc_end	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	auc_end_cilazaprilat_plasma_CIL2_5_patients	24.0	hr	NA	181.0	NA	40.0	10.0	0.22099447513812154	NA	NA	NA	NA	NA	µg/l*hr	AUC 0-24 h at steady state for hypertensive patients (Table 1 footnote)
+Nilsen1989	patients	NA	16	CIL2.5	cmax	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	cmax_cilazaprilat_plasma_CIL2_5_patients	NA	NA	NA	48.4	NA	30.0	7.5	0.6198347107438017	NA	NA	NA	NA	NA	ng/ml	NA
+Nilsen1989	patients	NA	16	CIL2.5	thalf	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	thalf_cilazaprilat_plasma_CIL2_5_patients	NA	NA	NA	2.1	NA	0.28	0.07	0.13333333333333333	NA	NA	NA	NA	NA	hr	t1/2 (2-8 h), Table 1
+Nilsen1989	patients	NA	16	CIL2.5,HCTZ25md	auc_end	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	auc_end_cilazaprilat_plasma_CIL2_5_HCTZ25md_patients	24.0	hr	NA	196.0	NA	29.6	7.4	0.1510204081632653	NA	NA	NA	NA	NA	µg/l*hr	AUC 0-24 h at steady state for hypertensive patients (Table 1 footnote)
+Nilsen1989	patients	NA	16	CIL2.5,HCTZ25md	cmax	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	cmax_cilazaprilat_plasma_CIL2_5_HCTZ25md_patients	NA	NA	NA	47.6	NA	18.0	4.5	0.37815126050420167	NA	NA	NA	NA	NA	ng/ml	NA
+Nilsen1989	patients	NA	16	CIL2.5,HCTZ25md	thalf	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	thalf_cilazaprilat_plasma_CIL2_5_HCTZ25md_patients	NA	NA	NA	2.1	NA	0.28	0.07	0.13333333333333333	NA	NA	NA	NA	NA	hr	t1/2 (2-8 h), Table 1
+Nilsen1989	volunteers	NA	9	CIL5	amount	sample mean	NA	cilazaprilat	urine	radioenzymatic assay	amount_cilazaprilat_urine_CIL5_volunteers	24.0	hr	NA	1.975	NA	0.43499999999999994	0.145	0.22025316455696198	NA	NA	NA	NA	NA	mg	urine 0-24 h, Table 1 in % of dose (39.5 and 35.2 % of the 5 mg dose), converted to mg
+Nilsen1989	volunteers	NA	9	CIL5	auc_inf	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	auc_inf_cilazaprilat_plasma_CIL5_volunteers	NA	NA	NA	396.0	NA	60.0	20.0	0.15151515151515152	NA	NA	NA	NA	NA	µg/l*hr	AUC 0-inf for healthy subjects (Table 1 footnote)
+Nilsen1989	volunteers	NA	9	CIL5	clearance_renal	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	clearance_renal_cilazaprilat_plasma_CIL5_volunteers	NA	NA	NA	6.4	NA	1.5	0.5	0.234375	NA	NA	NA	NA	NA	l/hr	NA
+Nilsen1989	volunteers	NA	9	CIL5	cmax	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	cmax_cilazaprilat_plasma_CIL5_volunteers	NA	NA	NA	83.8	NA	22.200000000000003	7.4	0.26491646778042965	NA	NA	NA	NA	NA	ng/ml	NA
+Nilsen1989	volunteers	NA	9	CIL5	thalf	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	thalf_cilazaprilat_plasma_CIL5_volunteers	NA	NA	NA	1.4	NA	0.24	0.08	0.17142857142857143	NA	NA	NA	NA	NA	hr	t1/2 (2-8 h), Table 1
+Nilsen1989	volunteers	NA	9	CIL5	thalf	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	thalf_cilazaprilat_plasma_CIL5_volunteers	NA	NA	NA	41.9	NA	10.5	3.5	0.25059665871121717	NA	NA	NA	NA	NA	hr	t1/2 (24-94 h), Table 1
+Nilsen1989	volunteers	NA	9	CIL5,HCTZ25	amount	sample mean	NA	cilazaprilat	urine	radioenzymatic assay	amount_cilazaprilat_urine_CIL5_HCTZ25_volunteers	24.0	hr	NA	1.76	NA	0.48	0.16	0.2727272727272727	NA	NA	NA	NA	NA	mg	urine 0-24 h, Table 1 in % of dose (39.5 and 35.2 % of the 5 mg dose), converted to mg
+Nilsen1989	volunteers	NA	9	CIL5,HCTZ25	auc_inf	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	auc_inf_cilazaprilat_plasma_CIL5_HCTZ25_volunteers	NA	NA	NA	415.0	NA	63.0	21.0	0.15180722891566265	NA	NA	NA	NA	NA	µg/l*hr	AUC 0-inf for healthy subjects (Table 1 footnote)
+Nilsen1989	volunteers	NA	9	CIL5,HCTZ25	clearance_renal	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	clearance_renal_cilazaprilat_plasma_CIL5_HCTZ25_volunteers	NA	NA	NA	5.5	NA	1.7999999999999998	0.6	0.3272727272727272	NA	NA	NA	NA	NA	l/hr	NA
+Nilsen1989	volunteers	NA	9	CIL5,HCTZ25	cmax	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	cmax_cilazaprilat_plasma_CIL5_HCTZ25_volunteers	NA	NA	NA	81.5	NA	16.799999999999997	5.6	0.20613496932515335	NA	NA	NA	NA	NA	ng/ml	NA
+Nilsen1989	volunteers	NA	9	CIL5,HCTZ25	thalf	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	thalf_cilazaprilat_plasma_CIL5_HCTZ25_volunteers	NA	NA	NA	1.6	NA	0.15000000000000002	0.05	0.09375000000000001	NA	NA	NA	NA	NA	hr	t1/2 (2-8 h), Table 1
+Nilsen1989	volunteers	NA	9	CIL5,HCTZ25	thalf	sample mean	NA	cilazaprilat	plasma	radioenzymatic assay	thalf_cilazaprilat_plasma_CIL5_HCTZ25_volunteers	NA	NA	NA	45.8	NA	10.8	3.6	0.23580786026200876	NA	NA	NA	NA	NA	hr	t1/2 (24-94 h), Table 1

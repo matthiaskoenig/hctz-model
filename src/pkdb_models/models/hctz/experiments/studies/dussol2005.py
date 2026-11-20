@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -38,9 +39,10 @@ class Dussol2005(HCTZSimulationExperiment):
     steady state of the impaired renal function: the extracellular fluid of
     the model expands with it and settles at (ECF/ECF_ref)^10 = 1 /
     f_renal_function, the pressures with it (in 68 hr to 95 %). The simulation
-    therefore starts `equilibration` days before the first dose without HCTZ,
-    and the references of the pressure are scaled so that the mean arterial
-    pressure of the equilibrated state is the basal one.
+    therefore starts from the drug-free steady state of the renal function
+    (`equilibrated_all`) with the basal day before the first dose, and the
+    references of the pressure are scaled so that the mean arterial pressure
+    of the equilibrated state is the basal one.
 
     The urinary sodium is validation data (`fitting/mapping_collections.py`):
     the model has no sodium balance under chronic HCTZ. The excretion of
@@ -48,9 +50,6 @@ class Dussol2005(HCTZSimulationExperiment):
     the plasma sodium falls, balances it: on the last day the model excretes
     313 mmol sodium (data 68 mmol) at a plasma sodium of 117 mM (data 138 mM).
     """
-
-    #: the days of the drug-free run before the first dose
-    equilibration: ClassVar[int] = 14
 
     #: the antihypertensive medication of the patients, which was not washed
     #: out and kept at its dose throughout the study (methods p350): beta
@@ -63,17 +62,35 @@ class Dussol2005(HCTZSimulationExperiment):
     #: and may blunt the effect of HCTZ on the pressure and the sodium balance
     coadministration: ClassVar[Coadministration] = Coadministration.COMEDICATION
 
-    yids: ClassVar[dict[str, str]] = {"Vurine": "urinvol", "na_urine": "amount_na"}
+    yids: ClassVar[dict[str, str]] = {
+        "FLUID__Vurine": "urinvol",
+        "FLUID__na_urine": "amount_na",
+    }
+
+    #: the outputs of the basal state (`<label>_all`) and of HCTZ alone
+    #: (`<label>_HCTZ25_all`) of Tab2 and Tab3 by their label, as one dataset
+    #: `<key>_hctz`
+    outputs: ClassVar[dict[str, str]] = {
+        "MAP": "map",
+        "urinary_volume_urine": "urinvol",
+        "cumulative_amount_sodium_urine": "amount_na",
+        "concentration_sodium_serum": "na",
+        "concentration_chloride_serum": "cl",
+    }
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Tab2", "Tab3"]:
             df: pd.DataFrame = self.load_dataframe(fig_id)
-            for label, df_label in df.groupby("label"):
-                label = str(label)
-                dset = DataSet.from_df(df_label, self.ureg)
-                dsets[f"{fig_id}_{label}"] = dset
+            df["key"] = [
+                self.outputs.get(
+                    str(label).removesuffix("_all").removesuffix("_HCTZ25")
+                )
+                for label in df["label"]
+            ]
+            for key, df_key in df.groupby("key"):
+                dsets[f"{fig_id}_{key}_hctz"] = DataSet.from_df(df_key, self.ureg)
 
         return dsets
 
@@ -92,34 +109,35 @@ class Dussol2005(HCTZSimulationExperiment):
         expansion = ecf_expansion(float(f_renal_function.magnitude))
         scale = 112 / ((120 + 2 * 80) / 3) / expansion
 
-        # 30 doses, every 24 hours; the urine is emptied every day, so the
-        # urine at a dose is the 24 hr collection before it
+        # 30 doses, every 24 hours; the urine is emptied at the start of the
+        # basal day and every day, so the urine at a dose is the 24 hr
+        # collection before it
         dose_times = [24 * k for k in range(30)]
-        days = [24 * k for k in range(1 - self.equilibration, 30)]
+        days = [24 * k for k in range(30)]
         simulations["hctz25"] = Simulation(
             time_unit="hr",
-            start=-24 * self.equilibration,
+            start=-24,
             end=30 * 24,
             preinit_changes={
                 **self.default_changes(),
                 "f_renal_function": f_renal_function,
-                "Psys_ref": Q(120 * scale, "mmHg"),
-                "Pdia_ref": Q(80 * scale, "mmHg"),
+                "FLUID__Psys_ref": Q(120 * scale, "mmHg"),
+                "FLUID__Pdia_ref": Q(80 * scale, "mmHg"),
             },
             changes=[
                 self.add_doses(dose_times, {"PODOSE_hctz": Q(25, "mg")}),
                 Change(
                     days,
                     {
-                        "na_urine": Q(0, "mmole"),
-                        "cl_urine": Q(0, "mmole"),
-                        "Vurine": Q(1e-6, "l"),
+                        "FLUID__na_urine": Q(0, "mmole"),
+                        "FLUID__cl_urine": Q(0, "mmole"),
+                        "FLUID__Vurine": Q(1e-6, "l"),
                     },
                 ),
             ],
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -139,10 +157,11 @@ class Dussol2005(HCTZSimulationExperiment):
                 self,
                 task="task_hctz25",
                 xid="time",
-                yid="bp_mean",
+                yid="FLUID__bp_mean",
             ),
             metadata=PKPDMappingMetaData(
                 tissue=Tissue.NONE,
+                sampling_site=SamplingSite.NOT_APPLICABLE,
                 application_form=ApplicationForm.TABLET,
                 route=Route.PO,
                 dosing=Dosing.MULTIPLE,
@@ -166,6 +185,7 @@ class Dussol2005(HCTZSimulationExperiment):
                 observable=FitData(self, task="task_hctz25", xid="time", yid=yid),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.MULTIPLE,
@@ -201,7 +221,7 @@ class Dussol2005(HCTZSimulationExperiment):
         plots[0].add_data(
             task="task_hctz25",
             xid="time",
-            yid="bp_mean",
+            yid="FLUID__bp_mean",
             label="Sim (GFR 29 ml/min)",
             color="#2ca25f",
         )
@@ -241,7 +261,7 @@ class Dussol2005(HCTZSimulationExperiment):
         plots[0].add_data(
             task="task_hctz25",
             xid="time",
-            yid="Vurine",
+            yid="FLUID__Vurine",
             label="Sim (GFR 29 ml/min)",
             color="#2ca25f",
         )
@@ -249,7 +269,7 @@ class Dussol2005(HCTZSimulationExperiment):
         plots[1].add_data(
             task="task_hctz25",
             xid="time",
-            yid="na_urine",
+            yid="FLUID__na_urine",
             label="Sim (GFR 29 ml/min)",
             color="#2ca25f",
         )

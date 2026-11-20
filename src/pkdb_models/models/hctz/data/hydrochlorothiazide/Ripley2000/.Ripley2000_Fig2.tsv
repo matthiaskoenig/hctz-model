@@ -1,19 +1,19 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_black	12.0	hr	NA	206.72268907563	249.579831932773	42.857142857143	14.2857142857143	mmol	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_white	12.0	hr	NA	204.201680672268	234.453781512605	30.252100840337	10.0840336134457	mmol	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_black	24.0	hr	NA	272.268907563025	289.915966386554	17.6470588235294	5.88235294117647	mmol	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_white	24.0	hr	NA	257.142857142856	277.310924369747	20.1680672268908	6.72268907563027	mmol	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_black	36.0	hr	NA	335.294117647058	370.588235294117	35.2941176470588	11.7647058823529	mmol	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	sodium	urine	NR	sodium_hctz_white	36.0	hr	NA	299.999999999999	317.647058823528	17.6470588235295	5.8823529411765	mmol	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_black	12.0	hr	NA	42.5531914893617	51.9148936170212	9.3617021276595	3.1205673758865	mmol	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	12.0	hr	NA	61.2765957446808	68.0851063829787	6.8085106382979	2.2695035460993	mmol	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_black	24.0	hr	NA	67.2340425531914	72.7659574468085	5.5319148936171	1.8439716312057	mmol	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	24.0	hr	NA	87.2340425531914	96.595744680851	9.3617021276596	3.12056737588653	mmol	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_black	36.0	hr	NA	97.0212765957445	105.531914893617	8.5106382978724	2.83687943262413	mmol	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	potassium	urine	NR	pot_hctz_white	36.0	hr	NA	117.872340425532	123.829787234042	5.9574468085106	1.98581560283687	mmol	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	aldosterone	urine	RIA	aldo_hctz_black	12.0	hr	NA	6578.94736842106	9605.26315789472	3026.31578947366	1008.77192982455	ng	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	aldosterone	urine	RIA	aldo_hctz_white	12.0	hr	NA	12763.1578947368	17631.5789473684	4868.4210526316	1622.80701754387	ng	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	aldosterone	urine	RIA	aldo_hctz_black	24.0	hr	NA	11973.6842105263	14078.9473684211	2105.26315789475	701.754385964917	ng	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	aldosterone	urine	RIA	aldo_hctz_white	24.0	hr	NA	20657.8947368421	25394.7368421052	4736.84210526311	1578.94736842104	ng	NA
-Ripley2000	NA	black	9.0	HCTZ25	cumulative amount	aldosterone	urine	RIA	aldo_hctz_black	36.0	hr	NA	20263.1578947369	24605.2631578947	4342.10526315786	1447.36842105262	ng	NA
-Ripley2000	NA	white	9.0	HCTZ25	cumulative amount	aldosterone	urine	RIA	aldo_hctz_white	36.0	hr	NA	34736.8421052631	40657.8947368421	5921.052631579	1973.68421052633	ng	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Ripley2000	black	NA	9	HCTZ25	cumulative amount	sample mean	NA	aldosterone	urine	RIA	aldo_hctz_black	12.0	hr	NA	6578.94736842106	NA	3026.31578947366	1008.77192982455	0.45999999999999586	NA	NA	NA	NA	NA	ng	NA
+Ripley2000	black	NA	9	HCTZ25	cumulative amount	sample mean	NA	aldosterone	urine	RIA	aldo_hctz_black	24.0	hr	NA	11973.6842105263	NA	2105.26315789475	701.754385964917	0.17582417582417714	NA	NA	NA	NA	NA	ng	NA
+Ripley2000	black	NA	9	HCTZ25	cumulative amount	sample mean	NA	aldosterone	urine	RIA	aldo_hctz_black	36.0	hr	NA	20263.1578947369	NA	4342.10526315786	1447.36842105262	0.21428571428571191	NA	NA	NA	NA	NA	ng	NA
+Ripley2000	white	NA	9	HCTZ25	cumulative amount	sample mean	NA	aldosterone	urine	RIA	aldo_hctz_white	12.0	hr	NA	12763.1578947368	NA	4868.4210526316	1622.80701754387	0.3814432989690751	NA	NA	NA	NA	NA	ng	NA
+Ripley2000	white	NA	9	HCTZ25	cumulative amount	sample mean	NA	aldosterone	urine	RIA	aldo_hctz_white	24.0	hr	NA	20657.8947368421	NA	4736.84210526311	1578.94736842104	0.2292993630573226	NA	NA	NA	NA	NA	ng	NA
+Ripley2000	white	NA	9	HCTZ25	cumulative amount	sample mean	NA	aldosterone	urine	RIA	aldo_hctz_white	36.0	hr	NA	34736.8421052631	NA	5921.052631579	1973.68421052633	0.17045454545454725	NA	NA	NA	NA	NA	ng	NA
+Ripley2000	black	NA	9	HCTZ25	cumulative amount	sample mean	NA	potassium	urine	NR	pot_hctz_black_fig2	12.0	hr	NA	42.5531914893617	NA	9.3617021276595	3.1205673758865	0.21999999999999825	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	black	NA	9	HCTZ25	cumulative amount	sample mean	NA	potassium	urine	NR	pot_hctz_black_fig2	24.0	hr	NA	67.2340425531914	NA	5.5319148936171	1.8439716312057	0.0822784810126595	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	black	NA	9	HCTZ25	cumulative amount	sample mean	NA	potassium	urine	NR	pot_hctz_black_fig2	36.0	hr	NA	97.0212765957445	NA	8.5106382978724	2.83687943262413	0.08771929824561482	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	white	NA	9	HCTZ25	cumulative amount	sample mean	NA	potassium	urine	NR	pot_hctz_white_fig2	12.0	hr	NA	61.2765957446808	NA	6.8085106382979	2.2695035460993	0.11111111111111166	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	white	NA	9	HCTZ25	cumulative amount	sample mean	NA	potassium	urine	NR	pot_hctz_white_fig2	24.0	hr	NA	87.2340425531914	NA	9.3617021276596	3.12056737588653	0.10731707317073211	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	white	NA	9	HCTZ25	cumulative amount	sample mean	NA	potassium	urine	NR	pot_hctz_white_fig2	36.0	hr	NA	117.872340425532	NA	5.9574468085106	1.98581560283687	0.050541516245487	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	black	NA	9	HCTZ25	cumulative amount	sample mean	NA	sodium	urine	NR	sodium_hctz_black_fig2	12.0	hr	NA	206.72268907563	NA	42.857142857143	14.2857142857143	0.20731707317073267	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	black	NA	9	HCTZ25	cumulative amount	sample mean	NA	sodium	urine	NR	sodium_hctz_black_fig2	24.0	hr	NA	272.268907563025	NA	17.6470588235294	5.88235294117647	0.06481481481481483	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	black	NA	9	HCTZ25	cumulative amount	sample mean	NA	sodium	urine	NR	sodium_hctz_black_fig2	36.0	hr	NA	335.294117647058	NA	35.2941176470588	11.7647058823529	0.10526315789473703	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	white	NA	9	HCTZ25	cumulative amount	sample mean	NA	sodium	urine	NR	sodium_hctz_white_fig2	12.0	hr	NA	204.201680672268	NA	30.252100840337	10.0840336134457	0.14814814814815305	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	white	NA	9	HCTZ25	cumulative amount	sample mean	NA	sodium	urine	NR	sodium_hctz_white_fig2	24.0	hr	NA	257.142857142856	NA	20.1680672268908	6.72268907563027	0.07843137254902013	NA	NA	NA	NA	NA	mmol	NA
+Ripley2000	white	NA	9	HCTZ25	cumulative amount	sample mean	NA	sodium	urine	NR	sodium_hctz_white_fig2	36.0	hr	NA	299.999999999999	NA	17.6470588235295	5.8823529411765	0.0588235294117652	NA	NA	NA	NA	NA	mmol	NA

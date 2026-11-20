@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -44,19 +45,28 @@ class Jordo1979(HCTZSimulationExperiment):
     doses_keys: ClassVar[list[str]] = ["12_5", "25"]
     individuals: ClassVar[list[str]] = ["mean", "JD", "LB", "US", "AH", "LW", "TB"]
 
+    @staticmethod
+    def _tab2_amount(dose: float, individual: str) -> str:
+        """Get the dataset of the urinary recovery of a dose of Tab2."""
+        subject = "all" if individual == "mean" else individual
+        return (
+            "Tab2_cumulative_amount_hydrochlorothiazide_urine_"
+            f"HCTZ{str(dose).replace('.', '_')}_{subject}"
+        )
+
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig1", "Fig2", "Tab2", "Tab2Mean"]:
+        for fig_id in ["Fig1", "Fig2", "Tab2"]:
             df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                elif label.startswith("amount_"):
-                    dset.unit_conversion("value", 1 / self.Mr.hctz)
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
+                elif label.startswith("cumulative_amount_"):
+                    dset.unit_conversion("value", 1 / self.Mr["hctz"])
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(f"{fig_id}_{label}")] = dset
         return dsets
 
@@ -71,11 +81,11 @@ class Jordo1979(HCTZSimulationExperiment):
                 preinit_changes={
                     **self.default_changes(),
                     # HCTZ alone was an alcoholic solution (p. 564)
-                    "POSOLUTION_hctz": Q(dose, "mg"),
+                    "SOLDOSE_hctz": Q(dose, "mg"),
                 },
             )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -98,7 +108,7 @@ class Jordo1979(HCTZSimulationExperiment):
                     self,
                     task=self.to_sid(f"task_hctz{dose}"),
                     xid="time",
-                    yid="[Cve_hctz]",
+                    yid="Carm_hctz",
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
@@ -122,11 +132,7 @@ class Jordo1979(HCTZSimulationExperiment):
                     self,
                     reference=FitData(
                         self,
-                        dataset=self.to_sid(
-                            f"Tab2Mean_{name}_hctz{str(dose).replace('.', '_')}"
-                            if "mean" in individual
-                            else f"Tab2_{name}_hctz{str(dose).replace('.', '_')}_{individual}"
-                        ),
+                        dataset=self._tab2_amount(dose, individual),
                         xid="time",
                         yid="mean" if "mean" in individual else "value",
                         yid_sd="mean_sd" if "mean" in individual else None,
@@ -137,6 +143,7 @@ class Jordo1979(HCTZSimulationExperiment):
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.URINE,
+                        sampling_site=SamplingSite.NOT_APPLICABLE,
                         application_form=ApplicationForm.SOLUTION,
                         route=Route.PO,
                         dosing=Dosing.SINGLE,
@@ -176,7 +183,7 @@ class Jordo1979(HCTZSimulationExperiment):
             plots[0].add_data(
                 task=self.to_sid(f"task_hctz{dose}"),
                 xid="time",
-                yid="[Cve_hctz]",
+                yid="Carm_hctz",
                 label=f"Sim {dose}",
                 color=colors[kd],
             )
@@ -227,16 +234,9 @@ class Jordo1979(HCTZSimulationExperiment):
 
         # data
         for kd, individual in enumerate(self.individuals):
-            for kplot, dose, name in [
-                (0, 12.5, "amount_cumulative"),
-                (1, 25, "amount_cumulative"),
-            ]:
+            for kplot, dose in [(0, 12.5), (1, 25)]:
                 plots[kplot].add_data(
-                    dataset=self.to_sid(
-                        f"Tab2Mean_{name}_hctz{str(dose).replace('.', '_')}"
-                        if "mean" in individual
-                        else f"Tab2_{name}_hctz{str(dose).replace('.', '_')}_{individual}"
-                    ),
+                    dataset=self._tab2_amount(dose, individual),
                     xid="time",
                     yid="mean" if "mean" in individual else "value",
                     yid_sd="mean_sd" if "mean" in individual else None,

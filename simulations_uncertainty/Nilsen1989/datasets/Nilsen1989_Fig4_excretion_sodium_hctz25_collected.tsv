@@ -1,7 +1,7 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	tstart	tend	mean_unit	value_unit	count_unit
-Nilsen1989		volunteers	9.0	HCTZ25	amount of the collection	sodium	urine	NR	excretion_sodium_hctz25	0	hr		8.43036125881466				collection before the dose, at its midpoint	-1	0	mmol	mmol	dimensionless
-Nilsen1989		volunteers	9.0	HCTZ25	amount of the collection	sodium	urine	NR	excretion_sodium_hctz25	1	hr		16.3137565896072					0	1	mmol	mmol	dimensionless
-Nilsen1989		volunteers	9.0	HCTZ25	amount of the collection	sodium	urine	NR	excretion_sodium_hctz25	2	hr		30.5274538442228					1	2	mmol	mmol	dimensionless
-Nilsen1989		volunteers	9.0	HCTZ25	amount of the collection	sodium	urine	NR	excretion_sodium_hctz25	4	hr		53.4202058467788					2	4	mmol	mmol	dimensionless
-Nilsen1989		volunteers	9.0	HCTZ25	amount of the collection	sodium	urine	NR	excretion_sodium_hctz25	8	hr		96.4866838586					4	8	mmol	mmol	dimensionless
-Nilsen1989		volunteers	9.0	HCTZ25	amount of the collection	sodium	urine	NR	excretion_sodium_hctz25	24	hr		172.0532189232976					8	24	mmol	mmol	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments	tstart	tend
+Nilsen1989	volunteers		9	dimensionless	HCTZ25	amount of the collection	sample mean		sodium	urine	NR	excretion_sodium_hctz25	0	hr		mmol	8.43036125881466			mmol		mmol					mmol		dimensionless		collection before the dose, at its midpoint (mid-point time of each collection)	-1	0
+Nilsen1989	volunteers		9	dimensionless	HCTZ25	amount of the collection	sample mean		sodium	urine	NR	excretion_sodium_hctz25	1	hr		mmol	16.3137565896072			mmol		mmol					mmol		dimensionless			0	1
+Nilsen1989	volunteers		9	dimensionless	HCTZ25	amount of the collection	sample mean		sodium	urine	NR	excretion_sodium_hctz25	2	hr		mmol	30.5274538442228			mmol		mmol					mmol		dimensionless			1	2
+Nilsen1989	volunteers		9	dimensionless	HCTZ25	amount of the collection	sample mean		sodium	urine	NR	excretion_sodium_hctz25	4	hr		mmol	53.4202058467788			mmol		mmol					mmol		dimensionless			2	4
+Nilsen1989	volunteers		9	dimensionless	HCTZ25	amount of the collection	sample mean		sodium	urine	NR	excretion_sodium_hctz25	8	hr		mmol	96.4866838586			mmol		mmol					mmol		dimensionless			4	8
+Nilsen1989	volunteers		9	dimensionless	HCTZ25	amount of the collection	sample mean		sodium	urine	NR	excretion_sodium_hctz25	24	hr		mmol	172.0532189232976			mmol		mmol					mmol		dimensionless			8	24

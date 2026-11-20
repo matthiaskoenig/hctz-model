@@ -1,11 +1,11 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Barbhaiya1982a	NA	all	20.0	HCTZ50_MSD	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	hr	NA	310.0	NA	115.0	NA	ng/ml	NA
-Barbhaiya1982a	NA	all	20.0	HCTZ50_MSD	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	hr	NA	2.1	NA	0.9	NA	hr	NA
-Barbhaiya1982a	NA	all	20.0	HCTZ50_MSD	auc measurement	hydrochlorothiazide	plasma	HPLC	NA	NA	hr	NA	2442.0	NA	676.0	NA	ng*hr/ml	NA
-Barbhaiya1982a	NA	all	20.0	HCTZ50_MSD	recovery	hydrochlorothiazide	urine	HPLC	NA	48.0	hr	NA	74.4	NA	10.2	NA	percent	NA
-Barbhaiya1982a	NA	all	20.0	HCTZ50_MSD	clearance_renal	hydrochlorothiazide	urine	HPLC	NA	NA	hr	NA	289.0	NA	92.0	NA	ml/min	NA
-Barbhaiya1982a	NA	all	20.0	HCTZ50_Stanlab	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	hr	NA	331.0	NA	103.0	NA	ng/ml	NA
-Barbhaiya1982a	NA	all	20.0	HCTZ50_Stanlab	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	hr	NA	2.5	NA	1.1	NA	hr	NA
-Barbhaiya1982a	NA	all	20.0	HCTZ50_Stanlab	auc measurement	hydrochlorothiazide	plasma	HPLC	NA	NA	hr	NA	2583.0	NA	580.0	NA	ng*hr/ml	NA
-Barbhaiya1982a	NA	all	20.0	HCTZ50_Stanlab	recovery	hydrochlorothiazide	urine	HPLC	NA	48.0	hr	NA	76.8	NA	9.5	NA	percent	NA
-Barbhaiya1982a	NA	all	20.0	HCTZ50_Stanlab	clearance_renal	hydrochlorothiazide	urine	HPLC	NA	NA	hr	NA	275.0	NA	67.0	NA	ml/min	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Barbhaiya1982a	all	NA	20	HCTZ50_MSD	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_measurement_hydrochlorothiazide_plasma_HCTZ50_MSD_all	NA	hr	NA	2442.0	NA	676.0	151.15819527898577	0.27682227682227684	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Barbhaiya1982a	all	NA	20	HCTZ50_MSD	clearance_renal	sample mean	NA	hydrochlorothiazide	urine	HPLC	clearance_renal_hydrochlorothiazide_urine_HCTZ50_MSD_all	NA	hr	NA	289.0	NA	92.0	20.571825392998065	0.31833910034602075	NA	NA	NA	NA	NA	ml/min	NA
+Barbhaiya1982a	all	NA	20	HCTZ50_MSD	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_HCTZ50_MSD_all	NA	hr	NA	310.0	NA	115.0	25.71478174124758	0.3709677419354839	NA	NA	NA	NA	NA	ng/ml	NA
+Barbhaiya1982a	all	NA	20	HCTZ50_MSD	recovery	sample mean	NA	hydrochlorothiazide	urine	HPLC	recovery_hydrochlorothiazide_urine_HCTZ50_MSD_all	48.0	hr	NA	74.4	NA	10.2	2.2807893370497854	0.13709677419354838	NA	NA	NA	NA	NA	percent	NA
+Barbhaiya1982a	all	NA	20	HCTZ50_MSD	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ50_MSD_all	NA	hr	NA	2.1	NA	0.9	0.20124611797498107	0.42857142857142855	NA	NA	NA	NA	NA	hr	NA
+Barbhaiya1982a	all	NA	20	HCTZ50_Stanlab	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_measurement_hydrochlorothiazide_plasma_HCTZ50_Stanlab_all	NA	hr	NA	2583.0	NA	580.0	129.6919426949878	0.22454510259388308	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Barbhaiya1982a	all	NA	20	HCTZ50_Stanlab	clearance_renal	sample mean	NA	hydrochlorothiazide	urine	HPLC	clearance_renal_hydrochlorothiazide_urine_HCTZ50_Stanlab_all	NA	hr	NA	275.0	NA	67.0	14.98165544924859	0.24363636363636362	NA	NA	NA	NA	NA	ml/min	NA
+Barbhaiya1982a	all	NA	20	HCTZ50_Stanlab	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_HCTZ50_Stanlab_all	NA	hr	NA	331.0	NA	103.0	23.03150016824783	0.311178247734139	NA	NA	NA	NA	NA	ng/ml	NA
+Barbhaiya1982a	all	NA	20	HCTZ50_Stanlab	recovery	sample mean	NA	hydrochlorothiazide	urine	HPLC	recovery_hydrochlorothiazide_urine_HCTZ50_Stanlab_all	48.0	hr	NA	76.8	NA	9.5	2.1242645786248002	0.12369791666666667	NA	NA	NA	NA	NA	percent	NA
+Barbhaiya1982a	all	NA	20	HCTZ50_Stanlab	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ50_Stanlab_all	NA	hr	NA	2.5	NA	1.1	0.24596747752497689	0.44000000000000006	NA	NA	NA	NA	NA	hr	NA

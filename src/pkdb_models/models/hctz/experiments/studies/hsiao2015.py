@@ -32,6 +32,9 @@ class Hsiao2015(HCTZSimulationExperiment):
     and with 400 mg LCZ696 once daily (Period 3), after an overnight fast of at
     least 10 hours; the plasma was sampled at steady state after the dose of
     day 4 (p. 4, Study 1). The data refer to the last dose.
+
+    The subjects are mostly men (23 of 27), simulated on the male build of
+    the model.
     """
 
     suffixes: ClassVar[list[str]] = ["hctz25", "hctz25_kombi"]
@@ -46,7 +49,7 @@ class Hsiao2015(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[f"{fig_id}_{label}"] = dset
 
         return dsets
@@ -68,7 +71,7 @@ class Hsiao2015(HCTZSimulationExperiment):
             time_shift=-dose_times[-1],
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -86,7 +89,7 @@ class Hsiao2015(HCTZSimulationExperiment):
                     count="count",
                 ),
                 observable=FitData(
-                    self, task="task_hctz25", xid="time", yid="[Cve_hctz]"
+                    self, task="task_hctz25", xid="time", yid="Carm_hctz"
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
@@ -120,7 +123,7 @@ class Hsiao2015(HCTZSimulationExperiment):
         plots[0].add_data(
             task="task_hctz25",
             xid="time",
-            yid="[Cve_hctz]",
+            yid="Carm_hctz",
             label="Sim",
             color=self.color_hctz,
         )

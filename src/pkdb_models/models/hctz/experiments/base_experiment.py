@@ -1,12 +1,15 @@
 """Base class of the HCTZ simulation experiments."""
 
+import math
 from collections.abc import Iterable, Mapping, Sequence
-from typing import Any, ClassVar, NamedTuple, override
+from typing import Any, ClassVar, overload, override
 
 import pandas as pd
-from pkpdsim.experiment import PKPDSimulationExperiment
-from pkpdsim.scan import start_values
+from pkpdsim import impairment
+from pkpdsim.pbpk import PBPKSimulationExperiment, ScaledRenalMap, molecular_weights
 from sbmlsim import Q
+from sbmlsim.result.scan import start_values
+from sbmlsim.simulation import Scan, Simulation
 from sbmlsim.units import Quantity
 
 from pkdb_models.models.hctz import MODEL
@@ -14,16 +17,10 @@ from pkdb_models.models.hctz.hctz_pk import (
     calculate_hctz_pd,
     calculate_hctz_pk,
 )
+from pkdb_models.models.hctz.models.definition import DEFINITION
 
 
-class MolecularWeights(NamedTuple):
-    """Molecular weights for the conversion of the data."""
-
-    hctz: Quantity
-    ren: Quantity
-
-
-class HCTZSimulationExperiment(PKPDSimulationExperiment):
+class HCTZSimulationExperiment(PBPKSimulationExperiment):
     """Base class of the HCTZ simulation experiments."""
 
     pkpd_model = MODEL
@@ -32,40 +29,40 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
         # pharmacokinetics
         "IVDOSE_hctz",
         "PODOSE_hctz",
-        "[Cve_hctz]",
+        "Carm_hctz",
         "Afeces_hctz",  # cumulative amount of hctz in feces
-        "KI__HCTZEX",  # urinary excretion rate
+        "Rurine_hctz",  # urinary excretion rate
         "Aurine_hctz",  # cumulative amount of hctz in urine
-        "hctz_urine_excretion",  # concentration of hctz in the urine formed at the time
+        "FLUID__hctz_urine_excretion",  # concentration of hctz in the urine formed at the time
         # Urine volume & ion balance
-        "NA_EXCRETION",  # mmole/hr [mmole/min]
-        "CL_EXCRETION",  # mmole/hr [mmole/min]
-        "NA_FILTRATION",  # mmole/hr [mmole/min]
-        "CL_FILTRATION",  # mmole/hr [mmole/min]
-        "NA_REABSORPTION",  # mmole/hr [mmole/min]
-        "CL_REABSORPTION",  # mmole/hr [mmole/min]
-        "diuresis",  # ml/hr [l/min]
-        "Vurine",  # urine volume
-        "na_urine",  # sodium urine
-        "cl_urine",  # chloride urine
-        "[na]",  # sodium ECF
-        "[cl]",  # chloride ECF
-        "ECF",
-        "vin_na",
-        "vin_cl",
-        "NA_UPTAKE",
-        "CL_UPTAKE",
-        "vin_h2o",
-        "H2O_UPTAKE",
-        "h2o_reabsorption",
-        "bp_systolic",  # blood pressure systolic
-        "bp_diastolic",  # blood pressure diastolic
-        "bp_mean",  # mean arterial pressure
+        "FLUID__NA_EXCRETION",  # mmole/hr [mmole/min]
+        "FLUID__CL_EXCRETION",  # mmole/hr [mmole/min]
+        "FLUID__NA_FILTRATION",  # mmole/hr [mmole/min]
+        "FLUID__CL_FILTRATION",  # mmole/hr [mmole/min]
+        "FLUID__NA_REABSORPTION",  # mmole/hr [mmole/min]
+        "FLUID__CL_REABSORPTION",  # mmole/hr [mmole/min]
+        "FLUID__diuresis",  # ml/hr [l/min]
+        "FLUID__Vurine",  # urine volume
+        "FLUID__na_urine",  # sodium urine
+        "FLUID__cl_urine",  # chloride urine
+        "[FLUID__na]",  # sodium ECF
+        "[FLUID__cl]",  # chloride ECF
+        "FLUID__ECF",
+        "FLUID__vin_na",
+        "FLUID__vin_cl",
+        "FLUID__NA_UPTAKE",
+        "FLUID__CL_UPTAKE",
+        "FLUID__vin_h2o",
+        "FLUID__H2O_UPTAKE",
+        "FLUID__h2o_reabsorption",
+        "FLUID__bp_systolic",  # blood pressure systolic
+        "FLUID__bp_diastolic",  # blood pressure diastolic
+        "FLUID__bp_mean",  # mean arterial pressure
         # parameter scans
         "PODOSE_hctz",
         "f_renal_function",
-        "f_cirrhosis",
-        "f_cardiac_function",
+        "CP_severity",
+        "HF_severity",
     )
 
     font: ClassVar[dict[str, Any]] = {"weight": "bold", "size": 22}
@@ -88,33 +85,33 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
 
     units: ClassVar[Mapping[str, str]] = {
         "time": "hr",
-        "[Cve_hctz]": unit_hctz,
+        "Carm_hctz": unit_hctz,
         "Aurine_hctz": unit_hctz_urine,
         "Afeces_hctz": unit_hctz_feces,
-        "KI__HCTZEX": unit_hctz_excretion_urine,
-        "bp_systolic": "mmHg",
-        "bp_diastolic": "mmHg",
-        "bp_mean": "mmHg",
-        "Vurine": unit_urine_volume,
-        "NA_EXCRETION": "mmole/hr",
-        "CL_EXCRETION": "mmole/hr",
-        "vin_na": "mmole/hr",
-        "vin_cl": "mmole/hr",
-        "NA_UPTAKE": "mmole/hr",
-        "CL_UPTAKE": "mmole/hr",
-        "NA_FILTRATION": "mmole/hr",
-        "CL_FILTRATION": "mmole/hr",
-        "NA_REABSORPTION": "mmole/hr",
-        "CL_REABSORPTION": "mmole/hr",
-        "diuresis": "ml/hr",
-        "vin_h2o": "ml/hr",
-        "H2O_UPTAKE": "ml/hr",
-        "h2o_reabsorption": "ml/hr",
-        "ECF": "l",
-        "[na]": unit_na,
-        "[cl]": unit_cl,
-        "na_urine": unit_na_urine,
-        "cl_urine": unit_cl_urine,
+        "Rurine_hctz": unit_hctz_excretion_urine,
+        "FLUID__bp_systolic": "mmHg",
+        "FLUID__bp_diastolic": "mmHg",
+        "FLUID__bp_mean": "mmHg",
+        "FLUID__Vurine": unit_urine_volume,
+        "FLUID__NA_EXCRETION": "mmole/hr",
+        "FLUID__CL_EXCRETION": "mmole/hr",
+        "FLUID__vin_na": "mmole/hr",
+        "FLUID__vin_cl": "mmole/hr",
+        "FLUID__NA_UPTAKE": "mmole/hr",
+        "FLUID__CL_UPTAKE": "mmole/hr",
+        "FLUID__NA_FILTRATION": "mmole/hr",
+        "FLUID__CL_FILTRATION": "mmole/hr",
+        "FLUID__NA_REABSORPTION": "mmole/hr",
+        "FLUID__CL_REABSORPTION": "mmole/hr",
+        "FLUID__diuresis": "ml/hr",
+        "FLUID__vin_h2o": "ml/hr",
+        "FLUID__H2O_UPTAKE": "ml/hr",
+        "FLUID__h2o_reabsorption": "ml/hr",
+        "FLUID__ECF": "l",
+        "[FLUID__na]": unit_na,
+        "[FLUID__cl]": unit_cl,
+        "FLUID__na_urine": unit_na_urine,
+        "FLUID__cl_urine": unit_cl_urine,
     }
 
     label_time = "time"
@@ -131,43 +128,41 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
 
     labels: ClassVar[Mapping[str, str]] = {
         "time": label_time,
-        "[Cve_hctz]": label_hctz,
+        "Carm_hctz": label_hctz,
         "Aurine_hctz": label_hctz_urine,
         "Afeces_hctz": label_hctz_feces,
-        "KI__HCTZEX": label_hctz_excretion_urine,
-        "bp_systolic": "blood pressure systolic\n",
-        "bp_diastolic": "blood pressure diastolic\n",
-        "bp_mean": "mean arterial pressure\n",
-        "Vurine": label_urine_volume,
-        "NA_EXCRETION": "Sodium excretion\n",
-        "CL_EXCRETION": "Chloride excretion\n",
-        "vin_na": "Na uptake baseline",
-        "vin_cl": "Cl uptake baseline",
-        "NA_UPTAKE": "Na uptake",
-        "CL_UPTAKE": "Cl uptake",
-        "NA_FILTRATION": "Na filtration",
-        "CL_FILTRATION": "Cl filtration",
-        "NA_REABSORPTION": "Na reabsorption",
-        "CL_REABSORPTION": "Cl reabsorption",
-        "vin_h2o": "H2O uptake baseline",
-        "H2O_UPTAKE": "H2O uptake",
-        "h2o_reabsorption": "H2O reabsorption",
-        "diuresis": "diuresis",
-        "ECF": "Extracellular fluid",
-        "[na]": label_na,
-        "[cl]": label_cl,
-        "na_urine": label_na_urine,
-        "cl_urine": label_cl_urine,
+        "Rurine_hctz": label_hctz_excretion_urine,
+        "FLUID__bp_systolic": "blood pressure systolic\n",
+        "FLUID__bp_diastolic": "blood pressure diastolic\n",
+        "FLUID__bp_mean": "mean arterial pressure\n",
+        "FLUID__Vurine": label_urine_volume,
+        "FLUID__NA_EXCRETION": "Sodium excretion\n",
+        "FLUID__CL_EXCRETION": "Chloride excretion\n",
+        "FLUID__vin_na": "Na uptake baseline",
+        "FLUID__vin_cl": "Cl uptake baseline",
+        "FLUID__NA_UPTAKE": "Na uptake",
+        "FLUID__CL_UPTAKE": "Cl uptake",
+        "FLUID__NA_FILTRATION": "Na filtration",
+        "FLUID__CL_FILTRATION": "Cl filtration",
+        "FLUID__NA_REABSORPTION": "Na reabsorption",
+        "FLUID__CL_REABSORPTION": "Cl reabsorption",
+        "FLUID__vin_h2o": "H2O uptake baseline",
+        "FLUID__H2O_UPTAKE": "H2O uptake",
+        "FLUID__h2o_reabsorption": "H2O reabsorption",
+        "FLUID__diuresis": "diuresis",
+        "FLUID__ECF": "Extracellular fluid",
+        "[FLUID__na]": label_na,
+        "[FLUID__cl]": label_cl,
+        "FLUID__na_urine": label_na_urine,
+        "FLUID__cl_urine": label_cl_urine,
     }
 
     color_hctz = "black"
     color_hctz_urine = "black"
 
-    # molecular weights of hydrochlorothiazide and renin (Giudicelli1987)
-    Mr: ClassVar[MolecularWeights] = MolecularWeights(
-        hctz=Q(297.7, "g/mole"),
-        ren=Q(45057, "g/mole"),
-    )
+    #: the molecular weights of the conversion of the data, of the definition:
+    #: hydrochlorothiazide (`Mr_hctz`) and renin (`Mr_ren`, Giudicelli1987)
+    Mr: ClassVar[Mapping[str, Quantity]] = molecular_weights(DEFINITION)
 
     renal_colors: ClassVar[Mapping[str, str]] = {
         "Control": "black",
@@ -197,14 +192,57 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
         df = super().load_dataframe(fig_id, study, na_values=na_values)
         return without_zero_start(df)
 
+    def group_counts(self) -> dict[str, int]:
+        """Get the number of subjects of every group of the study (TabGroups).
+
+        The points of a scatter of pkdb_data have the count 1, also where a
+        point is the mean of a group.
+        """
+        df = self.load_dataframe("TabGroups")
+        return {
+            str(k): int(v) for k, v in zip(df["name"], df["group_count"], strict=True)
+        }
+
     #: the urine of a collection: what is emptied at its end, see
     #: `collected_amounts`
     urine_reset: ClassVar[dict[str, Quantity]] = {
         "Aurine_hctz": Q(0, "mmole"),
-        "Vurine": Q(1e-6, "l"),
-        "na_urine": Q(0, "mmole"),
-        "cl_urine": Q(0, "mmole"),
+        "FLUID__Vurine": Q(1e-6, "l"),
+        "FLUID__na_urine": Q(0, "mmole"),
+        "FLUID__cl_urine": Q(0, "mmole"),
     }
+
+    @overload
+    def equilibrated_all(
+        self, simulations: Mapping[str, Simulation]
+    ) -> dict[str, Simulation]: ...
+
+    @overload
+    def equilibrated_all(self, simulations: Mapping[str, Scan]) -> dict[str, Scan]: ...
+
+    @overload
+    def equilibrated_all(
+        self, simulations: Mapping[str, Simulation | Scan]
+    ) -> dict[str, Simulation | Scan]: ...
+
+    def equilibrated_all(
+        self, simulations: Mapping[str, Simulation | Scan]
+    ) -> dict[str, Simulation] | dict[str, Scan] | dict[str, Simulation | Scan]:
+        """Get the simulations, each starting from the drug-free steady state of its condition.
+
+        The start of the model is the steady state of the healthy reference
+        individual without the fluid PD: without HCTZ the extracellular fluid,
+        the electrolytes and the pressures drift (in renal impairment by days
+        to a new steady state), which a study measures as the basal state of
+        its subjects. Every simulation equilibrates its condition first
+        (`equilibrated`, every point of a scan in its own), the urine of the
+        fluid PD, which grows without a steady state, is emptied at the start
+        (`urine_reset`).
+        """
+        equilibrated: dict[str, Simulation | Scan] = {}
+        for key, simulation in simulations.items():
+            equilibrated[key] = self.equilibrated(simulation, resets=self.urine_reset)
+        return equilibrated
 
     @staticmethod
     def collected_amounts(
@@ -254,56 +292,31 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
         df["measurement_type"] = "amount of the collection"
         return df.reset_index(drop=True)
 
-    #: the healthy glomerular filtration rate of the model at 75 kg [ml/min],
-    #: `GFR_base`, the normal rate of the classes of renal impairment
-    gfr_healthy: ClassVar[float] = 101.0
+    #: the lower end of the supported renal function of the model: without
+    #: filtration the excretion of sodium and chloride goes on without urine
+    #: and the urinary concentration of HCTZ is not defined (anuria is not
+    #: supported); the upper end is the validity of the kidney outflow of the
+    #: library (`renal_function_limits`)
+    renal_function_range: ClassVar[tuple[float, float] | None] = (0.05, math.inf)
 
-    #: the supported renal function of the model: up to 2 the filtration
-    #: stays a physiological fraction of the renal plasma flow (0.28 at a
-    #: hematocrit of 0.45, 0.14 at renal function 1), and without filtration
-    #: the excretion of sodium and chloride goes on without urine and the
-    #: urinary concentration of HCTZ is not defined (anuria is not supported)
-    renal_function_range: ClassVar[tuple[float, float]] = (0.05, 2.0)
-
-    @classmethod
-    def renal_function(
-        cls, clearance: float, f_cardiac_function: float = 1.0
-    ) -> Quantity:
-        """Get the renal function of a measured clearance.
-
-        The glomerular filtration rate of the model is `f_renal_function *
-        GFR_base`, and `GFR_base` is proportional to the renal blood flow and
-        so to the cardiac function. A measured clearance includes the effect
-        of an impaired cardiac function, the renal function is the clearance
-        relative to the healthy rate of that cardiac function, so that the
-        simulated rate is the measured one.
-
-        Args:
-            clearance: measured clearance (creatinine clearance or GFR) [ml/min],
-                not indexed to the body surface area.
-            f_cardiac_function: cardiac function of the simulation.
-
-        Returns:
-            The renal function `f_renal_function`.
-
-        Raises:
-            ValueError: for a renal function outside of `renal_function_range`.
-        """
-        value = clearance / (cls.gfr_healthy * f_cardiac_function)
-        low, high = cls.renal_function_range
-        if not low <= value <= high:
-            raise ValueError(
-                f"The renal function {value:.3g} of a clearance of {clearance} "
-                f"ml/min is outside of the supported range {low} to {high}."
-            )
-        return Q(value, "dimensionless")
-
+    #: the classes of renal impairment by their GFR in ml/min (the midpoints of
+    #: `impairment.RENAL_FUNCTION`), relative to the healthy GFR of the model
+    renal_map: ClassVar[Mapping[str, float]] = ScaledRenalMap(impairment.RENAL_FUNCTION)
+    #: the classes of heart failure of the studies as the severity
+    #: `HF_severity`: mild, moderate and severe are the NYHA classes II to IV
+    cardiac_map: ClassVar[Mapping[str, float]] = {
+        "Normal cardiac function": 0,
+        "Mild cardiac impairment": 2,
+        "Moderate cardiac impairment": 3,
+        "Severe cardiac impairment": 4,
+    }
     cardiac_colors: ClassVar[Mapping[str, str]] = {
-        "Normal cardiac function": "black",
-        "Mild cardiac impairment": "#FFB233",
-        "Moderate cardiac impairment": "#FF8333",
-        "Severe cardiac impairment": "tab:red",
-        "Cardiac failure": "darkred",
+        "Normal cardiac function": impairment.HEART_FAILURE_COLORS[
+            "Normal cardiac function"
+        ],
+        "Mild cardiac impairment": impairment.HEART_FAILURE_COLORS["NYHA II"],
+        "Moderate cardiac impairment": impairment.HEART_FAILURE_COLORS["NYHA III"],
+        "Severe cardiac impairment": impairment.HEART_FAILURE_COLORS["NYHA IV"],
     }
 
     # --- Pharmacokinetic parameters ---
@@ -353,7 +366,7 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
             fitted parameters in a run over them (`uncertainty`).
         """
         keys = self._simulations if scans is None else scans
-        across = None if self.uncertainty is None else self.uncertainty.id
+        across = self.across()
         return {
             key: calculate_hctz_pk(
                 experiment=self, res=self.results[f"task_{key}"], across=across
@@ -375,7 +388,7 @@ class HCTZSimulationExperiment(PKPDSimulationExperiment):
             fitted parameters in a run over them (`uncertainty`).
         """
         keys = self._simulations if scans is None else scans
-        across = None if self.uncertainty is None else self.uncertainty.id
+        across = self.across()
         return {
             key: calculate_hctz_pd(res=self.results[f"task_{key}"], across=across)
             for key in keys

@@ -1,0 +1,28 @@
+study	name	group_count	parent	measurement_type	count	substance	choice	mean	median	sd	se	min	max	unit	comments
+Ernst2006	all	30	NA	sex	30.0	NA	MF	NA	NA	NA	NA	NA	NA	NA	Men and women; 16 of the 30 are men (9 of the HCTZ group and 7 of the chlorthalidone group).
+Ernst2006	all	30	NA	disease	30.0	NA	hypertension	NA	NA	NA	NA	NA	NA	NA	Prehypertension or a new or established diagnosis of hypertension (stage 1 or 2); mostly stage 1 hypertension.
+Ernst2006	all	30	NA	healthy	30.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Ernst2006	all	30	NA	medication	30.0	NA	N	NA	NA	NA	NA	NA	NA	NA	No antihypertensive medication within the last 3 months; all naive to antihypertensive treatment except 1 patient treated in the past who discontinued more than 3 months before enrollment.
+Ernst2006	all	30	NA	species	30.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA
+Ernst2006	CLTD_first	14	all	age	14.0	NA	NA	46.0	NA	15.0	NA	NA	NA	yr	NA
+Ernst2006	CLTD_first	14	all	blood pressure diastolic	14.0	NA	NA	95.6	NA	7.2	NA	NA	NA	mmHg	Office DBP at baseline: average of 2 readings taken at least 30 seconds apart.
+Ernst2006	CLTD_first	14	all	blood pressure systolic	14.0	NA	NA	144.9	NA	9.8	NA	NA	NA	mmHg	Office SBP at baseline: average of 2 readings taken at least 30 seconds apart.
+Ernst2006	CLTD_first	14	all	bmi	14.0	NA	NA	26.6	NA	3.4	NA	NA	NA	kg/m^2	NA
+Ernst2006	CLTD_first	14	all	concentration	14.0	potassium	NA	4.2	NA	0.2	NA	NA	NA	mmol/l	Serum potassium at baseline (week 0), printed in meq/L; 1 meq of K+ is 1 mmol.
+Ernst2006	CLTD_first	14	all	ethnicity	12.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	Printed as white.
+Ernst2006	CLTD_first	14	all	gfr	14.0	NA	NA	87.5	NA	15.4	NA	NA	NA	ml/min	Glomerular filtration rate by the MDRD method, printed in mL/min.
+Ernst2006	CLTD_first	14	all	height	14.0	NA	NA	173.0	NA	9.4	NA	NA	NA	cm	NA
+Ernst2006	CLTD_first	14	all	sex	7.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Ernst2006	CLTD_first	14	all	weight	14.0	NA	NA	80.0	NA	15.0	NA	NA	NA	kg	NA
+Ernst2006	CLTD_first_both	13	CLTD_first	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+Ernst2006	HCTZ_first	16	all	age	16.0	NA	NA	49.0	NA	11.0	NA	NA	NA	yr	NA
+Ernst2006	HCTZ_first	16	all	blood pressure diastolic	16.0	NA	NA	91.1	NA	11.5	NA	NA	NA	mmHg	Office DBP at baseline: average of 2 readings taken at least 30 seconds apart.
+Ernst2006	HCTZ_first	16	all	blood pressure systolic	16.0	NA	NA	140.1	NA	12.7	NA	NA	NA	mmHg	Office SBP at baseline: average of 2 readings taken at least 30 seconds apart.
+Ernst2006	HCTZ_first	16	all	bmi	16.0	NA	NA	29.7	NA	4.0	NA	NA	NA	kg/m^2	NA
+Ernst2006	HCTZ_first	16	all	concentration	16.0	potassium	NA	4.2	NA	0.3	NA	NA	NA	mmol/l	Serum potassium at baseline (week 0), printed in meq/L; 1 meq of K+ is 1 mmol.
+Ernst2006	HCTZ_first	16	all	ethnicity	13.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	Printed as white.
+Ernst2006	HCTZ_first	16	all	gfr	16.0	NA	NA	86.4	NA	13.2	NA	NA	NA	ml/min	Glomerular filtration rate by the MDRD method, printed in mL/min.
+Ernst2006	HCTZ_first	16	all	height	16.0	NA	NA	173.6	NA	10.0	NA	NA	NA	cm	NA
+Ernst2006	HCTZ_first	16	all	sex	9.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Ernst2006	HCTZ_first	16	all	weight	16.0	NA	NA	90.1	NA	17.4	NA	NA	NA	kg	NA
+Ernst2006	HCTZ_first_both	11	HCTZ_first	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA

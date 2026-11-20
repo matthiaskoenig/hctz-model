@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -35,6 +36,11 @@ class Ripley2000(HCTZSimulationExperiment):
     intervals of Fig2. Fig2 gives the SD of the interval, the data carry the SD
     of the cumulative value at 36 hr as sqrt(SD_0-24^2 + SD_24-36^2), the SD of
     the sum of independent intervals.
+
+    The subjects are mostly women (14 of 18, 7 of the 9 of each group),
+    but the study runs on the male build of the model: the model has no
+    female build yet, since its fluid PD has the references of a man
+    (TODO.md, P1 "Simulate women with the female build").
     """
 
     interventions: ClassVar[list[str]] = [
@@ -60,6 +66,9 @@ class Ripley2000(HCTZSimulationExperiment):
         "hctz": 25,
     }
 
+    #: the label of the urinary recovery in Tab3, followed by the group
+    tab3_amount: ClassVar[str] = "cumulative_amount_hydrochlorothiazide_urine_HCTZ25"
+
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
@@ -68,12 +77,8 @@ class Ripley2000(HCTZSimulationExperiment):
             for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith("hctz"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                # elif fig_id == "Fig3" and label.startswith("renin"):
-                #     dset.unit_conversion("mean", 1 / self.Mr.ren)
-                # elif fig_id == "Fig3" and label.startswith("aldo"):
-                #     dset.unit_conversion("mean", 1 / self.Mr.ald)
+                if label.startswith("cumulative_amount_hydrochlorothiazide"):
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[f"{fig_id}_{label}"] = dset
 
         return dsets
@@ -90,16 +95,9 @@ class Ripley2000(HCTZSimulationExperiment):
                 preinit_changes={
                     **self.default_changes(),
                     "PODOSE_hctz": Q(dose, "mg"),
-                    # # mean value of acute renin at baseline
-                    # "ren_ref": Q((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
-                    # "[ren]": Q((0.99 + 1.53 + 1.53 + 2.29)/4, "ng/dl") / self.Mr.ren,  # HCTZ25 mono
-                    #
-                    # # mean value of acute aldosterone at baseline
-                    # "ald_ref": Q((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
-                    # "[ald]": Q((9.08 + 12.16 + 12.16 + 18.90)/4, "ng/ml") / self.Mr.ald,  # HCTZ25 mono
                 },
             )
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -107,14 +105,14 @@ class Ripley2000(HCTZSimulationExperiment):
         # the dataset, the observable and the intervention whose simulation
         # the dataset is compared with
         infos = [
-            ("Tab3_hctz_aurine_black", "Aurine_hctz", "hctz"),
-            ("Tab3_hctz_aurine_white", "Aurine_hctz", "hctz"),
-            ("Fig1_2_sodium_baseline_black", "na_urine", "baseline"),
-            ("Fig1_2_sodium_baseline_white", "na_urine", "baseline"),
-            # ("Fig1_2_sodium_diet_black", "na_urine", "diet"),
-            # ("Fig1_2_sodium_diet_white", "na_urine", "diet"),
-            ("Fig1_2_sodium_hctz_black", "na_urine", "hctz"),
-            ("Fig1_2_sodium_hctz_white", "na_urine", "hctz"),
+            (f"Tab3_{self.tab3_amount}_black", "Aurine_hctz", "hctz"),
+            (f"Tab3_{self.tab3_amount}_white", "Aurine_hctz", "hctz"),
+            ("Fig1_2_sodium_baseline_black", "FLUID__na_urine", "baseline"),
+            ("Fig1_2_sodium_baseline_white", "FLUID__na_urine", "baseline"),
+            # ("Fig1_2_sodium_diet_black", "FLUID__na_urine", "diet"),
+            # ("Fig1_2_sodium_diet_white", "FLUID__na_urine", "diet"),
+            ("Fig1_2_sodium_hctz_black", "FLUID__na_urine", "hctz"),
+            ("Fig1_2_sodium_hctz_white", "FLUID__na_urine", "hctz"),
             # ("Fig3_renin_plasma_hctz_black_supine", "[ren]"),
             # ("Fig3_renin_plasma_hctz_white_supine", "[ren]"),
             # ("Fig3_renin_plasma_hctz_black_upright", "[ren]"),
@@ -146,6 +144,7 @@ class Ripley2000(HCTZSimulationExperiment):
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
@@ -193,7 +192,7 @@ class Ripley2000(HCTZSimulationExperiment):
         # data
         for group in self.groups:
             plots[0].add_data(
-                dataset=f"Tab3_hctz_aurine_{group}",
+                dataset=f"Tab3_{self.tab3_amount}_{group}",
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
@@ -224,7 +223,7 @@ class Ripley2000(HCTZSimulationExperiment):
             plots[0].add_data(
                 task=f"task_hctz{dose}_{intervention}",
                 xid="time",
-                yid="na_urine",
+                yid="FLUID__na_urine",
                 label=f"Sim {intervention}",
                 color=self.colors[intervention],
             )

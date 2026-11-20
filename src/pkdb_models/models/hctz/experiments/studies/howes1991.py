@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -35,8 +36,8 @@ class Howes1991(HCTZSimulationExperiment):
     #: as a single dose: HCTZ alone, HCTZ and enalapril as separate tablets
     #: (`multi` in the labels of the data is the two tablets, not multiple
     #: dosing) and both in one combination tablet. Per arm the key, the suffix
-    #: of the plasma data (Fig1), the prefix of the urine data (Tab2), the
-    #: coadministration and the color.
+    #: of the plasma data (Fig1), the interventions of the urine data (Tab2),
+    #: the coadministration and the color.
     arms: ClassVar[list[tuple[str, str, str, Coadministration, str]]] = [
         (
             "alone",
@@ -47,19 +48,22 @@ class Howes1991(HCTZSimulationExperiment):
         ),
         (
             "+ 10mg ENA separate",
-            ", ENA10_multi_hydrochlorothiazide",
-            "ENA10, HCTZ25multi",
+            "_ENA10_multi_hydrochlorothiazide",
+            "ENA10_HCTZ25",
             Coadministration.ENALAPRIL,
             "tab:blue",
         ),
         (
             "+ 10mg ENA combi",
-            "_combi_hydrochlorothiazide",
-            "ENA10, HCTZ25combi",
+            "_combi_ENA10_combi_hydrochlorothiazide",
+            "ENA10_combi_HCTZ25_combi",
             Coadministration.ENALAPRIL,
             "tab:orange",
         ),
     ]
+
+    #: the label of the urinary recovery in Tab2, followed by the interventions
+    tab2_amount: ClassVar[str] = "cumulative_amount_hydrochlorothiazide_urine"
 
     @override
     def datasets(self) -> dict[str, DataSet]:
@@ -69,8 +73,10 @@ class Howes1991(HCTZSimulationExperiment):
             for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.endswith("_hydrochlorothiazide"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                if label.endswith("_hydrochlorothiazide") or label.startswith(
+                    "cumulative_amount_hydrochlorothiazide"
+                ):
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 elif label.endswith("_enalaprilat"):
                     pass
                 dsets[self.to_sid(f"{fig_id}_{label}")] = dset
@@ -89,12 +95,12 @@ class Howes1991(HCTZSimulationExperiment):
                 "PODOSE_hctz": Q(25, "mg"),
             },
         )
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
-        for _, suffix, prefix, coadministration, _ in self.arms:
+        for _, suffix, interventions, coadministration, _ in self.arms:
             # plasma
             mappings[self.to_sid(f"fm_Fig1_HCTZ25{suffix}")] = FitMapping(
                 self,
@@ -107,7 +113,7 @@ class Howes1991(HCTZSimulationExperiment):
                     count="count",
                 ),
                 observable=FitData(
-                    self, task="task_hctz25", xid="time", yid="[Cve_hctz]"
+                    self, task="task_hctz25", xid="time", yid="Carm_hctz"
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
@@ -121,14 +127,12 @@ class Howes1991(HCTZSimulationExperiment):
             )
             # urine
             mappings[
-                self.to_sid(f"fm_Tab2_{prefix}_cumulative amount_hydrochlorothiazide")
+                f"fm_Tab2_{interventions}_cumulative_amount_hydrochlorothiazide"
             ] = FitMapping(
                 self,
                 reference=FitData(
                     self,
-                    dataset=self.to_sid(
-                        f"Tab2_{prefix}_cumulative amount_hydrochlorothiazide"
-                    ),
+                    dataset=f"Tab2_{self.tab2_amount}_{interventions}_all",
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
@@ -139,6 +143,7 @@ class Howes1991(HCTZSimulationExperiment):
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
@@ -165,7 +170,7 @@ class Howes1991(HCTZSimulationExperiment):
         plots[1].set_yaxis(label=self.label_hctz_urine, unit=self.unit_hctz_urine)
 
         # simulation
-        for k, yid in enumerate(["[Cve_hctz]", "Aurine_hctz"]):
+        for k, yid in enumerate(["Carm_hctz", "Aurine_hctz"]):
             plots[k].add_data(
                 task="task_hctz25",
                 xid="time",
@@ -175,7 +180,7 @@ class Howes1991(HCTZSimulationExperiment):
             )
 
         # data
-        for key, suffix, prefix, _, color in self.arms:
+        for key, suffix, interventions, _, color in self.arms:
             # plasma
             plots[0].add_data(
                 dataset=self.to_sid(f"Fig1_HCTZ25{suffix}"),
@@ -188,9 +193,7 @@ class Howes1991(HCTZSimulationExperiment):
             )
             # urine
             plots[1].add_data(
-                dataset=self.to_sid(
-                    f"Tab2_{prefix}_cumulative amount_hydrochlorothiazide"
-                ),
+                dataset=f"Tab2_{self.tab2_amount}_{interventions}_all",
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",

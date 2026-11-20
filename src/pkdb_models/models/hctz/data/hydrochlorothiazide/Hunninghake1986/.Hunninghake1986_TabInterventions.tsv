@@ -1,8 +1,6 @@
-study	name	time	time_end	time_unit	route	application	measurement_type	form	substance	value	unit	comments
-Hunninghake1986	HCTZ75	0	24	hr	oral	single dose	dosing	tablet	hydrochlorothiazide	75	mg	NA
-Hunninghake1986	CHOL_single_-2	-2	24	hr	oral	single dose	dosing	suspension	cholestyramine	8	g	in 240ml water
-Hunninghake1986	CHOL_single_2	2	24	hr	oral	single dose	dosing	suspension	cholestyramine	8	g	in 240ml water
-Hunninghake1986	CHOL_single_4	4	24	hr	oral	single dose	dosing	suspension	cholestyramine	8	g	in 240ml water
-Hunninghake1986	CHOL_multi	-24	24	hr	oral	multiple dose	dosing	suspension	cholestyramine	8	g	in 240ml water
-Hunninghake1986	CHOL_multi	-12	24	hr	oral	multiple dose	dosing	suspension	cholestyramine	8	g	in 240ml water
-Hunninghake1986	CHOL_multi	4	24	hr	oral	multiple dose	dosing	suspension	cholestyramine	8	g	in 240ml water
+study	name	time	time_end	time_unit	interval	doses	route	application	measurement_type	form	substance	value	unit	comments
+Hunninghake1986	CHOL_multi	-24.0,-12.0,4.0	24.0	hr	NA	NA	oral	multiple dose	dosing	suspension	cholestyramine	8.0	g	NA
+Hunninghake1986	CHOL_single_2	2.0	24.0	hr	NA	NA	oral	single dose	dosing	suspension	cholestyramine	8.0	g	NA
+Hunninghake1986	CHOL_single_4	4.0	24.0	hr	NA	NA	oral	single dose	dosing	suspension	cholestyramine	8.0	g	NA
+Hunninghake1986	CHOL_single_-2	-2.0	24.0	hr	NA	NA	oral	single dose	dosing	suspension	cholestyramine	8.0	g	NA
+Hunninghake1986	HCTZ75	0.0	24.0	hr	NA	NA	oral	single dose	dosing	tablet	hydrochlorothiazide	75.0	mg	NA

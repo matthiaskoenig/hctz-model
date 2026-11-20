@@ -1,5 +1,6 @@
 """HCTZ templates."""
 
+from pkpdsim.templates import creators as pkpdsim_creators
 from pkpdsim.templates import terms_of_use
 from sbmlutils.factory import (
     Creator,
@@ -44,11 +45,5 @@ creators = [
         email="amanda.lim@charite.de",
         organization="Charité - Universitätsmedizin Berlin, Charitéplatz 1, 10117 Berlin, Germany",
     ),
-    Creator(
-        familyName="König",
-        givenName="Matthias",
-        email="koenigmx@hu-berlin.de",
-        organization="Humboldt-University Berlin, Faculty of Life Science, Institute for Biology, Biology, Berlin; University Lübeck; University Hospital Schleswig-Holstein, Campus Lübeck, First Department of Medicine, Germany",
-        site="https://livermetabolism.com",
-    ),
+    *pkpdsim_creators,
 ]

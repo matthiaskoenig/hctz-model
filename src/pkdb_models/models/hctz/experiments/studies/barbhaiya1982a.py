@@ -37,7 +37,7 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
     colors: ClassVar[list[str]] = ["tab:blue", "tab:green"]
 
     yids: ClassVar[list[str]] = [
-        "[Cve_hctz]",  # plasma concentration
+        "Carm_hctz",  # plasma concentration
         "Aurine_hctz",  # cumulative amount urine
     ]
     prefixes: ClassVar[list[str]] = [
@@ -54,7 +54,7 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith(("hctz", "amount")):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(label)] = dset
 
         return dsets
@@ -73,7 +73,7 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
             },
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -99,9 +99,7 @@ class Barbhaiya1982a(HCTZSimulationExperiment):
                         yid=yid,
                     ),
                     metadata=PKPDMappingMetaData(
-                        tissue=Tissue.PLASMA
-                        if yid.startswith("[Cve_")
-                        else Tissue.URINE,
+                        tissue=Tissue.PLASMA if yid == "Carm_hctz" else Tissue.URINE,
                         application_form=ApplicationForm.TABLET,
                         route=Route.PO,
                         dosing=Dosing.SINGLE,

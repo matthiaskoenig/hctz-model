@@ -15,10 +15,12 @@ repo_name = "matthiaskoenig/hctz-model"
 
 nav = [
   { "Home" = "index.md" },
+  { "App" = "app.md" },
   { "Running the model" = "running.md" },
   { "Models" = "models.md" },
   { "Simulations" = "simulations.md" },
   { "Fit" = "fit.md" },
+  { "Credibility" = "credibility.md" },
   { "Release notes" = "release-notes.md" },
 ]
 

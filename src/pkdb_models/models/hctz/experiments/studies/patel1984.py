@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -57,9 +58,9 @@ class Patel1984(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 if label.startswith("amount"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[f"{fig_id}_{label}"] = dset
 
         return dsets
@@ -79,15 +80,15 @@ class Patel1984(HCTZSimulationExperiment):
                         {
                             "PODOSE_hctz": Q(dose, "mg"),
                             # the net increase over the 12 hr before the dose
-                            "na_urine": "-na_urine",
-                            "cl_urine": "-cl_urine",
+                            "FLUID__na_urine": "-FLUID__na_urine",
+                            "FLUID__cl_urine": "-FLUID__cl_urine",
                         },
                     )
                 ],
                 time_shift=-12,
             )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -109,7 +110,7 @@ class Patel1984(HCTZSimulationExperiment):
                         count="count",
                     ),
                     observable=FitData(
-                        self, task=f"task_hctz{dose}", xid="time", yid="[Cve_hctz]"
+                        self, task=f"task_hctz{dose}", xid="time", yid="Carm_hctz"
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
@@ -128,17 +129,18 @@ class Patel1984(HCTZSimulationExperiment):
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"Tab4_increase_Naurine_HCTZ{dose}_{form}",
+                        dataset=f"Tab4_cumulative_amount_change_sodium_urine_HCTZ{dose}_{form}_all",
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
                         count="count",
                     ),
                     observable=FitData(
-                        self, task=f"task_hctz{dose}", xid="time", yid="na_urine"
+                        self, task=f"task_hctz{dose}", xid="time", yid="FLUID__na_urine"
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.URINE,
+                        sampling_site=SamplingSite.NOT_APPLICABLE,
                         application_form=ApplicationForm.TABLET
                         if form == "tab"
                         else ApplicationForm.SUSPENSION,
@@ -155,17 +157,18 @@ class Patel1984(HCTZSimulationExperiment):
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"Tab4_increase_Clurine_HCTZ{dose}_{form}",
+                        dataset=f"Tab4_cumulative_amount_change_chloride_urine_HCTZ{dose}_{form}_all",
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
                         count="count",
                     ),
                     observable=FitData(
-                        self, task=f"task_hctz{dose}", xid="time", yid="cl_urine"
+                        self, task=f"task_hctz{dose}", xid="time", yid="FLUID__cl_urine"
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.URINE,
+                        sampling_site=SamplingSite.NOT_APPLICABLE,
                         application_form=ApplicationForm.TABLET
                         if form == "tab"
                         else ApplicationForm.SUSPENSION,
@@ -197,6 +200,7 @@ class Patel1984(HCTZSimulationExperiment):
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.URINE,
+                        sampling_site=SamplingSite.NOT_APPLICABLE,
                         application_form=ApplicationForm.TABLET
                         if form == "tab"
                         else ApplicationForm.SUSPENSION,
@@ -234,7 +238,7 @@ class Patel1984(HCTZSimulationExperiment):
             plots[0].add_data(
                 task=f"task_hctz{dose}",
                 xid="time",
-                yid="[Cve_hctz]",
+                yid="Carm_hctz",
                 label=f"Sim {dose}",
                 color=self.colors[kd],
             )
@@ -325,7 +329,7 @@ class Patel1984(HCTZSimulationExperiment):
             plots[0].add_data(
                 task=f"task_hctz{dose}",
                 xid="time",
-                yid="na_urine",
+                yid="FLUID__na_urine",
                 label=f"Sim {dose}",
                 color=self.colors[kd],
             )
@@ -333,7 +337,7 @@ class Patel1984(HCTZSimulationExperiment):
             plots[1].add_data(
                 task=f"task_hctz{dose}",
                 xid="time",
-                yid="cl_urine",
+                yid="FLUID__cl_urine",
                 label=f"Sim {dose}",
                 color=self.colors[kd],
             )
@@ -343,7 +347,7 @@ class Patel1984(HCTZSimulationExperiment):
                 continue
             for form in iter(self.forms):
                 plots[0].add_data(
-                    dataset=f"Tab4_increase_Naurine_HCTZ{dose}_{form}",
+                    dataset=f"Tab4_cumulative_amount_change_sodium_urine_HCTZ{dose}_{form}_all",
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
@@ -355,7 +359,7 @@ class Patel1984(HCTZSimulationExperiment):
                 )
 
                 plots[1].add_data(
-                    dataset=f"Tab4_increase_Clurine_HCTZ{dose}_{form}",
+                    dataset=f"Tab4_cumulative_amount_change_chloride_urine_HCTZ{dose}_{form}_all",
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",

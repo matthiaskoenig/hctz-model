@@ -1,12 +1,13 @@
 {
   "experiment_id": "BloodPressureExperiment",
-  "base_path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz",
+  "engine": "roadrunner",
+  "base_path": "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz",
   "data_path": [
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/lisinopril",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/enalapril",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/aliskiren",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/canagliflozin"
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/lisinopril",
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/enalapril",
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/aliskiren",
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/canagliflozin"
   ],
   "models": {
     "model": {
@@ -15,8 +16,8 @@
       "language": "SBML",
       "language_type": "SBML",
       "source": {
-        "source": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_fluid.xml",
-        "path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_fluid.xml",
+        "source": "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/models/output/models/hctz_fluid.xml",
+        "path": "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/models/output/models/hctz_fluid.xml",
         "content": null
       },
       "base_path": null,
@@ -133,7 +134,11 @@
             120
           ],
           "values": {
-            "GFR_base": {
+            "GFR_base_body": {
+              "value": 200,
+              "unit": "milliliter / minute"
+            },
+            "GFR_body": {
               "value": 200,
               "unit": "milliliter / minute"
             }
@@ -157,13 +162,9 @@
             120
           ],
           "values": {
-            "ECF": {
-              "value": 27.225,
-              "unit": "liter"
-            },
-            "[hctz]": "hctz / 27.225",
-            "[na]": "na / 27.225",
-            "[cl]": "cl / 27.225"
+            "ECF": "2 * ECF_ref",
+            "[na]": "na / (2 * ECF_ref)",
+            "[cl]": "cl / (2 * ECF_ref)"
           }
         }
       ],
@@ -184,7 +185,7 @@
             120
           ],
           "values": {
-            "[hctz]": {
+            "C_hctz": {
               "value": 0.0001,
               "unit": "millimolar"
             }
@@ -1517,7 +1518,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Reference__plot0_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -1625,7 +1626,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Reference__plot1_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -1637,7 +1638,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Reference__plot1_yaxis",
-              "name": "H2O uptake [l/day]",
+              "name": "H2O uptake [l/d]",
               "label": "H2O uptake",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -1701,7 +1702,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Reference__plot2_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -1713,7 +1714,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Reference__plot2_yaxis",
-              "name": "Diuresis [l/day]",
+              "name": "Diuresis [l/d]",
               "label": "Diuresis",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -1777,7 +1778,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Reference__plot3_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -1853,7 +1854,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Reference__plot4_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -1961,7 +1962,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Reference__plot5_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -1973,7 +1974,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Reference__plot5_yaxis",
-              "name": "Uptake [mmole/day]",
+              "name": "Uptake [mmol/d]",
               "label": "Uptake",
               "unit": "mmole/day",
               "scale": "LINEAR",
@@ -2069,7 +2070,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Reference__plot6_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2081,7 +2082,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Reference__plot6_yaxis",
-              "name": "Concentration (ECF) [mmole/l]",
+              "name": "Concentration (ECF) [mmol/l]",
               "label": "Concentration (ECF)",
               "unit": "mmole/l",
               "scale": "LINEAR",
@@ -2177,7 +2178,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Reference__plot7_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2189,7 +2190,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Reference__plot7_yaxis",
-              "name": "Excretion [g/day]",
+              "name": "Excretion [g/d]",
               "label": "Excretion",
               "unit": "g/day",
               "scale": "LINEAR",
@@ -2285,7 +2286,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Reference__plot8_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2297,7 +2298,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Reference__plot8_yaxis",
-              "name": "Urine [mmole]",
+              "name": "Urine [mmol]",
               "label": "Urine",
               "unit": "mmole",
               "scale": "LINEAR",
@@ -2404,7 +2405,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot0_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2512,7 +2513,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot1_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2524,7 +2525,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot1_yaxis",
-              "name": "H2O uptake [l/day]",
+              "name": "H2O uptake [l/d]",
               "label": "H2O uptake",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -2588,7 +2589,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot2_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2600,7 +2601,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot2_yaxis",
-              "name": "Diuresis [l/day]",
+              "name": "Diuresis [l/d]",
               "label": "Diuresis",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -2664,7 +2665,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot3_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2740,7 +2741,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot4_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2848,7 +2849,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot5_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2860,7 +2861,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot5_yaxis",
-              "name": "Uptake [mmole/day]",
+              "name": "Uptake [mmol/d]",
               "label": "Uptake",
               "unit": "mmole/day",
               "scale": "LINEAR",
@@ -2956,7 +2957,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot6_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -2968,7 +2969,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot6_yaxis",
-              "name": "Concentration (ECF) [mmole/l]",
+              "name": "Concentration (ECF) [mmol/l]",
               "label": "Concentration (ECF)",
               "unit": "mmole/l",
               "scale": "LINEAR",
@@ -3064,7 +3065,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot7_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3076,7 +3077,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot7_yaxis",
-              "name": "Excretion [g/day]",
+              "name": "Excretion [g/d]",
               "label": "Excretion",
               "unit": "g/day",
               "scale": "LINEAR",
@@ -3172,7 +3173,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot8_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3184,7 +3185,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_H2O_uptake__plot8_yaxis",
-              "name": "Urine [mmole]",
+              "name": "Urine [mmol]",
               "label": "Urine",
               "unit": "mmole",
               "scale": "LINEAR",
@@ -3291,7 +3292,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot0_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3399,7 +3400,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot1_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3411,7 +3412,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot1_yaxis",
-              "name": "H2O uptake [l/day]",
+              "name": "H2O uptake [l/d]",
               "label": "H2O uptake",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -3475,7 +3476,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot2_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3487,7 +3488,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot2_yaxis",
-              "name": "Diuresis [l/day]",
+              "name": "Diuresis [l/d]",
               "label": "Diuresis",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -3551,7 +3552,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot3_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3627,7 +3628,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot4_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3735,7 +3736,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot5_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3747,7 +3748,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot5_yaxis",
-              "name": "Uptake [mmole/day]",
+              "name": "Uptake [mmol/d]",
               "label": "Uptake",
               "unit": "mmole/day",
               "scale": "LINEAR",
@@ -3843,7 +3844,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot6_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3855,7 +3856,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot6_yaxis",
-              "name": "Concentration (ECF) [mmole/l]",
+              "name": "Concentration (ECF) [mmol/l]",
               "label": "Concentration (ECF)",
               "unit": "mmole/l",
               "scale": "LINEAR",
@@ -3951,7 +3952,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot7_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -3963,7 +3964,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot7_yaxis",
-              "name": "Excretion [g/day]",
+              "name": "Excretion [g/d]",
               "label": "Excretion",
               "unit": "g/day",
               "scale": "LINEAR",
@@ -4059,7 +4060,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot8_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4071,7 +4072,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_diuresis_via_GFR__plot8_yaxis",
-              "name": "Urine [mmole]",
+              "name": "Urine [mmol]",
               "label": "Urine",
               "unit": "mmole",
               "scale": "LINEAR",
@@ -4178,7 +4179,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot0_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4286,7 +4287,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot1_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4298,7 +4299,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot1_yaxis",
-              "name": "H2O uptake [l/day]",
+              "name": "H2O uptake [l/d]",
               "label": "H2O uptake",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -4362,7 +4363,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot2_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4374,7 +4375,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot2_yaxis",
-              "name": "Diuresis [l/day]",
+              "name": "Diuresis [l/d]",
               "label": "Diuresis",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -4438,7 +4439,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot3_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4514,7 +4515,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot4_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4622,7 +4623,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot5_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4634,7 +4635,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot5_yaxis",
-              "name": "Uptake [mmole/day]",
+              "name": "Uptake [mmol/d]",
               "label": "Uptake",
               "unit": "mmole/day",
               "scale": "LINEAR",
@@ -4730,7 +4731,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot6_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4742,7 +4743,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot6_yaxis",
-              "name": "Concentration (ECF) [mmole/l]",
+              "name": "Concentration (ECF) [mmol/l]",
               "label": "Concentration (ECF)",
               "unit": "mmole/l",
               "scale": "LINEAR",
@@ -4838,7 +4839,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot7_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4850,7 +4851,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot7_yaxis",
-              "name": "Excretion [g/day]",
+              "name": "Excretion [g/d]",
               "label": "Excretion",
               "unit": "g/day",
               "scale": "LINEAR",
@@ -4946,7 +4947,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot8_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -4958,7 +4959,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_ECF__plot8_yaxis",
-              "name": "Urine [mmole]",
+              "name": "Urine [mmol]",
               "label": "Urine",
               "unit": "mmole",
               "scale": "LINEAR",
@@ -5065,7 +5066,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot0_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -5173,7 +5174,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot1_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -5185,7 +5186,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot1_yaxis",
-              "name": "H2O uptake [l/day]",
+              "name": "H2O uptake [l/d]",
               "label": "H2O uptake",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -5249,7 +5250,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot2_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -5261,7 +5262,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot2_yaxis",
-              "name": "Diuresis [l/day]",
+              "name": "Diuresis [l/d]",
               "label": "Diuresis",
               "unit": "l/day",
               "scale": "LINEAR",
@@ -5325,7 +5326,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot3_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -5401,7 +5402,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot4_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -5509,7 +5510,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot5_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -5521,7 +5522,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot5_yaxis",
-              "name": "Uptake [mmole/day]",
+              "name": "Uptake [mmol/d]",
               "label": "Uptake",
               "unit": "mmole/day",
               "scale": "LINEAR",
@@ -5617,7 +5618,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot6_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -5629,7 +5630,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot6_yaxis",
-              "name": "Concentration (ECF) [mmole/l]",
+              "name": "Concentration (ECF) [mmol/l]",
               "label": "Concentration (ECF)",
               "unit": "mmole/l",
               "scale": "LINEAR",
@@ -5725,7 +5726,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot7_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -5737,7 +5738,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot7_yaxis",
-              "name": "Excretion [g/day]",
+              "name": "Excretion [g/d]",
               "label": "Excretion",
               "unit": "g/day",
               "scale": "LINEAR",
@@ -5833,7 +5834,7 @@
             "name": null,
             "xaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot8_xaxis",
-              "name": "time [day]",
+              "name": "time [d]",
               "label": "time",
               "unit": "day",
               "scale": "LINEAR",
@@ -5845,7 +5846,7 @@
             },
             "yaxis": {
               "sid": "Fig_blood_pressure_Increase_HCTZ__plot8_yaxis",
-              "name": "Urine [mmole]",
+              "name": "Urine [mmol]",
               "label": "Urine",
               "unit": "mmole",
               "scale": "LINEAR",

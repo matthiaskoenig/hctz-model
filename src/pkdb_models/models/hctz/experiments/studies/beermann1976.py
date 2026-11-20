@@ -32,6 +32,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -89,25 +90,35 @@ class Beermann1976(HCTZSimulationExperiment):
     }
     #: the patients, hypertensive and on chronic HCTZ
     patients: ClassVar[list[str]] = ["I", "II", "III"]
-    #: the renal function of patient II from his serum creatinine of 1.6 mg/dl
+    #: the clearance of patient II from his serum creatinine of 1.6 mg/dl
     #: (p. 532). Age, sex and body weight are not reported, so the clearance is
     #: estimated from the inverse proportionality of the serum creatinine to the
     #: glomerular filtration rate, with a serum creatinine of 1.0 mg/dl at the
-    #: healthy rate: 101 ml/min x 1.0 / 1.6 = 63 ml/min
+    #: normal GFR of the classes of renal impairment (101 ml/min,
+    #: `impairment.RENAL_FUNCTION`): 101 ml/min x 1.0 / 1.6 = 63 ml/min. As
+    #: every measured clearance it is converted with `renal_function`, relative
+    #: to the healthy GFR of the model
     crcl_II: ClassVar[float] = 101.0 * 1.0 / 1.6  # [ml/min]
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Tab1A", "Fig2", "Fig3"]:
+        for fig_id in ["Tab1", "Fig2", "Fig3"]:
             df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
                 label = str(label)
+                if fig_id == "Tab1" and not label.startswith("amount"):
+                    # the recoveries in percent of the dose
+                    continue
+                if label.endswith("_cpm"):
+                    # the radioactivity in counts, of which pkdb_data has the
+                    # amounts of the label
+                    continue
                 dset = DataSet.from_df(df_label, self.ureg)
-                if fig_id == "Tab1A":
-                    dset.unit_conversion("value", 1 / self.Mr.hctz)
+                if fig_id == "Tab1":
+                    dset.unit_conversion("value", 1 / self.Mr["hctz"])
                 if fig_id == "Fig3" and label.startswith("hctz"):
-                    dset.unit_conversion("value", 1 / self.Mr.hctz)
+                    dset.unit_conversion("value", 1 / self.Mr["hctz"])
 
                 dsets[label] = dset
 
@@ -122,7 +133,7 @@ class Beermann1976(HCTZSimulationExperiment):
             # the oral 5 mg were dissolved in water (p. 532), the 50 mg tablets
             parameter = {"iv": "IVDOSE_hctz", "po": "PODOSE_hctz"}[route]
             if route == "po" and dose == 5:
-                parameter = "POSOLUTION_hctz"
+                parameter = "SOLDOSE_hctz"
 
             simulations[f"hctz_{route}{dose}"] = Simulation(
                 time_unit="hr",
@@ -144,7 +155,7 @@ class Beermann1976(HCTZSimulationExperiment):
             },
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -187,6 +198,7 @@ class Beermann1976(HCTZSimulationExperiment):
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE if tissue == "urine" else Tissue.FECES,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=application_form,
                     route=Route.PO if route == "po" else Route.IV,
                     # the patients took HCTZ daily, the measured label is a
@@ -210,9 +222,7 @@ class Beermann1976(HCTZSimulationExperiment):
                 yid="value",
                 count="count",
             ),
-            observable=FitData(
-                self, task="task_hctz_po5", xid="time", yid="[Cve_hctz]"
-            ),
+            observable=FitData(self, task="task_hctz_po5", xid="time", yid="Carm_hctz"),
             metadata=PKPDMappingMetaData(
                 tissue=Tissue.PLASMA,
                 application_form=ApplicationForm.SOLUTION,
@@ -233,10 +243,11 @@ class Beermann1976(HCTZSimulationExperiment):
                 count="count",
             ),
             observable=FitData(
-                self, task="task_hctz_po5", xid="time", yid="KI__HCTZEX"
+                self, task="task_hctz_po5", xid="time", yid="Rurine_hctz"
             ),
             metadata=PKPDMappingMetaData(
                 tissue=Tissue.URINE,
+                sampling_site=SamplingSite.NOT_APPLICABLE,
                 application_form=ApplicationForm.SOLUTION,
                 route=Route.PO,
                 dosing=Dosing.SINGLE,
@@ -256,7 +267,7 @@ class Beermann1976(HCTZSimulationExperiment):
                 count="count",
             ),
             observable=FitData(
-                self, task="task_hctz_po75", xid="time", yid="[Cve_hctz]"
+                self, task="task_hctz_po75", xid="time", yid="Carm_hctz"
             ),
             metadata=PKPDMappingMetaData(
                 tissue=Tissue.PLASMA,
@@ -274,13 +285,13 @@ class Beermann1976(HCTZSimulationExperiment):
     @override
     def figures(self) -> dict[str, Figure]:
         return {
-            **self._figure_Tab1A(),
+            **self._figure_Tab1(),
             **self._figure_Fig2(),
             **self._figure_Fig3(),
         }
 
-    def _figure_Tab1A(self) -> dict[str, Figure]:
-        name = "Tab1A"
+    def _figure_Tab1(self) -> dict[str, Figure]:
+        name = "Tab1"
         fig = Figure(
             experiment=self,
             sid=name,
@@ -365,7 +376,7 @@ class Beermann1976(HCTZSimulationExperiment):
         )
 
         # simulation
-        for kp, yid in enumerate(["[Cve_hctz]", "KI__HCTZEX"]):
+        for kp, yid in enumerate(["Carm_hctz", "Rurine_hctz"]):
             plots[kp].add_data(
                 task="task_hctz_po5",
                 xid="time",
@@ -414,7 +425,7 @@ class Beermann1976(HCTZSimulationExperiment):
         plots[0].add_data(
             task="task_hctz_po75",
             xid="time",
-            yid="[Cve_hctz]",
+            yid="Carm_hctz",
             label="Sim po75 mg",
             color=self.colors[75],
         )

@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -96,13 +97,13 @@ class Ernst2006(HCTZSimulationExperiment):
                 end=end,
                 preinit_changes={
                     **self.default_changes(),
-                    "Psys_ref": Q(self.baselines[arm], "mmHg"),
+                    "FLUID__Psys_ref": Q(self.baselines[arm], "mmHg"),
                     "PODOSE_hctz": Q(self.doses[0], "mg"),
                 },
                 changes=changes,
             )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -119,10 +120,11 @@ class Ernst2006(HCTZSimulationExperiment):
                     count="count",
                 ),
                 observable=FitData(
-                    self, task=f"task_{arm}", xid="time", yid="bp_systolic"
+                    self, task=f"task_{arm}", xid="time", yid="FLUID__bp_systolic"
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.NONE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.MULTIPLE,
@@ -152,8 +154,8 @@ class Ernst2006(HCTZSimulationExperiment):
         ):
             plot.set_title(title)
             plot.set_yaxis(
-                self.labels["bp_systolic"],
-                unit=self.units["bp_systolic"],
+                self.labels["FLUID__bp_systolic"],
+                unit=self.units["FLUID__bp_systolic"],
                 min=100,
                 max=150,
             )
@@ -163,7 +165,7 @@ class Ernst2006(HCTZSimulationExperiment):
             plots[k].add_data(
                 task=f"task_{arm}",
                 xid="time",
-                yid="bp_systolic",
+                yid="FLUID__bp_systolic",
                 label="Sim HCTZ",
                 color=self.color_hctz,
             )

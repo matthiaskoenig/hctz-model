@@ -1,0 +1,11 @@
+{
+  "project": "pkdb_models.models.hctz:MODEL",
+  "uncertainty": {
+    "draws": 100,
+    "quantiles": [
+      0.05,
+      0.95
+    ],
+    "seed": 1234
+  }
+}

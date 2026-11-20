@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -70,9 +71,9 @@ class Januszewicz1959(HCTZSimulationExperiment):
     #: the observables of the collections: the measurement of the label, the
     #: urine of the model and the rate of the model
     urine_observables: ClassVar[dict[str, tuple[str, str]]] = {
-        "urinary_volume_rate": ("Vurine", "diuresis"),
-        "excretion_rate_sodium": ("na_urine", "NA_EXCRETION"),
-        "excretion_rate_chloride": ("cl_urine", "CL_EXCRETION"),
+        "urinary_volume_rate": ("FLUID__Vurine", "FLUID__diuresis"),
+        "excretion_rate_sodium": ("FLUID__na_urine", "FLUID__NA_EXCRETION"),
+        "excretion_rate_chloride": ("FLUID__cl_urine", "FLUID__CL_EXCRETION"),
     }
 
     @override
@@ -141,7 +142,7 @@ class Januszewicz1959(HCTZSimulationExperiment):
                 ],
             )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -164,6 +165,7 @@ class Januszewicz1959(HCTZSimulationExperiment):
                         ),
                         metadata=PKPDMappingMetaData(
                             tissue=Tissue.URINE,
+                            sampling_site=SamplingSite.NOT_APPLICABLE,
                             application_form=ApplicationForm.SOLUTION,
                             route=Route.IV,
                             dosing=Dosing.SINGLE,
@@ -197,8 +199,11 @@ class Januszewicz1959(HCTZSimulationExperiment):
         plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)
         axes = {
             "urinary_volume_rate": ("Urine flow", "ml/min"),
-            "excretion_rate_sodium": (self.labels["NA_EXCRETION"], "mmole/min"),
-            "excretion_rate_chloride": (self.labels["CL_EXCRETION"], "mmole/min"),
+            "excretion_rate_sodium": (self.labels["FLUID__NA_EXCRETION"], "mmole/min"),
+            "excretion_rate_chloride": (
+                self.labels["FLUID__CL_EXCRETION"],
+                "mmole/min",
+            ),
         }
         for plot, (name_obs, (_, rate)) in zip(
             plots, self.urine_observables.items(), strict=True

@@ -2,14 +2,19 @@
 
 The outputs are the pharmacokinetic parameters of a single oral dose (the
 non-compartmental analysis of `pkpdutils`) and the extremes of the
-pharmacodynamics. The parameters are the parameters of the model with bounds
-of +-15 % around their value. The analyses are run as a script, the local
-analysis by default:
+pharmacodynamics. The parameters are a list (`PARAMETER_IDS`): the
+covariates and the impairments of the individual, the fitted parameters, the
+activities of OAT1 and MRP4 and the reference physiology of the library,
+with bounds of +-15 % around their value (a severity, 0 in the healthy
+individual, from 0 to 15 % of its scale). A model of the library has
+hundreds of parameters, most of them initial assignments of the covariates,
+which an analysis of all constant parameters would vary as well. The
+analyses are run as a script, the local analysis by default:
 
     python -m pkdb_models.models.hctz.sensitivity.sensitivity_analysis
     python -m pkdb_models.models.hctz.sensitivity.sensitivity_analysis local sampling
 
-The analyses run on `pkpdsim.sensitivity.SensitivityRunner`, which writes the
+The analyses run on `sbmlsim.sensitivity.runner.SensitivityRunner`, which writes the
 table of the parameters into `results/sensitivity` of the model and the tables
 and figures of an analysis into `results/sensitivity/<analysis>`.
 An analysis does not vary a parameter which one of its groups sets
@@ -18,38 +23,39 @@ out `f_renal_function`. The environment variable `PKPDSIM_SENSITIVITY_N`
 replaces the numbers of samples of the global analyses for a quick run, see
 `pkpdsim.sensitivity.sample_size`.
 
-The simulation of a group starts `EQUILIBRATION_DAYS` before the dose without
-HCTZ: in impaired renal function the model without HCTZ is not stationary, the
-extracellular fluid and with it the blood pressure rise to a new steady state
-((ECF/ECF_ref)^10 = 1/f_renal_function; 120 to 141 mmHg in severe renal
-impairment), which an analysis from the reference state would attribute to
-HCTZ. After the equilibration the pressure without HCTZ changes by less than
-0.05 mmHg in the following 720 hr, so that the change of the pressure against
-its value at the dose is the effect of HCTZ (`min_bp_systolic`,
-`min_bp_diastolic`), and the extremes are taken after the dose. The dose is
-followed for `END_HR` hours, long enough for the non-compartmental analysis of
-severe renal impairment (0.04 % of the maximal concentration at the end).
+Every point of a design starts from the drug-free steady state of its
+condition, the equilibration of the library which the simulation experiments
+use as well (`pkpdsim.pbpk.Equilibration`, the `prepare` of every group; the
+urine of the fluid PD, which grows without a steady state, is emptied at the
+start, `HCTZSimulationExperiment.urine_reset`): in impaired renal function the
+model without HCTZ is not stationary, the extracellular fluid and with it the
+blood pressure rise to a new steady state ((ECF/ECF_ref)^10 =
+1/f_renal_function; 120 to 141 mmHg in severe renal impairment), which an
+analysis from the reference state would attribute to HCTZ, and a parameter
+which moves the basal state (the renal function, a parameter of the PD) moves
+it at every point. So the change of the pressure against its value at the
+dose is the effect of HCTZ (`min_bp_systolic`, `min_bp_diastolic`). The dose
+is given at the start (time 0) and followed for `END_HR` hours, long enough
+for the non-compartmental analysis of severe renal impairment (0.04 % of the
+maximal concentration at the end).
 """
 
 from collections.abc import Callable, Mapping
 
 import numpy as np
-from pkpdsim.sensitivity import (
+from pkpdsim.pbpk import Equilibration
+from pkpdsim.sensitivity import NonzeroLocalAnalysis, library_parameters, max_after_dose
+from pkpdutils import NCAOptions
+from sbmlsim import Q
+from sbmlsim.sensitivity.parameters import SensitivityParameter
+from sbmlsim.sensitivity.runner import (
     FastAnalysis,
-    LocalAnalysis,
-    ParameterType,
     SamplingAnalysis,
     SensitivityGroup,
     SensitivityOutput,
-    SensitivityParameter,
     SensitivityRunner,
     SobolAnalysis,
-    parameters_from_sbml,
-    set_bounds,
-    set_relative_bounds,
 )
-from pkpdutils import NCAOptions
-from sbmlsim import Q
 from sbmlsim.simulation import PK, Change, Custom, Formula, Simulation
 
 from pkdb_models.models.hctz import MODEL, MODEL_PATH
@@ -60,8 +66,6 @@ from pkdb_models.models.hctz.fitting.parameters import parameters_all as fit_par
 
 #: oral dose of the analysis [mg]
 DOSE_HCTZ = 25
-#: the days without HCTZ before the dose, the equilibration of the fluid
-EQUILIBRATION_DAYS = 14
 #: the hours after the dose
 END_HR = 720
 #: the limit of quantification of the non-compartmental analysis [mM], 1e-6 of
@@ -90,12 +94,6 @@ PK_ID = "pk_hctz"
 PK_PER_DOSE_MASS: frozenset[str] = frozenset({"vz_f", "cl_f"})
 
 
-def max_after_dose(time: np.ndarray, values: dict[str, np.ndarray]) -> float:
-    """Get the maximum of a timecourse after the dose (time 0)."""
-    (x,) = values.values()
-    return float(np.max(x[time >= 0]))
-
-
 def change_after_dose(time: np.ndarray, values: dict[str, np.ndarray]) -> float:
     """Get the largest decrease after the dose (time 0) against the value at the dose."""
     (x,) = values.values()
@@ -108,11 +106,11 @@ def change_after_dose(time: np.ndarray, values: dict[str, np.ndarray]) -> float:
 EXTREMES: dict[
     str, tuple[Callable[[np.ndarray, dict[str, np.ndarray]], float], str, str]
 ] = {
-    "max_NA_EXCRETION": (max_after_dose, "NA_EXCRETION", "mmole/min"),
-    "max_CL_EXCRETION": (max_after_dose, "CL_EXCRETION", "mmole/min"),
-    "max_diuresis": (max_after_dose, "diuresis", "l/min"),
-    "min_bp_systolic": (change_after_dose, "bp_systolic", "mmHg"),
-    "min_bp_diastolic": (change_after_dose, "bp_diastolic", "mmHg"),
+    "max_NA_EXCRETION": (max_after_dose, "FLUID__NA_EXCRETION", "mmole/min"),
+    "max_CL_EXCRETION": (max_after_dose, "FLUID__CL_EXCRETION", "mmole/min"),
+    "max_diuresis": (max_after_dose, "FLUID__diuresis", "l/min"),
+    "min_bp_systolic": (change_after_dose, "FLUID__bp_systolic", "mmHg"),
+    "min_bp_diastolic": (change_after_dose, "FLUID__bp_diastolic", "mmHg"),
 }
 
 #: the outputs with their ids and names
@@ -134,7 +132,7 @@ OUTPUTS: list[SensitivityOutput] = [
 OBSERVABLES = [
     PK(
         PK_ID,
-        "[Cve_hctz]",
+        "Carm_hctz",
         dose="PODOSE_hctz",
         route="oral",
         options=NCAOptions(lloq=LLOQ),
@@ -157,13 +155,14 @@ OBSERVABLES = [
 ]
 
 
-#: the output times [hr]: every hour of the equilibration, every 0.02 hr in
-#: the first day after the dose (absorption and maximum), every 0.5 hr after it
+#: the output times [hr]: every 0.02 hr in the first day after the dose
+#: (absorption and maximum), every 0.5 hr after it; a grid, since the
+#: extremes and the non-compartmental analysis of every point of a design
+#: read the same times
 TIMES_HR: tuple[float, ...] = tuple(
     np.unique(
         np.concatenate(
             [
-                np.arange(-24 * EQUILIBRATION_DAYS, 0, 1.0),
                 np.linspace(0, 24, 1201),
                 np.linspace(24, END_HR, 2 * (END_HR - 24) + 1),
             ]
@@ -171,15 +170,19 @@ TIMES_HR: tuple[float, ...] = tuple(
     ).tolist()
 )
 
+#: the equilibration of every point of a design: the drug-free steady state of
+#: its condition, the urine of the fluid PD emptied at the start
+EQUILIBRATION = Equilibration(resets=HCTZSimulationExperiment.urine_reset)
+
 
 def sensitivity_simulation(changes: Mapping[str, float]) -> Simulation:
     """Get the simulation of a group: a single oral dose of HCTZ at time 0.
 
-    The simulation starts `EQUILIBRATION_DAYS` before the dose without HCTZ,
-    see the module.
+    The simulation starts at the dose; its group equilibrates it
+    (`EQUILIBRATION`), see the module.
     """
     return Simulation(
-        start=-24 * EQUILIBRATION_DAYS,
+        start=0,
         end=END_HR,
         times=TIMES_HR,
         time_unit="hr",
@@ -191,7 +194,13 @@ def sensitivity_simulation(changes: Mapping[str, float]) -> Simulation:
 #: the groups the analyses are run for: the control and the stages of renal
 #: impairment of the simulation experiments
 SENSITIVITY_GROUPS: list[SensitivityGroup] = [
-    SensitivityGroup("control", "Control", sensitivity_simulation({}), "dimgrey"),
+    SensitivityGroup(
+        "control",
+        "Control",
+        sensitivity_simulation({}),
+        "dimgrey",
+        prepare=EQUILIBRATION,
+    ),
     *(
         SensitivityGroup(
             uid,
@@ -200,6 +209,7 @@ SENSITIVITY_GROUPS: list[SensitivityGroup] = [
                 {"f_renal_function": HCTZSimulationExperiment.renal_map[name]}
             ),
             HCTZSimulationExperiment.renal_colors[name],
+            prepare=EQUILIBRATION,
         )
         for uid, name in [
             ("mildRI", "Mild renal impairment"),
@@ -210,84 +220,70 @@ SENSITIVITY_GROUPS: list[SensitivityGroup] = [
 ]
 
 
+#: the parameters of the analyses: the covariates and the impairments of the
+#: individual, the fitted parameters, the activities of OAT1 and MRP4 (the
+#: tubular secretion) and the reference physiology of the library
+PARAMETER_IDS: tuple[str, ...] = (
+    "BW",
+    "HEIGHT",
+    "f_renal_function",
+    "CP_severity",
+    "HF_severity",
+    "f_cardiac_function",
+    *(fp.pid for fp in fit_parameters),
+    "KI__f_slc22a6",
+    "KI__f_abcc4",
+    "HCT_ref",
+    "CO_ref",
+    "GFR_ref",
+)
+
+#: the source of the classes of the renal function (the stages of chronic
+#: kidney disease by the GFR), in the form of the sources of the library
+STEVENS2024 = (
+    "Stevens PE, Ahmed SB, Carrero JJ, et al. (KDIGO CKD Work Group). KDIGO "
+    "2024 Clinical Practice Guideline for the Evaluation and Management of "
+    "Chronic Kidney Disease. Kidney Int 105(4S), S117-S314, 2024. "
+    "doi:10.1016/j.kint.2023.10.018"
+)
+
+#: the factors of the organ functions and of the activities of the proteins, 1
+#: in the healthy individual
+SCALING_IDS: tuple[str, ...] = (
+    "f_cardiac_function",
+    "f_renal_function",
+    "KI__f_slc22a6",
+    "KI__f_abcc4",
+)
+
+
 def sensitivity_parameters() -> list[SensitivityParameter]:
-    """Get the parameters of the analyses with their bounds and references."""
-    parameters = parameters_from_sbml(
+    """Get the parameters of the analyses with their bounds and references.
+
+    The parameters of `PARAMETER_IDS` (`pkpdsim.sensitivity.library_parameters`):
+    the fitted parameters, the scaling factors (`SCALING_IDS`) and the
+    severities with their bounds, the references of their notes and the
+    guideline of the classes of the renal function, whose notes give no source.
+    """
+    return library_parameters(
         MODEL_PATH,
-        exclude_ids={
-            # conversion factors
-            "conversion_min_per_day",
-            # molecular weights
-            "Mr_hctz",
-            "Mr_na",
-            "Mr_cl",
-            "Mr_nacl",
-            # reference values
-            "BW_ref",
-            # unchangeable values
-            "FQlu",
-            "FVhv",
-            "FVpo",
-            # dosing parameters
-            "PODOSE_hctz",
-            "ti_hctz",
-            # unused volumes
-            "Vurine",
-            "Vfeces",
-        },
-        exclude_na=True,
-        exclude_zero=True,
+        PARAMETER_IDS,
+        fit_ids=[fp.pid for fp in fit_parameters],
+        scaling_ids=SCALING_IDS,
+        references={"f_renal_function": STEVENS2024},
+        relative=BOUNDS_FRACTION,
     )
-
-    # the fitted parameters, their bounds are set relative to the value below
-    set_bounds(
-        parameters,
-        [(fp.pid, np.nan, np.nan, ParameterType.FIT) for fp in fit_parameters],
-    )
-    # the scaling factors of the organ functions
-    set_bounds(
-        parameters,
-        [
-            (uid, 1 - BOUNDS_FRACTION, 1 + BOUNDS_FRACTION, ParameterType.SCALING)
-            for uid in ["f_cardiac_function", "f_renal_function"]
-        ],
-    )
-
-    # the references of the values from the literature
-    references = {
-        "BW": r"\cite{Ogden2004, Jones2013, Thompson2009, Brown1997}",
-        "FQgu": r"\cite{Jones2013, Thompson2009, Brown1997}",
-        "FQh": r"\cite{Jones2013, Wynne1989, Thompson2009, Brown1997}",
-        "FQki": r"\cite{Jones2013, Thompson2009, Brown1997}",
-        "FVar": r"\cite{Jones2013, Thompson2009, Brown1997}",
-        "FVgu": r"\cite{Jones2013, Thompson2009, Brown1997}",
-        "FVki": r"\cite{Jones2013, Thompson2009, Brown1997}",
-        "FVli": r"\cite{Jones2013, Wynne1989, Thompson2009, Brown1997}",
-        "FVlu": r"\cite{Jones2013, Thompson2009, Brown1997}",
-        "FVve": r"\cite{Jones2013, Thompson2009, Brown1997}",
-        "COBW": r"\cite{Cattermole2017, Patel2021, Collis2001}",
-        "f_renal_function": r"\cite{Stevens2024}",
-    }
-    by_uid = {p.uid: p for p in parameters}
-    for uid, reference in references.items():
-        p = by_uid[uid]
-        p.reference = reference
-        if p.type == ParameterType.NA:
-            p.type = ParameterType.DATA
-
-    # every parameter without bounds varies around its value
-    set_relative_bounds(parameters, BOUNDS_FRACTION)
-    return parameters
 
 
 #: the analyses of the script, with their groups and numbers of samples
 SENSITIVITY = SensitivityRunner(
-    model=MODEL,
+    project=MODEL,
+    out=MODEL.results_dir / "sensitivity",
     parameters=sensitivity_parameters,
     outputs=OUTPUTS,
     observables=OBSERVABLES,
     analyses={
-        "local": LocalAnalysis(groups=SENSITIVITY_GROUPS[:1], delta=0.01),
+        "local": NonzeroLocalAnalysis(groups=SENSITIVITY_GROUPS[:1], delta=0.01),
         "sampling": SamplingAnalysis(groups=SENSITIVITY_GROUPS, n=1000),
         "fast": FastAnalysis(groups=SENSITIVITY_GROUPS[:1], n=1000),
         "sobol": SobolAnalysis(groups=SENSITIVITY_GROUPS[:1], n=4096),

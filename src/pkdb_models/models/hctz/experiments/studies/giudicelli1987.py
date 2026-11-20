@@ -30,6 +30,11 @@ class Giudicelli1987(HCTZSimulationExperiment):
 
     single dose vs multiple dose of hydrochlorothiazide 25 mg in patients with
     moderate essential hypertension (p. 52S).
+
+    The subjects are mostly women (15 of 25; 7 of 10 with HCTZ alone, 5 of 8
+    with the combination), but the study runs on the male build of the
+    model: the model has no female build yet, since its fluid PD has the
+    references of a man (TODO.md, P1 "Simulate women with the female build").
     """
 
     colors: ClassVar[list[str]] = ["black", "tab:blue"]
@@ -43,9 +48,9 @@ class Giudicelli1987(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 if label.startswith("renin"):
-                    dset.unit_conversion("mean", 1 / self.Mr.ren)
+                    dset.unit_conversion("mean", 1 / self.Mr["ren"])
                 dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
         return dsets
@@ -61,8 +66,8 @@ class Giudicelli1987(HCTZSimulationExperiment):
                 **self.default_changes(),
                 "PODOSE_hctz": Q(25, "mg"),
                 # mean value of acute renin at baseline
-                # "ren_ref": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
-                # "[ren]": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
+                # "ren_ref": Q((0.11+0.07)/2, "pg/ml") / self.Mr["ren"],  # HCTZ25 and CAP50, HCTZ25
+                # "[ren]": Q((0.11+0.07)/2, "pg/ml") / self.Mr["ren"],  # HCTZ25 and CAP50, HCTZ25
             },
         )
 
@@ -74,22 +79,22 @@ class Giudicelli1987(HCTZSimulationExperiment):
             preinit_changes={
                 **self.default_changes(),
                 # mean value of acute renin at baseline
-                # "ren_ref": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
-                # "[ren]": Q((0.11+0.07)/2, "pg/ml") / self.Mr.ren,  # HCTZ25 and CAP50, HCTZ25
+                # "ren_ref": Q((0.11+0.07)/2, "pg/ml") / self.Mr["ren"],  # HCTZ25 and CAP50, HCTZ25
+                # "[ren]": Q((0.11+0.07)/2, "pg/ml") / self.Mr["ren"],  # HCTZ25 and CAP50, HCTZ25
                 "PODOSE_hctz": Q(25, "mg"),
             },
             changes=[
                 self.add_doses(dose_times[1:], {"PODOSE_hctz": Q(25, "mg")}),
                 # mean value of chronic renin at baseline
                 # Change(dose_times[1:], {
-                #     "ren_ref": Q((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
-                #     "[ren]": Q((0.33 + 0.26) / 2, "pg/ml") / self.Mr.ren,  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
+                #     "ren_ref": Q((0.33 + 0.26) / 2, "pg/ml") / self.Mr["ren"],  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
+                #     "[ren]": Q((0.33 + 0.26) / 2, "pg/ml") / self.Mr["ren"],  # HCTZ25_MULTI, CAP50_MULTI, HCTZ25_MULTI
                 # }),
             ],
             time_shift=-44 * 24,  # shift to the last day
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -110,7 +115,7 @@ class Giudicelli1987(HCTZSimulationExperiment):
                         self,
                         task=self.to_sid(f"task_hctz25_{suffix}"),
                         xid="time",
-                        yid="[Cve_hctz]",
+                        yid="Carm_hctz",
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
@@ -180,7 +185,7 @@ class Giudicelli1987(HCTZSimulationExperiment):
             plots[k].add_data(
                 task=self.to_sid(f"task_hctz25_{suffix}"),
                 xid="time",
-                yid="[Cve_hctz]",
+                yid="Carm_hctz",
                 label=f"Sim {suffix}",
                 color=self.color_hctz,
             )

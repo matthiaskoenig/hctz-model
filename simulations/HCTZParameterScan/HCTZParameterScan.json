@@ -1,12 +1,13 @@
 {
   "experiment_id": "HCTZParameterScan",
-  "base_path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz",
+  "engine": "roadrunner",
+  "base_path": "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz",
   "data_path": [
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/lisinopril",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/enalapril",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/aliskiren",
-    "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/data/canagliflozin"
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/hydrochlorothiazide",
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/lisinopril",
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/enalapril",
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/aliskiren",
+    "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/data/canagliflozin"
   ],
   "models": {
     "model": {
@@ -15,8 +16,8 @@
       "language": "SBML",
       "language_type": "SBML",
       "source": {
-        "source": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
-        "path": "/home/mkoenig/git/hctz-model/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "source": "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
+        "path": "/home/mkoenig/git/hctz-model-release-0.11.0/repository/src/pkdb_models/models/hctz/models/output/models/hctz_body_flat.xml",
         "content": null
       },
       "base_path": null,
@@ -24,16 +25,16 @@
       "selections": [
         "Afeces_hctz",
         "Aurine_hctz",
-        "CL_EXCRETION",
-        "ECF",
-        "NA_EXCRETION",
+        "CP_severity",
+        "Carm_hctz",
+        "FLUID__CL_EXCRETION",
+        "FLUID__ECF",
+        "FLUID__NA_EXCRETION",
+        "FLUID__bp_diastolic",
+        "FLUID__bp_systolic",
+        "FLUID__diuresis",
+        "HF_severity",
         "PODOSE_hctz",
-        "[Cve_hctz]",
-        "bp_diastolic",
-        "bp_systolic",
-        "diuresis",
-        "f_cardiac_function",
-        "f_cirrhosis",
         "f_renal_function",
         "time"
       ],
@@ -100,14 +101,98 @@
         "time_unit": "hr",
         "start": 0.0,
         "end": 720,
-        "preinit_changes": {
-          "PODOSE_hctz": {
-            "value": 0,
-            "unit": "milligram"
+        "preinit_changes": {},
+        "changes": [
+          {
+            "times": [
+              0.0
+            ],
+            "values": {
+              "PODOSE_hctz": {
+                "value": 0,
+                "unit": "milligram"
+              },
+              "Afeces_hctz": 0.0,
+              "[AD__Cpl_hctz]": 0.0,
+              "[AD__Cti_hctz]": 0.0,
+              "[BO__Cpl_hctz]": 0.0,
+              "[BO__Cti_hctz]": 0.0,
+              "[BR__Cpl_hctz]": 0.0,
+              "[BR__Cti_hctz]": 0.0,
+              "[Car_hctz]": 0.0,
+              "[Cpo_hctz]": 0.0,
+              "[Cve_hctz]": 0.0,
+              "[GO__Cpl_hctz]": 0.0,
+              "[GO__Cti_hctz]": 0.0,
+              "GU__Asolid_asc_hctz": 0.0,
+              "GU__Asolid_cae_hctz": 0.0,
+              "GU__Asolid_des_hctz": 0.0,
+              "GU__Asolid_du_hctz": 0.0,
+              "GU__Asolid_ile1_hctz": 0.0,
+              "GU__Asolid_ile2_hctz": 0.0,
+              "GU__Asolid_jej1_hctz": 0.0,
+              "GU__Asolid_jej2_hctz": 0.0,
+              "GU__Asolid_rec_hctz": 0.0,
+              "GU__Asolid_sig_hctz": 0.0,
+              "GU__Asolid_tra_hctz": 0.0,
+              "[GU__Clumen_asc_hctz]": 0.0,
+              "[GU__Clumen_cae_hctz]": 0.0,
+              "[GU__Clumen_des_hctz]": 0.0,
+              "[GU__Clumen_du_hctz]": 0.0,
+              "[GU__Clumen_ile1_hctz]": 0.0,
+              "[GU__Clumen_ile2_hctz]": 0.0,
+              "[GU__Clumen_jej1_hctz]": 0.0,
+              "[GU__Clumen_jej2_hctz]": 0.0,
+              "[GU__Clumen_rec_hctz]": 0.0,
+              "[GU__Clumen_sig_hctz]": 0.0,
+              "[GU__Clumen_st_hctz]": 0.0,
+              "[GU__Clumen_tra_hctz]": 0.0,
+              "[GU__Cpl_hctz]": 0.0,
+              "[GU__Cti_hctz]": 0.0,
+              "[HE__Cpl_hctz]": 0.0,
+              "[HE__Cti_hctz]": 0.0,
+              "[KI__Cic_hctz]": 0.0,
+              "[KI__Cis_hctz]": 0.0,
+              "[KI__Cpl_hctz]": 0.0,
+              "[LI__Cpl_hctz]": 0.0,
+              "[LI__Cti_hctz]": 0.0,
+              "[LU__Cpl_hctz]": 0.0,
+              "[LU__Cti_hctz]": 0.0,
+              "[MU__Cpl_hctz]": 0.0,
+              "[MU__Cti_hctz]": 0.0,
+              "[PA__Cpl_hctz]": 0.0,
+              "[PA__Cti_hctz]": 0.0,
+              "[SK__Cpl_hctz]": 0.0,
+              "[SK__Cti_hctz]": 0.0,
+              "[SP__Cpl_hctz]": 0.0,
+              "[SP__Cti_hctz]": 0.0,
+              "[ST__Cpl_hctz]": 0.0,
+              "[ST__Cti_hctz]": 0.0,
+              "Aurine_hctz": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__Vurine": {
+                "value": 1e-06,
+                "unit": "liter"
+              },
+              "FLUID__na_urine": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__cl_urine": {
+                "value": 0,
+                "unit": "millimole"
+              }
+            }
           }
+        ],
+        "presimulation": {
+          "preinit_changes": {},
+          "absolute_tolerance": 1e-12,
+          "relative_tolerance": 1e-10,
+          "max_time": 100000000000000.0
         },
-        "changes": [],
-        "presimulation": null,
         "times": null,
         "steps": null,
         "time_shift": 0.0
@@ -162,14 +247,98 @@
         "time_unit": "hr",
         "start": 0.0,
         "end": 720,
-        "preinit_changes": {
-          "PODOSE_hctz": {
-            "value": 0,
-            "unit": "milligram"
+        "preinit_changes": {},
+        "changes": [
+          {
+            "times": [
+              0.0
+            ],
+            "values": {
+              "PODOSE_hctz": {
+                "value": 0,
+                "unit": "milligram"
+              },
+              "Afeces_hctz": 0.0,
+              "[AD__Cpl_hctz]": 0.0,
+              "[AD__Cti_hctz]": 0.0,
+              "[BO__Cpl_hctz]": 0.0,
+              "[BO__Cti_hctz]": 0.0,
+              "[BR__Cpl_hctz]": 0.0,
+              "[BR__Cti_hctz]": 0.0,
+              "[Car_hctz]": 0.0,
+              "[Cpo_hctz]": 0.0,
+              "[Cve_hctz]": 0.0,
+              "[GO__Cpl_hctz]": 0.0,
+              "[GO__Cti_hctz]": 0.0,
+              "GU__Asolid_asc_hctz": 0.0,
+              "GU__Asolid_cae_hctz": 0.0,
+              "GU__Asolid_des_hctz": 0.0,
+              "GU__Asolid_du_hctz": 0.0,
+              "GU__Asolid_ile1_hctz": 0.0,
+              "GU__Asolid_ile2_hctz": 0.0,
+              "GU__Asolid_jej1_hctz": 0.0,
+              "GU__Asolid_jej2_hctz": 0.0,
+              "GU__Asolid_rec_hctz": 0.0,
+              "GU__Asolid_sig_hctz": 0.0,
+              "GU__Asolid_tra_hctz": 0.0,
+              "[GU__Clumen_asc_hctz]": 0.0,
+              "[GU__Clumen_cae_hctz]": 0.0,
+              "[GU__Clumen_des_hctz]": 0.0,
+              "[GU__Clumen_du_hctz]": 0.0,
+              "[GU__Clumen_ile1_hctz]": 0.0,
+              "[GU__Clumen_ile2_hctz]": 0.0,
+              "[GU__Clumen_jej1_hctz]": 0.0,
+              "[GU__Clumen_jej2_hctz]": 0.0,
+              "[GU__Clumen_rec_hctz]": 0.0,
+              "[GU__Clumen_sig_hctz]": 0.0,
+              "[GU__Clumen_st_hctz]": 0.0,
+              "[GU__Clumen_tra_hctz]": 0.0,
+              "[GU__Cpl_hctz]": 0.0,
+              "[GU__Cti_hctz]": 0.0,
+              "[HE__Cpl_hctz]": 0.0,
+              "[HE__Cti_hctz]": 0.0,
+              "[KI__Cic_hctz]": 0.0,
+              "[KI__Cis_hctz]": 0.0,
+              "[KI__Cpl_hctz]": 0.0,
+              "[LI__Cpl_hctz]": 0.0,
+              "[LI__Cti_hctz]": 0.0,
+              "[LU__Cpl_hctz]": 0.0,
+              "[LU__Cti_hctz]": 0.0,
+              "[MU__Cpl_hctz]": 0.0,
+              "[MU__Cti_hctz]": 0.0,
+              "[PA__Cpl_hctz]": 0.0,
+              "[PA__Cti_hctz]": 0.0,
+              "[SK__Cpl_hctz]": 0.0,
+              "[SK__Cti_hctz]": 0.0,
+              "[SP__Cpl_hctz]": 0.0,
+              "[SP__Cti_hctz]": 0.0,
+              "[ST__Cpl_hctz]": 0.0,
+              "[ST__Cti_hctz]": 0.0,
+              "Aurine_hctz": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__Vurine": {
+                "value": 1e-06,
+                "unit": "liter"
+              },
+              "FLUID__na_urine": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__cl_urine": {
+                "value": 0,
+                "unit": "millimole"
+              }
+            }
           }
+        ],
+        "presimulation": {
+          "preinit_changes": {},
+          "absolute_tolerance": 1e-12,
+          "relative_tolerance": 1e-10,
+          "max_time": 100000000000000.0
         },
-        "changes": [],
-        "presimulation": null,
         "times": null,
         "steps": null,
         "time_shift": 0.0
@@ -191,18 +360,18 @@
             9
           ],
           "values": {
-            "f_cirrhosis": {
+            "CP_severity": {
               "value": [
                 0.0,
-                0.1,
-                0.2,
-                0.30000000000000004,
-                0.4,
-                0.5,
-                0.6000000000000001,
-                0.7000000000000001,
-                0.8,
-                0.9
+                0.3333333333333333,
+                0.6666666666666666,
+                1.0,
+                1.3333333333333333,
+                1.6666666666666665,
+                2.0,
+                2.333333333333333,
+                2.6666666666666665,
+                3.0
               ],
               "unit": "dimensionless"
             }
@@ -222,14 +391,98 @@
         "time_unit": "hr",
         "start": 0.0,
         "end": 720,
-        "preinit_changes": {
-          "PODOSE_hctz": {
-            "value": 0,
-            "unit": "milligram"
+        "preinit_changes": {},
+        "changes": [
+          {
+            "times": [
+              0.0
+            ],
+            "values": {
+              "PODOSE_hctz": {
+                "value": 0,
+                "unit": "milligram"
+              },
+              "Afeces_hctz": 0.0,
+              "[AD__Cpl_hctz]": 0.0,
+              "[AD__Cti_hctz]": 0.0,
+              "[BO__Cpl_hctz]": 0.0,
+              "[BO__Cti_hctz]": 0.0,
+              "[BR__Cpl_hctz]": 0.0,
+              "[BR__Cti_hctz]": 0.0,
+              "[Car_hctz]": 0.0,
+              "[Cpo_hctz]": 0.0,
+              "[Cve_hctz]": 0.0,
+              "[GO__Cpl_hctz]": 0.0,
+              "[GO__Cti_hctz]": 0.0,
+              "GU__Asolid_asc_hctz": 0.0,
+              "GU__Asolid_cae_hctz": 0.0,
+              "GU__Asolid_des_hctz": 0.0,
+              "GU__Asolid_du_hctz": 0.0,
+              "GU__Asolid_ile1_hctz": 0.0,
+              "GU__Asolid_ile2_hctz": 0.0,
+              "GU__Asolid_jej1_hctz": 0.0,
+              "GU__Asolid_jej2_hctz": 0.0,
+              "GU__Asolid_rec_hctz": 0.0,
+              "GU__Asolid_sig_hctz": 0.0,
+              "GU__Asolid_tra_hctz": 0.0,
+              "[GU__Clumen_asc_hctz]": 0.0,
+              "[GU__Clumen_cae_hctz]": 0.0,
+              "[GU__Clumen_des_hctz]": 0.0,
+              "[GU__Clumen_du_hctz]": 0.0,
+              "[GU__Clumen_ile1_hctz]": 0.0,
+              "[GU__Clumen_ile2_hctz]": 0.0,
+              "[GU__Clumen_jej1_hctz]": 0.0,
+              "[GU__Clumen_jej2_hctz]": 0.0,
+              "[GU__Clumen_rec_hctz]": 0.0,
+              "[GU__Clumen_sig_hctz]": 0.0,
+              "[GU__Clumen_st_hctz]": 0.0,
+              "[GU__Clumen_tra_hctz]": 0.0,
+              "[GU__Cpl_hctz]": 0.0,
+              "[GU__Cti_hctz]": 0.0,
+              "[HE__Cpl_hctz]": 0.0,
+              "[HE__Cti_hctz]": 0.0,
+              "[KI__Cic_hctz]": 0.0,
+              "[KI__Cis_hctz]": 0.0,
+              "[KI__Cpl_hctz]": 0.0,
+              "[LI__Cpl_hctz]": 0.0,
+              "[LI__Cti_hctz]": 0.0,
+              "[LU__Cpl_hctz]": 0.0,
+              "[LU__Cti_hctz]": 0.0,
+              "[MU__Cpl_hctz]": 0.0,
+              "[MU__Cti_hctz]": 0.0,
+              "[PA__Cpl_hctz]": 0.0,
+              "[PA__Cti_hctz]": 0.0,
+              "[SK__Cpl_hctz]": 0.0,
+              "[SK__Cti_hctz]": 0.0,
+              "[SP__Cpl_hctz]": 0.0,
+              "[SP__Cti_hctz]": 0.0,
+              "[ST__Cpl_hctz]": 0.0,
+              "[ST__Cti_hctz]": 0.0,
+              "Aurine_hctz": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__Vurine": {
+                "value": 1e-06,
+                "unit": "liter"
+              },
+              "FLUID__na_urine": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__cl_urine": {
+                "value": 0,
+                "unit": "millimole"
+              }
+            }
           }
+        ],
+        "presimulation": {
+          "preinit_changes": {},
+          "absolute_tolerance": 1e-12,
+          "relative_tolerance": 1e-10,
+          "max_time": 100000000000000.0
         },
-        "changes": [],
-        "presimulation": null,
         "times": null,
         "steps": null,
         "time_shift": 0.0
@@ -249,22 +502,26 @@
             7,
             8,
             9,
-            10
+            10,
+            11,
+            12
           ],
           "values": {
-            "f_cardiac_function": {
+            "HF_severity": {
               "value": [
-                0.5,
-                0.6111111111111112,
-                0.7222222222222222,
-                0.8333333333333333,
-                0.9444444444444444,
+                0.0,
+                0.3333333333333333,
+                0.6666666666666666,
                 1.0,
-                1.0555555555555556,
-                1.1666666666666665,
-                1.2777777777777777,
-                1.3888888888888888,
-                1.5
+                1.3333333333333333,
+                1.6666666666666665,
+                2.0,
+                2.333333333333333,
+                2.6666666666666665,
+                3.0,
+                3.333333333333333,
+                3.6666666666666665,
+                4.0
               ],
               "unit": "dimensionless"
             }
@@ -285,8 +542,97 @@
         "start": 0.0,
         "end": 720,
         "preinit_changes": {},
-        "changes": [],
-        "presimulation": null,
+        "changes": [
+          {
+            "times": [
+              0.0
+            ],
+            "values": {
+              "PODOSE_hctz": {
+                "value": 0,
+                "unit": "milligram"
+              },
+              "Afeces_hctz": 0.0,
+              "[AD__Cpl_hctz]": 0.0,
+              "[AD__Cti_hctz]": 0.0,
+              "[BO__Cpl_hctz]": 0.0,
+              "[BO__Cti_hctz]": 0.0,
+              "[BR__Cpl_hctz]": 0.0,
+              "[BR__Cti_hctz]": 0.0,
+              "[Car_hctz]": 0.0,
+              "[Cpo_hctz]": 0.0,
+              "[Cve_hctz]": 0.0,
+              "[GO__Cpl_hctz]": 0.0,
+              "[GO__Cti_hctz]": 0.0,
+              "GU__Asolid_asc_hctz": 0.0,
+              "GU__Asolid_cae_hctz": 0.0,
+              "GU__Asolid_des_hctz": 0.0,
+              "GU__Asolid_du_hctz": 0.0,
+              "GU__Asolid_ile1_hctz": 0.0,
+              "GU__Asolid_ile2_hctz": 0.0,
+              "GU__Asolid_jej1_hctz": 0.0,
+              "GU__Asolid_jej2_hctz": 0.0,
+              "GU__Asolid_rec_hctz": 0.0,
+              "GU__Asolid_sig_hctz": 0.0,
+              "GU__Asolid_tra_hctz": 0.0,
+              "[GU__Clumen_asc_hctz]": 0.0,
+              "[GU__Clumen_cae_hctz]": 0.0,
+              "[GU__Clumen_des_hctz]": 0.0,
+              "[GU__Clumen_du_hctz]": 0.0,
+              "[GU__Clumen_ile1_hctz]": 0.0,
+              "[GU__Clumen_ile2_hctz]": 0.0,
+              "[GU__Clumen_jej1_hctz]": 0.0,
+              "[GU__Clumen_jej2_hctz]": 0.0,
+              "[GU__Clumen_rec_hctz]": 0.0,
+              "[GU__Clumen_sig_hctz]": 0.0,
+              "[GU__Clumen_st_hctz]": 0.0,
+              "[GU__Clumen_tra_hctz]": 0.0,
+              "[GU__Cpl_hctz]": 0.0,
+              "[GU__Cti_hctz]": 0.0,
+              "[HE__Cpl_hctz]": 0.0,
+              "[HE__Cti_hctz]": 0.0,
+              "[KI__Cic_hctz]": 0.0,
+              "[KI__Cis_hctz]": 0.0,
+              "[KI__Cpl_hctz]": 0.0,
+              "[LI__Cpl_hctz]": 0.0,
+              "[LI__Cti_hctz]": 0.0,
+              "[LU__Cpl_hctz]": 0.0,
+              "[LU__Cti_hctz]": 0.0,
+              "[MU__Cpl_hctz]": 0.0,
+              "[MU__Cti_hctz]": 0.0,
+              "[PA__Cpl_hctz]": 0.0,
+              "[PA__Cti_hctz]": 0.0,
+              "[SK__Cpl_hctz]": 0.0,
+              "[SK__Cti_hctz]": 0.0,
+              "[SP__Cpl_hctz]": 0.0,
+              "[SP__Cti_hctz]": 0.0,
+              "[ST__Cpl_hctz]": 0.0,
+              "[ST__Cti_hctz]": 0.0,
+              "Aurine_hctz": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__Vurine": {
+                "value": 1e-06,
+                "unit": "liter"
+              },
+              "FLUID__na_urine": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__cl_urine": {
+                "value": 0,
+                "unit": "millimole"
+              }
+            }
+          }
+        ],
+        "presimulation": {
+          "preinit_changes": {},
+          "absolute_tolerance": 1e-12,
+          "relative_tolerance": 1e-10,
+          "max_time": 100000000000000.0
+        },
         "times": null,
         "steps": null,
         "time_shift": 0.0
@@ -341,14 +687,98 @@
         "time_unit": "hr",
         "start": 0.0,
         "end": 720,
-        "preinit_changes": {
-          "PODOSE_hctz": {
-            "value": 25,
-            "unit": "milligram"
+        "preinit_changes": {},
+        "changes": [
+          {
+            "times": [
+              0.0
+            ],
+            "values": {
+              "PODOSE_hctz": {
+                "value": 25,
+                "unit": "milligram"
+              },
+              "Afeces_hctz": 0.0,
+              "[AD__Cpl_hctz]": 0.0,
+              "[AD__Cti_hctz]": 0.0,
+              "[BO__Cpl_hctz]": 0.0,
+              "[BO__Cti_hctz]": 0.0,
+              "[BR__Cpl_hctz]": 0.0,
+              "[BR__Cti_hctz]": 0.0,
+              "[Car_hctz]": 0.0,
+              "[Cpo_hctz]": 0.0,
+              "[Cve_hctz]": 0.0,
+              "[GO__Cpl_hctz]": 0.0,
+              "[GO__Cti_hctz]": 0.0,
+              "GU__Asolid_asc_hctz": 0.0,
+              "GU__Asolid_cae_hctz": 0.0,
+              "GU__Asolid_des_hctz": 0.0,
+              "GU__Asolid_du_hctz": 0.0,
+              "GU__Asolid_ile1_hctz": 0.0,
+              "GU__Asolid_ile2_hctz": 0.0,
+              "GU__Asolid_jej1_hctz": 0.0,
+              "GU__Asolid_jej2_hctz": 0.0,
+              "GU__Asolid_rec_hctz": 0.0,
+              "GU__Asolid_sig_hctz": 0.0,
+              "GU__Asolid_tra_hctz": 0.0,
+              "[GU__Clumen_asc_hctz]": 0.0,
+              "[GU__Clumen_cae_hctz]": 0.0,
+              "[GU__Clumen_des_hctz]": 0.0,
+              "[GU__Clumen_du_hctz]": 0.0,
+              "[GU__Clumen_ile1_hctz]": 0.0,
+              "[GU__Clumen_ile2_hctz]": 0.0,
+              "[GU__Clumen_jej1_hctz]": 0.0,
+              "[GU__Clumen_jej2_hctz]": 0.0,
+              "[GU__Clumen_rec_hctz]": 0.0,
+              "[GU__Clumen_sig_hctz]": 0.0,
+              "[GU__Clumen_st_hctz]": 0.0,
+              "[GU__Clumen_tra_hctz]": 0.0,
+              "[GU__Cpl_hctz]": 0.0,
+              "[GU__Cti_hctz]": 0.0,
+              "[HE__Cpl_hctz]": 0.0,
+              "[HE__Cti_hctz]": 0.0,
+              "[KI__Cic_hctz]": 0.0,
+              "[KI__Cis_hctz]": 0.0,
+              "[KI__Cpl_hctz]": 0.0,
+              "[LI__Cpl_hctz]": 0.0,
+              "[LI__Cti_hctz]": 0.0,
+              "[LU__Cpl_hctz]": 0.0,
+              "[LU__Cti_hctz]": 0.0,
+              "[MU__Cpl_hctz]": 0.0,
+              "[MU__Cti_hctz]": 0.0,
+              "[PA__Cpl_hctz]": 0.0,
+              "[PA__Cti_hctz]": 0.0,
+              "[SK__Cpl_hctz]": 0.0,
+              "[SK__Cti_hctz]": 0.0,
+              "[SP__Cpl_hctz]": 0.0,
+              "[SP__Cti_hctz]": 0.0,
+              "[ST__Cpl_hctz]": 0.0,
+              "[ST__Cti_hctz]": 0.0,
+              "Aurine_hctz": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__Vurine": {
+                "value": 1e-06,
+                "unit": "liter"
+              },
+              "FLUID__na_urine": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__cl_urine": {
+                "value": 0,
+                "unit": "millimole"
+              }
+            }
           }
+        ],
+        "presimulation": {
+          "preinit_changes": {},
+          "absolute_tolerance": 1e-12,
+          "relative_tolerance": 1e-10,
+          "max_time": 100000000000000.0
         },
-        "changes": [],
-        "presimulation": null,
         "times": null,
         "steps": null,
         "time_shift": 0.0
@@ -403,14 +833,98 @@
         "time_unit": "hr",
         "start": 0.0,
         "end": 720,
-        "preinit_changes": {
-          "PODOSE_hctz": {
-            "value": 25,
-            "unit": "milligram"
+        "preinit_changes": {},
+        "changes": [
+          {
+            "times": [
+              0.0
+            ],
+            "values": {
+              "PODOSE_hctz": {
+                "value": 25,
+                "unit": "milligram"
+              },
+              "Afeces_hctz": 0.0,
+              "[AD__Cpl_hctz]": 0.0,
+              "[AD__Cti_hctz]": 0.0,
+              "[BO__Cpl_hctz]": 0.0,
+              "[BO__Cti_hctz]": 0.0,
+              "[BR__Cpl_hctz]": 0.0,
+              "[BR__Cti_hctz]": 0.0,
+              "[Car_hctz]": 0.0,
+              "[Cpo_hctz]": 0.0,
+              "[Cve_hctz]": 0.0,
+              "[GO__Cpl_hctz]": 0.0,
+              "[GO__Cti_hctz]": 0.0,
+              "GU__Asolid_asc_hctz": 0.0,
+              "GU__Asolid_cae_hctz": 0.0,
+              "GU__Asolid_des_hctz": 0.0,
+              "GU__Asolid_du_hctz": 0.0,
+              "GU__Asolid_ile1_hctz": 0.0,
+              "GU__Asolid_ile2_hctz": 0.0,
+              "GU__Asolid_jej1_hctz": 0.0,
+              "GU__Asolid_jej2_hctz": 0.0,
+              "GU__Asolid_rec_hctz": 0.0,
+              "GU__Asolid_sig_hctz": 0.0,
+              "GU__Asolid_tra_hctz": 0.0,
+              "[GU__Clumen_asc_hctz]": 0.0,
+              "[GU__Clumen_cae_hctz]": 0.0,
+              "[GU__Clumen_des_hctz]": 0.0,
+              "[GU__Clumen_du_hctz]": 0.0,
+              "[GU__Clumen_ile1_hctz]": 0.0,
+              "[GU__Clumen_ile2_hctz]": 0.0,
+              "[GU__Clumen_jej1_hctz]": 0.0,
+              "[GU__Clumen_jej2_hctz]": 0.0,
+              "[GU__Clumen_rec_hctz]": 0.0,
+              "[GU__Clumen_sig_hctz]": 0.0,
+              "[GU__Clumen_st_hctz]": 0.0,
+              "[GU__Clumen_tra_hctz]": 0.0,
+              "[GU__Cpl_hctz]": 0.0,
+              "[GU__Cti_hctz]": 0.0,
+              "[HE__Cpl_hctz]": 0.0,
+              "[HE__Cti_hctz]": 0.0,
+              "[KI__Cic_hctz]": 0.0,
+              "[KI__Cis_hctz]": 0.0,
+              "[KI__Cpl_hctz]": 0.0,
+              "[LI__Cpl_hctz]": 0.0,
+              "[LI__Cti_hctz]": 0.0,
+              "[LU__Cpl_hctz]": 0.0,
+              "[LU__Cti_hctz]": 0.0,
+              "[MU__Cpl_hctz]": 0.0,
+              "[MU__Cti_hctz]": 0.0,
+              "[PA__Cpl_hctz]": 0.0,
+              "[PA__Cti_hctz]": 0.0,
+              "[SK__Cpl_hctz]": 0.0,
+              "[SK__Cti_hctz]": 0.0,
+              "[SP__Cpl_hctz]": 0.0,
+              "[SP__Cti_hctz]": 0.0,
+              "[ST__Cpl_hctz]": 0.0,
+              "[ST__Cti_hctz]": 0.0,
+              "Aurine_hctz": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__Vurine": {
+                "value": 1e-06,
+                "unit": "liter"
+              },
+              "FLUID__na_urine": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__cl_urine": {
+                "value": 0,
+                "unit": "millimole"
+              }
+            }
           }
+        ],
+        "presimulation": {
+          "preinit_changes": {},
+          "absolute_tolerance": 1e-12,
+          "relative_tolerance": 1e-10,
+          "max_time": 100000000000000.0
         },
-        "changes": [],
-        "presimulation": null,
         "times": null,
         "steps": null,
         "time_shift": 0.0
@@ -432,18 +946,18 @@
             9
           ],
           "values": {
-            "f_cirrhosis": {
+            "CP_severity": {
               "value": [
                 0.0,
-                0.1,
-                0.2,
-                0.30000000000000004,
-                0.4,
-                0.5,
-                0.6000000000000001,
-                0.7000000000000001,
-                0.8,
-                0.9
+                0.3333333333333333,
+                0.6666666666666666,
+                1.0,
+                1.3333333333333333,
+                1.6666666666666665,
+                2.0,
+                2.333333333333333,
+                2.6666666666666665,
+                3.0
               ],
               "unit": "dimensionless"
             }
@@ -463,14 +977,98 @@
         "time_unit": "hr",
         "start": 0.0,
         "end": 720,
-        "preinit_changes": {
-          "PODOSE_hctz": {
-            "value": 25,
-            "unit": "milligram"
+        "preinit_changes": {},
+        "changes": [
+          {
+            "times": [
+              0.0
+            ],
+            "values": {
+              "PODOSE_hctz": {
+                "value": 25,
+                "unit": "milligram"
+              },
+              "Afeces_hctz": 0.0,
+              "[AD__Cpl_hctz]": 0.0,
+              "[AD__Cti_hctz]": 0.0,
+              "[BO__Cpl_hctz]": 0.0,
+              "[BO__Cti_hctz]": 0.0,
+              "[BR__Cpl_hctz]": 0.0,
+              "[BR__Cti_hctz]": 0.0,
+              "[Car_hctz]": 0.0,
+              "[Cpo_hctz]": 0.0,
+              "[Cve_hctz]": 0.0,
+              "[GO__Cpl_hctz]": 0.0,
+              "[GO__Cti_hctz]": 0.0,
+              "GU__Asolid_asc_hctz": 0.0,
+              "GU__Asolid_cae_hctz": 0.0,
+              "GU__Asolid_des_hctz": 0.0,
+              "GU__Asolid_du_hctz": 0.0,
+              "GU__Asolid_ile1_hctz": 0.0,
+              "GU__Asolid_ile2_hctz": 0.0,
+              "GU__Asolid_jej1_hctz": 0.0,
+              "GU__Asolid_jej2_hctz": 0.0,
+              "GU__Asolid_rec_hctz": 0.0,
+              "GU__Asolid_sig_hctz": 0.0,
+              "GU__Asolid_tra_hctz": 0.0,
+              "[GU__Clumen_asc_hctz]": 0.0,
+              "[GU__Clumen_cae_hctz]": 0.0,
+              "[GU__Clumen_des_hctz]": 0.0,
+              "[GU__Clumen_du_hctz]": 0.0,
+              "[GU__Clumen_ile1_hctz]": 0.0,
+              "[GU__Clumen_ile2_hctz]": 0.0,
+              "[GU__Clumen_jej1_hctz]": 0.0,
+              "[GU__Clumen_jej2_hctz]": 0.0,
+              "[GU__Clumen_rec_hctz]": 0.0,
+              "[GU__Clumen_sig_hctz]": 0.0,
+              "[GU__Clumen_st_hctz]": 0.0,
+              "[GU__Clumen_tra_hctz]": 0.0,
+              "[GU__Cpl_hctz]": 0.0,
+              "[GU__Cti_hctz]": 0.0,
+              "[HE__Cpl_hctz]": 0.0,
+              "[HE__Cti_hctz]": 0.0,
+              "[KI__Cic_hctz]": 0.0,
+              "[KI__Cis_hctz]": 0.0,
+              "[KI__Cpl_hctz]": 0.0,
+              "[LI__Cpl_hctz]": 0.0,
+              "[LI__Cti_hctz]": 0.0,
+              "[LU__Cpl_hctz]": 0.0,
+              "[LU__Cti_hctz]": 0.0,
+              "[MU__Cpl_hctz]": 0.0,
+              "[MU__Cti_hctz]": 0.0,
+              "[PA__Cpl_hctz]": 0.0,
+              "[PA__Cti_hctz]": 0.0,
+              "[SK__Cpl_hctz]": 0.0,
+              "[SK__Cti_hctz]": 0.0,
+              "[SP__Cpl_hctz]": 0.0,
+              "[SP__Cti_hctz]": 0.0,
+              "[ST__Cpl_hctz]": 0.0,
+              "[ST__Cti_hctz]": 0.0,
+              "Aurine_hctz": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__Vurine": {
+                "value": 1e-06,
+                "unit": "liter"
+              },
+              "FLUID__na_urine": {
+                "value": 0,
+                "unit": "millimole"
+              },
+              "FLUID__cl_urine": {
+                "value": 0,
+                "unit": "millimole"
+              }
+            }
           }
+        ],
+        "presimulation": {
+          "preinit_changes": {},
+          "absolute_tolerance": 1e-12,
+          "relative_tolerance": 1e-10,
+          "max_time": 100000000000000.0
         },
-        "changes": [],
-        "presimulation": null,
         "times": null,
         "steps": null,
         "time_shift": 0.0
@@ -490,22 +1088,26 @@
             7,
             8,
             9,
-            10
+            10,
+            11,
+            12
           ],
           "values": {
-            "f_cardiac_function": {
+            "HF_severity": {
               "value": [
-                0.5,
-                0.6111111111111112,
-                0.7222222222222222,
-                0.8333333333333333,
-                0.9444444444444444,
+                0.0,
+                0.3333333333333333,
+                0.6666666666666666,
                 1.0,
-                1.0555555555555556,
-                1.1666666666666665,
-                1.2777777777777777,
-                1.3888888888888888,
-                1.5
+                1.3333333333333333,
+                1.6666666666666665,
+                2.0,
+                2.333333333333333,
+                2.6666666666666665,
+                3.0,
+                3.333333333333333,
+                3.6666666666666665,
+                4.0
               ],
               "unit": "dimensionless"
             }
@@ -533,11 +1135,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_renal_scan__conc__Cve_hctz": {
+    "task_scan_placebo_renal_scan__Carm_hctz": {
       "type": "TASK",
-      "sid": "task_scan_placebo_renal_scan__conc__Cve_hctz",
-      "index": "Cve_hctz",
-      "selection": "[Cve_hctz]",
+      "sid": "task_scan_placebo_renal_scan__Carm_hctz",
+      "index": "Carm_hctz",
+      "selection": "Carm_hctz",
       "unit": null,
       "task": "task_scan_placebo_renal_scan",
       "dataset": null,
@@ -572,11 +1174,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_renal_scan__NA_EXCRETION": {
+    "task_scan_placebo_renal_scan__FLUID__NA_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_placebo_renal_scan__NA_EXCRETION",
-      "index": "NA_EXCRETION",
-      "selection": "NA_EXCRETION",
+      "sid": "task_scan_placebo_renal_scan__FLUID__NA_EXCRETION",
+      "index": "FLUID__NA_EXCRETION",
+      "selection": "FLUID__NA_EXCRETION",
       "unit": null,
       "task": "task_scan_placebo_renal_scan",
       "dataset": null,
@@ -585,11 +1187,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_renal_scan__CL_EXCRETION": {
+    "task_scan_placebo_renal_scan__FLUID__CL_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_placebo_renal_scan__CL_EXCRETION",
-      "index": "CL_EXCRETION",
-      "selection": "CL_EXCRETION",
+      "sid": "task_scan_placebo_renal_scan__FLUID__CL_EXCRETION",
+      "index": "FLUID__CL_EXCRETION",
+      "selection": "FLUID__CL_EXCRETION",
       "unit": null,
       "task": "task_scan_placebo_renal_scan",
       "dataset": null,
@@ -598,11 +1200,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_renal_scan__diuresis": {
+    "task_scan_placebo_renal_scan__FLUID__diuresis": {
       "type": "TASK",
-      "sid": "task_scan_placebo_renal_scan__diuresis",
-      "index": "diuresis",
-      "selection": "diuresis",
+      "sid": "task_scan_placebo_renal_scan__FLUID__diuresis",
+      "index": "FLUID__diuresis",
+      "selection": "FLUID__diuresis",
       "unit": null,
       "task": "task_scan_placebo_renal_scan",
       "dataset": null,
@@ -611,11 +1213,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_renal_scan__ECF": {
+    "task_scan_placebo_renal_scan__FLUID__ECF": {
       "type": "TASK",
-      "sid": "task_scan_placebo_renal_scan__ECF",
-      "index": "ECF",
-      "selection": "ECF",
+      "sid": "task_scan_placebo_renal_scan__FLUID__ECF",
+      "index": "FLUID__ECF",
+      "selection": "FLUID__ECF",
       "unit": null,
       "task": "task_scan_placebo_renal_scan",
       "dataset": null,
@@ -624,11 +1226,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_renal_scan__bp_systolic": {
+    "task_scan_placebo_renal_scan__FLUID__bp_systolic": {
       "type": "TASK",
-      "sid": "task_scan_placebo_renal_scan__bp_systolic",
-      "index": "bp_systolic",
-      "selection": "bp_systolic",
+      "sid": "task_scan_placebo_renal_scan__FLUID__bp_systolic",
+      "index": "FLUID__bp_systolic",
+      "selection": "FLUID__bp_systolic",
       "unit": null,
       "task": "task_scan_placebo_renal_scan",
       "dataset": null,
@@ -637,11 +1239,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_renal_scan__bp_diastolic": {
+    "task_scan_placebo_renal_scan__FLUID__bp_diastolic": {
       "type": "TASK",
-      "sid": "task_scan_placebo_renal_scan__bp_diastolic",
-      "index": "bp_diastolic",
-      "selection": "bp_diastolic",
+      "sid": "task_scan_placebo_renal_scan__FLUID__bp_diastolic",
+      "index": "FLUID__bp_diastolic",
+      "selection": "FLUID__bp_diastolic",
       "unit": null,
       "task": "task_scan_placebo_renal_scan",
       "dataset": null,
@@ -676,11 +1278,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_renal_scan__f_cirrhosis": {
+    "task_scan_placebo_renal_scan__CP_severity": {
       "type": "TASK",
-      "sid": "task_scan_placebo_renal_scan__f_cirrhosis",
-      "index": "f_cirrhosis",
-      "selection": "f_cirrhosis",
+      "sid": "task_scan_placebo_renal_scan__CP_severity",
+      "index": "CP_severity",
+      "selection": "CP_severity",
       "unit": null,
       "task": "task_scan_placebo_renal_scan",
       "dataset": null,
@@ -689,11 +1291,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_renal_scan__f_cardiac_function": {
+    "task_scan_placebo_renal_scan__HF_severity": {
       "type": "TASK",
-      "sid": "task_scan_placebo_renal_scan__f_cardiac_function",
-      "index": "f_cardiac_function",
-      "selection": "f_cardiac_function",
+      "sid": "task_scan_placebo_renal_scan__HF_severity",
+      "index": "HF_severity",
+      "selection": "HF_severity",
       "unit": null,
       "task": "task_scan_placebo_renal_scan",
       "dataset": null,
@@ -715,11 +1317,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_hepatic_scan__conc__Cve_hctz": {
+    "task_scan_placebo_hepatic_scan__Carm_hctz": {
       "type": "TASK",
-      "sid": "task_scan_placebo_hepatic_scan__conc__Cve_hctz",
-      "index": "Cve_hctz",
-      "selection": "[Cve_hctz]",
+      "sid": "task_scan_placebo_hepatic_scan__Carm_hctz",
+      "index": "Carm_hctz",
+      "selection": "Carm_hctz",
       "unit": null,
       "task": "task_scan_placebo_hepatic_scan",
       "dataset": null,
@@ -754,11 +1356,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_hepatic_scan__NA_EXCRETION": {
+    "task_scan_placebo_hepatic_scan__FLUID__NA_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_placebo_hepatic_scan__NA_EXCRETION",
-      "index": "NA_EXCRETION",
-      "selection": "NA_EXCRETION",
+      "sid": "task_scan_placebo_hepatic_scan__FLUID__NA_EXCRETION",
+      "index": "FLUID__NA_EXCRETION",
+      "selection": "FLUID__NA_EXCRETION",
       "unit": null,
       "task": "task_scan_placebo_hepatic_scan",
       "dataset": null,
@@ -767,11 +1369,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_hepatic_scan__CL_EXCRETION": {
+    "task_scan_placebo_hepatic_scan__FLUID__CL_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_placebo_hepatic_scan__CL_EXCRETION",
-      "index": "CL_EXCRETION",
-      "selection": "CL_EXCRETION",
+      "sid": "task_scan_placebo_hepatic_scan__FLUID__CL_EXCRETION",
+      "index": "FLUID__CL_EXCRETION",
+      "selection": "FLUID__CL_EXCRETION",
       "unit": null,
       "task": "task_scan_placebo_hepatic_scan",
       "dataset": null,
@@ -780,11 +1382,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_hepatic_scan__diuresis": {
+    "task_scan_placebo_hepatic_scan__FLUID__diuresis": {
       "type": "TASK",
-      "sid": "task_scan_placebo_hepatic_scan__diuresis",
-      "index": "diuresis",
-      "selection": "diuresis",
+      "sid": "task_scan_placebo_hepatic_scan__FLUID__diuresis",
+      "index": "FLUID__diuresis",
+      "selection": "FLUID__diuresis",
       "unit": null,
       "task": "task_scan_placebo_hepatic_scan",
       "dataset": null,
@@ -793,11 +1395,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_hepatic_scan__ECF": {
+    "task_scan_placebo_hepatic_scan__FLUID__ECF": {
       "type": "TASK",
-      "sid": "task_scan_placebo_hepatic_scan__ECF",
-      "index": "ECF",
-      "selection": "ECF",
+      "sid": "task_scan_placebo_hepatic_scan__FLUID__ECF",
+      "index": "FLUID__ECF",
+      "selection": "FLUID__ECF",
       "unit": null,
       "task": "task_scan_placebo_hepatic_scan",
       "dataset": null,
@@ -806,11 +1408,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_hepatic_scan__bp_systolic": {
+    "task_scan_placebo_hepatic_scan__FLUID__bp_systolic": {
       "type": "TASK",
-      "sid": "task_scan_placebo_hepatic_scan__bp_systolic",
-      "index": "bp_systolic",
-      "selection": "bp_systolic",
+      "sid": "task_scan_placebo_hepatic_scan__FLUID__bp_systolic",
+      "index": "FLUID__bp_systolic",
+      "selection": "FLUID__bp_systolic",
       "unit": null,
       "task": "task_scan_placebo_hepatic_scan",
       "dataset": null,
@@ -819,11 +1421,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_hepatic_scan__bp_diastolic": {
+    "task_scan_placebo_hepatic_scan__FLUID__bp_diastolic": {
       "type": "TASK",
-      "sid": "task_scan_placebo_hepatic_scan__bp_diastolic",
-      "index": "bp_diastolic",
-      "selection": "bp_diastolic",
+      "sid": "task_scan_placebo_hepatic_scan__FLUID__bp_diastolic",
+      "index": "FLUID__bp_diastolic",
+      "selection": "FLUID__bp_diastolic",
       "unit": null,
       "task": "task_scan_placebo_hepatic_scan",
       "dataset": null,
@@ -858,11 +1460,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_hepatic_scan__f_cirrhosis": {
+    "task_scan_placebo_hepatic_scan__CP_severity": {
       "type": "TASK",
-      "sid": "task_scan_placebo_hepatic_scan__f_cirrhosis",
-      "index": "f_cirrhosis",
-      "selection": "f_cirrhosis",
+      "sid": "task_scan_placebo_hepatic_scan__CP_severity",
+      "index": "CP_severity",
+      "selection": "CP_severity",
       "unit": null,
       "task": "task_scan_placebo_hepatic_scan",
       "dataset": null,
@@ -871,11 +1473,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_hepatic_scan__f_cardiac_function": {
+    "task_scan_placebo_hepatic_scan__HF_severity": {
       "type": "TASK",
-      "sid": "task_scan_placebo_hepatic_scan__f_cardiac_function",
-      "index": "f_cardiac_function",
-      "selection": "f_cardiac_function",
+      "sid": "task_scan_placebo_hepatic_scan__HF_severity",
+      "index": "HF_severity",
+      "selection": "HF_severity",
       "unit": null,
       "task": "task_scan_placebo_hepatic_scan",
       "dataset": null,
@@ -897,11 +1499,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_cardiac_scan__conc__Cve_hctz": {
+    "task_scan_placebo_cardiac_scan__Carm_hctz": {
       "type": "TASK",
-      "sid": "task_scan_placebo_cardiac_scan__conc__Cve_hctz",
-      "index": "Cve_hctz",
-      "selection": "[Cve_hctz]",
+      "sid": "task_scan_placebo_cardiac_scan__Carm_hctz",
+      "index": "Carm_hctz",
+      "selection": "Carm_hctz",
       "unit": null,
       "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
@@ -936,11 +1538,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_cardiac_scan__NA_EXCRETION": {
+    "task_scan_placebo_cardiac_scan__FLUID__NA_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_placebo_cardiac_scan__NA_EXCRETION",
-      "index": "NA_EXCRETION",
-      "selection": "NA_EXCRETION",
+      "sid": "task_scan_placebo_cardiac_scan__FLUID__NA_EXCRETION",
+      "index": "FLUID__NA_EXCRETION",
+      "selection": "FLUID__NA_EXCRETION",
       "unit": null,
       "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
@@ -949,11 +1551,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_cardiac_scan__CL_EXCRETION": {
+    "task_scan_placebo_cardiac_scan__FLUID__CL_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_placebo_cardiac_scan__CL_EXCRETION",
-      "index": "CL_EXCRETION",
-      "selection": "CL_EXCRETION",
+      "sid": "task_scan_placebo_cardiac_scan__FLUID__CL_EXCRETION",
+      "index": "FLUID__CL_EXCRETION",
+      "selection": "FLUID__CL_EXCRETION",
       "unit": null,
       "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
@@ -962,11 +1564,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_cardiac_scan__diuresis": {
+    "task_scan_placebo_cardiac_scan__FLUID__diuresis": {
       "type": "TASK",
-      "sid": "task_scan_placebo_cardiac_scan__diuresis",
-      "index": "diuresis",
-      "selection": "diuresis",
+      "sid": "task_scan_placebo_cardiac_scan__FLUID__diuresis",
+      "index": "FLUID__diuresis",
+      "selection": "FLUID__diuresis",
       "unit": null,
       "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
@@ -975,11 +1577,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_cardiac_scan__ECF": {
+    "task_scan_placebo_cardiac_scan__FLUID__ECF": {
       "type": "TASK",
-      "sid": "task_scan_placebo_cardiac_scan__ECF",
-      "index": "ECF",
-      "selection": "ECF",
+      "sid": "task_scan_placebo_cardiac_scan__FLUID__ECF",
+      "index": "FLUID__ECF",
+      "selection": "FLUID__ECF",
       "unit": null,
       "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
@@ -988,11 +1590,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_cardiac_scan__bp_systolic": {
+    "task_scan_placebo_cardiac_scan__FLUID__bp_systolic": {
       "type": "TASK",
-      "sid": "task_scan_placebo_cardiac_scan__bp_systolic",
-      "index": "bp_systolic",
-      "selection": "bp_systolic",
+      "sid": "task_scan_placebo_cardiac_scan__FLUID__bp_systolic",
+      "index": "FLUID__bp_systolic",
+      "selection": "FLUID__bp_systolic",
       "unit": null,
       "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
@@ -1001,11 +1603,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_cardiac_scan__bp_diastolic": {
+    "task_scan_placebo_cardiac_scan__FLUID__bp_diastolic": {
       "type": "TASK",
-      "sid": "task_scan_placebo_cardiac_scan__bp_diastolic",
-      "index": "bp_diastolic",
-      "selection": "bp_diastolic",
+      "sid": "task_scan_placebo_cardiac_scan__FLUID__bp_diastolic",
+      "index": "FLUID__bp_diastolic",
+      "selection": "FLUID__bp_diastolic",
       "unit": null,
       "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
@@ -1040,11 +1642,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_cardiac_scan__f_cirrhosis": {
+    "task_scan_placebo_cardiac_scan__CP_severity": {
       "type": "TASK",
-      "sid": "task_scan_placebo_cardiac_scan__f_cirrhosis",
-      "index": "f_cirrhosis",
-      "selection": "f_cirrhosis",
+      "sid": "task_scan_placebo_cardiac_scan__CP_severity",
+      "index": "CP_severity",
+      "selection": "CP_severity",
       "unit": null,
       "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
@@ -1053,11 +1655,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_placebo_cardiac_scan__f_cardiac_function": {
+    "task_scan_placebo_cardiac_scan__HF_severity": {
       "type": "TASK",
-      "sid": "task_scan_placebo_cardiac_scan__f_cardiac_function",
-      "index": "f_cardiac_function",
-      "selection": "f_cardiac_function",
+      "sid": "task_scan_placebo_cardiac_scan__HF_severity",
+      "index": "HF_severity",
+      "selection": "HF_severity",
       "unit": null,
       "task": "task_scan_placebo_cardiac_scan",
       "dataset": null,
@@ -1079,11 +1681,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz_dose_scan__conc__Cve_hctz": {
+    "task_scan_hctz_dose_scan__Carm_hctz": {
       "type": "TASK",
-      "sid": "task_scan_hctz_dose_scan__conc__Cve_hctz",
-      "index": "Cve_hctz",
-      "selection": "[Cve_hctz]",
+      "sid": "task_scan_hctz_dose_scan__Carm_hctz",
+      "index": "Carm_hctz",
+      "selection": "Carm_hctz",
       "unit": null,
       "task": "task_scan_hctz_dose_scan",
       "dataset": null,
@@ -1118,11 +1720,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz_dose_scan__NA_EXCRETION": {
+    "task_scan_hctz_dose_scan__FLUID__NA_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_hctz_dose_scan__NA_EXCRETION",
-      "index": "NA_EXCRETION",
-      "selection": "NA_EXCRETION",
+      "sid": "task_scan_hctz_dose_scan__FLUID__NA_EXCRETION",
+      "index": "FLUID__NA_EXCRETION",
+      "selection": "FLUID__NA_EXCRETION",
       "unit": null,
       "task": "task_scan_hctz_dose_scan",
       "dataset": null,
@@ -1131,11 +1733,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz_dose_scan__CL_EXCRETION": {
+    "task_scan_hctz_dose_scan__FLUID__CL_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_hctz_dose_scan__CL_EXCRETION",
-      "index": "CL_EXCRETION",
-      "selection": "CL_EXCRETION",
+      "sid": "task_scan_hctz_dose_scan__FLUID__CL_EXCRETION",
+      "index": "FLUID__CL_EXCRETION",
+      "selection": "FLUID__CL_EXCRETION",
       "unit": null,
       "task": "task_scan_hctz_dose_scan",
       "dataset": null,
@@ -1144,11 +1746,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz_dose_scan__diuresis": {
+    "task_scan_hctz_dose_scan__FLUID__diuresis": {
       "type": "TASK",
-      "sid": "task_scan_hctz_dose_scan__diuresis",
-      "index": "diuresis",
-      "selection": "diuresis",
+      "sid": "task_scan_hctz_dose_scan__FLUID__diuresis",
+      "index": "FLUID__diuresis",
+      "selection": "FLUID__diuresis",
       "unit": null,
       "task": "task_scan_hctz_dose_scan",
       "dataset": null,
@@ -1157,11 +1759,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz_dose_scan__ECF": {
+    "task_scan_hctz_dose_scan__FLUID__ECF": {
       "type": "TASK",
-      "sid": "task_scan_hctz_dose_scan__ECF",
-      "index": "ECF",
-      "selection": "ECF",
+      "sid": "task_scan_hctz_dose_scan__FLUID__ECF",
+      "index": "FLUID__ECF",
+      "selection": "FLUID__ECF",
       "unit": null,
       "task": "task_scan_hctz_dose_scan",
       "dataset": null,
@@ -1170,11 +1772,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz_dose_scan__bp_systolic": {
+    "task_scan_hctz_dose_scan__FLUID__bp_systolic": {
       "type": "TASK",
-      "sid": "task_scan_hctz_dose_scan__bp_systolic",
-      "index": "bp_systolic",
-      "selection": "bp_systolic",
+      "sid": "task_scan_hctz_dose_scan__FLUID__bp_systolic",
+      "index": "FLUID__bp_systolic",
+      "selection": "FLUID__bp_systolic",
       "unit": null,
       "task": "task_scan_hctz_dose_scan",
       "dataset": null,
@@ -1183,11 +1785,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz_dose_scan__bp_diastolic": {
+    "task_scan_hctz_dose_scan__FLUID__bp_diastolic": {
       "type": "TASK",
-      "sid": "task_scan_hctz_dose_scan__bp_diastolic",
-      "index": "bp_diastolic",
-      "selection": "bp_diastolic",
+      "sid": "task_scan_hctz_dose_scan__FLUID__bp_diastolic",
+      "index": "FLUID__bp_diastolic",
+      "selection": "FLUID__bp_diastolic",
       "unit": null,
       "task": "task_scan_hctz_dose_scan",
       "dataset": null,
@@ -1222,11 +1824,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz_dose_scan__f_cirrhosis": {
+    "task_scan_hctz_dose_scan__CP_severity": {
       "type": "TASK",
-      "sid": "task_scan_hctz_dose_scan__f_cirrhosis",
-      "index": "f_cirrhosis",
-      "selection": "f_cirrhosis",
+      "sid": "task_scan_hctz_dose_scan__CP_severity",
+      "index": "CP_severity",
+      "selection": "CP_severity",
       "unit": null,
       "task": "task_scan_hctz_dose_scan",
       "dataset": null,
@@ -1235,11 +1837,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz_dose_scan__f_cardiac_function": {
+    "task_scan_hctz_dose_scan__HF_severity": {
       "type": "TASK",
-      "sid": "task_scan_hctz_dose_scan__f_cardiac_function",
-      "index": "f_cardiac_function",
-      "selection": "f_cardiac_function",
+      "sid": "task_scan_hctz_dose_scan__HF_severity",
+      "index": "HF_severity",
+      "selection": "HF_severity",
       "unit": null,
       "task": "task_scan_hctz_dose_scan",
       "dataset": null,
@@ -1261,11 +1863,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_renal_scan__conc__Cve_hctz": {
+    "task_scan_hctz25_renal_scan__Carm_hctz": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_renal_scan__conc__Cve_hctz",
-      "index": "Cve_hctz",
-      "selection": "[Cve_hctz]",
+      "sid": "task_scan_hctz25_renal_scan__Carm_hctz",
+      "index": "Carm_hctz",
+      "selection": "Carm_hctz",
       "unit": null,
       "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
@@ -1300,11 +1902,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_renal_scan__NA_EXCRETION": {
+    "task_scan_hctz25_renal_scan__FLUID__NA_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_renal_scan__NA_EXCRETION",
-      "index": "NA_EXCRETION",
-      "selection": "NA_EXCRETION",
+      "sid": "task_scan_hctz25_renal_scan__FLUID__NA_EXCRETION",
+      "index": "FLUID__NA_EXCRETION",
+      "selection": "FLUID__NA_EXCRETION",
       "unit": null,
       "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
@@ -1313,11 +1915,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_renal_scan__CL_EXCRETION": {
+    "task_scan_hctz25_renal_scan__FLUID__CL_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_renal_scan__CL_EXCRETION",
-      "index": "CL_EXCRETION",
-      "selection": "CL_EXCRETION",
+      "sid": "task_scan_hctz25_renal_scan__FLUID__CL_EXCRETION",
+      "index": "FLUID__CL_EXCRETION",
+      "selection": "FLUID__CL_EXCRETION",
       "unit": null,
       "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
@@ -1326,11 +1928,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_renal_scan__diuresis": {
+    "task_scan_hctz25_renal_scan__FLUID__diuresis": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_renal_scan__diuresis",
-      "index": "diuresis",
-      "selection": "diuresis",
+      "sid": "task_scan_hctz25_renal_scan__FLUID__diuresis",
+      "index": "FLUID__diuresis",
+      "selection": "FLUID__diuresis",
       "unit": null,
       "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
@@ -1339,11 +1941,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_renal_scan__ECF": {
+    "task_scan_hctz25_renal_scan__FLUID__ECF": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_renal_scan__ECF",
-      "index": "ECF",
-      "selection": "ECF",
+      "sid": "task_scan_hctz25_renal_scan__FLUID__ECF",
+      "index": "FLUID__ECF",
+      "selection": "FLUID__ECF",
       "unit": null,
       "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
@@ -1352,11 +1954,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_renal_scan__bp_systolic": {
+    "task_scan_hctz25_renal_scan__FLUID__bp_systolic": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_renal_scan__bp_systolic",
-      "index": "bp_systolic",
-      "selection": "bp_systolic",
+      "sid": "task_scan_hctz25_renal_scan__FLUID__bp_systolic",
+      "index": "FLUID__bp_systolic",
+      "selection": "FLUID__bp_systolic",
       "unit": null,
       "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
@@ -1365,11 +1967,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_renal_scan__bp_diastolic": {
+    "task_scan_hctz25_renal_scan__FLUID__bp_diastolic": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_renal_scan__bp_diastolic",
-      "index": "bp_diastolic",
-      "selection": "bp_diastolic",
+      "sid": "task_scan_hctz25_renal_scan__FLUID__bp_diastolic",
+      "index": "FLUID__bp_diastolic",
+      "selection": "FLUID__bp_diastolic",
       "unit": null,
       "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
@@ -1404,11 +2006,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_renal_scan__f_cirrhosis": {
+    "task_scan_hctz25_renal_scan__CP_severity": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_renal_scan__f_cirrhosis",
-      "index": "f_cirrhosis",
-      "selection": "f_cirrhosis",
+      "sid": "task_scan_hctz25_renal_scan__CP_severity",
+      "index": "CP_severity",
+      "selection": "CP_severity",
       "unit": null,
       "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
@@ -1417,11 +2019,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_renal_scan__f_cardiac_function": {
+    "task_scan_hctz25_renal_scan__HF_severity": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_renal_scan__f_cardiac_function",
-      "index": "f_cardiac_function",
-      "selection": "f_cardiac_function",
+      "sid": "task_scan_hctz25_renal_scan__HF_severity",
+      "index": "HF_severity",
+      "selection": "HF_severity",
       "unit": null,
       "task": "task_scan_hctz25_renal_scan",
       "dataset": null,
@@ -1443,11 +2045,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_hepatic_scan__conc__Cve_hctz": {
+    "task_scan_hctz25_hepatic_scan__Carm_hctz": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_hepatic_scan__conc__Cve_hctz",
-      "index": "Cve_hctz",
-      "selection": "[Cve_hctz]",
+      "sid": "task_scan_hctz25_hepatic_scan__Carm_hctz",
+      "index": "Carm_hctz",
+      "selection": "Carm_hctz",
       "unit": null,
       "task": "task_scan_hctz25_hepatic_scan",
       "dataset": null,
@@ -1482,11 +2084,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_hepatic_scan__NA_EXCRETION": {
+    "task_scan_hctz25_hepatic_scan__FLUID__NA_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_hepatic_scan__NA_EXCRETION",
-      "index": "NA_EXCRETION",
-      "selection": "NA_EXCRETION",
+      "sid": "task_scan_hctz25_hepatic_scan__FLUID__NA_EXCRETION",
+      "index": "FLUID__NA_EXCRETION",
+      "selection": "FLUID__NA_EXCRETION",
       "unit": null,
       "task": "task_scan_hctz25_hepatic_scan",
       "dataset": null,
@@ -1495,11 +2097,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_hepatic_scan__CL_EXCRETION": {
+    "task_scan_hctz25_hepatic_scan__FLUID__CL_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_hepatic_scan__CL_EXCRETION",
-      "index": "CL_EXCRETION",
-      "selection": "CL_EXCRETION",
+      "sid": "task_scan_hctz25_hepatic_scan__FLUID__CL_EXCRETION",
+      "index": "FLUID__CL_EXCRETION",
+      "selection": "FLUID__CL_EXCRETION",
       "unit": null,
       "task": "task_scan_hctz25_hepatic_scan",
       "dataset": null,
@@ -1508,11 +2110,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_hepatic_scan__diuresis": {
+    "task_scan_hctz25_hepatic_scan__FLUID__diuresis": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_hepatic_scan__diuresis",
-      "index": "diuresis",
-      "selection": "diuresis",
+      "sid": "task_scan_hctz25_hepatic_scan__FLUID__diuresis",
+      "index": "FLUID__diuresis",
+      "selection": "FLUID__diuresis",
       "unit": null,
       "task": "task_scan_hctz25_hepatic_scan",
       "dataset": null,
@@ -1521,11 +2123,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_hepatic_scan__ECF": {
+    "task_scan_hctz25_hepatic_scan__FLUID__ECF": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_hepatic_scan__ECF",
-      "index": "ECF",
-      "selection": "ECF",
+      "sid": "task_scan_hctz25_hepatic_scan__FLUID__ECF",
+      "index": "FLUID__ECF",
+      "selection": "FLUID__ECF",
       "unit": null,
       "task": "task_scan_hctz25_hepatic_scan",
       "dataset": null,
@@ -1534,11 +2136,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_hepatic_scan__bp_systolic": {
+    "task_scan_hctz25_hepatic_scan__FLUID__bp_systolic": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_hepatic_scan__bp_systolic",
-      "index": "bp_systolic",
-      "selection": "bp_systolic",
+      "sid": "task_scan_hctz25_hepatic_scan__FLUID__bp_systolic",
+      "index": "FLUID__bp_systolic",
+      "selection": "FLUID__bp_systolic",
       "unit": null,
       "task": "task_scan_hctz25_hepatic_scan",
       "dataset": null,
@@ -1547,11 +2149,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_hepatic_scan__bp_diastolic": {
+    "task_scan_hctz25_hepatic_scan__FLUID__bp_diastolic": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_hepatic_scan__bp_diastolic",
-      "index": "bp_diastolic",
-      "selection": "bp_diastolic",
+      "sid": "task_scan_hctz25_hepatic_scan__FLUID__bp_diastolic",
+      "index": "FLUID__bp_diastolic",
+      "selection": "FLUID__bp_diastolic",
       "unit": null,
       "task": "task_scan_hctz25_hepatic_scan",
       "dataset": null,
@@ -1586,11 +2188,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_hepatic_scan__f_cirrhosis": {
+    "task_scan_hctz25_hepatic_scan__CP_severity": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_hepatic_scan__f_cirrhosis",
-      "index": "f_cirrhosis",
-      "selection": "f_cirrhosis",
+      "sid": "task_scan_hctz25_hepatic_scan__CP_severity",
+      "index": "CP_severity",
+      "selection": "CP_severity",
       "unit": null,
       "task": "task_scan_hctz25_hepatic_scan",
       "dataset": null,
@@ -1599,11 +2201,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_hepatic_scan__f_cardiac_function": {
+    "task_scan_hctz25_hepatic_scan__HF_severity": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_hepatic_scan__f_cardiac_function",
-      "index": "f_cardiac_function",
-      "selection": "f_cardiac_function",
+      "sid": "task_scan_hctz25_hepatic_scan__HF_severity",
+      "index": "HF_severity",
+      "selection": "HF_severity",
       "unit": null,
       "task": "task_scan_hctz25_hepatic_scan",
       "dataset": null,
@@ -1625,11 +2227,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_cardiac_scan__conc__Cve_hctz": {
+    "task_scan_hctz25_cardiac_scan__Carm_hctz": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_cardiac_scan__conc__Cve_hctz",
-      "index": "Cve_hctz",
-      "selection": "[Cve_hctz]",
+      "sid": "task_scan_hctz25_cardiac_scan__Carm_hctz",
+      "index": "Carm_hctz",
+      "selection": "Carm_hctz",
       "unit": null,
       "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
@@ -1664,11 +2266,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_cardiac_scan__NA_EXCRETION": {
+    "task_scan_hctz25_cardiac_scan__FLUID__NA_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_cardiac_scan__NA_EXCRETION",
-      "index": "NA_EXCRETION",
-      "selection": "NA_EXCRETION",
+      "sid": "task_scan_hctz25_cardiac_scan__FLUID__NA_EXCRETION",
+      "index": "FLUID__NA_EXCRETION",
+      "selection": "FLUID__NA_EXCRETION",
       "unit": null,
       "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
@@ -1677,11 +2279,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_cardiac_scan__CL_EXCRETION": {
+    "task_scan_hctz25_cardiac_scan__FLUID__CL_EXCRETION": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_cardiac_scan__CL_EXCRETION",
-      "index": "CL_EXCRETION",
-      "selection": "CL_EXCRETION",
+      "sid": "task_scan_hctz25_cardiac_scan__FLUID__CL_EXCRETION",
+      "index": "FLUID__CL_EXCRETION",
+      "selection": "FLUID__CL_EXCRETION",
       "unit": null,
       "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
@@ -1690,11 +2292,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_cardiac_scan__diuresis": {
+    "task_scan_hctz25_cardiac_scan__FLUID__diuresis": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_cardiac_scan__diuresis",
-      "index": "diuresis",
-      "selection": "diuresis",
+      "sid": "task_scan_hctz25_cardiac_scan__FLUID__diuresis",
+      "index": "FLUID__diuresis",
+      "selection": "FLUID__diuresis",
       "unit": null,
       "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
@@ -1703,11 +2305,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_cardiac_scan__ECF": {
+    "task_scan_hctz25_cardiac_scan__FLUID__ECF": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_cardiac_scan__ECF",
-      "index": "ECF",
-      "selection": "ECF",
+      "sid": "task_scan_hctz25_cardiac_scan__FLUID__ECF",
+      "index": "FLUID__ECF",
+      "selection": "FLUID__ECF",
       "unit": null,
       "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
@@ -1716,11 +2318,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_cardiac_scan__bp_systolic": {
+    "task_scan_hctz25_cardiac_scan__FLUID__bp_systolic": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_cardiac_scan__bp_systolic",
-      "index": "bp_systolic",
-      "selection": "bp_systolic",
+      "sid": "task_scan_hctz25_cardiac_scan__FLUID__bp_systolic",
+      "index": "FLUID__bp_systolic",
+      "selection": "FLUID__bp_systolic",
       "unit": null,
       "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
@@ -1729,11 +2331,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_cardiac_scan__bp_diastolic": {
+    "task_scan_hctz25_cardiac_scan__FLUID__bp_diastolic": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_cardiac_scan__bp_diastolic",
-      "index": "bp_diastolic",
-      "selection": "bp_diastolic",
+      "sid": "task_scan_hctz25_cardiac_scan__FLUID__bp_diastolic",
+      "index": "FLUID__bp_diastolic",
+      "selection": "FLUID__bp_diastolic",
       "unit": null,
       "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
@@ -1768,11 +2370,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_cardiac_scan__f_cirrhosis": {
+    "task_scan_hctz25_cardiac_scan__CP_severity": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_cardiac_scan__f_cirrhosis",
-      "index": "f_cirrhosis",
-      "selection": "f_cirrhosis",
+      "sid": "task_scan_hctz25_cardiac_scan__CP_severity",
+      "index": "CP_severity",
+      "selection": "CP_severity",
       "unit": null,
       "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,
@@ -1781,11 +2383,11 @@
       "parameters": {},
       "sel": null
     },
-    "task_scan_hctz25_cardiac_scan__f_cardiac_function": {
+    "task_scan_hctz25_cardiac_scan__HF_severity": {
       "type": "TASK",
-      "sid": "task_scan_hctz25_cardiac_scan__f_cardiac_function",
-      "index": "f_cardiac_function",
-      "selection": "f_cardiac_function",
+      "sid": "task_scan_hctz25_cardiac_scan__HF_severity",
+      "index": "HF_severity",
+      "selection": "HF_severity",
       "unit": null,
       "task": "task_scan_hctz25_cardiac_scan",
       "dataset": null,

@@ -1,50 +1,57 @@
 study	name	group	measurement_type	count	substance	choice	value	unit	comments
-Dussol2005	PaR	all	age	1.0	NA	NA	56.0	yr	NA
-Dussol2005	VaD	all	age	1.0	NA	NA	51.0	yr	NA
-Dussol2005	WeR	all	age	1.0	NA	NA	71.0	yr	NA
-Dussol2005	LeJC	all	age	1.0	NA	NA	53.0	yr	NA
-Dussol2005	MeM	all	age	1.0	NA	NA	40.0	yr	NA
-Dussol2005	MeJP	all	age	1.0	NA	NA	55.0	yr	NA
-Dussol2005	DoG	all	age	1.0	NA	NA	49.0	yr	NA
-Dussol2005	PaR	all	sex	1.0	NA	M	NA	NA	NA
-Dussol2005	VaD	all	sex	1.0	NA	M	NA	NA	NA
-Dussol2005	WeR	all	sex	1.0	NA	M	NA	NA	NA
-Dussol2005	LeJC	all	sex	1.0	NA	M	NA	NA	NA
-Dussol2005	MeM	all	sex	1.0	NA	M	NA	NA	NA
-Dussol2005	MeJP	all	sex	1.0	NA	M	NA	NA	NA
-Dussol2005	DoG	all	sex	1.0	NA	M	NA	NA	NA
-Dussol2005	PaR	all	bmi	1.0	NA	NA	34.0	kg/m^2	NA
-Dussol2005	VaD	all	bmi	1.0	NA	NA	24.0	kg/m^2	NA
-Dussol2005	WeR	all	bmi	1.0	NA	NA	28.0	kg/m^2	NA
-Dussol2005	LeJC	all	bmi	1.0	NA	NA	26.0	kg/m^2	NA
-Dussol2005	MeM	all	bmi	1.0	NA	NA	24.0	kg/m^2	NA
-Dussol2005	MeJP	all	bmi	1.0	NA	NA	37.0	kg/m^2	NA
-Dussol2005	DoG	all	bmi	1.0	NA	NA	32.0	kg/m^2	NA
-Dussol2005	PaR	all	disease	1.0	NA	diabetes	NA	NA	NA
-Dussol2005	VaD	all	disease	1.0	NA	polycystic kidney disease	NA	NA	NA
-Dussol2005	WeR	all	disease	1.0	NA	polycystic kidney disease	NA	NA	NA
-Dussol2005	LeJC	all	disease	1.0	NA	nephrosclerosis	NA	NA	NA
-Dussol2005	MeM	all	disease	1.0	NA	NR	NA	NA	NA
-Dussol2005	MeJP	all	disease	1.0	NA	nephrosclerosis	NA	NA	NA
-Dussol2005	DoG	all	disease	1.0	NA	nephrosclerosis	NA	NA	NA
-Dussol2005	PaR	all	clearance_renal	1.0	creatinine	NA	33.0	ml/min	NA
-Dussol2005	VaD	all	clearance_renal	1.0	creatinine	NA	37.0	ml/min	NA
-Dussol2005	WeR	all	clearance_renal	1.0	creatinine	NA	27.0	ml/min	NA
-Dussol2005	LeJC	all	clearance_renal	1.0	creatinine	NA	35.0	ml/min	NA
-Dussol2005	MeM	all	clearance_renal	1.0	creatinine	NA	32.0	ml/min	NA
-Dussol2005	MeJP	all	clearance_renal	1.0	creatinine	NA	40.0	ml/min	NA
-Dussol2005	DoG	all	clearance_renal	1.0	creatinine	NA	40.0	ml/min	NA
-Dussol2005	PaR	all	gfr	1.0	NA	NA	16.0	ml/min	NA
-Dussol2005	VaD	all	gfr	1.0	NA	NA	41.0	ml/min	NA
-Dussol2005	WeR	all	gfr	1.0	NA	NA	29.0	ml/min	NA
-Dussol2005	LeJC	all	gfr	1.0	NA	NA	17.0	ml/min	NA
-Dussol2005	MeM	all	gfr	1.0	NA	NA	12.0	ml/min	NA
-Dussol2005	MeJP	all	gfr	1.0	NA	NA	36.0	ml/min	NA
-Dussol2005	DoG	all	gfr	1.0	NA	NA	27.0	ml/min	NA
-Dussol2005	PaR	all	blood flow	1.0	NA	NA	95.0	ml/min	renal
-Dussol2005	VaD	all	blood flow	1.0	NA	NA	126.0	ml/min	renal
-Dussol2005	WeR	all	blood flow	1.0	NA	NA	79.0	ml/min	renal
-Dussol2005	LeJC	all	blood flow	1.0	NA	NA	63.0	ml/min	renal
-Dussol2005	MeM	all	blood flow	1.0	NA	NA	57.0	ml/min	renal
-Dussol2005	MeJP	all	blood flow	1.0	NA	NA	178.0	ml/min	renal
-Dussol2005	DoG	all	blood flow	1.0	NA	NA	83.0	ml/min	renal
+Dussol2005	DoG	all	age	1	NA	NA	49.0	yr	NA
+Dussol2005	DoG	all	bmi	1	NA	NA	32.0	kg/m^2	NA
+Dussol2005	DoG	all	disease	1	NA	nephrosclerosis	NA	NA	Renal disease NAS (nephroangiosclerosis) in Table 1.
+Dussol2005	DoG	all	estimated clearance	1	creatinine	NA	40.0	ml/min	Cockcroft clearance (creatinine clearance estimated with the Cockcroft-Gault formula) at entry in Table 1.
+Dussol2005	DoG	all	filtration fraction	1	NA	NA	0.32	dimensionless	FF at entry in Table 1 (GFR/RPF); the footnote says %, the printed values are fractions.
+Dussol2005	DoG	all	gfr	1	NA	NA	27.0	ml/min	GFR at entry in Table 1, 99mTc-DTPA clearance.
+Dussol2005	DoG	all	renal plasma flow	1	NA	NA	83.0	ml/min	RPF at entry in Table 1, [131I]hippuran clearance.
+Dussol2005	DoG	all	sex	1	NA	M	NA	NA	NA
+Dussol2005	LeJC	all	age	1	NA	NA	53.0	yr	NA
+Dussol2005	LeJC	all	bmi	1	NA	NA	26.0	kg/m^2	NA
+Dussol2005	LeJC	all	disease	1	NA	nephrosclerosis	NA	NA	Renal disease NAS (nephroangiosclerosis) in Table 1.
+Dussol2005	LeJC	all	estimated clearance	1	creatinine	NA	35.0	ml/min	Cockcroft clearance (creatinine clearance estimated with the Cockcroft-Gault formula) at entry in Table 1.
+Dussol2005	LeJC	all	filtration fraction	1	NA	NA	0.27	dimensionless	FF at entry in Table 1 (GFR/RPF); the footnote says %, the printed values are fractions.
+Dussol2005	LeJC	all	gfr	1	NA	NA	17.0	ml/min	GFR at entry in Table 1, 99mTc-DTPA clearance.
+Dussol2005	LeJC	all	renal plasma flow	1	NA	NA	63.0	ml/min	RPF at entry in Table 1, [131I]hippuran clearance.
+Dussol2005	LeJC	all	sex	1	NA	M	NA	NA	NA
+Dussol2005	MeJP	all	age	1	NA	NA	55.0	yr	NA
+Dussol2005	MeJP	all	bmi	1	NA	NA	37.0	kg/m^2	NA
+Dussol2005	MeJP	all	disease	1	NA	nephrosclerosis	NA	NA	Renal disease NAS (nephroangiosclerosis) in Table 1.
+Dussol2005	MeJP	all	estimated clearance	1	creatinine	NA	40.0	ml/min	Cockcroft clearance (creatinine clearance estimated with the Cockcroft-Gault formula) at entry in Table 1.
+Dussol2005	MeJP	all	filtration fraction	1	NA	NA	0.2	dimensionless	FF at entry in Table 1 (GFR/RPF); the footnote says %, the printed values are fractions.
+Dussol2005	MeJP	all	gfr	1	NA	NA	36.0	ml/min	GFR at entry in Table 1, 99mTc-DTPA clearance.
+Dussol2005	MeJP	all	renal plasma flow	1	NA	NA	178.0	ml/min	RPF at entry in Table 1, [131I]hippuran clearance.
+Dussol2005	MeJP	all	sex	1	NA	M	NA	NA	NA
+Dussol2005	MeM	all	age	1	NA	NA	40.0	yr	NA
+Dussol2005	MeM	all	bmi	1	NA	NA	24.0	kg/m^2	NA
+Dussol2005	MeM	all	disease	1	NA	NR	NA	NA	Renal disease Und (undetermined) in Table 1.
+Dussol2005	MeM	all	estimated clearance	1	creatinine	NA	32.0	ml/min	Cockcroft clearance (creatinine clearance estimated with the Cockcroft-Gault formula) at entry in Table 1.
+Dussol2005	MeM	all	filtration fraction	1	NA	NA	0.21	dimensionless	FF at entry in Table 1 (GFR/RPF); the footnote says %, the printed values are fractions.
+Dussol2005	MeM	all	gfr	1	NA	NA	12.0	ml/min	GFR at entry in Table 1, 99mTc-DTPA clearance.
+Dussol2005	MeM	all	renal plasma flow	1	NA	NA	57.0	ml/min	RPF at entry in Table 1, [131I]hippuran clearance.
+Dussol2005	MeM	all	sex	1	NA	M	NA	NA	NA
+Dussol2005	PaR	all	age	1	NA	NA	56.0	yr	NA
+Dussol2005	PaR	all	bmi	1	NA	NA	34.0	kg/m^2	NA
+Dussol2005	PaR	all	disease	1	NA	diabetic nephropathy	NA	NA	Renal disease Diabetes in Table 1 (primary renal disease diabetes).
+Dussol2005	PaR	all	estimated clearance	1	creatinine	NA	33.0	ml/min	Cockcroft clearance (creatinine clearance estimated with the Cockcroft-Gault formula) at entry in Table 1.
+Dussol2005	PaR	all	filtration fraction	1	NA	NA	0.17	dimensionless	FF at entry in Table 1 (GFR/RPF); the footnote says %, the printed values are fractions.
+Dussol2005	PaR	all	gfr	1	NA	NA	16.0	ml/min	GFR at entry in Table 1, 99mTc-DTPA clearance.
+Dussol2005	PaR	all	renal plasma flow	1	NA	NA	95.0	ml/min	RPF at entry in Table 1, [131I]hippuran clearance.
+Dussol2005	PaR	all	sex	1	NA	M	NA	NA	NA
+Dussol2005	VaD	all	age	1	NA	NA	51.0	yr	NA
+Dussol2005	VaD	all	bmi	1	NA	NA	24.0	kg/m^2	NA
+Dussol2005	VaD	all	disease	1	NA	polycystic kidney disease	NA	NA	Renal disease PKD (polycystic kidney disease) in Table 1.
+Dussol2005	VaD	all	estimated clearance	1	creatinine	NA	37.0	ml/min	Cockcroft clearance (creatinine clearance estimated with the Cockcroft-Gault formula) at entry in Table 1.
+Dussol2005	VaD	all	filtration fraction	1	NA	NA	0.33	dimensionless	FF at entry in Table 1 (GFR/RPF); the footnote says %, the printed values are fractions.
+Dussol2005	VaD	all	gfr	1	NA	NA	41.0	ml/min	GFR at entry in Table 1, 99mTc-DTPA clearance.
+Dussol2005	VaD	all	renal plasma flow	1	NA	NA	126.0	ml/min	RPF at entry in Table 1, [131I]hippuran clearance.
+Dussol2005	VaD	all	sex	1	NA	M	NA	NA	NA
+Dussol2005	WeR	all	age	1	NA	NA	71.0	yr	NA
+Dussol2005	WeR	all	bmi	1	NA	NA	28.0	kg/m^2	NA
+Dussol2005	WeR	all	disease	1	NA	polycystic kidney disease	NA	NA	Renal disease PKD (polycystic kidney disease) in Table 1.
+Dussol2005	WeR	all	estimated clearance	1	creatinine	NA	27.0	ml/min	Cockcroft clearance (creatinine clearance estimated with the Cockcroft-Gault formula) at entry in Table 1.
+Dussol2005	WeR	all	filtration fraction	1	NA	NA	0.37	dimensionless	FF at entry in Table 1 (GFR/RPF); the footnote says %, the printed values are fractions.
+Dussol2005	WeR	all	gfr	1	NA	NA	29.0	ml/min	GFR at entry in Table 1, 99mTc-DTPA clearance.
+Dussol2005	WeR	all	renal plasma flow	1	NA	NA	79.0	ml/min	RPF at entry in Table 1, [131I]hippuran clearance.
+Dussol2005	WeR	all	sex	1	NA	M	NA	NA	NA

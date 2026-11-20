@@ -1,0 +1,25 @@
+{
+  "sets": [
+    {
+      "sid": "PK_20261110_080555__bb639_0",
+      "values": {
+        "ftissue_hctz": 0.031769298861474934,
+        "MU__kps_hctz": 0.021555520025389536,
+        "Kp_hctz": 1.3601566767909867,
+        "KI__HCTZUP_k": 0.3623492453981284,
+        "Ka_dis_hctz": 1.4664918705481065,
+        "ka_hctz": 0.3078410203668451
+      },
+      "units": {
+        "ftissue_hctz": "l/min",
+        "MU__kps_hctz": "1/min",
+        "Kp_hctz": "dimensionless",
+        "KI__HCTZUP_k": "1/min",
+        "Ka_dis_hctz": "1/hr",
+        "ka_hctz": "1/hr"
+      },
+      "cost": 56.599149381216336,
+      "provenance": "optimization 'PK_20261110_080555__bb639', run '17'"
+    }
+  ]
+}

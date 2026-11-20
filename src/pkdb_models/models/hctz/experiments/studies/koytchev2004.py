@@ -46,7 +46,7 @@ class Koytchev2004(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label == "reference_hydro" or label == "test_hydro":
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(f"{fig_id}_{label}")] = dset
         return dsets
 
@@ -63,7 +63,7 @@ class Koytchev2004(HCTZSimulationExperiment):
             },
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -80,7 +80,7 @@ class Koytchev2004(HCTZSimulationExperiment):
                     count="count",
                 ),
                 observable=FitData(
-                    self, task="task_hctz12p5", xid="time", yid="[Cve_hctz]"
+                    self, task="task_hctz12p5", xid="time", yid="Carm_hctz"
                 ),
                 metadata=PKPDMappingMetaData(
                     # coadministration with lisinopril
@@ -113,7 +113,7 @@ class Koytchev2004(HCTZSimulationExperiment):
         plots[0].add_data(
             task="task_hctz12p5",
             xid="time",
-            yid="[Cve_hctz]",
+            yid="Carm_hctz",
             label="Sim",
             color=self.color_hctz,
         )

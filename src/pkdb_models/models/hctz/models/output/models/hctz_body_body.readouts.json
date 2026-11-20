@@ -1,0 +1,995 @@
+{
+ "contract": "figurereadouts/1",
+ "model": "hctz_body",
+ "keys": {
+  "lu": {
+   "label": "lung",
+   "readouts": [
+    {
+     "id": "[LU__Cpl_hctz]",
+     "label": "hydrochlorothiazide, lung plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[LU__Cti_hctz]",
+     "label": "hydrochlorothiazide, lung tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "LU__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, lung tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "lu/sub:hctz": {
+   "label": "hydrochlorothiazide, lung",
+   "readouts": [
+    {
+     "id": "[LU__Cpl_hctz]",
+     "label": "hydrochlorothiazide, lung plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[LU__Cti_hctz]",
+     "label": "hydrochlorothiazide, lung tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "LU__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, lung tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "he": {
+   "label": "heart",
+   "readouts": [
+    {
+     "id": "[HE__Cpl_hctz]",
+     "label": "hydrochlorothiazide, heart plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[HE__Cti_hctz]",
+     "label": "hydrochlorothiazide, heart tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "HE__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, heart tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "he/sub:hctz": {
+   "label": "hydrochlorothiazide, heart",
+   "readouts": [
+    {
+     "id": "[HE__Cpl_hctz]",
+     "label": "hydrochlorothiazide, heart plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[HE__Cti_hctz]",
+     "label": "hydrochlorothiazide, heart tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "HE__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, heart tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "br": {
+   "label": "brain",
+   "readouts": [
+    {
+     "id": "[BR__Cpl_hctz]",
+     "label": "hydrochlorothiazide, brain plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[BR__Cti_hctz]",
+     "label": "hydrochlorothiazide, brain tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "BR__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, brain tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "br/sub:hctz": {
+   "label": "hydrochlorothiazide, brain",
+   "readouts": [
+    {
+     "id": "[BR__Cpl_hctz]",
+     "label": "hydrochlorothiazide, brain plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[BR__Cti_hctz]",
+     "label": "hydrochlorothiazide, brain tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "BR__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, brain tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "li": {
+   "label": "liver",
+   "readouts": [
+    {
+     "id": "[LI__Cpl_hctz]",
+     "label": "hydrochlorothiazide, liver plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[LI__Cti_hctz]",
+     "label": "hydrochlorothiazide, liver tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "LI__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, liver tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "li/sub:hctz": {
+   "label": "hydrochlorothiazide, liver",
+   "readouts": [
+    {
+     "id": "[LI__Cpl_hctz]",
+     "label": "hydrochlorothiazide, liver plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[LI__Cti_hctz]",
+     "label": "hydrochlorothiazide, liver tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "LI__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, liver tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "ki": {
+   "label": "kidney",
+   "readouts": [
+    {
+     "id": "[KI__Cpl_hctz]",
+     "label": "hydrochlorothiazide, kidney plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[KI__Cis_hctz]",
+     "label": "hydrochlorothiazide, kidney interstitium",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[KI__Cic_hctz]",
+     "label": "hydrochlorothiazide, kidney cells",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "KI__Cu_is_hctz",
+     "label": "hydrochlorothiazide, kidney interstitium unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "KI__Cu_ic_hctz",
+     "label": "hydrochlorothiazide, kidney cells unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "ki/sub:hctz": {
+   "label": "hydrochlorothiazide, kidney",
+   "readouts": [
+    {
+     "id": "[KI__Cpl_hctz]",
+     "label": "hydrochlorothiazide, kidney plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[KI__Cis_hctz]",
+     "label": "hydrochlorothiazide, kidney interstitium",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[KI__Cic_hctz]",
+     "label": "hydrochlorothiazide, kidney cells",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "KI__Cu_is_hctz",
+     "label": "hydrochlorothiazide, kidney interstitium unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "KI__Cu_ic_hctz",
+     "label": "hydrochlorothiazide, kidney cells unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "ki/txt:TRA: HCTZUP: hctz blood -> cell by SLC22A6 (first order)": {
+   "label": "HCTZUP, kidney",
+   "readouts": [
+    {
+     "id": "KI__HCTZUP",
+     "label": "HCTZUP, kidney flux",
+     "unit": "mmole/min",
+     "kind": "flux"
+    }
+   ]
+  },
+  "ki/txt:TRA: HCTZSEC: hctz cell -> urine by ABCC4 (first order)": {
+   "label": "HCTZSEC, kidney",
+   "readouts": [
+    {
+     "id": "KI__HCTZSEC",
+     "label": "HCTZSEC, kidney flux",
+     "unit": "mmole/min",
+     "kind": "flux"
+    }
+   ]
+  },
+  "ki/txt:URI: filtered into the urine: hctz": {
+   "label": "kidney",
+   "readouts": []
+  },
+  "st": {
+   "label": "stomach",
+   "readouts": [
+    {
+     "id": "[ST__Cpl_hctz]",
+     "label": "hydrochlorothiazide, stomach plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[ST__Cti_hctz]",
+     "label": "hydrochlorothiazide, stomach tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "ST__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, stomach tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "st/sub:hctz": {
+   "label": "hydrochlorothiazide, stomach",
+   "readouts": [
+    {
+     "id": "[ST__Cpl_hctz]",
+     "label": "hydrochlorothiazide, stomach plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[ST__Cti_hctz]",
+     "label": "hydrochlorothiazide, stomach tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "ST__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, stomach tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "si": {
+   "label": "small intestine",
+   "readouts": [
+    {
+     "id": "[GU__Cpl_hctz]",
+     "label": "hydrochlorothiazide, small intestine plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[GU__Cti_hctz]",
+     "label": "hydrochlorothiazide, small intestine tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "GU__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, small intestine tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "si/sub:hctz": {
+   "label": "hydrochlorothiazide, small intestine",
+   "readouts": [
+    {
+     "id": "[GU__Cpl_hctz]",
+     "label": "hydrochlorothiazide, small intestine plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[GU__Cti_hctz]",
+     "label": "hydrochlorothiazide, small intestine tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "GU__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, small intestine tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "la": {
+   "label": "large intestine",
+   "readouts": [
+    {
+     "id": "[LA__Cpl_hctz]",
+     "label": "hydrochlorothiazide, large intestine plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[LA__Cti_hctz]",
+     "label": "hydrochlorothiazide, large intestine tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "LA__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, large intestine tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "la/sub:hctz": {
+   "label": "hydrochlorothiazide, large intestine",
+   "readouts": [
+    {
+     "id": "[LA__Cpl_hctz]",
+     "label": "hydrochlorothiazide, large intestine plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[LA__Cti_hctz]",
+     "label": "hydrochlorothiazide, large intestine tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "LA__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, large intestine tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "sp": {
+   "label": "spleen",
+   "readouts": [
+    {
+     "id": "[SP__Cpl_hctz]",
+     "label": "hydrochlorothiazide, spleen plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[SP__Cti_hctz]",
+     "label": "hydrochlorothiazide, spleen tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "SP__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, spleen tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "sp/sub:hctz": {
+   "label": "hydrochlorothiazide, spleen",
+   "readouts": [
+    {
+     "id": "[SP__Cpl_hctz]",
+     "label": "hydrochlorothiazide, spleen plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[SP__Cti_hctz]",
+     "label": "hydrochlorothiazide, spleen tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "SP__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, spleen tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "pa": {
+   "label": "pancreas",
+   "readouts": [
+    {
+     "id": "[PA__Cpl_hctz]",
+     "label": "hydrochlorothiazide, pancreas plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[PA__Cti_hctz]",
+     "label": "hydrochlorothiazide, pancreas tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "PA__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, pancreas tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "pa/sub:hctz": {
+   "label": "hydrochlorothiazide, pancreas",
+   "readouts": [
+    {
+     "id": "[PA__Cpl_hctz]",
+     "label": "hydrochlorothiazide, pancreas plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[PA__Cti_hctz]",
+     "label": "hydrochlorothiazide, pancreas tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "PA__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, pancreas tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "mu": {
+   "label": "muscle",
+   "readouts": [
+    {
+     "id": "[MU__Cpl_hctz]",
+     "label": "hydrochlorothiazide, muscle plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[MU__Cti_hctz]",
+     "label": "hydrochlorothiazide, muscle tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "MU__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, muscle tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "mu/sub:hctz": {
+   "label": "hydrochlorothiazide, muscle",
+   "readouts": [
+    {
+     "id": "[MU__Cpl_hctz]",
+     "label": "hydrochlorothiazide, muscle plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[MU__Cti_hctz]",
+     "label": "hydrochlorothiazide, muscle tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "MU__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, muscle tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "sk": {
+   "label": "skin",
+   "readouts": [
+    {
+     "id": "[SK__Cpl_hctz]",
+     "label": "hydrochlorothiazide, skin plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[SK__Cti_hctz]",
+     "label": "hydrochlorothiazide, skin tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "SK__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, skin tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "sk/sub:hctz": {
+   "label": "hydrochlorothiazide, skin",
+   "readouts": [
+    {
+     "id": "[SK__Cpl_hctz]",
+     "label": "hydrochlorothiazide, skin plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[SK__Cti_hctz]",
+     "label": "hydrochlorothiazide, skin tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "SK__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, skin tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "ad": {
+   "label": "adipose tissue",
+   "readouts": [
+    {
+     "id": "[AD__Cpl_hctz]",
+     "label": "hydrochlorothiazide, adipose tissue plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[AD__Cti_hctz]",
+     "label": "hydrochlorothiazide, adipose tissue tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "AD__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, adipose tissue tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "ad/sub:hctz": {
+   "label": "hydrochlorothiazide, adipose tissue",
+   "readouts": [
+    {
+     "id": "[AD__Cpl_hctz]",
+     "label": "hydrochlorothiazide, adipose tissue plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[AD__Cti_hctz]",
+     "label": "hydrochlorothiazide, adipose tissue tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "AD__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, adipose tissue tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "bo": {
+   "label": "bone",
+   "readouts": [
+    {
+     "id": "[BO__Cpl_hctz]",
+     "label": "hydrochlorothiazide, bone plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[BO__Cti_hctz]",
+     "label": "hydrochlorothiazide, bone tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "BO__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, bone tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "bo/sub:hctz": {
+   "label": "hydrochlorothiazide, bone",
+   "readouts": [
+    {
+     "id": "[BO__Cpl_hctz]",
+     "label": "hydrochlorothiazide, bone plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[BO__Cti_hctz]",
+     "label": "hydrochlorothiazide, bone tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "BO__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, bone tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "go": {
+   "label": "gonads",
+   "readouts": [
+    {
+     "id": "[GO__Cpl_hctz]",
+     "label": "hydrochlorothiazide, gonads plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[GO__Cti_hctz]",
+     "label": "hydrochlorothiazide, gonads tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "GO__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, gonads tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "go/sub:hctz": {
+   "label": "hydrochlorothiazide, gonads",
+   "readouts": [
+    {
+     "id": "[GO__Cpl_hctz]",
+     "label": "hydrochlorothiazide, gonads plasma",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "[GO__Cti_hctz]",
+     "label": "hydrochlorothiazide, gonads tissue",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "GO__Cu_ti_hctz",
+     "label": "hydrochlorothiazide, gonads tissue unbound",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "blood": {
+   "label": "blood sample",
+   "readouts": [
+    {
+     "id": "Carm_hctz",
+     "label": "hydrochlorothiazide, plasma (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_free_hctz",
+     "label": "hydrochlorothiazide, unbound (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_blood_hctz",
+     "label": "hydrochlorothiazide, blood (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "blood/sub:hctz": {
+   "label": "hydrochlorothiazide, blood sample",
+   "readouts": [
+    {
+     "id": "Carm_hctz",
+     "label": "hydrochlorothiazide, plasma (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_free_hctz",
+     "label": "hydrochlorothiazide, unbound (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_blood_hctz",
+     "label": "hydrochlorothiazide, blood (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "blood/txt:OBS: arm vein: the observer Carm of every substance": {
+   "label": "blood sample",
+   "readouts": [
+    {
+     "id": "Carm_hctz",
+     "label": "hydrochlorothiazide, plasma (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_free_hctz",
+     "label": "hydrochlorothiazide, unbound (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_blood_hctz",
+     "label": "hydrochlorothiazide, blood (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "sample": {
+   "label": "blood sample",
+   "readouts": [
+    {
+     "id": "Carm_hctz",
+     "label": "hydrochlorothiazide, plasma (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_free_hctz",
+     "label": "hydrochlorothiazide, unbound (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_blood_hctz",
+     "label": "hydrochlorothiazide, blood (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "sub:hctz": {
+   "label": "hydrochlorothiazide",
+   "readouts": [
+    {
+     "id": "Carm_hctz",
+     "label": "hydrochlorothiazide, plasma (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_free_hctz",
+     "label": "hydrochlorothiazide, unbound (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    },
+    {
+     "id": "Carm_blood_hctz",
+     "label": "hydrochlorothiazide, blood (sample)",
+     "unit": "mmole/liter",
+     "kind": "concentration"
+    }
+   ]
+  },
+  "lumen": {
+   "label": "intestinal lumen",
+   "readouts": [
+    {
+     "id": "Alumen_hctz",
+     "label": "hydrochlorothiazide, lumen amount",
+     "unit": "mmole",
+     "kind": "amount"
+    }
+   ]
+  },
+  "lumen/sub:hctz": {
+   "label": "hydrochlorothiazide, intestinal lumen",
+   "readouts": [
+    {
+     "id": "Alumen_hctz",
+     "label": "hydrochlorothiazide, lumen amount",
+     "unit": "mmole",
+     "kind": "amount"
+    }
+   ]
+  },
+  "lumen/txt:ORL: tablet hctz (first order dissolution)": {
+   "label": "intestinal lumen",
+   "readouts": []
+  },
+  "lumen/txt:ORL: solution hctz": {
+   "label": "intestinal lumen",
+   "readouts": []
+  },
+  "lumen/txt:ABS: into the intestinal wall: hctz": {
+   "label": "intestinal lumen",
+   "readouts": []
+  },
+  "lumen/txt:FEC: from the last segment: hctz": {
+   "label": "intestinal lumen",
+   "readouts": []
+  },
+  "urine": {
+   "label": "urine",
+   "readouts": [
+    {
+     "id": "Aurine_hctz",
+     "label": "hydrochlorothiazide, urine amount",
+     "unit": "mmole",
+     "kind": "amount"
+    },
+    {
+     "id": "Rurine_hctz",
+     "label": "hydrochlorothiazide, urine rate",
+     "unit": "mmole/min",
+     "kind": "rate"
+    }
+   ]
+  },
+  "urine/sub:hctz": {
+   "label": "hydrochlorothiazide, urine",
+   "readouts": [
+    {
+     "id": "Aurine_hctz",
+     "label": "hydrochlorothiazide, urine amount",
+     "unit": "mmole",
+     "kind": "amount"
+    },
+    {
+     "id": "Rurine_hctz",
+     "label": "hydrochlorothiazide, urine rate",
+     "unit": "mmole/min",
+     "kind": "rate"
+    }
+   ]
+  },
+  "feces": {
+   "label": "feces",
+   "readouts": [
+    {
+     "id": "Afeces_hctz",
+     "label": "hydrochlorothiazide, feces amount",
+     "unit": "mmole",
+     "kind": "amount"
+    },
+    {
+     "id": "Rfeces_hctz",
+     "label": "hydrochlorothiazide, feces rate",
+     "unit": "mmole/min",
+     "kind": "rate"
+    }
+   ]
+  },
+  "feces/sub:hctz": {
+   "label": "hydrochlorothiazide, feces",
+   "readouts": [
+    {
+     "id": "Afeces_hctz",
+     "label": "hydrochlorothiazide, feces amount",
+     "unit": "mmole",
+     "kind": "amount"
+    },
+    {
+     "id": "Rfeces_hctz",
+     "label": "hydrochlorothiazide, feces rate",
+     "unit": "mmole/min",
+     "kind": "rate"
+    }
+   ]
+  },
+  "iv": {
+   "label": "intravenous dose",
+   "readouts": []
+  },
+  "route:iv": {
+   "label": "intravenous dose",
+   "readouts": []
+  },
+  "iv/txt:IV: hctz into the venous blood": {
+   "label": "intravenous dose",
+   "readouts": []
+  },
+  "route:oral": {
+   "label": "oral dose",
+   "readouts": []
+  },
+  "bladder": {
+   "label": "bladder",
+   "readouts": []
+  },
+  "gallbladder": {
+   "label": "gallbladder",
+   "readouts": []
+  },
+  "uterus": {
+   "label": "uterus",
+   "readouts": []
+  }
+ }
+}

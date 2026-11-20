@@ -29,6 +29,9 @@ class Devineni2014(HCTZSimulationExperiment):
     """Simulation experiment of Devineni2014.
 
     Multiple oral dosing of 25mg HCTZ alone or with Canagliflozin 300mg per day
+
+    The subjects are mostly men (16 of 30), simulated on the male build of
+    the model.
     """
 
     groups: ClassVar[list[str]] = ["HCTZ25", "CAN300_HCTZ25"]
@@ -51,7 +54,7 @@ class Devineni2014(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hydrochlorothiazide"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[f"{fig_id}_{label}"] = dset
 
         return dsets
@@ -60,8 +63,10 @@ class Devineni2014(HCTZSimulationExperiment):
     def simulations(self) -> dict[str, Simulation]:
         simulations = {}
 
-        # multiple dosing: S-27T1R28 for HCTZ25 and for
-        # 29 doses, every 24 hours, the data is reported from the last dose
+        # multiple dosing: 28 daily doses of HCTZ25 alone, 35 daily doses of
+        # HCTZ25_35d in the arm with canagliflozin (7 of them with it); both
+        # arms are at steady state on the last day, so one simulation of 29
+        # doses, every 24 hours, serves both, the data is of the last dose
         dose_times = [24 * k for k in range(29)]
         simulations["hctz25"] = Simulation(
             time_unit="hr",
@@ -74,7 +79,7 @@ class Devineni2014(HCTZSimulationExperiment):
             time_shift=-28 * 24,  # shift to the last day
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -91,7 +96,7 @@ class Devineni2014(HCTZSimulationExperiment):
                     count="count",
                 ),
                 observable=FitData(
-                    self, task="task_hctz25", xid="time", yid="[Cve_hctz]"
+                    self, task="task_hctz25", xid="time", yid="Carm_hctz"
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
@@ -125,7 +130,7 @@ class Devineni2014(HCTZSimulationExperiment):
         plots[0].add_data(
             task="task_hctz25",
             xid="time",
-            yid="[Cve_hctz]",
+            yid="Carm_hctz",
             label="Sim",
             color="black",
         )

@@ -46,7 +46,7 @@ class Weir1998(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith(("hctz", "amount_", "excretion_")):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[f"{fig_id}_{label}"] = dset
         return dsets
 
@@ -71,14 +71,14 @@ class Weir1998(HCTZSimulationExperiment):
             time_shift=-10 * 12,
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
 
         infos = [
-            ("Fig2_hctz25", "[Cve_hctz]", Tissue.PLASMA),
+            ("Fig2_hctz25", "Carm_hctz", Tissue.PLASMA),
             # Tab4 is the same cumulative excretion as Fig3 (the table of the
             # figure); the excretion rates of its collections, which the
             # dataset Tab4 derives, are not fitted a second time
@@ -135,7 +135,7 @@ class Weir1998(HCTZSimulationExperiment):
         plots[1].set_yaxis(label=self.label_hctz_urine, unit=self.unit_hctz_urine)
 
         # simulation
-        for k, yid in enumerate(["[Cve_hctz]", "Aurine_hctz"]):
+        for k, yid in enumerate(["Carm_hctz", "Aurine_hctz"]):
             plots[k].add_data(
                 task="task_hctz25",
                 xid="time",

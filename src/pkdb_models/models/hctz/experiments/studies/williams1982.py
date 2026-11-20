@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -77,10 +78,10 @@ class Williams1982(HCTZSimulationExperiment):
     ]
     #: the data of Fig2: label -> rate in the model, amount in the urine
     fig2_observables: ClassVar[dict[str, tuple[str, str]]] = {
-        "excretion": ("KI__HCTZEX", "Aurine_hctz"),
-        "diuresis": ("diuresis", "Vurine"),
-        "sodium": ("NA_EXCRETION", "na_urine"),
-        "chlor": ("CL_EXCRETION", "cl_urine"),
+        "excretion": ("Rurine_hctz", "Aurine_hctz"),
+        "diuresis": ("FLUID__diuresis", "FLUID__Vurine"),
+        "sodium": ("FLUID__NA_EXCRETION", "FLUID__na_urine"),
+        "chlor": ("FLUID__CL_EXCRETION", "FLUID__cl_urine"),
     }
 
     def _collected(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -96,34 +97,62 @@ class Williams1982(HCTZSimulationExperiment):
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig2", "Fig3A", "Fig3B", "Fig2A", "Fig2B", "Fig2C"]:
-            df: pd.DataFrame = self.load_dataframe(fig_id)
-            if fig_id == "Fig2":
-                for label, df_label in df.groupby("label"):
-                    label = str(label)
-                    dset = DataSet.from_df(df_label, self.ureg)
-                    collected = DataSet.from_df(self._collected(df_label), self.ureg)
-                    if label.startswith("excretion"):
-                        dset.unit_conversion("mean", 1 / self.Mr.hctz)
-                        collected.unit_conversion("mean", 1 / self.Mr.hctz)
-                    dsets[f"{fig_id}_{label}"] = dset
-                    dsets[f"{fig_id}_{label}_collected"] = collected
+        # Fig2: a series is the placebo day (`_day2` in pkdb_data, before the
+        # dose) and the day of the dose
+        df = self.load_dataframe("Fig2")
+        df["label"] = df["label"].str.removesuffix("_day2")
+        fig2 = {}
+        for label, df_label in df.groupby("label"):
+            label = str(label)
+            df_label = df_label.sort_values("time")
+            fig2[label] = df_label
+            dset = DataSet.from_df(df_label, self.ureg)
+            collected = DataSet.from_df(self._collected(df_label), self.ureg)
+            if label.startswith("excretion"):
+                dset.unit_conversion("mean", 1 / self.Mr["hctz"])
+                collected.unit_conversion("mean", 1 / self.Mr["hctz"])
+            dsets[f"Fig2_{label}"] = dset
+            dsets[f"Fig2_{label}_collected"] = collected
 
-            elif fig_id == "Fig3A" or fig_id == "Fig3B":
-                for label, df_label in df.groupby("x_label"):
-                    label = str(label)
-                    dset = DataSet.from_df(df_label, self.ureg)
-                    if label.startswith("hctz"):
-                        dset.unit_conversion("x", 1 / self.Mr.hctz)
-                    dsets[f"{fig_id}_{label}"] = dset
+        # Fig3: the sodium excretion (A) and the urine flow (B) over the
+        # concentration of HCTZ in the urine
+        df = self.load_dataframe("Fig3")
+        # a point is the mean of the group
+        df["count"] = df["group"].map(self.group_counts())
+        for label, df_label in df.groupby("label"):
+            panel, _, arm = str(label).split("_")
+            dose = arm.removeprefix("hctz")
+            dset = DataSet.from_df(df_label, self.ureg)
+            dset.unit_conversion("x", 1 / self.Mr["hctz"])
+            suffix = "urine" if panel == "Fig3A" else "urine2"
+            dsets[f"{panel}_hctz_HCTZ{dose}_{suffix}"] = dset
 
-            elif fig_id == "Fig2A" or fig_id == "Fig2B" or fig_id == "Fig2C":
-                for label, df_label in df.groupby("x_label"):
-                    label = str(label)
-                    dset = DataSet.from_df(df_label, self.ureg)
-                    if label.startswith("excretion"):
-                        dset.unit_conversion("x", 1 / self.Mr.hctz)
-                    dsets[f"{fig_id}_{label}"] = dset
+        # Fig2A-C: the urine flow, the sodium and the chloride excretion over
+        # the excretion of HCTZ of the same collection of Fig2 after the dose
+        for fig_id, rate in [
+            ("Fig2A", "diuresis"),
+            ("Fig2B", "sodium"),
+            ("Fig2C", "chlor"),
+        ]:
+            for dose in self.doses:
+                x = fig2[f"excretion_hctz{dose}"]
+                y = fig2[f"{rate}_hctz{dose}"]
+                y = y[y["time"] > 0]
+                pairs = x[["time", "count", "mean", "unit"]].merge(
+                    y[["time", "mean", "unit"]], on="time", suffixes=("_x", "_y")
+                )
+                scatter = pd.DataFrame(
+                    {
+                        "count": pairs["count"],
+                        "x": pairs["mean_x"],
+                        "x_unit": pairs["unit_x"],
+                        "y": pairs["mean_y"],
+                        "y_unit": pairs["unit_y"],
+                    }
+                )
+                dset = DataSet.from_df(scatter, self.ureg)
+                dset.unit_conversion("x", 1 / self.Mr["hctz"])
+                dsets[f"{fig_id}_excretion_hctz{dose}"] = dset
 
         return dsets
 
@@ -148,7 +177,7 @@ class Williams1982(HCTZSimulationExperiment):
                     # (Methods), with the water of the food and of the
                     # metabolism about 3.0 l a day (the model has 2.3 l, of
                     # which 0.2 l of the metabolism, Hall2021)
-                    "vin_h2o": Q(3.0, "l/day"),
+                    "FLUID__vin_h2o": Q(3.0, "l/day"),
                 },
                 changes=[
                     Change(24, {"PODOSE_hctz": Q(dose, "mg")}),
@@ -157,7 +186,7 @@ class Williams1982(HCTZSimulationExperiment):
                 ],
                 time_shift=-24,
             )
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -184,6 +213,7 @@ class Williams1982(HCTZSimulationExperiment):
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.URINE,
+                        sampling_site=SamplingSite.NOT_APPLICABLE,
                         application_form=ApplicationForm.TABLET,
                         route=Route.PO,
                         dosing=Dosing.SINGLE,
@@ -215,8 +245,8 @@ class Williams1982(HCTZSimulationExperiment):
         #             observable=FitData(
         #                 self,
         #                 task=f"task_hctz{dose}",
-        #                 xid="[Cve_hctz]",        # FIXME: concentration HCTZ in URINE not plasma
-        #                 yid="NA_EXCRETION" if "3A" in dset_id else "diuresis",
+        #                 xid="Carm_hctz",        # FIXME: concentration HCTZ in URINE not plasma
+        #                 yid="FLUID__NA_EXCRETION" if "3A" in dset_id else "FLUID__diuresis",
         #             ),
         #             metadata=PKPDMappingMetaData(
         #                 tissue=Tissue.URINE,
@@ -256,8 +286,8 @@ class Williams1982(HCTZSimulationExperiment):
         )
         for k, (label, unit) in enumerate(
             [
-                (self.labels["KI__HCTZEX"], self.units["KI__HCTZEX"]),
-                (self.labels["diuresis"], self.units["diuresis"]),
+                (self.labels["Rurine_hctz"], self.units["Rurine_hctz"]),
+                (self.labels["FLUID__diuresis"], self.units["FLUID__diuresis"]),
                 ("Sodium excretion\n", "mmole/hr"),
                 ("Chloride excretion\n", "mmole/hr"),
             ]
@@ -333,7 +363,7 @@ class Williams1982(HCTZSimulationExperiment):
         plots[0].set_yaxis(label="Sodium excretion\n", unit="mmole/hr")
         (
             plots[1].set_yaxis(
-                label=self.labels["diuresis"], unit=self.units["diuresis"]
+                label=self.labels["FLUID__diuresis"], unit=self.units["FLUID__diuresis"]
             ),
         )
 
@@ -343,8 +373,8 @@ class Williams1982(HCTZSimulationExperiment):
 
             for k, (xid, yid) in enumerate(
                 [
-                    ("hctz_urine_excretion", "NA_EXCRETION"),
-                    ("hctz_urine_excretion", "diuresis"),
+                    ("FLUID__hctz_urine_excretion", "FLUID__NA_EXCRETION"),
+                    ("FLUID__hctz_urine_excretion", "FLUID__diuresis"),
                 ]
             ):
                 plots[k].add_data(
@@ -390,12 +420,12 @@ class Williams1982(HCTZSimulationExperiment):
         plots = fig.create_plots(xaxis=Axis(self.label_time, unit="hr"), legend=True)
         for k in [0, 1, 2]:
             plots[k].set_xaxis(
-                label=self.labels["KI__HCTZEX"], unit=self.units["KI__HCTZEX"]
+                label=self.labels["Rurine_hctz"], unit=self.units["Rurine_hctz"]
             )  # FIXME: concentration HCTZ in URINE not plasma
 
         (
             plots[0].set_yaxis(
-                label=self.labels["diuresis"], unit=self.units["diuresis"]
+                label=self.labels["FLUID__diuresis"], unit=self.units["FLUID__diuresis"]
             ),
         )
         plots[1].set_yaxis(label="Sodium excretion\n", unit="mmole/hr")
@@ -407,9 +437,9 @@ class Williams1982(HCTZSimulationExperiment):
 
             for k, (xid, yid) in enumerate(
                 [
-                    ("KI__HCTZEX", "diuresis"),
-                    ("KI__HCTZEX", "NA_EXCRETION"),
-                    ("KI__HCTZEX", "CL_EXCRETION"),
+                    ("Rurine_hctz", "FLUID__diuresis"),
+                    ("Rurine_hctz", "FLUID__NA_EXCRETION"),
+                    ("Rurine_hctz", "FLUID__CL_EXCRETION"),
                 ]
             ):
                 plots[k].add_data(

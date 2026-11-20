@@ -1,0 +1,502 @@
+--------------------------------------------------------------------------------
+OptimizationProblem: PD
+--------------------------------------------------------------------------------
+Experiments
+	*** FitMappingCollection ***
+experiment: Anderson1961
+mappings: ['fm_amount_HCTZpo_cardiac', 'fm_amount_HCTZpo_6', 'fm_cmax_HCTZpo_6', 'fm_amount_HCTZpo_7', 'fm_cmax_HCTZpo_7', 'fm_amount_HCTZpo_8', 'fm_cmax_HCTZpo_8', 'fm_amount_HCTZpo_control', 'fm_amount_HCTZpo_1', 'fm_cmax_HCTZpo_1', 'fm_amount_HCTZpo_3', 'fm_cmax_HCTZpo_3', 'fm_amount_HCTZpo_4', 'fm_cmax_HCTZpo_4', 'fm_amount_HCTZpo_5', 'fm_cmax_HCTZpo_5', 'fm_amount_HCTZpo_hepatic', 'fm_amount_HCTZpo_12', 'fm_cmax_HCTZpo_12', 'fm_amount_HCTZpo_renal', 'fm_amount_HCTZpo_9', 'fm_cmax_HCTZpo_9', 'fm_amount_HCTZiv_cardiac', 'fm_amount_HCTZiv_8B', 'fm_cmax_HCTZiv_8B', 'fm_amount_HCTZiv_8C', 'fm_cmax_HCTZiv_8C', 'fm_amount_HCTZiv_control', 'fm_amount_HCTZiv_2', 'fm_cmax_HCTZiv_2', 'fm_amount_HCTZiv_hepatic', 'fm_amount_HCTZiv_12', 'fm_cmax_HCTZiv_12', 'fm_amount_HCTZiv_13A', 'fm_cmax_HCTZiv_13A', 'fm_amount_HCTZiv_13B', 'fm_cmax_HCTZiv_13B', 'fm_amount_HCTZiv_14', 'fm_cmax_HCTZiv_14', 'fm_amount_HCTZiv_15', 'fm_cmax_HCTZiv_15', 'fm_amount_HCTZiv_renal', 'fm_amount_HCTZiv_10', 'fm_cmax_HCTZiv_10', 'fm_amount_HCTZiv_11', 'fm_cmax_HCTZiv_11']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Azumaya1990
+mappings: ['fm_hctz12p5', 'fm_hctz25']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Barbhaiya1982
+mappings: ['fm_hctz50_fast250', 'fm_excretion_hctz50_fast250', 'fm_hctz50_fast20', 'fm_excretion_hctz50_fast20', 'fm_hctz50_nofast250', 'fm_excretion_hctz50_nofast250']
+weights: [None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Barbhaiya1982a
+mappings: ['fm_hctz50_msd', 'fm_amount_msd', 'fm_hctz50_stanlab', 'fm_amount_stanlab']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1976
+mappings: ['fm_hctz_iv1_5_feces', 'fm_hctz_iv35_4_feces', 'fm_hctz_po5_1_feces', 'fm_hctz_po5_2_feces', 'fm_hctz_po5_3_feces', 'fm_hctz_po5_4_feces', 'fm_hctz_iv1_5_urine', 'fm_hctz_iv35_4_urine', 'fm_hctz_po50_I_urine', 'fm_hctz_po50_II_urine', 'fm_hctz_po50_III_urine', 'fm_hctz_po5_1_urine', 'fm_hctz_po5_2_urine', 'fm_hctz_po5_3_urine', 'fm_hctz_po5_4_urine', 'fm_hctz5po_4', 'fm_excretion_hctz5po_4', 'fm_hctz75po_6']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1977a
+mappings: ['fm_Fig5tc_0_aurine_na', 'fm_Fig5tc_12_5_aurine_na', 'fm_Fig5tc_25_aurine_na', 'fm_Fig5tc_50_aurine_na', 'fm_Fig5tc_75_aurine_na']
+weights: [8.0, 8.0, 8.0, 8.0, 8.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1977a
+mappings: ['fm_Fig5tc_0_urinvol', 'fm_Fig5tc_12_5_urinvol', 'fm_Fig5tc_25_urinvol', 'fm_Fig5tc_50_urinvol', 'fm_Fig5tc_75_urinvol']
+weights: [8.0, 8.0, 8.0, 8.0, 8.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1977a
+mappings: ['fm_Fig1_2_hctz25_HD', 'fm_Fig1_2_hctz25_MLL', 'fm_Fig1_2_excretion_hctz25_HD', 'fm_Fig1_2_excretion_hctz25_MLL', 'fm_Tab4_amount_HCTZ12p5_mean', 'fm_Tab4_amount_HCTZ12p5_IJ', 'fm_Tab4_amount_HCTZ12p5_YO', 'fm_Tab4_amount_HCTZ12p5_MLL', 'fm_Tab4_amount_HCTZ12p5_ACL', 'fm_Tab4_amount_HCTZ12p5_KCL', 'fm_Tab4_amount_HCTZ12p5_LE', 'fm_Tab4_amount_HCTZ25_mean', 'fm_Tab4_amount_HCTZ25_IJ', 'fm_Tab4_amount_HCTZ25_YO', 'fm_Tab4_amount_HCTZ25_MLL', 'fm_Tab4_amount_HCTZ25_ACL', 'fm_Tab4_amount_HCTZ25_HD', 'fm_Tab4_amount_HCTZ25_KCL', 'fm_Tab4_amount_HCTZ25_AH', 'fm_Tab4_amount_HCTZ25_LE', 'fm_Tab4_amount_HCTZ50_mean', 'fm_Tab4_amount_HCTZ50_IJ', 'fm_Tab4_amount_HCTZ50_YO', 'fm_Tab4_amount_HCTZ50_MLL', 'fm_Tab4_amount_HCTZ50_ACL', 'fm_Tab4_amount_HCTZ50_HD', 'fm_Tab4_amount_HCTZ50_KCL', 'fm_Tab4_amount_HCTZ50_AH', 'fm_Tab4_amount_HCTZ50_LE', 'fm_Tab4_amount_HCTZ75_mean', 'fm_Tab4_amount_HCTZ75_IJ', 'fm_Tab4_amount_HCTZ75_YO', 'fm_Tab4_amount_HCTZ75_MLL', 'fm_Tab4_amount_HCTZ75_ACL', 'fm_Tab4_amount_HCTZ75_HD', 'fm_Tab4_amount_HCTZ75_KCL', 'fm_Tab4_amount_HCTZ75_AH', 'fm_Tab4_amount_HCTZ75_LE']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Beermann1979
+mappings: ['fm_Fig1_hctz50_SP', 'fm_Fig1_hctz50_NL', 'fm_Tab3_amount_NL', 'fm_Tab3_amount_SP', 'fm_Tab3_amount_JG', 'fm_Tab3_amount_SH', 'fm_Tab3_amount_NK', 'fm_Tab3_amount_GN']
+weights: [None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Devineni2014
+mappings: ['fm_Fig3_hydrochlorothiazide_HCTZ25', 'fm_Fig3_hydrochlorothiazide_CAN300_HCTZ25']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Giudicelli1987
+mappings: ['fm_Fig3_hctz25_acute', 'fm_Fig3_hctz25_combi_acute', 'fm_Fig3_hctz25_chronic', 'fm_Fig3_hctz25_combi_chronic']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Heise2015
+mappings: ['fm_Fig3_hctz25', 'fm_Fig3_hctz25_emp25', 'fm_Tab3_hctz25_aurine', 'fm_Tab3_hctz25_emp25_aurine']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Howes1991
+mappings: ['fm_Fig1_HCTZ25_hydrochlorothiazide', 'fm_Tab2_HCTZ25_cumulative_amount_hydrochlorothiazide', 'fm_Fig1_HCTZ25_ENA10_multi_hydrochlorothiazide', 'fm_Tab2_ENA10_HCTZ25_cumulative_amount_hydrochlorothiazide', 'fm_Fig1_HCTZ25_combi_ENA10_combi_hydrochlorothiazide', 'fm_Tab2_ENA10_combi_HCTZ25_combi_cumulative_amount_hydrochlorothiazide']
+weights: [None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Hsiao2015
+mappings: ['fm_Fig1_hctz25', 'fm_Fig1_hctz25_kombi']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Hunninghake1986
+mappings: ['fm_Fig1_amount_cumulative_hctz75', 'fm_Fig2_amount_cumulative_hctz75_def', 'fm_Fig3_hctz75']
+weights: [None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Jeon2012
+mappings: ['fm_Fig4_urine_vol_hctz25', 'fm_Fig6_bpsys_hctz25', 'fm_Fig6_bpdia_hctz25']
+weights: [13.0, 13.0, 13.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Jeon2012
+mappings: ['fm_Fig3_hctz25', 'fm_Tab2_cumulative_amount_hydrochlorothiazide_urine_HCTZ25_HCTZ_mono']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Jordo1979
+mappings: ['fm_Fig1_12p5_hctz', 'fm_Fig2_25_hctz', 'fm_Tab2_0_12p5_amount_cumulative', 'fm_Tab2_0_25_amount_cumulative', 'fm_Tab2_1_12p5_amount_cumulative', 'fm_Tab2_1_25_amount_cumulative', 'fm_Tab2_2_12p5_amount_cumulative', 'fm_Tab2_2_25_amount_cumulative', 'fm_Tab2_3_12p5_amount_cumulative', 'fm_Tab2_3_25_amount_cumulative', 'fm_Tab2_4_12p5_amount_cumulative', 'fm_Tab2_4_25_amount_cumulative', 'fm_Tab2_5_12p5_amount_cumulative', 'fm_Tab2_5_25_amount_cumulative', 'fm_Tab2_6_12p5_amount_cumulative', 'fm_Tab2_6_25_amount_cumulative']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Knauf1995
+mappings: ['fm_Fig3_na_net_s01', 'fm_Fig3_na_net_s02', 'fm_Fig3_na_net_s03', 'fm_Fig3_na_net_s04', 'fm_Fig3_na_net_s05', 'fm_Fig3_na_net_s06', 'fm_Fig3_na_net_s07', 'fm_Fig3_na_net_s08', 'fm_Fig3_na_net_s09', 'fm_Fig3_na_net_s10', 'fm_Fig3_na_net_s11', 'fm_Fig3_na_net_s12', 'fm_Fig3_na_net_s13', 'fm_Fig3_na_net_s14', 'fm_Fig3_na_net_s15', 'fm_Fig3_na_net_s16', 'fm_Fig3_na_net_s17', 'fm_Fig3_na_net_s18', 'fm_Fig3_na_net_s19', 'fm_Fig3_na_net_s20', 'fm_Fig3_na_net_s21', 'fm_Fig3_na_net_s22', 'fm_Fig3_na_net_s23', 'fm_Fig3_na_net_s24', 'fm_Fig3_cl_net_s01', 'fm_Fig3_cl_net_s02', 'fm_Fig3_cl_net_s03', 'fm_Fig3_cl_net_s04', 'fm_Fig3_cl_net_s05', 'fm_Fig3_cl_net_s06', 'fm_Fig3_cl_net_s07', 'fm_Fig3_cl_net_s08', 'fm_Fig3_cl_net_s09', 'fm_Fig3_cl_net_s10', 'fm_Fig3_cl_net_s11', 'fm_Fig3_cl_net_s12', 'fm_Fig3_cl_net_s13', 'fm_Fig3_cl_net_s14', 'fm_Fig3_cl_net_s15', 'fm_Fig3_cl_net_s16', 'fm_Fig3_cl_net_s17', 'fm_Fig3_cl_net_s18', 'fm_Fig3_cl_net_s19', 'fm_Fig3_cl_net_s20', 'fm_Fig3_cl_net_s21', 'fm_Fig3_cl_net_s22', 'fm_Fig3_cl_net_s23', 'fm_Fig3_cl_net_s24']
+weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Knauf1995
+mappings: ['fm_hctz25_Fig1_na_urine_healthy']
+weights: [1.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Knauf1995
+mappings: ['fm_Tab2_na_net', 'fm_Tab2_cl_net']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Koytchev2004
+mappings: ['fm_Fig2_test_hydro', 'fm_Fig2_reference_hydro']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Niemeyer1983
+mappings: ['fm_Fig1_hctz50_C', 'fm_Fig1_hctz50_S', 'fm_Fig1_hctz50_W']
+weights: [None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Nilsen1989
+mappings: ['fm_Fig4_excretion_sodium_hctz25']
+weights: [9.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Niopas2004
+mappings: ['fm_Fig2_hydrochlorothiazide_ENA20', 'fm_Fig2_hydrochlorothiazide_REF20']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Patel1984
+mappings: ['fm_Naurine_25_tab', 'fm_Clurine_25_tab', 'fm_Naurine_25_sus', 'fm_Clurine_25_sus', 'fm_Naurine_50_sus', 'fm_Clurine_50_sus', 'fm_Naurine_100_tab', 'fm_Clurine_100_tab', 'fm_Naurine_100_sus', 'fm_Clurine_100_sus']
+weights: [12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Patel1984
+mappings: ['fm_Naurine_50_tab', 'fm_Clurine_50_tab']
+weights: [12.0, 12.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Patel1984
+mappings: ['fm_25_tab', 'fm_25_sus', 'fm_50_tab', 'fm_50_sus', 'fm_100_tab', 'fm_100_sus', 'fm_25_tab_urine', 'fm_25_sus_urine', 'fm_50_tab_urine', 'fm_50_sus_urine', 'fm_100_tab_urine', 'fm_100_sus_urine', 'fm_200_tab_urine', 'fm_200_sus_urine']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Ripley2000
+mappings: ['fm_Fig1_2_sodium_baseline_black', 'fm_Fig1_2_sodium_baseline_white', 'fm_Fig1_2_sodium_hctz_black', 'fm_Fig1_2_sodium_hctz_white']
+weights: [9.0, 9.0, 9.0, 9.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Ripley2000
+mappings: ['fm_Tab3_cumulative_amount_hydrochlorothiazide_urine_HCTZ25_black', 'fm_Tab3_cumulative_amount_hydrochlorothiazide_urine_HCTZ25_white']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Vaidyanathan2006
+mappings: ['fm_Fig3_hctz_HCTZ25', 'fm_Fig3_hctz_HCTZ25_ALI300HCTZ']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Weir1998
+mappings: ['fm_Fig2_hctz25', 'fm_Fig2_hctz25_kombi', 'fm_Fig3_amount_cumulative_hctz25', 'fm_Fig3_amount_cumulative_hctz25_kombi']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Williams1982
+mappings: ['fm_Fig2_diuresis_hctz50', 'fm_Fig2_diuresis_hctz100', 'fm_Fig2_sodium_hctz50', 'fm_Fig2_sodium_hctz100', 'fm_Fig2_chlor_hctz50', 'fm_Fig2_chlor_hctz100']
+weights: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Williams1982
+mappings: ['fm_Fig2_excretion_hctz50', 'fm_Fig2_excretion_hctz100']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+Parameters
+	FitParameter<FLUID__E50_hctz_nacl = 8.618253509248731e-05 [1e-06 - 0.01]>
+	FitParameter<FLUID__Emax_hctz_na = 1.7254462780979103 [0.1 - 5]>
+	FitParameter<FLUID__Emax_hctz_cl = 0.4574899986773869 [0.1 - 5]>
+	FitParameter<FLUID__k_na = 0.0006766497411866952 [0.00025 - 0.0015]>
+	FitParameter<FLUID__k_cl = 0.003707165531622856 [0.00034 - 0.007]>
+FitSettings:
+	residual: NORMALIZED
+	parameter_scale: LOG10
+	loss_function: LINEAR
+	weighting_curves: ['MAPPING', 'POINTS']
+	weighting_points: ERROR_WEIGHTING
+	variable_step_size: True
+	relative_tolerance: 1e-06
+	absolute_tolerance: {'amount': 1e-06, 'concentration': 1e-06, 'other': 1e-06, 'ids': {}, 'relative': None, 'scales': {}}
+	initial_time_step: 0.0
+	data_at_change: before
+	objective: least_squares
+Engine: roadrunner
+Mappings: 85 (77 training, 8 validation)
+Data
+	experiment_keys: ['Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Beermann1977a', 'Jeon2012', 'Jeon2012', 'Jeon2012', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Knauf1995', 'Nilsen1989', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Patel1984', 'Ripley2000', 'Ripley2000', 'Ripley2000', 'Ripley2000', 'Williams1982', 'Williams1982', 'Williams1982', 'Williams1982', 'Williams1982', 'Williams1982']
+	mapping_keys: ['fm_Fig5tc_0_aurine_na', 'fm_Fig5tc_12_5_aurine_na', 'fm_Fig5tc_25_aurine_na', 'fm_Fig5tc_50_aurine_na', 'fm_Fig5tc_75_aurine_na', 'fm_Fig5tc_0_urinvol', 'fm_Fig5tc_12_5_urinvol', 'fm_Fig5tc_25_urinvol', 'fm_Fig5tc_50_urinvol', 'fm_Fig5tc_75_urinvol', 'fm_Fig4_urine_vol_hctz25', 'fm_Fig6_bpsys_hctz25', 'fm_Fig6_bpdia_hctz25', 'fm_Fig3_na_net_s01', 'fm_Fig3_na_net_s02', 'fm_Fig3_na_net_s03', 'fm_Fig3_na_net_s04', 'fm_Fig3_na_net_s05', 'fm_Fig3_na_net_s06', 'fm_Fig3_na_net_s07', 'fm_Fig3_na_net_s08', 'fm_Fig3_na_net_s09', 'fm_Fig3_na_net_s10', 'fm_Fig3_na_net_s11', 'fm_Fig3_na_net_s12', 'fm_Fig3_na_net_s13', 'fm_Fig3_na_net_s14', 'fm_Fig3_na_net_s15', 'fm_Fig3_na_net_s16', 'fm_Fig3_na_net_s17', 'fm_Fig3_na_net_s18', 'fm_Fig3_na_net_s19', 'fm_Fig3_na_net_s20', 'fm_Fig3_na_net_s21', 'fm_Fig3_na_net_s22', 'fm_Fig3_na_net_s23', 'fm_Fig3_na_net_s24', 'fm_Fig3_cl_net_s01', 'fm_Fig3_cl_net_s02', 'fm_Fig3_cl_net_s03', 'fm_Fig3_cl_net_s04', 'fm_Fig3_cl_net_s05', 'fm_Fig3_cl_net_s06', 'fm_Fig3_cl_net_s07', 'fm_Fig3_cl_net_s08', 'fm_Fig3_cl_net_s09', 'fm_Fig3_cl_net_s10', 'fm_Fig3_cl_net_s11', 'fm_Fig3_cl_net_s12', 'fm_Fig3_cl_net_s13', 'fm_Fig3_cl_net_s14', 'fm_Fig3_cl_net_s15', 'fm_Fig3_cl_net_s16', 'fm_Fig3_cl_net_s17', 'fm_Fig3_cl_net_s18', 'fm_Fig3_cl_net_s19', 'fm_Fig3_cl_net_s20', 'fm_Fig3_cl_net_s21', 'fm_Fig3_cl_net_s22', 'fm_Fig3_cl_net_s23', 'fm_Fig3_cl_net_s24', 'fm_hctz25_Fig1_na_urine_healthy', 'fm_Fig4_excretion_sodium_hctz25', 'fm_Naurine_25_tab', 'fm_Clurine_25_tab', 'fm_Naurine_25_sus', 'fm_Clurine_25_sus', 'fm_Naurine_50_sus', 'fm_Clurine_50_sus', 'fm_Naurine_100_tab', 'fm_Clurine_100_tab', 'fm_Naurine_100_sus', 'fm_Clurine_100_sus', 'fm_Naurine_50_tab', 'fm_Clurine_50_tab', 'fm_Fig1_2_sodium_baseline_black', 'fm_Fig1_2_sodium_baseline_white', 'fm_Fig1_2_sodium_hctz_black', 'fm_Fig1_2_sodium_hctz_white', 'fm_Fig2_diuresis_hctz50', 'fm_Fig2_diuresis_hctz100', 'fm_Fig2_sodium_hctz50', 'fm_Fig2_sodium_hctz100', 'fm_Fig2_chlor_hctz50', 'fm_Fig2_chlor_hctz100']
+	xid_observable: ['time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time']
+	yid_observable: ['FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__Vurine', 'FLUID__Vurine', 'FLUID__Vurine', 'FLUID__Vurine', 'FLUID__Vurine', 'FLUID__Vurine', 'FLUID__bp_systolic', 'FLUID__bp_diastolic', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__cl_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__cl_urine', 'FLUID__na_urine', 'FLUID__cl_urine', 'FLUID__na_urine', 'FLUID__cl_urine', 'FLUID__na_urine', 'FLUID__cl_urine', 'FLUID__na_urine', 'FLUID__cl_urine', 'FLUID__na_urine', 'FLUID__cl_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__Vurine', 'FLUID__Vurine', 'FLUID__na_urine', 'FLUID__na_urine', 'FLUID__cl_urine', 'FLUID__cl_urine']
+	x_references: [array([600.]), array([600.]), array([600.]), array([600.]), array([600.]), array([600.]), array([600.]), array([600.]), array([600.]), array([600.]), array([ 120.,  240.,  360.,  720., 1440.]), array([   0.,  120.,  240.,  480.,  720., 1440.]), array([   0.,  120.,  240.,  480.,  720., 1440.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([   0.,   60.,  120.,  180.,  240.,  300.,  360.,  420.,  480.,
+        540.,  600.,  660.,  720., 1440.]), array([   0.,   60.,  120.,  240.,  480., 1440.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([720.]), array([1440.]), array([1440.]), array([ 720., 1440., 2160.]), array([ 720., 1440., 2160.]), array([-1320., -1200., -1080.,  -960.,  -720.,     0.,   120.,   240.,
+         360.,   480.,   720.,  1440.]), array([-1320., -1200., -1080.,  -960.,  -720.,     0.,   120.,   240.,
+         360.,   480.,   720.,  1440.]), array([-1320., -1200., -1080.,  -960.,  -720.,     0.,   120.,   240.,
+         360.,   480.,   720.,  1440.]), array([-1320., -1200., -1080.,  -960.,  -720.,     0.,   120.,   240.,
+         360.,   480.,   720.,  1440.]), array([-1320., -1200., -1080.,  -960.,  -720.,     0.,   120.,   240.,
+         360.,   480.,   720.,  1440.]), array([-1320., -1200., -1080.,  -960.,  -720.,     0.,   120.,   240.,
+         360.,   480.,   720.,  1440.])]
+	y_references: [array([36.9]), array([136.7]), array([144.6]), array([160.1]), array([157.4]), array([1.208]), array([2.009]), array([2.005]), array([1.962]), array([2.04]), array([0.19795501, 0.16114519, 0.20204499, 0.56809816, 0.3390593 ]), array([115.65420337, 113.83177349, 112.42990436, 111.58878288,
+       116.91588558, 111.30840906]), array([69.4505481 , 68.35164703, 67.36263606, 62.85714164, 65.71428444,
+       68.90109757]), array([4.14806752]), array([25.09217351]), array([12.69242194]), array([24.58244102]), array([19.67642165]), array([9.86230576]), array([29.50943961]), array([19.69719315]), array([49.67856112]), array([9.36981362]), array([23.34238278]), array([53.18915146]), array([24.7808088]), array([40.93085377]), array([49.72321983]), array([55.28063328]), array([50.25185438]), array([39.91948969]), array([75.19405769]), array([67.74332248]), array([70.33788991]), array([89.74345127]), array([90.14496426]), array([85.40075484]), array([4.63917526]), array([24.16237113]), array([31.70103093]), array([27.83505155]), array([13.33762887]), array([14.69072165]), array([35.37371134]), array([19.71649485]), array([7.34536082]), array([50.06443299]), array([47.16494845]), array([61.2757732]), array([79.25257732]), array([34.60051546]), array([64.3685567]), array([75.77319588]), array([45.03865979]), array([64.56185567]), array([99.3556701]), array([75.]), array([89.69072165]), array([59.14948454]), array([104.18814433]), array([133.37628866]), array([122.4013988 , 127.40046347, 134.26675676, 155.80020539,
+       199.99961823, 219.39974574, 241.73318979, 288.33316154,
+       305.33330279, 325.26676058, 346.80020921, 365.93309893,
+       378.39936016, 419.86569392]), array([  8.43036126,  16.31375659,  30.52745384,  53.42020585,
+        96.48668386, 172.05321892]), array([102.]), array([136.]), array([103.]), array([137.]), array([125.]), array([160.]), array([109.]), array([142.]), array([140.]), array([176.]), array([93.]), array([132.]), array([118.72146119]), array([142.46575342]), array([206.72268908, 272.14611872, 335.29411765]), array([204.20168067, 263.01369863, 300.        ]), array([0.2498, 0.2882, 0.3108, 0.2784, 0.5388, 1.2324, 0.2868, 0.5234,
+       0.4752, 0.4172, 0.5736, 1.1004]), array([0.2016, 0.3154, 0.2648, 0.3086, 0.6036, 1.3536, 0.3328, 0.415 ,
+       0.3674, 0.3192, 0.5284, 1.1508]), array([18.54, 15.96, 15.52, 18.1 , 33.64, 86.04, 36.78, 64.16, 35.6 ,
+       39.14, 64.76, 71.88]), array([21.32, 20.04, 20.58, 20.46, 38.56, 99.6 , 47.52, 54.82, 37.74,
+       36.68, 55.96, 91.2 ]), array([ 69.4,  67.6,  63.2,  62. , 111.2, 255.6,  93.6, 196.6, 150.8,
+       131.4, 188.8, 218.4]), array([ 61.6,  81.6,  71. ,  51. , 102.8, 210. , 149.8, 170.4, 136.2,
+       139. , 171.2, 267.6])]
+	y_errors: [array([14.]), array([22.9]), array([41.4]), array([18.5]), array([50.]), array([0.284]), array([0.32]), array([0.379]), array([0.391]), array([0.44]), array([0.1002045 , 0.07157464, 0.12474438, 0.27198364, 0.33128834]), array([ 6.72897183,  8.69158862, 10.79439231,  8.13084096,  9.39252318,
+       10.37383157]), array([6.81318668, 4.17582409, 6.59340647, 5.05494496, 7.58241744,
+       7.58241744]), None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, array([64.]), array([71.]), array([57.]), array([61.]), array([58.]), array([67.]), array([76.]), array([85.]), array([95.]), array([106.]), array([62.]), array([66.]), array([51.14155251]), array([49.31506849]), array([42.85714286, 47.48858447, 59.16790005]), array([30.25210084, 34.70319635, 38.93238397]), None, None, None, None, None, None]
+	y_errors_type: ['SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, None, None, None]
+	y_errors_log: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+	weights: [array([21.08571429]), array([47.75545852]), array([27.94202899]), array([69.23243243]), array([25.184]), array([34.02816901]), array([50.225]), array([42.32189974]), array([40.14322251]), array([37.09090909]), array([5.13632653, 5.85371429, 4.21114754, 5.43067669, 2.66098765]), array([37.23958333, 28.37634409, 22.56709957, 29.73563218, 26.97014925,
+       23.24774775]), array([22.08602151, 35.46491228, 22.13611111, 26.94202899, 18.77777778,
+       19.6884058 ]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([0.14285714, 0.14285714, 0.14285714, 0.14285714, 0.14285714,
+       0.14285714, 0.14285714, 0.14285714, 0.14285714, 0.14285714,
+       0.14285714, 0.14285714, 0.14285714, 0.14285714]), array([3., 3., 3., 3., 3., 3.]), array([19.125]), array([22.98591549]), array([21.68421053]), array([26.95081967]), array([25.86206897]), array([28.65671642]), array([17.21052632]), array([20.04705882]), array([17.68421053]), array([19.9245283]), array([18.]), array([24.]), array([20.89285714]), array([26.]), array([14.47058824, 17.19230769, 17.00047411]), array([20.25      , 22.73684211, 23.11700205]), array([1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667]), array([1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667]), array([1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667]), array([1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667]), array([1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667]), array([1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667, 1.66666667, 1.66666667, 1.66666667,
+       1.66666667, 1.66666667])]
+	weights_points: [array([2.63571429]), array([5.96943231]), array([3.49275362]), array([8.65405405]), array([3.148]), array([4.25352113]), array([6.278125]), array([5.29023747]), array([5.01790281]), array([4.63636364]), array([1.9755102 , 2.25142857, 1.61967213, 2.0887218 , 1.02345679]), array([17.1875    , 13.09677419, 10.41558442, 13.72413793, 12.44776119,
+       10.72972973]), array([10.19354839, 16.36842105, 10.21666667, 12.43478261,  8.66666667,
+        9.08695652]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2.]), array([1.59375]), array([1.91549296]), array([1.80701754]), array([2.24590164]), array([2.15517241]), array([2.3880597]), array([1.43421053]), array([1.67058824]), array([1.47368421]), array([1.66037736]), array([1.5]), array([2.]), array([2.32142857]), array([2.88888889]), array([4.82352941, 5.73076923, 5.6668247 ]), array([6.75      , 7.57894737, 7.70566735]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.])]
+	weights_curves: [8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 2.6, 2.1666666666666665, 2.1666666666666665, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.07142857142857142, 1.5, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 9.0, 9.0, 3.0, 3.0, 0.8333333333333334, 0.8333333333333334, 0.8333333333333334, 0.8333333333333334, 0.8333333333333334, 0.8333333333333334]
+--------------------------------------------------------------------------------
+Parameter sets: ['PD_20261110_084942__d8038_0']
+--------------------------------------------------------------------------------
+           parameter          unit  PD_20261110_084942__d8038_0
+FLUID__E50_hctz_nacl            mM                     0.000075
+ FLUID__Emax_hctz_na dimensionless                     1.820231
+ FLUID__Emax_hctz_cl dimensionless                     0.511521
+         FLUID__k_na         l/min                     0.000658
+         FLUID__k_cl         l/min                     0.003760
+
+PD_20261110_084942__d8038_0: cost = 55.4707
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Metrics: PD_20261110_084942__d8038_0
+--------------------------------------------------------------------------------
+              parameter_set       kind   n  k      cost         MSE      RMSE    NRMSE   RMSE_w      R2  within_2fold         AIC         BIC     GMFE      AFE  within_1.25fold  within_1.5fold  within_1sd  within_2sd
+PD_20261110_084942__d8038_0   training 166  5 55.470699  921.074004 30.349201 0.499839 0.817509 0.80469     88.819876 1143.039704 1158.599643 1.745629 0.678582        38.509317       63.975155   70.000000   97.500000
+PD_20261110_084942__d8038_0 validation  21  5       NaN 2182.638517 46.718717 0.258099 1.175551 0.88265    100.000000  171.454085  176.676697 1.272861 0.822876        42.857143       85.714286   28.571429   71.428571
+
+   experiment                         mapping       kind  n         MSE      RMSE    NRMSE   RMSE_w        R2  within_2fold      GMFE      AFE  within_1.25fold  within_1.5fold  within_1sd  within_2sd
+Beermann1977a           fm_Fig5tc_0_aurine_na   training  1  306.137362 17.496781 0.474168 2.177339       NaN    100.000000  1.474168 1.474168         0.000000      100.000000    0.000000  100.000000
+Beermann1977a        fm_Fig5tc_12_5_aurine_na   training  1  718.512742 26.805088 0.196087 1.355065       NaN    100.000000  1.243916 0.803913       100.000000      100.000000    0.000000  100.000000
+Beermann1977a          fm_Fig5tc_25_aurine_na   training  1  412.047170 20.298945 0.140380 0.742052       NaN    100.000000  1.163305 0.859620       100.000000      100.000000  100.000000  100.000000
+Beermann1977a          fm_Fig5tc_50_aurine_na   training  1  606.442201 24.626047 0.153817 1.279847       NaN    100.000000  1.181777 0.846183       100.000000      100.000000    0.000000  100.000000
+Beermann1977a          fm_Fig5tc_75_aurine_na   training  1  293.028726 17.118082 0.108755 0.545774       NaN    100.000000  1.122026 0.891245       100.000000      100.000000  100.000000  100.000000
+Beermann1977a             fm_Fig5tc_0_urinvol validation  1    0.323867  0.569093 0.471103 2.748120       NaN    100.000000  1.890729 0.528897         0.000000        0.000000    0.000000    0.000000
+Beermann1977a          fm_Fig5tc_12_5_urinvol validation  1    0.695742  0.834111 0.415187 2.942416       NaN    100.000000  1.709949 0.584813         0.000000        0.000000    0.000000    0.000000
+Beermann1977a            fm_Fig5tc_25_urinvol validation  1    0.491937  0.701383 0.349817 2.275743       NaN    100.000000  1.538028 0.650183         0.000000        0.000000    0.000000  100.000000
+Beermann1977a            fm_Fig5tc_50_urinvol validation  1    0.314923  0.561180 0.286024 1.812213       NaN    100.000000  1.400608 0.713976         0.000000      100.000000    0.000000  100.000000
+Beermann1977a            fm_Fig5tc_75_urinvol validation  1    0.357706  0.598086 0.293179 1.785529       NaN    100.000000  1.414786 0.706821         0.000000      100.000000    0.000000  100.000000
+     Jeon2012        fm_Fig4_urine_vol_hctz25   training  5    0.064623  0.254211 0.865663 1.500785 -1.872393     60.000000 14.920512 0.108805        40.000000       60.000000   60.000000  100.000000
+     Jeon2012            fm_Fig6_bpsys_hctz25   training  6    5.969737  2.443305 0.021504 0.108253 -0.381281    100.000000  1.019016 1.010046       100.000000      100.000000  100.000000  100.000000
+     Jeon2012            fm_Fig6_bpdia_hctz25   training  6   52.884580  7.272178 0.108368 0.535899 -9.463061    100.000000  1.104932 1.104932       100.000000      100.000000   33.333333   83.333333
+    Knauf1995              fm_Fig3_na_net_s01   training  1    3.175863  1.782095 0.429621 0.607575       NaN    100.000000  1.429621 1.429621         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s02   training  1  155.596285 12.473824 0.497120 0.703034       NaN    100.000000  1.988546 0.502880         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s03   training  1    2.401551  1.549694 0.122096 0.172670       NaN    100.000000  1.122096 1.122096       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s04   training  1   74.377019  8.624211 0.350828 0.496146       NaN    100.000000  1.540424 0.649172         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s05   training  1    4.357793  2.087533 0.106093 0.150038       NaN    100.000000  1.118685 0.893907       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s06   training  1  102.936110 10.145743 1.028739 1.454857       NaN      0.000000  2.028739 2.028739         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s07   training  1   30.607530  5.532407 0.187479 0.265136       NaN    100.000000  1.230738 0.812521       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s08   training  1   54.385816  7.374674 0.374402 0.529485       NaN    100.000000  1.374402 1.374402         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s09   training  1  383.354841 19.579449 0.394123 0.557374       NaN    100.000000  1.650499 0.605877         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s10   training  1  450.317300 21.220681 2.264792 3.202900       NaN      0.000000  3.264792 3.264792         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s11   training  1  220.467880 14.848161 0.636103 0.899586       NaN    100.000000  1.636103 1.636103         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s12   training  1  203.705410 14.272540 0.268336 0.379484       NaN    100.000000  1.366747 0.731664         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s13   training  1  408.643960 20.214944 0.815750 1.153645       NaN    100.000000  1.815750 1.815750         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s14   training  1   16.859019  4.105974 0.100315 0.141867       NaN    100.000000  1.100315 1.100315       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s15   training  1    4.312847  2.076739 0.041766 0.059066       NaN    100.000000  1.043586 0.958234       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s16   training  1   48.806134  6.986139 0.126376 0.178722       NaN    100.000000  1.144657 0.873624       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s17   training  1    3.044515  1.744854 0.034722 0.049105       NaN    100.000000  1.034722 1.034722       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s18   training  1  177.766538 13.332912 0.333995 0.472340       NaN    100.000000  1.333995 1.333995         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s19   training  1  431.339697 20.768719 0.276202 0.390608       NaN    100.000000  1.381600 0.723798         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s20   training  1    0.772246  0.878775 0.012972 0.018345       NaN    100.000000  1.012972 1.012972       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s21   training  1    1.897719  1.377577 0.019585 0.027698       NaN    100.000000  1.019585 1.019585       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s22   training  1  115.681648 10.755540 0.119848 0.169490       NaN    100.000000  1.136167 0.880152       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s23   training  1   56.618781  7.524545 0.083472 0.118047       NaN    100.000000  1.091074 0.916528       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_na_net_s24   training  1   34.495313  5.873271 0.068773 0.097260       NaN    100.000000  1.068773 1.068773       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s01   training  1    0.312571  0.559080 0.120513 0.170431       NaN    100.000000  1.137026 0.879487       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s02   training  1  176.195408 13.273862 0.549361 0.776914       NaN      0.000000  2.219071 0.450639         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s03   training  1  363.360174 19.062009 0.601306 0.850375       NaN      0.000000  2.508187 0.398694         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s04   training  1  177.533430 13.324167 0.478683 0.676960       NaN    100.000000  1.918219 0.521317         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s05   training  1    8.809396  2.968063 0.222533 0.314709       NaN    100.000000  1.222533 1.222533       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s06   training  1   18.493820  4.300444 0.292732 0.413986       NaN    100.000000  1.292732 1.292732         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s07   training  1  142.304363 11.929139 0.337232 0.476918       NaN    100.000000  1.508823 0.662768         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s08   training  1   52.256524  7.228867 0.366641 0.518508       NaN    100.000000  1.366641 1.366641         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s09   training  1  530.976375 23.042925 3.137072 4.436490       NaN      0.000000  4.137072 4.137072         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s10   training  1  365.411851 19.115749 0.381823 0.539979       NaN    100.000000  1.617659 0.618177         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s11   training  1   56.309658  7.503976 0.159101 0.225002       NaN    100.000000  1.189203 0.840899       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s12   training  1  431.988254 20.784327 0.339193 0.479692       NaN    100.000000  1.513302 0.660807         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s13   training  1 1011.218917 31.799668 0.401245 0.567446       NaN    100.000000  1.670131 0.598755         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s14   training  1  166.396256 12.899467 0.372811 0.527235       NaN    100.000000  1.372811 1.372811         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s15   training  1  192.573055 13.877069 0.215588 0.304887       NaN    100.000000  1.274840 0.784412         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s16   training  1  602.147862 24.538701 0.323844 0.457985       NaN    100.000000  1.478949 0.676156         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s17   training  1  109.026040 10.441554 0.231835 0.327865       NaN    100.000000  1.231835 1.231835       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s18   training  1   58.391658  7.641443 0.118358 0.167384       NaN    100.000000  1.134248 0.881642       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s19   training  1 1688.385752 41.089971 0.413564 0.584868       NaN    100.000000  1.705217 0.586436         0.000000        0.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s20   training  1    0.219363  0.468362 0.006245 0.008832       NaN    100.000000  1.006284 0.993755       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s21   training  1  134.989706 11.618507 0.129540 0.183197       NaN    100.000000  1.148817 0.870460       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s22   training  1  741.621945 27.232737 0.460405 0.651111       NaN    100.000000  1.460405 1.460405         0.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s23   training  1  186.708664 13.664138 0.131149 0.185472       NaN    100.000000  1.150945 0.868851       100.000000      100.000000         NaN         NaN
+    Knauf1995              fm_Fig3_cl_net_s24   training  1 1090.080895 33.016373 0.247543 0.350079       NaN    100.000000  1.328980 0.752457         0.000000      100.000000         NaN         NaN
+    Knauf1995 fm_hctz25_Fig1_na_urine_healthy validation 14 3218.892300 56.735283 0.218758 0.082683  0.664219    100.000000  1.196975 0.892102        57.142857      100.000000         NaN         NaN
+   Nilsen1989 fm_Fig4_excretion_sodium_hctz25   training  6  610.406478 24.706406 0.392964 0.680633  0.810409     80.000000  1.694789 0.590044        20.000000       20.000000         NaN         NaN
+    Patel1984               fm_Naurine_25_tab   training  1  447.468302 21.153447 0.207387 0.906947       NaN    100.000000  1.261649 0.792613         0.000000      100.000000  100.000000  100.000000
+    Patel1984               fm_Clurine_25_tab   training  1 2256.032912 47.497715 0.349248 1.674421       NaN    100.000000  1.536683 0.650752         0.000000        0.000000  100.000000  100.000000
+    Patel1984               fm_Naurine_25_sus   training  1  490.775195 22.153447 0.215082 1.001557       NaN    100.000000  1.274018 0.784918         0.000000      100.000000  100.000000  100.000000
+    Patel1984               fm_Clurine_25_sus   training  1 2352.028342 48.497715 0.353998 1.837751       NaN    100.000000  1.547983 0.646002         0.000000        0.000000  100.000000  100.000000
+    Patel1984               fm_Naurine_50_sus   training  1  867.726878 29.457204 0.235658 1.198431       NaN    100.000000  1.308314 0.764342         0.000000      100.000000  100.000000  100.000000
+    Patel1984               fm_Clurine_50_sus   training  1 3092.380576 55.609177 0.347557 1.860543       NaN    100.000000  1.532702 0.652443         0.000000        0.000000  100.000000  100.000000
+    Patel1984              fm_Naurine_100_tab   training  1    9.728872  3.119114 0.028616 0.118714       NaN    100.000000  1.029459 0.971384       100.000000      100.000000  100.000000  100.000000
+    Patel1984              fm_Clurine_100_tab   training  1  700.473962 26.466469 0.186384 0.834513       NaN    100.000000  1.229080 0.813616       100.000000      100.000000  100.000000  100.000000
+    Patel1984              fm_Naurine_100_sus   training  1 1164.113938 34.119114 0.243708 1.024855       NaN    100.000000  1.322241 0.756292         0.000000      100.000000  100.000000  100.000000
+    Patel1984              fm_Clurine_100_sus   training  1 3656.193829 60.466469 0.343559 1.533543       NaN    100.000000  1.523367 0.656441         0.000000        0.000000  100.000000  100.000000
+    Patel1984               fm_Naurine_50_tab validation  1    6.465811  2.542796 0.027342 0.116002       NaN    100.000000  1.027342 1.027342       100.000000      100.000000  100.000000  100.000000
+    Patel1984               fm_Clurine_50_tab validation  1  762.266659 27.609177 0.209160 1.024673       NaN    100.000000  1.264479 0.790840         0.000000      100.000000  100.000000  100.000000
+   Ripley2000 fm_Fig1_2_sodium_baseline_black   training  1  201.989454 14.212299 0.119711 0.547185       NaN    100.000000  1.119711 1.119711       100.000000      100.000000  100.000000  100.000000
+   Ripley2000 fm_Fig1_2_sodium_baseline_white   training  1   90.858888  9.531993 0.066907 0.341161       NaN    100.000000  1.071705 0.933093       100.000000      100.000000  100.000000  100.000000
+   Ripley2000     fm_Fig1_2_sodium_hctz_black   training  3 1324.275703 36.390599 0.134091 0.515388  0.519387    100.000000  1.154912 0.874737        66.666667      100.000000   66.666667  100.000000
+   Ripley2000     fm_Fig1_2_sodium_hctz_white   training  3 1666.828268 40.826808 0.159643 0.735949 -0.071214    100.000000  1.180138 0.921927        66.666667      100.000000   33.333333  100.000000
+ Williams1982         fm_Fig2_diuresis_hctz50   training 12    0.029282  0.171120 0.327242 0.422467  0.692669     91.666667  3.756845 0.298772        25.000000       58.333333         NaN         NaN
+ Williams1982        fm_Fig2_diuresis_hctz100   training 12    0.041175  0.202915 0.395212 0.510217  0.662058     91.666667  3.663592 0.323196        33.333333       58.333333         NaN         NaN
+ Williams1982           fm_Fig2_sodium_hctz50   training 12  445.112181 21.097682 0.506223 0.653531  0.176645     90.909091  1.473695 0.749866         9.090909       63.636364         NaN         NaN
+ Williams1982          fm_Fig2_sodium_hctz100   training 12  490.810577 22.154245 0.488266 0.630348  0.252812    100.000000  1.539649 0.705702        27.272727       36.363636         NaN         NaN
+ Williams1982            fm_Fig2_chlor_hctz50   training 12 4434.770298 66.594071 0.496785 0.641347 -0.063251     72.727273  1.604266 0.679422        18.181818       54.545455         NaN         NaN
+ Williams1982           fm_Fig2_chlor_hctz100   training 12 3875.195799 62.251071 0.463350 0.598182 -0.001543     63.636364  1.623443 0.677911        18.181818       45.454545         NaN         NaN
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Optimization results: PD_20261110_084942__d8038
+--------------------------------------------------------------------------------
+    run  success    duration       cost  FLUID__E50_hctz_nacl  FLUID__Emax_hctz_na  FLUID__Emax_hctz_cl  FLUID__k_na  FLUID__k_cl                                     message                                                  x                                                 x0
+0     1     True   85.338282  55.470650              0.000075             1.820231             0.511521     0.000658     0.003760  `xtol` termination condition is satisfied.  [0.000075, 1.820231, 0.511521, 0.000658, 0.00376]  [0.000088, 1.141612, 3.684644, 0.000277, 0.004...
+1    32     True   97.724375  55.470654              0.000075             1.820773             0.511519     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.820773, 0.511519, 0.000658, 0.003...  [0.000304, 0.221633, 0.284069, 0.000583, 0.00644]
+2    22     True   50.933318  55.470655              0.000075             1.821232             0.511352     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.821232, 0.511352, 0.000658, 0.003...  [0.000012, 0.649388, 1.210307, 0.000354, 0.000...
+3    41     True  128.240625  55.470658              0.000075             1.821003             0.511468     0.000658     0.003761  `xtol` termination condition is satisfied.  [0.000075, 1.821003, 0.511468, 0.000658, 0.003...  [0.000119, 0.512368, 4.069193, 0.001148, 0.006...
+4     5     True   88.311296  55.470658              0.000075             1.820301             0.511390     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.820301, 0.51139, 0.000658, 0.003762]  [0.002815, 1.501995, 0.207009, 0.000316, 0.001...
+5    39     True  137.876942  55.470661              0.000075             1.820449             0.511290     0.000658     0.003763  `xtol` termination condition is satisfied.  [0.000075, 1.820449, 0.51129, 0.000658, 0.003763]  [0.000501, 1.253911, 2.161568, 0.000435, 0.001...
+6    17     True   61.843207  55.470662              0.000075             1.820609             0.511131     0.000658     0.003763  `xtol` termination condition is satisfied.  [0.000075, 1.820609, 0.511131, 0.000658, 0.003...  [0.005771, 0.997193, 1.274633, 0.000649, 0.000...
+7    13     True   53.343306  55.470663              0.000075             1.821021             0.511471     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.821021, 0.511471, 0.000658, 0.003...  [0.000006, 0.176318, 0.426985, 0.000894, 0.001...
+8    28     True   95.544457  55.470667              0.000075             1.820904             0.511658     0.000658     0.003761  `xtol` termination condition is satisfied.  [0.000075, 1.820904, 0.511658, 0.000658, 0.003...  [0.000016, 2.262204, 0.14676, 0.000259, 0.002119]
+9     0     True   65.276958  55.470669              0.000075             1.821037             0.511391     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.821037, 0.511391, 0.000658, 0.003...  [0.000013, 0.204318, 0.520444, 0.00026, 0.001153]
+10   42     True  111.866972  55.470669              0.000075             1.820828             0.511061     0.000658     0.003764  `xtol` termination condition is satisfied.  [0.000075, 1.820828, 0.511061, 0.000658, 0.003...  [0.000741, 2.790656, 1.773505, 0.000299, 0.001...
+11   43     True  111.436271  55.470670              0.000075             1.820760             0.511326     0.000658     0.003763  `xtol` termination condition is satisfied.  [0.000075, 1.82076, 0.511326, 0.000658, 0.003763]  [0.000002, 0.769791, 0.341839, 0.000283, 0.002...
+12   15     True   61.942878  55.470671              0.000075             1.821246             0.511530     0.000658     0.003761  `xtol` termination condition is satisfied.  [0.000075, 1.821246, 0.51153, 0.000658, 0.003761]  [0.005415, 0.178446, 0.735139, 0.000534, 0.005...
+13   37     True  117.325568  55.470672              0.000075             1.821772             0.512034     0.000658     0.003760  `xtol` termination condition is satisfied.  [0.000075, 1.821772, 0.512034, 0.000658, 0.00376]  [0.003684, 0.467064, 2.473917, 0.000503, 0.005...
+14   31     True   74.254738  55.470672              0.000075             1.821054             0.511274     0.000658     0.003763  `xtol` termination condition is satisfied.  [0.000075, 1.821054, 0.511274, 0.000658, 0.003...  [0.000008, 2.560847, 0.178069, 0.000555, 0.003...
+15   47     True   81.487345  55.470674              0.000075             1.820483             0.511275     0.000658     0.003763  `xtol` termination condition is satisfied.  [0.000075, 1.820483, 0.511275, 0.000658, 0.003...  [0.001925, 3.057569, 0.584873, 0.001499, 0.005...
+16   36     True  116.695415  55.470675              0.000075             1.820997             0.511133     0.000658     0.003764  `xtol` termination condition is satisfied.  [0.000075, 1.820997, 0.511133, 0.000658, 0.003...  [0.000003, 1.392579, 0.161551, 0.000397, 0.002...
+17   33     True  146.610106  55.470679              0.000075             1.821109             0.511335     0.000658     0.003763  `xtol` termination condition is satisfied.  [0.000075, 1.821109, 0.511335, 0.000658, 0.003...   [0.001764, 0.31448, 0.44465, 0.001109, 0.000855]
+18   46     True  163.609505  55.470679              0.000075             1.820462             0.511387     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.820462, 0.511387, 0.000658, 0.003...    [0.000001, 0.1344, 1.913348, 0.00119, 0.003773]
+19   26     True   47.861455  55.470679              0.000075             1.820581             0.511490     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.820581, 0.51149, 0.000658, 0.003762]  [0.000049, 0.401879, 4.261568, 0.001424, 0.000...
+20    3     True   65.042715  55.470680              0.000075             1.821534             0.511661     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.821534, 0.511661, 0.000658, 0.003...  [0.000139, 0.238278, 0.60631, 0.000608, 0.000993]
+21   11     True   59.233334  55.470681              0.000075             1.821722             0.511389     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.821722, 0.511389, 0.000658, 0.003...  [0.000002, 1.953898, 0.231711, 0.000746, 0.00063]
+22   35     True   98.061885  55.470682              0.000075             1.821440             0.511750     0.000658     0.003761  `xtol` termination condition is satisfied.   [0.000075, 1.82144, 0.51175, 0.000658, 0.003761]  [0.000057, 0.67085, 0.225457, 0.000471, 0.004218]
+23    9     True   69.424258  55.470682              0.000075             1.820862             0.511792     0.000658     0.003760  `xtol` termination condition is satisfied.  [0.000075, 1.820862, 0.511792, 0.000658, 0.00376]  [0.000663, 1.715395, 0.37889, 0.000449, 0.000365]
+24   23     True   44.774323  55.470682              0.000075             1.820460             0.511252     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.82046, 0.511252, 0.000658, 0.003762]   [0.000021, 3.383237, 0.77476, 0.00039, 0.000551]
+25   29     True  106.640879  55.470683              0.000075             1.819478             0.511410     0.000658     0.003760  `xtol` termination condition is satisfied.   [0.000075, 1.819478, 0.51141, 0.000658, 0.00376]  [0.000384, 0.390444, 3.266402, 0.00098, 0.000813]
+26   20     True   50.633666  55.470684              0.000075             1.820330             0.511437     0.000658     0.003761  `xtol` termination condition is satisfied.  [0.000075, 1.82033, 0.511437, 0.000658, 0.003761]  [0.000356, 2.145344, 0.844092, 0.001026, 0.000...
+27   30     True   75.201329  55.470685              0.000075             1.821273             0.511264     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.821273, 0.511264, 0.000658, 0.003...  [0.000001, 0.100097, 1.41284, 0.000731, 0.000972]
+28   40     True  108.348366  55.470685              0.000075             1.821927             0.511576     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.821927, 0.511576, 0.000658, 0.003...   [0.000175, 0.15904, 0.313981, 0.00066, 0.002764]
+29   45     True  125.970216  55.470687              0.000075             1.821270             0.511467     0.000658     0.003761  `xtol` termination condition is satisfied.  [0.000075, 1.82127, 0.511467, 0.000658, 0.003761]  [0.004195, 0.923098, 0.949226, 0.001342, 0.001...
+30    6     True   78.832496  55.470688              0.000075             1.820840             0.511163     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.82084, 0.511163, 0.000658, 0.003762]  [0.000883, 0.116528, 2.945677, 0.000302, 0.002...
+31   38     True  151.229952  55.470689              0.000075             1.820744             0.511465     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.820744, 0.511465, 0.000658, 0.003...  [0.007326, 4.366835, 3.437004, 0.000421, 0.000...
+32   12     True  104.114149  55.470690              0.000075             1.820008             0.511295     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.820008, 0.511295, 0.000658, 0.003...  [0.000022, 0.125343, 0.110094, 0.000518, 0.001...
+33    7     True   84.295929  55.470692              0.000075             1.822079             0.511719     0.000658     0.003761  `xtol` termination condition is satisfied.  [0.000075, 1.822079, 0.511719, 0.000658, 0.003...  [0.000034, 0.765686, 0.102507, 0.000474, 0.004...
+34   14     True   79.535428  55.470693              0.000075             1.820138             0.510777     0.000658     0.003765  `xtol` termination condition is satisfied.  [0.000075, 1.820138, 0.510777, 0.000658, 0.003...  [0.000003, 0.263749, 0.489991, 0.000686, 0.000...
+35   27     True   43.785643  55.470694              0.000075             1.820642             0.510979     0.000658     0.003764  `xtol` termination condition is satisfied.  [0.000075, 1.820642, 0.510979, 0.000658, 0.003...  [0.000004, 3.246902, 1.043045, 0.001329, 0.003...
+36    2     True   74.149986  55.470697              0.000075             1.820148             0.511106     0.000658     0.003763  `xtol` termination condition is satisfied.  [0.000075, 1.820148, 0.511106, 0.000658, 0.003...   [0.00004, 3.982527, 1.706465, 0.001053, 0.00526]
+37   34     True   70.407001  55.470698              0.000075             1.820947             0.511526     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.820947, 0.511526, 0.000658, 0.003...  [0.000195, 0.284427, 1.482928, 0.000339, 0.001...
+38   24     True   69.096390  55.470698              0.000075             1.820776             0.511475     0.000658     0.003761  `xtol` termination condition is satisfied.  [0.000075, 1.820776, 0.511475, 0.000658, 0.003...  [0.008323, 3.903921, 2.759752, 0.000363, 0.000...
+39   25     True  100.529861  55.470699              0.000075             1.820766             0.511127     0.000658     0.003764  `xtol` termination condition is satisfied.  [0.000075, 1.820766, 0.511127, 0.000658, 0.003...  [0.000008, 0.308834, 4.654985, 0.001209, 0.000...
+40   10     True   54.588911  55.470699              0.000075             1.820027             0.510539     0.000658     0.003766  `xtol` termination condition is satisfied.  [0.000075, 1.820027, 0.510539, 0.000658, 0.003...  [0.000004, 0.875819, 0.127877, 0.000871, 0.002...
+41   21     True   56.738204  55.470700              0.000075             1.821330             0.511368     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.82133, 0.511368, 0.000658, 0.003762]  [0.000243, 1.24757, 0.699733, 0.000803, 0.000699]
+42   19     True   68.962626  55.470703              0.000075             1.820919             0.511976     0.000658     0.003759  `xtol` termination condition is satisfied.  [0.000075, 1.820919, 0.511976, 0.000658, 0.003...  [0.00007, 0.569136, 2.279774, 0.000955, 0.000399]
+43   16     True   63.266227  55.470704              0.000075             1.820920             0.511356     0.000658     0.003763  `xtol` termination condition is satisfied.  [0.000075, 1.82092, 0.511356, 0.000658, 0.003763]  [0.001104, 0.148511, 0.247065, 0.000621, 0.001...
+44    8     True   66.171256  55.470708              0.000075             1.820938             0.511595     0.000658     0.003761  `xtol` termination condition is satisfied.  [0.000075, 1.820938, 0.511595, 0.000658, 0.003...  [0.000005, 0.492643, 0.310747, 0.000767, 0.001...
+45   18     True   52.413973  55.470709              0.000075             1.821410             0.511579     0.000658     0.003762  `xtol` termination condition is satisfied.  [0.000075, 1.82141, 0.511579, 0.000658, 0.003762]  [0.001316, 4.808319, 0.124036, 0.000849, 0.003...
+46   44     True   94.923661  55.470717              0.000075             1.820076             0.511890     0.000658     0.003759  `xtol` termination condition is satisfied.  [0.000075, 1.820076, 0.51189, 0.000658, 0.003759]  [0.000032, 1.814096, 1.131729, 0.000327, 0.003...
+47    4     True   65.273529  55.470717              0.000075             1.819114             0.511976     0.000658     0.003757  `xtol` termination condition is satisfied.  [0.000075, 1.819114, 0.511976, 0.000658, 0.003...  [0.002219, 0.342605, 0.171533, 0.001275, 0.000...
+--------------------------------------------------------------------------------
+Optimal parameters:
+	'FLUID__E50_hctz_nacl': Q(7.47394627108756e-05, 'mmol/l'),  # [1e-06 - 0.01]
+	'FLUID__Emax_hctz_na': Q(1.8202305131712229, 'dimensionless'),  # [0.1 - 5]
+	'FLUID__Emax_hctz_cl': Q(0.5115210480256873, 'dimensionless'),  # [0.1 - 5]
+	'FLUID__k_na': Q(0.0006580064845560597, 'l/min'),  # [0.00025 - 0.0015]
+	'FLUID__k_cl': Q(0.0037604988157211813, 'l/min'),  # [0.00034 - 0.007]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Identifiability 'PD_20261110_084942__d8038'
+--------------------------------------------------------------------------------
+parameter set: PD_20261110_084942__d8038_0
+cost: 55.4706
+cost_min: 55.4706
+alpha: 0.95
+degrees of freedom: 1
+threshold: 57.3914
+reoptimize: True
+duration: 740.3 s
+
+           parameter    value          unit  lower_bound  upper_bound  ci_lower  ci_upper identifiability  n_points  cost_min  converged
+FLUID__E50_hctz_nacl 0.000075            mM     0.000001       0.0100  0.000027  0.000180    identifiable        17 55.470644       True
+ FLUID__Emax_hctz_na 1.820231 dimensionless     0.100000       5.0000  1.373089  2.443799    identifiable        15 55.470644       True
+ FLUID__Emax_hctz_cl 0.511521 dimensionless     0.100000       5.0000  0.354439  0.785891    identifiable        17 55.470644       True
+         FLUID__k_na 0.000658         l/min     0.000250       0.0015  0.000560  0.000759    identifiable        12 55.470644       True
+         FLUID__k_cl 0.003760         l/min     0.000340       0.0070  0.002481  0.005069    identifiable        16 55.470644       True
+--------------------------------------------------------------------------------

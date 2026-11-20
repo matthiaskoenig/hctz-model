@@ -1,14 +1,14 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	0.5	hr	2.7532362350065873e-10						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	1.5	hr	1.0810068327571192e-09						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	2.5	hr	1.5282850996100288e-09						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	3.5	hr	1.4137408021461296e-09						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	4.5	hr	1.4509351030614898e-09						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	5.5	hr	9.17064469522825e-10						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	6.5	hr	1.630796863830702e-09						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	7.5	hr	1.2045391505473911e-09						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	8.5	hr	1.2308904904952504e-09						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	9.5	hr	5.247091826133215e-10						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	11.0	hr	4.374931889553997e-10						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	18.0	hr	2.0601726956933246e-10						mg/hr	mole/second	dimensionless
-Beermann1977a	MLL		1.0	HCTZ25	excretion rate	hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	36.0	hr	6.078948148724648e-11						mg/hr	mole/second	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	0.5	hr	2.7532362350065873e-10	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 0-1 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	1.5	hr	1.0810068327571192e-09	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 1-2 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	2.5	hr	1.5282850996100288e-09	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 2-3 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	3.5	hr	1.4137408021461296e-09	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 3-4 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	4.5	hr	1.4509351030614898e-09	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 4-5 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	5.5	hr	9.17064469522825e-10	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 5-6 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	6.5	hr	1.630796863830702e-09	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 6-7 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	7.5	hr	1.2045391505473911e-09	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 7-8 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	8.5	hr	1.2308904904952504e-09	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 8-9 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	9.5	hr	5.247091826133215e-10	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 9-10 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	11.0	hr	4.374931889553997e-10	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 10-12 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	18.0	hr	2.0601726956933246e-10	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 12-24 hr, at its midpoint
+Beermann1977a	all	MLL	1	dimensionless	HCTZ25	excretion rate			hydrochlorothiazide	urine	G-L C	excretion_hctz25_MLL	36.0	hr	6.078948148724648e-11	mole/second				mg/hr		mg/hr					mg/hr		dimensionless		collection 24-48 hr, at its midpoint

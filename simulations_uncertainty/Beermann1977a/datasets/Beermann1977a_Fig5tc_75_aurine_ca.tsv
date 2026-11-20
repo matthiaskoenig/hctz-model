@@ -1,2 +1,2 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Beermann1977a		all	8.0	HCTZ75	cumulative amount	calcium	urine	flame photometry	75_aurine_ca	10.0	hr		1.42	2.04	0.62			mmol	mmol	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Beermann1977a	all		8	dimensionless	HCTZ75	cumulative amount	sample mean		calcium	urine	flame photometry	75_aurine_ca	10.0	hr		mmol	1.42	0.62	0.2192031021678297	mmol		mmol	0.4366197183098592				mmol		dimensionless		

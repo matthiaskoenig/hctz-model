@@ -34,26 +34,34 @@ class Heise2015(HCTZSimulationExperiment):
     the urine of 0-24 hr were sampled at steady state after the dose of day 4
     (HCTZ alone) and of day 9 (with empagliflozin) (p. 795). The data refer to
     the last dose. The arms of torasemide are not part of the model.
+
+    The subjects are mostly men (15 of 22), simulated on the male build of
+    the model.
     """
 
-    groups: ClassVar[list[str]] = ["hctz25", "hctz25,emp25"]
+    groups: ClassVar[list[str]] = ["hctz25", "hctz25_emp25"]
     #: the days of the once daily doses of HCTZ up to the day of sampling
-    days: ClassVar[dict[str, int]] = {"hctz25": 4, "hctz25,emp25": 9}
+    days: ClassVar[dict[str, int]] = {"hctz25": 4, "hctz25_emp25": 9}
+    #: the arms in the legends
+    names: ClassVar[dict[str, str]] = {
+        "hctz25": "hctz25",
+        "hctz25_emp25": "hctz25,emp25",
+    }
     colors: ClassVar[dict[str, str]] = {
         "hctz25": "black",
-        "hctz25,emp25": "tab:blue",
+        "hctz25_emp25": "tab:blue",
     }
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig3", "Tab3A"]:
+        for fig_id in ["Fig3", "Tab3"]:
             df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
         return dsets
@@ -80,14 +88,14 @@ class Heise2015(HCTZSimulationExperiment):
                 time_shift=-dose_times[-1],
             )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         infos = [
-            ("Fig3", "", "[Cve_hctz]", Tissue.PLASMA),
-            ("Tab3A", "_aurine", "Aurine_hctz", Tissue.URINE),
+            ("Fig3", "", "Carm_hctz", Tissue.PLASMA),
+            ("Tab3", "_aurine", "Aurine_hctz", Tissue.URINE),
         ]
 
         for info in infos:
@@ -124,7 +132,7 @@ class Heise2015(HCTZSimulationExperiment):
 
     @override
     def figures(self) -> dict[str, Figure]:
-        name = "Fig3 & Tab3A"
+        name = "Fig3 & Tab3"
         fig = Figure(
             experiment=self,
             sid=self.to_sid(name),
@@ -141,12 +149,12 @@ class Heise2015(HCTZSimulationExperiment):
 
         # simulation
         for group in self.groups:
-            for k, yid in enumerate(["[Cve_hctz]", "Aurine_hctz"]):
+            for k, yid in enumerate(["Carm_hctz", "Aurine_hctz"]):
                 plots[k].add_data(
                     task=self.to_sid(f"task_{group}"),
                     xid="time",
                     yid=yid,
-                    label=f"Sim {group}",
+                    label=f"Sim {self.names[group]}",
                     color=self.colors[group],
                 )
         # data
@@ -157,17 +165,17 @@ class Heise2015(HCTZSimulationExperiment):
                 yid="mean",
                 yid_sd="mean_sd",
                 count="count",
-                label=f"25 mg {group}",
+                label=f"25 mg {self.names[group]}",
                 color=self.colors[group],
             )
 
             plots[1].add_data(
-                dataset=self.to_sid(f"Tab3A_{group}_aurine"),
+                dataset=self.to_sid(f"Tab3_{group}_aurine"),
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
                 count="count",
-                label=f"25 mg {group}",
+                label=f"25 mg {self.names[group]}",
                 linestyle="",
                 color=self.colors[group],
             )

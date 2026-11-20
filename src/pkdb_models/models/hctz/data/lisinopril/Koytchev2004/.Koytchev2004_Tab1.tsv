@@ -1,13 +1,13 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	min	max	sd	se	unit	comments
-Koytchev2004	lis	29.0	LISTEST20	cmax	lisinopril	plasma	HPLC MS/MS	NA	NA	44.56	NA	NA	26.46	NA	ng/mL	NA
-Koytchev2004	lis	29.0	LISTEST20	auc_inf	lisinopril	plasma	HPLC MS/MS	NA	NA	634.44	NA	NA	355.26	NA	NA	NA
-Koytchev2004	lis	29.0	LISTEST20	auc_end	lisinopril	plasma	HPLC MS/MS	72.0	hr	589.66	NA	NA	350.39	NA	ng*hr/mL	NA
-Koytchev2004	lis	29.0	LISTEST20	tmax	lisinopril	plasma	HPLC MS/MS	NA	NA	6.34	NA	NA	1.9	NA	hr	NA
-Koytchev2004	lis	29.0	LISTEST20	thalf	lisinopril	plasma	HPLC MS/MS	NA	NA	11.92	NA	NA	7.09	NA	hr	NA
-Koytchev2004	lis	29.0	LISTEST20	mrt	lisinopril	plasma	HPLC MS/MS	NA	NA	12.35	NA	NA	2.18	NA	hr	NA
-Koytchev2004	lis	29.0	LISREF20	cmax	lisinopril	plasma	HPLC MS/MS	NA	NA	42.35	NA	NA	18.53	NA	ng/mL	NA
-Koytchev2004	lis	29.0	LISREF20	auc_inf	lisinopril	plasma	HPLC MS/MS	NA	NA	649.11	NA	NA	988.91	NA	NA	NA
-Koytchev2004	lis	29.0	LISREF20	auc_end	lisinopril	plasma	HPLC MS/MS	72.0	hr	591.42	NA	NA	291.55	NA	ng*hr/mL	NA
-Koytchev2004	lis	29.0	LISREF20	tmax	lisinopril	plasma	HPLC MS/MS	NA	NA	6.38	NA	NA	1.18	NA	hr	NA
-Koytchev2004	lis	29.0	LISREF20	thalf	lisinopril	plasma	HPLC MS/MS	NA	NA	14.73	NA	NA	7.94	NA	hr	NA
-Koytchev2004	lis	29.0	LISREF20	mrt	lisinopril	plasma	HPLC MS/MS	NA	NA	13.5	NA	NA	2.94	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Koytchev2004	lis	NA	29	LISREF20	auc_end	sample mean	NA	lisinopril	plasma	HPLC MS/MS	auc_end_lisinopril_plasma_LISREF20_lis	72.0	hr	NA	591.42	NA	291.55	54.13947584551948	0.4929660816340334	NA	NA	NA	NA	NA	ng/ml*hr	AUC0-t to the last non-zero concentration; samples to 72 h.
+Koytchev2004	lis	NA	29	LISREF20	auc_inf	sample mean	NA	lisinopril	plasma	HPLC MS/MS	auc_inf_lisinopril_plasma_LISREF20_lis	NA	NA	NA	649.11	NA	288.91	53.64924015273206	0.4450863490009398	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Koytchev2004	lis	NA	29	LISREF20	cmax	sample mean	NA	lisinopril	plasma	HPLC MS/MS	cmax_lisinopril_plasma_LISREF20_lis	NA	NA	NA	42.35	NA	18.53	3.4409346164207713	0.4375442739079103	NA	NA	NA	NA	NA	ng/ml	NA
+Koytchev2004	lis	NA	29	LISREF20	mrt	sample mean	NA	lisinopril	plasma	HPLC MS/MS	mrt_lisinopril_plasma_LISREF20_lis	NA	NA	NA	13.5	NA	2.94	0.5459442942405325	0.21777777777777776	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	lis	NA	29	LISREF20	thalf	sample mean	NA	lisinopril	plasma	HPLC MS/MS	thalf_lisinopril_plasma_LISREF20_lis	NA	NA	NA	14.73	NA	7.94	1.474420985125792	0.5390359809911744	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	lis	NA	29	LISREF20	tmax	sample mean	NA	lisinopril	plasma	HPLC MS/MS	tmax_lisinopril_plasma_LISREF20_lis	NA	NA	NA	6.38	NA	1.18	0.2191204990489212	0.18495297805642633	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	lis	NA	29	LISTEST20	auc_end	sample mean	NA	lisinopril	plasma	HPLC MS/MS	auc_end_lisinopril_plasma_LISTEST20_lis	72.0	hr	NA	589.66	NA	350.39	65.0657895438572	0.5942237899806668	NA	NA	NA	NA	NA	ng/ml*hr	AUC0-t to the last non-zero concentration; samples to 72 h.
+Koytchev2004	lis	NA	29	LISTEST20	auc_inf	sample mean	NA	lisinopril	plasma	HPLC MS/MS	auc_inf_lisinopril_plasma_LISTEST20_lis	NA	NA	NA	635.44	NA	355.26	65.97012584077945	0.5590771748709555	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Koytchev2004	lis	NA	29	LISTEST20	cmax	sample mean	NA	lisinopril	plasma	HPLC MS/MS	cmax_lisinopril_plasma_LISTEST20_lis	NA	NA	NA	44.56	NA	26.46	4.913498648164793	0.5938061041292639	NA	NA	NA	NA	NA	ng/ml	NA
+Koytchev2004	lis	NA	29	LISTEST20	mrt	sample mean	NA	lisinopril	plasma	HPLC MS/MS	mrt_lisinopril_plasma_LISTEST20_lis	NA	NA	NA	12.35	NA	2.18	0.40481583722597314	0.1765182186234818	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	lis	NA	29	LISTEST20	thalf	sample mean	NA	lisinopril	plasma	HPLC MS/MS	thalf_lisinopril_plasma_LISTEST20_lis	NA	NA	NA	11.92	NA	7.09	1.3165799476752977	0.5947986577181208	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	lis	NA	29	LISTEST20	tmax	sample mean	NA	lisinopril	plasma	HPLC MS/MS	tmax_lisinopril_plasma_LISTEST20_lis	NA	NA	NA	6.34	NA	1.9	0.35282114253639857	0.29968454258675076	NA	NA	NA	NA	NA	hr	NA

@@ -1,21 +1,21 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	min	max	sd	se	unit	comments
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	cmax	lisinopril	plasma	HPLC MS/MS	NA	NA	86.87	NA	NA	32.38	NA	ng/mL	NA
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	auc_inf	lisinopril	plasma	HPLC MS/MS	NA	NA	1304.38	NA	NA	425.11	NA	ng*hr/mL	NA
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	tmax	lisinopril	plasma	HPLC MS/MS	NA	NA	7.54	NA	NA	1.25	NA	hr	NA
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	thalf	lisinopril	plasma	HPLC MS/MS	NA	NA	20.15	NA	NA	10.71	NA	hr	NA
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	mrt	lisinopril	plasma	HPLC MS/MS	NA	NA	14.07	NA	NA	2.27	NA	hr	NA
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	cmax	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	71.51	NA	NA	19.51	NA	ng/mL	NA
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	auc_inf	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	518.17	NA	NA	99.13	NA	ng*hr/mL	NA
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	tmax	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	1.92	NA	NA	0.64	NA	hr	NA
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	thalf	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	9.77	NA	NA	2.02	NA	hr	NA
-Koytchev2004	hydro	24.0	LISTEST20, HCTZ	mrt	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	9.19	NA	NA	1.5	NA	hr	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	cmax	lisinopril	plasma	HPLC MS/MS	NA	NA	93.77	NA	NA	47.64	NA	ng/mL	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	auc_inf	lisinopril	plasma	HPLC MS/MS	NA	NA	1355.53	NA	NA	564.35	NA	ng*hr/mL	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	tmax	lisinopril	plasma	HPLC MS/MS	NA	NA	7.59	NA	NA	1.55	NA	hr	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	thalf	lisinopril	plasma	HPLC MS/MS	NA	NA	15.93	NA	NA	8.6	NA	hr	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	mrt	lisinopril	plasma	HPLC MS/MS	NA	NA	13.37	NA	NA	1.81	NA	hr	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	cmax	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	72.99	NA	NA	25.29	NA	ng/mL	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	auc_inf	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	518.17	NA	NA	141.43	NA	ng*hr/mL	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	tmax	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	2.21	NA	NA	1.77	NA	hr	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	thalf	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	9.26	NA	NA	1.1	NA	hr	NA
-Koytchev2004	hydro	24.0	LISREF20, HCTZ	mrt	hydrochlorothiazide	plasma	HPLC MS/MS	NA	NA	9.34	NA	NA	0.77	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	auc_inf	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	auc_inf_hydrochlorothiazide_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	518.17	NA	141.43	28.869277860152078	0.2729413126966054	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	auc_inf	sample mean	NA	lisinopril	plasma	HPLC MS/MS	auc_inf_lisinopril_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	1355.53	NA	564.35	115.19746136164056	0.41633161936659463	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	cmax_hydrochlorothiazide_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	72.99	NA	25.29	5.162299632915548	0.3464858199753391	NA	NA	NA	NA	NA	ng/ml	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	cmax	sample mean	NA	lisinopril	plasma	HPLC MS/MS	cmax_lisinopril_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	93.77	NA	47.64	9.724474278849218	0.5080516156553269	NA	NA	NA	NA	NA	ng/ml	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	mrt	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	mrt_hydrochlorothiazide_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	9.34	NA	0.77	0.15717559182858729	0.08244111349036402	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	mrt	sample mean	NA	lisinopril	plasma	HPLC MS/MS	mrt_lisinopril_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	13.37	NA	1.81	0.36946470286979605	0.13537771129394166	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	thalf	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	thalf_hydrochlorothiazide_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	9.26	NA	1.1	0.2245365597551247	0.1187904967602592	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	thalf	sample mean	NA	lisinopril	plasma	HPLC MS/MS	thalf_lisinopril_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	15.93	NA	8.6	1.755467648994611	0.5398618957940992	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	tmax_hydrochlorothiazide_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	2.21	NA	1.77	0.3612997370605188	0.8009049773755657	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISREF20	tmax	sample mean	NA	lisinopril	plasma	HPLC MS/MS	tmax_lisinopril_plasma_HCTZ_LISREF20_hydro	NA	NA	NA	7.59	NA	1.55	0.3163924251094939	0.20421607378129117	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	auc_inf	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	auc_inf_hydrochlorothiazide_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	518.17	NA	99.13	20.23482651684137	0.19130787193392132	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	auc_inf	sample mean	NA	lisinopril	plasma	HPLC MS/MS	auc_inf_lisinopril_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	1304.38	NA	425.11	86.77521537954641	0.3259096275625201	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	cmax_hydrochlorothiazide_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	71.51	NA	19.51	3.9824620734749843	0.27282897496853586	NA	NA	NA	NA	NA	ng/ml	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	cmax	sample mean	NA	lisinopril	plasma	HPLC MS/MS	cmax_lisinopril_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	86.87	NA	32.38	6.6095398226099435	0.3727408771727869	NA	NA	NA	NA	NA	ng/ml	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	mrt	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	mrt_hydrochlorothiazide_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	9.19	NA	1.5	0.3061862178478973	0.1632208922742111	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	mrt	sample mean	NA	lisinopril	plasma	HPLC MS/MS	mrt_lisinopril_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	14.07	NA	2.27	0.46336180967648455	0.1613361762615494	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	thalf	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	thalf_hydrochlorothiazide_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	9.77	NA	2.02	0.4123307733685017	0.20675537359263052	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	thalf	sample mean	NA	lisinopril	plasma	HPLC MS/MS	thalf_lisinopril_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	20.15	NA	10.71	2.186169595433987	0.5315136476426799	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC MS/MS	tmax_hydrochlorothiazide_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	1.92	NA	0.64	0.13063945294843618	0.33333333333333337	NA	NA	NA	NA	NA	hr	NA
+Koytchev2004	hydro	NA	24	HCTZ,LISTEST20	tmax	sample mean	NA	lisinopril	plasma	HPLC MS/MS	tmax_lisinopril_plasma_HCTZ_LISTEST20_hydro	NA	NA	NA	7.54	NA	1.25	0.2551551815399144	0.16578249336870027	NA	NA	NA	NA	NA	hr	NA

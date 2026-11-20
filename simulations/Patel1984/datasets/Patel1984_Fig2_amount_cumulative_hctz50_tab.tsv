@@ -1,10 +1,10 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Patel1984		all	12.0	HCTZ50_tab	cumulative amount	hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	2.0	hr		1.6362867239720023e-05					mole	mg	dimensionless
-Patel1984		all	12.0	HCTZ50_tab	cumulative amount	hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	4.0	hr		3.335717906754233e-05					mole	mg	dimensionless
-Patel1984		all	12.0	HCTZ50_tab	cumulative amount	hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	6.0	hr		4.6962241072086e-05					mole	mg	dimensionless
-Patel1984		all	12.0	HCTZ50_tab	cumulative amount	hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	8.0	hr		5.548094233939704e-05					mole	mg	dimensionless
-Patel1984		all	12.0	HCTZ50_tab	cumulative amount	hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	12.0	hr		6.234728073442997e-05					mole	mg	dimensionless
-Patel1984		all	12.0	HCTZ50_tab	cumulative amount	hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	24.0	hr		7.531509747880249e-05					mole	mg	dimensionless
-Patel1984		all	12.0	HCTZ50_tab	cumulative amount	hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	30.0	hr		7.968134621201848e-05					mole	mg	dimensionless
-Patel1984		all	12.0	HCTZ50_tab	cumulative amount	hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	36.0	hr		8.489532173477327e-05					mole	mg	dimensionless
-Patel1984		all	12.0	HCTZ50_tab	cumulative amount	hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	48.0	hr		9.108629616746592e-05					mole	mg	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Patel1984	all		12	dimensionless	HCTZ50_tab	cumulative amount	sample mean		hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	2.0	hr		mg	1.6362867239720023e-05			mole		mg					mg		dimensionless		
+Patel1984	all		12	dimensionless	HCTZ50_tab	cumulative amount	sample mean		hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	4.0	hr		mg	3.335717906754233e-05			mole		mg					mg		dimensionless		
+Patel1984	all		12	dimensionless	HCTZ50_tab	cumulative amount	sample mean		hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	6.0	hr		mg	4.6962241072086e-05			mole		mg					mg		dimensionless		
+Patel1984	all		12	dimensionless	HCTZ50_tab	cumulative amount	sample mean		hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	8.0	hr		mg	5.548094233939704e-05			mole		mg					mg		dimensionless		
+Patel1984	all		12	dimensionless	HCTZ50_tab	cumulative amount	sample mean		hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	12.0	hr		mg	6.234728073442997e-05			mole		mg					mg		dimensionless		
+Patel1984	all		12	dimensionless	HCTZ50_tab	cumulative amount	sample mean		hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	24.0	hr		mg	7.531509747880249e-05			mole		mg					mg		dimensionless		
+Patel1984	all		12	dimensionless	HCTZ50_tab	cumulative amount	sample mean		hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	30.0	hr		mg	7.968134621201848e-05			mole		mg					mg		dimensionless		
+Patel1984	all		12	dimensionless	HCTZ50_tab	cumulative amount	sample mean		hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	36.0	hr		mg	8.489532173477327e-05			mole		mg					mg		dimensionless		
+Patel1984	all		12	dimensionless	HCTZ50_tab	cumulative amount	sample mean		hydrochlorothiazide	urine	HPLC	amount_cumulative_hctz50_tab	48.0	hr		mg	9.108629616746592e-05			mole		mg					mg		dimensionless		

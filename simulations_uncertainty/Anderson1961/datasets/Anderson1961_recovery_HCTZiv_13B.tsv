@@ -1,4 +1,4 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	comments	value_unit	count_unit
-Anderson1961	13.0	hepatic impairment	1.0	HCTZiv	recovery	C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZiv_13B	4.0	hr	13.5		percent	dimensionless
-Anderson1961	13.0	hepatic impairment	1.0	HCTZiv	recovery	C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZiv_13B	8.0	hr	22.0		percent	dimensionless
-Anderson1961	13.0	hepatic impairment	1.0	HCTZiv	recovery	C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZiv_13B	24.0	hr	66.0		percent	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Anderson1961	hepatic impairment	13	1	dimensionless	HCTZiv	recovery			C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZiv_13B	4.0	hr	13.5	percent				percent		percent					percent		dimensionless		
+Anderson1961	hepatic impairment	13	1	dimensionless	HCTZiv	recovery			C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZiv_13B	8.0	hr	22.0	percent				percent		percent					percent		dimensionless		
+Anderson1961	hepatic impairment	13	1	dimensionless	HCTZiv	recovery			C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZiv_13B	24.0	hr	66.0	percent				percent		percent					percent		dimensionless		

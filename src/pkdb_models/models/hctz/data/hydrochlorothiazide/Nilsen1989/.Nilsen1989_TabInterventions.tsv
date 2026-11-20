@@ -1,4 +1,5 @@
-study	name	time	time_end	time_unit	route	application	measurement_type	form	substance	value	unit	comments
-Nilsen1989	CIL2,5	0	NA	hr	oral	single dose	dosing	tablet	cilazapril	2.5	mg	form not explicitly reported
-Nilsen1989	CIL5	0	NA	hr	oral	single dose	dosing	tablet	cilazapril	5.0	mg	form not explicitly reported
-Nilsen1989	HCTZ25	0	NA	hr	oral	single dose	dosing	tablet	hydrochlorothiazide	25.0	mg	form not explicitly reported
+study	name	time	time_end	time_unit	interval	doses	route	application	measurement_type	form	substance	value	unit	comments
+Nilsen1989	CIL2.5	-312.0	NA	hr	24.0	14.0	oral	multiple dose	dosing	NR	cilazapril	2.5	mg	hypertensive patients: 2.5 mg once daily for 2 weeks, sampled on the last day of the regimen (Methods): 14 doses, the last at 0 h; form not reported
+Nilsen1989	CIL5	0.0	NA	hr	NA	NA	oral	single dose	dosing	NR	cilazapril	5.0	mg	healthy subjects, single oral dose (Methods); form not reported
+Nilsen1989	HCTZ25	0.0	NA	hr	NA	NA	oral	single dose	dosing	NR	hydrochlorothiazide	25.0	mg	healthy subjects, single oral dose (Methods); form not reported
+Nilsen1989	HCTZ25md	-312.0	NA	hr	24.0	14.0	oral	multiple dose	dosing	NR	hydrochlorothiazide	25.0	mg	hypertensive patients: 25 mg once daily for 2 weeks, sampled on the last day of the regimen (Methods): 14 doses, the last at 0 h; form not reported

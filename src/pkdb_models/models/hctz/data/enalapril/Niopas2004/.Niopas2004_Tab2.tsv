@@ -1,11 +1,11 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	geometric_mean	mean	mean_pm	median	sd	se	min	max	unit	comments
-Niopas2004	NA	all	24.0	ENA20, HCTZ12.5	auc_inf	enalaprilat	plasma	GC/MS	NA	NA	NA	NA	731.3	719.8	771.5	NA	267.2	54.5419716059721	446.1	1476.6	ng/ml*hr	how to encode geometric means
-Niopas2004	NA	all	24.0	ENA20, HCTZ12.5	auc_end	enalaprilat	plasma	GC/MS	NA	36.0	hr	NA	635.3	638.8	676.5	NA	252.9	51.6229963291555	358.8	1340.1	ng/ml*hr	how to encode geometric means
-Niopas2004	NA	all	24.0	ENA20, HCTZ12.5	cmax	enalaprilat	plasma	GC/MS	NA	NA	NA	NA	74.5	77.3	79.5	NA	27.1	5.53176433578534	29.2	133.0	ng/ml	how to encode geometric means
-Niopas2004	NA	all	24.0	ENA20, HCTZ12.5	tmax	enalaprilat	plasma	GC/MS	NA	NA	NA	NA	3.8	3.5	3.9	NA	1.0	0.204124145231932	2.5	6.0	hr	how to encode geometric means
-Niopas2004	NA	all	24.0	ENA20, HCTZ12.5	thalf	enalaprilat	plasma	GC/MS	NA	NA	NA	NA	5.4	5.1	6.0	NA	3.1	0.632784850218988	2.7	14.8	hr	how to encode geometric means
-Niopas2004	NA	all	24.0	REF20, HCTZ12.5	auc_inf	enalaprilat	plasma	GC/MS	NA	NA	NA	NA	673.0	637.3	711.3	NA	250.4	51.1126859660757	343.5	1297.6	ng/ml*hr	how to encode geometric means
-Niopas2004	NA	all	24.0	REF20, HCTZ12.5	auc_end	enalaprilat	plasma	GC/MS	NA	36.0	hr	NA	595.7	554.7	637.0	NA	247.1	50.4390762868103	287.9	1233.1	ng/ml*hr	how to encode geometric means
-Niopas2004	NA	all	24.0	REF20, HCTZ12.5	cmax	enalaprilat	plasma	GC/MS	NA	NA	NA	NA	72.8	66.9	79.6	NA	34.5	7.04228301050164	35.3	147.0	ng/ml	how to encode geometric means
-Niopas2004	NA	all	24.0	REF20, HCTZ12.5	tmax	enalaprilat	plasma	GC/MS	NA	NA	NA	NA	3.8	3.8	3.9	NA	1.0	0.204124145231932	2.5	6.0	hr	how to encode geometric means
-Niopas2004	NA	all	24.0	REF20, HCTZ12.5	thalf	enalaprilat	plasma	GC/MS	NA	NA	NA	NA	4.8	4.5	5.2	NA	2.3	0.469485534033442	2.6	12.1	hr	how to encode geometric means
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Niopas2004	all	NA	24	ENA20,HCTZ12.5	auc_end	sample mean	NA	enalaprilat	plasma	GC/MS	auc_end_enalaprilat_plasma_ENA20_HCTZ12_5_all	36.0	hr	NA	676.5	638.8	252.9	51.6229963291555	0.3738359201773836	358.8	1340.1	635.3	NA	NA	ng/ml*hr	NA
+Niopas2004	all	NA	24	ENA20,HCTZ12.5	auc_inf	sample mean	NA	enalaprilat	plasma	GC/MS	auc_inf_enalaprilat_plasma_ENA20_HCTZ12_5_all	NA	NA	NA	771.5	719.8	267.2	54.5419716059721	0.34633830200907323	446.1	1476.6	731.3	NA	NA	ng/ml*hr	NA
+Niopas2004	all	NA	24	ENA20,HCTZ12.5	cmax	sample mean	NA	enalaprilat	plasma	GC/MS	cmax_enalaprilat_plasma_ENA20_HCTZ12_5_all	NA	NA	NA	79.5	77.3	27.1	5.53176433578534	0.3408805031446541	29.2	133.0	74.5	NA	NA	ng/ml	NA
+Niopas2004	all	NA	24	ENA20,HCTZ12.5	thalf	sample mean	NA	enalaprilat	plasma	GC/MS	thalf_enalaprilat_plasma_ENA20_HCTZ12_5_all	NA	NA	NA	6.0	5.1	3.1	0.632784850218988	0.5166666666666667	2.7	14.8	5.4	NA	NA	hr	NA
+Niopas2004	all	NA	24	ENA20,HCTZ12.5	tmax	sample mean	NA	enalaprilat	plasma	GC/MS	tmax_enalaprilat_plasma_ENA20_HCTZ12_5_all	NA	NA	NA	3.9	3.5	1.0	0.204124145231932	0.25641025641025644	2.5	6.0	3.8	NA	NA	hr	NA
+Niopas2004	all	NA	24	HCTZ12.5,REF20	auc_end	sample mean	NA	enalaprilat	plasma	GC/MS	auc_end_enalaprilat_plasma_HCTZ12_5_REF20_all	36.0	hr	NA	637.0	554.7	247.1	50.4390762868103	0.3879120879120879	287.9	1233.1	595.7	NA	NA	ng/ml*hr	NA
+Niopas2004	all	NA	24	HCTZ12.5,REF20	auc_inf	sample mean	NA	enalaprilat	plasma	GC/MS	auc_inf_enalaprilat_plasma_HCTZ12_5_REF20_all	NA	NA	NA	711.3	637.3	250.4	51.1126859660757	0.3520314916350345	343.5	1297.6	673.0	NA	NA	ng/ml*hr	NA
+Niopas2004	all	NA	24	HCTZ12.5,REF20	cmax	sample mean	NA	enalaprilat	plasma	GC/MS	cmax_enalaprilat_plasma_HCTZ12_5_REF20_all	NA	NA	NA	79.6	66.9	34.5	7.04228301050164	0.4334170854271357	35.3	147.0	72.8	NA	NA	ng/ml	NA
+Niopas2004	all	NA	24	HCTZ12.5,REF20	thalf	sample mean	NA	enalaprilat	plasma	GC/MS	thalf_enalaprilat_plasma_HCTZ12_5_REF20_all	NA	NA	NA	5.2	4.5	2.3	0.469485534033442	0.44230769230769224	2.6	12.1	4.8	NA	NA	hr	NA
+Niopas2004	all	NA	24	HCTZ12.5,REF20	tmax	sample mean	NA	enalaprilat	plasma	GC/MS	tmax_enalaprilat_plasma_HCTZ12_5_REF20_all	NA	NA	NA	3.9	3.8	1.0	0.204124145231932	0.25641025641025644	2.5	6.0	3.8	NA	NA	hr	NA

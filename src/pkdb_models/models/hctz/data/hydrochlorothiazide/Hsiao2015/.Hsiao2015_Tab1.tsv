@@ -1,7 +1,7 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	median	mean	mean_pm	min	max	sd	se	unit	comments
-Hsiao2015	NA	all	27.0	HCTZ25	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	NA	1.5	NA	NA	1.0	3.0	NA	NA	hr	NA
-Hsiao2015	NA	all	27.0	HCTZ25	muliple_dosing_cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	NA	NA	202.0	NA	NA	NA	57.5	NA	ng/ml	is this cmax or mul(t)iple_dosing_cmax?
-Hsiao2015	NA	all	27.0	HCTZ25	auc measurement	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	NA	NA	1380.0	NA	NA	NA	347.0	NA	ng*h/ml	NA
-Hsiao2015	NA	all	27.0	HCTZ25, LCZ696	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	NA	2.02	NA	NA	1.0	4.02	NA	NA	hr	NA
-Hsiao2015	NA	all	27.0	HCTZ25, LCZ696	muliple_dosing_cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	NA	NA	149.0	NA	NA	NA	39.3	NA	ng/ml	is this cmax or mul(t)iple_dosing_cmax?
-Hsiao2015	NA	all	27.0	HCTZ25, LCZ696	auc measurement	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	NA	NA	1180.0	NA	NA	NA	333.0	NA	ng*h/ml	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Hsiao2015	all	NA	27	HCTZ25	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_measurement_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	1380.0	NA	347.0	66.7801811362667	0.2514492753623188	NA	NA	NA	NA	NA	ng*h/ml	NA
+Hsiao2015	all	NA	27	HCTZ25	muliple_dosing_cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	muliple_dosing_cmax_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	202.0	NA	57.5	11.065880159467827	0.28465346534653463	NA	NA	NA	NA	NA	ng/ml	NA
+Hsiao2015	all	NA	27	HCTZ25	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	NA	1.5	NA	NA	NA	1.0	3.0	NA	NA	NA	hr	NA
+Hsiao2015	all	NA	27	HCTZ25,LCZ696	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_measurement_hydrochlorothiazide_plasma_HCTZ25_LCZ696_all	NA	NA	NA	1180.0	NA	333.0	64.08587988004845	0.28220338983050847	NA	NA	NA	NA	NA	ng*h/ml	NA
+Hsiao2015	all	NA	27	HCTZ25,LCZ696	muliple_dosing_cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	muliple_dosing_cmax_hydrochlorothiazide_plasma_HCTZ25_LCZ696_all	NA	NA	NA	149.0	NA	39.3	7.563288526384096	0.26375838926174494	NA	NA	NA	NA	NA	ng/ml	NA
+Hsiao2015	all	NA	27	HCTZ25,LCZ696	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ25_LCZ696_all	NA	NA	NA	NA	2.02	NA	NA	NA	1.0	4.02	NA	NA	NA	hr	NA

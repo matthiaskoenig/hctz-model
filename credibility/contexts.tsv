@@ -1,0 +1,6 @@
+id	title	level	influence	consequence	risk	verdict	n_decisive	n_evaluable	minimum_points	uncovered_quantities	verified	within_2fold	within_2fold_limit	GMFE	GMFE_limit
+describe	Describe the data of the fits	C1	low	low	low	supported	688	676	5		True	91.5680473372781	>= 70		
+dose	Oral doses in healthy adults	C2	medium	low	low	supported	66	66	5		True	93.93939393939394	>= 70		
+renal	Impaired renal function	C3	medium	medium	medium	insufficient_evidence	10	10	10	Aurine_hctz,FLUID__na_urine	True	80.0	>= 80	1.4564709364308668	<= 1.5
+interaction	Coadministration without an interaction	C3	medium	medium	medium	supported	117	116	10		True	100.0	>= 80	1.1624388839016382	<= 1.5
+pd	Natriuresis and chloruresis in healthy adults	C5	medium	low	low	insufficient_evidence	2	2	5		True	100.0	>= 70		

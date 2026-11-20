@@ -1,3 +1,5 @@
-study	name	time	time_end	time_unit	route	application	measurement_type	form	substance	value	unit	comments
-Howes1991	ENA10	0	96	hr	oral	single dose	dosing	tablet	enalapril	10	mg	separate or as combination tablet with hctz
-Howes1991	HCTZ25	0	96	hr	oral	single dose	dosing	tablet	hydrochlorothiazide	25	mg	separate or as combination tablet with enalapril
+study	name	time	time_end	time_unit	interval	doses	route	application	measurement_type	form	substance	value	unit	comments
+Howes1991	ENA10	0.0	96.0	hr	NA	NA	oral	single dose	dosing	tablet	enalapril maleate	10.0	mg	"the paper names the dose ""enalapril (10 mg)""; the enalapril tablets and the enalapril/HCT combination tablet contain enalapril maleate"
+Howes1991	ENA10_combi	0.0	96.0	hr	NA	NA	oral	single dose	dosing	tablet	enalapril maleate	10.0	mg	"the paper names the dose ""enalapril (10 mg)""; the enalapril tablets and the enalapril/HCT combination tablet contain enalapril maleate"
+Howes1991	HCTZ25	0.0	96.0	hr	NA	NA	oral	single dose	dosing	tablet	hydrochlorothiazide	25.0	mg	NA
+Howes1991	HCTZ25_combi	0.0	96.0	hr	NA	NA	oral	single dose	dosing	tablet	hydrochlorothiazide	25.0	mg	NA

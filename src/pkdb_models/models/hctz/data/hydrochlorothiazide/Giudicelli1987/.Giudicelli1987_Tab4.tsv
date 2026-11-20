@@ -1,13 +1,13 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Giudicelli1987	NA	captopril_mono	7.0	CAP50	ACE activity	angiotensin converting enzyme	plasma	Spectrophotometry	NA	NA	NA	18.7	NA	6.085228015448558	2.3	nmol/min/ml	NA
-Giudicelli1987	NA	captopril_mono	7.0	CAP50_MULTI	ACE activity	angiotensin converting enzyme	plasma	Spectrophotometry	NA	NA	NA	30.3	NA	14.02248194864233	5.3	nmol/min/ml	NA
-Giudicelli1987	NA	captopril_mono	7.0	CAP50	renin activity	renin	plasma	RIA	NA	NA	NA	6.3	NA	1.8520259177452134	0.7	ng/l/min	NA
-Giudicelli1987	NA	captopril_mono	7.0	CAP50_MULTI	renin activity	renin	plasma	RIA	NA	NA	NA	30.6	NA	28.309539028391118	10.7	ng/l/min	NA
-Giudicelli1987	NA	HCTZ_mono	10.0	HCTZ25	ACE activity	angiotensin converting enzyme	plasma	Spectrophotometry	NA	NA	NA	20.0	NA	5.692099788303083	1.8	nmol/min/ml	NA
-Giudicelli1987	NA	HCTZ_mono	10.0	HCTZ25_MULTI	ACE activity	angiotensin converting enzyme	plasma	Spectrophotometry	NA	NA	NA	22.8	NA	11.384199576606166	3.6	nmol/min/ml	NA
-Giudicelli1987	NA	HCTZ_mono	10.0	HCTZ25	renin activity	renin	plasma	RIA	NA	NA	NA	13.7	NA	9.170605214488301	2.9	ng/l/min	NA
-Giudicelli1987	NA	HCTZ_mono	10.0	HCTZ25_MULTI	renin activity	renin	plasma	RIA	NA	NA	NA	42.0	NA	50.280214796677235	15.9	ng/l/min	NA
-Giudicelli1987	NA	HCTZ_mono	10.0	CAP50, HCTZ25	ACE activity	angiotensin converting enzyme	plasma	Spectrophotometry	NA	NA	NA	23.3	NA	8.221921916437788	2.6	nmol/min/ml	NA
-Giudicelli1987	NA	HCTZ_mono	10.0	CAP50_MULTI, HCTZ25_MULTI	ACE activity	angiotensin converting enzyme	plasma	Spectrophotometry	NA	NA	NA	30.0	NA	16.76007159889241	5.3	nmol/min/ml	NA
-Giudicelli1987	NA	HCTZ_mono	10.0	CAP50, HCTZ25	renin activity	renin	plasma	RIA	NA	NA	NA	9.1	NA	7.273238618387272	2.3	ng/l/min	NA
-Giudicelli1987	NA	HCTZ_mono	10.0	CAP50_MULTI, HCTZ25_MULTI	renin activity	renin	plasma	RIA	NA	NA	NA	33.5	NA	23.40085468524601	7.4	ng/l/min	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Giudicelli1987	captopril_HCTZ_comb	NA	8	CAP50,HCTZ25	ACE activity	sample mean	NA	angiotensin converting enzyme	plasma	Spectrophotometry	ACE_activity_angiotensin_converting_enzyme_plasma_CAP50_HCTZ25_captopril_HCTZ_comb	NA	NA	NA	23.3	NA	7.353910524340095	2.6	0.31561847743948906	NA	NA	NA	NA	NA	nmol/min/ml	NA
+Giudicelli1987	captopril_HCTZ_comb	NA	8	CAP50,HCTZ25	renin activity	sample mean	NA	renin	plasma	RIA	renin_activity_renin_plasma_CAP50_HCTZ25_captopril_HCTZ_comb	NA	NA	NA	9.1	NA	6.505382386916237	2.3	0.7148771853754107	NA	NA	NA	NA	NA	ng/l/min	NA
+Giudicelli1987	captopril_HCTZ_comb	NA	8	CAP50_MULTI,HCTZ25_MULTI	ACE activity	sample mean	NA	angiotensin converting enzyme	plasma	Spectrophotometry	ACE_activity_angiotensin_converting_enzyme_plasma_CAP50_MULTI_HCTZ25_MULTI_captopril_HCTZ_comb	NA	NA	NA	30.0	NA	14.990663761154808	5.3	0.4996887920384936	NA	NA	NA	NA	NA	nmol/min/ml	NA
+Giudicelli1987	captopril_HCTZ_comb	NA	8	CAP50_MULTI,HCTZ25_MULTI	renin activity	sample mean	NA	renin	plasma	RIA	renin_activity_renin_plasma_CAP50_MULTI_HCTZ25_MULTI_captopril_HCTZ_comb	NA	NA	NA	33.5	NA	20.930360723121808	7.4	0.6247868872573674	NA	NA	NA	NA	NA	ng/l/min	NA
+Giudicelli1987	captopril_mono	NA	7	CAP50	ACE activity	sample mean	NA	angiotensin converting enzyme	plasma	Spectrophotometry	ACE_activity_angiotensin_converting_enzyme_plasma_CAP50_captopril_mono	NA	NA	NA	18.7	NA	6.085228015448558	2.3	0.32541326285821165	NA	NA	NA	NA	NA	nmol/min/ml	NA
+Giudicelli1987	captopril_mono	NA	7	CAP50	renin activity	sample mean	NA	renin	plasma	RIA	renin_activity_renin_plasma_CAP50_captopril_mono	NA	NA	NA	6.3	NA	1.8520259177452134	0.7	0.2939723678960656	NA	NA	NA	NA	NA	ng/l/min	NA
+Giudicelli1987	captopril_mono	NA	7	CAP50_MULTI	ACE activity	sample mean	NA	angiotensin converting enzyme	plasma	Spectrophotometry	ACE_activity_angiotensin_converting_enzyme_plasma_CAP50_MULTI_captopril_mono	NA	NA	NA	30.3	NA	14.02248194864233	5.3	0.4627881831235092	NA	NA	NA	NA	NA	nmol/min/ml	NA
+Giudicelli1987	captopril_mono	NA	7	CAP50_MULTI	renin activity	sample mean	NA	renin	plasma	RIA	renin_activity_renin_plasma_CAP50_MULTI_captopril_mono	NA	NA	NA	30.6	NA	28.309539028391118	10.7	0.9251483342611476	NA	NA	NA	NA	NA	ng/l/min	NA
+Giudicelli1987	HCTZ_mono	NA	10	HCTZ25	ACE activity	sample mean	NA	angiotensin converting enzyme	plasma	Spectrophotometry	ACE_activity_angiotensin_converting_enzyme_plasma_HCTZ25_HCTZ_mono	NA	NA	NA	20.0	NA	5.692099788303083	1.8	0.28460498941515416	NA	NA	NA	NA	NA	nmol/min/ml	NA
+Giudicelli1987	HCTZ_mono	NA	10	HCTZ25	renin activity	sample mean	NA	renin	plasma	RIA	renin_activity_renin_plasma_HCTZ25_HCTZ_mono	NA	NA	NA	13.7	NA	9.170605214488301	2.9	0.6693872419334527	NA	NA	NA	NA	NA	ng/l/min	NA
+Giudicelli1987	HCTZ_mono	NA	10	HCTZ25_MULTI	ACE activity	sample mean	NA	angiotensin converting enzyme	plasma	Spectrophotometry	ACE_activity_angiotensin_converting_enzyme_plasma_HCTZ25_MULTI_HCTZ_mono	NA	NA	NA	22.8	NA	11.384199576606166	3.6	0.49930699897395464	NA	NA	NA	NA	NA	nmol/min/ml	NA
+Giudicelli1987	HCTZ_mono	NA	10	HCTZ25_MULTI	renin activity	sample mean	NA	renin	plasma	RIA	renin_activity_renin_plasma_HCTZ25_MULTI_HCTZ_mono	NA	NA	NA	42.0	NA	50.280214796677235	15.9	1.197147971349458	NA	NA	NA	NA	NA	ng/l/min	NA

@@ -7,13 +7,19 @@ import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.colors import Colormap, ListedColormap
 from matplotlib.typing import ColorType
-from pkpdsim.scan import point_band, point_timecourse, scan_dimensions, start_values
 from sbmlsim import Q
 from sbmlsim.plot.serialization_matplotlib import (
     FigureMPL,
 )
 from sbmlsim.result import ScanResult
+from sbmlsim.result.scan import (
+    point_band,
+    point_timecourse,
+    scan_dimensions,
+    start_values,
+)
 from sbmlsim.simulation import (
     Dimension,
     Scan,
@@ -26,6 +32,23 @@ from pkdb_models.models.hctz.experiments.base_experiment import (
     HCTZSimulationExperiment,
 )
 from pkdb_models.models.hctz.hctz_pk import summarize
+
+
+def visible_colormap(name: str, lightest: float = 0.25) -> Colormap:
+    """Get a colormap without its lightest part.
+
+    The light end of a sequential colormap is almost white, a curve of the
+    point of the scan at that end (the renal function 2, the dose of 1 mg)
+    does not show on the white axes.
+
+    Args:
+        name: the name of the colormap of matplotlib.
+        lightest: the fraction of the colormap left out at its light end.
+    """
+    cmap = matplotlib.colormaps[name]
+    light_start = sum(cmap(0.0)[:3]) > sum(cmap(1.0)[:3])
+    low, high = (lightest, 1.0) if light_start else (0.0, 1.0 - lightest)
+    return ListedColormap(cmap(np.linspace(low, high, 256)), name=f"{name}_visible")
 
 
 class ScanSpec(TypedDict):
@@ -76,28 +99,31 @@ class HCTZParameterScan(HCTZSimulationExperiment):
     #: the variables of the figures and of the pharmacokinetic parameters
     selections = (
         "time",
-        "[Cve_hctz]",
+        "Carm_hctz",
         "Aurine_hctz",
         "Afeces_hctz",
-        "NA_EXCRETION",
-        "CL_EXCRETION",
-        "diuresis",
-        "ECF",
-        "bp_systolic",
-        "bp_diastolic",
+        "FLUID__NA_EXCRETION",
+        "FLUID__CL_EXCRETION",
+        "FLUID__diuresis",
+        "FLUID__ECF",
+        "FLUID__bp_systolic",
+        "FLUID__bp_diastolic",
         "PODOSE_hctz",
         "f_renal_function",
-        "f_cirrhosis",
-        "f_cardiac_function",
+        "CP_severity",
+        "HF_severity",
     )
     #: the oral doses of the scans [mg]: a placebo and 25 mg
     doses_hctz: ClassVar[dict[str, int]] = {"placebo": 0, "hctz25": 25}
     #: the blood pressures, whose effect is the change against the matched
-    #: placebo: without HCTZ the pressure is not stationary in impaired renal
-    #: function (it rises from 120 to 141 mmHg in 14 days at a renal function
-    #: of 0.19), so that its minimum over the time would be the pressure at
-    #: the start and not depend on HCTZ
-    bp_effects: ClassVar[tuple[str, ...]] = ("bp_systolic", "bp_diastolic")
+    #: placebo: the pressure without HCTZ is that of the drug-free steady state
+    #: of the condition (`equilibrated_all`), higher in impaired renal function
+    #: (135 mmHg at the severe renal impairment), the effect of HCTZ is the
+    #: change from it
+    bp_effects: ClassVar[tuple[str, ...]] = (
+        "FLUID__bp_systolic",
+        "FLUID__bp_diastolic",
+    )
 
     num_points = 10
     #: the opacity of the bands of the draws of the fitted parameters
@@ -108,9 +134,9 @@ class HCTZParameterScan(HCTZSimulationExperiment):
             # "range": np.linspace(0.1, 1.9, num=num_points),
             "default": 1.0,
             # 0.1 to 2 of the supported renal function 0.05 to 2
-            # (`renal_function_range`), a GFR of 10 to 202 ml/min; at 2 the GFR
-            # is 0.15 of the renal blood flow (0.28 of the renal plasma flow
-            # with a hematocrit of 0.45)
+            # (`renal_function_range`), a GFR of 12.5 to 250 ml/min of the
+            # reference individual; at 2 the GFR is 0.19 of the renal blood
+            # flow (0.33 of the renal plasma flow with a hematocrit of 0.43)
             "range": np.sort(
                 np.append(np.logspace(-1, np.log10(2), num=num_points), [1.0])
             ),
@@ -119,31 +145,30 @@ class HCTZParameterScan(HCTZSimulationExperiment):
             "units": "dimensionless",
             "label": "renal function [-]",
         },
-        # HCTZ has no hepatic clearance, cirrhosis changes only the shunts and
-        # the liver tissue: the AUC and the renal clearance stay the same
-        # (0.03 % at f_cirrhosis 0.9), the shunts bypass the distribution
-        # into the liver and raise Cmax (6 % at 0.9)
+        # HCTZ has no hepatic clearance: the Child-Pugh classes change the
+        # physiology (the shunts, the blood flows, the GFR), and the exposure
+        # changes only through the kidney
         "hepatic_scan": {
-            "parameter": "f_cirrhosis",
+            "parameter": "CP_severity",
             "default": 0.0,
-            "range": np.linspace(0, 0.9, num=num_points),
+            # healthy and the Child-Pugh classes A, B, C (1, 2, 3), 10 points
+            # as the old scan of f_cirrhosis
+            "range": np.linspace(0, 3, 10),
             "scale": "linear",
             "colormap": "Blues",
             "units": "dimensionless",
-            "label": "cirrhosis degree [-]",
+            "label": "Child-Pugh severity [-]",
         },
         "cardiac_scan": {
-            "parameter": "f_cardiac_function",
-            # "range": np.linspace(0.1, 1.9, num=num_points),
-            "default": 1.0,
-            "range": np.sort(
-                # np.append(np.logspace(-1, 1, num=num_points), [1.0])
-                np.append(np.linspace(0.5, 1.5, num=num_points), [1.0])
-            ),  # [10^-1=0.1, 10^1=10]
+            "parameter": "HF_severity",
+            "default": 0.0,
+            # healthy and the NYHA classes I to IV (1 to 4), 13 points, no
+            # coarser than the 11 of the old scan of f_cardiac_function
+            "range": np.linspace(0, 4, 13),
             "scale": "linear",
-            "colormap": "Reds_r",
+            "colormap": "Reds",
             "units": "dimensionless",
-            "label": "cardiac function [-]",
+            "label": "heart failure severity [-]",
         },
         "dose_scan": {
             "parameter": "PODOSE_hctz",
@@ -181,13 +206,13 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                 sim_key = self.scan_id(scan_key, dose_key)
                 if sim_key in scans:
                     continue
-                # the simulation does not set what the dimension scans (the
-                # dose of the dose scan), the dimension would replace it
+                # every point starts from the drug-free steady state of its
+                # condition (`equilibrated_all`); the dose is given at the
+                # start, where the dimension of the dose scan replaces it
                 preinit_changes = {
                     **self.default_changes(),
                     "PODOSE_hctz": Q(dose_hctz, "mg"),
                 }
-                preinit_changes.pop(scan_data["parameter"], None)
                 # the steps of the integrator, the times of the grid in a run
                 # over the draws
                 scans[sim_key] = Scan(
@@ -211,21 +236,17 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                     ],
                 )
 
-        return scans
-
-    def _across(self) -> str | None:
-        """Get the dimension of the draws of the fitted parameters, `None` without."""
-        return None if self.uncertainty is None else self.uncertainty.id
+        return self.equilibrated_all(scans)
 
     def _scan_dimension(self, res: ScanResult) -> str:
         """Get the dimension of the scan, without the draws."""
-        (dim,) = scan_dimensions(res, self._across())
+        (dim,) = scan_dimensions(res, self.across())
         return dim
 
     def _scanned(self, res: ScanResult, parameter_id: str) -> Quantity:
         """Get the values of the scanned parameter at the points of the scan."""
         values = start_values(res, parameter_id)
-        across = self._across()
+        across = self.across()
         if across is not None:
             values = values.isel({across: 0})
         return Q(values.values, res.units[parameter_id])
@@ -322,7 +343,7 @@ class HCTZParameterScan(HCTZSimulationExperiment):
         """
         res = self.results[f"task_{self.scan_id(scan_key)}"]
         placebo, placebo_point = self._placebo(scan_key)
-        across = self._across()
+        across = self.across()
         dim = self._scan_dimension(res)
         (placebo_dim,) = scan_dimensions(placebo, across)
         draws: list[int | None] = (
@@ -371,23 +392,21 @@ class HCTZParameterScan(HCTZSimulationExperiment):
             range = scan_data["range"]
             rmin, rmax = range[0], range[-1]
 
-            # cmap_str
-            cmap_str = scan_data["colormap"]
-            cmap = matplotlib.colormaps.get_cmap(cmap_str)
+            cmap = visible_colormap(scan_data["colormap"])
 
             # -----------------------------------
             # pharmacokinetics & pharmacodynamics
             # -----------------------------------
             sids = [
-                "[Cve_hctz]",
+                "Carm_hctz",
                 "Aurine_hctz",
                 "Afeces_hctz",
-                "NA_EXCRETION",
-                "CL_EXCRETION",
-                "diuresis",
-                "ECF",
-                "bp_systolic",
-                "bp_diastolic",
+                "FLUID__NA_EXCRETION",
+                "FLUID__CL_EXCRETION",
+                "FLUID__diuresis",
+                "FLUID__ECF",
+                "FLUID__bp_systolic",
+                "FLUID__bp_diastolic",
             ]
 
             f, axes = plt.subplots(
@@ -480,7 +499,7 @@ class HCTZParameterScan(HCTZSimulationExperiment):
                 norm = matplotlib.colors.LogNorm(vmin=rmin, vmax=rmax, clip=False)
 
             cbar = f.colorbar(
-                cm.ScalarMappable(norm=norm, cmap=cmap_str),
+                cm.ScalarMappable(norm=norm, cmap=cmap),
                 cax=cb_ax,
                 orientation="horizontal",
             )
@@ -637,11 +656,11 @@ class HCTZParameterScan(HCTZSimulationExperiment):
         figures = {}
 
         parameters = {
-            "NA_EXCRETION": "max",
-            "CL_EXCRETION": "max",
-            "diuresis": "max",
-            "bp_systolic": "min",
-            "bp_diastolic": "min",
+            "FLUID__NA_EXCRETION": "max",
+            "FLUID__CL_EXCRETION": "max",
+            "FLUID__diuresis": "max",
+            "FLUID__bp_systolic": "min",
+            "FLUID__bp_diastolic": "min",
         }
 
         for scan_key, scan_data in self.scan_map.items():

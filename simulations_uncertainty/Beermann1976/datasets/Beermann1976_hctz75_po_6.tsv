@@ -1,18 +1,18 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	0.5	hr	0.00025296363823938597					plain unlabeled hctz	ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	1.0	hr	0.0007794743912468493						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	1.5	hr	0.0008856968932377998						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	2.0	hr	0.0010353573922075143						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	3.0	hr	0.001239356291969157						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	4.0	hr	0.0013951258059995099						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	5.0	hr	0.0010213449765544879						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	6.0	hr	0.0007951034207964427						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	7.0	hr	0.0006219133050782936						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	8.0	hr	0.0004661841069185758						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	9.0	hr	0.00038229240297794095						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	12.0	hr	0.0001728524874976853						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	15.0	hr	0.00015734290755696845						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	18.0	hr	0.00016196196351171818						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	21.0	hr	0.00013099676037657472						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	23.0	hr	0.00011698874426744409						ng/ml	mole/meter^3	dimensionless
-Beermann1976	S6		1	HCTZ75_po	concentration	hydrochlorothiazide	plasma	G-L C	hctz75_po_6	36.0	hr	5.079246736241989e-05						ng/ml	mole/meter^3	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	0.5	hr	0.00025296363823938597	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	1.0	hr	0.0007794743912468493	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	1.5	hr	0.0008856968932377998	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	2.0	hr	0.0010353573922075143	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	3.0	hr	0.001239356291969157	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	4.0	hr	0.0013951258059995099	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	5.0	hr	0.0010213449765544879	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	6.0	hr	0.0007951034207964427	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	7.0	hr	0.0006219133050782936	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	8.0	hr	0.0004661841069185758	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	9.0	hr	0.00038229240297794095	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	12.0	hr	0.0001728524874976853	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	15.0	hr	0.00015734290755696845	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	18.0	hr	0.00016196196351171818	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	21.0	hr	0.00013099676037657472	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	23.0	hr	0.00011698874426744409	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Beermann1976	subjects	S6	1	dimensionless	HCTZ75_po	concentration			hydrochlorothiazide	plasma	G-L C	hctz75_po_6	36.0	hr	5.079246736241989e-05	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		

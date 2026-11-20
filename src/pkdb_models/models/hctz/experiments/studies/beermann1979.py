@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -41,10 +42,10 @@ class Beermann1979(HCTZSimulationExperiment):
 
     The urinary recovery of 21 to 37 % of the dose in SH, NK and GN indicates
     about half the absorption of healthy subjects, where it is about 70 %
-    (p. 579, p. 582). The model keeps the absorbed fraction of healthy
-    subjects: a reduced absorption in heart failure is not a process of the
-    model, and an absorbed fraction per patient from his recovery would be
-    fitted to the data it is compared with.
+    (p. 579, p. 582). The model keeps the absorption of healthy subjects: a
+    reduced absorption in heart failure is not a process of the model, and an
+    absorption per patient from his recovery would be fitted to the data it is
+    compared with.
     """
 
     individuals: ClassVar[list[str]] = ["NL", "SP", "JG", "SH", "NK", "GN"]
@@ -81,6 +82,12 @@ class Beermann1979(HCTZSimulationExperiment):
         "GN": "<",
     }
 
+    #: the dataset of the recovery of 50 mg in Tab3, followed by `_<subject>`
+    #: (`_control` for the mean of the controls)
+    tab3_amount: ClassVar[str] = (
+        "Tab3_cumulative_amount_hydrochlorothiazide_urine_HCTZ50"
+    )
+
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
@@ -89,9 +96,9 @@ class Beermann1979(HCTZSimulationExperiment):
             for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith(("hctz", "amount")):
-                    dset.unit_conversion("value", 1 / self.Mr.hctz)
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                if label.startswith(("hctz", "cumulative_amount")):
+                    dset.unit_conversion("value", 1 / self.Mr["hctz"])
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[f"{fig_id}_{label}"] = dset
 
         return dsets
@@ -101,8 +108,8 @@ class Beermann1979(HCTZSimulationExperiment):
         simulations = {}
 
         for individual in self.individuals:
-            # f_cardiac_function => severe
-            f_cardiac = 3 / 5.25 if self.dyspnea[individual] else 3.5 / 5.25
+            # the heart failure as the NYHA class: IV with dyspnea, III without
+            hf_severity = 4.0 if self.dyspnea[individual] else 3.0
             simulations[f"hctz50_{individual}"] = Simulation(
                 time_unit="hr",
                 end=250,
@@ -112,15 +119,15 @@ class Beermann1979(HCTZSimulationExperiment):
                     # the measured creatinine clearance includes the effect of
                     # the heart failure
                     "f_renal_function": self.renal_function(
-                        self.crcl[individual], f_cardiac_function=f_cardiac
+                        self.crcl[individual], hf_severity=hf_severity
                     ),
-                    "f_cardiac_function": Q(f_cardiac, "dimensionless"),
-                    # the absorbed fraction of healthy subjects, see the
-                    # docstring for the reduced absorption of the study
+                    "HF_severity": Q(hf_severity, "dimensionless"),
+                    # the absorption of healthy subjects, see the docstring
+                    # for the reduced absorption of the study
                 },
             )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -137,7 +144,7 @@ class Beermann1979(HCTZSimulationExperiment):
                     count="count",
                 ),
                 observable=FitData(
-                    self, task=f"task_hctz50_{individual}", xid="time", yid="[Cve_hctz]"
+                    self, task=f"task_hctz50_{individual}", xid="time", yid="Carm_hctz"
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
@@ -156,7 +163,7 @@ class Beermann1979(HCTZSimulationExperiment):
                 self,
                 reference=FitData(
                     self,
-                    dataset=f"Tab3_amount_{individual}",
+                    dataset=f"{self.tab3_amount}_{individual}",
                     xid="time",
                     yid="value",
                     count="count",
@@ -169,6 +176,7 @@ class Beermann1979(HCTZSimulationExperiment):
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
@@ -206,7 +214,7 @@ class Beermann1979(HCTZSimulationExperiment):
             plots[0].add_data(
                 task=f"task_hctz50_{individual}",
                 xid="time",
-                yid="[Cve_hctz]",
+                yid="Carm_hctz",
                 label=f"Sim {individual}",
                 color=self.colors[individual],
             )
@@ -244,7 +252,7 @@ class Beermann1979(HCTZSimulationExperiment):
 
         # mean data from controls from Beermann1977a
         plots[0].add_data(
-            dataset="Tab3_amount_HCTZ50",
+            dataset=f"{self.tab3_amount}_control",
             xid="time",
             yid="mean",
             yid_sd="mean_sd",
@@ -264,7 +272,7 @@ class Beermann1979(HCTZSimulationExperiment):
             )
             # patient data
             plots[0].add_data(
-                dataset=f"Tab3_amount_{individual}",
+                dataset=f"{self.tab3_amount}_{individual}",
                 xid="time",
                 yid="value",
                 count="count",

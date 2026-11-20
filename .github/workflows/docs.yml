@@ -23,7 +23,7 @@ jobs:
       - name: Install uv and set the python version
         uses: astral-sh/setup-uv@v10.2.0
         with:
-          version: "0.13.4"
+          version: "0.13.6"
           python-version: "3.14"
           enable-cache: true
 
@@ -33,10 +33,11 @@ jobs:
       - name: Build the site
         run: uv run zensical build --clean --strict
 
-      - name: Add the simulation and fit reports
-        # a model without adopted fits has no fit folder
+      - name: Add the simulation, fit and credibility reports
+        # a model without adopted fits has no fit folder, one without a declaration
+        # of its contexts of use no credibility folder
         run: |
-          for folder in simulations simulations_uncertainty fit; do
+          for folder in simulations simulations_uncertainty fit credibility; do
             if [ -d "$folder" ]; then cp -r "$folder" site/; fi
           done
 

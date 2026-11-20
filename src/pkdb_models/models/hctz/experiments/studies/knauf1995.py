@@ -14,6 +14,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -50,20 +51,21 @@ class Knauf1995(HCTZSimulationExperiment):
     subject.
 
     The simulation measures the net excretion as the study does: the urine
-    is emptied 24 hr before the dose, and at the dose the urine of the control
-    period, U24, is replaced by -12/24 * U24 (a change by a formula), so that
-    the sodium and the chloride in the urine at 12 hr are the net excretion.
+    is empty at the start of the control period, 24 hr before the dose, and at
+    the dose the urine of the control period, U24, is replaced by -12/24 * U24
+    (a change by a formula), so that the sodium and the chloride in the urine
+    at 12 hr are the net excretion.
 
     Every subject of Fig3 is a simulation at its renal function,
     `renal_function(clearance)`; the kidney disease is chronic, a simulation
-    starts `equilibration` days before the dose at the renal function, so that
-    the extracellular fluid is in the steady state of the renal function at
-    the dose (see Dussol2005). The scan of the renal function draws the net
-    excretion over the renal function in the figure.
-    """
+    starts from the drug-free steady state of its renal function
+    (`equilibrated_all`), so that the extracellular fluid is in the steady
+    state of the renal function at the dose. The scan of the renal function
+    draws the net excretion over the renal function in the figure.
 
-    #: the days of the drug-free run before the dose
-    equilibration: ClassVar[int] = 28
+    The subjects are mostly men (17 of 25), simulated on the male build of
+    the model.
+    """
 
     #: the duration of the action of HCTZ over which the net excretion is
     #: measured [hr]: 12 hr after HCTZ (legend of Fig1, Fig5), the action lasts
@@ -72,7 +74,7 @@ class Knauf1995(HCTZSimulationExperiment):
     action: ClassVar[float] = 12.0
 
     #: the renal functions of the scan of the figure, the creatinine
-    #: clearances of Fig3 (5 to 150 ml/min) relative to `gfr_healthy`
+    #: clearances of Fig3 (5 to 150 ml/min) relative to `healthy_gfr()`
     renal_functions: ClassVar[np.ndarray] = np.array(
         [0.05, 0.075, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.0, 1.2, 1.5]
     )
@@ -86,13 +88,19 @@ class Knauf1995(HCTZSimulationExperiment):
     #: the net excretion by the amount in the urine: the label of the data of
     #: Fig3 and of Table 2
     net: ClassVar[dict[str, tuple[str, str]]] = {
-        "na_urine": ("na", "na_net_hctz25"),
-        "cl_urine": ("cl", "cl_net_hctz25"),
+        "FLUID__na_urine": (
+            "na",
+            "cumulative_amount_change_sodium_urine_HCTZ25_volunteers",
+        ),
+        "FLUID__cl_urine": (
+            "cl",
+            "cumulative_amount_change_chloride_urine_HCTZ25_volunteers",
+        ),
     }
 
     info: ClassVar[dict[str, str]] = {
-        "na_urine": "Fig1_na_urine_healthy",
-        "NA_EXCRETION": "Fig2_exc_na_healthy",
+        "FLUID__na_urine": "Fig1_na_urine_healthy",
+        "FLUID__NA_EXCRETION": "Fig2_exc_na_healthy",
     }
 
     def _fig3(self) -> dict[str, pd.DataFrame]:
@@ -105,12 +113,12 @@ class Knauf1995(HCTZSimulationExperiment):
         `renal_function_range`, 24 subjects remain.
         """
         df = self.load_dataframe("Fig3")
-        low = self.renal_function_range[0] * self.gfr_healthy
+        low = self.renal_function_limits()[0] * self.healthy_gfr().m_as("ml/min")
         return {
-            label: df[(df["y_label"] == label) & (df["x_value"] >= low)]
+            label: df[(df["label"] == scatter) & (df["x_value"] >= low)]
             .sort_values("x_value")
             .reset_index(drop=True)
-            for label in ["na", "cl"]
+            for label, scatter in [("na", "Fig3A_sodium"), ("cl", "Fig3B_chloride")]
         }
 
     def _clearances(self) -> list[float]:
@@ -137,7 +145,7 @@ class Knauf1995(HCTZSimulationExperiment):
             df = df.copy()
             # a point is a subject, its values are in the columns of a single
             # value, the fit and the plot read the columns of the mean
-            df["x"] = df["x_value"] / self.gfr_healthy
+            df["x"] = df["x_value"] / self.healthy_gfr().m_as("ml/min")
             df["x_unit"] = "dimensionless"
             df["y"] = df["y_value"]
             dsets[f"Fig3_{label}"] = DataSet.from_df(df, self.ureg)
@@ -155,7 +163,9 @@ class Knauf1995(HCTZSimulationExperiment):
         df = self.load_dataframe("Tab2")
         for label, df_label in df.groupby("label"):
             df_label = df_label.copy()
-            df_label["renal_function"] = self.clearance_controls / self.gfr_healthy
+            df_label["renal_function"] = (
+                self.clearance_controls / self.healthy_gfr().m_as("ml/min")
+            )
             df_label["renal_function_unit"] = "dimensionless"
             dsets[f"Tab2_{label}"] = DataSet.from_df(df_label, self.ureg)
 
@@ -164,8 +174,9 @@ class Knauf1995(HCTZSimulationExperiment):
     def _subject(self, clearance: float) -> Simulation:
         """Get the simulation of a subject of Fig3 or Table 2.
 
-        The equilibration at the renal function, the control period of 24 hr
-        before the dose, the dose at 0 hr.
+        The control period of 24 hr before the dose, from the drug-free
+        steady state of the renal function (`equilibrated_all`), the dose at
+        0 hr.
         """
         # the urine at the dose is the control period, U24; from the dose on
         # the urine is the net excretion, the urine of the action minus the
@@ -173,7 +184,7 @@ class Knauf1995(HCTZSimulationExperiment):
         control = -self.action / 24
         return Simulation(
             time_unit="hr",
-            start=-24 * self.equilibration,
+            start=-24,
             end=self.action,
             preinit_changes={
                 **self.default_changes(),
@@ -181,7 +192,6 @@ class Knauf1995(HCTZSimulationExperiment):
                 "PODOSE_hctz": Q(0, "mg"),
             },
             changes=[
-                Change(-24, self.urine_reset),
                 Change(0, {amount: f"{control:g} * {amount}" for amount in self.net}),
                 self.add_doses(0, {"PODOSE_hctz": Q(25, "mg")}),
             ],
@@ -230,7 +240,7 @@ class Knauf1995(HCTZSimulationExperiment):
             ],
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def observables(self) -> dict[str, Observable]:
@@ -255,7 +265,7 @@ class Knauf1995(HCTZSimulationExperiment):
         # but Fig2 has rates at 3.5, 5.5, 6.5 and 7.5 hr, which are no
         # collections of the methods, no rate of 12-18 hr and rates before the
         # dose of unknown collections. Fig1 is consistent from -24 hr on.
-        for sid in ["na_urine"]:
+        for sid in ["FLUID__na_urine"]:
             dataset = self.info[sid]
             mappings[f"fm_hctz25_{dataset}"] = FitMapping(
                 self,
@@ -269,6 +279,7 @@ class Knauf1995(HCTZSimulationExperiment):
                 observable=FitData(self, task="task_hctz25", xid="time", yid=sid),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
@@ -298,6 +309,7 @@ class Knauf1995(HCTZSimulationExperiment):
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.URINE,
+                        sampling_site=SamplingSite.NOT_APPLICABLE,
                         application_form=ApplicationForm.TABLET,
                         route=Route.PO,
                         dosing=Dosing.SINGLE,
@@ -321,6 +333,7 @@ class Knauf1995(HCTZSimulationExperiment):
                 observable=FitData(self, task="task_controls", xid="time", yid=key),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
@@ -391,7 +404,10 @@ class Knauf1995(HCTZSimulationExperiment):
         )
 
         plots = fig.create_plots(
-            xaxis=Axis("Renal function (GFR / 101 ml/min)", unit="dimensionless"),
+            xaxis=Axis(
+                f"Renal function (GFR / {self.healthy_gfr().m_as('ml/min'):.0f} ml/min)",
+                unit="dimensionless",
+            ),
             legend=True,
         )
         plots[0].set_yaxis("Net sodium\nurine 0-12 hr", unit="mmole")
@@ -399,7 +415,7 @@ class Knauf1995(HCTZSimulationExperiment):
         cmap = matplotlib.colormaps[renal_scan["colormap"]]
         norm = LogNorm(vmin=renal_scan["range"][0], vmax=renal_scan["range"][-1])
         renal_functions = {
-            label: df["x_value"] / self.gfr_healthy
+            label: df["x_value"] / self.healthy_gfr().m_as("ml/min")
             for label, df in self._fig3().items()
         }
         plots[1].set_yaxis("Net chloride\nurine 0-12 hr", unit="mmole")

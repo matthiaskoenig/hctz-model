@@ -1,0 +1,2634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Credibility of HCTZ PBPK/PD model</title>
+<style>
+:root {
+  --bg: #ffffff; --bg-soft: #f6f7f9; --bg-card: #ffffff;
+  --fg: #1b1f24; --fg-soft: #5b6472; --line: #e3e6ea;
+  --accent: #3b5bdb; --training: #2f9e44; --validation: #1c7ed6; --outlier: #e8590c;
+  --excluded: #868e96;
+  --radius: 10px; --shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171c; --bg-soft: #1a1e24; --bg-card: #1a1e24;
+    --fg: #e6e9ee; --fg-soft: #9aa4b2; --line: #2a3038;
+    --accent: #748ffc; --training: #51cf66; --validation: #4dabf7; --outlier: #ff922b;
+    --excluded: #adb5bd;
+    --shadow: none;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header.top {
+  position: sticky; top: 0; z-index: 20; background: var(--bg);
+  border-bottom: 1px solid var(--line); padding: 14px 24px 0;
+}
+.top .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; }
+.top h1 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -.01em; }
+.top .sub { color: var(--fg-soft); font-size: 13px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.badge {
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px;
+  padding: 2px 10px; font-size: 12px; color: var(--fg-soft); white-space: nowrap;
+}
+.badge b { color: var(--fg); font-weight: 600; }
+.badge.failed, .badge.failed b { color: var(--outlier); border-color: var(--outlier); }
+nav.sections { display: flex; gap: 4px; margin-top: 12px; }
+nav.sections a {
+  padding: 8px 14px; border-bottom: 2px solid transparent; color: var(--fg-soft);
+  font-size: 14px; font-weight: 550;
+}
+nav.sections a.active { color: var(--fg); border-bottom-color: var(--accent); }
+.search { display: flex; gap: 8px; align-items: center; padding: 10px 0 12px; }
+.search input {
+  flex: 1; max-width: 460px; padding: 8px 12px; font-size: 14px; color: var(--fg);
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px;
+}
+.search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.chip {
+  border: 1px solid var(--line); background: var(--bg-soft); color: var(--fg-soft);
+  border-radius: 999px; padding: 5px 12px; font-size: 12.5px; cursor: pointer;
+}
+.chip[aria-pressed="true"] { color: #fff; border-color: transparent; }
+.chip[data-kind="training"][aria-pressed="true"] { background: var(--training); }
+.chip[data-kind="validation"][aria-pressed="true"] { background: var(--validation); }
+.chip[data-kind="outlier"][aria-pressed="true"] { background: var(--outlier); }
+.chip[data-kind="excluded"][aria-pressed="true"] { background: var(--excluded); }
+#hits { color: var(--fg-soft); font-size: 12.5px; margin-left: auto; }
+
+main { padding: 24px; max-width: 1400px; margin: 0 auto; }
+section { margin-bottom: 44px; scroll-margin-top: 150px; }
+section > h2 {
+  font-size: 17px; font-weight: 650; margin: 0 0 4px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 14px; font-weight: 600; color: var(--fg-soft); margin: 26px 0 10px;
+     text-transform: uppercase; letter-spacing: .04em; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 16px; margin-bottom: 16px;
+}
+/* a heading which opens a card sits at the padding of the card */
+.card > h3:first-child { margin-top: 0; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+        margin-bottom: 16px; }
+/* the gap of the grid is the space between its cards */
+.grid > .card { margin-bottom: 0; }
+.card.wide { grid-column: 1 / -1; }
+
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+/* two tables in one card, e.g. the networks and their arrays */
+table + table { margin-top: 24px; }
+th, td { text-align: left; padding: 7px 12px 7px 0; border-bottom: 1px solid var(--line); }
+th { color: var(--fg-soft); font-weight: 600; white-space: nowrap; }
+th[data-sort] { cursor: pointer; user-select: none; }
+th[data-sort]:hover { color: var(--fg); }
+th[data-sort]::after { content: " ⇅"; opacity: .35; }
+th[data-sort].asc::after { content: " ↑"; opacity: 1; }
+th[data-sort].desc::after { content: " ↓"; opacity: 1; }
+td.num, th.num { text-align: right; padding-right: 18px; font-variant-numeric: tabular-nums; }
+tbody tr:hover { background: var(--bg-soft); }
+tr.total td { font-weight: 650; border-top: 2px solid var(--line); }
+
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 20px; font-size: 13.5px;
+      margin: 0; }
+.kv dt { color: var(--fg-soft); }
+.kv dd { margin: 0; word-break: break-word; white-space: pre-line; }
+
+.tag { border-radius: 999px; padding: 1px 9px; font-size: 11.5px; font-weight: 600; color: #fff; }
+.tag.training { background: var(--training); }
+.tag.validation { background: var(--validation); }
+.tag.outlier { background: var(--outlier); }
+.tag.excluded { background: var(--excluded); }
+.warn { color: var(--outlier); }
+
+/* what a value means, on the header of a column or next to a figure */
+.hint {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 14px; height: 14px; margin-left: 4px; border-radius: 50%;
+  border: 1px solid var(--line); color: var(--fg-soft);
+  font-size: 10px; font-weight: 700; line-height: 1; cursor: help;
+  position: relative; vertical-align: middle; user-select: none;
+}
+.hint:hover, .hint:focus { border-color: var(--accent); color: var(--accent); }
+.hint::after {
+  content: attr(data-tip);
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%);
+  width: max-content; max-width: 320px; padding: 8px 10px;
+  border-radius: 6px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); box-shadow: 0 4px 16px rgb(0 0 0 / 18%);
+  font-size: 12px; font-weight: 400; line-height: 1.45; text-align: left;
+  white-space: normal; opacity: 0; visibility: hidden; transition: opacity .12s;
+  z-index: 20; pointer-events: none;
+}
+.hint:hover::after, .hint:focus::after { opacity: 1; visibility: visible; }
+/* a tooltip of the last columns would leave the page */
+td:last-child .hint::after, th:last-child .hint::after { left: auto; right: 0; transform: none; }
+/* on a phone a wide table scrolls inside its card and not the page; the
+   tooltips of its header open downwards, into the table, not above the card */
+@media (max-width: 700px) {
+  .card { overflow-x: auto; }
+  th .hint::after { bottom: auto; top: calc(100% + 8px); }
+  /* the header of a phone is not sticky, it would cover half of the screen,
+     and its rows wrap; the gutter is 16px */
+  header.top { position: static; padding: 12px 16px 0; }
+  main { padding: 16px; }
+  footer { padding: 8px 16px 24px; }
+  section { scroll-margin-top: 16px; }
+  nav.sections { overflow-x: auto; }
+  nav.sections a { padding: 8px 10px; white-space: nowrap; }
+  .search { flex-wrap: wrap; }
+  .search input { flex-basis: 100%; max-width: none; }
+}
+
+figure { margin: 0; }
+figure img {
+  width: 100%; height: auto; background: #fff; border: 1px solid var(--line);
+  border-radius: 8px; cursor: zoom-in;
+}
+figcaption { color: var(--fg-soft); font-size: 12.5px; margin-top: 6px; }
+
+.mapping { }
+.mapping header { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 10px; }
+.mapping header .name { font-weight: 650; }
+.mapping header .exp { color: var(--fg-soft); font-size: 13px; }
+.mapping .metrics { margin-left: auto; display: flex; gap: 14px; font-size: 12.5px; color: var(--fg-soft); }
+.mapping .metrics b { color: var(--fg); font-weight: 600; }
+.hidden { display: none !important; }
+.failed { color: var(--outlier); }
+.empty { color: var(--fg-soft); font-style: italic; padding: 16px 0; }
+
+pre.code {
+  margin: 0; padding: 14px 16px; overflow-x: auto; max-height: 70vh;
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px; line-height: 1.5; tab-size: 4;
+}
+#lightbox {
+  position: fixed; inset: 0; background: rgba(8,10,14,.86); z-index: 50;
+  display: none; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out;
+}
+#lightbox.open { display: flex; }
+#lightbox img { max-width: 100%; max-height: 100%; background: #fff; border-radius: 8px; }
+footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-width: 1400px; margin: 0 auto; }
+</style>
+<style>
+:root {
+  --supported: #2b8a3e; --extrapolated: #1864ab; --not-supported: #c92a2a;
+  --insufficient: #a35200; --not-verified: #9c36b5; --muted: #5b6472; --on-state: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --supported: #69db7c; --extrapolated: #74c0fc; --not-supported: #ff8787;
+    --insufficient: #ffc078; --not-verified: #e599f7; --muted: #9aa4b2; --on-state: #14171c;
+  }
+}
+.soft { color: var(--fg-soft); }
+.verdict, .state {
+  display: inline-block; border: 1px solid currentColor; border-radius: 999px;
+  padding: 0 9px; font-size: 12px; font-weight: 600; line-height: 1.6; white-space: nowrap;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+.verdict.supported, .state.met, .state.validated, .state.covered, .state.assessed { color: var(--supported); }
+.verdict.supported_with_extrapolation, .state.calibrated, .state.platform { color: var(--extrapolated); }
+.verdict.not_supported, .state.not_met, .state.uncovered, .state.failed { color: var(--not-supported); }
+.verdict.insufficient_evidence, .state.not_evaluable, .state.below { color: var(--insufficient); }
+.verdict.not_verified { color: var(--not-verified); }
+.state.passed { color: var(--supported); }
+.state.outside, .state.not_assessed, .state.not_applicable { color: var(--muted); }
+.chip[aria-pressed="true"] { color: var(--on-state); }
+.chip[data-kind="supported"][aria-pressed="true"] { background: var(--supported); }
+.chip[data-kind="supported_with_extrapolation"][aria-pressed="true"] { background: var(--extrapolated); }
+.chip[data-kind="not_supported"][aria-pressed="true"] { background: var(--not-supported); }
+.chip[data-kind="insufficient_evidence"][aria-pressed="true"] { background: var(--insufficient); }
+.chip[data-kind="not_verified"][aria-pressed="true"] { background: var(--not-verified); }
+/* a wide table scrolls inside its card, never the page */
+.scroll { overflow-x: auto; }
+.scroll + h4, .scroll + p { margin-top: 22px; }
+.wrap { overflow-wrap: anywhere; min-width: 14em; }
+/* a limit or a day is read as one */
+.nowrap { white-space: nowrap; }
+/* a name with its description keeps a width to read */
+td.named { min-width: 12em; }
+.cou { scroll-margin-top: 150px; }
+.cou > header { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; margin-bottom: 8px; }
+.cou > header .name { font-weight: 650; }
+.cou > header .cou-title { font-weight: 600; font-size: 16px; }
+.cou > header .verdict { margin-left: auto; font-size: 13px; }
+.cou .question { font-size: 15.5px; margin: 4px 0 14px; }
+.cou h4 { font-size: 13px; font-weight: 600; color: var(--fg-soft); margin: 22px 0 6px;
+          text-transform: uppercase; letter-spacing: .04em; }
+.cou .kv { margin-bottom: 4px; }
+/* a table of a few columns does not stretch its columns over the card */
+table.compact { width: auto; min-width: min(100%, 560px); }
+td.status { white-space: nowrap; vertical-align: top; width: 1%; padding-right: 18px; }
+td.status .soft { font-size: 12.5px; }
+.factor { font-weight: 600; }
+.cou .empty { padding: 2px 0; margin: 4px 0; }
+.card > ul { margin: 0; padding-left: 1.2em; }
+.card > ul li + li { margin-top: 4px; }
+.text { white-space: pre-line; margin: 6px 0; max-width: 960px; }
+.note { color: var(--fg-soft); font-size: 13.5px; margin: 0 0 12px; max-width: 960px; }
+@media (max-width: 700px) {
+  .cou { scroll-margin-top: 16px; }
+  .cou > header .verdict { margin-left: 0; }
+  .kv { grid-template-columns: 1fr; gap: 0; }
+  .kv dd { margin-bottom: 6px; }
+}
+</style>
+</head>
+<body data-items="contexts of use">
+
+<header class="top">
+  <div class="row">
+    <h1>Credibility</h1>
+    <span class="sub">HCTZ PBPK/PD model <span class="mono">hctz</span></span>
+    <div class="badges">
+<span class="badge">contexts of use <b>5</b></span><span class="badge">supported <b>3</b></span><span class="badge">insufficient evidence <b>2</b></span>    </div>
+  </div>
+  <nav class="sections">
+    <a href="#overview" class="active">Overview</a>
+    <a href="#contexts">Contexts of use</a>
+    <a href="#limitations">Limitations</a>
+    <a href="#unclaimed">Unclaimed data</a>
+    <a href="#verification">Verification</a>
+<a href="#studies">Study data</a>
+    <a href="#provenance">Provenance</a>
+  </nav>
+  <div class="search">
+    <input id="search" type="search" placeholder="Search contexts of use, evidence, studies …" autocomplete="off">
+    <button class="chip" data-kind="supported" aria-pressed="true">supported</button>
+    <button class="chip" data-kind="insufficient_evidence" aria-pressed="true">insufficient evidence</button>
+    <span id="hits"></span>
+  </div>
+</header>
+
+<main>
+<section id="overview">
+  <h2>Overview</h2>
+  <p class="note">The contexts of use of the model, their model risk from the influence of the model on the decision and the consequence of a wrong decision, and their verdict on the decisive evidence (decided on): the calibration data, the data the model was fitted to, for a description (C1), else the validation data. The evaluable points are the decisive points which the fold criteria can evaluate; a verdict needs at least the minimum of them, by default 5 for a low risk, 10 for a medium risk and 20 for a high risk.</p>
+  <div class="card scroll">
+    <table data-filter="row">
+      <thead><tr>
+        <th data-sort="text">context of use</th><th data-sort="text">verdict</th>
+        <th data-sort="text">decided on</th>
+        <th data-sort="text">title</th>
+        <th data-sort="text">level</th><th data-sort="text">risk</th>
+        <th class="num" data-sort="num">decisive points</th>
+        <th class="num" data-sort="num">evaluable points</th>
+        <th class="num" data-sort="num">minimum points</th>
+      </tr></thead>
+      <tbody>
+      <tr data-kind="supported">
+        <td class="mono"><a href="#cou-describe">describe</a></td>
+        <td><span class="verdict supported">supported</span></td>
+        <td><span class="decided">calibration</span></td>
+        <td>Describe the data of the fits</td>
+        <td><span class="mono">C1</span> <span class="soft">describe</span></td>
+        <td>low</td>
+        <td class="num">688</td>
+        <td class="num">676</td>
+        <td class="num">5</td>
+      </tr>
+      <tr data-kind="supported">
+        <td class="mono"><a href="#cou-dose">dose</a></td>
+        <td><span class="verdict supported">supported</span></td>
+        <td><span class="decided">validation</span></td>
+        <td>Oral doses in healthy adults</td>
+        <td><span class="mono">C2</span> <span class="soft">interpolate</span></td>
+        <td>low</td>
+        <td class="num">66</td>
+        <td class="num">66</td>
+        <td class="num">5</td>
+      </tr>
+      <tr data-kind="insufficient_evidence">
+        <td class="mono"><a href="#cou-renal">renal</a></td>
+        <td><span class="verdict insufficient_evidence">insufficient evidence</span></td>
+        <td><span class="decided">validation</span></td>
+        <td>Impaired renal function</td>
+        <td><span class="mono">C3</span> <span class="soft">extrapolate with data</span></td>
+        <td>medium</td>
+        <td class="num">10</td>
+        <td class="num">10</td>
+        <td class="num">10</td>
+      </tr>
+      <tr data-kind="supported">
+        <td class="mono"><a href="#cou-interaction">interaction</a></td>
+        <td><span class="verdict supported">supported</span></td>
+        <td><span class="decided">validation</span></td>
+        <td>Coadministration without an interaction</td>
+        <td><span class="mono">C3</span> <span class="soft">extrapolate with data</span></td>
+        <td>medium</td>
+        <td class="num">117</td>
+        <td class="num">116</td>
+        <td class="num">10</td>
+      </tr>
+      <tr data-kind="insufficient_evidence">
+        <td class="mono"><a href="#cou-pd">pd</a></td>
+        <td><span class="verdict insufficient_evidence">insufficient evidence</span></td>
+        <td><span class="decided">validation</span></td>
+        <td>Natriuresis and chloruresis in healthy adults</td>
+        <td><span class="mono">C5</span> <span class="soft">clinical endpoint</span></td>
+        <td>low</td>
+        <td class="num">2</td>
+        <td class="num">2</td>
+        <td class="num">5</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Limitations of the model</h3>
+  <div class="card">
+    <ul>
+      <li><b>limitations</b>: HCTZ data of processes which the model lacks: the patients with an impairment of Anderson1961 (no measured cardiac output or creatinine clearance, cirrhosis has no effect in the model, case 13 has lupus), the feces after intravenous doses of Beermann1976 (no non-renal elimination), the urine volumes of the water load of Beermann1977a (no water diuresis) and the single subject of Knauf1995 Fig1 (no variability between subjects) <span class="soft">(77 points of 4 studies)</span></li>
+    </ul>
+  </div>
+
+  <h3>Notes</h3>
+  <div class="card"><p class="text">Renal impairment is claimed (`renal`) and calibrated: the impaired arms are training data by the decision of the maintainer, so the COU has one independent datum and reaches no verdict. Not claimed: hepatic and cardiac impairment (the impaired patients of Anderson1961 are a limitation, the single subjects of Beermann1979 are not described), the held-out hypertensive patients of Beermann1976 (50 mg, multiple dosing), multiple dosing without a coadministration, the terminal phase of the plasma beyond 24 hr, the urine volume and the blood pressure. The open points of HCTZ are in its TODO.md.</p></div>
+</section>
+
+<section id="contexts">
+  <h2>Contexts of use</h2>
+  <article class="card cou" id="cou-describe" data-filter="card" data-kind="supported">
+    <header>
+      <span class="mono name">describe</span>
+      <span class="cou-title">Describe the data of the fits</span>
+      <span class="verdict supported">supported</span>
+    </header>
+    <p class="question">Does the model describe the pharmacokinetic and pharmacodynamic data of HCTZ it was fitted to?</p>
+    <dl class="kv">
+      <dt>level</dt><dd><span class="mono">C1</span> <span class="soft">describe</span></dd>
+      <dt>influence</dt><dd>low</dd>
+      <dt>consequence</dt><dd>low</dd>
+      <dt>model risk</dt><dd>low</dd>
+      <dt>decided on</dt><dd>calibration evidence</dd>
+      <dt>decisive points</dt><dd>688</dd>
+      <dt>evaluable points</dt><dd>676 (minimum 5)</dd>
+<dt>rationale</dt><dd>The figures of the HCTZ studies draw the fitted simulation over the plasma, the urine and the electrolytes it was fitted to, so a reader judges the description against its data (influence low); the description itself fixes no dose of HCTZ, the doses, the interactions and the natriuresis have held-out data of their own (consequence low). The PK fit describes 92 % of its training points within 2-fold (GMFE 1.30, AFE 0.98). The PD fit describes 89 % within 2-fold with a GMFE of 1.74 and a bias, an AFE of 0.68: the fluid and electrolyte model predicts about 30 % less than its data, the bias which `pd` carries.</dd>    </dl>
+
+    <h4>Quantities of interest</h4>
+    <p class="note">A quantity is covered by the evaluable decisive points of its observable inside the claimed domain, a ratio with a pairing by the points its evidence extension derives from them.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>quantity</th><th>description</th><th>kind</th><th>coverage</th><th class="num">points</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">Carm_hctz</td><td class="named">the plasma concentration of HCTZ</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">298</td>
+        </tr>
+        <tr>
+          <td class="mono">Aurine_hctz</td><td class="named">the cumulative amount of HCTZ in urine</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">205</td>
+        </tr>
+        <tr>
+          <td class="mono">Rurine_hctz</td><td class="named">the urinary excretion rate of HCTZ</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">10</td>
+        </tr>
+        <tr>
+          <td class="mono">Afeces_hctz</td><td class="named">the cumulative amount of HCTZ in feces</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">2</td>
+        </tr>
+        <tr>
+          <td class="mono">FLUID__na_urine</td><td class="named">the cumulative amount of sodium in urine</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">69</td>
+        </tr>
+        <tr>
+          <td class="mono">FLUID__cl_urine</td><td class="named">the cumulative amount of chloride in urine</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">51</td>
+        </tr>
+        <tr>
+          <td class="mono">FLUID__Vurine</td><td class="named">the cumulative urine volume</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">29</td>
+        </tr>
+        <tr>
+          <td class="mono">FLUID__bp_systolic</td><td class="named">the systolic blood pressure</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">6</td>
+        </tr>
+        <tr>
+          <td class="mono">FLUID__bp_diastolic</td><td class="named">the diastolic blood pressure</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">6</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Claimed domain</h4>
+<p class="text">the training data of the fits PK and PD: oral doses of 5 to 200 mg and intravenous doses of 1 to 65 mg, single and multiple dosing; type 2 diabetes is PK data only. The patients with an impaired renal function are training data as well, by decision, so the renal behaviour of the model (the GFR and the activity of SLC22A6, both scaled by `f_renal_function`) is calibrated here and validated nowhere, see `renal` <span class="state not_assessed">statement, not assessed</span></p>    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">field</th><th data-sort="text">value</th>
+          <th data-sort="text">coverage</th><th class="num" data-sort="num">points</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">route</td><td class="mono">PO</td>
+          <td><span class="state calibrated">calibrated</span></td>
+          <td class="num">667</td>
+        </tr>
+        <tr>
+          <td class="mono">route</td><td class="mono">IV</td>
+          <td><span class="state calibrated">calibrated</span></td>
+          <td class="num">9</td>
+        </tr>
+        <tr>
+          <td class="mono">health</td><td class="mono">HEALTHY</td>
+          <td><span class="state calibrated">calibrated</span></td>
+          <td class="num">570</td>
+        </tr>
+        <tr>
+          <td class="mono">health</td><td class="mono">HYPERTENSION</td>
+          <td><span class="state calibrated">calibrated</span></td>
+          <td class="num">35</td>
+        </tr>
+        <tr>
+          <td class="mono">health</td><td class="mono">RENAL_IMPAIRMENT</td>
+          <td><span class="state calibrated">calibrated</span></td>
+          <td class="num">57</td>
+        </tr>
+        <tr>
+          <td class="mono">health</td><td class="mono">T2DM</td>
+          <td><span class="state calibrated">calibrated</span></td>
+          <td class="num">14</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Evidence</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th data-sort="text">evidence</th><th data-sort="text">role</th>
+          <th data-sort="text">selection</th>
+          <th class="num" data-sort="num">points</th><th class="num" data-sort="num">mappings</th>
+          <th class="num" data-sort="num">studies</th>
+          <th class="num" data-sort="num">outliers dropped</th>
+          <th class="num" data-sort="num">limitation subtracted</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">pharmacokinetics<br><span class="soft">the fitted plasma, urine and feces of HCTZ</span></td>
+          <td>calibration</td>
+          <td class="mono wrap">route in [IV, PO]</td>
+          <td class="num">522</td><td class="num">96</td>
+          <td class="num">20</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        <tr>
+          <td class="named">pharmacodynamics<br><span class="soft">the fitted electrolytes, urine volume and blood pressure</span></td>
+          <td>calibration</td>
+          <td class="mono wrap">route in [IV, PO]</td>
+          <td class="num">166</td><td class="num">77</td>
+          <td class="num">7</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Metrics of the evidence</h4>
+    <p class="note">The fold errors (GMFE, AFE) and the percentage of the points within a fold or a number of standard deviations of the data, n/a without an evaluable point.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">evidence</th>
+<th class="num" data-sort="num">GMFE</th><th class="num" data-sort="num">AFE</th><th class="num" data-sort="num">within_1.25fold</th><th class="num" data-sort="num">within_1.5fold</th><th class="num" data-sort="num">within_2fold</th><th class="num" data-sort="num">within_1sd</th><th class="num" data-sort="num">within_2sd</th>        </tr></thead>
+        <tbody>
+        <tr>
+          <td>pharmacokinetics</td>
+<td class="num">1.3</td><td class="num">0.982</td><td class="num">62.3</td><td class="num">83.5</td><td class="num">92.4</td><td class="num">85.2</td><td class="num">98.8</td>        </tr>
+        <tr>
+          <td>pharmacodynamics</td>
+<td class="num">1.75</td><td class="num">0.679</td><td class="num">38.5</td><td class="num">64</td><td class="num">88.8</td><td class="num">70</td><td class="num">97.5</td>        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Acceptance</h4>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>rule</th><th class="num">value</th><th>limit</th><th>result</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">within_2fold</td>
+          <td class="num">91.6</td>
+          <td class="mono nowrap">&gt;= 70</td>
+          <td><span class="state met">met</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+
+    <h4>Inputs</h4>
+<p class="note">The simulated covariates of the subjects and the doses of 173 of the 173 decisive mappings against the groups, individuals and interventions their studies report. A covariate is equivalent within 10&nbsp;% of the reported mean (the value of an individual) and in the range within the reported minimum and maximum (else two standard deviations around the mean), a dose is equivalent within 2&nbsp;% of a reported dose; the simulated range is what the evidence covers.</p>
+<div class="scroll">
+  <table class="compact">
+    <thead><tr><th>input</th><th class="num">mappings</th><th class="num">simulated</th><th class="num">equivalent</th><th class="num">in range</th><th class="num">differ</th><th class="num">not reported</th></tr></thead>
+    <tbody>
+    <tr>
+      <td class="mono">BW</td>
+      <td class="num">173</td>
+      <td class="num nowrap">73 <span class="soft">kg</span></td>
+      <td class="num">39</td>
+      <td class="num">14</td>
+      <td class="num"><span class="warn">2</span></td>
+      <td class="num">118</td>
+    </tr>
+    <tr>
+      <td class="mono">HEIGHT</td>
+      <td class="num">173</td>
+      <td class="num nowrap">176 <span class="soft">cm</span></td>
+      <td class="num">8</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">165</td>
+    </tr>
+    <tr>
+      <td class="mono">IVDOSE_hctz <span class="soft">dose</span></td>
+      <td class="num">4</td>
+      <td class="num nowrap">1 to 65 <span class="soft">mg</span></td>
+      <td class="num">4</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr>
+    <tr>
+      <td class="mono">PODOSE_hctz <span class="soft">dose</span></td>
+      <td class="num">153</td>
+      <td class="num nowrap">12.5 to 200 <span class="soft">mg</span></td>
+      <td class="num">153</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr>
+    <tr>
+      <td class="mono">SOLDOSE_hctz <span class="soft">dose</span></td>
+      <td class="num">13</td>
+      <td class="num nowrap">5 to 25 <span class="soft">mg</span></td>
+      <td class="num">13</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<p class="note">The inputs which differ from the reported ones, the ratio is the simulated over the reported value; <span class="soft">model</span> marks the value of the model, which the simulation does not set:</p>
+<div class="scroll">
+  <table class="compact">
+    <thead><tr><th>mapping</th><th>input</th><th class="num">simulated</th><th class="num">reported</th><th>reported by</th><th class="num">ratio</th></tr></thead>
+    <tbody>
+    <tr>
+      <td class="mono wrap">Niemeyer1983/fm_Fig1_hctz50_C</td>
+      <td class="mono">BW <span class="soft">model</span></td>
+      <td class="num nowrap">73 <span class="soft">kg</span></td>
+      <td class="num nowrap">96.3 <span class="soft">kg</span></td>
+      <td>individual C</td>
+      <td class="num"><span class="state not_met">0.758</span></td>
+    </tr>
+    <tr>
+      <td class="mono wrap">Niemeyer1983/fm_Fig1_hctz50_W</td>
+      <td class="mono">BW <span class="soft">model</span></td>
+      <td class="num nowrap">73 <span class="soft">kg</span></td>
+      <td class="num nowrap">55 <span class="soft">kg</span></td>
+      <td>individual W</td>
+      <td class="num"><span class="state not_met">1.33</span></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+    
+
+    <h4>Verification</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th>check</th><th>factor</th>
+          <th class="num">points</th><th class="num">largest difference</th>
+          <th>at</th><th>acceptance</th><th>result</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">tolerances</td>
+          <td class="mono">discretization_error</td>
+          <td class="num">688</td>
+          <td class="num">0.000801</td>
+          <td class="mono wrap">Anderson1961.fm_cmax_HCTZiv_2 at 90</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">second integration method</td>
+          <td class="mono">numerical_solver_error</td>
+          <td class="num">688</td>
+          <td class="num">0.000782</td>
+          <td class="mono wrap">Anderson1961.fm_cmax_HCTZiv_2 at 90</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">setup of the simulations</td>
+          <td class="mono">use_error</td>
+          <td class="num">688</td>
+          <td class="num"></td>
+          <td class="mono wrap"></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named"><a href="#battery">battery of the variants</a>, 8 checks</td>
+          <td class="mono">use_error, numerical_code_verification, software_quality_assurance</td>
+          <td class="num"></td>
+          <td class="num"></td>
+          <td></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Factors of V&amp;V 40</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>status</th><th>factor</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Software quality assurance</b><br><span class="soft">sbmlsim and the libraries of the model are released packages with tests and continuous integration; the model is released reproducibly from its repository with the versions and the commit of the provenance. Rebuild of 13 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical code verification</b><br><span class="soft">sbmlsim runs the SBML Test Suite and the PEtab test suite. Mass balance of 5 cases, largest deviation 3.5e-15 at male PODOSE_hctz: passed. Non-negativity of 64 cases, largest deviation 6.3e-31 at male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz: passed. Zero dose of 58 cases, largest deviation 0: passed. Steady state of 65 cases, largest deviation 6.9e-15 at male: FLUID__cl_loop: passed. Superposition of 4 cases, largest deviation 3.4e-09 at male IVDOSE_hctz two doses: MU__Cti_hctz: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Discretization error</b><br><span class="soft">Largest relative difference 0.0008 of 688 decisive predictions with the tolerances of the fits divided by 100, at Anderson1961.fm_cmax_HCTZiv_2 at 90, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical solver error</b><br><span class="soft">Largest relative difference 0.00078 of 688 decisive predictions with the BDF of CVODE of at most order 2 at the tightened tolerances, at Anderson1961.fm_cmax_HCTZiv_2 at 90, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Use error</b><br><span class="soft">The variants are valid SBML with consistent units and the 688 decisive predictions are finite: passed. Dose states of the model of 1 case: passed. Plausibility of the values of 495 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Model form</b><br><span class="soft">The structure of the model across studies and drugs: the ratios, the cross-validation and the qualification across models.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 4</span></td>
+          <td><b class="factor">Model inputs</b><br><span class="soft">The uncertainty and the sensitivity of the parameters.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test samples</b><br><span class="soft">688 points of 173 mappings of 22 studies of the calibration evidence decide, 676 of them evaluable (minimum 5).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test conditions</b><br><span class="soft">6 claimed values of the metadata, 0 values of the evidence outside the claim.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Equivalency of input parameters</b><br><span class="soft">The simulated inputs of 173 of the 173 decisive mappings against the subjects and the doses their studies report: BW (39 equivalent, 14 in the reported range, 2 differ, 118 not reported; simulated 73 kg); HEIGHT (8 equivalent, 165 not reported; simulated 176 cm); IVDOSE_hctz (4 equivalent; simulated 1 to 65 mg); PODOSE_hctz (153 equivalent; simulated 12.5 to 200 mg); SOLDOSE_hctz (13 equivalent; simulated 5 to 25 mg). Differ: Niemeyer1983/fm_Fig1_hctz50_C BW 73 kg against 96.3 kg (individual C); Niemeyer1983/fm_Fig1_hctz50_W BW 73 kg against 55 kg (individual W).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Output comparison</b><br><span class="soft">1 of 1 acceptance rule met on the calibration evidence, 0 not evaluable.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Relevance of the quantities of interest</b><br><span class="soft">Whether the quantities of the evidence answer the question, e.g. the ratios of a special population. A context with a ratio quantity and its pairing assesses it by the evidence extension of the pairing; else only that every claimed quantity which is no ratio has decisive points in the claimed domain is checked, see the relevance of the validation activities.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Relevance of the validation activities to the COU</b><br><span class="soft">6 of 6 claimed values and 9 of 9 quantities of interest covered.</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Extrapolation</h4>
+<p class="empty">No extrapolation is argued.</p>  </article>
+  <article class="card cou" id="cou-dose" data-filter="card" data-kind="supported">
+    <header>
+      <span class="mono name">dose</span>
+      <span class="cou-title">Oral doses in healthy adults</span>
+      <span class="verdict supported">supported</span>
+    </header>
+    <p class="question">Which plasma concentration and cumulative urinary and fecal excretion of HCTZ follow from a single oral dose within the range of the data in healthy adults?</p>
+    <dl class="kv">
+      <dt>level</dt><dd><span class="mono">C2</span> <span class="soft">interpolate</span></dd>
+      <dt>influence</dt><dd>medium</dd>
+      <dt>consequence</dt><dd>low</dd>
+      <dt>model risk</dt><dd>low</dd>
+      <dt>decided on</dt><dd>validation evidence</dd>
+      <dt>decisive points</dt><dd>66</dd>
+      <dt>evaluable points</dt><dd>66 (minimum 5)</dd>
+<dt>rationale</dt><dd>C2: the doses and subjects are inside the range of the training data. A dose within 5 to 200 mg which no study gave has its profile from the interpolation of the model, the two held-out doses and the held-out subjects are the check (influence medium); HCTZ has a wide therapeutic range and is titrated on the blood pressure, the exposure of a healthy adult sets no dose of a patient (consequence low).</dd>    </dl>
+
+    <h4>Quantities of interest</h4>
+    <p class="note">A quantity is covered by the evaluable decisive points of its observable inside the claimed domain, a ratio with a pairing by the points its evidence extension derives from them.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>quantity</th><th>description</th><th>kind</th><th>coverage</th><th class="num">points</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">Carm_hctz</td><td class="named">the plasma concentration of HCTZ</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">35</td>
+        </tr>
+        <tr>
+          <td class="mono">Aurine_hctz</td><td class="named">the cumulative amount of HCTZ in urine</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">29</td>
+        </tr>
+        <tr>
+          <td class="mono">Afeces_hctz</td><td class="named">the cumulative amount of HCTZ in feces</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">2</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Claimed domain</h4>
+<p class="text">single oral doses of 5 to 200 mg as tablet, capsule or solution, fasted or not reported; validated on 5, 12.5, 50 and 65 mg (5 to 65 mg), the doses of 75 to 200 mg are calibration only; the urinary excretion rate is not claimed, it has training data only (`describe`) <span class="state not_assessed">statement, not assessed</span></p>    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">field</th><th data-sort="text">value</th>
+          <th data-sort="text">coverage</th><th class="num" data-sort="num">points</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">route</td><td class="mono">PO</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">66</td>
+        </tr>
+        <tr>
+          <td class="mono">health</td><td class="mono">HEALTHY</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">66</td>
+        </tr>
+        <tr>
+          <td class="mono">coadministration</td><td class="mono">NONE</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">66</td>
+        </tr>
+        <tr>
+          <td class="mono">dosing</td><td class="mono">SINGLE</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">66</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Evidence</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th data-sort="text">evidence</th><th data-sort="text">role</th>
+          <th data-sort="text">selection</th>
+          <th class="num" data-sort="num">points</th><th class="num" data-sort="num">mappings</th>
+          <th class="num" data-sort="num">studies</th>
+          <th class="num" data-sort="num">outliers dropped</th>
+          <th class="num" data-sort="num">limitation subtracted</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">doses<br><span class="soft">a dose between the fitted doses of a study: the 50 mg tablet of Patel1984 (25 and 100 mg fitted) and 12.5 mg of Jordo1979 (25 mg fitted)</span></td>
+          <td>validation</td>
+          <td class="mono wrap">Jordo1979: fm_Fig1_12p5_hctz, fm_Tab2_1_12p5_amount_cumulative, fm_Tab2_2_12p5_amount_cumulative, fm_Tab2_3_12p5_amount_cumulative, fm_Tab2_4_12p5_amount_cumulative, fm_Tab2_5_12p5_amount_cumulative, fm_Tab2_6_12p5_amount_cumulative; Patel1984: fm_50_tab, fm_50_tab_urine, fm_Clurine_50_tab, fm_Naurine_50_tab</td>
+          <td class="num">38</td><td class="num">9</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        <tr>
+          <td class="named">subjects<br><span class="soft">the held-out healthy subjects (`validation_individuals`): Anderson1961 cases 1, 3 and 4, Azumaya1990 and Beermann1976 subjects 1 and 2</span></td>
+          <td>validation</td>
+          <td class="mono wrap">unclaimed validation data within route in [PO] and health in [HEALTHY] and coadministration in [NONE] and dosing in [SINGLE]</td>
+          <td class="num">28</td><td class="num">11</td>
+          <td class="num">3</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        <tr>
+          <td class="named">fitted<br><span class="soft">the fitted single oral doses in healthy adults, shown with the validation, which decides</span></td>
+          <td>calibration</td>
+          <td class="mono wrap">route in [PO] and health in [HEALTHY] and coadministration in [NONE] and dosing in [SINGLE]</td>
+          <td class="num">383</td><td class="num">75</td>
+          <td class="num">11</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Metrics of the evidence</h4>
+    <p class="note">The fold errors (GMFE, AFE) and the percentage of the points within a fold or a number of standard deviations of the data, n/a without an evaluable point.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">evidence</th>
+<th class="num" data-sort="num">GMFE</th><th class="num" data-sort="num">AFE</th><th class="num" data-sort="num">within_1.25fold</th><th class="num" data-sort="num">within_1.5fold</th><th class="num" data-sort="num">within_2fold</th><th class="num" data-sort="num">within_1sd</th><th class="num" data-sort="num">within_2sd</th>        </tr></thead>
+        <tbody>
+        <tr>
+          <td>doses</td>
+<td class="num">1.22</td><td class="num">1.18</td><td class="num">57.9</td><td class="num">92.1</td><td class="num">100</td><td class="num">91.3</td><td class="num">95.7</td>        </tr>
+        <tr>
+          <td>subjects</td>
+<td class="num">1.47</td><td class="num">1.01</td><td class="num">42.9</td><td class="num">71.4</td><td class="num">85.7</td><td class="num">n/a</td><td class="num">n/a</td>        </tr>
+        <tr>
+          <td>fitted</td>
+<td class="num">1.29</td><td class="num">1.01</td><td class="num">63.3</td><td class="num">84.6</td><td class="num">93.4</td><td class="num">80</td><td class="num">98.1</td>        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Acceptance</h4>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>rule</th><th class="num">value</th><th>limit</th><th>result</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">within_2fold</td>
+          <td class="num">93.9</td>
+          <td class="mono nowrap">&gt;= 70</td>
+          <td><span class="state met">met</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Temporal validation</h4>
+<p class="note">The decisive points of the studies the model collected after the day its fit ran, data which did not exist for the model when it was fitted; the day of the collection is the record of the study in the data of the model. The points are part of the acceptance above, the verdict does not change.</p>
+<p class="empty">No decisive study was collected after its fit: 5 collected before.</p>
+
+
+
+    <h4>Inputs</h4>
+<p class="note">The simulated covariates of the subjects and the doses of 20 of the 20 decisive mappings against the groups, individuals and interventions their studies report. A covariate is equivalent within 10&nbsp;% of the reported mean (the value of an individual) and in the range within the reported minimum and maximum (else two standard deviations around the mean), a dose is equivalent within 2&nbsp;% of a reported dose; the simulated range is what the evidence covers.</p>
+<div class="scroll">
+  <table class="compact">
+    <thead><tr><th>input</th><th class="num">mappings</th><th class="num">simulated</th><th class="num">equivalent</th><th class="num">in range</th><th class="num">differ</th><th class="num">not reported</th></tr></thead>
+    <tbody>
+    <tr>
+      <td class="mono">BW</td>
+      <td class="num">20</td>
+      <td class="num nowrap">73 <span class="soft">kg</span></td>
+      <td class="num">2</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">18</td>
+    </tr>
+    <tr>
+      <td class="mono">HEIGHT</td>
+      <td class="num">20</td>
+      <td class="num nowrap">176 <span class="soft">cm</span></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">20</td>
+    </tr>
+    <tr>
+      <td class="mono">PODOSE_hctz <span class="soft">dose</span></td>
+      <td class="num">9</td>
+      <td class="num nowrap">12.5 to 65 <span class="soft">mg</span></td>
+      <td class="num">9</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr>
+    <tr>
+      <td class="mono">SOLDOSE_hctz <span class="soft">dose</span></td>
+      <td class="num">11</td>
+      <td class="num nowrap">5 to 12.5 <span class="soft">mg</span></td>
+      <td class="num">11</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+    
+
+    <h4>Verification</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th>check</th><th>factor</th>
+          <th class="num">points</th><th class="num">largest difference</th>
+          <th>at</th><th>acceptance</th><th>result</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">tolerances</td>
+          <td class="mono">discretization_error</td>
+          <td class="num">66</td>
+          <td class="num">8.87e-06</td>
+          <td class="mono wrap">Azumaya1990.fm_hctz12p5 at 1440</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">second integration method</td>
+          <td class="mono">numerical_solver_error</td>
+          <td class="num">66</td>
+          <td class="num">1.13e-05</td>
+          <td class="mono wrap">Azumaya1990.fm_hctz12p5 at 1440</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">setup of the simulations</td>
+          <td class="mono">use_error</td>
+          <td class="num">66</td>
+          <td class="num"></td>
+          <td class="mono wrap"></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named"><a href="#battery">battery of the variants</a>, 8 checks</td>
+          <td class="mono">use_error, numerical_code_verification, software_quality_assurance</td>
+          <td class="num"></td>
+          <td class="num"></td>
+          <td></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Factors of V&amp;V 40</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>status</th><th>factor</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Software quality assurance</b><br><span class="soft">sbmlsim and the libraries of the model are released packages with tests and continuous integration; the model is released reproducibly from its repository with the versions and the commit of the provenance. Rebuild of 13 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical code verification</b><br><span class="soft">sbmlsim runs the SBML Test Suite and the PEtab test suite. Mass balance of 5 cases, largest deviation 3.5e-15 at male PODOSE_hctz: passed. Non-negativity of 64 cases, largest deviation 6.3e-31 at male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz: passed. Zero dose of 58 cases, largest deviation 0: passed. Steady state of 65 cases, largest deviation 6.9e-15 at male: FLUID__cl_loop: passed. Superposition of 4 cases, largest deviation 3.4e-09 at male IVDOSE_hctz two doses: MU__Cti_hctz: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Discretization error</b><br><span class="soft">Largest relative difference 8.9e-06 of 66 decisive predictions with the tolerances of the fits divided by 100, at Azumaya1990.fm_hctz12p5 at 1440, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical solver error</b><br><span class="soft">Largest relative difference 1.1e-05 of 66 decisive predictions with the BDF of CVODE of at most order 2 at the tightened tolerances, at Azumaya1990.fm_hctz12p5 at 1440, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Use error</b><br><span class="soft">The variants are valid SBML with consistent units and the 66 decisive predictions are finite: passed. Dose states of the model of 1 case: passed. Plausibility of the values of 495 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Model form</b><br><span class="soft">The structure of the model across studies and drugs: the ratios, the cross-validation and the qualification across models.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 4</span></td>
+          <td><b class="factor">Model inputs</b><br><span class="soft">The uncertainty and the sensitivity of the parameters.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test samples</b><br><span class="soft">66 points of 20 mappings of 5 studies of the validation evidence decide, 66 of them evaluable (minimum 5).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test conditions</b><br><span class="soft">4 claimed values of the metadata, 0 values of the evidence outside the claim.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Equivalency of input parameters</b><br><span class="soft">The simulated inputs of 20 of the 20 decisive mappings against the subjects and the doses their studies report: BW (2 equivalent, 18 not reported; simulated 73 kg); HEIGHT (20 not reported; simulated 176 cm); PODOSE_hctz (9 equivalent; simulated 12.5 to 65 mg); SOLDOSE_hctz (11 equivalent; simulated 5 to 12.5 mg).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Output comparison</b><br><span class="soft">1 of 1 acceptance rule met on the validation evidence, 0 not evaluable. No decisive study was collected after its fit (5 collected before).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Relevance of the quantities of interest</b><br><span class="soft">Whether the quantities of the evidence answer the question, e.g. the ratios of a special population. A context with a ratio quantity and its pairing assesses it by the evidence extension of the pairing; else only that every claimed quantity which is no ratio has decisive points in the claimed domain is checked, see the relevance of the validation activities.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Relevance of the validation activities to the COU</b><br><span class="soft">4 of 4 claimed values and 3 of 3 quantities of interest covered.</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Extrapolation</h4>
+<p class="empty">No extrapolation is argued.</p>  </article>
+  <article class="card cou" id="cou-renal" data-filter="card" data-kind="insufficient_evidence">
+    <header>
+      <span class="mono name">renal</span>
+      <span class="cou-title">Impaired renal function</span>
+      <span class="verdict insufficient_evidence">insufficient evidence</span>
+    </header>
+    <p class="question">Which plasma concentration and urinary excretion of HCTZ, and which urinary excretion of sodium, follow from an oral dose in patients with an impaired renal function?</p>
+    <dl class="kv">
+      <dt>level</dt><dd><span class="mono">C3</span> <span class="soft">extrapolate with data</span></dd>
+      <dt>influence</dt><dd>medium</dd>
+      <dt>consequence</dt><dd>medium</dd>
+      <dt>model risk</dt><dd>medium</dd>
+      <dt>decided on</dt><dd>validation evidence</dd>
+      <dt>decisive points</dt><dd>10</dd>
+      <dt>evaluable points</dt><dd>10 (minimum 10)</dd>
+<dt>rationale</dt><dd>C3: the renal function of a patient scales the GFR and the activity of SLC22A6, so the model extrapolates the exposure of an impaired kidney from the healthy one; a creatinine clearance which no study gave rests on that extrapolation (influence medium), and HCTZ loses its diuretic effect below a creatinine clearance of about 30 ml/min, which the natriuresis has to reproduce for the statement to carry (consequence medium). The impaired arms are training data by decision: the renal patients of Niemeyer1983 in the PK fit and the patients of Knauf1995 in the PD fit are calibration, not validation, so this COU rests on the fits it is assessed against. Its only independent datum is the held-out patient of Niemeyer1983, far below the minimum of a medium risk, so the verdict is `insufficient_evidence` by construction and is kept: the minimum is not lowered and the claim is not narrowed. The COU needs data of an impaired kidney which the fits do not use; the impaired patients of Anderson1961 cannot serve, they are a limitation (no measured creatinine clearance or cardiac output).</dd>    </dl>
+
+    <h4>Quantities of interest</h4>
+    <p class="note">A quantity is covered by the evaluable decisive points of its observable inside the claimed domain, a ratio with a pairing by the points its evidence extension derives from them.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>quantity</th><th>description</th><th>kind</th><th>coverage</th><th class="num">points</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">Carm_hctz</td><td class="named">the plasma concentration of HCTZ</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">10</td>
+        </tr>
+        <tr>
+          <td class="mono">Aurine_hctz</td><td class="named">the cumulative amount of HCTZ in urine</td>
+          <td>absolute</td>
+          <td><span class="state uncovered">uncovered</span></td>
+          <td class="num">0</td>
+        </tr>
+        <tr>
+          <td class="mono">FLUID__na_urine</td><td class="named">the cumulative amount of sodium in urine</td>
+          <td>absolute</td>
+          <td><span class="state uncovered">uncovered</span></td>
+          <td class="num">0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Claimed domain</h4>
+<p class="text">single oral doses of 25 mg (Knauf1995, 19 patients with a chronic renal insufficiency, creatinine clearance 1 to 153 ml/min with the controls) and 50 mg (Niemeyer1983, patients S and W, creatinine clearance 30 and 10 ml/min); the renal function enters a simulation as `f_renal_function`, which scales the GFR and, since the PBPK library of pkpdsim 0.21, the activity of the tubular transporter SLC22A6 as well (`fimp_ki_slc22a6`) <span class="state not_assessed">statement, not assessed</span></p>    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">field</th><th data-sort="text">value</th>
+          <th data-sort="text">coverage</th><th class="num" data-sort="num">points</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">route</td><td class="mono">PO</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">10</td>
+        </tr>
+        <tr>
+          <td class="mono">health</td><td class="mono">RENAL_IMPAIRMENT</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">10</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Evidence</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th data-sort="text">evidence</th><th data-sort="text">role</th>
+          <th data-sort="text">selection</th>
+          <th class="num" data-sort="num">points</th><th class="num" data-sort="num">mappings</th>
+          <th class="num" data-sort="num">studies</th>
+          <th class="num" data-sort="num">outliers dropped</th>
+          <th class="num" data-sort="num">limitation subtracted</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">subjects<br><span class="soft">the held-out patient of Niemeyer1983, the only data of an impaired kidney which no fit sees</span></td>
+          <td>validation</td>
+          <td class="mono wrap">unclaimed validation data within route in [PO] and health in [RENAL_IMPAIRMENT]</td>
+          <td class="num">10</td><td class="num">1</td>
+          <td class="num">1</td>
+          <td class="num">0</td>
+          <td class="num">4</td>
+        </tr>
+        <tr>
+          <td class="named">pharmacokinetics<br><span class="soft">the fitted plasma of the renal patients of Niemeyer1983</span></td>
+          <td>calibration</td>
+          <td class="mono wrap">route in [PO] and health in [RENAL_IMPAIRMENT]</td>
+          <td class="num">9</td><td class="num">1</td>
+          <td class="num">1</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        <tr>
+          <td class="named">pharmacodynamics<br><span class="soft">the fitted sodium, chloride and urine of the patients with a chronic renal insufficiency of Knauf1995</span></td>
+          <td>calibration</td>
+          <td class="mono wrap">route in [PO] and health in [RENAL_IMPAIRMENT]</td>
+          <td class="num">24</td><td class="num">24</td>
+          <td class="num">1</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Metrics of the evidence</h4>
+    <p class="note">The fold errors (GMFE, AFE) and the percentage of the points within a fold or a number of standard deviations of the data, n/a without an evaluable point.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">evidence</th>
+<th class="num" data-sort="num">GMFE</th><th class="num" data-sort="num">AFE</th><th class="num" data-sort="num">within_1.25fold</th><th class="num" data-sort="num">within_1.5fold</th><th class="num" data-sort="num">within_2fold</th><th class="num" data-sort="num">within_1sd</th><th class="num" data-sort="num">within_2sd</th>        </tr></thead>
+        <tbody>
+        <tr>
+          <td>subjects</td>
+<td class="num">1.46</td><td class="num">1.17</td><td class="num">30</td><td class="num">70</td><td class="num">80</td><td class="num">n/a</td><td class="num">n/a</td>        </tr>
+        <tr>
+          <td>pharmacokinetics</td>
+<td class="num">1.55</td><td class="num">0.651</td><td class="num">22.2</td><td class="num">55.6</td><td class="num">77.8</td><td class="num">n/a</td><td class="num">n/a</td>        </tr>
+        <tr>
+          <td>pharmacodynamics</td>
+<td class="num">1.35</td><td class="num">1.06</td><td class="num">50</td><td class="num">70.8</td><td class="num">91.7</td><td class="num">n/a</td><td class="num">n/a</td>        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Acceptance</h4>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>rule</th><th class="num">value</th><th>limit</th><th>result</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">within_2fold</td>
+          <td class="num">80</td>
+          <td class="mono nowrap">&gt;= 80</td>
+          <td><span class="state met">met</span></td>
+        </tr>
+        <tr>
+          <td class="mono">GMFE</td>
+          <td class="num">1.46</td>
+          <td class="mono nowrap">&lt;= 1.5</td>
+          <td><span class="state met">met</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Temporal validation</h4>
+<p class="note">The decisive points of the studies the model collected after the day its fit ran, data which did not exist for the model when it was fitted; the day of the collection is the record of the study in the data of the model. The points are part of the acceptance above, the verdict does not change.</p>
+<p class="empty">No decisive study was collected after its fit: 1 collected before.</p>
+
+
+
+    <h4>Inputs</h4>
+<p class="note">The simulated covariates of the subjects and the doses of 1 of the 1 decisive mappings against the groups, individuals and interventions their studies report. A covariate is equivalent within 10&nbsp;% of the reported mean (the value of an individual) and in the range within the reported minimum and maximum (else two standard deviations around the mean), a dose is equivalent within 2&nbsp;% of a reported dose; the simulated range is what the evidence covers.</p>
+<div class="scroll">
+  <table class="compact">
+    <thead><tr><th>input</th><th class="num">mappings</th><th class="num">simulated</th><th class="num">equivalent</th><th class="num">in range</th><th class="num">differ</th><th class="num">not reported</th></tr></thead>
+    <tbody>
+    <tr>
+      <td class="mono">BW</td>
+      <td class="num">1</td>
+      <td class="num nowrap">73 <span class="soft">kg</span></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num"><span class="warn">1</span></td>
+      <td class="num">0</td>
+    </tr>
+    <tr>
+      <td class="mono">HEIGHT</td>
+      <td class="num">1</td>
+      <td class="num nowrap">176 <span class="soft">cm</span></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="mono">PODOSE_hctz <span class="soft">dose</span></td>
+      <td class="num">1</td>
+      <td class="num nowrap">50 <span class="soft">mg</span></td>
+      <td class="num">1</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<p class="note">The inputs which differ from the reported ones, the ratio is the simulated over the reported value; <span class="soft">model</span> marks the value of the model, which the simulation does not set:</p>
+<div class="scroll">
+  <table class="compact">
+    <thead><tr><th>mapping</th><th>input</th><th class="num">simulated</th><th class="num">reported</th><th>reported by</th><th class="num">ratio</th></tr></thead>
+    <tbody>
+    <tr>
+      <td class="mono wrap">Niemeyer1983/fm_Fig1_hctz50_S</td>
+      <td class="mono">BW <span class="soft">model</span></td>
+      <td class="num nowrap">73 <span class="soft">kg</span></td>
+      <td class="num nowrap">57.6 <span class="soft">kg</span></td>
+      <td>individual S</td>
+      <td class="num"><span class="state not_met">1.27</span></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+    
+
+    <h4>Verification</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th>check</th><th>factor</th>
+          <th class="num">points</th><th class="num">largest difference</th>
+          <th>at</th><th>acceptance</th><th>result</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">tolerances</td>
+          <td class="mono">discretization_error</td>
+          <td class="num">10</td>
+          <td class="num">6.56e-06</td>
+          <td class="mono wrap">Niemeyer1983.fm_Fig1_hctz50_S at 30</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">second integration method</td>
+          <td class="mono">numerical_solver_error</td>
+          <td class="num">10</td>
+          <td class="num">4.5e-06</td>
+          <td class="mono wrap">Niemeyer1983.fm_Fig1_hctz50_S at 30</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">setup of the simulations</td>
+          <td class="mono">use_error</td>
+          <td class="num">10</td>
+          <td class="num"></td>
+          <td class="mono wrap"></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named"><a href="#battery">battery of the variants</a>, 8 checks</td>
+          <td class="mono">use_error, numerical_code_verification, software_quality_assurance</td>
+          <td class="num"></td>
+          <td class="num"></td>
+          <td></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Factors of V&amp;V 40</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>status</th><th>factor</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Software quality assurance</b><br><span class="soft">sbmlsim and the libraries of the model are released packages with tests and continuous integration; the model is released reproducibly from its repository with the versions and the commit of the provenance. Rebuild of 13 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical code verification</b><br><span class="soft">sbmlsim runs the SBML Test Suite and the PEtab test suite. Mass balance of 5 cases, largest deviation 3.5e-15 at male PODOSE_hctz: passed. Non-negativity of 64 cases, largest deviation 6.3e-31 at male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz: passed. Zero dose of 58 cases, largest deviation 0: passed. Steady state of 65 cases, largest deviation 6.9e-15 at male: FLUID__cl_loop: passed. Superposition of 4 cases, largest deviation 3.4e-09 at male IVDOSE_hctz two doses: MU__Cti_hctz: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Discretization error</b><br><span class="soft">Largest relative difference 6.6e-06 of 10 decisive predictions with the tolerances of the fits divided by 100, at Niemeyer1983.fm_Fig1_hctz50_S at 30, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical solver error</b><br><span class="soft">Largest relative difference 4.5e-06 of 10 decisive predictions with the BDF of CVODE of at most order 2 at the tightened tolerances, at Niemeyer1983.fm_Fig1_hctz50_S at 30, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Use error</b><br><span class="soft">The variants are valid SBML with consistent units and the 10 decisive predictions are finite: passed. Dose states of the model of 1 case: passed. Plausibility of the values of 495 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Model form</b><br><span class="soft">The structure of the model across studies and drugs: the ratios, the cross-validation and the qualification across models.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 4</span></td>
+          <td><b class="factor">Model inputs</b><br><span class="soft">The uncertainty and the sensitivity of the parameters.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test samples</b><br><span class="soft">10 points of 1 mapping of 1 study of the validation evidence decide, 10 of them evaluable (minimum 10).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test conditions</b><br><span class="soft">2 claimed values of the metadata, 0 values of the evidence outside the claim.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Equivalency of input parameters</b><br><span class="soft">The simulated inputs of 1 of the 1 decisive mappings against the subjects and the doses their studies report: BW (1 differs; simulated 73 kg); HEIGHT (1 not reported; simulated 176 cm); PODOSE_hctz (1 equivalent; simulated 50 mg). Differ: Niemeyer1983/fm_Fig1_hctz50_S BW 73 kg against 57.6 kg (individual S).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Output comparison</b><br><span class="soft">2 of 2 acceptance rules met on the validation evidence, 0 not evaluable. No decisive study was collected after its fit (1 collected before).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Relevance of the quantities of interest</b><br><span class="soft">Whether the quantities of the evidence answer the question, e.g. the ratios of a special population. A context with a ratio quantity and its pairing assesses it by the evidence extension of the pairing; else only that every claimed quantity which is no ratio has decisive points in the claimed domain is checked, see the relevance of the validation activities.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Relevance of the validation activities to the COU</b><br><span class="soft">2 of 2 claimed values and 1 of 3 quantities of interest covered.</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Extrapolation</h4>
+<p class="empty">No extrapolation is argued.</p>  </article>
+  <article class="card cou" id="cou-interaction" data-filter="card" data-kind="supported">
+    <header>
+      <span class="mono name">interaction</span>
+      <span class="cou-title">Coadministration without an interaction</span>
+      <span class="verdict supported">supported</span>
+    </header>
+    <p class="question">Does the model predict the pharmacokinetics of HCTZ with coadministered aliskiren, diltiazem, enalapril or lisinopril without an interaction?</p>
+    <dl class="kv">
+      <dt>level</dt><dd><span class="mono">C3</span> <span class="soft">extrapolate with data</span></dd>
+      <dt>influence</dt><dd>medium</dd>
+      <dt>consequence</dt><dd>medium</dd>
+      <dt>model risk</dt><dd>medium</dd>
+      <dt>decided on</dt><dd>validation evidence</dd>
+      <dt>decisive points</dt><dd>117</dd>
+      <dt>evaluable points</dt><dd>116 (minimum 10)</dd>
+<dt>rationale</dt><dd>C3: aliskiren, diltiazem, enalapril and lisinopril act on no process of HCTZ in the model, so every arm is HCTZ simulated as if given alone, the hypothesis that HCTZ needs no change with them. A combination tablet or a dose of the partner of no study rests on that simulation, the five studies are the check (influence medium); HCTZ is combined with these drugs in the treatment of hypertension and a prescriber keeps its dose on this statement (consequence medium). Step 3 of the assessment takes `hctz_auc_ratio`, the AUC ratio which states the absence of the interaction directly.</dd>    </dl>
+
+    <h4>Quantities of interest</h4>
+    <p class="note">A quantity is covered by the evaluable decisive points of its observable inside the claimed domain, a ratio with a pairing by the points its evidence extension derives from them.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>quantity</th><th>description</th><th>kind</th><th>coverage</th><th class="num">points</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">Carm_hctz</td><td class="named">the plasma concentration of HCTZ</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">108</td>
+        </tr>
+        <tr>
+          <td class="mono">Aurine_hctz</td><td class="named">the cumulative amount of HCTZ in urine</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">8</td>
+        </tr>
+        <tr>
+          <td class="mono">hctz_auc_ratio</td><td class="named">the AUC of HCTZ with the coadministered drug over the AUC without it</td>
+          <td><span class="state not_assessed">ratio, no pairing declared</span></td>
+          <td><span class="soft">n/a</span></td>
+          <td class="num"><span class="soft">n/a</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Claimed domain</h4>
+<p class="text">12.5 and 25 mg of HCTZ with the doses of the coadministered drugs of the arms, single and multiple dosing, as separate tablets and as combination tablets <span class="state not_assessed">statement, not assessed</span></p>    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">field</th><th data-sort="text">value</th>
+          <th data-sort="text">coverage</th><th class="num" data-sort="num">points</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">route</td><td class="mono">PO</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">116</td>
+        </tr>
+        <tr>
+          <td class="mono">health</td><td class="mono">HEALTHY</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">116</td>
+        </tr>
+        <tr>
+          <td class="mono">coadministration</td><td class="mono">ALISKIREN</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">13</td>
+        </tr>
+        <tr>
+          <td class="mono">coadministration</td><td class="mono">DILTIAZEM</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">19</td>
+        </tr>
+        <tr>
+          <td class="mono">coadministration</td><td class="mono">ENALAPRIL</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">54</td>
+        </tr>
+        <tr>
+          <td class="mono">coadministration</td><td class="mono">LISINOPRIL</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">30</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Evidence</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th data-sort="text">evidence</th><th data-sort="text">role</th>
+          <th data-sort="text">selection</th>
+          <th class="num" data-sort="num">points</th><th class="num" data-sort="num">mappings</th>
+          <th class="num" data-sort="num">studies</th>
+          <th class="num" data-sort="num">outliers dropped</th>
+          <th class="num" data-sort="num">limitation subtracted</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">interactions<br><span class="soft">the coadministration arms of Howes1991, Koytchev2004, Niopas2004, Vaidyanathan2006 and Weir1998, which no fit sees</span></td>
+          <td>validation</td>
+          <td class="mono wrap">Howes1991: fm_Fig1_HCTZ25_ENA10_multi_hydrochlorothiazide, fm_Fig1_HCTZ25_combi_ENA10_combi_hydrochlorothiazide, fm_Tab2_ENA10_HCTZ25_cumulative_amount_hydrochlorothiazide, fm_Tab2_ENA10_combi_HCTZ25_combi_cumulative_amount_hydrochlorothiazide; Koytchev2004: fm_Fig2_reference_hydro, fm_Fig2_test_hydro; Niopas2004: fm_Fig2_hydrochlorothiazide_ENA20, fm_Fig2_hydrochlorothiazide_REF20; Vaidyanathan2006: fm_Fig3_hctz_HCTZ25_ALI300HCTZ; Weir1998: fm_Fig2_hctz25_kombi, fm_Fig3_amount_cumulative_hctz25_kombi</td>
+          <td class="num">117</td><td class="num">11</td>
+          <td class="num">5</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Metrics of the evidence</h4>
+    <p class="note">The fold errors (GMFE, AFE) and the percentage of the points within a fold or a number of standard deviations of the data, n/a without an evaluable point.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">evidence</th>
+<th class="num" data-sort="num">GMFE</th><th class="num" data-sort="num">AFE</th><th class="num" data-sort="num">within_1.25fold</th><th class="num" data-sort="num">within_1.5fold</th><th class="num" data-sort="num">within_2fold</th><th class="num" data-sort="num">within_1sd</th><th class="num" data-sort="num">within_2sd</th>        </tr></thead>
+        <tbody>
+        <tr>
+          <td>interactions</td>
+<td class="num">1.16</td><td class="num">0.904</td><td class="num">80.2</td><td class="num">98.3</td><td class="num">100</td><td class="num">100</td><td class="num">100</td>        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Acceptance</h4>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>rule</th><th class="num">value</th><th>limit</th><th>result</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">within_2fold</td>
+          <td class="num">100</td>
+          <td class="mono nowrap">&gt;= 80</td>
+          <td><span class="state met">met</span></td>
+        </tr>
+        <tr>
+          <td class="mono">GMFE</td>
+          <td class="num">1.16</td>
+          <td class="mono nowrap">&lt;= 1.5</td>
+          <td><span class="state met">met</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Temporal validation</h4>
+<p class="note">The decisive points of the studies the model collected after the day its fit ran, data which did not exist for the model when it was fitted; the day of the collection is the record of the study in the data of the model. The points are part of the acceptance above, the verdict does not change.</p>
+<p class="empty">No decisive study was collected after its fit: 5 collected before.</p>
+
+
+
+    <h4>Inputs</h4>
+<p class="note">The simulated covariates of the subjects and the doses of 11 of the 11 decisive mappings against the groups, individuals and interventions their studies report. A covariate is equivalent within 10&nbsp;% of the reported mean (the value of an individual) and in the range within the reported minimum and maximum (else two standard deviations around the mean), a dose is equivalent within 2&nbsp;% of a reported dose; the simulated range is what the evidence covers.</p>
+<div class="scroll">
+  <table class="compact">
+    <thead><tr><th>input</th><th class="num">mappings</th><th class="num">simulated</th><th class="num">equivalent</th><th class="num">in range</th><th class="num">differ</th><th class="num">not reported</th></tr></thead>
+    <tbody>
+    <tr>
+      <td class="mono">BW</td>
+      <td class="num">11</td>
+      <td class="num nowrap">73 <span class="soft">kg</span></td>
+      <td class="num">5</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">6</td>
+    </tr>
+    <tr>
+      <td class="mono">HEIGHT</td>
+      <td class="num">11</td>
+      <td class="num nowrap">176 <span class="soft">cm</span></td>
+      <td class="num">3</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">8</td>
+    </tr>
+    <tr>
+      <td class="mono">PODOSE_hctz <span class="soft">dose</span></td>
+      <td class="num">11</td>
+      <td class="num nowrap">12.5 to 25 <span class="soft">mg</span></td>
+      <td class="num">11</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+    
+
+    <h4>Verification</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th>check</th><th>factor</th>
+          <th class="num">points</th><th class="num">largest difference</th>
+          <th>at</th><th>acceptance</th><th>result</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">tolerances</td>
+          <td class="mono">discretization_error</td>
+          <td class="num">117</td>
+          <td class="num">1.77e-05</td>
+          <td class="mono wrap">Koytchev2004.fm_Fig2_test_hydro at 30</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">second integration method</td>
+          <td class="mono">numerical_solver_error</td>
+          <td class="num">117</td>
+          <td class="num">1.53e-05</td>
+          <td class="mono wrap">Koytchev2004.fm_Fig2_test_hydro at 30</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">setup of the simulations</td>
+          <td class="mono">use_error</td>
+          <td class="num">117</td>
+          <td class="num"></td>
+          <td class="mono wrap"></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named"><a href="#battery">battery of the variants</a>, 8 checks</td>
+          <td class="mono">use_error, numerical_code_verification, software_quality_assurance</td>
+          <td class="num"></td>
+          <td class="num"></td>
+          <td></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Factors of V&amp;V 40</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>status</th><th>factor</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Software quality assurance</b><br><span class="soft">sbmlsim and the libraries of the model are released packages with tests and continuous integration; the model is released reproducibly from its repository with the versions and the commit of the provenance. Rebuild of 13 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical code verification</b><br><span class="soft">sbmlsim runs the SBML Test Suite and the PEtab test suite. Mass balance of 5 cases, largest deviation 3.5e-15 at male PODOSE_hctz: passed. Non-negativity of 64 cases, largest deviation 6.3e-31 at male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz: passed. Zero dose of 58 cases, largest deviation 0: passed. Steady state of 65 cases, largest deviation 6.9e-15 at male: FLUID__cl_loop: passed. Superposition of 4 cases, largest deviation 3.4e-09 at male IVDOSE_hctz two doses: MU__Cti_hctz: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Discretization error</b><br><span class="soft">Largest relative difference 1.8e-05 of 117 decisive predictions with the tolerances of the fits divided by 100, at Koytchev2004.fm_Fig2_test_hydro at 30, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical solver error</b><br><span class="soft">Largest relative difference 1.5e-05 of 117 decisive predictions with the BDF of CVODE of at most order 2 at the tightened tolerances, at Koytchev2004.fm_Fig2_test_hydro at 30, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Use error</b><br><span class="soft">The variants are valid SBML with consistent units and the 117 decisive predictions are finite: passed. Dose states of the model of 1 case: passed. Plausibility of the values of 495 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Model form</b><br><span class="soft">The structure of the model across studies and drugs: the ratios, the cross-validation and the qualification across models.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 4</span></td>
+          <td><b class="factor">Model inputs</b><br><span class="soft">The uncertainty and the sensitivity of the parameters.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test samples</b><br><span class="soft">117 points of 11 mappings of 5 studies of the validation evidence decide, 116 of them evaluable (minimum 10).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test conditions</b><br><span class="soft">6 claimed values of the metadata, 0 values of the evidence outside the claim.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Equivalency of input parameters</b><br><span class="soft">The simulated inputs of 11 of the 11 decisive mappings against the subjects and the doses their studies report: BW (5 equivalent, 6 not reported; simulated 73 kg); HEIGHT (3 equivalent, 8 not reported; simulated 176 cm); PODOSE_hctz (11 equivalent; simulated 12.5 to 25 mg).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Output comparison</b><br><span class="soft">2 of 2 acceptance rules met on the validation evidence, 0 not evaluable. No decisive study was collected after its fit (5 collected before).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Relevance of the quantities of interest</b><br><span class="soft">Whether the quantities of the evidence answer the question, e.g. the ratios of a special population. A context with a ratio quantity and its pairing assesses it by the evidence extension of the pairing; else only that every claimed quantity which is no ratio has decisive points in the claimed domain is checked, see the relevance of the validation activities.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Relevance of the validation activities to the COU</b><br><span class="soft">6 of 6 claimed values and 2 of 2 quantities of interest covered.</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Extrapolation</h4>
+<p class="empty">No extrapolation is argued.</p>  </article>
+  <article class="card cou" id="cou-pd" data-filter="card" data-kind="insufficient_evidence">
+    <header>
+      <span class="mono name">pd</span>
+      <span class="cou-title">Natriuresis and chloruresis in healthy adults</span>
+      <span class="verdict insufficient_evidence">insufficient evidence</span>
+    </header>
+    <p class="question">Which urinary excretion of sodium and chloride follows from a single oral dose of HCTZ within the range of the data in healthy adults?</p>
+    <dl class="kv">
+      <dt>level</dt><dd><span class="mono">C5</span> <span class="soft">clinical endpoint</span></dd>
+      <dt>influence</dt><dd>medium</dd>
+      <dt>consequence</dt><dd>low</dd>
+      <dt>model risk</dt><dd>low</dd>
+      <dt>decided on</dt><dd>validation evidence</dd>
+      <dt>decisive points</dt><dd>2</dd>
+      <dt>evaluable points</dt><dd>2 (minimum 5) <span class="state below">below the minimum</span></dd>
+<dt>rationale</dt><dd>C5: the PD of the fluid and electrolyte model, driven by the simulated PK. The sodium and chloride of a dose without PD data come from the model, the dose-response of the fitted studies is the check (influence medium); the natriuresis explains why HCTZ is a diuretic, its dose is titrated on the blood pressure (consequence low). Only sodium and chloride are claimed: the validation data of the urine volume (Beermann1977a, a water load) is a limitation and the blood pressure has no validation data (Jeon2012 is training data). The evidence is too thin for a verdict: two evaluable points, the sodium and the chloride of one dose of one study, below the minimum of 5 points of a low risk, so the COU is `insufficient_evidence` although both points are within 2-fold; the calibration has a bias besides, an AFE of 0.68 (0.72 in healthy adults), i.e. the model predicts about 30 % less electrolyte excretion than the data it was fitted to. The risk stays low, since it follows from the decision the answer informs and not from the evidence, and the minimum is not lowered: the COU needs PD validation data of further doses or studies.</dd>    </dl>
+
+    <h4>Quantities of interest</h4>
+    <p class="note">A quantity is covered by the evaluable decisive points of its observable inside the claimed domain, a ratio with a pairing by the points its evidence extension derives from them.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>quantity</th><th>description</th><th>kind</th><th>coverage</th><th class="num">points</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">FLUID__na_urine</td><td class="named">the cumulative amount of sodium in urine</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="mono">FLUID__cl_urine</td><td class="named">the cumulative amount of chloride in urine</td>
+          <td>absolute</td>
+          <td><span class="state covered">covered</span></td>
+          <td class="num">1</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Claimed domain</h4>
+<p class="text">single oral doses of 12.5 to 100 mg, the cumulative excretion after the dose; validated on the 50 mg tablet of Patel1984 only (2 points, one sodium and one chloride value), the other doses are calibration only; the urine volume and the blood pressure are not claimed <span class="state not_assessed">statement, not assessed</span></p>    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">field</th><th data-sort="text">value</th>
+          <th data-sort="text">coverage</th><th class="num" data-sort="num">points</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">route</td><td class="mono">PO</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">2</td>
+        </tr>
+        <tr>
+          <td class="mono">health</td><td class="mono">HEALTHY</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">2</td>
+        </tr>
+        <tr>
+          <td class="mono">coadministration</td><td class="mono">NONE</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">2</td>
+        </tr>
+        <tr>
+          <td class="mono">dosing</td><td class="mono">SINGLE</td>
+          <td><span class="state validated">validated</span></td>
+          <td class="num">2</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Evidence</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th data-sort="text">evidence</th><th data-sort="text">role</th>
+          <th data-sort="text">selection</th>
+          <th class="num" data-sort="num">points</th><th class="num" data-sort="num">mappings</th>
+          <th class="num" data-sort="num">studies</th>
+          <th class="num" data-sort="num">outliers dropped</th>
+          <th class="num" data-sort="num">limitation subtracted</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">doses<br><span class="soft">the sodium and chloride of the 50 mg tablet of Patel1984 (25 and 100 mg fitted)</span></td>
+          <td>validation</td>
+          <td class="mono wrap">Jordo1979: fm_Fig1_12p5_hctz, fm_Tab2_1_12p5_amount_cumulative, fm_Tab2_2_12p5_amount_cumulative, fm_Tab2_3_12p5_amount_cumulative, fm_Tab2_4_12p5_amount_cumulative, fm_Tab2_5_12p5_amount_cumulative, fm_Tab2_6_12p5_amount_cumulative; Patel1984: fm_50_tab, fm_50_tab_urine, fm_Clurine_50_tab, fm_Naurine_50_tab</td>
+          <td class="num">2</td><td class="num">2</td>
+          <td class="num">1</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        <tr>
+          <td class="named">fitted<br><span class="soft">the fitted sodium and chloride of single oral doses in healthy adults, shown with the validation</span></td>
+          <td>calibration</td>
+          <td class="mono wrap">route in [PO] and health in [HEALTHY] and coadministration in [NONE] and dosing in [SINGLE]</td>
+          <td class="num">69</td><td class="num">20</td>
+          <td class="num">4</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Metrics of the evidence</h4>
+    <p class="note">The fold errors (GMFE, AFE) and the percentage of the points within a fold or a number of standard deviations of the data, n/a without an evaluable point.</p>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr>
+          <th data-sort="text">evidence</th>
+<th class="num" data-sort="num">GMFE</th><th class="num" data-sort="num">AFE</th><th class="num" data-sort="num">within_1.25fold</th><th class="num" data-sort="num">within_1.5fold</th><th class="num" data-sort="num">within_2fold</th><th class="num" data-sort="num">within_1sd</th><th class="num" data-sort="num">within_2sd</th>        </tr></thead>
+        <tbody>
+        <tr>
+          <td>doses</td>
+<td class="num">1.14</td><td class="num">0.901</td><td class="num">50</td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">100</td>        </tr>
+        <tr>
+          <td>fitted</td>
+<td class="num">1.51</td><td class="num">0.716</td><td class="num">23.4</td><td class="num">53.1</td><td class="num">85.9</td><td class="num">80</td><td class="num">100</td>        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Acceptance</h4>
+    <div class="scroll">
+      <table class="compact">
+        <thead><tr><th>rule</th><th class="num">value</th><th>limit</th><th>result</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="mono">within_2fold</td>
+          <td class="num">100</td>
+          <td class="mono nowrap">&gt;= 70</td>
+          <td><span class="state met">met</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Temporal validation</h4>
+<p class="note">The decisive points of the studies the model collected after the day its fit ran, data which did not exist for the model when it was fitted; the day of the collection is the record of the study in the data of the model. The points are part of the acceptance above, the verdict does not change.</p>
+<p class="empty">No decisive study was collected after its fit: 1 collected before.</p>
+
+
+
+    <h4>Inputs</h4>
+<p class="note">The simulated covariates of the subjects and the doses of 2 of the 2 decisive mappings against the groups, individuals and interventions their studies report. A covariate is equivalent within 10&nbsp;% of the reported mean (the value of an individual) and in the range within the reported minimum and maximum (else two standard deviations around the mean), a dose is equivalent within 2&nbsp;% of a reported dose; the simulated range is what the evidence covers.</p>
+<div class="scroll">
+  <table class="compact">
+    <thead><tr><th>input</th><th class="num">mappings</th><th class="num">simulated</th><th class="num">equivalent</th><th class="num">in range</th><th class="num">differ</th><th class="num">not reported</th></tr></thead>
+    <tbody>
+    <tr>
+      <td class="mono">BW</td>
+      <td class="num">2</td>
+      <td class="num nowrap">73 <span class="soft">kg</span></td>
+      <td class="num">2</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr>
+    <tr>
+      <td class="mono">HEIGHT</td>
+      <td class="num">2</td>
+      <td class="num nowrap">176 <span class="soft">cm</span></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">2</td>
+    </tr>
+    <tr>
+      <td class="mono">PODOSE_hctz <span class="soft">dose</span></td>
+      <td class="num">2</td>
+      <td class="num nowrap">50 <span class="soft">mg</span></td>
+      <td class="num">2</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+    
+
+    <h4>Verification</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th>check</th><th>factor</th>
+          <th class="num">points</th><th class="num">largest difference</th>
+          <th>at</th><th>acceptance</th><th>result</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="named">tolerances</td>
+          <td class="mono">discretization_error</td>
+          <td class="num">2</td>
+          <td class="num">1.04e-06</td>
+          <td class="mono wrap">Patel1984.fm_Clurine_50_tab at 720</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">second integration method</td>
+          <td class="mono">numerical_solver_error</td>
+          <td class="num">2</td>
+          <td class="num">1.32e-06</td>
+          <td class="mono wrap">Patel1984.fm_Clurine_50_tab at 720</td>
+          <td>unchanged</td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named">setup of the simulations</td>
+          <td class="mono">use_error</td>
+          <td class="num">2</td>
+          <td class="num"></td>
+          <td class="mono wrap"></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        <tr>
+          <td class="named"><a href="#battery">battery of the variants</a>, 8 checks</td>
+          <td class="mono">use_error, numerical_code_verification, software_quality_assurance</td>
+          <td class="num"></td>
+          <td class="num"></td>
+          <td></td>
+          <td></td>
+          <td><span class="state passed">passed</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Factors of V&amp;V 40</h4>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>status</th><th>factor</th></tr></thead>
+        <tbody>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Software quality assurance</b><br><span class="soft">sbmlsim and the libraries of the model are released packages with tests and continuous integration; the model is released reproducibly from its repository with the versions and the commit of the provenance. Rebuild of 13 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical code verification</b><br><span class="soft">sbmlsim runs the SBML Test Suite and the PEtab test suite. Mass balance of 5 cases, largest deviation 3.5e-15 at male PODOSE_hctz: passed. Non-negativity of 64 cases, largest deviation 6.3e-31 at male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz: passed. Zero dose of 58 cases, largest deviation 0: passed. Steady state of 65 cases, largest deviation 6.9e-15 at male: FLUID__cl_loop: passed. Superposition of 4 cases, largest deviation 3.4e-09 at male IVDOSE_hctz two doses: MU__Cti_hctz: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Discretization error</b><br><span class="soft">Largest relative difference 1e-06 of 2 decisive predictions with the tolerances of the fits divided by 100, at Patel1984.fm_Clurine_50_tab at 720, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Numerical solver error</b><br><span class="soft">Largest relative difference 1.3e-06 of 2 decisive predictions with the BDF of CVODE of at most order 2 at the tightened tolerances, at Patel1984.fm_Clurine_50_tab at 720, acceptance unchanged: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Use error</b><br><span class="soft">The variants are valid SBML with consistent units and the 2 decisive predictions are finite: passed. Dose states of the model of 1 case: passed. Plausibility of the values of 495 cases: passed.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Model form</b><br><span class="soft">The structure of the model across studies and drugs: the ratios, the cross-validation and the qualification across models.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 4</span></td>
+          <td><b class="factor">Model inputs</b><br><span class="soft">The uncertainty and the sensitivity of the parameters.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test samples</b><br><span class="soft">2 points of 2 mappings of 1 study of the validation evidence decide, 2 of them evaluable (minimum 5).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Test conditions</b><br><span class="soft">4 claimed values of the metadata, 0 values of the evidence outside the claim.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Equivalency of input parameters</b><br><span class="soft">The simulated inputs of 2 of the 2 decisive mappings against the subjects and the doses their studies report: BW (2 equivalent; simulated 73 kg); HEIGHT (2 not reported; simulated 176 cm); PODOSE_hctz (2 equivalent; simulated 50 mg).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Output comparison</b><br><span class="soft">1 of 1 acceptance rule met on the validation evidence, 0 not evaluable. No decisive study was collected after its fit (1 collected before).</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state not_assessed">not assessed</span><br><span class="soft">in step 3</span></td>
+          <td><b class="factor">Relevance of the quantities of interest</b><br><span class="soft">Whether the quantities of the evidence answer the question, e.g. the ratios of a special population. A context with a ratio quantity and its pairing assesses it by the evidence extension of the pairing; else only that every claimed quantity which is no ratio has decisive points in the claimed domain is checked, see the relevance of the validation activities.</span></td>
+        </tr>
+        <tr>
+          <td class="status"><span class="state assessed">assessed</span></td>
+          <td><b class="factor">Relevance of the validation activities to the COU</b><br><span class="soft">4 of 4 claimed values and 2 of 2 quantities of interest covered.</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+
+    <h4>Extrapolation</h4>
+<p class="empty">No extrapolation is argued.</p>  </article>
+  <p class="empty hidden" data-empty>No context of use matches the search.</p>
+</section>
+
+<section id="limitations">
+  <h2>Limitations</h2>
+  <p class="note">The data the model does not describe, of the model and of a context of use. Their metrics are reported for information and are outside every acceptance; their points are subtracted from the evidence.</p>
+  <div class="card scroll">
+    <table data-filter="row">
+      <thead><tr>
+        <th data-sort="text">context of use</th><th data-sort="text">limitation</th>
+        <th data-sort="text">selection</th>
+        <th class="num" data-sort="num">points</th><th class="num" data-sort="num">mappings</th>
+        <th class="num" data-sort="num">studies</th>
+      </tr></thead>
+      <tbody>
+      <tr>
+        <td><span class="soft">the model</span></td>
+        <td class="named">limitations<br><span class="soft">HCTZ data of processes which the model lacks: the patients with an impairment of Anderson1961 (no measured cardiac output or creatinine clearance, cirrhosis has no effect in the model, case 13 has lupus), the feces after intravenous doses of Beermann1976 (no non-renal elimination), the urine volumes of the water load of Beermann1977a (no water diuresis) and the single subject of Knauf1995 Fig1 (no variability between subjects)</span></td>
+        <td class="mono wrap">Anderson1961: fm_amount_HCTZiv_10, fm_amount_HCTZiv_11, fm_amount_HCTZiv_12, fm_amount_HCTZiv_13A, fm_amount_HCTZiv_13B, fm_amount_HCTZiv_14, fm_amount_HCTZiv_15, fm_amount_HCTZiv_8B, fm_amount_HCTZiv_8C, fm_amount_HCTZpo_12, fm_amount_HCTZpo_6, fm_amount_HCTZpo_7, fm_amount_HCTZpo_8, fm_amount_HCTZpo_9, fm_cmax_HCTZiv_10, fm_cmax_HCTZiv_11, fm_cmax_HCTZiv_12, fm_cmax_HCTZiv_13A, fm_cmax_HCTZiv_13B, fm_cmax_HCTZiv_14, fm_cmax_HCTZiv_15, fm_cmax_HCTZiv_8B, fm_cmax_HCTZiv_8C, fm_cmax_HCTZpo_12, fm_cmax_HCTZpo_6, fm_cmax_HCTZpo_7, fm_cmax_HCTZpo_8, fm_cmax_HCTZpo_9; Beermann1976: fm_hctz_iv1_5_feces, fm_hctz_iv35_4_feces; Beermann1977a: fm_Fig5tc_0_urinvol, fm_Fig5tc_12_5_urinvol, fm_Fig5tc_25_urinvol, fm_Fig5tc_50_urinvol, fm_Fig5tc_75_urinvol; Knauf1995: fm_hctz25_Fig1_na_urine_healthy</td>
+        <td class="num">77</td><td class="num">36</td>
+        <td class="num">4</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Metrics of the limitations</h3>
+  <div class="card scroll">
+    <table data-filter="row" class="compact">
+      <thead><tr>
+        <th data-sort="text">context of use</th><th data-sort="text">limitation</th>
+<th class="num" data-sort="num">GMFE</th><th class="num" data-sort="num">AFE</th><th class="num" data-sort="num">within_1.25fold</th><th class="num" data-sort="num">within_1.5fold</th><th class="num" data-sort="num">within_2fold</th><th class="num" data-sort="num">within_1sd</th><th class="num" data-sort="num">within_2sd</th>      </tr></thead>
+      <tbody>
+      <tr>
+        <td><span class="soft">the model</span></td>
+        <td>limitations</td>
+<td class="num">1.92</td><td class="num">1.3</td><td class="num">24</td><td class="num">46.7</td><td class="num">60</td><td class="num">0</td><td class="num">60</td>      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="unclaimed">
+  <h2>Unclaimed validation data</h2>
+  <p class="note">The validation points of the adopted fits which no evidence and no limitation selects.</p>
+  <div class="card scroll">
+    <table data-filter="row" class="compact">
+      <thead><tr>
+        <th data-sort="text">fit</th><th data-sort="text">study</th>
+        <th data-sort="text">mapping</th><th class="num" data-sort="num">points</th>
+      </tr></thead>
+      <tbody>
+      <tr><td class="mono">PK</td><td class="mono">Beermann1976</td><td class="mono wrap">fm_hctz_po50_II_urine</td><td class="num">2</td></tr>
+      <tr><td class="mono">PK</td><td class="mono">Beermann1976</td><td class="mono wrap">fm_hctz_po50_I_urine</td><td class="num">2</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="verification">
+  <h2>Verification</h2>
+  <p class="note">Every adopted fit is evaluated again at its reference parameters with the tolerances divided by 100 (discretization error) and with the BDF of CVODE of at most order 2 instead of 5 at the tightened tolerances (numerical solver error). A check of a context of use passes when the largest relative difference of its decisive predictions is at most 0.01 and its acceptance does not change; a difference below 1e-06 of the largest prediction of the mapping is none. The setup (use error) passes when the variants are valid SBML with consistent units and every decisive prediction is finite.</p>
+  <div class="card scroll">
+    <table class="compact">
+      <thead><tr><th>fit</th><th>reference</th><th>tolerances</th><th>second integration method</th></tr></thead>
+      <tbody>
+      <tr><td class="mono">PK</td><td class="mono wrap">CVODE BDF, rtol 1e-06, atol amount 1.0e-06, concentration 1.0e-06, other 1.0e-06</td><td class="mono wrap">CVODE BDF, rtol 1e-08, atol amount 1.0e-08, concentration 1.0e-08, other 1.0e-08</td><td class="mono wrap">CVODE BDF of order at most 2, rtol 1e-08, atol amount 1.0e-08, concentration 1.0e-08, other 1.0e-08</td></tr>
+      <tr><td class="mono">PD</td><td class="mono wrap">CVODE BDF, rtol 1e-06, atol amount 1.0e-06, concentration 1.0e-06, other 1.0e-06</td><td class="mono wrap">CVODE BDF, rtol 1e-08, atol amount 1.0e-08, concentration 1.0e-08, other 1.0e-08</td><td class="mono wrap">CVODE BDF of order at most 2, rtol 1e-08, atol amount 1.0e-08, concentration 1.0e-08, other 1.0e-08</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Variants</h3>
+  <div class="card">
+    <p class="empty">Every variant is valid SBML with consistent units.</p>
+  </div>
+
+  <h3 id="battery">Battery of the variants</h3>
+  <p class="note">The variants of the model are checked without data, the same for every context of use: roadrunner CVODE BDF, rtol 1e-10, atol 1e-16; every simulation from 0 to 2880 on a grid of 288 intervals. The model starts at its steady state, which is checked. Second simulators: amici, a compilation longer than 900 s is not compared. The time in min, 48 h on a grid of 10 min; a dose of 10 mg, an infusion over 60 min; the superposition of 0.01 mg at 0 and 720 min. A check which is not applicable assesses nothing.</p>
+  <div class="card scroll">
+    <table>
+      <thead><tr><th>check</th><th>factor</th><th class="num">cases</th><th class="num">largest deviation</th><th>at</th><th>result</th></tr></thead>
+      <tbody>
+      <tr>
+        <td class="named">dose states of the model<br><span class="soft">Every state in mg which a reaction reads is a dose state the battery knows, so every dose of the model is checked.</span></td>
+        <td class="mono">use_error</td>
+        <td class="num">1</td>
+        <td class="num"></td>
+        <td class="mono wrap"></td>
+        <td><span class="state passed">passed</span></td>
+      </tr>
+      <tr>
+        <td class="named">mass balance<br><span class="soft">The amounts of the substances, of their sinks and doses change by the infusion and the flows of the reactions which read no dose alone, at most 1e-06 of the largest term.</span></td>
+        <td class="mono">numerical_code_verification</td>
+        <td class="num">5</td>
+        <td class="num">3.51e-15</td>
+        <td class="mono wrap">male PODOSE_hctz</td>
+        <td><span class="state passed">passed</span></td>
+      </tr>
+      <tr>
+        <td class="named">non-negativity<br><span class="soft">No species becomes negative beyond 1e-06 of its largest value.</span></td>
+        <td class="mono">numerical_code_verification</td>
+        <td class="num">64</td>
+        <td class="num">6.31e-31</td>
+        <td class="mono wrap">male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz</td>
+        <td><span class="state passed">passed</span></td>
+      </tr>
+      <tr>
+        <td class="named">zero dose<br><span class="soft">Without a dose the species of a substance which starts at zero stay zero.</span></td>
+        <td class="mono">numerical_code_verification</td>
+        <td class="num">58</td>
+        <td class="num">0</td>
+        <td class="mono wrap"></td>
+        <td><span class="state passed">passed</span></td>
+      </tr>
+      <tr>
+        <td class="named">steady state<br><span class="soft">Without a change every state but the sinks stays at its start, within 1e-06 of it.</span></td>
+        <td class="mono">numerical_code_verification</td>
+        <td class="num">65</td>
+        <td class="num">6.85e-15</td>
+        <td class="mono wrap">male: FLUID__cl_loop</td>
+        <td><span class="state passed">passed</span></td>
+      </tr>
+      <tr>
+        <td class="named">superposition<br><span class="soft">Twice a dose of 0.01 mg gives twice the response, and two doses at 0 and 720 min the sum of their responses, within 0.01 of the largest response.</span></td>
+        <td class="mono">numerical_code_verification</td>
+        <td class="num">4</td>
+        <td class="num">3.44e-09</td>
+        <td class="mono wrap">male IVDOSE_hctz two doses: MU__Cti_hctz</td>
+        <td><span class="state passed">passed</span></td>
+      </tr>
+      <tr>
+        <td class="named">second simulator<br><span class="soft">AMICI is not installed, install sbmlsim with the extra &#39;amici&#39;.</span></td>
+        <td class="mono">numerical_code_verification</td>
+        <td class="num"></td>
+        <td class="num"></td>
+        <td class="mono wrap"></td>
+        <td><span class="state not_applicable">not applicable</span></td>
+      </tr>
+      <tr>
+        <td class="named">plausibility of the values<br><span class="soft">The initial state has finite values, positive compartments and species which are not negative, and no fitted value lies within 0.001 of the range of a bound.</span></td>
+        <td class="mono">use_error</td>
+        <td class="num">495</td>
+        <td class="num"></td>
+        <td class="mono wrap"></td>
+        <td><span class="state passed">passed</span></td>
+      </tr>
+      <tr>
+        <td class="named">rebuild<br><span class="soft">The factory builds the models of the project again, equal but for the dates of the model history.</span></td>
+        <td class="mono">software_quality_assurance</td>
+        <td class="num">13</td>
+        <td class="num"></td>
+        <td class="mono wrap"></td>
+        <td><span class="state passed">passed</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Fate of the doses</h3>
+<p class="note">Where a dose is at the end of the simulation, as a share of the dose, relative to the simulation without a dose: in the body, in the urine and the feces (the unabsorbed part of a rectal dose among them), in the loss of an injected depot (what it does not absorb), not yet applied (dose) and moved by every reaction which reads no dose (negative an elimination, positive a production, e.g. of a metabolite).</p>
+<div class="card scroll">
+  <table class="compact">
+    <thead><tr><th>build</th><th>dose</th><th class="num">mmole</th><th>parts</th><th class="num">imbalance</th></tr></thead>
+    <tbody>
+    <tr>
+      <td>male</td>
+      <td class="mono">IVDOSE_hctz</td>
+      <td class="num">0.0336</td>
+      <td class="mono wrap">body 0.0252, urine 0.975</td>
+      <td class="num">3.1e-15</td>
+    </tr>
+    <tr>
+      <td>male</td>
+      <td class="mono">Ri_hctz</td>
+      <td class="num">0.0336</td>
+      <td class="mono wrap">body 0.0256, urine 0.974</td>
+      <td class="num">1.03e-15</td>
+    </tr>
+    <tr>
+      <td>male</td>
+      <td class="mono">PODOSE_hctz</td>
+      <td class="num">0.0336</td>
+      <td class="mono wrap">body 0.0882, urine 0.644, feces 0.268</td>
+      <td class="num">3.51e-15</td>
+    </tr>
+    <tr>
+      <td>male</td>
+      <td class="mono">SOLDOSE_hctz</td>
+      <td class="num">0.0336</td>
+      <td class="mono wrap">body 0.0801, urine 0.688, feces 0.232</td>
+      <td class="num">3.31e-15</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</section>
+
+
+<section id="studies">
+  <h2>Study data</h2>
+  <p class="note">The data of every study with points in the adopted fits, as the simulations read it from the data folders of the model, and the record of its collection from pkdb_data: the day of the first collection (from the collection itself or from the git history of the model), the day of the latest collection, the release in PK-DB and the commit of the checkout. A table which differs from the record was changed after the collection.</p>
+<p class="text">24 studies, 24 with a record of their collection.</p>
+<div class="card scroll">
+  <table class="compact">
+    <thead><tr><th>study</th><th class="num">points</th><th>first collected</th><th>latest collection</th><th>released</th><th>pkdb_data</th><th>source digest</th><th>tables</th></tr></thead>
+    <tbody>
+    <tr>
+      <td>Anderson1961<div class="soft mono">data/hydrochlorothiazide/Anderson1961</div></td>
+      <td class="num">76</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2025-11-18 <span class="soft mono">PKDB01102</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>6 as collected</td>
+    </tr>
+    <tr>
+      <td>Azumaya1990<div class="soft mono">data/hydrochlorothiazide/Azumaya1990</div></td>
+      <td class="num">19</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2025-11-18 <span class="soft mono">PKDB01103</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>4 as collected</td>
+    </tr>
+    <tr>
+      <td>Barbhaiya1982<div class="soft mono">data/hydrochlorothiazide/Barbhaiya1982</div></td>
+      <td class="num">34</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00751</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>8 as collected</td>
+    </tr>
+    <tr>
+      <td>Barbhaiya1982a<div class="soft mono">data/hydrochlorothiazide/Barbhaiya1982a</div></td>
+      <td class="num">36</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2025-11-18 <span class="soft mono">PKDB01104</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>6 as collected</td>
+    </tr>
+    <tr>
+      <td>Beermann1976<div class="soft mono">data/hydrochlorothiazide/Beermann1976</div></td>
+      <td class="num">68</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00752</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>6 as collected</td>
+    </tr>
+    <tr>
+      <td>Beermann1977a<div class="soft mono">data/hydrochlorothiazide/Beermann1977a</div></td>
+      <td class="num">87</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2025-03-06 <span class="soft mono">PKDB00821</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>11 as collected</td>
+    </tr>
+    <tr>
+      <td>Devineni2014<div class="soft mono">data/canagliflozin/Devineni2014</div></td>
+      <td class="num">14</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-09-13 <span class="soft mono">PKDB00879</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>8 as collected</td>
+    </tr>
+    <tr>
+      <td>Giudicelli1987<div class="soft mono">data/hydrochlorothiazide/Giudicelli1987</div></td>
+      <td class="num">18</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00753</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>11 as collected</td>
+    </tr>
+    <tr>
+      <td>Heise2015<div class="soft mono">data/hydrochlorothiazide/Heise2015</div></td>
+      <td class="num">14</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-07-08 <span class="soft mono">PKDB00852</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>9 as collected</td>
+    </tr>
+    <tr>
+      <td>Howes1991<div class="soft mono">data/hydrochlorothiazide/Howes1991</div></td>
+      <td class="num">33</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-04-24 <span class="soft mono">PKDB00777</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>7 as collected</td>
+    </tr>
+    <tr>
+      <td>Hsiao2015<div class="soft mono">data/hydrochlorothiazide/Hsiao2015</div></td>
+      <td class="num">11</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00754</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>5 as collected</td>
+    </tr>
+    <tr>
+      <td>Hunninghake1986<div class="soft mono">data/hydrochlorothiazide/Hunninghake1986</div></td>
+      <td class="num">25</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00755</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>7 as collected</td>
+    </tr>
+    <tr>
+      <td>Jeon2012<div class="soft mono">data/hydrochlorothiazide/Jeon2012</div></td>
+      <td class="num">30</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00756</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>8 as collected</td>
+    </tr>
+    <tr>
+      <td>Jordo1979<div class="soft mono">data/hydrochlorothiazide/Jordo1979</div></td>
+      <td class="num">36</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00757</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>7 as collected</td>
+    </tr>
+    <tr>
+      <td>Knauf1995<div class="soft mono">data/hydrochlorothiazide/Knauf1995</div></td>
+      <td class="num">62</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap"><span class="soft">not released</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>9 as collected</td>
+    </tr>
+    <tr>
+      <td>Koytchev2004<div class="soft mono">data/lisinopril/Koytchev2004</div></td>
+      <td class="num">30</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-07-08 <span class="soft mono">PKDB00853</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>7 as collected</td>
+    </tr>
+    <tr>
+      <td>Niemeyer1983<div class="soft mono">data/hydrochlorothiazide/Niemeyer1983</div></td>
+      <td class="num">24</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00758</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>7 as collected</td>
+    </tr>
+    <tr>
+      <td>Nilsen1989<div class="soft mono">data/hydrochlorothiazide/Nilsen1989</div></td>
+      <td class="num">6</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2025-11-18 <span class="soft mono">PKDB01107</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>8 as collected</td>
+    </tr>
+    <tr>
+      <td>Niopas2004<div class="soft mono">data/enalapril/Niopas2004</div></td>
+      <td class="num">33</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-04-24 <span class="soft mono">PKDB00789</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>7 as collected</td>
+    </tr>
+    <tr>
+      <td>Patel1984<div class="soft mono">data/hydrochlorothiazide/Patel1984</div></td>
+      <td class="num">150</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00759</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>8 as collected</td>
+    </tr>
+    <tr>
+      <td>Ripley2000<div class="soft mono">data/hydrochlorothiazide/Ripley2000</div></td>
+      <td class="num">10</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2025-11-18 <span class="soft mono">PKDB01108</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>8 as collected</td>
+    </tr>
+    <tr>
+      <td>Vaidyanathan2006<div class="soft mono">data/aliskiren/Vaidyanathan2006</div></td>
+      <td class="num">26</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2023-03-19 <span class="soft mono">PKDB00681</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>8 as collected</td>
+    </tr>
+    <tr>
+      <td>Weir1998<div class="soft mono">data/hydrochlorothiazide/Weir1998</div></td>
+      <td class="num">38</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2024-03-26 <span class="soft mono">PKDB00760</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>7 as collected</td>
+    </tr>
+    <tr>
+      <td>Williams1982<div class="soft mono">data/hydrochlorothiazide/Williams1982</div></td>
+      <td class="num">84</td>
+      <td class="nowrap">2026-02-10 <span class="soft">(git)</span></td>
+      <td class="nowrap">2026-10-25</td>
+      <td class="nowrap">2025-11-18 <span class="soft mono">PKDB01109</span></td>
+      <td class="mono nowrap"><span class="soft">unknown</span></td>
+      <td class="mono"></td>
+      <td>7 as collected</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</section>
+
+<section id="provenance">
+  <h2>Provenance</h2>
+  <div class="card">
+    <dl class="kv">
+      <dt>model</dt><dd class="mono">hctz</dd>
+      <dt>title</dt><dd>HCTZ PBPK/PD model</dd>
+      <dt>adopted fits</dt><dd class="mono">PK_20261110_080555__bb639
+PD_20261110_084942__d8038</dd>
+      <dt>sbmlsim</dt><dd class="mono">0.34.0</dd>
+      <dt>sbmlutils</dt><dd class="mono">0.17.2</dd>
+      <dt>libroadrunner</dt><dd class="mono">2.12.0.dev700</dd>
+      <dt>pkpdsim</dt><dd class="mono">0.31.0</dd>
+      <dt>commit</dt><dd class="mono">1044679e4444538e5fe6820cc6fbe5473d5745f9</dd>
+      <dt>date</dt><dd class="mono">2026-11-20T16:32:14+01:00</dd>
+      <dt>lock</dt><dd><span class="soft">the declaration has no lock</span></dd>
+    </dl>
+  </div>
+</section>
+</main>
+
+<footer>
+created by sbmlsim 0.34.0 on 2026-11-20T16:32:14+01:00</footer>
+
+<div id="lightbox"><img alt=""></div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- search and the filter chips ------------------------------------
+  const search = document.getElementById("search");
+  const hits = document.getElementById("hits");
+  const chips = Array.from(document.querySelectorAll(".chip"));
+  const cards = Array.from(document.querySelectorAll('[data-filter="card"]'));
+  const rows = Array.from(document.querySelectorAll('table[data-filter="row"] tbody tr'));
+  const empty = document.querySelector("[data-empty]");
+  const itemLabel = document.body.dataset.items || "items";
+
+  const haystack = new Map();
+  for (const node of [...cards, ...rows]) {
+    haystack.set(node, node.textContent.toLowerCase());
+  }
+
+  function activeKinds() {
+    return new Set(chips.filter((c) => c.getAttribute("aria-pressed") === "true")
+                        .map((c) => c.dataset.kind));
+  }
+
+  function matches(node, query, kinds) {
+    const kind = node.dataset.kind;
+    if (kind && !kinds.has(kind)) return false;
+    return !query || haystack.get(node).includes(query);
+  }
+
+  function apply() {
+    const query = search.value.trim().toLowerCase();
+    const kinds = activeKinds();
+    let shownCards = 0;
+    for (const node of cards) {
+      const show = matches(node, query, kinds);
+      node.classList.toggle("hidden", !show);
+      if (show) shownCards += 1;
+    }
+    for (const node of rows) {
+      node.classList.toggle("hidden", !matches(node, query, kinds));
+    }
+    if (empty) empty.classList.toggle("hidden", shownCards > 0 || cards.length === 0);
+    const filtering = Boolean(query) || (chips.length > 0 && kinds.size < chips.length);
+    hits.textContent = filtering
+      ? shownCards + " / " + cards.length + " " + itemLabel
+      : "";
+  }
+
+  search.addEventListener("input", apply);
+  for (const chip of chips) {
+    chip.addEventListener("click", () => {
+      chip.setAttribute("aria-pressed", chip.getAttribute("aria-pressed") === "true" ? "false" : "true");
+      apply();
+    });
+  }
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "/" && document.activeElement !== search) {
+      event.preventDefault();
+      search.focus();
+    } else if (event.key === "Escape") {
+      if (document.activeElement === search && search.value) { search.value = ""; apply(); }
+      closeLightbox();
+    }
+  });
+
+  // ---- sortable tables -------------------------------------------------
+  function cellValue(row, index, kind) {
+    const text = row.cells[index] ? row.cells[index].textContent.trim() : "";
+    if (kind !== "num") return text.toLowerCase();
+    // the AIC of a perfect fit is -inf, a cell without a value sorts last
+    if (text === "-inf") return Number.NEGATIVE_INFINITY;
+    const value = parseFloat(text);
+    return Number.isNaN(value) ? Number.POSITIVE_INFINITY : value;
+  }
+
+  for (const table of document.querySelectorAll("table")) {
+    const headers = Array.from(table.querySelectorAll("th[data-sort]"));
+    headers.forEach((th, index) => {
+      th.addEventListener("click", () => {
+        const body = table.tBodies[0];
+        if (!body) return;
+        const kind = th.dataset.sort;
+        const descending = th.classList.contains("asc");
+        for (const other of headers) other.classList.remove("asc", "desc");
+        th.classList.add(descending ? "desc" : "asc");
+        const sorted = Array.from(body.rows).sort((a, b) => {
+          const left = cellValue(a, index, kind);
+          const right = cellValue(b, index, kind);
+          if (left < right) return descending ? 1 : -1;
+          if (left > right) return descending ? -1 : 1;
+          return 0;
+        });
+        for (const row of sorted) body.appendChild(row);
+      });
+    });
+  }
+
+  // ---- the section the page is scrolled to -----------------------------
+  // a tab (data-tab) is not a section, its page marks the tab which is shown
+  const links = Array.from(document.querySelectorAll("nav.sections a:not([data-tab])"));
+  const sections = links.map((link) => document.querySelector(link.getAttribute("href")));
+  function scrollspy() {
+    let current = 0;
+    sections.forEach((section, index) => {
+      if (section && section.getBoundingClientRect().top < 200) current = index;
+    });
+    links.forEach((link, index) => link.classList.toggle("active", index === current));
+  }
+  window.addEventListener("scroll", scrollspy, { passive: true });
+  scrollspy();
+
+  // ---- click a figure to enlarge it ------------------------------------
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = lightbox.querySelector("img");
+  function closeLightbox() { lightbox.classList.remove("open"); lightboxImage.src = ""; }
+  for (const image of document.querySelectorAll("figure img")) {
+    image.addEventListener("click", () => {
+      lightboxImage.src = image.getAttribute("src");
+      lightbox.classList.add("open");
+    });
+  }
+  lightbox.addEventListener("click", closeLightbox);
+
+  apply();
+})();
+</script>
+</body>
+</html>

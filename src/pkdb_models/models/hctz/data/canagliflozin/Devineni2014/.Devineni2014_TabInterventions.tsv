@@ -1,3 +1,4 @@
-study	name	time	time_end	time_unit	route	application	measurement_type	form	substance	value	unit	comments
-Devineni2014	CAN300	S-6T1R7	NA	day	oral	multiple dose	dosing	tablet	canagliflozin	300	mg	NA
-Devineni2014	HCTZ25	S-27T1R28	NA	day	oral	multiple dose	dosing	tablet	hydrochlorothiazide	25	mg	NA
+study	name	time	time_end	time_unit	interval	doses	route	application	measurement_type	form	substance	value	unit	comments
+Devineni2014	CAN300	-6.0	NA	day	1.0	7	oral	multiple dose	dosing	tablet	canagliflozin	300.0	mg	canagliflozin 300 mg once daily on days 1-7 of period 1 and on days 29-35 of period 2; time 0 is the dose of day 7 or day 35
+Devineni2014	HCTZ25	-27.0	NA	day	1.0	28	oral	multiple dose	dosing	tablet	hydrochlorothiazide	25.0	mg	HCTZ 25 mg once daily on days 1-28 of period 2; time 0 is the dose of day 28
+Devineni2014	HCTZ25_35d	-34.0	NA	day	1.0	35	oral	multiple dose	dosing	tablet	hydrochlorothiazide	25.0	mg	HCTZ 25 mg once daily on days 1-35 of period 2 (alone on days 1-28, with canagliflozin on days 29-35); time 0 is the dose of day 35

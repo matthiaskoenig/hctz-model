@@ -1,23 +1,27 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	median	mean_pm	cv	sd	se	min	max	unit	comments
-Jeon2012	NA	FIMA_mono	16.0	FIMA240	muliple_dosing_cmax	fimasartan	plasma	LC MS/MS	NA	NA	NA	NA	347.2	NA	NA	45.8	NA	NA	NA	NA	µg/l	NA
-Jeon2012	NA	FIMA_mono	16.0	FIMA240	auc measurement	fimasartan	plasma	LC MS/MS	NA	NA	NA	NA	1270.6	NA	NA	30.8	NA	NA	NA	NA	µg/l*hr	NA
-Jeon2012	NA	FIMA_mono	16.0	FIMA240	clearance	fimasartan	plasma	LC MS/MS	NA	NA	NA	NA	208.5	NA	NA	34.0	NA	NA	NA	NA	l/hr	NA
-Jeon2012	NA	FIMA_mono	16.0	FIMA240	tmax	fimasartan	plasma	LC MS/MS	NA	NA	NA	NA	NA	1.0	NA	NA	NA	NA	0.5	6.0	hr	NA
-Jeon2012	NA	FIMA_mono	16.0	FIMA240,HCTZ25	muliple_dosing_cmax	fimasartan	plasma	LC MS/MS	NA	NA	NA	NA	501.7	NA	NA	63.0	NA	NA	NA	NA	µg/l	NA
-Jeon2012	NA	FIMA_mono	16.0	FIMA240,HCTZ25	auc measurement	fimasartan	plasma	LC MS/MS	NA	NA	NA	NA	1513.4	NA	NA	36.8	NA	NA	NA	NA	µg/l*hr	NA
-Jeon2012	NA	FIMA_mono	16.0	FIMA240,HCTZ25	clearance	fimasartan	plasma	LC MS/MS	NA	NA	NA	NA	179.9	NA	NA	37.3	NA	NA	NA	NA	l/hr	NA
-Jeon2012	NA	FIMA_mono	16.0	FIMA240,HCTZ25	tmax	fimasartan	plasma	LC MS/MS	NA	NA	NA	NA	NA	1.0	NA	NA	NA	NA	0.5	4.0	hr	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25	muliple_dosing_cmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	NA	215.7	NA	NA	34.0	73.338	NA	NA	NA	µg/l	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25	auc measurement	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	NA	1369.0	NA	NA	23.4	320.346	NA	NA	NA	µg/l*hr	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25	clearance	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	NA	19.1	NA	NA	20.9	3.9919	NA	NA	NA	l/hr	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25	tmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	NA	NA	2.5	NA	NA	NA	NA	1.0	4.0	hr	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25	cumulative amount	hydrochlorothiazide	urine	LC MS/MS	amount_cumulative_hctz25	24.0	hr	NA	13.3	NA	NA	19.8	2.6334000000000004	NA	NA	NA	mg	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25	recovery	hydrochlorothiazide	urine	LC MS/MS	recovery_hctz25	24.0	hr	NA	53.2	NA	NA	19.8	10.533600000000002	NA	NA	NA	percent	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25	urinary volume	hydrochlorothiazide	urine	NR	urine_vol_hctz25	24.0	hr	NA	1698.0	NA	NA	627.0	10646.46	NA	NA	NA	ml	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25,FIMA240	muliple_dosing_cmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	NA	199.8	NA	NA	24.4	NA	NA	NA	NA	µg/l	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25,FIMA240	auc measurement	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	NA	1207.6	NA	NA	24.4	NA	NA	NA	NA	µg/l*hr	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25,FIMA240	clearance	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	NA	21.9	NA	NA	25.6	NA	NA	NA	NA	l/hr	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25,FIMA240	tmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	NA	NA	2.0	NA	NA	NA	NA	1.0	4.0	hr	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25,FIMA240	cumulative amount	hydrochlorothiazide	urine	LC MS/MS	amount_cumulative_hctz25_kombi	24.0	hr	NA	17.7	NA	NA	15.1	NA	NA	NA	NA	mg	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25,FIMA240	recovery	hydrochlorothiazide	urine	LC MS/MS	recovery_hctz25_kombi	24.0	hr	NA	70.9	NA	NA	15.1	NA	NA	NA	NA	percent	NA
-Jeon2012	NA	HCTZ_mono	13.0	HCTZ25,FIMA240	urinary volume	hydrochlorothiazide	urine	NR	urine_vol_hctz25_kombi	24.0	hr	NA	2135.0	NA	NA	831.0	NA	NA	NA	NA	ml	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Jeon2012	FIMA_mono	NA	16	FIMA240	auc measurement	sample mean	NA	fimasartan	plasma	LC MS/MS	auc_measurement_fimasartan_plasma_FIMA240_FIMA_mono	NA	NA	NA	1270.6	NA	391.34479999999996	97.83619999999999	0.308	NA	NA	NA	NA	NA	µg/l*hr	NA
+Jeon2012	FIMA_mono	NA	16	FIMA240	clearance	sample mean	NA	fimasartan	plasma	LC MS/MS	clearance_fimasartan_plasma_FIMA240_FIMA_mono	NA	NA	NA	208.5	NA	70.89	17.7225	0.34	NA	NA	NA	NA	NA	l/hr	NA
+Jeon2012	FIMA_mono	NA	16	FIMA240	muliple_dosing_cmax	sample mean	NA	fimasartan	plasma	LC MS/MS	muliple_dosing_cmax_fimasartan_plasma_FIMA240_FIMA_mono	NA	NA	NA	347.2	NA	159.0176	39.7544	0.45799999999999996	NA	NA	NA	NA	NA	µg/l	NA
+Jeon2012	FIMA_mono	NA	16	FIMA240	tmax	sample mean	NA	fimasartan	plasma	LC MS/MS	tmax_fimasartan_plasma_FIMA240_FIMA_mono	NA	NA	NA	NA	1.0	NA	NA	NA	0.5	6.0	NA	NA	NA	hr	NA
+Jeon2012	FIMA_mono	NA	16	FIMA240,HCTZ25	auc measurement	sample mean	NA	fimasartan	plasma	LC MS/MS	auc_measurement_fimasartan_plasma_FIMA240_HCTZ25_FIMA_mono	NA	NA	NA	1513.4	NA	556.9312	139.2328	0.368	NA	NA	NA	NA	NA	µg/l*hr	NA
+Jeon2012	FIMA_mono	NA	16	FIMA240,HCTZ25	clearance	sample mean	NA	fimasartan	plasma	LC MS/MS	clearance_fimasartan_plasma_FIMA240_HCTZ25_FIMA_mono	NA	NA	NA	179.9	NA	67.1027	16.775675	0.373	NA	NA	NA	NA	NA	l/hr	NA
+Jeon2012	FIMA_mono	NA	16	FIMA240,HCTZ25	muliple_dosing_cmax	sample mean	NA	fimasartan	plasma	LC MS/MS	muliple_dosing_cmax_fimasartan_plasma_FIMA240_HCTZ25_FIMA_mono	NA	NA	NA	501.7	NA	316.07099999999997	79.01774999999999	0.63	NA	NA	NA	NA	NA	µg/l	NA
+Jeon2012	FIMA_mono	NA	16	FIMA240,HCTZ25	tmax	sample mean	NA	fimasartan	plasma	LC MS/MS	tmax_fimasartan_plasma_FIMA240_HCTZ25_FIMA_mono	NA	NA	NA	NA	1.0	NA	NA	NA	0.5	4.0	NA	NA	NA	hr	NA
+Jeon2012	HCTZ_mono	NA	13	FIMA240,HCTZ25	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	auc_measurement_hydrochlorothiazide_plasma_FIMA240_HCTZ25_HCTZ_mono	NA	NA	NA	1207.6	NA	294.65439999999995	81.72242674931357	0.244	NA	NA	NA	NA	NA	µg/l*hr	NA
+Jeon2012	HCTZ_mono	NA	13	FIMA240,HCTZ25	clearance	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	clearance_hydrochlorothiazide_plasma_FIMA240_HCTZ25_HCTZ_mono	NA	NA	NA	21.9	NA	5.6064	1.5549355900585622	0.256	NA	NA	NA	NA	NA	l/hr	NA
+Jeon2012	HCTZ_mono	NA	13	FIMA240,HCTZ25	cumulative amount	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	cumulative_amount_hydrochlorothiazide_urine_FIMA240_HCTZ25_HCTZ_mono	0.0	hr	NA	0.0	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	NA
+Jeon2012	HCTZ_mono	NA	13	FIMA240,HCTZ25	cumulative amount	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	cumulative_amount_hydrochlorothiazide_urine_FIMA240_HCTZ25_HCTZ_mono	24.0	hr	NA	17.7	NA	2.6727	0.7412736072255849	0.151	NA	NA	NA	NA	NA	mg	NA
+Jeon2012	HCTZ_mono	NA	13	FIMA240,HCTZ25	muliple_dosing_cmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	muliple_dosing_cmax_hydrochlorothiazide_plasma_FIMA240_HCTZ25_HCTZ_mono	NA	NA	NA	199.8	NA	48.751200000000004	13.521150103107697	0.244	NA	NA	NA	NA	NA	µg/l	NA
+Jeon2012	HCTZ_mono	NA	13	FIMA240,HCTZ25	recovery	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	recovery_hydrochlorothiazide_urine_FIMA240_HCTZ25_HCTZ_mono	0.0	hr	NA	0.0	NA	NA	NA	NA	NA	NA	NA	NA	NA	percent	NA
+Jeon2012	HCTZ_mono	NA	13	FIMA240,HCTZ25	recovery	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	recovery_hydrochlorothiazide_urine_FIMA240_HCTZ25_HCTZ_mono	24.0	hr	NA	70.9	NA	10.7059	2.9692824153838404	0.151	NA	NA	NA	NA	NA	percent	NA
+Jeon2012	HCTZ_mono	NA	13	FIMA240,HCTZ25	tmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	tmax_hydrochlorothiazide_plasma_FIMA240_HCTZ25_HCTZ_mono	NA	NA	NA	NA	2.0	NA	NA	NA	1.0	4.0	NA	NA	NA	hr	NA
+Jeon2012	HCTZ_mono	NA	13	FIMA240,HCTZ25	urinary volume	sample mean	NA	hydrochlorothiazide	urine	NR	urinary_volume_hydrochlorothiazide_urine_FIMA240_HCTZ25_HCTZ_mono	24.0	hr	NA	2135.0	NA	831.0	230.4779315315827	0.3892271662763466	NA	NA	NA	NA	NA	ml	NA
+Jeon2012	HCTZ_mono	NA	13	HCTZ25	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	auc_measurement_hydrochlorothiazide_plasma_HCTZ25_HCTZ_mono	NA	NA	NA	1369.0	NA	320.346	88.84799452998362	0.23399999999999999	NA	NA	NA	NA	NA	µg/l*hr	NA
+Jeon2012	HCTZ_mono	NA	13	HCTZ25	clearance	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	clearance_hydrochlorothiazide_plasma_HCTZ25_HCTZ_mono	NA	NA	NA	19.1	NA	3.9919000000000002	1.1071538566557462	0.209	NA	NA	NA	NA	NA	l/hr	NA
+Jeon2012	HCTZ_mono	NA	13	HCTZ25	cumulative amount	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	cumulative_amount_hydrochlorothiazide_urine_HCTZ25_HCTZ_mono	0.0	hr	NA	0.0	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	NA
+Jeon2012	HCTZ_mono	NA	13	HCTZ25	cumulative amount	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	cumulative_amount_hydrochlorothiazide_urine_HCTZ25_HCTZ_mono	24.0	hr	NA	13.3	NA	2.6334000000000004	0.7303737483697593	0.198	NA	NA	NA	NA	NA	mg	NA
+Jeon2012	HCTZ_mono	NA	13	HCTZ25	muliple_dosing_cmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	muliple_dosing_cmax_hydrochlorothiazide_plasma_HCTZ25_HCTZ_mono	NA	NA	NA	215.7	NA	73.33800000000001	20.34030149538293	0.34	NA	NA	NA	NA	NA	µg/l	NA
+Jeon2012	HCTZ_mono	NA	13	HCTZ25	recovery	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	recovery_hydrochlorothiazide_urine_HCTZ25_HCTZ_mono	0.0	hr	NA	0.0	NA	NA	NA	NA	NA	NA	NA	NA	NA	percent	NA
+Jeon2012	HCTZ_mono	NA	13	HCTZ25	recovery	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	recovery_hydrochlorothiazide_urine_HCTZ25_HCTZ_mono	24.0	hr	NA	53.2	NA	10.533600000000002	2.9214949934790373	0.198	NA	NA	NA	NA	NA	percent	NA
+Jeon2012	HCTZ_mono	NA	13	HCTZ25	tmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	tmax_hydrochlorothiazide_plasma_HCTZ25_HCTZ_mono	NA	NA	NA	NA	2.5	NA	NA	NA	1.0	4.0	NA	NA	NA	hr	NA
+Jeon2012	HCTZ_mono	NA	13	HCTZ25	urinary volume	sample mean	NA	hydrochlorothiazide	urine	NR	urinary_volume_hydrochlorothiazide_urine_HCTZ25_HCTZ_mono	24.0	hr	NA	1698.0	NA	627.0	173.89851151660935	0.36925795053003535	NA	NA	NA	NA	NA	ml	NA

@@ -1,0 +1,21 @@
+context	quantity	description	ratio	coverage	n_points
+describe	Carm_hctz	the plasma concentration of HCTZ	False	covered	298
+describe	Aurine_hctz	the cumulative amount of HCTZ in urine	False	covered	205
+describe	Rurine_hctz	the urinary excretion rate of HCTZ	False	covered	10
+describe	Afeces_hctz	the cumulative amount of HCTZ in feces	False	covered	2
+describe	FLUID__na_urine	the cumulative amount of sodium in urine	False	covered	69
+describe	FLUID__cl_urine	the cumulative amount of chloride in urine	False	covered	51
+describe	FLUID__Vurine	the cumulative urine volume	False	covered	29
+describe	FLUID__bp_systolic	the systolic blood pressure	False	covered	6
+describe	FLUID__bp_diastolic	the diastolic blood pressure	False	covered	6
+dose	Carm_hctz	the plasma concentration of HCTZ	False	covered	35
+dose	Aurine_hctz	the cumulative amount of HCTZ in urine	False	covered	29
+dose	Afeces_hctz	the cumulative amount of HCTZ in feces	False	covered	2
+renal	Carm_hctz	the plasma concentration of HCTZ	False	covered	10
+renal	Aurine_hctz	the cumulative amount of HCTZ in urine	False	uncovered	0
+renal	FLUID__na_urine	the cumulative amount of sodium in urine	False	uncovered	0
+interaction	Carm_hctz	the plasma concentration of HCTZ	False	covered	108
+interaction	Aurine_hctz	the cumulative amount of HCTZ in urine	False	covered	8
+interaction	hctz_auc_ratio	the AUC of HCTZ with the coadministered drug over the AUC without it	True		0
+pd	FLUID__na_urine	the cumulative amount of sodium in urine	False	covered	1
+pd	FLUID__cl_urine	the cumulative amount of chloride in urine	False	covered	1

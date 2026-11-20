@@ -29,12 +29,17 @@ class Vaidyanathan2006(HCTZSimulationExperiment):
     """Simulation experiment of Vaidyanathan2006.
 
     multiple dose 25mg HCTZ alone and in combination with aliskiren 300 mg.
+
+    The subjects of the arm of HCTZ are mostly women (13 of 22), but the
+    study runs on the male build of the model: the model has no female
+    build yet, since its fluid PD has the references of a man
+    (TODO.md, P1 "Simulate women with the female build").
     """
 
-    groups: ClassVar[list[str]] = ["hctz_HCTZ25", "hctz_HCTZ25,ALI300HCTZ"]
+    groups: ClassVar[list[str]] = ["hctz_HCTZ25", "hctz_HCTZ25_ALI300HCTZ"]
     colors: ClassVar[dict[str, str]] = {
         "hctz_HCTZ25": "black",
-        "hctz_HCTZ25,ALI300HCTZ": "tab:blue",
+        "hctz_HCTZ25_ALI300HCTZ": "tab:blue",
     }
 
     @override
@@ -46,7 +51,7 @@ class Vaidyanathan2006(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
         return dsets
@@ -66,7 +71,7 @@ class Vaidyanathan2006(HCTZSimulationExperiment):
             changes=[self.add_doses(dose_times[1:], {"PODOSE_hctz": Q(25, "mg")})],
             time_shift=-3 * 24,
         )
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -83,7 +88,7 @@ class Vaidyanathan2006(HCTZSimulationExperiment):
                     count="count",
                 ),
                 observable=FitData(
-                    self, task="task_hctz25", xid="time", yid="[Cve_hctz]"
+                    self, task="task_hctz25", xid="time", yid="Carm_hctz"
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
@@ -116,7 +121,7 @@ class Vaidyanathan2006(HCTZSimulationExperiment):
         plots[0].add_data(
             task="task_hctz25",
             xid="time",
-            yid="[Cve_hctz]",
+            yid="Carm_hctz",
             label="Sim 25",
             color="black",
         )

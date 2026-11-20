@@ -1,25 +1,25 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Hunninghake1986	NA	definitive	6	HCTZ75	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	3.3	NA	0.5	NA	hr	NA
-Hunninghake1986	NA	definitive	6	CHOL_multi	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	3.8	NA	1.0	NA	hr	NA
-Hunninghake1986	NA	definitive	6	CHOL_single_4	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	3.0	NA	0.0	NA	hr	NA
-Hunninghake1986	NA	definitive	6	HCTZ75	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	398.0	NA	40.0	NA	ng/ml	unit possibly false; µg/ml → ng/ml; SD is 40 not 4
-Hunninghake1986	NA	definitive	6	CHOL_multi	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	274.0	NA	50.0	NA	ng/ml	unit possibly false; µg/ml → ng/ml
-Hunninghake1986	NA	definitive	6	CHOL_single_4	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	390.0	NA	47.0	NA	ng/ml	unit possibly false; µg/ml → ng/ml
-Hunninghake1986	NA	definitive	6	HCTZ75	auc measurement	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	2549.0	NA	276.0	NA	ng/ml*hr	unit possibly false; µg/ml → ng/ml
-Hunninghake1986	NA	definitive	6	CHOL_multi	auc measurement	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	1737.0	NA	475.0	NA	ng/ml*hr	unit possibly false; µg/ml → ng/ml
-Hunninghake1986	NA	definitive	6	CHOL_single_4	auc measurement	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	2334.0	NA	240.0	NA	ng/ml*hr	unit possibly false; µg/ml → ng/ml
-Hunninghake1986	NA	definitive	6	HCTZ75	recovery	hydrochlorothiazide	urine	Spectrophotometry	24.0	hr	NA	56.0	NA	12.0	NA	percent	NA
-Hunninghake1986	NA	definitive	6	CHOL_multi	recovery	hydrochlorothiazide	urine	Spectrophotometry	24.0	hr	NA	36.0	NA	8.0	NA	percent	NA
-Hunninghake1986	NA	definitive	6	CHOL_single_4	recovery	hydrochlorothiazide	urine	Spectrophotometry	24.0	hr	NA	54.0	NA	8.0	NA	percent	NA
-Hunninghake1986	NA	definitive	6	HCTZ75	kel	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	0.12	NA	0.02	NA	1/hr	NA
-Hunninghake1986	NA	definitive	6	CHOL_multi	kel	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	0.14	NA	0.02	NA	1/hr	NA
-Hunninghake1986	NA	definitive	6	CHOL_single_4	kel	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	0.11	NA	0.03	NA	1/hr	NA
-Hunninghake1986	NA	definitive	6	HCTZ75	thalf	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	6.0	NA	0.8	NA	hr	NA
-Hunninghake1986	NA	definitive	6	CHOL_multi	thalf	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	4.9	NA	0.8	NA	hr	NA
-Hunninghake1986	NA	definitive	6	CHOL_single_4	thalf	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	6.8	NA	2.4	NA	hr	NA
-Hunninghake1986	NA	definitive	6	HCTZ75	vd	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	25.0	NA	3.0	NA	l	NA
-Hunninghake1986	NA	definitive	6	CHOL_multi	vd	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	29.0	NA	5.0	NA	l	NA
-Hunninghake1986	NA	definitive	6	CHOL_single_4	vd	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	32.0	NA	12.0	NA	l	NA
-Hunninghake1986	NA	definitive	6	HCTZ75	clearance_renal	hydrochlorothiazide	urine	Spectrophotometry	NA	NA	NA	275.0	NA	66.0	NA	ml/min	NA
-Hunninghake1986	NA	definitive	6	CHOL_multi	clearance_renal	hydrochlorothiazide	urine	Spectrophotometry	NA	NA	NA	281.0	NA	125.0	NA	ml/min	NA
-Hunninghake1986	NA	definitive	6	CHOL_single_4	clearance_renal	hydrochlorothiazide	urine	Spectrophotometry	NA	NA	NA	288.0	NA	27.0	NA	ml/min	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Hunninghake1986	definitive	NA	6	CHOL_multi	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_measurement_hydrochlorothiazide_plasma_CHOL_multi_definitive	NA	NA	NA	1737.0	NA	475.0	193.91793797033495	0.2734599884858952	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Hunninghake1986	definitive	NA	6	CHOL_multi	clearance_renal	sample mean	NA	hydrochlorothiazide	urine	Spectrophotometry	clearance_renal_hydrochlorothiazide_urine_CHOL_multi_definitive	NA	NA	NA	281.0	NA	125.0	51.03103630798288	0.44483985765124556	NA	NA	NA	NA	NA	ml/min	NA
+Hunninghake1986	definitive	NA	6	CHOL_multi	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_CHOL_multi_definitive	NA	NA	NA	274.0	NA	50.0	20.412414523193153	0.18248175182481752	NA	NA	NA	NA	NA	ng/ml	NA
+Hunninghake1986	definitive	NA	6	CHOL_multi	kel	sample mean	NA	hydrochlorothiazide	plasma	HPLC	kel_hydrochlorothiazide_plasma_CHOL_multi_definitive	NA	NA	NA	0.14	NA	0.02	0.008164965809277261	0.14285714285714285	NA	NA	NA	NA	NA	1/hr	NA
+Hunninghake1986	definitive	NA	6	CHOL_multi	recovery	sample mean	NA	hydrochlorothiazide	urine	Spectrophotometry	recovery_hydrochlorothiazide_urine_CHOL_multi_definitive	24.0	hr	NA	36.0	NA	8.0	3.2659863237109046	0.2222222222222222	NA	NA	NA	NA	NA	percent	NA
+Hunninghake1986	definitive	NA	6	CHOL_multi	thalf	sample mean	NA	hydrochlorothiazide	plasma	HPLC	thalf_hydrochlorothiazide_plasma_CHOL_multi_definitive	NA	NA	NA	4.9	NA	0.8	0.32659863237109044	0.16326530612244897	NA	NA	NA	NA	NA	hr	NA
+Hunninghake1986	definitive	NA	6	CHOL_multi	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_CHOL_multi_definitive	NA	NA	NA	3.8	NA	1.0	0.4082482904638631	0.2631578947368421	NA	NA	NA	NA	NA	hr	NA
+Hunninghake1986	definitive	NA	6	CHOL_multi	vd	sample mean	NA	hydrochlorothiazide	plasma	HPLC	vd_hydrochlorothiazide_plasma_CHOL_multi_definitive	NA	NA	NA	29.0	NA	5.0	2.041241452319315	0.1724137931034483	NA	NA	NA	NA	NA	l	NA
+Hunninghake1986	definitive	NA	6	CHOL_single_4	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_measurement_hydrochlorothiazide_plasma_CHOL_single_4_definitive	NA	NA	NA	2334.0	NA	240.0	97.97958971132714	0.10282776349614396	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Hunninghake1986	definitive	NA	6	CHOL_single_4	clearance_renal	sample mean	NA	hydrochlorothiazide	urine	Spectrophotometry	clearance_renal_hydrochlorothiazide_urine_CHOL_single_4_definitive	NA	NA	NA	288.0	NA	27.0	11.022703842524303	0.09375	NA	NA	NA	NA	NA	ml/min	NA
+Hunninghake1986	definitive	NA	6	CHOL_single_4	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_CHOL_single_4_definitive	NA	NA	NA	390.0	NA	47.0	19.187669651801563	0.12051282051282051	NA	NA	NA	NA	NA	ng/ml	NA
+Hunninghake1986	definitive	NA	6	CHOL_single_4	kel	sample mean	NA	hydrochlorothiazide	plasma	HPLC	kel_hydrochlorothiazide_plasma_CHOL_single_4_definitive	NA	NA	NA	0.11	NA	0.03	0.012247448713915891	0.2727272727272727	NA	NA	NA	NA	NA	1/hr	NA
+Hunninghake1986	definitive	NA	6	CHOL_single_4	recovery	sample mean	NA	hydrochlorothiazide	urine	Spectrophotometry	recovery_hydrochlorothiazide_urine_CHOL_single_4_definitive	24.0	hr	NA	54.0	NA	8.0	3.2659863237109046	0.14814814814814814	NA	NA	NA	NA	NA	percent	NA
+Hunninghake1986	definitive	NA	6	CHOL_single_4	thalf	sample mean	NA	hydrochlorothiazide	plasma	HPLC	thalf_hydrochlorothiazide_plasma_CHOL_single_4_definitive	NA	NA	NA	6.8	NA	2.4	0.9797958971132713	0.35294117647058826	NA	NA	NA	NA	NA	hr	NA
+Hunninghake1986	definitive	NA	6	CHOL_single_4	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_CHOL_single_4_definitive	NA	NA	NA	3.0	NA	0.0	0.0	0.0	NA	NA	NA	NA	NA	hr	NA
+Hunninghake1986	definitive	NA	6	CHOL_single_4	vd	sample mean	NA	hydrochlorothiazide	plasma	HPLC	vd_hydrochlorothiazide_plasma_CHOL_single_4_definitive	NA	NA	NA	32.0	NA	12.0	4.898979485566357	0.375	NA	NA	NA	NA	NA	l	NA
+Hunninghake1986	definitive	NA	6	HCTZ75	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_measurement_hydrochlorothiazide_plasma_HCTZ75_definitive	NA	NA	NA	2549.0	NA	276.0	112.67652816802621	0.10827775598273832	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Hunninghake1986	definitive	NA	6	HCTZ75	clearance_renal	sample mean	NA	hydrochlorothiazide	urine	Spectrophotometry	clearance_renal_hydrochlorothiazide_urine_HCTZ75_definitive	NA	NA	NA	275.0	NA	66.0	26.944387170614963	0.24	NA	NA	NA	NA	NA	ml/min	NA
+Hunninghake1986	definitive	NA	6	HCTZ75	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_HCTZ75_definitive	NA	NA	NA	398.0	NA	40.0	16.32993161855452	0.10050251256281408	NA	NA	NA	NA	NA	ng/ml	NA
+Hunninghake1986	definitive	NA	6	HCTZ75	kel	sample mean	NA	hydrochlorothiazide	plasma	HPLC	kel_hydrochlorothiazide_plasma_HCTZ75_definitive	NA	NA	NA	0.12	NA	0.02	0.008164965809277261	0.16666666666666669	NA	NA	NA	NA	NA	1/hr	NA
+Hunninghake1986	definitive	NA	6	HCTZ75	recovery	sample mean	NA	hydrochlorothiazide	urine	Spectrophotometry	recovery_hydrochlorothiazide_urine_HCTZ75_definitive	24.0	hr	NA	56.0	NA	12.0	4.898979485566357	0.21428571428571427	NA	NA	NA	NA	NA	percent	NA
+Hunninghake1986	definitive	NA	6	HCTZ75	thalf	sample mean	NA	hydrochlorothiazide	plasma	HPLC	thalf_hydrochlorothiazide_plasma_HCTZ75_definitive	NA	NA	NA	6.0	NA	0.8	0.32659863237109044	0.13333333333333333	NA	NA	NA	NA	NA	hr	NA
+Hunninghake1986	definitive	NA	6	HCTZ75	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ75_definitive	NA	NA	NA	3.3	NA	0.5	0.20412414523193154	0.15151515151515152	NA	NA	NA	NA	NA	hr	NA
+Hunninghake1986	definitive	NA	6	HCTZ75	vd	sample mean	NA	hydrochlorothiazide	plasma	HPLC	vd_hydrochlorothiazide_plasma_HCTZ75_definitive	NA	NA	NA	25.0	NA	3.0	1.2247448713915892	0.12	NA	NA	NA	NA	NA	l	NA

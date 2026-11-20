@@ -12,6 +12,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -45,33 +46,26 @@ class Beermann1977a(HCTZSimulationExperiment):
     # Figure 1_2
     individuals_fig1_2: ClassVar[list[str]] = ["HD", "MLL"]
     #: the urine collections of Fig1 and Fig2 [hr]: every hour from 0 to 10 hr,
-    #: then 10-12, 12-24 and 24-48 hr (methods). The curated time of a rate is
-    #: the start of its collection for HD and the end for MLL (the bars of the
-    #: figure end at the axis at 32 hr, the last collection ends at 48 hr, the
-    #: sums of the collections are the 48 hr recoveries of Tab4). The point at
-    #: 32 hr of HD and at 0 hr of MLL are no collections.
-    collections_fig1_2: ClassVar[dict[str, dict[float, tuple[float, float]]]] = {
-        "HD": {
-            **{float(t): (t, t + 1) for t in range(10)},
-            10.0: (10, 12),
-            12.0: (12, 24),
-            24.0: (24, 48),
-        },
-        "MLL": {
-            **{float(t): (t - 1, t) for t in range(1, 11)},
-            12.0: (10, 12),
-            24.0: (12, 24),
-            32.0: (24, 48),
-        },
+    #: then 10-12, 12-24 and 24-48 hr (methods), by the time of the rate of a
+    #: collection, its midpoint (the sums of the collections are the 48 hr
+    #: recoveries of Tab4)
+    collections_fig1_2: ClassVar[dict[float, tuple[float, float]]] = {
+        (start + end) / 2: (start, end)
+        for start, end in [
+            *((t, t + 1) for t in range(10)),
+            (10, 12),
+            (12, 24),
+            (24, 48),
+        ]
     }
     info_fig1_2: ClassVar[dict[str, str]] = {
-        "[Cve_hctz]": "hctz25",  # plasma concentration
-        "KI__HCTZEX": "excretion_hctz25",  # excretion rate
+        "Carm_hctz": "hctz25",  # plasma concentration
+        "Rurine_hctz": "excretion_hctz25",  # excretion rate
     }
     # Figure 5
     info_fig5: ClassVar[dict[str, str]] = {
-        "Vurine": "urinvol",  # urine volume
-        "na_urine": "aurine_na",  # cumulative amount of sodium in urine
+        "FLUID__Vurine": "urinvol",  # urine volume
+        "FLUID__na_urine": "aurine_na",  # cumulative amount of sodium in urine
     }
     # Table 4
     markers_tab4: ClassVar[dict[str, str]] = {
@@ -86,10 +80,14 @@ class Beermann1977a(HCTZSimulationExperiment):
     }
     subjects_tab4: ClassVar[list[str]] = list(markers_tab4)
 
+    #: the label of the recovery of a dose in Tab4, followed by `<dose>_<subject>`
+    #: (`all_Tab4` for the mean, the label of Fig3 is the same)
+    tab4_amount: ClassVar[str] = "cumulative_amount_hydrochlorothiazide_urine_HCTZ"
+
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig1_2", "Fig5tc", "Tab4", "Tab4mean"]:
+        for fig_id in ["Fig1_2", "Fig5tc", "Tab4"]:
             df: pd.DataFrame = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
                 label = str(label)
@@ -97,9 +95,9 @@ class Beermann1977a(HCTZSimulationExperiment):
                     dsets.update(self._collections(label, df_label))
                     continue
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith(("hctz", "excretion_", "amount")):
-                    dset.unit_conversion("value", 1 / self.Mr.hctz)
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                if label.startswith(("hctz", "excretion_", "cumulative_amount_hydro")):
+                    dset.unit_conversion("value", 1 / self.Mr["hctz"])
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(f"{fig_id}_{label}")] = dset
         return dsets
 
@@ -114,7 +112,7 @@ class Beermann1977a(HCTZSimulationExperiment):
             The rates at the midpoints of the collections and the amounts of the
             collections (`_collected`).
         """
-        collections = self.collections_fig1_2[label.split("_")[-1]]
+        collections = self.collections_fig1_2
         df = df[df["time"].isin(collections)].sort_values("time")
         intervals = [collections[float(t)] for t in df["time"]]
         rates = df.copy()
@@ -123,7 +121,7 @@ class Beermann1977a(HCTZSimulationExperiment):
         dsets = {}
         for key, data in [(label, rates), (f"{label}_collected", collected)]:
             dset = DataSet.from_df(data, self.ureg)
-            dset.unit_conversion("value", 1 / self.Mr.hctz)
+            dset.unit_conversion("value", 1 / self.Mr["hctz"])
             dsets[self.to_sid(f"Fig1_2_{key}")] = dset
         return dsets
 
@@ -138,7 +136,7 @@ class Beermann1977a(HCTZSimulationExperiment):
     def vin_h2o(cls) -> Quantity:
         """Get the water intake of the model, `vin_h2o` of the simulated model."""
         model = libsbml.readSBMLFromFile(str(MODEL.model_path)).getModel()
-        return Q(model.getParameter("vin_h2o").getValue(), "l/min")
+        return Q(model.getParameter("FLUID__vin_h2o").getValue(), "l/min")
 
     def _protocol(self, dose: float) -> list[Change]:
         """Get the changes of the protocol: the water load and the dose at 0 hr.
@@ -154,8 +152,8 @@ class Beermann1977a(HCTZSimulationExperiment):
         """
         start, end, rate = self.water_load
         return [
-            Change(start, {"vin_h2o": rate}),
-            Change(end, {"vin_h2o": self.vin_h2o()}),
+            Change(start, {"FLUID__vin_h2o": rate}),
+            Change(end, {"FLUID__vin_h2o": self.vin_h2o()}),
             Change(0, {"PODOSE_hctz": Q(dose, "mg"), **self.urine_reset}),
         ]
 
@@ -173,7 +171,7 @@ class Beermann1977a(HCTZSimulationExperiment):
                 changes=self._protocol(dose),
             )
         # the urine of Fig1_2 emptied at the end of every collection
-        ends = sorted({end for _, end in self.collections_fig1_2["HD"].values()})
+        ends = sorted({end for _, end in self.collections_fig1_2.values()})
         simulations["hctz25_collections"] = Simulation(
             time_unit="hr",
             start=start,
@@ -182,7 +180,7 @@ class Beermann1977a(HCTZSimulationExperiment):
             changes=[*self._protocol(25), Change(ends, self.urine_reset)],
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -191,7 +189,7 @@ class Beermann1977a(HCTZSimulationExperiment):
         # Figure 1_2: the plasma and the amounts of the urine collections
         for sid in self.info_fig1_2:
             name = self.info_fig1_2[sid]
-            excretion = sid == "KI__HCTZEX"
+            excretion = sid == "Rurine_hctz"
             for individual in self.individuals_fig1_2:
                 mappings[self.to_sid(f"fm_Fig1_2_{name}_{individual}")] = FitMapping(
                     self,
@@ -242,6 +240,7 @@ class Beermann1977a(HCTZSimulationExperiment):
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.URINE,
+                        sampling_site=SamplingSite.NOT_APPLICABLE,
                         application_form=ApplicationForm.TABLET,
                         route=Route.PO,
                         dosing=Dosing.SINGLE,
@@ -262,7 +261,7 @@ class Beermann1977a(HCTZSimulationExperiment):
                 self,
                 reference=FitData(
                     self,
-                    dataset=self.to_sid(f"Tab4_amount_HCTZ{dose_str}_mean"),
+                    dataset=self.to_sid(f"Tab4_{self.tab4_amount}{dose_str}_all_Tab4"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
@@ -276,6 +275,7 @@ class Beermann1977a(HCTZSimulationExperiment):
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
@@ -297,7 +297,7 @@ class Beermann1977a(HCTZSimulationExperiment):
                         reference=FitData(
                             self,
                             dataset=self.to_sid(
-                                f"Tab4_amount_HCTZ{dose_str}_{subject}"
+                                f"Tab4_{self.tab4_amount}{dose_str}_{subject}"
                             ),
                             xid="time",
                             yid="value",
@@ -312,6 +312,7 @@ class Beermann1977a(HCTZSimulationExperiment):
                         ),
                         metadata=PKPDMappingMetaData(
                             tissue=Tissue.URINE,
+                            sampling_site=SamplingSite.NOT_APPLICABLE,
                             application_form=ApplicationForm.TABLET,
                             route=Route.PO,
                             dosing=Dosing.SINGLE,
@@ -356,8 +357,8 @@ class Beermann1977a(HCTZSimulationExperiment):
         # simulation
         for k, (task, sid) in enumerate(
             [
-                ("task_hctz25", "[Cve_hctz]"),
-                ("task_hctz25", "KI__HCTZEX"),
+                ("task_hctz25", "Carm_hctz"),
+                ("task_hctz25", "Rurine_hctz"),
                 ("task_hctz25_collections", "Aurine_hctz"),
             ]
         ):
@@ -472,7 +473,7 @@ class Beermann1977a(HCTZSimulationExperiment):
                     continue
 
                 plots[0].add_data(
-                    dataset=self.to_sid(f"Tab4_amount_HCTZ{dose_str}_{subject}"),
+                    dataset=self.to_sid(f"Tab4_{self.tab4_amount}{dose_str}_{subject}"),
                     xid="time",
                     yid="value",
                     yid_sd=None,
@@ -486,7 +487,7 @@ class Beermann1977a(HCTZSimulationExperiment):
 
             # data (mean)
             plots[0].add_data(
-                dataset=self.to_sid(f"Tab4_amount_HCTZ{dose_str}_mean"),
+                dataset=self.to_sid(f"Tab4_{self.tab4_amount}{dose_str}_all_Tab4"),
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",

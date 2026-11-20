@@ -11,6 +11,7 @@ from pkpdsim.metadata import (
     Health,
     PKPDMappingMetaData,
     Route,
+    SamplingSite,
     Tissue,
 )
 from sbmlsim import Q
@@ -72,8 +73,6 @@ class Nilsen1989(HCTZSimulationExperiment):
                 for label, df_label in df.groupby("label"):
                     label = str(label)
                     dset = DataSet.from_df(df_label, self.ureg)
-                    if label.startswith("excretion_hctz25"):
-                        dset.unit_conversion("mean", 1 / self.Mr.hctz)
                     dsets[f"{fig_id}_{label}"] = dset
                     if label.startswith("excretion_sodium"):
                         dsets[f"{fig_id}_{label}_collected"] = DataSet.from_df(
@@ -82,12 +81,15 @@ class Nilsen1989(HCTZSimulationExperiment):
                         )
 
             elif fig_id == "Fig5":
-                for label, df_label in df.groupby("x_label"):
-                    label = str(label)
+                # the sodium excretion rate (y) over the HCTZ excretion rate
+                # (x) of the collections of Fig4, at their mid-points (time)
+                # of the means of the group
+                df["count"] = df["group"].map(self.group_counts())
+                for label, df_label in df.groupby("label"):
+                    suffix = str(label).removeprefix("excretion_sodium2_")
                     dset = DataSet.from_df(df_label, self.ureg)
-                    if label.startswith("excretion2_hctz25"):
-                        dset.unit_conversion("x", 1 / self.Mr.hctz)
-                    dsets[f"{fig_id}_{label}"] = dset
+                    dset.unit_conversion("x", 1 / self.Mr["hctz"])
+                    dsets[f"{fig_id}_excretion2_{suffix}"] = dset
 
         return dsets
 
@@ -108,7 +110,7 @@ class Nilsen1989(HCTZSimulationExperiment):
             time_shift=-1,
         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -126,10 +128,11 @@ class Nilsen1989(HCTZSimulationExperiment):
                     count="count",
                 ),
                 observable=FitData(
-                    self, task="task_hctz25", xid="time", yid="na_urine"
+                    self, task="task_hctz25", xid="time", yid="FLUID__na_urine"
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.URINE,
+                    sampling_site=SamplingSite.NOT_APPLICABLE,
                     application_form=ApplicationForm.TABLET,
                     route=Route.PO,
                     dosing=Dosing.SINGLE,
@@ -152,7 +155,7 @@ class Nilsen1989(HCTZSimulationExperiment):
             #         yid_sd=None,
             #         count="count"
             #     ),
-            #     observable=FitData(self, task=f"task_hctz25", xid="KI__HCTZEX", yid="NA_EXCRETION"),
+            #     observable=FitData(self, task=f"task_hctz25", xid="Rurine_hctz", yid="FLUID__NA_EXCRETION"),
             #     metadata=PKPDMappingMetaData(
             #         tissue=Tissue.URINE,
             #         application_form=ApplicationForm.TABLET,
@@ -188,7 +191,7 @@ class Nilsen1989(HCTZSimulationExperiment):
         plots[3].add_data(
             task="task_hctz25",
             xid="time",
-            yid="na_urine",
+            yid="FLUID__na_urine",
             label="Sim",
             color=self.color_hctz,
         )
@@ -218,9 +221,9 @@ class Nilsen1989(HCTZSimulationExperiment):
         # simulation
         for k, (xid, yid) in enumerate(
             [
-                ("time", "KI__HCTZEX"),
-                ("time", "NA_EXCRETION"),
-                ("KI__HCTZEX", "NA_EXCRETION"),
+                ("time", "Rurine_hctz"),
+                ("time", "FLUID__NA_EXCRETION"),
+                ("Rurine_hctz", "FLUID__NA_EXCRETION"),
             ]
         ):
             plots[k].add_data(
@@ -235,7 +238,9 @@ class Nilsen1989(HCTZSimulationExperiment):
         for ks, suffix in enumerate(self.suffixes):
             for k, (dset_id, xid, yid) in enumerate(
                 [
-                    (f"Fig4_excretion_{suffix}", "time", "mean"),
+                    # the HCTZ excretion rates of the collections of Fig4 are
+                    # the x of Fig5 (pkdb_data has them there only)
+                    (f"Fig5_excretion2_{suffix}", "time", "x"),
                     (f"Fig4_excretion_sodium_{suffix}", "time", "mean"),
                     (f"Fig5_excretion2_{suffix}", "x", "y"),
                 ]

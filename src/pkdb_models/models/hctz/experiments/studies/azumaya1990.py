@@ -43,7 +43,8 @@ class Azumaya1990(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    # a representative subject of the dose (value, count 1)
+                    dset.unit_conversion("value", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(f"{fig_id}_{label}")] = dset
 
         return dsets
@@ -61,7 +62,7 @@ class Azumaya1990(HCTZSimulationExperiment):
                     "PODOSE_hctz": Q(dose, "mg"),
                 },
             )
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -73,7 +74,7 @@ class Azumaya1990(HCTZSimulationExperiment):
                     self,
                     dataset=self.to_sid(f"Fig3_hctz{dose}"),
                     xid="time",
-                    yid="mean",
+                    yid="value",
                     yid_sd=None,
                     count="count",
                 ),
@@ -81,7 +82,7 @@ class Azumaya1990(HCTZSimulationExperiment):
                     self,
                     task=self.to_sid(f"task_hctz{dose}"),
                     xid="time",
-                    yid="[Cve_hctz]",
+                    yid="Carm_hctz",
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
@@ -110,7 +111,7 @@ class Azumaya1990(HCTZSimulationExperiment):
             plots[0].add_data(
                 task=self.to_sid(f"task_hctz{dose}"),
                 xid="time",
-                yid="[Cve_hctz]",
+                yid="Carm_hctz",
                 label=f"Sim {dose}",
                 color=self.colors[kd],
             )
@@ -118,7 +119,7 @@ class Azumaya1990(HCTZSimulationExperiment):
             plots[0].add_data(
                 dataset=self.to_sid(f"Fig3_hctz{dose}"),
                 xid="time",
-                yid="mean",
+                yid="value",
                 yid_sd=None,
                 count="count",
                 label=f"{dose} mg",

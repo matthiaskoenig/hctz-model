@@ -23,16 +23,18 @@ subjects into the training, a total of urine collections would count the same
 urine twice.
 """
 
-from pkpdsim.fit import (
-    mapping_metadata,
-    metadata_filter,
-    observable_filter,
-    observable_id,
-)
+from pkpdsim.fit import mapping_metadata, metadata_filter
 from pkpdsim.metadata import Coadministration, Fasting, Route
 from sbmlsim.console import console
 from sbmlsim.experiment import SimulationExperiment
 from sbmlsim.fit import FitMapping, FitMappingCollection, MappingKind
+from sbmlsim.fit.filters import (
+    NamedMappings,
+    named,
+    observable_filter,
+    observable_id,
+    study,
+)
 from sbmlsim.fit.helpers import FitMappings, MappingFilter
 
 from pkdb_models.models.hctz import DATA_PATHS, HCTZ_PATH
@@ -67,13 +69,8 @@ from pkdb_models.models.hctz.experiments.studies import (
     Williams1982,
 )
 
-#: the keys of fit mappings by study: the keys of the mappings are SIds of their
-#: experiment, which two studies can share (e.g. `fm_Fig3_hctz25` of Heise2015
-#: and Jeon2012), so a named mapping is named with its study
-type NamedMappings = dict[str, set[str]]
-
 # observables of the pharmacokinetics
-PK_OBSERVABLES = {"Afeces_hctz", "Aurine_hctz", "Cve_hctz", "KI__HCTZEX"}
+PK_OBSERVABLES = {"Afeces_hctz", "Aurine_hctz", "Carm_hctz", "Rurine_hctz"}
 
 EXPERIMENT_CLASSES: list[type[SimulationExperiment]] = [
     Anderson1961,
@@ -121,10 +118,10 @@ INTERACTION_VALIDATION: NamedMappings = {
     "Vaidyanathan2006": {"fm_Fig3_hctz_HCTZ25_ALI300HCTZ"},
     "Weir1998": {"fm_Fig2_hctz25_kombi", "fm_Fig3_amount_cumulative_hctz25_kombi"},
     "Howes1991": {
-        "fm_Fig1_HCTZ25__ENA10_multi_hydrochlorothiazide",
-        "fm_Fig1_HCTZ25_combi_hydrochlorothiazide",
-        "fm_Tab2_ENA10__HCTZ25multi_cumulative_amount_hydrochlorothiazide",
-        "fm_Tab2_ENA10__HCTZ25combi_cumulative_amount_hydrochlorothiazide",
+        "fm_Fig1_HCTZ25_ENA10_multi_hydrochlorothiazide",
+        "fm_Fig1_HCTZ25_combi_ENA10_combi_hydrochlorothiazide",
+        "fm_Tab2_ENA10_HCTZ25_cumulative_amount_hydrochlorothiazide",
+        "fm_Tab2_ENA10_combi_HCTZ25_combi_cumulative_amount_hydrochlorothiazide",
     },
     # the combination tablets of 12.5 mg with enalapril and lisinopril
     "Niopas2004": {
@@ -192,7 +189,7 @@ LIMITATION_VALIDATION: NamedMappings = {
             *(("po", case) for case in ["6", "7", "8", "9", "12"]),
             *(
                 ("iv", case)
-                for case in ["8A", "8B", "10", "11", "12", "13A", "13B", "14", "15"]
+                for case in ["8B", "8C", "10", "11", "12", "13A", "13B", "14", "15"]
             ),
         ]
     },
@@ -266,18 +263,6 @@ AGGREGATE_MAPPINGS: NamedMappings = {
         "fm_Tab2_0_25_amount_cumulative",
     },
 }
-
-
-def study(fit_mapping: FitMapping) -> str:
-    """Get the study of a fit mapping, the id of its experiment."""
-    return fit_mapping.reference.experiment.sid
-
-
-def named(
-    mappings: NamedMappings, fit_mapping_key: str, fit_mapping: FitMapping
-) -> bool:
-    """Check whether a fit mapping is one of the named mappings of its study."""
-    return fit_mapping_key in mappings.get(study(fit_mapping), set())
 
 
 def check_named(mappings: NamedMappings, fit_mappings: FitMappings) -> None:

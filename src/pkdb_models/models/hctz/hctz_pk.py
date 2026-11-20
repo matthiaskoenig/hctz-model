@@ -27,15 +27,15 @@ from typing import TYPE_CHECKING
 import numpy as np
 import pandas as pd
 from pkpdsim.pk import nca_frame, scan_nca
-from pkpdsim.scan import (
+from pkpdutils import NCAOptions, Route, ureg
+from sbmlsim import Q
+from sbmlsim.result import ScanResult
+from sbmlsim.result.scan import (
     end_values,
     point_timecourse,
     scan_dimensions,
     start_values,
 )
-from pkpdutils import NCAOptions, Route, ureg
-from sbmlsim import Q
-from sbmlsim.result import ScanResult
 
 if TYPE_CHECKING:
     from pkdb_models.models.hctz.experiments.base_experiment import (
@@ -43,7 +43,7 @@ if TYPE_CHECKING:
     )
 
 #: concentration of hydrochlorothiazide in plasma
-CONCENTRATION = "[Cve_hctz]"
+CONCENTRATION = "Carm_hctz"
 #: oral dose of the scans
 DOSE = "PODOSE_hctz"
 #: the cumulative amount of hydrochlorothiazide in the urine
@@ -57,11 +57,11 @@ LLOQ_FRACTION = 1e-6
 EXTRAPOLATION_WARNING = 0.1
 #: the effects whose minimum and maximum are the pharmacodynamic parameters
 EFFECTS: list[str] = [
-    "NA_EXCRETION",
-    "CL_EXCRETION",
-    "diuresis",
-    "bp_systolic",
-    "bp_diastolic",
+    "FLUID__NA_EXCRETION",
+    "FLUID__CL_EXCRETION",
+    "FLUID__diuresis",
+    "FLUID__bp_systolic",
+    "FLUID__bp_diastolic",
 ]
 
 
@@ -121,7 +121,7 @@ def calculate_hctz_pk(
     units = res.units
     # the dose in the substance unit of the concentration, which `cl_f` and
     # `vz_f` require
-    dose = (Q(start_values(res, DOSE).values, units[DOSE]) / experiment.Mr.hctz).to(
+    dose = (Q(start_values(res, DOSE).values, units[DOSE]) / experiment.Mr["hctz"]).to(
         "mmole"
     )
     result = scan_nca(

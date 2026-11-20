@@ -42,6 +42,9 @@ class Niemeyer1983(HCTZSimulationExperiment):
     are not quantified samples: the limit of the assay is not reported, and S
     has 91 ng/ml at 24 hr with a half-life of 15.4 hr (Table 3), i.e. about 30
     ng/ml at 48 hr. They are left out of the data.
+
+    The subjects are mostly men (16 of 23), simulated on the male build of
+    the model.
     """
 
     group_labels: ClassVar[list[str]] = ["group 1", "group 3", "group 3"]
@@ -69,7 +72,7 @@ class Niemeyer1983(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("hctz"):
-                    dset.unit_conversion("value", 1 / self.Mr.hctz)
+                    dset.unit_conversion("value", 1 / self.Mr["hctz"])
                 dsets[f"{fig_id}_{label}"] = dset
 
         return dsets
@@ -89,7 +92,7 @@ class Niemeyer1983(HCTZSimulationExperiment):
                 },
             )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -105,7 +108,7 @@ class Niemeyer1983(HCTZSimulationExperiment):
                     count="count",
                 ),
                 observable=FitData(
-                    self, task=f"task_hctz50_{patient}", xid="time", yid="[Cve_hctz]"
+                    self, task=f"task_hctz50_{patient}", xid="time", yid="Carm_hctz"
                 ),
                 metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
@@ -146,7 +149,7 @@ class Niemeyer1983(HCTZSimulationExperiment):
             plots[0].add_data(
                 task=f"task_hctz50_{patient}",
                 xid="time",
-                yid="[Cve_hctz]",
+                yid="Carm_hctz",
                 label=f"Sim {patient}",
                 color=self.colors[kp],
             )

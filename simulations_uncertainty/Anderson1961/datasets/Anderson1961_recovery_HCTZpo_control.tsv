@@ -1,4 +1,4 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	mean_sd	mean_se	comments	mean_unit	count_unit
-Anderson1961		control	4.0	HCTZpo	recovery	C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZpo_control	4.0	hr	21.0	15.2534149181967		1,3,4,5	percent	dimensionless
-Anderson1961		control	4.0	HCTZpo	recovery	C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZpo_control	8.0	hr	39.5	14.0593978059754		1,3,4,5	percent	dimensionless
-Anderson1961		control	4.0	HCTZpo	recovery	C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZpo_control	24.0	hr	63.25	2.21735578260835		1,3,4,5	percent	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Anderson1961	control		4	dimensionless	HCTZpo	recovery	sample mean		C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZpo_control	4.0	hr		percent	21.0	15.2534149181967	7.62670745909835	percent		percent	0.7263530913427				percent		dimensionless		
+Anderson1961	control		4	dimensionless	HCTZpo	recovery	sample mean		C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZpo_control	8.0	hr		percent	39.5	14.0593978059754	7.0296989029877	percent		percent	0.35593412167026334				percent		dimensionless		
+Anderson1961	control		4	dimensionless	HCTZpo	recovery	sample mean		C14-hydrochlorothiazide	urine	scintillation counting	recovery_HCTZpo_control	24.0	hr		percent	63.25	2.21735578260835	1.108677891304175	percent		percent	0.035057008420685376				percent		dimensionless		

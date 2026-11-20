@@ -1,0 +1,56 @@
+context	check	factor	n	max_difference	at	acceptance_changed	passed	problems
+describe	tolerances	discretization_error	688	0.0008011992144854845	Anderson1961.fm_cmax_HCTZiv_2 at 90	False	True	
+describe	integrator	numerical_solver_error	688	0.000781650682478003	Anderson1961.fm_cmax_HCTZiv_2 at 90	False	True	
+describe	setup	use_error	688				True	
+describe	dose_states	use_error	1				True	
+describe	mass_balance	numerical_code_verification	5	3.511704815828397e-15	male PODOSE_hctz		True	
+describe	non_negativity	numerical_code_verification	64	6.307071596015749e-31	male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz		True	
+describe	zero_dose	numerical_code_verification	58	0.0			True	
+describe	steady_state	numerical_code_verification	65	6.854583518700421e-15	male: FLUID__cl_loop		True	
+describe	superposition	numerical_code_verification	4	3.4438862043743422e-09	male IVDOSE_hctz two doses: MU__Cti_hctz		True	
+describe	plausibility	use_error	495				True	
+describe	rebuild	software_quality_assurance	13				True	
+dose	tolerances	discretization_error	66	8.868105905253502e-06	Azumaya1990.fm_hctz12p5 at 1440	False	True	
+dose	integrator	numerical_solver_error	66	1.1347060253903085e-05	Azumaya1990.fm_hctz12p5 at 1440	False	True	
+dose	setup	use_error	66				True	
+dose	dose_states	use_error	1				True	
+dose	mass_balance	numerical_code_verification	5	3.511704815828397e-15	male PODOSE_hctz		True	
+dose	non_negativity	numerical_code_verification	64	6.307071596015749e-31	male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz		True	
+dose	zero_dose	numerical_code_verification	58	0.0			True	
+dose	steady_state	numerical_code_verification	65	6.854583518700421e-15	male: FLUID__cl_loop		True	
+dose	superposition	numerical_code_verification	4	3.4438862043743422e-09	male IVDOSE_hctz two doses: MU__Cti_hctz		True	
+dose	plausibility	use_error	495				True	
+dose	rebuild	software_quality_assurance	13				True	
+renal	tolerances	discretization_error	10	6.5570370930551756e-06	Niemeyer1983.fm_Fig1_hctz50_S at 30	False	True	
+renal	integrator	numerical_solver_error	10	4.499212246825954e-06	Niemeyer1983.fm_Fig1_hctz50_S at 30	False	True	
+renal	setup	use_error	10				True	
+renal	dose_states	use_error	1				True	
+renal	mass_balance	numerical_code_verification	5	3.511704815828397e-15	male PODOSE_hctz		True	
+renal	non_negativity	numerical_code_verification	64	6.307071596015749e-31	male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz		True	
+renal	zero_dose	numerical_code_verification	58	0.0			True	
+renal	steady_state	numerical_code_verification	65	6.854583518700421e-15	male: FLUID__cl_loop		True	
+renal	superposition	numerical_code_verification	4	3.4438862043743422e-09	male IVDOSE_hctz two doses: MU__Cti_hctz		True	
+renal	plausibility	use_error	495				True	
+renal	rebuild	software_quality_assurance	13				True	
+interaction	tolerances	discretization_error	117	1.7659355563963555e-05	Koytchev2004.fm_Fig2_test_hydro at 30	False	True	
+interaction	integrator	numerical_solver_error	117	1.526377441903581e-05	Koytchev2004.fm_Fig2_test_hydro at 30	False	True	
+interaction	setup	use_error	117				True	
+interaction	dose_states	use_error	1				True	
+interaction	mass_balance	numerical_code_verification	5	3.511704815828397e-15	male PODOSE_hctz		True	
+interaction	non_negativity	numerical_code_verification	64	6.307071596015749e-31	male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz		True	
+interaction	zero_dose	numerical_code_verification	58	0.0			True	
+interaction	steady_state	numerical_code_verification	65	6.854583518700421e-15	male: FLUID__cl_loop		True	
+interaction	superposition	numerical_code_verification	4	3.4438862043743422e-09	male IVDOSE_hctz two doses: MU__Cti_hctz		True	
+interaction	plausibility	use_error	495				True	
+interaction	rebuild	software_quality_assurance	13				True	
+pd	tolerances	discretization_error	2	1.0358459667453917e-06	Patel1984.fm_Clurine_50_tab at 720	False	True	
+pd	integrator	numerical_solver_error	2	1.3184412016965648e-06	Patel1984.fm_Clurine_50_tab at 720	False	True	
+pd	setup	use_error	2				True	
+pd	dose_states	use_error	1				True	
+pd	mass_balance	numerical_code_verification	5	3.511704815828397e-15	male PODOSE_hctz		True	
+pd	non_negativity	numerical_code_verification	64	6.307071596015749e-31	male PODOSE_hctz small at 0 and 720 min: GU__Asolid_ile2_hctz		True	
+pd	zero_dose	numerical_code_verification	58	0.0			True	
+pd	steady_state	numerical_code_verification	65	6.854583518700421e-15	male: FLUID__cl_loop		True	
+pd	superposition	numerical_code_verification	4	3.4438862043743422e-09	male IVDOSE_hctz two doses: MU__Cti_hctz		True	
+pd	plausibility	use_error	495				True	
+pd	rebuild	software_quality_assurance	13				True	

@@ -1,19 +1,23 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	median	mean	mean_pm	min	max	cv	sd	se	unit	comments
-Heise2015	NA	all	11.0	HCTZ25	auc measurement	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	1050.0	NA	NA	NA	18.3	2.013	NA	nmol*h/l	NA
-Heise2015	NA	all	11.0	HCTZ25	muliple_dosing_cmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	211.0	NA	NA	NA	26.2	2.882	NA	nmol/l	NA
-Heise2015	NA	all	11.0	HCTZ25	tmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	1.5	NA	NA	1.0	3.0	NA	NA	NA	hr	NA
-Heise2015	NA	all	11.0	HCTZ25	thalf	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	10.6	NA	NA	NA	27.0	2.97	NA	hr	NA
-Heise2015	NA	all	11.0	HCTZ25	fractional excretion	hydrochlorothiazide	urine	LC MS/MS	24.0	hr	NA	72.1	NA	NA	NA	20.5	2.255	NA	percent	NA
-Heise2015	NA	all	11.0	HCTZ25	clearance_renal	hydrochlorothiazide	urine	LC MS/MS	NA	NA	NA	291.0	NA	NA	NA	24.7	2.717	NA	ml/min	NA
-Heise2015	NA	all	11.0	HCTZ25	mrt	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	10.1	NA	NA	NA	21.1	2.321	NA	hr	NA
-Heise2015	NA	all	11.0	HCTZ25	oral clearance	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	408.0	NA	NA	NA	17.2	1.892	NA	ml/min	NA
-Heise2015	NA	all	11.0	HCTZ25	vd_ss	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	369.0	NA	NA	NA	27.8	3.058	NA	l	NA
-Heise2015	NA	all	10.0	HCTZ25,EMP25	auc measurement	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	1020.0	NA	NA	NA	18.1	1.81	NA	nmol*h/l	NA
-Heise2015	NA	all	10.0	HCTZ25,EMP25	muliple_dosing_cmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	213.0	NA	NA	NA	28.7	2.87	NA	nmol/l	NA
-Heise2015	NA	all	10.0	HCTZ25,EMP25	tmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	1.8	NA	NA	1.0	2.0	NA	NA	NA	hr	NA
-Heise2015	NA	all	10.0	HCTZ25,EMP25	thalf	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	13.5	NA	NA	NA	26.7	2.67	NA	hr	NA
-Heise2015	NA	all	10.0	HCTZ25,EMP25	fractional excretion	hydrochlorothiazide	urine	LC MS/MS	24.0	hr	NA	67.7	NA	NA	NA	27.2	2.72	NA	percent	NA
-Heise2015	NA	all	10.0	HCTZ25,EMP25	clearance_renal	hydrochlorothiazide	urine	LC MS/MS	NA	NA	NA	289.0	NA	NA	NA	34.4	3.44	NA	ml/min	NA
-Heise2015	NA	all	10.0	HCTZ25,EMP25	mrt	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	11.3	NA	NA	NA	21.0	2.1	NA	hr	NA
-Heise2015	NA	all	10.0	HCTZ25,EMP25	oral clearance	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	422.0	NA	NA	NA	18.9	1.89	NA	ml/min	NA
-Heise2015	NA	all	10.0	HCTZ25,EMP25	vd_ss	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	494.0	NA	NA	NA	29.8	2.98	NA	l	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Heise2015	all	NA	10	EMP25,HCTZ25	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	auc_measurement_hydrochlorothiazide_plasma_EMP25_HCTZ25_all	NA	NA	NA	1020.0	NA	184.62000000000003	58.38197016202863	0.18100000000000002	NA	NA	NA	NA	NA	nmol*h/l	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	clearance_renal	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	clearance_renal_hydrochlorothiazide_urine_EMP25_HCTZ25_all	NA	NA	NA	289.0	NA	99.416	31.438099586329958	0.344	NA	NA	NA	NA	NA	ml/min	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	fractional excretion	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	fractional_excretion_hydrochlorothiazide_urine_EMP25_HCTZ25_all	24.0	hr	NA	67.7	NA	18.4144	5.823144574540461	0.272	NA	NA	NA	NA	NA	percent	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	mrt	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	mrt_hydrochlorothiazide_plasma_EMP25_HCTZ25_all	NA	NA	NA	11.3	NA	2.373	0.7504084887579564	0.21	NA	NA	NA	NA	NA	hr	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	muliple_dosing_cmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	muliple_dosing_cmax_hydrochlorothiazide_plasma_EMP25_HCTZ25_all	NA	NA	NA	213.0	NA	61.13099999999999	19.331319564375317	0.287	NA	NA	NA	NA	NA	nmol/l	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	oral clearance	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	oral_clearance_hydrochlorothiazide_plasma_EMP25_HCTZ25_all	NA	NA	NA	422.0	NA	79.758	25.22169416197096	0.18899999999999997	NA	NA	NA	NA	NA	ml/min	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	thalf	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	thalf_hydrochlorothiazide_plasma_EMP25_HCTZ25_all	NA	NA	NA	13.5	NA	3.6045000000000003	1.1398429826076923	0.267	NA	NA	NA	NA	NA	hr	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	tmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	tmax_hydrochlorothiazide_plasma_EMP25_HCTZ25_all	NA	NA	NA	NA	1.8	NA	NA	NA	1.0	2.0	NA	NA	NA	hr	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	vd_ss	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	vd_ss_hydrochlorothiazide_plasma_EMP25_HCTZ25_all	NA	NA	NA	494.0	NA	147.212	46.55252189087074	0.298	NA	NA	NA	NA	NA	l	NA
+Heise2015	all	NA	11	HCTZ25	auc measurement	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	auc_measurement_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	1050.0	NA	192.15	57.93540486061728	0.183	NA	NA	NA	NA	NA	nmol*h/l	NA
+Heise2015	all	NA	11	HCTZ25	clearance_renal	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	clearance_renal_hydrochlorothiazide_urine_HCTZ25_all	NA	NA	NA	291.0	NA	71.877	21.671730914215914	0.247	NA	NA	NA	NA	NA	ml/min	NA
+Heise2015	all	NA	11	HCTZ25	fractional excretion	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	fractional_excretion_hydrochlorothiazide_urine_HCTZ25_all	24.0	hr	NA	72.1	NA	14.780499999999998	4.456488428531634	0.205	NA	NA	NA	NA	NA	percent	NA
+Heise2015	all	NA	11	HCTZ25	mrt	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	mrt_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	10.1	NA	2.1311	0.6425508264296721	0.21100000000000002	NA	NA	NA	NA	NA	hr	NA
+Heise2015	all	NA	11	HCTZ25	muliple_dosing_cmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	muliple_dosing_cmax_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	211.0	NA	55.282000000000004	16.66815015094793	0.262	NA	NA	NA	NA	NA	nmol/l	NA
+Heise2015	all	NA	11	HCTZ25	oral clearance	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	oral_clearance_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	408.0	NA	70.17599999999999	21.158860117089137	0.172	NA	NA	NA	NA	NA	ml/min	NA
+Heise2015	all	NA	11	HCTZ25	thalf	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	thalf_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	10.6	NA	2.862	0.8629254681815596	0.27	NA	NA	NA	NA	NA	hr	NA
+Heise2015	all	NA	11	HCTZ25	tmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	tmax_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	NA	1.5	NA	NA	NA	1.0	3.0	NA	NA	NA	hr	NA
+Heise2015	all	NA	11	HCTZ25	vd_ss	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	vd_ss_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	369.0	NA	102.58200000000001	30.92963674947615	0.278	NA	NA	NA	NA	NA	l	NA
+Heise2015	all	NA	11	HCTZ25	cumulative amount	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	hctz25_aurine	0.0	hr	NA	0.0	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	NA
+Heise2015	all	NA	11	HCTZ25	cumulative amount	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	hctz25_aurine	24.0	hr	NA	18.0	NA	3.69	1.1125768614919478	0.205	NA	NA	NA	NA	NA	mg	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	cumulative amount	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	hctz25_emp25_aurine	0.0	hr	NA	0.0	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	NA
+Heise2015	all	NA	10	EMP25,HCTZ25	cumulative amount	sample mean	NA	hydrochlorothiazide	urine	LC MS/MS	hctz25_emp25_aurine	24.0	hr	NA	16.9	NA	4.5968	1.4536357948262004	0.272	NA	NA	NA	NA	NA	mg	NA

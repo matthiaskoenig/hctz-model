@@ -36,7 +36,7 @@ class DoseDependencyExperiment(HCTZSimulationExperiment):
     def simulations(self) -> dict[str, Simulation]:
         simulations = {}
         changes = {
-            # 'KI__HCTZEX_f': Q(2.5, 'dimensionless')
+            # "KI__HCTZUP_k": Q(0.68, "1/min")
         }
 
         for application in self.applications:
@@ -79,33 +79,33 @@ class DoseDependencyExperiment(HCTZSimulationExperiment):
                             ],
                         )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def figures(self) -> dict[str, Figure]:
 
         # pharmacokinetics/pharmacodynamics
         sids: list[tuple[str | None, str | None, int]] = [
-            ("time", "[Cve_hctz]", 0),
-            ("time", "ECF", 1),
-            ("time", "[na]", 2),  # sodium ECF
-            ("time", "[cl]", 3),  # chloride ECF
+            ("time", "Carm_hctz", 0),
+            ("time", "FLUID__ECF", 1),
+            ("time", "[FLUID__na]", 2),  # sodium ECF
+            ("time", "[FLUID__cl]", 3),  # chloride ECF
             ("time", "Aurine_hctz", 4),
-            ("time", "diuresis", 5),
-            ("time", "NA_EXCRETION", 6),
-            ("time", "CL_EXCRETION", 7),
+            ("time", "FLUID__diuresis", 5),
+            ("time", "FLUID__NA_EXCRETION", 6),
+            ("time", "FLUID__CL_EXCRETION", 7),
             ("time", "Afeces_hctz", 8),
-            ("time", "H2O_UPTAKE", 9),
-            ("time", "NA_UPTAKE", 10),
-            ("time", "CL_UPTAKE", 11),
-            # ("Aurine_hctz", "diuresis", 12),
-            # ("Aurine_hctz", "NA_EXCRETION", 13),
-            # ("Aurine_hctz", "CL_EXCRETION", 14),
+            ("time", "FLUID__H2O_UPTAKE", 9),
+            ("time", "FLUID__NA_UPTAKE", 10),
+            ("time", "FLUID__CL_UPTAKE", 11),
+            # ("Aurine_hctz", "FLUID__diuresis", 12),
+            # ("Aurine_hctz", "FLUID__NA_EXCRETION", 13),
+            # ("Aurine_hctz", "FLUID__CL_EXCRETION", 14),
             # (None, None, 15),
-            ("time", "bp_systolic", 12),
-            ("time", "bp_diastolic", 13),
-            ("[Cve_hctz]", "bp_systolic", 14),
-            ("[Cve_hctz]", "bp_diastolic", 15),
+            ("time", "FLUID__bp_systolic", 12),
+            ("time", "FLUID__bp_diastolic", 13),
+            ("Carm_hctz", "FLUID__bp_systolic", 14),
+            ("Carm_hctz", "FLUID__bp_diastolic", 15),
         ]
 
         figures: dict[str, Figure] = {}

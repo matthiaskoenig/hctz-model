@@ -1,7 +1,13 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	median	min	max	sd	se	cv	unit	comments
-Devineni2014	all	30.0	CAN300	auc_end	canagliflozin	plasma	LC MS/MS	24.0	hr	25112.0	NA	NA	NA	6071.0	NA	NA	ng/ml*hr	NA
-Devineni2014	all	30.0	CAN300	cmax	canagliflozin	plasma	LC MS/MS	NA	NA	3820.0	NA	NA	NA	767.0	NA	NA	ng/ml 	NA
-Devineni2014	all	30.0	CAN300	tmax	canagliflozin	plasma	LC MS/MS	NA	NA	NA	1.0	1.0	1.5	NA	NA	NA	hr	NA
-Devineni2014	all	30.0	HCTZ25	auc_end	hydrochlorothiazide	plasma	LC MS/MS	24.0	hr	1056.0	NA	NA	NA	184.0	NA	NA	ng/ml*hr	NA
-Devineni2014	all	30.0	HCTZ25	cmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	154.0	NA	NA	NA	33.6	NA	NA	ng/ml 	NA
-Devineni2014	all	30.0	HCTZ25	tmax	hydrochlorothiazide	plasma	LC MS/MS	NA	NA	NA	1.5	0.5	3.0	NA	NA	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Devineni2014	all	NA	30	CAN300	auc_end	sample mean	NA	canagliflozin	plasma	LC MS/MS	auc_end_canagliflozin_plasma_CAN300_all	24.0	hr	NA	25112.0	NA	6071.0	1108.407882204621	0.24175692895826698	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Devineni2014	all	NA	30	CAN300	cmax	sample mean	NA	canagliflozin	plasma	LC MS/MS	cmax_canagliflozin_plasma_CAN300_all	NA	NA	NA	3820.0	NA	767.0	140.03440053548746	0.2007853403141361	NA	NA	NA	NA	NA	ng/ml	NA
+Devineni2014	all	NA	30	CAN300	tmax	sample mean	NA	canagliflozin	plasma	LC MS/MS	tmax_canagliflozin_plasma_CAN300_all	NA	NA	NA	1.0	NA	NA	NA	NA	1.0	1.5	NA	NA	NA	hr	Table I footnote: for tmax,ss arithmetic mean (range) is provided
+Devineni2014	all	NA	28	CAN300,HCTZ25_35d	auc_end	sample mean	NA	canagliflozin	plasma	LC MS/MS	auc_end_canagliflozin_plasma_CAN300_HCTZ25_35d_all	24.0	hr	NA	28552.0	NA	6016.0	1136.9171348117554	0.21070327822919585	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Devineni2014	all	NA	28	CAN300,HCTZ25_35d	auc_end	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	auc_end_hydrochlorothiazide_plasma_CAN300_HCTZ25_35d_all	24.0	hr	NA	1068.0	NA	208.0	39.30830519295963	0.1947565543071161	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Devineni2014	all	NA	28	CAN300,HCTZ25_35d	cmax	sample mean	NA	canagliflozin	plasma	LC MS/MS	cmax_canagliflozin_plasma_CAN300_HCTZ25_35d_all	NA	NA	NA	4490.0	NA	1143.0	216.00669632477334	0.25456570155902003	NA	NA	NA	NA	NA	ng/ml	NA
+Devineni2014	all	NA	28	CAN300,HCTZ25_35d	cmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	cmax_hydrochlorothiazide_plasma_CAN300_HCTZ25_35d_all	NA	NA	NA	144.0	NA	32.1	6.066329791798097	0.22291666666666668	NA	NA	NA	NA	NA	ng/ml	NA
+Devineni2014	all	NA	28	CAN300,HCTZ25_35d	tmax	sample mean	NA	canagliflozin	plasma	LC MS/MS	tmax_canagliflozin_plasma_CAN300_HCTZ25_35d_all	NA	NA	NA	1.0	NA	NA	NA	NA	0.62	2.0	NA	NA	NA	hr	Table I footnote: for tmax,ss arithmetic mean (range) is provided
+Devineni2014	all	NA	28	CAN300,HCTZ25_35d	tmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	tmax_hydrochlorothiazide_plasma_CAN300_HCTZ25_35d_all	NA	NA	NA	1.5	NA	NA	NA	NA	0.62	5.0	NA	NA	NA	hr	Table I footnote: for tmax,ss arithmetic mean (range) is provided
+Devineni2014	all	NA	30	HCTZ25	auc_end	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	auc_end_hydrochlorothiazide_plasma_HCTZ25_all	24.0	hr	NA	1056.0	NA	184.0	33.59365019365019	0.17424242424242425	NA	NA	NA	NA	NA	ng/ml*hr	NA
+Devineni2014	all	NA	30	HCTZ25	cmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	cmax_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	154.0	NA	33.6	6.134492644057861	0.2181818181818182	NA	NA	NA	NA	NA	ng/ml	NA
+Devineni2014	all	NA	30	HCTZ25	tmax	sample mean	NA	hydrochlorothiazide	plasma	LC MS/MS	tmax_hydrochlorothiazide_plasma_HCTZ25_all	NA	NA	NA	1.5	NA	NA	NA	NA	0.5	3.0	NA	NA	NA	hr	Table I footnote: for tmax,ss arithmetic mean (range) is provided

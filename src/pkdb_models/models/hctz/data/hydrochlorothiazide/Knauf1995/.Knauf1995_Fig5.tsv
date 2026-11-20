@@ -1,7 +1,7 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Knauf1995	NA	patients	25.0	placebo	cumulative amount (change)	sodium	urine	flame photometry	NA	12.0	hr	NA	100.335120643431	NA	NA	NA	percent	NA
-Knauf1995	NA	patients	25.0	HCTZ25	cumulative amount (change)	sodium	urine	flame photometry	NA	12.0	hr	NA	118.632707774798	141.152815013404	NA	22.520107238605988	percent	NA
-Knauf1995	NA	patients	25.0	HCTZ50	cumulative amount (change)	sodium	urine	flame photometry	NA	12.0	hr	NA	125.268096514745	148.994638069705	NA	23.726541554959994	percent	NA
-Knauf1995	NA	patients	25.0	FU40	cumulative amount (change)	sodium	urine	flame photometry	NA	12.0	hr	NA	131.903485254691	161.863270777479	NA	29.959785522787996	percent	NA
-Knauf1995	NA	patients	25.0	FU80	cumulative amount (change)	sodium	urine	flame photometry	NA	12.0	hr	NA	161.66219839142	191.823056300268	NA	30.160857908848016	percent	NA
-Knauf1995	NA	patients	25.0	HCTZ25,FU40	cumulative amount (change)	sodium	urine	flame photometry	NA	12.0	hr	NA	242.493297587131	282.10455764075	NA	39.61126005361899	percent	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Knauf1995	all	NA	25	FU40	cumulative amount (ratio)	sample mean	NA	sodium	urine	flame photometry	cumulative_amount_ratio_sodium_urine_FU40_all	12.0	hr	NA	131.903485254691	NA	149.79892761393998	29.959785522787996	1.1356707317073151	NA	NA	NA	NA	NA	percent	NA
+Knauf1995	all	NA	25	FU40,HCTZ25	cumulative amount (ratio)	sample mean	NA	sodium	urine	flame photometry	cumulative_amount_ratio_sodium_urine_FU40_HCTZ25_all	12.0	hr	NA	242.493297587131	NA	198.05630026809496	39.61126005361899	0.8167495854062966	NA	NA	NA	NA	NA	percent	NA
+Knauf1995	all	NA	25	FU80	cumulative amount (ratio)	sample mean	NA	sodium	urine	flame photometry	cumulative_amount_ratio_sodium_urine_FU80_all	12.0	hr	NA	161.66219839142	NA	150.80428954424008	30.160857908848016	0.9328358208955534	NA	NA	NA	NA	NA	percent	NA
+Knauf1995	all	NA	25	HCTZ25	cumulative amount (ratio)	sample mean	NA	sodium	urine	flame photometry	cumulative_amount_ratio_sodium_urine_HCTZ25_all	12.0	hr	NA	118.632707774798	NA	112.60053619302994	22.520107238605988	0.9491525423728925	NA	NA	NA	NA	NA	percent	NA
+Knauf1995	all	NA	25	HCTZ50	cumulative amount (ratio)	sample mean	NA	sodium	urine	flame photometry	cumulative_amount_ratio_sodium_urine_HCTZ50_all	12.0	hr	NA	125.268096514745	NA	118.63270777479997	23.726541554959994	0.947030497592306	NA	NA	NA	NA	NA	percent	NA
+Knauf1995	all	NA	25	placebo	cumulative amount (ratio)	sample mean	NA	sodium	urine	flame photometry	cumulative_amount_ratio_sodium_urine_placebo_all	12.0	hr	NA	100.335120643431	NA	NA	NA	NA	NA	NA	NA	NA	NA	percent	NA

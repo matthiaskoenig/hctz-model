@@ -80,7 +80,7 @@ class Anderson1961(HCTZSimulationExperiment):
         },
         "iv": {
             "control": ["2"],
-            "cardiac": ["8A", "8B"],
+            "cardiac": ["8B", "8C"],
             "renal": ["10", "11"],
             "hepatic": ["12", "13A", "13B", "14", "15"],
         },
@@ -111,13 +111,12 @@ class Anderson1961(HCTZSimulationExperiment):
         },
         "iv": {
             "2": ("control", Health.HEALTHY),
-            # case 8B of the publication, intravenous in congestive failure,
-            # 65 % of the dose in 24 hr
-            "8A": ("cardiac_severe", Health.HEART_FAILURE),
-            # case 8C of the publication, "Compensated", 10 days later after
-            # "becoming free of edema and losing 20 pounds in weight", 100 % of
-            # the dose in 24 hr
-            "8B": ("cardiac_mild", Health.HEART_FAILURE),
+            # case 8B, intravenous in congestive failure, 65 % of the dose in
+            # 24 hr
+            "8B": ("cardiac_severe", Health.HEART_FAILURE),
+            # case 8C, "Compensated", 10 days later after "becoming free of
+            # edema and losing 20 pounds in weight", 100 % of the dose in 24 hr
+            "8C": ("cardiac_mild", Health.HEART_FAILURE),
             # proteinuria with generalized edema "without other evidence of
             # renal disease", "renal excretion of radioactivity was not
             # impaired" (Comment): a normal renal function. The health is the
@@ -163,14 +162,14 @@ class Anderson1961(HCTZSimulationExperiment):
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("amount"):
                     if fig_id == "Tab1":
-                        dset.unit_conversion("value", 1 / self.Mr.hctz)
+                        dset.unit_conversion("value", 1 / self.Mr["hctz"])
                     if fig_id == "Tab1A":
-                        dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                        dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 elif label.startswith("cmax"):
                     if fig_id == "Tab1B":
-                        dset.unit_conversion("value", 1 / self.Mr.hctz)
+                        dset.unit_conversion("value", 1 / self.Mr["hctz"])
                     if fig_id == "Tab1A":
-                        dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                        dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(label)] = dset
 
         return dsets
@@ -189,14 +188,11 @@ class Anderson1961(HCTZSimulationExperiment):
                         changes = {}
                     elif intervention == "cardiac":
                         changes = {
-                            "f_cardiac_function": Q(
+                            "HF_severity": Q(
                                 self.cardiac_map[
                                     f"{severity.title()} cardiac impairment"
                                 ]
                             ),
-                            # FIXME: handle reduced fraction absorbed ?!
-                            # "GU__F_hctz_abs": Q(0.427, "dimensionless"),  # assumption from recovery [Beermann1979]
-                            # "GU__F_hctz_abs": Q(60 / 101 * 0.75, "dimensionless"),
                         }
                     elif intervention == "renal":
                         changes = {
@@ -206,7 +202,7 @@ class Anderson1961(HCTZSimulationExperiment):
                         }
                     elif intervention == "hepatic":
                         changes = {
-                            "f_cirrhosis": Q(
+                            "CP_severity": Q(
                                 self.cirrhosis_map[f"{severity.title()} cirrhosis"]
                             )
                         }
@@ -229,7 +225,7 @@ class Anderson1961(HCTZSimulationExperiment):
                             },
                         )
                     )
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -265,7 +261,7 @@ class Anderson1961(HCTZSimulationExperiment):
                         condition, health = self.cases[route][subject]
                         for key, yid, tissue in [
                             ("amount", "Aurine_hctz", Tissue.URINE),
-                            ("cmax", "[Cve_hctz]", Tissue.PLASMA),
+                            ("cmax", "Carm_hctz", Tissue.PLASMA),
                         ]:
                             mappings[self.to_sid(f"fm_{key}_HCTZ{route}_{subject}")] = (
                                 FitMapping(
@@ -411,14 +407,14 @@ class Anderson1961(HCTZSimulationExperiment):
                             f"task_hctz_{route}{self.dose}_{disease}_{severity}"
                         ),
                         xid="time",
-                        yid="[Cve_hctz]",
+                        yid="Carm_hctz",
                         label=f"Sim {route} {disease} {severity}",
                         color=self.colors[f"{disease} {severity}"],
                     )
                 plots[kr].add_data(
                     task=self.to_sid(f"task_hctz_{route}{self.dose}_control"),
                     xid="time",
-                    yid="[Cve_hctz]",
+                    yid="Carm_hctz",
                     label=f"Sim {route} control",
                     color=self.colors["control"],
                 )

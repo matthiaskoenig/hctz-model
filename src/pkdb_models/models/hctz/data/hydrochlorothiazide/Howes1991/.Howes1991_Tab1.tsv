@@ -1,16 +1,16 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Howes1991	NA	all	12.0	ENA10	auc measurement	enalaprilat	plasma	RIA	NA	NA	NA	NA	451.0	NA	152.0	NA	ng*h/ml	NA
-Howes1991	NA	all	12.0	ENA10	cmax	enalaprilat	plasma	RIA	NA	NA	NA	NA	54.0	NA	21.0	NA	ng/ml	NA
-Howes1991	NA	all	12.0	ENA10	tmax	enalaprilat	plasma	RIA	NA	NA	NA	NA	3.3	NA	0.5	NA	hr	NA
-Howes1991	NA	all	12.0	ENA10	thalf	enalaprilat	plasma	RIA	NA	NA	NA	NA	5.4	NA	2.0	NA	hr	NA
-Howes1991	NA	all	12.0	ENA10	cumulative amount	enalaprilat	urine	RIA	ENA10_cumulative amount_enalaprilat	96.0	hr	NA	2.9	NA	0.66	NA	mg	NA
-Howes1991	NA	all	12.0	ENA10, HCTZ25	auc measurement	enalaprilat	plasma	RIA	NA	NA	NA	NA	397.0	NA	185.0	NA	ng*h/ml	enalapril/hctz as two separate tablets
-Howes1991	NA	all	12.0	ENA10, HCTZ25	cmax	enalaprilat	plasma	RIA	NA	NA	NA	NA	46.0	NA	22.0	NA	ng/ml	enalapril/hctz as two separate tablets
-Howes1991	NA	all	12.0	ENA10, HCTZ25	tmax	enalaprilat	plasma	RIA	NA	NA	NA	NA	4.0	NA	1.0	NA	hr	enalapril/hctz as two separate tablets
-Howes1991	NA	all	12.0	ENA10, HCTZ25	thalf	enalaprilat	plasma	RIA	NA	NA	NA	NA	5.5	NA	2.0	NA	hr	enalapril/hctz as two separate tablets
-Howes1991	NA	all	12.0	ENA10, HCTZ25	cumulative amount	enalaprilat	urine	RIA	ENA10, HCTZ25multi_cumulative amount_enalaprilat	96.0	hr	NA	2.43	NA	0.77	NA	mg	enalapril/hctz as two separate tablets
-Howes1991	NA	all	12.0	ENA10, HCTZ25	auc measurement	enalaprilat	plasma	RIA	NA	NA	NA	NA	365.0	NA	193.0	NA	ng*h/ml	enalapril/hctz in one combination tablet
-Howes1991	NA	all	12.0	ENA10, HCTZ25	cmax	enalaprilat	plasma	RIA	NA	NA	NA	NA	43.0	NA	18.0	NA	ng/ml	enalapril/hctz in one combination tablet
-Howes1991	NA	all	12.0	ENA10, HCTZ25	tmax	enalaprilat	plasma	RIA	NA	NA	NA	NA	3.7	NA	0.9	NA	hr	enalapril/hctz in one combination tablet
-Howes1991	NA	all	12.0	ENA10, HCTZ25	thalf	enalaprilat	plasma	RIA	NA	NA	NA	NA	4.9	NA	2.3	NA	hr	enalapril/hctz in one combination tablet
-Howes1991	NA	all	12.0	ENA10, HCTZ25	cumulative amount	enalaprilat	urine	RIA	ENA10, HCTZ25combi_cumulative amount_enalaprilat	96.0	hr	NA	2.98	NA	1.56	NA	mg	enalapril/hctz in one combination tablet
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Howes1991	all	NA	12	ENA10	auc measurement	sample mean	NA	enalaprilat	plasma	RIA	auc_measurement_enalaprilat_plasma_ENA10_all	NA	NA	NA	451.0	NA	152.0	43.87862045841156	0.3370288248337029	NA	NA	NA	NA	NA	ng*h/ml	NA
+Howes1991	all	NA	12	ENA10	cmax	sample mean	NA	enalaprilat	plasma	RIA	cmax_enalaprilat_plasma_ENA10_all	NA	NA	NA	54.0	NA	21.0	6.062177826491071	0.3888888888888889	NA	NA	NA	NA	NA	ng/ml	NA
+Howes1991	all	NA	12	ENA10	cumulative amount	sample mean	NA	enalaprilat	urine	RIA	cumulative_amount_enalaprilat_urine_ENA10_all	96.0	hr	NA	2.9	NA	0.66	0.19052558883257653	0.22758620689655173	NA	NA	NA	NA	NA	mg	NA
+Howes1991	all	NA	12	ENA10	thalf	sample mean	NA	enalaprilat	plasma	RIA	thalf_enalaprilat_plasma_ENA10_all	NA	NA	NA	5.4	NA	2.0	0.5773502691896258	0.37037037037037035	NA	NA	NA	NA	NA	hr	NA
+Howes1991	all	NA	12	ENA10	tmax	sample mean	NA	enalaprilat	plasma	RIA	tmax_enalaprilat_plasma_ENA10_all	NA	NA	NA	3.3	NA	0.5	0.14433756729740646	0.15151515151515152	NA	NA	NA	NA	NA	hr	NA
+Howes1991	all	NA	12	ENA10,HCTZ25	auc measurement	sample mean	NA	enalaprilat	plasma	RIA	auc_measurement_enalaprilat_plasma_ENA10_HCTZ25_all	NA	NA	NA	397.0	NA	185.0	53.404899900040384	0.4659949622166247	NA	NA	NA	NA	NA	ng*h/ml	NA
+Howes1991	all	NA	12	ENA10,HCTZ25	cmax	sample mean	NA	enalaprilat	plasma	RIA	cmax_enalaprilat_plasma_ENA10_HCTZ25_all	NA	NA	NA	46.0	NA	22.0	6.3508529610858835	0.4782608695652174	NA	NA	NA	NA	NA	ng/ml	NA
+Howes1991	all	NA	12	ENA10,HCTZ25	cumulative amount	sample mean	NA	enalaprilat	urine	RIA	cumulative_amount_enalaprilat_urine_ENA10_HCTZ25_all	96.0	hr	NA	2.43	NA	0.77	0.22227985363800593	0.3168724279835391	NA	NA	NA	NA	NA	mg	NA
+Howes1991	all	NA	12	ENA10,HCTZ25	thalf	sample mean	NA	enalaprilat	plasma	RIA	thalf_enalaprilat_plasma_ENA10_HCTZ25_all	NA	NA	NA	5.5	NA	2.0	0.5773502691896258	0.36363636363636365	NA	NA	NA	NA	NA	hr	NA
+Howes1991	all	NA	12	ENA10,HCTZ25	tmax	sample mean	NA	enalaprilat	plasma	RIA	tmax_enalaprilat_plasma_ENA10_HCTZ25_all	NA	NA	NA	4.0	NA	1.0	0.2886751345948129	0.25	NA	NA	NA	NA	NA	hr	NA
+Howes1991	all	NA	12	ENA10_combi,HCTZ25_combi	auc measurement	sample mean	NA	enalaprilat	plasma	RIA	auc_measurement_enalaprilat_plasma_ENA10_combi_HCTZ25_combi_all	NA	NA	NA	365.0	NA	193.0	55.71430097679889	0.5287671232876713	NA	NA	NA	NA	NA	ng*h/ml	NA
+Howes1991	all	NA	12	ENA10_combi,HCTZ25_combi	cmax	sample mean	NA	enalaprilat	plasma	RIA	cmax_enalaprilat_plasma_ENA10_combi_HCTZ25_combi_all	NA	NA	NA	43.0	NA	18.0	5.196152422706632	0.4186046511627907	NA	NA	NA	NA	NA	ng/ml	NA
+Howes1991	all	NA	12	ENA10_combi,HCTZ25_combi	cumulative amount	sample mean	NA	enalaprilat	urine	RIA	cumulative_amount_enalaprilat_urine_ENA10_combi_HCTZ25_combi_all	96.0	hr	NA	2.98	NA	1.56	0.45033320996790815	0.5234899328859061	NA	NA	NA	NA	NA	mg	NA
+Howes1991	all	NA	12	ENA10_combi,HCTZ25_combi	thalf	sample mean	NA	enalaprilat	plasma	RIA	thalf_enalaprilat_plasma_ENA10_combi_HCTZ25_combi_all	NA	NA	NA	4.9	NA	2.3	0.6639528095680696	0.4693877551020407	NA	NA	NA	NA	NA	hr	NA
+Howes1991	all	NA	12	ENA10_combi,HCTZ25_combi	tmax	sample mean	NA	enalaprilat	plasma	RIA	tmax_enalaprilat_plasma_ENA10_combi_HCTZ25_combi_all	NA	NA	NA	3.7	NA	0.9	0.2598076211353316	0.24324324324324323	NA	NA	NA	NA	NA	hr	NA

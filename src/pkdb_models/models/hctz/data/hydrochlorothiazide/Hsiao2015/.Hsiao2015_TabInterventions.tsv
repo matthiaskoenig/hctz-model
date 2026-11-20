@@ -1,3 +1,3 @@
-study	name	time	time_end	time_unit	route	application	measurement_type	form	substance	value	unit	comments
-Hsiao2015	HCTZ25	0	96	hr	oral	multiple dose	dosing	tablet	hydrochlorothiazide	25	mg	NA
-Hsiao2015	LCZ696	0	96	hr	oral	multiple dose	dosing	tablet	hydrochlorothiazide	400	mg	NA
+study	name	time	time_end	time_unit	interval	doses	route	application	measurement_type	form	substance	value	unit	comments
+Hsiao2015	HCTZ25	-72.0,-48.0,-24.0,0.0	NA	hr	NA	NA	oral	multiple dose	dosing	tablet	hydrochlorothiazide	25.0	mg	25 mg once daily for 4 days (Period 1 alone, Period 3 with LCZ696); time 0 is the dose of day 4, after which the plasma was sampled
+Hsiao2015	LCZ696	-72.0,-48.0,-24.0,0.0	NA	hr	NA	NA	oral	multiple dose	qualitative dosing	tablet	NA	400.0	mg	LCZ696 (sacubitril/valsartan) 400 mg once daily, not in the vocabulary; given with HCTZ for 4 days in Period 3 (time 0 is the dose of day 4), after LCZ696 alone for 5 days in Period 2

@@ -1,2 +1,2 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Ripley2000		black	9.0	Diet	cumulative amount	potassium	urine	NR	pot_diet_black	24.0	hr		45.1612903225806	65.3763440860214	20.2150537634408	6.73835125448027		mmol	mmol	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Ripley2000	black		9	dimensionless	Diet	cumulative amount	sample mean		potassium	urine	NR	pot_diet_black	24.0	hr		mmol	45.1612903225806	20.2150537634408	6.73835125448027	mmol		mmol	0.44761904761904675				mmol		dimensionless		

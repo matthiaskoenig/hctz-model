@@ -48,8 +48,8 @@ class Barbhaiya1982(HCTZSimulationExperiment):
     colors: ClassVar[list[str]] = ["black", "tab:blue", "tab:green"]
 
     yids: ClassVar[list[str]] = [
-        "[Cve_hctz]",  # plasma concentration
-        "KI__HCTZEX",  # excretion rate
+        "Carm_hctz",  # plasma concentration
+        "Rurine_hctz",  # excretion rate
         "Aurine_hctz",  # cumulative amount urine
     ]
     prefixes: ClassVar[list[str]] = [
@@ -78,14 +78,14 @@ class Barbhaiya1982(HCTZSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith(("hctz", "excretion_", "amount_")):
-                    dset.unit_conversion("mean", 1 / self.Mr.hctz)
+                    dset.unit_conversion("mean", 1 / self.Mr["hctz"])
                 dsets[self.to_sid(label)] = dset
                 if label.startswith("excretion_"):
                     collected = DataSet.from_df(
                         self.collected_amounts(df_label, self.collections),
                         self.ureg,
                     )
-                    collected.unit_conversion("mean", 1 / self.Mr.hctz)
+                    collected.unit_conversion("mean", 1 / self.Mr["hctz"])
                     dsets[self.to_sid(f"{label}_collected")] = collected
 
         return dsets
@@ -94,27 +94,28 @@ class Barbhaiya1982(HCTZSimulationExperiment):
     def simulations(self) -> dict[str, Simulation]:
         simulations = {}
 
-        # no simulation of fasting or different water amounts !
-        simulations["hctz50"] = Simulation(
-            time_unit="hr",
-            end=50,
-            preinit_changes={
+        # the water amounts are not simulated; the groups without fasting took
+        # the dose with a meal (`FED`), their simulations end in `_fed`
+        ends = [end for _, end in self.collections]
+        for fed in [False, True]:
+            suffix = "_fed" if fed else ""
+            preinit_changes = {
                 **self.default_changes(),
                 "PODOSE_hctz": Q(50, "mg"),
-            },
-        )
-        # the urine emptied at the end of every collection
-        simulations["hctz50_collections"] = Simulation(
-            time_unit="hr",
-            end=50,
-            preinit_changes={
-                **self.default_changes(),
-                "PODOSE_hctz": Q(50, "mg"),
-            },
-            changes=[Change([end for _, end in self.collections], self.urine_reset)],
-        )
+                **({"FED": Q(1, "dimensionless")} if fed else {}),
+            }
+            simulations[f"hctz50{suffix}"] = Simulation(
+                time_unit="hr", end=50, preinit_changes=preinit_changes
+            )
+            # the urine emptied at the end of every collection
+            simulations[f"hctz50{suffix}_collections"] = Simulation(
+                time_unit="hr",
+                end=50,
+                preinit_changes=preinit_changes,
+                changes=[Change(ends, self.urine_reset)],
+            )
 
-        return simulations
+        return self.equilibrated_all(simulations)
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
@@ -122,15 +123,12 @@ class Barbhaiya1982(HCTZSimulationExperiment):
 
         # the plasma, and the amounts of the collections in the urine
         observables = {
-            "hctz50_": ("hctz50_", "task_hctz50", "[Cve_hctz]"),
-            "excretion_hctz50_": (
-                "excretion_hctz50_",
-                "task_hctz50_collections",
-                "Aurine_hctz",
-            ),
+            "hctz50_": ("hctz50_", "", "Carm_hctz"),
+            "excretion_hctz50_": ("excretion_hctz50_", "_collections", "Aurine_hctz"),
         }
         for group_key in self.group_keys:
-            for prefix, (dataset, task, yid) in observables.items():
+            for prefix, (dataset, collections, yid) in observables.items():
+                task = f"{self._task(group_key)}{collections}"
                 suffix = "_collected" if prefix.startswith("excretion") else ""
                 mappings[self.to_sid(f"fm_{prefix}{group_key}")] = FitMapping(
                     self,
@@ -144,21 +142,26 @@ class Barbhaiya1982(HCTZSimulationExperiment):
                     ),
                     observable=FitData(self, task=task, xid="time", yid=yid),
                     metadata=PKPDMappingMetaData(
-                        tissue=Tissue.PLASMA
-                        if yid.startswith("[Cve_")
-                        else Tissue.URINE,
+                        tissue=Tissue.PLASMA if yid == "Carm_hctz" else Tissue.URINE,
                         application_form=ApplicationForm.TABLET,
                         route=Route.PO,
                         dosing=Dosing.SINGLE,
                         health=Health.HEALTHY,
-                        fasting=Fasting.FED
-                        if "nofast" in group_key
-                        else Fasting.FASTED,
+                        fasting=Fasting.FED if self._fed(group_key) else Fasting.FASTED,
                         coadministration=Coadministration.NONE,
                     ),
                 )
 
         return mappings
+
+    @staticmethod
+    def _fed(group_key: str) -> bool:
+        """Check whether a group took the dose without fasting (with a meal)."""
+        return "nofast" in group_key
+
+    def _task(self, group_key: str) -> str:
+        """Get the task of a group, fasted or fed."""
+        return "task_hctz50_fed" if self._fed(group_key) else "task_hctz50"
 
     @override
     def figures(self) -> dict[str, Figure]:
@@ -187,7 +190,7 @@ class Barbhaiya1982(HCTZSimulationExperiment):
             # simulation
             for k, yid in enumerate(self.yids):
                 plots[k].add_data(
-                    task="task_hctz50",
+                    task=self._task(group_key),
                     xid="time",
                     yid=yid,
                     label=f"Sim {group_key}",
@@ -195,7 +198,7 @@ class Barbhaiya1982(HCTZSimulationExperiment):
                 )
 
             plots[3].add_data(
-                task="task_hctz50_collections",
+                task=f"{self._task(group_key)}_collections",
                 xid="time",
                 yid="Aurine_hctz",
                 label=f"Sim {group_key}",

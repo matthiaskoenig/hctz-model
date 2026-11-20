@@ -1,25 +1,25 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Patel1984	NA	all	12.0	HCTZ25_tab	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	127.0	NA	34.0	NA	ng/ml	NA
-Patel1984	NA	all	12.0	HCTZ25_tab	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	2.4	NA	0.9	NA	hr	NA
-Patel1984	NA	all	12.0	HCTZ25_tab	auc_end	hydrochlorothiazide	plasma	HPLC	36.0	hr	NA	978.0	NA	237.0	NA	ng*hr/ml	NA
-Patel1984	NA	all	12.0	HCTZ25_tab	clearance_renal	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	257.0	NA	83.0	NA	ml/min	NA
-Patel1984	NA	all	12.0	HCTZ50_tab	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	280.0	NA	108.0	NA	ng/ml	NA
-Patel1984	NA	all	12.0	HCTZ50_tab	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	2.1	NA	1.0	NA	hr	NA
-Patel1984	NA	all	12.0	HCTZ50_tab	auc_end	hydrochlorothiazide	plasma	HPLC	36.0	hr	NA	1968.0	NA	390.0	NA	ng*h/ml	NA
-Patel1984	NA	all	12.0	HCTZ50_tab	clearance_renal	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	222.0	NA	36.0	NA	ml/min	NA
-Patel1984	NA	all	12.0	HCTZ100_tab	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	437.0	NA	105.0	NA	ng/ml	NA
-Patel1984	NA	all	12.0	HCTZ100_tab	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	2.3	NA	1.0	NA	hr	NA
-Patel1984	NA	all	12.0	HCTZ100_tab	auc_end	hydrochlorothiazide	plasma	HPLC	36.0	hr	NA	3554.0	NA	779.0	NA	ng*hr/ml	NA
-Patel1984	NA	all	12.0	HCTZ100_tab	clearance_renal	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	232.0	NA	52.0	NA	ml/min	NA
-Patel1984	NA	all	12.0	HCTZ25_sus	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	134.0	NA	44.0	NA	ng/ml	NA
-Patel1984	NA	all	12.0	HCTZ25_sus	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	2.4	NA	0.9	NA	hr	NA
-Patel1984	NA	all	12.0	HCTZ25_sus	auc_end	hydrochlorothiazide	plasma	HPLC	36.0	hr	NA	1038.0	NA	282.0	NA	ng*hr/ml	NA
-Patel1984	NA	all	12.0	HCTZ25_sus	clearance_renal	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	232.0	NA	78.0	NA	ml/min	NA
-Patel1984	NA	all	12.0	HCTZ50_sus	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	270.0	NA	76.0	NA	ng/ml	NA
-Patel1984	NA	all	12.0	HCTZ50_sus	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	1.8	NA	0.7	NA	hr	NA
-Patel1984	NA	all	12.0	HCTZ50_sus	auc_end	hydrochlorothiazide	plasma	HPLC	36.0	hr	NA	1910.0	NA	344.0	NA	ng*hr/ml	NA
-Patel1984	NA	all	12.0	HCTZ50_sus	clearance_renal	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	233.0	NA	83.0	NA	ml/min	NA
-Patel1984	NA	all	12.0	HCTZ100_sus	cmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	490.0	NA	130.0	NA	ng/ml	NA
-Patel1984	NA	all	12.0	HCTZ100_sus	tmax	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	1.8	NA	0.3	NA	hr	NA
-Patel1984	NA	all	12.0	HCTZ100_sus	auc_end	hydrochlorothiazide	plasma	HPLC	36.0	hr	NA	3493.0	NA	735.0	NA	ng*hr/ml	NA
-Patel1984	NA	all	12.0	HCTZ100_sus	clearance_renal	hydrochlorothiazide	plasma	HPLC	NA	NA	NA	256.0	NA	89.0	NA	ml/min	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Patel1984	all	NA	12	HCTZ25_sus	auc_end	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_end_hydrochlorothiazide_plasma_HCTZ25_sus_all	36.0	hr	NA	1038.0	NA	282.0	81.40638795573724	0.27167630057803466	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Patel1984	all	NA	12	HCTZ25_sus	clearance_renal	sample mean	NA	hydrochlorothiazide	plasma	HPLC	clearance_renal_hydrochlorothiazide_plasma_HCTZ25_sus_all	NA	NA	NA	232.0	NA	78.0	22.516660498395407	0.33620689655172414	NA	NA	NA	NA	NA	ml/min	NA
+Patel1984	all	NA	12	HCTZ25_sus	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_HCTZ25_sus_all	NA	NA	NA	134.0	NA	44.0	12.701705922171767	0.3283582089552239	NA	NA	NA	NA	NA	ng/ml	NA
+Patel1984	all	NA	12	HCTZ25_sus	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ25_sus_all	NA	NA	NA	2.4	NA	0.9	0.2598076211353316	0.375	NA	NA	NA	NA	NA	hr	NA
+Patel1984	all	NA	12	HCTZ25_tab	auc_end	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_end_hydrochlorothiazide_plasma_HCTZ25_tab_all	36.0	hr	NA	978.0	NA	237.0	68.41600689897065	0.24233128834355827	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Patel1984	all	NA	12	HCTZ25_tab	clearance_renal	sample mean	NA	hydrochlorothiazide	plasma	HPLC	clearance_renal_hydrochlorothiazide_plasma_HCTZ25_tab_all	NA	NA	NA	257.0	NA	83.0	23.96003617136947	0.3229571984435798	NA	NA	NA	NA	NA	ml/min	NA
+Patel1984	all	NA	12	HCTZ25_tab	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_HCTZ25_tab_all	NA	NA	NA	127.0	NA	34.0	9.814954576223638	0.2677165354330709	NA	NA	NA	NA	NA	ng/ml	NA
+Patel1984	all	NA	12	HCTZ25_tab	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ25_tab_all	NA	NA	NA	2.4	NA	0.9	0.2598076211353316	0.375	NA	NA	NA	NA	NA	hr	NA
+Patel1984	all	NA	12	HCTZ50_sus	auc_end	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_end_hydrochlorothiazide_plasma_HCTZ50_sus_all	36.0	hr	NA	1910.0	NA	344.0	99.30424630061563	0.18010471204188483	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Patel1984	all	NA	12	HCTZ50_sus	clearance_renal	sample mean	NA	hydrochlorothiazide	plasma	HPLC	clearance_renal_hydrochlorothiazide_plasma_HCTZ50_sus_all	NA	NA	NA	233.0	NA	83.0	23.96003617136947	0.3562231759656652	NA	NA	NA	NA	NA	ml/min	NA
+Patel1984	all	NA	12	HCTZ50_sus	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_HCTZ50_sus_all	NA	NA	NA	270.0	NA	76.0	21.93931022920578	0.2814814814814815	NA	NA	NA	NA	NA	ng/ml	NA
+Patel1984	all	NA	12	HCTZ50_sus	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ50_sus_all	NA	NA	NA	1.8	NA	0.7	0.20207259421636903	0.38888888888888884	NA	NA	NA	NA	NA	hr	NA
+Patel1984	all	NA	12	HCTZ50_tab	auc_end	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_end_hydrochlorothiazide_plasma_HCTZ50_tab_all	36.0	hr	NA	1968.0	NA	390.0	112.58330249197704	0.19817073170731708	NA	NA	NA	NA	NA	ng*h/ml	NA
+Patel1984	all	NA	12	HCTZ50_tab	clearance_renal	sample mean	NA	hydrochlorothiazide	plasma	HPLC	clearance_renal_hydrochlorothiazide_plasma_HCTZ50_tab_all	NA	NA	NA	222.0	NA	36.0	10.392304845413264	0.16216216216216217	NA	NA	NA	NA	NA	ml/min	NA
+Patel1984	all	NA	12	HCTZ50_tab	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_HCTZ50_tab_all	NA	NA	NA	280.0	NA	108.0	31.176914536239792	0.38571428571428573	NA	NA	NA	NA	NA	ng/ml	NA
+Patel1984	all	NA	12	HCTZ50_tab	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ50_tab_all	NA	NA	NA	2.1	NA	1.0	0.2886751345948129	0.47619047619047616	NA	NA	NA	NA	NA	hr	NA
+Patel1984	all	NA	12	HCTZ100_sus	auc_end	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_end_hydrochlorothiazide_plasma_HCTZ100_sus_all	36.0	hr	NA	3493.0	NA	735.0	212.1762239271875	0.21042084168336672	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Patel1984	all	NA	12	HCTZ100_sus	clearance_renal	sample mean	NA	hydrochlorothiazide	plasma	HPLC	clearance_renal_hydrochlorothiazide_plasma_HCTZ100_sus_all	NA	NA	NA	256.0	NA	89.0	25.69208697893835	0.34765625	NA	NA	NA	NA	NA	ml/min	NA
+Patel1984	all	NA	12	HCTZ100_sus	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_HCTZ100_sus_all	NA	NA	NA	490.0	NA	130.0	37.52776749732568	0.2653061224489796	NA	NA	NA	NA	NA	ng/ml	NA
+Patel1984	all	NA	12	HCTZ100_sus	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ100_sus_all	NA	NA	NA	1.8	NA	0.3	0.08660254037844387	0.16666666666666666	NA	NA	NA	NA	NA	hr	NA
+Patel1984	all	NA	12	HCTZ100_tab	auc_end	sample mean	NA	hydrochlorothiazide	plasma	HPLC	auc_end_hydrochlorothiazide_plasma_HCTZ100_tab_all	36.0	hr	NA	3554.0	NA	779.0	224.87792984935925	0.21918964546989309	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Patel1984	all	NA	12	HCTZ100_tab	clearance_renal	sample mean	NA	hydrochlorothiazide	plasma	HPLC	clearance_renal_hydrochlorothiazide_plasma_HCTZ100_tab_all	NA	NA	NA	232.0	NA	52.0	15.01110699893027	0.22413793103448276	NA	NA	NA	NA	NA	ml/min	NA
+Patel1984	all	NA	12	HCTZ100_tab	cmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	cmax_hydrochlorothiazide_plasma_HCTZ100_tab_all	NA	NA	NA	437.0	NA	105.0	30.310889132455355	0.2402745995423341	NA	NA	NA	NA	NA	ng/ml	NA
+Patel1984	all	NA	12	HCTZ100_tab	tmax	sample mean	NA	hydrochlorothiazide	plasma	HPLC	tmax_hydrochlorothiazide_plasma_HCTZ100_tab_all	NA	NA	NA	2.3	NA	1.0	0.2886751345948129	0.4347826086956522	NA	NA	NA	NA	NA	hr	NA

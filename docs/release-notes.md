@@ -1,5 +1,139 @@
 # Release notes
 
+## Release notes for hctz-model 0.11.0
+
+Made from pkdb_models 1044679e44 with pkpdsim 0.31.0.
+
+App: <https://matthiaskoenig.github.io/hctz-model/hctz_app.html>
+
+The changes since 0.10.0.
+
+### Core libraries
+
+pkpdsim 0.11.0 → 0.31.0 (latest 5 of 198):
+
+- **The readouts of a model figure** ([#216](https://github.com/matthiaskoenig/pkpdsim/pull/216), [#218](https://github.com/matthiaskoenig/pkpdsim/pull/218)).
+- **The whole-body cardiovascular circulation** ([#208](https://github.com/matthiaskoenig/pkpdsim/issues/208)).
+- **Liver lobe simulations** ([#209](https://github.com/matthiaskoenig/pkpdsim/issues/209)).
+- **The interactive examples of the circulation and the lobes in the documentation**.
+- **A concentration readout of the sidecar names the selection which gives a concentration** ([#219](https://github.com/matthiaskoenig/pkpdsim/pull/219)).
+
+sbmlsim 0.13.0 → 0.34.0 (latest 5 of 167):
+
+- **The panels of a figure take the knobs of their page** ([#587](https://github.com/matthiaskoenig/sbmlsim/pull/587)).
+- **A page driven by a figure is a dashboard** ([#586](https://github.com/matthiaskoenig/sbmlsim/pull/586)).
+- **The page of an app is as wide as the screen, a page of panels keeps its reading width** ([#586](https://github.com/matthiaskoenig/sbmlsim/pull/586)).
+- **The notices of the components are read where a reader looks for them** ([#586](https://github.com/matthiaskoenig/sbmlsim/pull/586)).
+- **A frozen run never pushes a legend entry out of its plot** ([#586](https://github.com/matthiaskoenig/sbmlsim/pull/586), [sbmlsim-web #13](https://github.com/matthiaskoenig/sbmlsim-web/pull/13)).
+
+sbmlutils 0.17.0 → 0.17.2 (latest 5 of 12):
+
+- `flatten_sbml` and `flatten_sbml_doc` no longer validate the comp model unless asked.
+- a document with errors from reading it is refused before the flattening, and an error which libsbml's converter only logs, e.g. a replaced element, port or deletion it cannot resolve, now fails the flattening instead of being dropped in silence (#522)
+- `ValidationOptions(comp_flat_model=False)` skips the check of the flat model when a comp document is validated: libsbml flattens a copy of a comp document and checks the flat model (`CompFlatModelNotValid`), which a workflow that flattens the model and validates the flat model anyway does twice.
+- the rest of the validation time of a comp model with many model definitions is libsbml checking every model definition in a copy of the whole document, which is quadratic in their number, reported as [sbmlteam/libsbml#505](https://github.com/sbmlteam/libsbml/issues/505)
+- `requests>=2.33.0` instead of `requests>=2.32.4`: requests before 2.33.0 extracts a file of a zip archive in `extract_zipped_paths` to a predictable path in the temporary directory and reuses a file which already exists there (GHSA-gc5v-m9x4-r6x2, CVE-2026-25645).
+
+### Libraries
+
+| Package | Previous | New |
+| --- | --- | --- |
+| `libroadrunner` | 2.11.0 | 2.12.0.dev700 |
+| `numpy` | 2.5.3 | 2.5.4 |
+| `pandas` | 3.0.6 | 3.1.0 |
+| `petab` | 0.9.0 | 0.10.0 |
+| `pillow` | 12.3.0 | 13.0.0 |
+| `pint` | 0.26.1 | 0.26.2 |
+| `pkpdsim` | 0.11.0 | 0.31.0 |
+| `pkpdutils` | 1.3.0 | 1.7.0 |
+| `pymetadata` | 0.8.1 | 0.8.3 |
+| `sbmlode` | 0.3.0 | 0.3.2 |
+| `sbmlsim` | 0.13.0 | 0.34.0 |
+| `sbmlutils` | 0.17.0 | 0.17.2 |
+
+38 other packages changed.
+
+<details>
+<summary>All changed packages</summary>
+
+| Package | Previous | New |
+| --- | --- | --- |
+| `antimony` | 3.1.3 | 3.3.0 |
+| `anyio` | - | 4.16.0 |
+| `backoff` | 2.2.1 | - |
+| `certifi` | 2026.10.19 | 2026.10.23 |
+| `chardet` | 7.6.0 | - |
+| `colorbrewer` | 0.3 | - |
+| `colour` | 0.1.5 | - |
+| `decorator` | 5.3.1 | - |
+| `deepmerge` | 3.0.1 | 4.0.0 |
+| `fastexcel` | - | 0.21.0 |
+| `fonttools` | 4.66.1 | 4.68.0 |
+| `h11` | - | 0.16.0 |
+| `h5netcdf` | 1.8.1 | 1.8.2 |
+| `hdf5plugin` | - | 7.1.0 |
+| `httpcore2` | - | 2.16.0 |
+| `httpx2` | - | 2.16.0 |
+| `httpx2-jsfetch` | - | 1.0 |
+| `igraph` | 1.0.0 | - |
+| `libroadrunner` | 2.11.0 | 2.12.0.dev700 |
+| `markdown` | 3.11 | 3.11.2 |
+| `narwhals` | 2.26.0 | 2.28.0 |
+| `networkx` | 3.7 | - |
+| `numpy` | 2.5.3 | 2.5.4 |
+| `pandas` | 3.0.6 | 3.1.0 |
+| `petab` | 0.9.0 | 0.10.0 |
+| `pillow` | 12.3.0 | 13.0.0 |
+| `pint` | 0.26.1 | 0.26.2 |
+| `pkdb` | - | 0.12.19 |
+| `pkpdsim` | 0.11.0 | 0.31.0 |
+| `pkpdutils` | 1.3.0 | 1.7.0 |
+| `pkpdutils-core` | - | 0.6.0 |
+| `platformdirs` | 4.12.4 | 4.14.3 |
+| `polars` | - | 1.44.2 |
+| `polars-runtime-32` | - | 1.44.2 |
+| `py4cytoscape` | 1.13.0 | - |
+| `pydantic` | 2.14.1 | 2.14.2 |
+| `pydantic-core` | 2.50.1 | 2.50.2 |
+| `pymdown-extensions` | 12.1 | 12.3 |
+| `pymetadata` | 0.8.1 | 0.8.3 |
+| `python-dateutil` | 2.9.0.post0 | 4.0.0 |
+| `sbmlode` | 0.3.0 | 0.3.2 |
+| `sbmlsim` | 0.13.0 | 0.34.0 |
+| `sbmlsim-core` | - | 0.13.0 |
+| `sbmlutils` | 0.17.0 | 0.17.2 |
+| `six` | 1.17.0 | - |
+| `texttable` | 1.7.0 | - |
+| `truststore` | - | 0.10.5 |
+| `tzdata` | 2026.5 | 2026.6 |
+| `zensical` | 0.0.70 | 0.0.74 |
+| `zensical-ui` | - | 0.0.41 |
+
+</details>
+
+### Data
+
+- Changed: `aliskiren/Vaidyanathan2006`, `canagliflozin/Devineni2014`, `enalapril/Niopas2004`, `hydrochlorothiazide/Anderson1961`, `hydrochlorothiazide/Azumaya1990`, `hydrochlorothiazide/Barbhaiya1982`, `hydrochlorothiazide/Barbhaiya1982a`, `hydrochlorothiazide/Beermann1976`, `hydrochlorothiazide/Beermann1977a`, `hydrochlorothiazide/Beermann1979`, `hydrochlorothiazide/Dussol2005`, `hydrochlorothiazide/Ernst2006`, `hydrochlorothiazide/Giudicelli1987`, `hydrochlorothiazide/Heise2015`, `hydrochlorothiazide/Howes1991`, `hydrochlorothiazide/Hsiao2015`, `hydrochlorothiazide/Hunninghake1986`, `hydrochlorothiazide/Januszewicz1959`, `hydrochlorothiazide/Jeon2012`, `hydrochlorothiazide/Jordo1979`, `hydrochlorothiazide/Knauf1995`, `hydrochlorothiazide/Niemeyer1983`, `hydrochlorothiazide/Nilsen1989`, `hydrochlorothiazide/Patel1984`, `hydrochlorothiazide/Ripley2000`, `hydrochlorothiazide/Weir1998`, `hydrochlorothiazide/Williams1982`, `lisinopril/Koytchev2004`
+
+### Analysis
+
+#### Models
+
+- `hctz_body.xml`: added 1 species, 1 reaction, 221 parameters; removed 17 species, 26 reactions, 58 parameters; changed values `BW` 75 → 73, `BW_ref` 75 → 73, `HEIGHT` 170 → 176, `Ka_dis_hctz` 1.30141 → 1.46649, `Kp_hctz` 2.36426 → 1.36016, `ftissue_hctz` 0.0637161 → 0.0317693
+- `hctz_body_flat.xml`: added 59 species, 107 reactions, 324 parameters; removed 17 species, 31 reactions, 66 parameters; changed values `BW` 75 → 73, `BW_ref` 75 → 73, `HEIGHT` 170 → 176, `Ka_dis_hctz` 1.30141 → 1.46649, `Kp_hctz` 2.36426 → 1.36016, `ftissue_hctz` 0.0637161 → 0.0317693
+- `hctz_fluid.xml`: added 7 parameters; removed 1 species; changed values `E50_hctz_nacl` 8.61825e-05 → 7.47395e-05, `Emax_hctz_cl` 0.45749 → 0.511521, `Emax_hctz_na` 1.72545 → 1.82023, `k_cl` 0.00370717 → 0.0037605, `k_na` 0.00067665 → 0.000658006
+- `hctz_intestine.xml`: removed
+- `hctz_kidney.xml`: removed
+
+#### Experiments
+
+No changes.
+
+#### Fits
+
+- `PD`: `PD_20261017_030352__10c1d` → `PD_20261110_084942__d8038`, moved `E50_hctz_nacl` 8.61825e-05 → none, `Emax_hctz_cl` 0.45749 → none, `Emax_hctz_na` 1.72545 → none, `FLUID__E50_hctz_nacl` none → 7.47395e-05, `FLUID__Emax_hctz_cl` none → 0.511521, `FLUID__Emax_hctz_na` none → 1.82023, `FLUID__k_cl` none → 0.0037605, `FLUID__k_na` none → 0.000658006, `k_cl` 0.00370717 → none, `k_na` 0.00067665 → none
+- `PK`: `PK_20261017_025702__4167a` → `PK_20261110_080555__bb639`, moved `GU__HCTZABS_k` 0.00507166 → none, `KI__HCTZEX_f` 3.23773 → none, `KI__HCTZUP_k` none → 0.362349, `Ka_dis_hctz` 1.30141 → 1.46649, `Kp_hctz` 2.36426 → 1.36016, `MU__kps_hctz` none → 0.0215555, `ftissue_hctz` 0.0637161 → 0.0317693, `ka_hctz` none → 0.307841
+
 ## Release notes for hctz-model 0.10.0
 
 Made from pkdb_models 3a0b49144b with pkpdsim 0.11.0.
